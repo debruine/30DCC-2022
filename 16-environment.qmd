@@ -1,2 +1,128 @@
 # Environment
 
+```{r}
+library(tidyverse)
+```
+
+
+## Data
+
+I found this data on [bees](https://data.world/finley/bee-colony-statistical-data-from-1987-2017) on data.world, posted by Brenda Griffith, who got the data from [United States Department of Agriculture National Agricultural Statistics Service Quick Stats Dataset](https://quickstats.nass.usda.gov/).
+
+```{r}
+bees <- read_csv("data/Bee Colony Survey Data by State.csv",
+                 show_col_types = FALSE)
+```
+
+
+
+It looks like Data Item is different types of values, so let's make this wide.
+
+```{r}
+bees %>%
+  count(`Data Item`)
+```
+
+```{r}
+wide_bees <- bees %>%
+  pivot_wider(names_from = `Data Item`,
+              values_from = Value) %>%
+  select(Year, Period, State, INVENTORY)
+```
+
+## Initial Plot
+
+Make a quick plot to orient to the data.
+
+```{r}
+ggplot(wide_bees, aes(x = Year, y = INVENTORY, color = State)) +
+  geom_line(show.legend = FALSE)
+```
+
+
+OK, there's something odd going on after 2015. It looks like data were just recorded for the "MARKETING YEAR" up to 2015, when they also started getting recorded by quarter. 
+
+```{r, results='asis'}
+wide_bees %>%
+  count(Year, Period) %>%
+  DT::datatable()
+```
+
+Let's limit the data to just "MARKETING YEAR".
+
+```{r}
+wide_bees %>%
+  filter(Period == "MARKETING YEAR") %>%
+  ggplot(aes(x = Year, y = INVENTORY, color = State)) +
+  geom_line(show.legend = FALSE)
+```
+
+## Too much data
+
+There's too much data on the plot. Let's deal with it by faceting the plot by tertiles.
+
+```{r}
+qu <- seq(0, 1, length.out = 4)
+
+bee_quants <- wide_bees %>%
+  filter(Period == "MARKETING YEAR") %>%
+  group_by(State) %>%
+  filter(n() > 5) %>%
+  mutate(mean_inv = mean(INVENTORY)) %>%
+  ungroup() %>%
+  mutate(quantile = case_when(
+    mean_inv <= quantile(mean_inv, qu[2]) ~ 1,
+    mean_inv <= quantile(mean_inv, qu[3]) ~ 2,
+    mean_inv <= quantile(mean_inv, qu[4]) ~ 3
+  ))
+
+```
+
+## Labels
+
+Make a label for each tertile with the names of all the states. Use `str_wrap()` to make sure it fits on the plot facet.
+
+```{r}
+labels <- bee_quants %>%
+  select(State, quantile) %>%
+  distinct() %>%
+  group_by(quantile) %>%
+  arrange(State) %>%
+  mutate(State = str_to_title(State)) %>%
+  summarise(label = paste(State, collapse = ", ")) %>%
+  mutate(label = str_wrap(label, width = 50, indent = 0, exdent = 0)) %>%
+  arrange(quantile) %>%
+  pull(label)
+
+names(labels) <- c("1", "2", "3")
+```
+
+
+## Plot
+
+```{r, fig.width = 12, fig.height = 5, out.width = "100%"}
+bee_quants %>%
+  ggplot(aes(x = Year, y = INVENTORY, group = State, color = log(mean_inv))) +
+  geom_line(show.legend = FALSE) +
+  facet_wrap(~quantile, scales = "free_y", 
+             labeller = as_labeller(labels),
+             nrow = 1) +
+  scale_color_viridis_c() +
+  labs(x = NULL, title = "Bee Inventories in US States",
+       caption = "Data from data.world | Plot by @lisadebruine") +
+  scale_y_continuous(
+    name = "Bee Inventory",
+    labels = scales::label_number(scale = 1/1000, suffix = "K")) +
+  expand_limits(y=0)
+```
+
+
+```{r, include = FALSE, eval = FALSE}
+ggsave("images/day16.png", width = 12, height = 5, device = png)
+knitr::include_graphics("images/day16.png")
+```
+
+
+
+
+

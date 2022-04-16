@@ -602,6 +602,41 @@
     "text": "15.4 Combine\nYou can’t combine plots with margins made by ggExtra using patchwork, so I have to save each to a file individually and combine them with webmorphR.\n\nCodeggsave(\"images/mv_1_age_texts.png\", age_texts, width = 5, height = 5)\nggsave(\"images/mv_2_score_age.png\", score_age, width = 5, height = 5)\nggsave(\"images/mv_3_texts_score.png\", texts_score, width = 5, height = 5)\n\n\nWebmorphR is an R package I’m developing for making visual stimuli for research in a way that is computationally reproducible. It uses magick under the hood, but has a lot of convenient functions for making figures.\n\nCode# read in images starting with mv_\nimgs <- webmorphR::read_stim(\"images\", \"^mv_\\\\d\")\n\n# plot in a single row\nfig <- plot(imgs, nrow = 1)\n\nfig\n\n\n\n\n\n\n\nSave the figure to a file.\n\nCodewrite_stim(fig, dir = \"images\", names = \"day15\", format = \"png\")"
   },
   {
+    "objectID": "16-environment.html#data",
+    "href": "16-environment.html#data",
+    "title": "\n16  Environment\n",
+    "section": "\n16.1 Data",
+    "text": "16.1 Data\nI found this data on bees on data.world, posted by Brenda Griffith, who got the data from United States Department of Agriculture National Agricultural Statistics Service Quick Stats Dataset.\n\nCodebees <- read_csv(\"data/Bee Colony Survey Data by State.csv\",\n                 show_col_types = FALSE)\n\n\nIt looks like Data Item is different types of values, so let’s make this wide.\n\nCodebees %>%\n  count(`Data Item`)\n\n# A tibble: 5 × 2\n  `Data Item`                        n\n  <chr>                          <int>\n1 ADDED & REPLACED                 450\n2 INVENTORY                       1778\n3 INVENTORY, MAX                   450\n4 LOSS, COLONY COLLAPSE DISORDER   268\n5 LOSS, DEADOUT                    450\n\n\n\nCodewide_bees <- bees %>%\n  pivot_wider(names_from = `Data Item`,\n              values_from = Value) %>%\n  select(Year, Period, State, INVENTORY)"
+  },
+  {
+    "objectID": "16-environment.html#initial-plot",
+    "href": "16-environment.html#initial-plot",
+    "title": "\n16  Environment\n",
+    "section": "\n16.2 Initial Plot",
+    "text": "16.2 Initial Plot\nMake a quick plot to orient to the data.\n\nCodeggplot(wide_bees, aes(x = Year, y = INVENTORY, color = State)) +\n  geom_line(show.legend = FALSE)\n\n\n\n\nOK, there’s something odd going on after 2015. It looks like data were just recorded for the “MARKETING YEAR” up to 2015, when they also started getting recorded by quarter.\nCodewide_bees %>%\n  count(Year, Period) %>%\n  DT::datatable()\n\n\n\n\nLet’s limit the data to just “MARKETING YEAR”.\n\nCodewide_bees %>%\n  filter(Period == \"MARKETING YEAR\") %>%\n  ggplot(aes(x = Year, y = INVENTORY, color = State)) +\n  geom_line(show.legend = FALSE)"
+  },
+  {
+    "objectID": "16-environment.html#too-much-data",
+    "href": "16-environment.html#too-much-data",
+    "title": "\n16  Environment\n",
+    "section": "\n16.3 Too much data",
+    "text": "16.3 Too much data\nThere’s too much data on the plot. Let’s deal with it by faceting the plot by tertiles.\n\nCodequ <- seq(0, 1, length.out = 4)\n\nbee_quants <- wide_bees %>%\n  filter(Period == \"MARKETING YEAR\") %>%\n  group_by(State) %>%\n  filter(n() > 5) %>%\n  mutate(mean_inv = mean(INVENTORY)) %>%\n  ungroup() %>%\n  mutate(quantile = case_when(\n    mean_inv <= quantile(mean_inv, qu[2]) ~ 1,\n    mean_inv <= quantile(mean_inv, qu[3]) ~ 2,\n    mean_inv <= quantile(mean_inv, qu[4]) ~ 3\n  ))"
+  },
+  {
+    "objectID": "16-environment.html#labels",
+    "href": "16-environment.html#labels",
+    "title": "\n16  Environment\n",
+    "section": "\n16.4 Labels",
+    "text": "16.4 Labels\nMake a label for each tertile with the names of all the states. Use str_wrap() to make sure it fits on the plot facet.\n\nCodelabels <- bee_quants %>%\n  select(State, quantile) %>%\n  distinct() %>%\n  group_by(quantile) %>%\n  arrange(State) %>%\n  mutate(State = str_to_title(State)) %>%\n  summarise(label = paste(State, collapse = \", \")) %>%\n  mutate(label = str_wrap(label, width = 50, indent = 0, exdent = 0)) %>%\n  arrange(quantile) %>%\n  pull(label)\n\nnames(labels) <- c(\"1\", \"2\", \"3\")"
+  },
+  {
+    "objectID": "16-environment.html#plot",
+    "href": "16-environment.html#plot",
+    "title": "\n16  Environment\n",
+    "section": "\n16.5 Plot",
+    "text": "16.5 Plot\n\nCodebee_quants %>%\n  ggplot(aes(x = Year, y = INVENTORY, group = State, color = log(mean_inv))) +\n  geom_line(show.legend = FALSE) +\n  facet_wrap(~quantile, scales = \"free_y\", \n             labeller = as_labeller(labels),\n             nrow = 1) +\n  scale_color_viridis_c() +\n  labs(x = NULL, title = \"Bee Inventories in US States\",\n       caption = \"Data from data.world | Plot by @lisadebruine\") +\n  scale_y_continuous(\n    name = \"Bee Inventory\",\n    labels = scales::label_number(scale = 1/1000, suffix = \"K\")) +\n  expand_limits(y=0)"
+  },
+  {
     "objectID": "app-a-colours.html",
     "href": "app-a-colours.html",
     "title": "Appendix A — Colours",

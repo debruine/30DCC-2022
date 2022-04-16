@@ -2,6 +2,9 @@ project:
   type: book
   output-dir: docs
   output-file: "DeBruine-30DCC-2022"
+  resources: 
+  - "images/*"
+  - "data/*"
 
 book:
   title: "30DCC"
