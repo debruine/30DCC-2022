@@ -1,0 +1,301 @@
+# Multivariate
+
+```{r, include = FALSE}
+source("R/setup.R")
+```
+
+I wrote `r pkg("faux")` to make it easier to simulate multivariate normal distribution data with different patterns of correlations, because I was doing it manually using `mvrnorm()` so often. It's expanded to a whole package dedicated to making simulation easier, focusing on simulation from the kinds of parameters you might find in the descriptives table of a paper.
+
+I'll be using the new NORTA (NORmal-To-Anything) methods for today's chart, which are currently only in the development version of faux, so you need to download the GitHub version, not 1.1.0 on CRAN. You can see a [tutorial here](https://debruine.github.io/faux/dev/articles/norta.html).
+
+```{r, message=FALSE}
+# devtools::install_github("debruine/faux", type = "source")
+# devtools::install_github("debruine/webmorphR")
+library(faux)      # for data simulation
+library(ggplot2)   # for plotting
+library(ggExtra)   # for margin plots
+library(patchwork) # for combining plots
+library(webmorphR) # for figure making from images
+
+theme_set(theme_minimal(base_size = 14))
+```
+
+## Simulate data
+
+The `rmulti()` function uses simulation to determine what correlations among normally distributed variables is equivalent to the specified correlations among non-normally distributed variables, then simulates correlated data from a multivariate normal distribution and converts it to the specified distributions using quantile functions.
+
+It works pretty much like `rnorm_multi()`, with the addition of a `dist` argument where you can set the distribution and a `params` argument where you can set their parameters.
+
+The code below simulates 1000 people with uniformly distributed age between 50 and 70, and the number of texts they send per day, which we'll simulated with a Poisson distribution with a mean (lambda) of 5. They're given a questionnaire with 1-7 Likert ratings, which are averaged, so the resulting scores are truncated from 1 to 7, with a mean of 3.5 and SS of 2.1. Age and texts are negatively correlated with $r =-0.3$. Age is also negatively related to the score, $r = -.4$, while score and texts are positively correlated $r = 0.5$.
+
+
+```{r}
+set.seed(8675309) # for reproducibility
+
+dat <- rmulti(
+  n = 1000, 
+  dist = c(age = "unif",
+           texts = "pois",
+           score = "truncnorm"),
+  params = list(
+    age = c(min = 50, max = 70),
+    texts = c(lambda = 5),
+    score = c(a = 1, b = 7, mean = 3.5, sd = 2.1)
+  ),
+  r = c(-0.3, -0.4, +.5)
+)
+
+check_sim_stats(dat)
+```
+
+
+## Plot individual distributions
+
+### Age
+
+Age is uniformly distributed from 50 to 70, so a histogram is probably most appropriate here. Why is the default histogram so ugly?
+
+```{r mv-unif1}
+ggplot(dat, aes(x = age)) +
+  geom_histogram(binwidth = 1)
+```
+
+Oops, I forgot that the uniform distribution is continuous and we normally think of age in integers. There are about half as many 50 and 70 year olds than the other ages. You can fix that by simulating age from 50.501 to 70.499 (I can never remember which way exact .5s round, so I just make sure they won't round to 49 or 71.) 
+
+```{r}
+set.seed(8675309) # for reproducibility
+dat <- rmulti(
+  n = 1000, 
+  dist = c(age = "unif",
+           texts = "pois",
+           score = "truncnorm"),
+  params = list(
+    age = c(min = 50 - .499, max = 70 + .499),
+    texts = c(lambda = 5),
+    score = c(a = 1, b = 7, mean = 3.5, sd = 2.1)
+  ),
+  r = c(-0.3, -0.4, +.5)
+)
+
+dat$age <- round(dat$age)
+```
+
+I'll also fix the histogram style.
+
+```{r mv-unif2}
+ggplot(dat, aes(x = age)) +
+  geom_histogram(binwidth = 1, fill = "white", color = "black")
+```
+
+### Texts - Poisson
+
+The Poisson distribution approaches the normal when lambda gets large, which is why I set the example to a low number of texts.
+
+```{r mv-pois}
+ggplot(dat, aes(x = texts)) +
+  geom_histogram(binwidth = 1, fill = "white", color = "black")
+```
+
+### Score
+
+The truncated normal distribution for our score has a minimum value of 1 and a maximum value of 7.
+
+```{r mv-trunc1}
+ggplot(dat, aes(x = score)) +
+  geom_histogram(binwidth = 1, fill = "white", color = "black")
+```
+
+The default histogram isn't great for this. The first column is scores between 0.5 and 1.5, and half of those are impossible scores. Set the histogram boundary to 1 to and x-axis breaks to 1:7 to fix this. Now each bar is the number of people with scores between the breaks.
+
+```{r mv-trunc}
+ggplot(dat, aes(x = score)) +
+  geom_histogram(binwidth = 1, boundary = 1, 
+                 fill = "white", color = "black") +
+  scale_x_continuous(breaks = 1:7)
+```
+
+## Plot bivariate distributions
+
+Now that we have a bit of a handle on the data, we can try to plot all the joint distributions. 
+
+First, I'll calculate a few things I'll need in all the plots. I set the limits for age and texts to ±0.5 from the actual range so that the margin histograms display like above, rather than with boundaries at the limits.
+
+```{r}
+# axis limits
+age_limit <- c(50-0.5, 70 + 0.5)
+texts_limit <- c(0-0.5, max(dat$texts) + 0.5)
+score_limit <- c(1, 7)
+
+# custom colours
+age_col <- "#D7A9E3"
+score_col <- "#8BBEE8"
+texts_col <- "#A8D5BA"
+
+# plot titles
+titles <- c(
+  age_texts = cor(dat$age, dat$texts),
+  score_age = cor(dat$age, dat$score),
+  texts_score = cor(dat$texts, dat$score)
+) %>%
+  round(2) %>%
+  list("r = %.2f", .) %>%
+  do.call(sprintf, .) %>%
+  paste0(c("Age vs Texts", "Score vs Age", "Texts vs Score"), " (", ., ")")
+```
+
+### Age vs Texts
+
+```{r age-vs-texts}
+ggplot(dat, aes(age, texts)) +
+  geom_point() +
+  geom_smooth(method = lm, formula = y~x)
+```
+
+These are both integer values, so there is a lot of overplotting with 1000 subjects. There are a few ways to deal with this. Let's compare them.
+
+```{r overplot, fig.width = 12, fig.height =8}
+
+overplot_jitter <- ggplot(dat, aes(age, texts)) +
+  geom_jitter(width = .2, height = .2) +
+  ggtitle("Use geom_jitter()")
+
+overplot_alpha <- ggplot(dat, aes(age, texts)) +
+  geom_point(size = 3, alpha = 0.1) +
+  ggtitle("Reduce the point alpha")
+
+overplot_color <- ggplot(dat, aes(age, texts)) +
+  geom_count(aes(color = ..n..), size = 3, show.legend = FALSE) +
+  scale_color_viridis_c() +
+  ggtitle("Use colour")
+
+overplot_count <- ggplot(dat, aes(age, texts)) +
+  geom_count(show.legend = FALSE) +
+  scale_color_viridis_c() +
+  ggtitle("Use geom_count()")
+
+overplot_2dhist <- ggplot(dat, aes(age, texts)) +
+  geom_bin2d(binwidth = c(1, 1), show.legend = FALSE) +
+  scale_fill_viridis_c() +
+  ggtitle("Use geom_bin2d()")
+
+overplot_density <- ggplot(dat, aes(age, texts)) +
+  geom_density_2d_filled(show.legend = FALSE) +
+  ggtitle("Use geom_density_2d_filled()")
+
+overplot_jitter + overplot_alpha + overplot_color +
+  overplot_count +overplot_2dhist + overplot_density +
+  plot_layout(nrow = 2)
+```
+
+
+Now I can add the marginal distributions with `r pkg("ggExtra")` and tidy up the plot a bit. I decided to use `geom_count()` first, but then realised that the marginal distribution plots looked wrong because the marginal histograms were counting the number of plotted points per bin, not the number of data points. So I ended up using a combination of `geom_density_2d_filled()` and `geom_point()` with a low alpha. The marginal plots don't work unless you have some version of `geom_point()` (although you could set the alpha to 0 to make it invisible).
+ 
+
+```{r age-texts, fig.width = 5, fig.height = 5}
+
+p1 <- ggplot(dat, aes(age, texts)) +
+  geom_density_2d_filled(alpha = 0.7) +
+  scale_fill_grey() +
+  geom_point(alpha = 0.1) +
+  geom_smooth(method = lm, formula = y~x, 
+              color = "black") +
+  coord_cartesian(xlim = age_limit, ylim = texts_limit) +
+  scale_y_continuous(breaks = seq(0, 20, 2)) +
+  labs(x = "Age (in years)",
+       y = "Number of texts sent per day",
+       title = titles[1]) +
+  theme(legend.position = "none")
+
+age_texts <- ggMarginal(p1, type = "histogram", 
+                        binwidth = 1, 
+                        xparams = list(fill = age_col),
+                        yparams = list(fill = texts_col, boundary = 0))
+
+age_texts
+```
+
+
+
+### Score vs Age
+
+
+```{r score-age, fig.width = 5, fig.height = 5}
+
+p2 <- ggplot(dat, aes(score, age)) +
+  geom_density_2d_filled(alpha = 0.7) +
+  scale_fill_grey() +
+  geom_point(alpha = 0.1) +
+  geom_smooth(method = lm, formula = y~x, 
+              color = "black") +
+  scale_x_continuous(breaks = 1:7) +
+  coord_cartesian(xlim = score_limit, ylim = age_limit) +
+  labs(y = "Age (in years)",
+       x = "Score on questionnaire",
+       title = titles[2]) +
+  theme(legend.position = "none")
+
+score_age <- ggMarginal(p2, type = "histogram", 
+                        xparams = list(binwidth = 0.5, fill = score_col),
+                        yparams = list(binwidth = 1, fill = age_col))
+
+score_age
+```
+
+### Texts vs Score
+
+
+```{r texts-score, fig.width = 5, fig.height = 5}
+
+p3 <- ggplot(dat, aes(texts, score)) +
+  geom_density_2d_filled(alpha = 0.7) +
+  scale_fill_grey() +
+  geom_point(alpha = 0.1) +
+  geom_smooth(method = lm, formula = y~x, 
+              color = "black") +
+  scale_x_continuous(breaks = seq(0, 20, 2)) +
+  scale_y_continuous(breaks = 1:7) +
+  coord_cartesian(xlim = texts_limit, ylim = score_limit ) +
+  labs(x = "Number of texts sent per day",
+       y = "Score on questionnaire",
+       title = titles[3]) +
+  theme(legend.position = "none")
+
+texts_score <- ggMarginal(p3, type = "histogram", 
+                        xparams = list(binwidth = 1, fill = texts_col),
+                        yparams = list(binwidth = 0.5, fill = score_col))
+
+texts_score
+```
+
+
+
+## Combine
+
+You can't combine plots with margins made by ggExtra using patchwork, so I have to save each to a file individually and combine them with `r pkg("webmorphR", "https://debruine.github.io/webmorphR/")`. 
+
+```{r}
+ggsave("images/mv_1_age_texts.png", age_texts, width = 5, height = 5)
+ggsave("images/mv_2_score_age.png", score_age, width = 5, height = 5)
+ggsave("images/mv_3_texts_score.png", texts_score, width = 5, height = 5)
+```
+
+WebmorphR is an R package I'm developing for making visual stimuli for research in a way that is computationally reproducible. It uses magick under the hood, but has a lot of convenient functions for [making figures](https://debruine.github.io/webmorphR/articles/figures.html).
+
+
+```{r day15}
+# read in images starting with mv_
+imgs <- webmorphR::read_stim("images", "^mv_\\d")
+
+# plot in a single row
+fig <- plot(imgs, nrow = 1)
+
+fig
+```
+
+Save the figure to a file.
+
+```{r day15-save}
+write_stim(fig, dir = "images", names = "day15", format = "png")
+```
+
+

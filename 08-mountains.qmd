@@ -1,0 +1,222 @@
+# Mountains
+
+```{r, include = FALSE}
+source("R/setup.R")
+```
+
+
+Munros are the hills in Scotland over 3000 feet high. Many Scottish people are obsessed with [Munro bagging](https://www.visitscotland.com/see-do/active/walking/munro-bagging/) — trying to see how many of the 282 Munros you can climb. I've lived in Scotland since 2003, but I still haven't been up a Munro!
+
+So I thought for the mountains prompt, I'd map all of the Munros in Scotland by height. Then someday, when I bag a munro, I can mark it on the map.
+
+```{r, message=FALSE}
+library(tidyverse)     # for data wrangling
+library(sf)            # for maps
+library(rnaturalearth) # for map coordinates
+library(ggthemes)      # for the map theme
+library(plotly)        # for interactive plots
+library(showtext)      # for fonts
+
+# install a good Scottish font
+# https://www.fontspace.com/hill-house-font-f40002
+font_add(family = "Hill House",
+         regular = "fonts/Hill_House.otf")
+showtext_auto()
+```
+
+## Data
+
+[The Database of British and Irish Hills v17.3 ](http://www.hills-database.co.uk/downloads.html) has a table of the Munros, with columns for many years (I guess which hills are classified as Munros changes over time). Let's get just the current munros and fix some of the names.
+
+```{r}
+munros <- read_csv("data/munrotab_v8.0.1.csv",
+                   show_col_types = FALSE) %>%
+  filter(`2021` == "MUN") %>%
+  select(-c(`1891`:`2021`)) %>% # get rid of the year columns
+  rename(height_m = "Height (m)", 
+         height_ft = "Height\n(ft)")
+```
+
+Make a quick histogram of their heights to get an overview of the data. I'd usually use the metric system, but since Munros are defined as hills over 3000 feet, I'll use feet.
+
+```{r mountains-histogram}
+ggplot(munros, aes(x = height_ft)) +
+  geom_histogram(binwidth = 100, boundary = 0, 
+                 color = "black", fill = "white")
+```
+
+## Map of Scotland
+
+Now I need a map of Scotland.
+
+```{r}
+scotland_sf <- ne_states(geounit = "Scotland", 
+                         returnclass = "sf")
+```
+
+The munro table locates the peaks using grid coordinates, and the map uses latitude and longitude. So I translated the grid coordinates to latitude and longitude using [Stackoverflow code from hrbrmstr](https://stackoverflow.com/questions/23017053/how-to-convert-uk-grid-reference-to-latitude-and-longitude-in-r).
+
+
+```{r, echo = FALSE}
+# takes numeric east/north generated from the os.grid.parse() function
+# i shld have made it take the vector the os.grid.parse() returns but 
+# we'll save that for a proper package version
+
+os.grid.to.lat.lon <- function(E, N) {
+
+  a <- 6377563.396
+  b <- 6356256.909
+  F0 <- 0.9996012717
+  lat0 <- 49*pi/180
+  lon0 <- -2*pi/180
+  N0 <- -100000
+  E0 <- 400000
+  e2 <- 1 - (b^2)/(a^2)
+  n <- (a-b)/(a+b)
+  n2 <- n^2
+  n3 <- n^3
+
+  lat <- lat0
+  M <- 0
+
+  repeat {
+
+    lat <- (N-N0-M)/(a*F0) + lat
+
+    Ma <- (1 + n + (5/4)*n2 + (5/4)*n3) * (lat-lat0)
+    Mb <- (3*n + 3*n*n + (21/8)*n3) * sin(lat-lat0) * cos(lat+lat0)
+    Mc <- ((15/8)*n2 + (15/8)*n3) * sin(2*(lat-lat0)) * cos(2*(lat+lat0))
+    Md <- (35/24)*n3 * sin(3*(lat-lat0)) * cos(3*(lat+lat0))
+    M <- b * F0 * (Ma - Mb + Mc - Md)
+
+    if (N-N0-M < 0.00001) { break }
+
+  }
+
+  cosLat <- cos(lat)
+  sinLat <- sin(lat)
+
+  nu <- a*F0/sqrt(1-e2*sinLat*sinLat)
+  rho <- a*F0*(1-e2)/((1-e2*sinLat*sinLat)^1.5)
+
+  eta2 <- nu/rho-1
+
+  tanLat <- tan(lat)
+  tan2lat <- tanLat*tanLat
+  tan4lat <- tan2lat*tan2lat
+  tan6lat <- tan4lat*tan2lat
+
+  secLat <- 1/cosLat
+  nu3 <- nu*nu*nu
+  nu5 <- nu3*nu*nu
+  nu7 <- nu5*nu*nu
+
+  VII <- tanLat/(2*rho*nu)
+  VIII <- tanLat/(24*rho*nu3)*(5+3*tan2lat+eta2-9*tan2lat*eta2)
+  IX <- tanLat/(720*rho*nu5)*(61+90*tan2lat+45*tan4lat)
+  X <- secLat/nu
+  XI <- secLat/(6*nu3)*(nu/rho+2*tan2lat)
+  XII <- secLat/(120*nu5)*(5+28*tan2lat+24*tan4lat)
+  XIIA <- secLat/(5040*nu7)*(61+662*tan2lat+1320*tan4lat+720*tan6lat)
+
+  dE <- (E-E0)
+  dE2 <- dE*dE
+  dE3 <- dE2*dE
+  dE4 <- dE2*dE2
+  dE5 <- dE3*dE2
+  dE6 <- dE4*dE2
+  dE7 <- dE5*dE2
+
+  lon <- lon0 + X*dE - XI*dE3 + XII*dE5 - XIIA*dE7
+  lat <- lat - VII*dE2 + VIII*dE4 - IX*dE6
+
+  lat <- lat * 180/pi
+  lon <- lon * 180/pi
+
+  return(c(lat, lon))
+
+}
+
+```
+
+
+```{r}
+latlon <- map2(munros$xcoord, munros$ycoord, os.grid.to.lat.lon)
+
+munros$lat <- map_dbl(latlon, `[[`, 1)
+munros$lon <- map_dbl(latlon, `[[`, 2)
+```
+
+Then plot the latitude and longitude coordinates on the map, colored by height.
+
+```{r mountains-map, fig.width = 5, fig.height = 8}
+ggplot() + 
+  geom_sf(data = scotland_sf,
+          mapping = aes(),
+          color = "black", 
+          fill = "grey",
+          size = .1) +
+  coord_sf(xlim = c(-8, 0), ylim = c(54, 61)) +
+  geom_point(aes(x = lon, y = lat, color = height_ft), munros) +
+  theme_map()
+```
+
+
+## Make it prettier
+
+There's no munros on the Northern Isles, so I've cropped them out of the map. I also made the colours better. I added a label to `geom_point()`, which will produce a warning that it isn't used, but you'll see why in the next step.
+
+```{r mountains-pretty, fig.width = 4.5, fig.height = 6, warning=FALSE}
+munro_plot <- ggplot() + 
+  geom_sf(data = scotland_sf,
+          mapping = aes(),
+          color = "chocolate4", 
+          fill = "tan",
+          size = .1) +
+  coord_sf(xlim = c(-7.4, -2), ylim = c(54.8, 58.5)) +
+  geom_point(aes(label = Name, color = height_ft, y = lat, x = lon), 
+             data = arrange(munros, height_ft),
+             size = 0.5) +
+  scale_color_viridis_c(name = "Height (ft)",
+                        limits = c(3000, 4500)) +
+  labs(x = NULL, y = NULL,
+       title = "The Munros of Scotland",
+       caption = "Data from The Database of British and Irish Hills | Plot by @lisadebruine") +
+  theme_map() +
+  theme(legend.position = c(0, 0),
+        legend.background = element_blank(),
+        panel.background = element_rect(fill = "transparent", color = "transparent"),
+        plot.background = element_rect(fill = "lightskyblue1", color = "transparent"),
+        plot.title = element_text(family = "Hill House", size = 26, hjust = .5)
+  )
+
+munro_plot
+```
+
+```{r, include = FALSE, eval = FALSE}
+ggsave("images/day8.png", plot = munro_plot, 
+       width = 4.5, height = 6, device = png)
+```
+
+## Make it interactive
+
+The `r pkg("plotly")` package makes it pretty easy to make a ggplot interactive. Select an are to get a closer look, or hover over an individual munro to see why we added the unused `label` argument to `geom_point()` above.
+
+I had to add some css to get the hover bar to stop acting wierd, but it's still not quite right.
+
+```{verbatim}
+.js-plotly-plot .plotly .modebar { position: relative; top: -2em; }
+.plotly.plot-container { padding-top: 2em; background-color: #B0E1FE;}
+```
+
+<style>
+.js-plotly-plot .plotly .modebar { position: relative; top: -2em; }
+.plotly.plot-container { padding-top: 2em; background-color: #B0E1FE;}
+</style>
+
+```{r mountains-interactive, fig.width = 5, fig.height = 6}
+plotly::ggplotly(
+  p = munro_plot, 
+  tooltip = c("label", "colour")
+)
+```

@@ -1,0 +1,175 @@
+# Pictogram
+
+```{r, include = FALSE}
+source("R/setup.R")
+```
+
+I recently discovered the `r pkg("waffle", "https://github.com/hrbrmstr/waffle/")` package for making waffle plots. Emily and I refuse to teach students on our [Applied Data Skills](https://psyteachr.github.io/ads-v1/) course how to make pie charts, and these are a sweet alternative. 
+
+```{r, message=FALSE}
+#devtools::install_github("hrbrmstr/waffle")
+library(tidyverse)  # for data wrangling
+library(waffle)     # for pictograms
+library(showtext)   # for fonts
+```
+
+## Fonts
+
+I'm never sure what I'm doing with fonts, but this procedure seems to work to install the FontAwesome fonts that you need for pictograms and also any other specialist fonts you'd like.
+
+```{r}
+waffle::install_fa_fonts()
+fontdir <- "/Library/Frameworks/R.framework/Versions/4.1/Resources/library/waffle/fonts/"
+font_add(family = waffle::fa5_brand,
+         regular = paste0(fontdir, "fa-brands-400.ttf"))
+font_add(family = waffle::fa5_solid,
+         regular = paste0(fontdir, "fa-solid-900.ttf"))
+
+# https://www.dafont.com/market-deco.font
+font_add(family = "Market Deco",
+         regular = "fonts/Market_Deco.ttf")
+font_add_google("Sen")
+showtext_auto()
+```
+
+
+## Pictogram data
+
+Pictograms are generally used for counts, and pets are my go-to example for unordered categorical data (even though ferrets are obviously the best).
+
+I found a table of [pet ownership in the USA](https://www.iii.org/fact-statistic/facts-statistics-pet-ownership-and-insurance). They had an excel file download option for the data, but the file was corrupted, so I used `r pkg("datapasta")` to copy it below.
+
+```{r pictogram-data}
+# Number of U.S. Households That Own a Pet, by Type of Animal 
+us_pets <- tibble::tribble(
+               ~Pet, ~Number,
+              "Dog",      69,
+              "Cat",    45.3,
+  "Freshwater fish",    11.8,
+             "Bird",     9.9,
+     "Small animal",     6.2,
+          "Reptile",     5.7,
+            "Horse",     3.5,
+   "Saltwater fish",     2.9
+  ) %>%
+  mutate(Pet = factor(Pet, Pet)) # keep this order
+```
+
+## Icons
+
+Then I need to find matching free icons at [fontawesome](https://fontawesome.com/v5/search?q=animal&m=free&s=solid). 
+
+Make sure you're searching the v5 icons; v6 icons won't work and will result in an impenetrable error-message from `scale_label_pictogram()`.
+
+```{r, eval = FALSE}
+icons <- c("dog", "cat", "fish-fins", "crow", "frog", "dragon", "horse", "fish")
+ggplot(us_pets, aes(label = Pet, values = Number)) +
+  geom_pictogram() +
+  scale_label_pictogram(values = icons)
+```
+
+<pre><code>## Error in vapply(if (n &gt; length(values)) rep(values[[1]], n) else values, : values must be length 1,
+##  but FUN(X[[8]]) result is length 0</code></pre>
+
+Yes, I know I used fish twice, and not many people owned winged dragons, but they were the only reptile!
+
+```{r pictogram-icons}
+icons <- c("dog", "cat", "fish", "crow", "frog", "dragon", "horse", "fish")
+ggplot(us_pets, aes(label = Pet, values = Number)) +
+  geom_pictogram() +
+  scale_label_pictogram(values = icons)
+```
+
+## Colour
+
+Now, let's add some colour. I'm also going to make the icon size a little smaller.
+
+```{r pictogram-colour}
+ggplot(us_pets, aes(label = Pet, values = Number, color = Pet)) +
+  geom_pictogram(size = 6.5) +
+  scale_label_pictogram(values = icons)
+```
+
+I like the ggplot default colours, except for the green fish. I'd rather it be yellow. I found this function to re-create the [ggplot default colour scheme](https://stackoverflow.com/questions/8197559/emulate-ggplot2-default-color-palette).
+
+```{r pictogram-show-col}
+ggplotColours <- function(n, h = c(0, 360) + 15){
+  h[2] <- h[2] - 360/n
+  hcl(h = (seq(h[1], h[2], length = n)), c = 100, l = 65)
+}
+pet_colours <- ggplotColours(8)
+pet_colours[3] <- "#F5C748"
+```
+
+
+```{r pictogram-custom-colour}
+ggplot(us_pets, aes(label = Pet, values = Number, color = Pet)) +
+  geom_pictogram(size = 6.5) +
+  scale_label_pictogram(values = icons) +
+  scale_colour_manual(values = pet_colours)
+```
+
+
+## Clean it up
+
+Add `coord_equal()` to make sure the horizontal and vertical spacing are the same. Add `theme_enhance_waffle()` to get rid of extraneous background, and add labels to aid interpretation and for the data provenance.
+
+```{r pictogram-clean}
+ggplot(us_pets, aes(label = Pet, values = Number, color = Pet)) +
+  geom_pictogram(size = 6.5) +
+  scale_label_pictogram(values = icons) +
+  scale_colour_manual(values = pet_colours) +
+  coord_equal() +
+  theme_enhance_waffle() +
+  labs(title = "Pet Ownership in America",
+       subtitle = "Each icon represents 1 million houeholds",
+       caption = "Data from the American Pet Products Association (APPA) 2021-2022 National Pet Owners Survey")
+```
+
+## Customise
+
+Finally, use `theme()` to really customise the look. I adjusted the spacing between the items on the legend with `legend.spacing.y`, which requires the guides to be set `byrow` to work. 
+
+```{r pictogram-final}
+#| fig.cap: Number of US households (in millions) with each of 8 common pet types.
+#| fig.alt: Number of US households (in millions) with each of 8 common pet types.  Data from the American Pet Products Association (APPA) 2021-2022 National Pet Owners Survey. Dog=69, Cat=45.3, Freshwater fish=11.8, Bird=9.9, Small animal=6.2, Reptile=5.7, Horse=3.5, Saltwater fish=2.9
+
+ggplot(us_pets, aes(label = Pet, values = Number, color = Pet)) +
+  geom_pictogram(size = 6.5) +
+  scale_label_pictogram(values = icons) +
+  scale_colour_manual(values = pet_colours) +
+  coord_equal() +
+  theme_enhance_waffle() +
+  labs(title = "Pet Ownership in America",
+       subtitle = "Each icon represents 1 million houeholds",
+       caption = "Data from the American Pet Products Association (APPA) 2021-2022 National Pet Owners Survey") +
+  theme(axis.ticks = element_blank(),
+        plot.background = element_rect(fill = "black", color = "black"),
+        plot.margin = unit(c(.5, .5, .5, .0), 'cm'),
+        plot.title = element_text(family = "Market Deco", hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption.position = "plot",
+        panel.background = element_rect(fill = "black", color = "transparent"),
+        legend.background = element_blank(),
+        legend.title = element_blank(),
+        legend.key = element_blank(),
+        legend.text = element_text(vjust = 1),
+        legend.spacing.y = unit(.25, 'cm'),
+        text = element_text(family = "Sen", color = "white")) +
+  ## required to make legend.spacing.y work
+  guides(color = guide_legend(byrow = TRUE),
+         label = guide_legend(byrow = TRUE))
+```
+
+## Save Pictogram
+
+However, I had trouble saving the plot using `ggsave()`. The icons ended up all question marks. I eventually fixed that by doing something with the fonts (maybe adding them with `r pkg("showtext")`?), but the icons were still tiny, and the font was blurry at a dpi that makes the icons look right.
+
+This turned out to be because `ggsave()` uses ragg by default (HT [Steve Haroz](https://twitter.com/sharoz/status/1510342578268516355)), which isn't playing well with fontawesome icons, so I had to set the device back to `png`. However, this wasn't a problem when I updated my R and RStudio and started using Quarto (not sure which fixed it). 
+
+```{r pictogram-png}
+ggsave("images/day2.png", width = 8, height = 4.5, device = png)
+```
+
+
+

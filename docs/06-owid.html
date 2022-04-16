@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.80">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="description" content="Code and charts for the 2022 30-Day Chart Challenge">
+<title>30DCC - 6&nbsp; OWiD</title>
+<style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+<script src="site_libs/quarto-nav/quarto-nav.js"></script><script src="site_libs/quarto-nav/headroom.min.js"></script><script src="site_libs/clipboard/clipboard.min.js"></script><meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script><script src="site_libs/quarto-search/fuse.min.js"></script><script src="site_libs/quarto-search/quarto-search.js"></script><link href="./07-physical.html" rel="next">
+<link href="./05-slope.html" rel="prev">
+<script src="site_libs/cookie-consent/cookie-consent.js"></script><link href="site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
+<script src="site_libs/quarto-html/quarto.js"></script><script src="site_libs/quarto-html/popper.min.js"></script><script src="site_libs/quarto-html/tippy.umd.min.js"></script><script src="site_libs/quarto-html/anchor.min.js"></script><link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script><link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+    "location": "sidebar",
+    "copy-button": false,
+    "collapse-after": 2,
+    "panel-placement": "start",
+    "type": "textbox",
+    "limit": 20,
+    "language": {
+      "search-no-results-text": "No results",
+      "search-matching-documents-text": "matching documents",
+      "search-copy-link-title": "Copy link to search",
+      "search-hide-matches-text": "Hide additional matches",
+      "search-more-match-text": "more match in this document",
+      "search-more-matches-text": "more matches in this document",
+      "search-clear-button-title": "Clear",
+      "search-detached-cancel-button-title": "Cancel",
+      "search-submit-button-title": "Submit"
+    }
+  }</script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script><script type="text/plain" cookie-consent="tracking">
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
+  </script><script type="text/javascript" charset="UTF-8">
+  document.addEventListener('DOMContentLoaded', function () {
+  cookieconsent.run({
+    "notice_banner_type":"simple",
+    "consent_type":"implied",
+    "palette":"light",
+    "language":"en",
+    "page_load_consent_levels":["strictly-necessary","functionality","tracking","targeting"],
+    "notice_banner_reject_button_hide":false,
+    "preferences_center_close_button_hide":false,
+    "website_name":""
+    });
+  });
+  </script><script type="application/json" class="js-hypothesis-config">
+  {
+    "theme": "clean",
+    "openSidebar": false
+  }
+  </script><script async="" src="https://hypothes.is/embed.js"></script><!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]--><link rel="stylesheet" href="include/style.css">
+</head>
+<body class="floating">
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">OWiD</span></h1>
+      <button type="button" class="quarto-btn-toggle btn">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">30DCC</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/debruine/30DCC-2022/" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+    <a href="" title="Share" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-share"></i></a>
+    <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
+<li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=%7Curl%7C">
+            <i class="bi bi-bi-twitter pe-1"></i>
+          Twitter
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=%7Curl%7C">
+            <i class="bi bi-bi-facebook pe-1"></i>
+          Facebook
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=%7Curl%7C">
+            <i class="bi bi-bi-linkedin pe-1"></i>
+          LinkedIn
+          </a>
+        </li>
+    </ul>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Overview</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-comparisons" aria-expanded="true">Comparisons</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-comparisons" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-comparisons" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-part-to-whole.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Part-to-whole</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-pictogram.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Pictogram</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-historical.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Historical</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-flora.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Flora</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-slope.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Slope</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-owid.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">OWiD</span></a>
+  </div>
+</li>
+    </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-distributions" aria-expanded="true">Distributions</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-distributions" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-distributions" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-physical.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Physical</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-mountains.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Mountains</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-statistics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Statistics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-experimental.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Experimental</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-circular.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Circular</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-economist.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">The Economist</span></a>
+  </div>
+</li>
+    </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-relationships" aria-expanded="true">Relationships</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-relationships" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-relationships" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-correlation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Correlation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-3-dimensional.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">3-dimensional</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15-multivariate.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multivariate</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-environment.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Environment</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-connections.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Connections</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./18-oecd.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">OECD</span></a>
+  </div>
+</li>
+    </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-timeseries" aria-expanded="true">Timeseries</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-timeseries" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-timeseries" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./19-global-challenge.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Global Challenge</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./20-new-tool.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">New Tool</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./21-down-upwards.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Down/Upwards</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./22-animation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Animation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./23-tiles.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Tiles</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./24-financial-times.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Financial Times</span></a>
+  </div>
+</li>
+    </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-uncertainties" aria-expanded="true">Uncertainties</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-uncertainties" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-uncertainties" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./25-trend.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Trend</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./26-interactive.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Interactive</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./27-future.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Future</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./28-deviations.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Deviations</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./29-storytelling.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Storytelling</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./30-un-population.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">UN Population</span></a>
+  </div>
+</li>
+    </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-appendices" aria-expanded="true">Appendices</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-appendices" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-appendices" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./app-a-colours.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Colours</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./app-b-stained-glass.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Stained Glass Heart</span></a>
+  </div>
+</li>
+    </ul>
+</li>
+    </ul>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc"><h2 id="toc-title">Table of contents</h2>
+<ul>
+<li><a href="#data" class="nav-link active" data-scroll-target="#data"> <span class="header-section-number">6.1</span> Data</a></li>
+<li><a href="#map" class="nav-link" data-scroll-target="#map"> <span class="header-section-number">6.2</span> Map</a></li>
+<li><a href="#projection" class="nav-link" data-scroll-target="#projection"> <span class="header-section-number">6.3</span> Projection</a></li>
+<li><a href="#data-map" class="nav-link" data-scroll-target="#data-map"> <span class="header-section-number">6.4</span> Data Map</a></li>
+<li><a href="#missing-data" class="nav-link" data-scroll-target="#missing-data"> <span class="header-section-number">6.5</span> Missing data</a></li>
+<li><a href="#south-sudan" class="nav-link" data-scroll-target="#south-sudan"> <span class="header-section-number">6.6</span> South Sudan</a></li>
+<li><a href="#single-frame" class="nav-link" data-scroll-target="#single-frame"> <span class="header-section-number">6.7</span> Single frame</a></li>
+<li><a href="#animated-plot" class="nav-link" data-scroll-target="#animated-plot"> <span class="header-section-number">6.8</span> Animated plot</a></li>
+</ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/debruine/30DCC-2022/edit/main/06-owid.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/debruine/30DCC-2022/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/debruine/30DCC-2022/blob/main/06-owid.qmd" class="toc-action">View source</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header"><h1 class="title display-7"><span id="sec-owid" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">OWiD</span></span></h1>
+</header><div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)     <span class="co"># for data wrangling and visualisation</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(sf)            <span class="co"># for maps</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(rnaturalearth) <span class="co"># for map coordinates</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(gganimate)     <span class="co"># for animated plots</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">library</span>(transformr)    <span class="co"># for animated maps</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="fu">library</span>(gifski)        <span class="co"># for more efficient gif creation</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="fu">library</span>(ggthemes)      <span class="co"># for map theme</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="fu">library</span>(lwgeom)        <span class="co"># for map projection</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="fu">library</span>(showtext)      <span class="co"># for adding fonts</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="co"># add the playfair font for the plot title</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a><span class="fu">font_add_google</span>(<span class="at">name =</span> <span class="st">"Playfair Display"</span>, <span class="at">family =</span> <span class="st">"Playfair Display"</span>)</span>
+<span id="cb1-13"><a href="#cb1-13"></a><span class="co"># font_add(family = "Playfair Display",</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a><span class="co">#          regular = "~/Library/Fonts/PlayfairDisplay-VariableFont_wght.ttf")</span></span>
+<span id="cb1-15"><a href="#cb1-15"></a><span class="fu">showtext_auto</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>I hadn’t ever really looked at <a href="https://ourworldindata.org/">Our World in Data</a> in detail before. It’s amazing! So much data and so many clever visualisations. I love the maps, so I thought I’d try to recreate the <a href="https://ourworldindata.org/technology-adoption#share-of-population-with-internet-access">share of individuals using the internet</a>.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/share-of-individuals-using-the-internet.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="data" class="level2" data-number="6.1"><h2 data-number="6.1" class="anchored" data-anchor-id="data">
+<span class="header-section-number">6.1</span> Data</h2>
+<p>I hate working with columns that have uppercase letters or spaces in the names, so I adjusted the column names when importing. I also found out later that this dataset labels South Sudan as “SSD”, but the data from sf labels it as “SDS”, so I’ll fix it here.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Load data</summary><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># data from https://ourworldindata.org/technology-adoption</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>data_orig <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/share-of-individuals-using-the-internet.csv"</span>,</span>
+<span id="cb2-3"><a href="#cb2-3"></a>                      <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"country"</span>, <span class="st">"code"</span>, <span class="st">"year"</span>, <span class="st">"it_net_users"</span>),</span>
+<span id="cb2-4"><a href="#cb2-4"></a>                      <span class="at">skip =</span> <span class="dv">1</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>  <span class="fu">mutate</span>(<span class="at">code =</span> <span class="fu">recode</span>(code, <span class="at">SSD =</span> <span class="st">"SDS"</span>, <span class="at">.default =</span> code))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>There are a lot of missing years. I want them in the map explicitly as rows with it_net_users == NA, for reasons that will get clear later. Pivot wider, which will create a column for each year with NA as the value for any countries that don’t have a row for that year, then pivot back longer.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>data_na <span class="ot">&lt;-</span> data_orig <span class="sc">%&gt;%</span> </span>
+<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> year, </span>
+<span id="cb3-3"><a href="#cb3-3"></a>              <span class="at">values_from =</span> it_net_users) <span class="sc">%&gt;%</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span><span class="fu">c</span>(country, code),</span>
+<span id="cb3-5"><a href="#cb3-5"></a>               <span class="at">names_to =</span> <span class="st">"year"</span>,</span>
+<span id="cb3-6"><a href="#cb3-6"></a>               <span class="at">values_to =</span> <span class="st">"it_net_users"</span>, </span>
+<span id="cb3-7"><a href="#cb3-7"></a>               <span class="at">names_transform =</span> <span class="fu">list</span>(<span class="at">year =</span> as.integer))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section><section id="map" class="level2" data-number="6.2"><h2 data-number="6.2" class="anchored" data-anchor-id="map">
+<span class="header-section-number">6.2</span> Map</h2>
+<p>Now I need some world map coordinates. The <code class="package">sf</code> and <code class="package">rnaturalearth</code> packages make this easy.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Get map coordinates</summary><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>world_sf <span class="ot">&lt;-</span> <span class="fu">ne_countries</span>(<span class="at">returnclass =</span> <span class="st">"sf"</span>, <span class="at">scale =</span> <span class="st">"medium"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2"></a></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="fu">ggplot</span>(world_sf) <span class="sc">+</span> </span>
+<span id="cb4-4"><a href="#cb4-4"></a>  <span class="fu">geom_sf</span>(<span class="at">size =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>  <span class="fu">theme_map</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="06-owid_files/figure-html/owid-map-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="projection" class="level2" data-number="6.3"><h2 data-number="6.3" class="anchored" data-anchor-id="projection">
+<span class="header-section-number">6.3</span> Projection</h2>
+<p>Here’s a better projection. You have to use the <code>st_transform_proj()</code> function from <code class="package">lwgeom</code> to transform the coordinates. You need to add <code>coord_sf(datum = NULL)</code> to the plots to avoid an error message when <code class="package">sf</code> tries to plot the graticule. I also cropped the coordinates to remove giant Antarctica and centre the continents better.</p>
+<p>This is tricky, and I found tutorials by <a href="https://wilkelab.org/practicalgg/articles/Winkel_tripel.html">Claus Wilke</a> and the <a href="https://datascience.blog.wzb.eu/2019/04/30/zooming-in-on-maps-with-sf-and-ggplot2/">WZB Data Science Blog</a> really helpful.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Wintri projection</summary><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># translate the coordinate reference system</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>crs <span class="ot">&lt;-</span> <span class="st">"+proj=wintri"</span>  <span class="co"># winkel tripel projection</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a>world_wintri <span class="ot">&lt;-</span> lwgeom<span class="sc">::</span><span class="fu">st_transform_proj</span>(world_sf, <span class="at">crs =</span> crs)</span>
+<span id="cb5-4"><a href="#cb5-4"></a></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="co"># translate and crop coordinates</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a>trans_coords <span class="ot">&lt;-</span> <span class="fu">st_sfc</span>(</span>
+<span id="cb5-7"><a href="#cb5-7"></a>  <span class="fu">st_point</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.4e7</span>, <span class="sc">-</span><span class="fl">6.5e6</span>)), <span class="co"># lower left lat and lon</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a>  <span class="fu">st_point</span>(<span class="fu">c</span>(<span class="fl">2e7</span>, <span class="fl">1e7</span>)),       <span class="co"># upper right lat and lon</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a>  <span class="at">crs =</span> crs) <span class="sc">%&gt;%</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a>  <span class="fu">st_transform</span>(<span class="at">crs =</span> crs) <span class="sc">%&gt;%</span></span>
+<span id="cb5-11"><a href="#cb5-11"></a>  <span class="fu">st_coordinates</span>()</span>
+<span id="cb5-12"><a href="#cb5-12"></a></span>
+<span id="cb5-13"><a href="#cb5-13"></a>crop_coords <span class="ot">&lt;-</span> <span class="fu">coord_sf</span>(</span>
+<span id="cb5-14"><a href="#cb5-14"></a>  <span class="at">datum =</span> <span class="cn">NULL</span>, </span>
+<span id="cb5-15"><a href="#cb5-15"></a>  <span class="at">xlim =</span> trans_coords[,<span class="st">'X'</span>], </span>
+<span id="cb5-16"><a href="#cb5-16"></a>  <span class="at">ylim =</span> trans_coords[,<span class="st">'Y'</span>], </span>
+<span id="cb5-17"><a href="#cb5-17"></a>  <span class="at">expand =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb5-18"><a href="#cb5-18"></a></span>
+<span id="cb5-19"><a href="#cb5-19"></a><span class="fu">ggplot</span>(world_wintri) <span class="sc">+</span> </span>
+<span id="cb5-20"><a href="#cb5-20"></a>  <span class="fu">geom_sf</span>(<span class="at">size =</span> <span class="fl">0.5</span><span class="sc">/</span>.pt) <span class="sc">+</span></span>
+<span id="cb5-21"><a href="#cb5-21"></a>  crop_coords <span class="sc">+</span></span>
+<span id="cb5-22"><a href="#cb5-22"></a>  <span class="fu">theme_map</span>() <span class="sc">+</span></span>
+<span id="cb5-23"><a href="#cb5-23"></a>  <span class="fu">theme</span>(<span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> <span class="st">"black"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="06-owid_files/figure-html/owid-wintri-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="data-map" class="level2" data-number="6.4"><h2 data-number="6.4" class="anchored" data-anchor-id="data-map">
+<span class="header-section-number">6.4</span> Data Map</h2>
+<p>Now to add the internet use data to the map data. I select down to the relevant columns to make visual inspection easier.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>data_map_int <span class="ot">&lt;-</span> <span class="fu">left_join</span>(world_wintri, data_na, </span>
+<span id="cb6-2"><a href="#cb6-2"></a>                          <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"gu_a3"</span> <span class="ot">=</span> <span class="st">"code"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a>  <span class="fu">select</span>(country, year, <span class="at">code =</span> gu_a3, it_net_users, geometry)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Plot with facets by year. This takes a while to run, but it’s useful to see what each frame will look like.</p>
+<div class="cell" data-layout-align="center" data-hash="06-owid_cache/html/owid-data-map_2e309b95dad38fb7b5aebd579ce5b654">
+<details><summary>Code</summary><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">ggplot</span>(data_map_int) <span class="sc">+</span> </span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">geom_sf</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">fill =</span> it_net_users),</span>
+<span id="cb7-3"><a href="#cb7-3"></a>          <span class="at">size =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>  crop_coords <span class="sc">+</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a>  <span class="fu">scale_fill_distiller</span>(<span class="at">palette =</span> <span class="st">"Blues"</span>, <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>year) <span class="sc">+</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a>  <span class="fu">theme_map</span>() <span class="sc">+</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"right"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="06-owid_files/figure-html/owid-data-map-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Where is the NA facet coming from? It must be regions that never have any data. I’ll group by country and omit any that are entirely NA.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># get data for countries with at least one valid year</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>data_map_int_valid <span class="ot">&lt;-</span> data_map_int <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">all</span>(<span class="fu">is.na</span>(year))) <span class="sc">%&gt;%</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a>  <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Now let’s retry the map, and switch the fill to a nicer viridis gradient. Set the na.value to red to more easily see where the missing data is.</p>
+<div class="cell" data-layout-align="center" data-hash="06-owid_cache/html/owid-map-na_400895f318902c282be16e1b0dd18f4a">
+<details><summary>Code</summary><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">ggplot</span>(data_map_int_valid) <span class="sc">+</span> </span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">geom_sf</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">fill =</span> it_net_users),</span>
+<span id="cb9-3"><a href="#cb9-3"></a>          <span class="at">size =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a>  crop_coords <span class="sc">+</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">na.value =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>year) <span class="sc">+</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a>  <span class="fu">theme_map</span>() <span class="sc">+</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"right"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="06-owid_files/figure-html/owid-map-na-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="missing-data" class="level2" data-number="6.5"><h2 data-number="6.5" class="anchored" data-anchor-id="missing-data">
+<span class="header-section-number">6.5</span> Missing data</h2>
+<p>We don’t have data for a lot of countries in some years. I’m going to use the previous year’s data where there is missing data. I’ll also add a column for whether or not it’s a filled value so I can indicate this on the map if I want.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>data_map_int_no_missing <span class="ot">&lt;-</span> data_map_int_valid <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">mutate</span>(<span class="at">it_net_users_no_na =</span> it_net_users,</span>
+<span id="cb10-3"><a href="#cb10-3"></a>         <span class="at">missing =</span> <span class="fu">is.na</span>(it_net_users)) <span class="sc">%&gt;%</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a>  <span class="fu">arrange</span>(code, year) <span class="sc">%&gt;%</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a>  <span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span></span>
+<span id="cb10-6"><a href="#cb10-6"></a>  <span class="fu">fill</span>(it_net_users_no_na, <span class="at">.direction =</span> <span class="st">"down"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb10-7"><a href="#cb10-7"></a>  <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>There’s still one big persistently missing country in the middle of Africa.</p>
+<div class="cell" data-layout-align="center" data-hash="06-owid_cache/html/owid-map-missing_b29e01ce4505115ff7db3be9d084dde2">
+<details><summary>Code</summary><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">ggplot</span>(data_map_int_no_missing) <span class="sc">+</span> </span>
+<span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">geom_sf</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">fill =</span> it_net_users_no_na),</span>
+<span id="cb11-3"><a href="#cb11-3"></a>          <span class="at">size =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a>  crop_coords <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">na.value =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb11-6"><a href="#cb11-6"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>year) <span class="sc">+</span></span>
+<span id="cb11-7"><a href="#cb11-7"></a>  <span class="fu">theme_map</span>() <span class="sc">+</span></span>
+<span id="cb11-8"><a href="#cb11-8"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"right"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="06-owid_files/figure-html/owid-map-missing-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="south-sudan" class="level2" data-number="6.6"><h2 data-number="6.6" class="anchored" data-anchor-id="south-sudan">
+<span class="header-section-number">6.6</span> South Sudan</h2>
+<p>South Sudan got independence from Sudan in 2011, so lets fill in the values for South Sudan from 1990 to 2012 using the values from Sudan. I found it weirdly hard to do this, and would appreciate if someone could show me a tidier way. Also, I’m sure it will come back to bite me, but I’ve named this data table <code>data_map_int_final</code>.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>sudan <span class="ot">&lt;-</span> data_map_int_no_missing <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a>  <span class="fu">filter</span>(country <span class="sc">==</span> <span class="st">"Sudan"</span>,</span>
+<span id="cb12-3"><a href="#cb12-3"></a>         year <span class="sc">&lt;=</span> <span class="dv">2012</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-4"><a href="#cb12-4"></a>  <span class="fu">pull</span>(it_net_users_no_na)</span>
+<span id="cb12-5"><a href="#cb12-5"></a></span>
+<span id="cb12-6"><a href="#cb12-6"></a>ss_rows <span class="ot">&lt;-</span> <span class="fu">which</span>(data_map_int_no_missing<span class="sc">$</span>country <span class="sc">==</span> <span class="st">"South Sudan"</span> <span class="sc">&amp;</span> </span>
+<span id="cb12-7"><a href="#cb12-7"></a>                 data_map_int_no_missing<span class="sc">$</span>year <span class="sc">&lt;=</span> <span class="dv">2012</span>)</span>
+<span id="cb12-8"><a href="#cb12-8"></a></span>
+<span id="cb12-9"><a href="#cb12-9"></a>nona <span class="ot">&lt;-</span> data_map_int_no_missing<span class="sc">$</span>it_net_users_no_na</span>
+<span id="cb12-10"><a href="#cb12-10"></a>nona[ss_rows] <span class="ot">&lt;-</span> sudan</span>
+<span id="cb12-11"><a href="#cb12-11"></a></span>
+<span id="cb12-12"><a href="#cb12-12"></a>data_map_int_final <span class="ot">&lt;-</span> data_map_int_no_missing <span class="sc">%&gt;%</span></span>
+<span id="cb12-13"><a href="#cb12-13"></a>  <span class="fu">mutate</span>(<span class="at">it_net_users_no_na =</span> nona)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section><section id="single-frame" class="level2" data-number="6.7"><h2 data-number="6.7" class="anchored" data-anchor-id="single-frame">
+<span class="header-section-number">6.7</span> Single frame</h2>
+<p>Now I want to set up what a single frame will look like in my animation. I’ll filter the data down to the year 2019 and work on the plot until I’m happy.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">ggplot</span>(<span class="fu">filter</span>(data_map_int_final, year <span class="sc">==</span> <span class="dv">2019</span>)) <span class="sc">+</span> </span>
+<span id="cb13-2"><a href="#cb13-2"></a>  <span class="fu">geom_sf</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">fill =</span> it_net_users_no_na<span class="sc">/</span><span class="dv">100</span>),</span>
+<span id="cb13-3"><a href="#cb13-3"></a>          <span class="at">size =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a>  crop_coords <span class="sc">+</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a>  <span class="fu">scale_fill_viridis_c</span>(</span>
+<span id="cb13-6"><a href="#cb13-6"></a>    <span class="at">name =</span> <span class="cn">NULL</span>,</span>
+<span id="cb13-7"><a href="#cb13-7"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb13-8"><a href="#cb13-8"></a>    <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, .<span class="dv">1</span>),</span>
+<span id="cb13-9"><a href="#cb13-9"></a>    <span class="at">labels =</span> <span class="cf">function</span>(x)scales<span class="sc">::</span><span class="fu">percent</span>(x, <span class="at">accuracy =</span> <span class="dv">1</span>),</span>
+<span id="cb13-10"><a href="#cb13-10"></a>    <span class="at">guide =</span> <span class="fu">guide_colorbar</span>(</span>
+<span id="cb13-11"><a href="#cb13-11"></a>      <span class="at">label.position =</span> <span class="st">"top"</span>, </span>
+<span id="cb13-12"><a href="#cb13-12"></a>      <span class="at">barheight =</span> <span class="fu">unit</span>(.<span class="dv">1</span>, <span class="st">"in"</span>),</span>
+<span id="cb13-13"><a href="#cb13-13"></a>      <span class="at">frame.colour =</span> <span class="st">"black"</span>,</span>
+<span id="cb13-14"><a href="#cb13-14"></a>      <span class="at">ticks.colour =</span> <span class="st">"black"</span></span>
+<span id="cb13-15"><a href="#cb13-15"></a>    )</span>
+<span id="cb13-16"><a href="#cb13-16"></a>  ) <span class="sc">+</span></span>
+<span id="cb13-17"><a href="#cb13-17"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Share of the population using the internet, 2019"</span>,</span>
+<span id="cb13-18"><a href="#cb13-18"></a>       <span class="at">caption =</span> <span class="st">"Recreation of OurWorldInData.org/technology-adoption | Plot by @lisadebruine"</span>) <span class="sc">+</span></span>
+<span id="cb13-19"><a href="#cb13-19"></a>  <span class="fu">theme_map</span>() <span class="sc">+</span></span>
+<span id="cb13-20"><a href="#cb13-20"></a>  <span class="fu">theme</span>(</span>
+<span id="cb13-21"><a href="#cb13-21"></a>    <span class="at">legend.background =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb13-22"><a href="#cb13-22"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb13-23"><a href="#cb13-23"></a>    <span class="at">legend.key.width =</span> <span class="fu">unit</span>(.<span class="dv">187</span>, <span class="st">"npc"</span>),</span>
+<span id="cb13-24"><a href="#cb13-24"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Playfair Display"</span>, <span class="at">size =</span> <span class="dv">20</span>, <span class="at">colour =</span> <span class="st">"#555555"</span>),</span>
+<span id="cb13-25"><a href="#cb13-25"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">color =</span> <span class="st">"#555555"</span>)</span>
+<span id="cb13-26"><a href="#cb13-26"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="06-owid_files/figure-html/owid-map-frame-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="animated-plot" class="level2" data-number="6.8"><h2 data-number="6.8" class="anchored" data-anchor-id="animated-plot">
+<span class="header-section-number">6.8</span> Animated plot</h2>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>anim <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(data_map_int_final) <span class="sc">+</span> </span>
+<span id="cb14-2"><a href="#cb14-2"></a>  <span class="fu">geom_sf</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">fill =</span> it_net_users_no_na<span class="sc">/</span><span class="dv">100</span>),</span>
+<span id="cb14-3"><a href="#cb14-3"></a>          <span class="at">size =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a>  crop_coords <span class="sc">+</span></span>
+<span id="cb14-5"><a href="#cb14-5"></a>  <span class="fu">scale_fill_viridis_c</span>(</span>
+<span id="cb14-6"><a href="#cb14-6"></a>    <span class="at">name =</span> <span class="cn">NULL</span>,</span>
+<span id="cb14-7"><a href="#cb14-7"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb14-8"><a href="#cb14-8"></a>    <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, .<span class="dv">1</span>),</span>
+<span id="cb14-9"><a href="#cb14-9"></a>    <span class="at">labels =</span> <span class="cf">function</span>(x)scales<span class="sc">::</span><span class="fu">percent</span>(x, <span class="at">accuracy =</span> <span class="dv">1</span>),</span>
+<span id="cb14-10"><a href="#cb14-10"></a>    <span class="at">guide =</span> <span class="fu">guide_colorbar</span>(</span>
+<span id="cb14-11"><a href="#cb14-11"></a>      <span class="at">label.position =</span> <span class="st">"top"</span>, </span>
+<span id="cb14-12"><a href="#cb14-12"></a>      <span class="at">barheight =</span> <span class="fu">unit</span>(.<span class="dv">1</span>, <span class="st">"in"</span>),</span>
+<span id="cb14-13"><a href="#cb14-13"></a>      <span class="at">frame.colour =</span> <span class="st">"black"</span>,</span>
+<span id="cb14-14"><a href="#cb14-14"></a>      <span class="at">ticks.colour =</span> <span class="st">"black"</span></span>
+<span id="cb14-15"><a href="#cb14-15"></a>    )</span>
+<span id="cb14-16"><a href="#cb14-16"></a>  ) <span class="sc">+</span></span>
+<span id="cb14-17"><a href="#cb14-17"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Share of the population using the internet, {frame_time}"</span>,</span>
+<span id="cb14-18"><a href="#cb14-18"></a>       <span class="at">caption =</span> <span class="st">"Recreation of OurWorldInData.org/technology-adoption | Plot by @lisadebruine"</span>) <span class="sc">+</span></span>
+<span id="cb14-19"><a href="#cb14-19"></a>  <span class="fu">theme_map</span>() <span class="sc">+</span></span>
+<span id="cb14-20"><a href="#cb14-20"></a>  <span class="fu">theme</span>(</span>
+<span id="cb14-21"><a href="#cb14-21"></a>    <span class="at">legend.background =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb14-22"><a href="#cb14-22"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb14-23"><a href="#cb14-23"></a>    <span class="at">legend.key.width =</span> <span class="fu">unit</span>(.<span class="dv">187</span>, <span class="st">"npc"</span>),</span>
+<span id="cb14-24"><a href="#cb14-24"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Playfair Display"</span>, <span class="at">size =</span> <span class="dv">20</span>, <span class="at">colour =</span> <span class="st">"#555555"</span>),</span>
+<span id="cb14-25"><a href="#cb14-25"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">color =</span> <span class="st">"#555555"</span>)</span>
+<span id="cb14-26"><a href="#cb14-26"></a>  ) <span class="sc">+</span></span>
+<span id="cb14-27"><a href="#cb14-27"></a>  <span class="fu">transition_time</span>(year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>It takes absolutely forever to create the animation (I think because it’s unnecessarily tweening the shapes, but I don’t have time to learn more about gganimate today), so run this once and set the code chunk to <code>eval = FALSE</code> and load the gif from file.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">anim_save</span>(<span class="st">"images/day6.gif"</span>, <span class="at">animation =</span> anim, </span>
+<span id="cb15-2"><a href="#cb15-2"></a>          <span class="at">nframes =</span> <span class="dv">30</span>, <span class="at">fps =</span> <span class="dv">4</span>, <span class="at">start_pause =</span> <span class="dv">6</span>, <span class="at">end_pause =</span> <span class="dv">6</span>, </span>
+<span id="cb15-3"><a href="#cb15-3"></a>          <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">5</span>, <span class="at">units =</span> <span class="st">"in"</span>, <span class="at">res =</span> <span class="dv">150</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"images/day6.gif"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/day6.gif" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section></main><!-- /main --><script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    setTimeout(function() {
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./05-slope.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Slope</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./07-physical.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Physical</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">CC-BY 2022, Lisa DeBruine</div>   
+      <div class="nav-footer-center"><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+<li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/debruine/30DCC-2022">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/lisadebruine">
+      <i class="bi bi-twitter" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+</div>
+  </div>
+</footer>
+include/script.js
+
+
+</body></html>

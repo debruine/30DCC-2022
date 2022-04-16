@@ -1,0 +1,52 @@
+# Colours {#colours}
+
+```{r, include = FALSE}
+source("R/setup.R")
+library(dplyr)
+```
+
+Hover over a colour to see its R name.
+
+<style>
+  .colordemo { list-item-style: none; padding: 0; margin: 0;}
+  
+  .colordemo li, main ul.colordemo > li:first-child { 
+    display: inline-block; 
+    border: 0.25px solid black; 
+    margin: 0px; 
+    padding: 1.3em 0.2em 0.2em 1.2em; 
+  }
+  
+  .colordemo li span { 
+    display: none; 
+    background-color: white; 
+    border: 0.25px solid black; 
+    padding: 0.25em 0.5em; 
+    border-radius: 0 1em 1em 1em;
+  }
+  .colordemo li:hover span { 
+    display: inline; 
+    position: absolute;
+  }
+</style>
+
+```{r colour-demo, echo = FALSE, results='asis'}
+name <- colours(TRUE)
+rgb <- col2rgb(name) 
+hsv <- rgb2hsv(rgb)
+hex <- as.hexmode(rgb) %>% as.character() %>% 
+  apply(2, paste, collapse = "")
+
+colors <- tibble(name = name,
+       hue = hsv[1, ] %>% round(2),
+       sat = hsv[2, ] %>% round(2),
+       val = hsv[3, ] %>% round(2),
+       hex = hex) %>%
+  arrange(hue, sat, val)
+
+glue::glue("    <li style='background-color: #{colors$hex};'><span>{colors$name}</span></li>") %>%
+  paste(collapse = "\n") %>%
+  paste0("\n<ul class='colordemo'>\n", ., "\n</ul>\n") %>%
+  cat()
+```
+

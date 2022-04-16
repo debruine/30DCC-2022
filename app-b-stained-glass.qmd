@@ -1,0 +1,130 @@
+# Stained Glass Heart
+
+I've been inspired by a lot of the charts I see on the #30DayChartChallenge hashtag, but Icaro Bernardes` [stained glass](https://twitter.com/IcaroBSC/status/1515169762778697732) was the first I wanted to make my own. His [original code](https://github.com/IcaroBernardes/30DayChartChallenge/blob/master/2022/day10/day10.R) shows how to create a gorgeous stained-glass window with text. I've simplified the code a bit and am just making a heart (using maths) in stained glass.
+
+```{r}
+library(ggplot2) # for plotting
+library(dplyr)   # for data wrangling
+library(sf)      # for shapes
+library(ggforce) # for voroni tiles
+```
+
+## Variables
+
+First, set up some variables, like a seed to use for the random elements, the number of points (more will make the glass pieces smaller), and your base palette (I'm using the psyTeachR rainbow colours).
+
+```{r}
+seed <- 8675309
+n_pts <- 150 ### Number of points to try to put inside the window
+palette <- c(
+  "pink" = "#983E82",
+  "orange" = "#E2A458",
+  "yellow" = "#F5DC70",
+  "green" = "#59935B",
+  "blue" = "#467AAC",
+  "purple" = "#61589C"
+)
+```
+
+## Frame
+
+Make a matrix of the x and y coordinates of the frame. The code below is the maths for a heart. 
+
+```{r}
+# make heart frame
+t <- seq(0, 2*pi, by=0.05)
+t <- c(t, t[[1]]) # append starting value
+frame <- cbind(
+  16*sin(t)^3,
+  13*cos(t)-5*cos(2*t)-2*cos(3*t)-cos(4*t)
+)
+```
+
+Then convert the matrix to a polygon. Plot to check it looks right.
+
+```{r heart-check}
+# convert to a polygon
+frame_sf <- frame %>%
+  list() %>% 
+  sf::st_polygon()
+
+ggplot(frame_sf) + geom_sf()
+```
+
+## Random points
+
+Make some random points within the range of x and y values of the frame.
+
+```{r all-points}
+## Create random data points in frame bounds
+set.seed(seed)
+points <- tibble(
+  x = runif(n_pts, min = min(frame[,1]), max = max(frame[,1])),
+  y = runif(n_pts, min = min(frame[,2]), max = max(frame[,2]))
+)
+
+# plot to check
+ggplot() + 
+  geom_sf(data = frame_sf) +
+  geom_point(aes(x, y), points)
+```
+
+## Constrain points
+
+Constrain the points to just those inside the frame. Do this by creating an sf version of the points, then using `sf::st_contains()` to check which are contained in the frame sf object. Then, select just the contained points from the points table.
+
+```{r constrained-points}
+## Creates a new sf object to hold the created points
+points_sf <- sf::st_as_sf(points, coords = c("x","y"))
+
+## Keeps only the random points that are within the frame
+contained <- sf::st_contains(frame_sf, points_sf)
+points <- points %>% dplyr::slice(contained[[1]])
+
+# plot to check
+ggplot() + 
+  geom_sf(data = frame_sf) +
+  geom_point(aes(x, y), points)
+```
+
+## Pane colours
+
+Add to the points table a column called `fill` with randomly sampled colours from the palette` and a column called `alpha` with randomly sampled values between 0.2 and 0.9. You can change these to make your window more or less transparent.
+
+```{r}
+set.seed(seed)
+points <- points %>% 
+  mutate(
+    fill = sample(palette, nrow(.), T),
+    alpha = runif(nrow(.), min = 0.2, max = 0.9)
+  )
+```
+
+## Plot
+
+Now plot! Note the `I()` function for fill and alpha, which uses the actual value in these columns, instead of mapping new values to each unique value.
+
+```{r stained-glass-heart}
+ggplot(points) +
+  geom_voronoi_tile(aes(x = x, y = y, 
+                        group = -1L, 
+                        fill = I(fill),
+                        alpha = I(alpha)),
+                    color = "black", 
+                    size = 1.5, 
+                    bound = frame) +
+  geom_sf(data = frame_sf, 
+          size = 4, 
+          color = "grey10", 
+          fill = "transparent") +
+  theme_void()
+```
+
+I like it even better with a black background.
+
+```{r black-heart}
+ggplot2::last_plot() +
+  theme(plot.background = element_rect(fill = "black"))
+```
+
+

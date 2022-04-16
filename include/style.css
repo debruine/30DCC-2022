@@ -1,0 +1,68 @@
+/* (edit style.css for your own book styles) */
+
+img { max-width: 100%; }
+
+:root {
+  --comp: #4864DB;
+  --dist: #10D4CF;
+  --rels: #8DEA74;
+  --time: #F5C748;
+  --cert: #EA4E11;
+}
+
+/* rainbow borders */
+body {
+  margin-top: 20px;
+  box-shadow: 0 -4px 0 0px var(--cert),
+              0 -8px 0 0px var(--time),
+              0 -12px 0 0px var(--rels),
+              0 -16px 0 0px var(--dist),
+              0 -20px 0 0px var(--comp);
+}
+
+
+/* colour-coded sction headers */
+.sidebar-item-section > .sidebar-item.container .sidebar-item-text {
+  font-weight: bold; font-variant: small-caps;
+}
+
+.sidebar-item-text[data-bs-target="#quarto-sidebar-section-comparisons"] { color: var(--comp); }
+.sidebar-item-text[data-bs-target="#quarto-sidebar-section-distributions"] { color: var(--dist); }
+.sidebar-item-text[data-bs-target="#quarto-sidebar-section-relationships"] { color: var(--rels); }
+.sidebar-item-text[data-bs-target="#quarto-sidebar-section-timeseries"] { color: var(--time); }
+.sidebar-item-text[data-bs-target="#quarto-sidebar-section-uncertainties"] { color: var(--cert); }
+
+/* fix code wrap with line numbers */
+pre > code.sourceCode > span {
+  text-indent: -50px; 
+  padding-left: 50px;
+}
+
+svg { width: 100%; }
+
+.inline-figure {
+  border: none;
+}
+
+
+
+@media screen and (max-width: 767.98px) {
+  #quarto-sidebar .sidebar-menu-container ul.mt-1 {
+    width: 49%;
+    padding:0;
+    float: left;
+    display: inline-block;
+    vertical-align: text-top;
+  }
+  #TOC {
+    float: left;
+  }
+
+  #content {
+    flex:0 0 100%;
+    -webkit-flex:0 0 100%;
+    max-width:100%
+  }
+}
+
+

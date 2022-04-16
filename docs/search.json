@@ -1,0 +1,653 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "30DCC",
+    "section": "",
+    "text": "Overview\nThis is my first year participating in the 30-day chart challenge. In my work with PsyTeachR, we do almost everything in bookdown, so I thought I’d make a book with our open-source PsyTeachR template.\n\nI’m going to use data simulation for most of my charts, so this will also end up being a resource for how to simulate different types of data."
+  },
+  {
+    "objectID": "01-part-to-whole.html#simulate-data",
+    "href": "01-part-to-whole.html#simulate-data",
+    "title": "\n1  Part-to-whole\n",
+    "section": "\n1.1 Simulate data",
+    "text": "1.1 Simulate data\nI always like to start my exploration with simulated data. The mixed design simulation functions below are from faux.\nMake a school with 5 grades, 1-4 classes per grade, and 15-35 students per class.\n\nCodeset.seed(8675309) # for reproducible data simulation\n\nschool <- add_random(grade = 5) %>%\n  add_random(class = sample(1:4, nrow(.), TRUE), \n             .nested_in = \"grade\") %>%\n  add_random(student = sample(15:35, nrow(.), TRUE), \n             .nested_in = \"class\")\n\nhead(school)\n\n# A tibble: 6 × 3\n  grade  class   student   \n  <chr>  <chr>   <chr>     \n1 grade1 class01 student001\n2 grade1 class01 student002\n3 grade1 class01 student003\n4 grade1 class01 student004\n5 grade1 class01 student005\n6 grade1 class01 student006"
+  },
+  {
+    "objectID": "01-part-to-whole.html#basic-treemap",
+    "href": "01-part-to-whole.html#basic-treemap",
+    "title": "\n1  Part-to-whole\n",
+    "section": "\n1.2 Basic Treemap",
+    "text": "1.2 Basic Treemap\nThe basic version is OK, but I think we can do better here.\n\nCodeschool %>% \n  count(grade, class) %>%\n  treemap(\n    index = c(\"grade\", \"class\"), \n    vSize = \"n\"\n  )"
+  },
+  {
+    "objectID": "01-part-to-whole.html#adjust-labels",
+    "href": "01-part-to-whole.html#adjust-labels",
+    "title": "\n1  Part-to-whole\n",
+    "section": "\n1.3 Adjust Labels",
+    "text": "1.3 Adjust Labels\nFirst, I’ll adjust the label size and alignment. I adapted this code from a book that Emily Nordmann and I recently wrote: Applied Data Skills. For fontsize.labels and align.labels, I added vector names to help me remember which is which, but the names aren’t used by treemap() at all, just the order.\nThe class labels aligned to the bottom right are too close to the edges, so give them some padding with xmod.labels and ymod.labels. I’m also going to remove the transparent grey label background with bg.labels = 0\n\nCodeschool %>% \n  count(grade, class) %>%\n  treemap(\n    index = c(\"grade\", \"class\"), \n    vSize = \"n\", \n    title = \"\",\n    # set different label sizes for each type of label\n    fontsize.labels = c(grade = 30, class = 15), \n    # remove shaded background\n    bg.labels = 0,\n    # set different alignments for two label types\n    align.labels = list(\n      grade = c(\"left\", \"top\"), \n      class = c(\"right\", \"bottom\")\n    ),\n    xmod.labels = c(0, -.1), # nudge class labels left\n    ymod.labels = c(0, .1)   # nudge class labels up\n  )"
+  },
+  {
+    "objectID": "01-part-to-whole.html#colour-scheme",
+    "href": "01-part-to-whole.html#colour-scheme",
+    "title": "\n1  Part-to-whole\n",
+    "section": "\n1.4 Colour scheme",
+    "text": "1.4 Colour scheme\nI’d like to use the #30DayChartChallenge theme colours for my plots, so let’s set that up. I’m going to name the colours after the chapter they represent.\n\nTheme Coloursdcc_theme <- list(\n  comp = \"#4864DB\", # ~royalblue\n  dist = \"#10D4CF\", # ~darkturquoise\n  rels = \"#8DEA74\", # ~lightgreen\n  time = \"#F5C748\", # ~tan1\n  cert = \"#EA4E11\"  # ~orangered2\n)\n\n\n\nPlotschool %>% \n  count(grade, class) %>%\n  treemap(\n    index = c(\"grade\", \"class\"), \n    vSize = \"n\", \n    title = \"\",\n    palette = dcc_theme,\n    fontsize.labels = c(grade = 30, class = 10), \n    bg.labels = 0,\n    align.labels = list(\n      grade = c(\"left\", \"top\"), \n      class = c(\"center\", \"center\")\n    ),\n    xmod.labels = c(0, -.1),\n    ymod.labels = c(0, .1)\n  )"
+  },
+  {
+    "objectID": "01-part-to-whole.html#change-text",
+    "href": "01-part-to-whole.html#change-text",
+    "title": "\n1  Part-to-whole\n",
+    "section": "\n1.5 Change text",
+    "text": "1.5 Change text\nNow I want to upgrade the labels. It’s probably easiest to do this in the data using mutate(). I’ll set them to the kind of primary school grade labels we use in Scotland, where each grade is P1, P2, … and each class within a grade gets a letter suffix.\n\nNew labelsschool2 <- school %>% \n  count(grade, class) %>%\n  mutate(grade = gsub(\"grade\", \"P\", grade)) %>%\n  group_by(grade) %>%\n  mutate(class = paste0(grade, letters[1:n()])) %>%\n  ungroup() %>%\n  mutate(class = paste0(class, \"\\nn = \", n))\n\n\nFinally, make the borders thicker. It’s starting to look like a Mondrian!\n\nCodeday1_plot <- school2 %>%\n  treemap(\n    index = c(\"grade\", \"class\"), \n    vSize = \"n\", \n    title = \"\",\n    palette = dcc_theme,\n    fontcolor.labels = \"white\",\n    fontsize.labels = c(grade = 30, class = 15), \n    bg.labels = 0,\n    align.labels = list(\n      grade = c(\"left\", \"top\"), \n      class = c(\"right\", \"bottom\")\n    ),\n    xmod.labels = c(0, -.1),\n    ymod.labels = c(0, .1),\n    border.lwds = 5 # thicker borders\n  )\n\n\n\nTreemap plot of classes nested in grades (P1 to P5). There are 2-4 classes in each grade with 16-35 students. The size of each box represents the size of the class, and the colour of the box represents the grade."
+  },
+  {
+    "objectID": "01-part-to-whole.html#saving-a-treemap",
+    "href": "01-part-to-whole.html#saving-a-treemap",
+    "title": "\n1  Part-to-whole\n",
+    "section": "\n1.6 Saving a treemap",
+    "text": "1.6 Saving a treemap\nI tried ggsave() first and it took a really long time to save, and then the resulting image was blank. I should remember that not everything is ggplot; the output of the treemap() function is a list that draws a plot as a side effect (unless you set draw = FALSE), so you have to use base R plot saving techniques.\nI couldn’t figure out how to re-plot from the day1_plot object, so just had to retype the plot. This didn’t work well in an Rmd code chunk (I think treemap can sense if it’s in a code chunk with inline plot rendering and overrides the dev), so I had to run it in the console.\n\nSave treemap# open the png file\nragg::agg_png(\"images/day1.png\", \n              width = 8, height = 4.5, \n              background = \"transparent\",\n              units = \"in\", res = 150)\n\n# plot the treemap\nschool2 %>%\n  treemap(\n    index = c(\"grade\", \"class\"), \n    vSize = \"n\", \n    title = \"\",\n    palette = dcc_theme,\n    fontcolor.labels = \"white\",\n    fontsize.labels = c(grade = 30, class = 15), \n    bg.labels = 0,\n    align.labels = list(\n      grade = c(\"left\", \"top\"), \n      class = c(\"right\", \"bottom\")\n    ),\n    xmod.labels = c(0, -.1),\n    ymod.labels = c(0, .1),\n    border.lwds = 5 # thicker borders\n  )\n\n# close the png file\nwhile (!is.null(dev.list())) dev.off()"
+  },
+  {
+    "objectID": "02-pictogram.html#fonts",
+    "href": "02-pictogram.html#fonts",
+    "title": "\n2  Pictogram\n",
+    "section": "\n2.1 Fonts",
+    "text": "2.1 Fonts\nI’m never sure what I’m doing with fonts, but this procedure seems to work to install the FontAwesome fonts that you need for pictograms and also any other specialist fonts you’d like.\n\nCodewaffle::install_fa_fonts()\nfontdir <- \"/Library/Frameworks/R.framework/Versions/4.1/Resources/library/waffle/fonts/\"\nfont_add(family = waffle::fa5_brand,\n         regular = paste0(fontdir, \"fa-brands-400.ttf\"))\nfont_add(family = waffle::fa5_solid,\n         regular = paste0(fontdir, \"fa-solid-900.ttf\"))\n\n# https://www.dafont.com/market-deco.font\nfont_add(family = \"Market Deco\",\n         regular = \"fonts/Market_Deco.ttf\")\nfont_add_google(\"Sen\")\nshowtext_auto()"
+  },
+  {
+    "objectID": "02-pictogram.html#pictogram-data",
+    "href": "02-pictogram.html#pictogram-data",
+    "title": "\n2  Pictogram\n",
+    "section": "\n2.2 Pictogram data",
+    "text": "2.2 Pictogram data\nPictograms are generally used for counts, and pets are my go-to example for unordered categorical data (even though ferrets are obviously the best).\nI found a table of pet ownership in the USA. They had an excel file download option for the data, but the file was corrupted, so I used datapasta to copy it below.\n\nCode# Number of U.S. Households That Own a Pet, by Type of Animal \nus_pets <- tibble::tribble(\n               ~Pet, ~Number,\n              \"Dog\",      69,\n              \"Cat\",    45.3,\n  \"Freshwater fish\",    11.8,\n             \"Bird\",     9.9,\n     \"Small animal\",     6.2,\n          \"Reptile\",     5.7,\n            \"Horse\",     3.5,\n   \"Saltwater fish\",     2.9\n  ) %>%\n  mutate(Pet = factor(Pet, Pet)) # keep this order"
+  },
+  {
+    "objectID": "02-pictogram.html#icons",
+    "href": "02-pictogram.html#icons",
+    "title": "\n2  Pictogram\n",
+    "section": "\n2.3 Icons",
+    "text": "2.3 Icons\nThen I need to find matching free icons at fontawesome.\nMake sure you’re searching the v5 icons; v6 icons won’t work and will result in an impenetrable error-message from scale_label_pictogram().\n\nCodeicons <- c(\"dog\", \"cat\", \"fish-fins\", \"crow\", \"frog\", \"dragon\", \"horse\", \"fish\")\nggplot(us_pets, aes(label = Pet, values = Number)) +\n  geom_pictogram() +\n  scale_label_pictogram(values = icons)\n\n\n## Error in vapply(if (n > length(values)) rep(values[[1]], n) else values, : values must be length 1,\n##  but FUN(X[[8]]) result is length 0\nYes, I know I used fish twice, and not many people owned winged dragons, but they were the only reptile!\n\nCodeicons <- c(\"dog\", \"cat\", \"fish\", \"crow\", \"frog\", \"dragon\", \"horse\", \"fish\")\nggplot(us_pets, aes(label = Pet, values = Number)) +\n  geom_pictogram() +\n  scale_label_pictogram(values = icons)"
+  },
+  {
+    "objectID": "02-pictogram.html#colour",
+    "href": "02-pictogram.html#colour",
+    "title": "\n2  Pictogram\n",
+    "section": "\n2.4 Colour",
+    "text": "2.4 Colour\nNow, let’s add some colour. I’m also going to make the icon size a little smaller.\n\nCodeggplot(us_pets, aes(label = Pet, values = Number, color = Pet)) +\n  geom_pictogram(size = 6.5) +\n  scale_label_pictogram(values = icons)\n\n\n\n\n\n\n\nI like the ggplot default colours, except for the green fish. I’d rather it be yellow. I found this function to re-create the ggplot default colour scheme.\n\nCodeggplotColours <- function(n, h = c(0, 360) + 15){\n  h[2] <- h[2] - 360/n\n  hcl(h = (seq(h[1], h[2], length = n)), c = 100, l = 65)\n}\npet_colours <- ggplotColours(8)\npet_colours[3] <- \"#F5C748\"\n\n\n\nCodeggplot(us_pets, aes(label = Pet, values = Number, color = Pet)) +\n  geom_pictogram(size = 6.5) +\n  scale_label_pictogram(values = icons) +\n  scale_colour_manual(values = pet_colours)"
+  },
+  {
+    "objectID": "02-pictogram.html#clean-it-up",
+    "href": "02-pictogram.html#clean-it-up",
+    "title": "\n2  Pictogram\n",
+    "section": "\n2.5 Clean it up",
+    "text": "2.5 Clean it up\nAdd coord_equal() to make sure the horizontal and vertical spacing are the same. Add theme_enhance_waffle() to get rid of extraneous background, and add labels to aid interpretation and for the data provenance.\n\nCodeggplot(us_pets, aes(label = Pet, values = Number, color = Pet)) +\n  geom_pictogram(size = 6.5) +\n  scale_label_pictogram(values = icons) +\n  scale_colour_manual(values = pet_colours) +\n  coord_equal() +\n  theme_enhance_waffle() +\n  labs(title = \"Pet Ownership in America\",\n       subtitle = \"Each icon represents 1 million houeholds\",\n       caption = \"Data from the American Pet Products Association (APPA) 2021-2022 National Pet Owners Survey\")"
+  },
+  {
+    "objectID": "02-pictogram.html#customise",
+    "href": "02-pictogram.html#customise",
+    "title": "\n2  Pictogram\n",
+    "section": "\n2.6 Customise",
+    "text": "2.6 Customise\nFinally, use theme() to really customise the look. I adjusted the spacing between the items on the legend with legend.spacing.y, which requires the guides to be set byrow to work.\n\nCodeggplot(us_pets, aes(label = Pet, values = Number, color = Pet)) +\n  geom_pictogram(size = 6.5) +\n  scale_label_pictogram(values = icons) +\n  scale_colour_manual(values = pet_colours) +\n  coord_equal() +\n  theme_enhance_waffle() +\n  labs(title = \"Pet Ownership in America\",\n       subtitle = \"Each icon represents 1 million houeholds\",\n       caption = \"Data from the American Pet Products Association (APPA) 2021-2022 National Pet Owners Survey\") +\n  theme(axis.ticks = element_blank(),\n        plot.background = element_rect(fill = \"black\", color = \"black\"),\n        plot.margin = unit(c(.5, .5, .5, .0), 'cm'),\n        plot.title = element_text(family = \"Market Deco\", hjust = 0.5),\n        plot.subtitle = element_text(hjust = 0.5),\n        plot.caption.position = \"plot\",\n        panel.background = element_rect(fill = \"black\", color = \"transparent\"),\n        legend.background = element_blank(),\n        legend.title = element_blank(),\n        legend.key = element_blank(),\n        legend.text = element_text(vjust = 1),\n        legend.spacing.y = unit(.25, 'cm'),\n        text = element_text(family = \"Sen\", color = \"white\")) +\n  ## required to make legend.spacing.y work\n  guides(color = guide_legend(byrow = TRUE),\n         label = guide_legend(byrow = TRUE))\n\n\n\nNumber of US households (in millions) with each of 8 common pet types."
+  },
+  {
+    "objectID": "02-pictogram.html#save-pictogram",
+    "href": "02-pictogram.html#save-pictogram",
+    "title": "\n2  Pictogram\n",
+    "section": "\n2.7 Save Pictogram",
+    "text": "2.7 Save Pictogram\nHowever, I had trouble saving the plot using ggsave(). The icons ended up all question marks. I eventually fixed that by doing something with the fonts (maybe adding them with showtext?), but the icons were still tiny, and the font was blurry at a dpi that makes the icons look right.\nThis turned out to be because ggsave() uses ragg by default (HT Steve Haroz), which isn’t playing well with fontawesome icons, so I had to set the device back to png. However, this wasn’t a problem when I updated my R and RStudio and started using Quarto (not sure which fixed it).\n\nCodeggsave(\"images/day2.png\", width = 8, height = 4.5, device = png)"
+  },
+  {
+    "objectID": "03-historical.html#population-data",
+    "href": "03-historical.html#population-data",
+    "title": "\n3  Historical\n",
+    "section": "\n3.1 Population Data",
+    "text": "3.1 Population Data\nI got this dataset from Our World in Data.\n\nCodepop <- read_csv(\"data/population-past-future.csv\",\n                show_col_types = FALSE)\n\nspec(pop)\n\ncols(\n  Entity = col_character(),\n  Code = col_character(),\n  Year = col_double(),\n  `Population (historical estimates and future projections)` = col_double()\n)\n\n\nThe column names need some cleaning (I prefer to work with column names that are all lowercase with no spaces), and I don’t need some of the data.\n\nCodepop <- read_csv(\"data/population-past-future.csv\",\n                col_names = c(\"region\", \"year\", \"population\"),\n                skip = 1,\n                col_types = \"c-id\")\n\nhead(pop)\n\n# A tibble: 6 × 3\n  region        year population\n  <chr>        <int>      <dbl>\n1 Afghanistan -10000      14737\n2 Afghanistan  -9000      20405\n3 Afghanistan  -8000      28253\n4 Afghanistan  -7000      39120\n5 Afghanistan  -6000      54166\n6 Afghanistan  -5000      74999"
+  },
+  {
+    "objectID": "03-historical.html#select-relevant-data",
+    "href": "03-historical.html#select-relevant-data",
+    "title": "\n3  Historical\n",
+    "section": "\n3.2 Select relevant data",
+    "text": "3.2 Select relevant data\nI just want to plot the population for the 6 major world regions, so I’ll filter that and make a quick line plot to see what I’ve got.\n\nCodeworld_regions <- pop %>%\n  filter(region %in% c(\"Africa\", \"Asia\", \"Europe\", \"Oceania\", \"North America\", \"South America\"))\n\n\n\nCodeggplot(world_regions, aes(x = year, y = population, color = region)) +\n  geom_line()"
+  },
+  {
+    "objectID": "03-historical.html#transform-y-axis",
+    "href": "03-historical.html#transform-y-axis",
+    "title": "\n3  Historical\n",
+    "section": "\n3.3 Transform y-axis",
+    "text": "3.3 Transform y-axis\nThe population growth is pretty exponential at the end, so a log transformation of the y-axis might help.\n\nCodeggplot(world_regions, aes(x = year, y = population, color = region)) +\n  geom_line() +\n  scale_y_log10()"
+  },
+  {
+    "objectID": "03-historical.html#region-order",
+    "href": "03-historical.html#region-order",
+    "title": "\n3  Historical\n",
+    "section": "\n3.4 Region order",
+    "text": "3.4 Region order\nIt would make more sense if the legend was in the same order as the lines, so I’ll turn that column into a factor ordered by the population at the latest year.\n\nCoderegion_order <- world_regions %>%\n  filter(year == max(year)) %>%\n  arrange(desc(population)) %>%\n  pull(region)\n\nworld_regions <- world_regions %>%\n  mutate(region = factor(region, region_order))\n\n\nI’ll also add a point for each year with data.\n\nCodeggplot(world_regions, aes(x = year, y = population, color = region)) +\n  geom_line() +\n  geom_point() +\n  scale_y_log10()"
+  },
+  {
+    "objectID": "03-historical.html#variable-x-axis",
+    "href": "03-historical.html#variable-x-axis",
+    "title": "\n3  Historical\n",
+    "section": "\n3.5 Variable x-axis",
+    "text": "3.5 Variable x-axis\nThe data collection isn’t even at all. The years go every 1000 from -10000 to 0, then every 100 from 0 to 1700, then every 10 from 1700 to 1800, then every year from 1800 to 2021.\n\nCodeunique(world_regions$year) %>% sort() %>% `[`(1:50)\n\n [1] -10000  -9000  -8000  -7000  -6000  -5000  -4000  -3000  -2000  -1000\n[11]      0    100    200    300    400    500    600    700    800    900\n[21]   1000   1100   1200   1300   1400   1500   1600   1700   1710   1720\n[31]   1730   1740   1750   1760   1770   1780   1790   1800   1801   1802\n[41]   1803   1804   1805   1806   1807   1808   1809   1810   1811   1812\n\n\nI tried a few x-axis transformations, and they’re not straightforward because the x-axis crosses 0, which most transformations can’t handle. This was one of the silliest.\n\nCodeggplot(world_regions, aes(x = year, y = population, color = region)) +\n  geom_line() +\n  geom_point() +\n  scale_y_log10() +\n  scale_x_continuous(trans = \"reciprocal\")\n\n\n\n\n\n\n\nSo I’ll add a new column that specifies which time period they’re in. I’ll replace this text later, so it’s probably easiest to give them alphabetic labels now.\n\nCodeworld_regions <- world_regions %>%\n  mutate(time_period = case_when(\n      year < 0 ~ \"A\",\n      year < 1700 ~ \"B\",\n      year < 1800 ~ \"C\",\n      year < 2022 ~ \"D\"))\n\n\n\nCodeggplot(world_regions, aes(x = year, y = population, color = region)) +\n  geom_line() +\n  geom_point() +\n  scale_y_log10() +\n  facet_grid(~time_period, scales = \"free_x\")"
+  },
+  {
+    "objectID": "03-historical.html#clean-up",
+    "href": "03-historical.html#clean-up",
+    "title": "\n3  Historical\n",
+    "section": "\n3.6 Clean Up",
+    "text": "3.6 Clean Up\nNow we’re getting somewhere, but still need to clean this up a lot. I’m going to remove the panel spacing and expansion so the plots touch each other. I’ll also customise the breaks and labels for the y-axis to make that easier to understand, and customise the colours (I do love a rainbow).\n\nCode# custom colours\nrainbow <- c(\"#983E82\",\"#E2A458\",\"#F5DC70\",\"#59935B\",\"#467AAC\",\"#61589C\")\n\nggplot(world_regions, aes(x = year, y = population, color = region)) +\n  geom_line() +\n  geom_point() +\n  facet_grid(~time_period, scales = \"free_x\") +\n  scale_x_continuous(name = NULL,\n                     expand = expansion(0)) +\n  scale_y_log10(name = \"Population (log scale)\",\n                breaks = 10^(5:10),\n                labels = c(\"100K\", \"1M\", \"10M\", \"100M\", \"1B\", \"10B\"),\n                limit = c(1e5, 1e10)) +\n  scale_color_manual(name = NULL,\n                     values = rainbow) +\n  theme_bw() +\n  theme(axis.title.x = element_blank(),\n        axis.text.x = element_text(angle = 90, hjust = 1),\n        panel.spacing.x = unit(0, \"cm\"))\n\n\n\n\n\n\n\nHowever, the borders of each time period don’t meet. I can fix that by duplicating the border years and assigning them to the previous time period.\n\nCodeborders <- world_regions %>%\n  group_by(time_period) %>%\n  filter(year == min(year)) %>%\n  ungroup() %>%\n  filter(time_period != \"A\") %>%\n  mutate(time_period = recode(time_period, B = \"A\", C = \"B\", D = \"C\"))\n\nworld_regions2 <- bind_rows(world_regions, borders)\n\n\nLet’s also fix the facet labels. The function as_labeller() lets you translate between the data labels and custom labels for facets. And set some custom colours and custom x-axis breaks and labels. I moved the legend inside the plot to give the plot more horizontal room.\n\nCode# custom facet labels\ntp_labels <- c(\n  A = \"10000BC to 0\",\n  B = \"0 to 1700\",\n  C = \"1700 to 1800\",\n  D = \"1800 to 2021\"\n)\n\n# custom x-axis breaks and labels\nx_breaks <- c(seq(-10000, -2000, 2000),\n              seq(0, 1600, 200),\n              seq(1700, 1790, 10),\n              seq(1800, 2021, 20))\n\nx_labels <- c(paste(seq(10000, 2000, -2000), \"BCE\"),\n              seq(0, 1700, 200),\n              seq(1700, 1790, 10),\n              seq(1800, 2021, 20))\n\nggplot(world_regions2, aes(x = year, y = population, color = region)) +\n  geom_line() +\n  geom_point() +\n  facet_grid(~time_period, \n             scales = \"free_x\", \n             labeller = as_labeller(tp_labels)) +\n  scale_x_continuous(name = NULL,\n                   breaks = x_breaks,\n                   labels = x_labels,\n                   expand = expansion(0)) +\n  scale_y_log10(name = \"Population (log scale)\",\n                breaks = 10^(5:10),\n                labels = c(\"100K\", \"1M\", \"10M\", \"100M\", \"1B\", \"10B\"),\n                limit = c(1e5, 1e10)) +\n  scale_color_manual(name = NULL,\n                     values = rainbow) +\n  theme_bw() +\n  theme(axis.text.x = element_text(angle = 90, hjust = 1),\n        panel.spacing.x = unit(0, \"cm\"),\n        legend.background = element_rect(fill = \"transparent\"),\n        legend.position = c(.1, .75) )"
+  },
+  {
+    "objectID": "03-historical.html#change-time-periods",
+    "href": "03-historical.html#change-time-periods",
+    "title": "\n3  Historical\n",
+    "section": "\n3.7 Change time periods",
+    "text": "3.7 Change time periods\nI changed by mind about 1700 to 1800. This plot gives it too much prominence. so I’ll combine it with 1800+. It looked weird to specify “BCE” only for the years before 0, so I added “CE” (Common Era) to the years after 0 and adjusted the angle and number of labels to make it easier to read.\n\nCode# recode time period to 3 periods (merge C and D)\nworld_regions3 <- world_regions2 %>%\n  mutate(time_period = recode(time_period, A = \"A\", B = \"B\", C = \"C\", D = \"C\"))\n\n# remake facet labels\ntp_labels <- c(\n  A = \"10000 BCE to 0\",\n  B = \"0 to 1700 CE\",\n  C = \"1700 CE to 2021 CE\"\n)\n\n# remake x-axis breaks and labels\nx_breaks <- c(seq(-10000, -2000, 2000),\n              seq(0, 1500, 300),\n              seq(1700, 2021, 50))\n\nx_labels <- c(paste(seq(10000, 2000, -2000), \"BCE\"),\n              paste(seq(0, 1500, 300), \"CE\"),\n              paste(seq(1700, 2021, 50), \"CE\"))\n\n\n\nCodeggplot(world_regions3, aes(x = year, y = population, color = region)) +\n  geom_line() +\n  geom_point(size = 1, alpha = 0.5) +\n  facet_grid(~time_period, \n             scales = \"free_x\", \n             labeller = as_labeller(tp_labels)) +\n  scale_x_continuous(name = NULL,\n                   breaks = x_breaks,\n                   labels = x_labels,\n                   expand = expansion(0)) +\n  scale_y_log10(name = \"Population (log scale)\",\n                breaks = 10^(5:10),\n                labels = c(\"100K\", \"1M\", \"10M\", \"100M\", \"1B\", \"10B\"),\n                limit = c(1e5, 1e10)) +\n  scale_color_manual(name = NULL,\n                     values = rainbow) +\n  labs(title = \"World Population (Historical Estimates)\",\n       caption = \"Data from Our World in Data | Plot by @lisadebruine\") +\n  theme_bw() +\n  theme(text = element_text(family = \"Sen\"),\n        axis.text.x = element_text(angle = 30, hjust = 1),\n        panel.spacing.x = unit(0, \"cm\"),\n        legend.background = element_rect(fill = \"transparent\"),\n        legend.position = c(.1, .75),\n        panel.grid.minor = element_blank(),\n        plot.title = element_text(family = \"Market Deco\"))"
+  },
+  {
+    "objectID": "04-flora.html#svg",
+    "href": "04-flora.html#svg",
+    "title": "\n4  Flora\n",
+    "section": "\n4.1 SVG",
+    "text": "4.1 SVG\nI have some experience making SVGs (scalable vector graphics), but I always have to look things up. W3Schools is my favourite source for quick tutorials on web stuff. I used it a ton to make this chart.\nWhile I was developing this code, I needed to have a quick look at the images a lot, and couldn’t figure out an efficient way to view SVGs, so I wrote a function that converts the svg text to a PNG tempfile and displays it in my Rmd, but only when I’m running the code interactively.\n\nCodeviewsvg <- function(svg, width = 5, height = 5, dpi = 150) {\n  if (interactive() &&\n      !isTRUE(getOption(\"knitr.in.progress\"))) {\n    imgpath <- tempfile(fileext = \".png\")\n    rsvg::rsvg_png(svg = charToRaw(svg),\n                   file = imgpath,\n                   width = width*dpi, height = height*dpi)\n    knitr::include_graphics(imgpath)\n  } else {\n    cat(svg)\n  }\n}\n\n\nIt outputs the SVG as html when knitting. All of the images below are created with a code chunk that looks like this:\n```{r, results='asis', echo = FALSE}\nviewsvg(svg)\n```"
+  },
+  {
+    "objectID": "04-flora.html#flower-petals",
+    "href": "04-flora.html#flower-petals",
+    "title": "\n4  Flora\n",
+    "section": "\n4.2 Flower Petals",
+    "text": "4.2 Flower Petals\nFirst, I need a function to figure out the coordinates of regular polygons.\n\nCodepoly_coords <- function(n = 6, r = 1, cx = 0, cy = 0, rot = 0, digits = 2) {\n  x = map_dbl(0:(n-1), ~{ cx + r * cos(2 * pi * .x / n + rot) })\n  y = map_dbl(0:(n-1), ~{ cy + r * sin(2 * pi * .x / n + rot) })\n  \n  list(\n    x = round(x, digits),\n    y = round(y, digits)\n  )\n}\n\n# example hexagon\npoly_coords(n = 6)\n\n$x\n[1]  1.0  0.5 -0.5 -1.0 -0.5  0.5\n\n$y\n[1]  0.00  0.87  0.87  0.00 -0.87 -0.87\n\n\nNow, make n circles with radius r that are petal_dist away from the center of the flower.\n\nCoden <- 6\nr <- 200\npetal_dist <- 300\ncx <- 500\ncy <- 500\n\ncoords <- poly_coords(n, petal_dist, cx, cy)\npetals <- glue('    <circle cx=\"{coords$x}\" cy=\"{coords$y}\" r=\"{r}\" fill=\"{rainbow(n)}\" />') %>%\n  paste(collapse = \"\\n\")\n\nsvg <- paste(\"<svg viewBox = '0 0 {2*cx} {2*cy}'>\",\n        petals, \n      \"</svg>\",\n      sep = \"\\n\") %>%\n  glue()"
+  },
+  {
+    "objectID": "04-flora.html#rotate",
+    "href": "04-flora.html#rotate",
+    "title": "\n4  Flora\n",
+    "section": "\n4.3 Rotate",
+    "text": "4.3 Rotate\nRotate them so the red is at 12:00.\n\nCoderot <- -pi/2\n\ncoords <- poly_coords(n, petal_dist, cx, cy, rot)\npetals <- glue('    <circle cx=\"{coords$x}\" cy=\"{coords$y}\" r=\"{r}\" fill=\"{rainbow(n)}\" />') %>%\n  paste(collapse = \"\\n\")\n\nsvg <- paste(\"<svg viewBox = '0 0 {2*cx} {2*cy}'>\",\n        petals, \n      \"</svg>\",\n      sep = \"\\n\") %>%\n  glue()"
+  },
+  {
+    "objectID": "04-flora.html#fix-the-overlap",
+    "href": "04-flora.html#fix-the-overlap",
+    "title": "\n4  Flora\n",
+    "section": "\n4.4 Fix the Overlap",
+    "text": "4.4 Fix the Overlap\nWhen they overlap, the last petal is on top of the first, so we need to replot the left half of that. It took me forever to figure out how to plot the left half of a circle with <path> :(\n\nCodecoords <- poly_coords(n, petal_dist, cx, cy, rot)\npetals <- glue('    <circle cx=\"{coords$x}\" cy=\"{coords$y}\" r=\"{r}\" fill=\"{rainbow(n)}\" />') %>%\n  paste(collapse = \"\\n\")\n\nx1 <- coords$x[[1]]\ny1 <- coords$y[[1]]\npetal_fix <- glue('    <g transform=\"rotate({rot*180/pi}, {x1}, {y1})\">\n       <path d=\"M {x1-r} {y1}\n       A {r} {r} 0 0 1 {x1+r} {y1}\n       L {x1-r} {y1}\n       Z\" \n       fill=\"{rainbow(n)[[1]]}\" /></g>')\n\nsvg <- paste(\"<svg viewBox = '0 0 {2*cx} {2*cy}'>\",\n        petals, petal_fix, \n      \"</svg>\",\n      sep = \"\\n\") %>%\n  glue()\n\n\nNow I want to add a center hexagon that just touches each petal.\n\nCodecenter <- poly_coords(n, petal_dist-r, cx, cy, rot) %>%\n  glue(\"{cc$x},{cc$y}\", cc = .) %>%\n  paste(collapse = \" \") %>%\n  glue('<polygon points=\"{pts}\" fill=\"grey\" />', pts = .)\n\nsvg <- paste(\"<svg viewBox = '0 0 {2*cx} {2*cy}'>\", \n      center,\n      petals, petal_fix,\n      \"</svg>\",\n      sep = \"\\n\") %>%\n  glue()"
+  },
+  {
+    "objectID": "04-flora.html#petals",
+    "href": "04-flora.html#petals",
+    "title": "\n4  Flora\n",
+    "section": "\n4.5 7 Petals",
+    "text": "4.5 7 Petals\n\nCoden          <- 7\nrot        <- 8.5*pi/7\npetal_dist <- 400\nr          <- 200\ncx         <- 1.1 * (petal_dist + r)\ncy         <- cx\n\ncenter <- poly_coords(n, petal_dist-r, cx, cy, rot) %>%\n  glue(\"{cc$x},{cc$y}\", cc = .) %>%\n  paste(collapse = \" \") %>%\n  glue('<polygon points=\"{pts}\" fill=\"grey\" />', pts = .)\n\ncoords <- poly_coords(n, petal_dist, cx, cy, rot)\npetals <- glue('    <circle cx=\"{coords$x}\" cy=\"{coords$y}\" r=\"{r}\" fill=\"{rainbow(n)}\" />') %>%\n  paste(collapse = \"\\n\")\n\nx1 <- coords$x[[1]]\ny1 <- coords$y[[1]]\npetal_fix <- glue('    <g transform=\"rotate({rot*180/pi}, {x1}, {y1})\">\n       <path d=\"M {x1-r} {y1}\n       A {r} {r} 0 0 1 {x1+r} {y1}\n       L {x1-r} {y1}\n       Z\" \n       fill=\"{rainbow(n)[[1]]}\" /></g>')\n\n\ntext <- glue('    <text x=\"{coords$x}\" y=\"{coords$y+40}\">{LETTERS[1:n]}</text>\"') %>%\n  paste(collapse = \"\\n\")\n\nsvg_style <- '<style type=\"text/css\">\nsvg { \n  font-family: sans-serif;\n  font-size: 80px; \n  text-anchor: middle; \n  fill: white;\n}\n</style>'\n\nsvg <- paste(\"<svg viewBox = '0 0 {{2*cx}} {{2*cy}}'>\", \n             svg_style,\n             center,\n             '<text x=\"{{cx}}\" y=\"{{cy-20}}\">All of the</text>',\n             '<text x=\"{{cx}}\" y=\"{{cy+90}}\">Things</text>',\n             petals, petal_fix, text, \"</svg>\",\n             sep = \"\\n\") %>%\n  glue(.open = \"{{\", .close = \"}}\")\n\n\n\nAll of theThingsA” B” C” D” E” F” G”"
+  },
+  {
+    "objectID": "04-flora.html#make-a-function",
+    "href": "04-flora.html#make-a-function",
+    "title": "\n4  Flora\n",
+    "section": "\n4.6 Make a Function",
+    "text": "4.6 Make a Function\nNow I just need to wrap this all in a function so I can change the things I need. I also added transparency to the petals, which necessitated making the two halves of the first petal separately, otherwise the overlap fix increases the opacity of half the petal if there’s any transparency.\n\nCodepoly_coords <- function(n = 6, r = 1, cx = 0, cy = 0, rot = 0, digits = 2) {\n  x = map_dbl(0:(n-1), ~{ cx + r * cos(2 * pi * .x / n + rot) })\n  y = map_dbl(0:(n-1), ~{ cy + r * sin(2 * pi * .x / n + rot) })\n  \n  list(\n    x = round(x, digits),\n    y = round(y, digits)\n  )\n}\n\nflower <- function(n = 6, petal_dist = 500, r = 250, rot = -pi/2,\n                   petal_text = LETTERS[1:n],\n                   center_text = c(\"All of the\", \"Things\"),\n                   petal_text_size = r/2,\n                   center_text_size = petal_dist/6,\n                   center_text_offsets = c(-0.2, +0.9) * center_text_size,\n                   petal_colors = rainbow(n),\n                   petal_alpha = 1.0,\n                   center_color = \"#808080\",\n                   petal_text_color = \"white\",\n                   center_text_color = petal_text_color) {\n  \n  # calculate centre\n  cx <- 1.1 * (petal_dist + r)\n  cy <- cx\n  \n  # make centre polygon\n  center <- poly_coords(n, petal_dist-r, cx, cy, rot) %>%\n    glue(\"{cc$x},{cc$y}\", cc = .) %>%\n    paste(collapse = \" \") %>%\n    glue('<polygon points=\"{pts}\" fill=\"{center_color}\" />', pts = .)\n  \n  # make center texts\n  center_texts <- glue('    <text x=\"{cx}\" y=\"{cy+center_text_offsets}\" fill=\"{center_text_color}\" font-size=\"{center_text_size}px\">{center_text}</text>') %>%\n    paste(collapse = \"\\n\")\n  \n  # make petals\n  coords <- poly_coords(n, petal_dist, cx, cy, rot)\n  petals <- glue('    <circle cx=\"{coords$x}\" cy=\"{coords$y}\" r=\"{r}\" fill=\"{petal_colors}\" fill-opacity=\"{petal_alpha}\" />') %>%\n    paste(collapse = \"\\n\")\n  \n  x1 <- coords$x[[1]]\n  y1 <- coords$y[[1]]\n  petal_fix1 <- glue('    <g transform=\"rotate({(rot+pi)*180/pi}, {x1}, {y1})\">\n         <path d=\"M {x1-r} {y1}\n         A {r} {r} 0 0 1 {x1+r} {y1}\n         L {x1-r} {y1}\n         Z\" \n         fill=\"{petal_colors[[1]]}\" fill-opacity=\"{petal_alpha}\" /></g>')\n  \n  petal_fix2 <- glue('    <g transform=\"rotate({rot*180/pi}, {x1}, {y1})\">\n         <path d=\"M {x1-r} {y1}\n         A {r} {r} 0 0 1 {x1+r} {y1}\n         L {x1-r} {y1}\n         Z\" \n         fill=\"{petal_colors[[1]]}\" fill-opacity=\"{petal_alpha}\" /></g>')\n  \n  # make petal text\n  petals_text <- glue('    <text x=\"{coords$x}\" y=\"{coords$y+petal_text_size/2}\">{petal_text}</text>', .literal = TRUE) %>%\n    paste(collapse = \"\\n\")\n  \n  # general styles\n  svg_style <- '<style type=\"text/css\">\n  svg { \n    font-family: sans-serif;\n    font-size: {{petal_text_size}}px; \n    text-anchor: middle; \n    fill: {{petal_text_color}};\n  }\n</style>'\n  \n  svg <- paste(\"<svg viewBox = '0 0 {{2*cx}} {{2*cy}}'>\", \n               svg_style,\n               center, center_texts,\n               petal_fix1, petals, petal_fix2, petals_text,\n               \"</svg>\",\n               sep = \"\\n\") %>%\n    glue(.open = \"{{\", .close = \"}}\")\n  \n  svg\n}\n\n\nTest the defaults.\n\nCodesvg <- flower()\n\n\n\nAll of theThingsABCDEF"
+  },
+  {
+    "objectID": "04-flora.html#original-pride-flag",
+    "href": "04-flora.html#original-pride-flag",
+    "title": "\n4  Flora\n",
+    "section": "\n4.7 Original Pride Flag",
+    "text": "4.7 Original Pride Flag\nTest the customisability by making a chart with the meaning of the 8 colours of the original pride flag.\n\nCodesvg <- flower(n = 8, petal_dist = 400, r = 200,\n              petal_colors = c(\"#FF66B1\", \"#FF0000\", \"#FF8F1A\", \"#FEFF3A\",\n                               \"#008F1D\", \"#00C0C0\", \"#420095\", \"#8F008B\"),\n              petal_alpha = 0.8,\n              petal_text = c(\"Sex\", \"Life\", \"Healing\", \"Sunlight\",\n                             \"Nature\", \"Magic/Art\", \"Serenity\", \"Spirit\"),\n              center_text = c(\"Original\", \"Pride\", \"Flag\"),\n              center_text_size = 80,\n              center_text_offsets = c(-60, 40, 140),\n              petal_text_color = \"#222222\",\n              petal_text_size = 70,\n              center_color = \"black\",\n              center_text_color = \"white\"\n)\n\n\n\nOriginalPrideFlagSexLifeHealingSunlightNatureMagic/ArtSerenitySpirit"
+  },
+  {
+    "objectID": "04-flora.html#save-as-svg-or-png",
+    "href": "04-flora.html#save-as-svg-or-png",
+    "title": "\n4  Flora\n",
+    "section": "\n4.8 Save as SVG or PNG",
+    "text": "4.8 Save as SVG or PNG\nYou can display your SVG directly in a website by setting results='asis' in the code chunk header. It will display it full size unless you use another method to constrain the image size. I set a css style of svg { width: 100%; }.\nCodecat(svg)\n\nOriginalPrideFlagSexLifeHealingSunlightNatureMagic/ArtSerenitySpiritYou can write it to an svg file, or use svgr to convert to an image.\n\nCodewrite(svg, \"images/day4.svg\")\nrsvg::rsvg_png(svg = charToRaw(svg), \n               file = \"images/day4.png\", \n               width = 8*150, height = 8*150)\n\nknitr::include_graphics(\"images/day4.png\")"
+  },
+  {
+    "objectID": "05-slope.html#data-simulation-function",
+    "href": "05-slope.html#data-simulation-function",
+    "title": "\n5  Slope\n",
+    "section": "\n5.1 Data Simulation Function",
+    "text": "5.1 Data Simulation Function\nFirst, I need to write a function to generate the simulated data. I want to be able to vary the fixed and random effects parameters, but am setting almost everything to 0 as a default. I’m using mixed design simulation functions from the faux package, which you can learn more about in this vignette.\n\nData simulation functionsim <- function(\n  n_countries = 10, # number of countries samples\n  n_people = 10,    # number of people sampled per country\n  c_int_sd = 0,     # SD of random intercept for countries\n  c_time_sd = 0,    # SD of random slope for time (by country)\n  c_cors = 0,       # correlation between c_int and c_time\n  p_int_sd = 0,     # SD of random intercept for people\n  p_time_sd = 0,    # SD of random slope for time (by person)\n  p_cors = 0,       # correlations among p_int, p_time, p_height\n  err_sd = 0,       # error SD\n  intercept = 0,    # grand intercept\n  b_time = 0        # fixed effect of time\n){\n\nadd_random(country = LETTERS[1:n_countries]) %>%\n  add_random(person = n_people, \n             .nested_in = \"country\") %>%\n  add_ranef(.by = \"country\", \n            c_int = c_int_sd,\n            c_time = c_time_sd,\n            .cors = c_cors) %>%\n  add_ranef(.by = \"person\", \n            p_int = p_int_sd, \n            p_time = p_time_sd, \n            .cors = p_cors) %>%\n  crossing(time = 0:10) %>%\n  add_ranef(err = err_sd) %>%\n  mutate(dv = intercept + c_int + p_int + \n           (b_time + p_time + c_time) * time + \n           err)\n}"
+  },
+  {
+    "objectID": "05-slope.html#default",
+    "href": "05-slope.html#default",
+    "title": "\n5  Slope\n",
+    "section": "\n5.2 Default",
+    "text": "5.2 Default\nThe default plot is pretty boring. Everyone’s score is is equal to the grand intercept.\n\nCodedata <- sim()\nggplot(data, aes(x = time, y = dv, color = country)) +\n  geom_smooth(method = lm, formula = y ~ x) +\n  stat_summary(geom = \"point\", fun = mean)"
+  },
+  {
+    "objectID": "05-slope.html#random-error",
+    "href": "05-slope.html#random-error",
+    "title": "\n5  Slope\n",
+    "section": "\n5.3 Random error",
+    "text": "5.3 Random error\nWe can make the simulation more realistic by adding random error.\n\nCodedata <- sim(err_sd = 1)\nggplot(data, aes(x = time, y = dv, color = country, group = person)) +\n  geom_smooth(method = lm, formula = y ~ x, alpha = 0.1, show.legend = FALSE) +\n  facet_wrap(~country, nrow = 2)\n\n\n\n\n\n\n\nHere are the data for each person in country A.\n\nCodedata %>%\n  filter(country == \"A\") %>%\n  ggplot(aes(x = time, y = dv, color = person)) +\n  geom_smooth(method = lm, formula = y ~ x, alpha = 0.2, show.legend = FALSE) +\n  stat_summary(geom = \"point\", fun = mean, show.legend = FALSE) +\n  facet_wrap(~person, nrow = 2)\n\n\n\n\n\n\n\nWe’re going to leave the error SD as a totally unrealistic 0 for the next few plots to make it easier to see what happens to the data when you’re changing random effects parameters."
+  },
+  {
+    "objectID": "05-slope.html#random-intercepts-for-country",
+    "href": "05-slope.html#random-intercepts-for-country",
+    "title": "\n5  Slope\n",
+    "section": "\n5.4 Random intercepts for country",
+    "text": "5.4 Random intercepts for country\nNow let’s add a random intercept per country. Setting c_int_sd to 1 means that the intercepts for each country are simulated to vary with an SD of 1.\n\nCodedata <- sim(c_int_sd = 1)\nggplot(data, aes(x = time, y = dv, color = country)) +\n  geom_smooth(method = lm, formula = y ~ x) +\n  stat_summary(geom = \"point\", fun = mean)"
+  },
+  {
+    "objectID": "05-slope.html#random-slopes-for-country",
+    "href": "05-slope.html#random-slopes-for-country",
+    "title": "\n5  Slope\n",
+    "section": "\n5.5 Random slopes for country",
+    "text": "5.5 Random slopes for country\nWhat does it look like if we leave the random intercepts at 0 and set the random slope of time for countries to 1?\n\nCodedata <- sim(c_time_sd = 1)\nggplot(data, aes(x = time, y = dv, color = country)) +\n  geom_smooth(method = lm, formula = y ~ x) +\n  stat_summary(geom = \"point\", fun = mean)"
+  },
+  {
+    "objectID": "05-slope.html#random-intercepts-and-slopes-for-country",
+    "href": "05-slope.html#random-intercepts-and-slopes-for-country",
+    "title": "\n5  Slope\n",
+    "section": "\n5.6 Random intercepts and slopes for country",
+    "text": "5.6 Random intercepts and slopes for country\nWhat if we set both the random intercept and slope of time for country to 1? Now, the intercepts vary around 0 and the slopes of the lines also vary.\n\nCodedata <- sim(c_int_sd = 1, c_time_sd = 1)\nggplot(data, aes(x = time, y = dv, color = country)) +\n  geom_smooth(method = lm, formula = y ~ x) +\n  stat_summary(geom = \"point\", fun = mean)\n\n\n\n\n\n\n\nRandom intercepts and slopes can be correlated. For example, the time effect might be larger in countries where people tend to have lower scores, leading the random slope and intercept for country to be negatively correlated.\nI increased the SD of the random intercept to make it easier to see that countries with a higher intercept tend to have more negative slopes than those with a lower intercept.\n\nCodedata <- sim(c_int_sd = 5, c_time_sd = 1, c_cors = -0.5)\nggplot(data, aes(x = time, y = dv, color = country)) +\n  geom_smooth(method = lm, formula = y ~ x) +\n  stat_summary(geom = \"point\", fun = mean)\n\n\n\n\n\n\n\nAnd here’s the same plot with a positive correlation. Now the countries with a higher intercept tend to have a more positive effect of time.\n\nCodedata <- sim(c_int_sd = 5, c_time_sd = 1, c_cors = +0.5)\nggplot(data, aes(x = time, y = dv, color = country)) +\n  geom_smooth(method = lm, formula = y ~ x) +\n  stat_summary(geom = \"point\", fun = mean)"
+  },
+  {
+    "objectID": "05-slope.html#random-intercepts-for-person",
+    "href": "05-slope.html#random-intercepts-for-person",
+    "title": "\n5  Slope\n",
+    "section": "\n5.7 Random intercepts for person",
+    "text": "5.7 Random intercepts for person\nIf we vary the random intercepts by person, this increases the variability within each country. Note that because we’re only sampling 10 people in each country, this means the intercept for each country will vary a bit depending on the mean of the 10 people from that country.\n\nCodedata <- sim(p_int_sd = 1)\nggplot(data, aes(x = time, y = dv, color = country)) +\n  geom_smooth(method = lm, formula = y ~ x, alpha = 0.1)\n\n\n\n\n\n\n\nLet’s look at the data for each country separately.\n\nCodeggplot(data, aes(x = time, y = dv, color = country, group = person)) +\n  geom_smooth(method = lm, size = 0.5, formula = y ~ x, show.legend = FALSE) +\n  facet_wrap(~country, nrow = 2)"
+  },
+  {
+    "objectID": "05-slope.html#random-slopes-for-person",
+    "href": "05-slope.html#random-slopes-for-person",
+    "title": "\n5  Slope\n",
+    "section": "\n5.8 Random slopes for person",
+    "text": "5.8 Random slopes for person\nVary the random slopes by person. Here, we’re viewing the data for each country separately. The thick lines are the average slope for the country.\n\nCodeggplot(data, aes(x = time, y = dv, color = country)) +\n  geom_smooth(aes(group = person), size = .2, \n              method = lm, formula = y ~ x, \n              show.legend = FALSE) +\n  geom_smooth(method = lm, size = 1.5, formula = y ~ x, show.legend = FALSE) +\n  facet_wrap(~country, nrow = 2)"
+  },
+  {
+    "objectID": "05-slope.html#fixed-effect-of-time",
+    "href": "05-slope.html#fixed-effect-of-time",
+    "title": "\n5  Slope\n",
+    "section": "\n5.9 Fixed effect of time",
+    "text": "5.9 Fixed effect of time\nLet’s add a fixed effect of time.\n\nCodedata <- sim(b_time = 1)\nggplot(data, aes(x = time, y = dv, color = country)) +\n  geom_smooth(method = lm, formula = y ~ x)\n\n\n\n\n\n\n\nThat’s pretty boring, so lets also add random time slopes for both country and person. Make the fixed effect of time bigger to emphasise how the average slopes by country tend to be positive, even though there is a lot of variation in the slopes for individual people.\n\nCodedata <- sim(b_time = 2, c_time_sd = 1, p_time_sd = 1)\nggplot(data, aes(x = time, y = dv, color = country)) +\n  geom_smooth(aes(group = person), size = .2, \n              method = lm, formula = y ~ x, \n              show.legend = FALSE) +\n  geom_smooth(size = 1.5, method = lm, formula = y ~ x, \n              show.legend = FALSE) +\n  facet_wrap(~country, nrow = 2)"
+  },
+  {
+    "objectID": "05-slope.html#realistic-data",
+    "href": "05-slope.html#realistic-data",
+    "title": "\n5  Slope\n",
+    "section": "\n5.10 Realistic data",
+    "text": "5.10 Realistic data\nFinally, let’s set all of the fixed and random effect parameters to non-zero values.\n\nCodedata <- sim(c_int_sd = 10, c_time_sd = 1, c_cors = 0.5,\n            p_int_sd = 10, p_time_sd = 1, p_cors = 0.5, \n            err_sd = 5, intercept = 100, b_time = 2)\n\nggplot(data, aes(x = time, y = dv, color = country)) +\n  geom_smooth(aes(group = person), size = .2, \n              method = lm, formula = y ~ x, \n              se = FALSE, show.legend = FALSE) +\n  geom_smooth(size = 1.5, method = lm, formula = y ~ x, \n              alpha = 0.3, show.legend = FALSE) +\n  facet_wrap(~country, nrow = 2) +\n  scale_x_continuous(breaks = seq(0, 10, 2))"
+  },
+  {
+    "objectID": "06-owid.html#data",
+    "href": "06-owid.html#data",
+    "title": "6  OWiD",
+    "section": "\n6.1 Data",
+    "text": "6.1 Data\nI hate working with columns that have uppercase letters or spaces in the names, so I adjusted the column names when importing. I also found out later that this dataset labels South Sudan as “SSD”, but the data from sf labels it as “SDS”, so I’ll fix it here.\n\nLoad data# data from https://ourworldindata.org/technology-adoption\ndata_orig <- read_csv(\"data/share-of-individuals-using-the-internet.csv\",\n                      col_names = c(\"country\", \"code\", \"year\", \"it_net_users\"),\n                      skip = 1, show_col_types = FALSE) %>%\n  mutate(code = recode(code, SSD = \"SDS\", .default = code))\n\n\nThere are a lot of missing years. I want them in the map explicitly as rows with it_net_users == NA, for reasons that will get clear later. Pivot wider, which will create a column for each year with NA as the value for any countries that don’t have a row for that year, then pivot back longer.\n\nCodedata_na <- data_orig %>% \n  pivot_wider(names_from = year, \n              values_from = it_net_users) %>%\n  pivot_longer(cols = -c(country, code),\n               names_to = \"year\",\n               values_to = \"it_net_users\", \n               names_transform = list(year = as.integer))"
+  },
+  {
+    "objectID": "06-owid.html#map",
+    "href": "06-owid.html#map",
+    "title": "6  OWiD",
+    "section": "\n6.2 Map",
+    "text": "6.2 Map\nNow I need some world map coordinates. The sf and rnaturalearth packages make this easy.\n\nGet map coordinatesworld_sf <- ne_countries(returnclass = \"sf\", scale = \"medium\")\n\nggplot(world_sf) + \n  geom_sf(size = 0.3) +\n  theme_map()"
+  },
+  {
+    "objectID": "06-owid.html#projection",
+    "href": "06-owid.html#projection",
+    "title": "6  OWiD",
+    "section": "\n6.3 Projection",
+    "text": "6.3 Projection\nHere’s a better projection. You have to use the st_transform_proj() function from lwgeom to transform the coordinates. You need to add coord_sf(datum = NULL) to the plots to avoid an error message when sf tries to plot the graticule. I also cropped the coordinates to remove giant Antarctica and centre the continents better.\nThis is tricky, and I found tutorials by Claus Wilke and the WZB Data Science Blog really helpful.\n\nWintri projection# translate the coordinate reference system\ncrs <- \"+proj=wintri\"  # winkel tripel projection\nworld_wintri <- lwgeom::st_transform_proj(world_sf, crs = crs)\n\n# translate and crop coordinates\ntrans_coords <- st_sfc(\n  st_point(c(-1.4e7, -6.5e6)), # lower left lat and lon\n  st_point(c(2e7, 1e7)),       # upper right lat and lon\n  crs = crs) %>%\n  st_transform(crs = crs) %>%\n  st_coordinates()\n\ncrop_coords <- coord_sf(\n  datum = NULL, \n  xlim = trans_coords[,'X'], \n  ylim = trans_coords[,'Y'], \n  expand = FALSE)\n\nggplot(world_wintri) + \n  geom_sf(size = 0.5/.pt) +\n  crop_coords +\n  theme_map() +\n  theme(plot.background = element_rect(color = \"black\"))"
+  },
+  {
+    "objectID": "06-owid.html#data-map",
+    "href": "06-owid.html#data-map",
+    "title": "6  OWiD",
+    "section": "\n6.4 Data Map",
+    "text": "6.4 Data Map\nNow to add the internet use data to the map data. I select down to the relevant columns to make visual inspection easier.\n\nCodedata_map_int <- left_join(world_wintri, data_na, \n                          by = c(\"gu_a3\" = \"code\")) %>%\n  select(country, year, code = gu_a3, it_net_users, geometry)\n\n\nPlot with facets by year. This takes a while to run, but it’s useful to see what each frame will look like.\n\nCodeggplot(data_map_int) + \n  geom_sf(mapping = aes(fill = it_net_users),\n          size = 0.1) +\n  crop_coords +\n  scale_fill_distiller(palette = \"Blues\", direction = -1) +\n  facet_wrap(~year) +\n  theme_map() +\n  theme(legend.position = \"right\")\n\n\n\n\n\n\n\nWhere is the NA facet coming from? It must be regions that never have any data. I’ll group by country and omit any that are entirely NA.\n\nCode# get data for countries with at least one valid year\ndata_map_int_valid <- data_map_int %>%\n  group_by(country) %>%\n  filter(!all(is.na(year))) %>%\n  ungroup()\n\n\nNow let’s retry the map, and switch the fill to a nicer viridis gradient. Set the na.value to red to more easily see where the missing data is.\n\nCodeggplot(data_map_int_valid) + \n  geom_sf(mapping = aes(fill = it_net_users),\n          size = 0.1) +\n  crop_coords +\n  scale_fill_viridis_c(na.value = \"red\") +\n  facet_wrap(~year) +\n  theme_map() +\n  theme(legend.position = \"right\")"
+  },
+  {
+    "objectID": "06-owid.html#missing-data",
+    "href": "06-owid.html#missing-data",
+    "title": "6  OWiD",
+    "section": "\n6.5 Missing data",
+    "text": "6.5 Missing data\nWe don’t have data for a lot of countries in some years. I’m going to use the previous year’s data where there is missing data. I’ll also add a column for whether or not it’s a filled value so I can indicate this on the map if I want.\n\nCodedata_map_int_no_missing <- data_map_int_valid %>%\n  mutate(it_net_users_no_na = it_net_users,\n         missing = is.na(it_net_users)) %>%\n  arrange(code, year) %>%\n  group_by(country) %>%\n  fill(it_net_users_no_na, .direction = \"down\") %>%\n  ungroup()\n\n\nThere’s still one big persistently missing country in the middle of Africa.\n\nCodeggplot(data_map_int_no_missing) + \n  geom_sf(mapping = aes(fill = it_net_users_no_na),\n          size = 0.1) +\n  crop_coords +\n  scale_fill_viridis_c(na.value = \"red\") +\n  facet_wrap(~year) +\n  theme_map() +\n  theme(legend.position = \"right\")"
+  },
+  {
+    "objectID": "06-owid.html#south-sudan",
+    "href": "06-owid.html#south-sudan",
+    "title": "6  OWiD",
+    "section": "\n6.6 South Sudan",
+    "text": "6.6 South Sudan\nSouth Sudan got independence from Sudan in 2011, so lets fill in the values for South Sudan from 1990 to 2012 using the values from Sudan. I found it weirdly hard to do this, and would appreciate if someone could show me a tidier way. Also, I’m sure it will come back to bite me, but I’ve named this data table data_map_int_final.\n\nCodesudan <- data_map_int_no_missing %>%\n  filter(country == \"Sudan\",\n         year <= 2012) %>%\n  pull(it_net_users_no_na)\n\nss_rows <- which(data_map_int_no_missing$country == \"South Sudan\" & \n                 data_map_int_no_missing$year <= 2012)\n\nnona <- data_map_int_no_missing$it_net_users_no_na\nnona[ss_rows] <- sudan\n\ndata_map_int_final <- data_map_int_no_missing %>%\n  mutate(it_net_users_no_na = nona)"
+  },
+  {
+    "objectID": "06-owid.html#single-frame",
+    "href": "06-owid.html#single-frame",
+    "title": "6  OWiD",
+    "section": "\n6.7 Single frame",
+    "text": "6.7 Single frame\nNow I want to set up what a single frame will look like in my animation. I’ll filter the data down to the year 2019 and work on the plot until I’m happy.\n\nCodeggplot(filter(data_map_int_final, year == 2019)) + \n  geom_sf(mapping = aes(fill = it_net_users_no_na/100),\n          size = 0.1) +\n  crop_coords +\n  scale_fill_viridis_c(\n    name = NULL,\n    limits = c(0, 1),\n    breaks = seq(0, 1, .1),\n    labels = function(x)scales::percent(x, accuracy = 1),\n    guide = guide_colorbar(\n      label.position = \"top\", \n      barheight = unit(.1, \"in\"),\n      frame.colour = \"black\",\n      ticks.colour = \"black\"\n    )\n  ) +\n  labs(title = \"Share of the population using the internet, 2019\",\n       caption = \"Recreation of OurWorldInData.org/technology-adoption | Plot by @lisadebruine\") +\n  theme_map() +\n  theme(\n    legend.background = element_blank(),\n    legend.position = \"bottom\",\n    legend.key.width = unit(.187, \"npc\"),\n    plot.title = element_text(family = \"Playfair Display\", size = 20, colour = \"#555555\"),\n    plot.caption = element_text(size = 10, color = \"#555555\")\n  )"
+  },
+  {
+    "objectID": "06-owid.html#animated-plot",
+    "href": "06-owid.html#animated-plot",
+    "title": "6  OWiD",
+    "section": "\n6.8 Animated plot",
+    "text": "6.8 Animated plot\n\nCodeanim <- ggplot(data_map_int_final) + \n  geom_sf(mapping = aes(fill = it_net_users_no_na/100),\n          size = 0.1) +\n  crop_coords +\n  scale_fill_viridis_c(\n    name = NULL,\n    limits = c(0, 1),\n    breaks = seq(0, 1, .1),\n    labels = function(x)scales::percent(x, accuracy = 1),\n    guide = guide_colorbar(\n      label.position = \"top\", \n      barheight = unit(.1, \"in\"),\n      frame.colour = \"black\",\n      ticks.colour = \"black\"\n    )\n  ) +\n  labs(title = \"Share of the population using the internet, {frame_time}\",\n       caption = \"Recreation of OurWorldInData.org/technology-adoption | Plot by @lisadebruine\") +\n  theme_map() +\n  theme(\n    legend.background = element_blank(),\n    legend.position = \"bottom\",\n    legend.key.width = unit(.187, \"npc\"),\n    plot.title = element_text(family = \"Playfair Display\", size = 20, colour = \"#555555\"),\n    plot.caption = element_text(size = 10, color = \"#555555\")\n  ) +\n  transition_time(year)\n\n\nIt takes absolutely forever to create the animation (I think because it’s unnecessarily tweening the shapes, but I don’t have time to learn more about gganimate today), so run this once and set the code chunk to eval = FALSE and load the gif from file.\n\nCodeanim_save(\"images/day6.gif\", animation = anim, \n          nframes = 30, fps = 4, start_pause = 6, end_pause = 6, \n          width = 8, height = 5, units = \"in\", res = 150)\n\n\n\nCodeknitr::include_graphics(\"images/day6.gif\")"
+  },
+  {
+    "objectID": "07-physical.html#get-song-id",
+    "href": "07-physical.html#get-song-id",
+    "title": "\n7  Physical\n",
+    "section": "\n7.1 Get song ID",
+    "text": "7.1 Get song ID\nThis step requires access to spotify and you can get timed out if you try to access it too much, so I always save the result of calls to an API in scripts and set that code chunk to eval = FALSE so it doesn’t run every time I render this book.\n\nCode# set to eval = FALSE to avoid too many call to spotify API\nonj <- get_artist_audio_features(\n  artist = 'Olivia Newton John',\n  include_groups = \"album\"\n)\nsaveRDS(onj, \"data/onj.rds\")\n\n\nNow I can search the tracks for “Physical”. I’ll choose the earliest release.\n\nCode# read in saved object\nonj <- readRDS(\"data/onj.rds\")\n\nphysical_id <- onj %>%\n  filter(track_name == \"Physical\") %>%\n  filter(album_release_year == min(album_release_year)) %>%\n  pull(track_id)\n\nphysical_id\n\n[1] \"273paQDMbi4JPeRfbYZuKx\""
+  },
+  {
+    "objectID": "07-physical.html#song-analysis",
+    "href": "07-physical.html#song-analysis",
+    "title": "\n7  Physical\n",
+    "section": "\n7.2 Song Analysis",
+    "text": "7.2 Song Analysis\nGet the song analysis. It’s a list with a bunch of info.\n\nSong analysis# set to eval = FALSE to avoid too many call to spotify API\nsong_analysis <- get_track_audio_analysis(physical_id)\nsaveRDS(song_analysis, \"data/song_analysis.rmd\")\n\n\n\nRead in saved object# read in saved object\nsong_analysis <- readRDS(\"data/song_analysis.rmd\")\n\n\n\n\nmeta gives you a list of some info about the analysis.\n\ntrack gives you a list of attributes, including duration, loudness, end_of_fade_in, start_of_fade_out, and time_signature. Some of this info was available in the artist table.\n\nbars, beats, and tatums are tables with the start, duration and confidence for each bar, beat, or tatum of music (whatever a “tatum” is).\n\nsections is a table with the start, duration, loudness, tempo, key, mode, and time signature for each section of music, along with confidence measures of each.\n\nsegments is a table with information about loudness, pitch and timbre of segments of analysis, which tend to be around 0.2 seconds."
+  },
+  {
+    "objectID": "07-physical.html#pitches",
+    "href": "07-physical.html#pitches",
+    "title": "\n7  Physical\n",
+    "section": "\n7.3 Pitches",
+    "text": "7.3 Pitches\nThe column pitches of the segments table has 12 values representing the degree of occurrence for each note in each time segment, so we have to unpack this a bit.\n\nPitch analysispitch_analysis <- song_analysis$segments %>%\n  unnest(pitches) %>%\n  rename(pitch_degree = pitches) %>%\n  group_by(start) %>%\n  mutate(pitch = row_number()-1) %>%\n  ungroup() %>%\n  filter(pitch_degree == 1) %>%\n  select(start, duration, loudness_start, pitch)\n\nhead(pitch_analysis)\n\n# A tibble: 6 × 4\n  start duration loudness_start pitch\n  <dbl>    <dbl>          <dbl> <dbl>\n1 0        0.488          -28.8     9\n2 0.488    0.359          -25.7     9\n3 0.847    0.204          -24.8     8\n4 1.05     0.256          -24.4     1\n5 1.31     0.573          -21.2     8\n6 1.88     0.483          -23.1     9\n\n\nNow I want to figure out the main pitch for each beat, so I need to somehow map the pitch table to the beat table. First, I need to work out the main segment in each beat.\n\nMain pitch for each beatseg <- song_analysis$segments %>%\n  select(seg_start = start, seg_dur = duration)\n\nbeat <- song_analysis$beats %>%\n  select(beat_start = start, beat_dur = duration)\n\nmain_seg_in_beat <- inner_join(seg, beat, by = character()) %>%\n  mutate(seg_end = seg_start + seg_dur, \n         beat_end = beat_start + beat_dur,\n         seg_in_beat = (seg_start <= beat_end) & (seg_end >= beat_start)) %>%\n  filter(seg_in_beat) %>%\n  rowwise() %>%\n  mutate(overlap = min(seg_end, beat_end) - max(c(seg_start, beat_start)),\n         pcnt_in_beat = overlap/beat_dur) %>%\n  group_by(beat_start) %>%\n  slice_max(order_by = pcnt_in_beat, n = 1) %>%\n  ungroup()\n\nhead(main_seg_in_beat)\n\n# A tibble: 6 × 9\n  seg_start seg_dur beat_start beat_dur seg_end beat_end seg_in_beat overlap\n      <dbl>   <dbl>      <dbl>    <dbl>   <dbl>    <dbl> <lgl>         <dbl>\n1     0.488   0.359      0.504    0.460   0.847    0.964 TRUE          0.344\n2     1.05    0.256      0.964    0.473   1.31     1.44  TRUE          0.256\n3     1.31    0.573      1.44     0.474   1.88     1.91  TRUE          0.443\n4     1.88    0.483      1.91     0.469   2.36     2.38  TRUE          0.452\n5     2.36    0.465      2.38     0.469   2.83     2.85  TRUE          0.448\n6     2.83    0.446      2.85     0.474   3.27     3.32  TRUE          0.425\n# … with 1 more variable: pcnt_in_beat <dbl>\n\n\nAnd then join this with the pitch analysis table to get a main pitch for each beat.\n\nPitch by beatpitch_by_beat <- main_seg_in_beat %>%\n  select(start = seg_start) %>%\n  left_join(pitch_analysis, \"start\")\n\nhead(pitch_by_beat)\n\n# A tibble: 6 × 4\n  start duration loudness_start pitch\n  <dbl>    <dbl>          <dbl> <dbl>\n1 0.488    0.359          -25.7     9\n2 1.05     0.256          -24.4     1\n3 1.31     0.573          -21.2     8\n4 1.88     0.483          -23.1     9\n5 2.36     0.465          -15.0    11\n6 2.83     0.446          -21.0     0"
+  },
+  {
+    "objectID": "07-physical.html#plot-pitch-by-beat",
+    "href": "07-physical.html#plot-pitch-by-beat",
+    "title": "\n7  Physical\n",
+    "section": "\n7.4 Plot Pitch by Beat",
+    "text": "7.4 Plot Pitch by Beat\n\nCodeggplot(pitch_by_beat,\n       aes(x = start, y = pitch, color = loudness_start)) +\n  geom_point(show.legend = FALSE)"
+  },
+  {
+    "objectID": "07-physical.html#plot-key-by-segment",
+    "href": "07-physical.html#plot-key-by-segment",
+    "title": "\n7  Physical\n",
+    "section": "\n7.5 Plot Key by Segment",
+    "text": "7.5 Plot Key by Segment\nI also wanted to map the key of each segment using a horizontal linerange, so I mapped it vertically first and flipped the coordinates.\n\nCodeggplot(song_analysis$sections, aes(ymin = start, \n                               ymax = start + duration,\n                               x = key)) +\n  geom_linerange(size = 10) +\n  coord_flip()"
+  },
+  {
+    "objectID": "07-physical.html#combine-plots",
+    "href": "07-physical.html#combine-plots",
+    "title": "\n7  Physical\n",
+    "section": "\n7.6 Combine Plots",
+    "text": "7.6 Combine Plots\nSo to combine them, I need to move the data and mapping to the relevant geoms and swap the x and y coordinates for the pitch points.\n\nCodeggplot() +\n  geom_linerange(mapping = aes(ymin = start, \n                               ymax = start + duration,\n                               x = key),\n                 data = song_analysis$sections,\n                 size = 6) +\n  coord_flip() +\n  geom_point(mapping = aes(y = start, x = pitch, color = loudness_start),\n             data = pitch_by_beat, show.legend = FALSE)"
+  },
+  {
+    "objectID": "07-physical.html#s-theme",
+    "href": "07-physical.html#s-theme",
+    "title": "\n7  Physical\n",
+    "section": "\n7.7 80s Theme",
+    "text": "7.7 80s Theme\nLet’s remind ourselves of this monstrosity.\n\n\nCode# translate spotify's 0-11 to notes\npitch_key_vals <- c('C', 'C#/Db', 'D', 'D#/Eb', 'E', 'F', \n                     'F#/Gb', 'G', 'G#/Ab', 'A', 'A#/Bb', 'B')\n\nggplot() +\n  geom_linerange(mapping = aes(ymin = start, \n                               ymax = start + duration,\n                               x = key),\n                 data = song_analysis$sections,\n                 size = 10,\n                 color = \"#60E1FE\") +\n  coord_flip() +\n  geom_point(mapping = aes(y = start, x = pitch, alpha = loudness_start),\n             data = pitch_by_beat, \n             color = \"#BB1DA8\", size = 3,\n             show.legend = FALSE) +\n  scale_y_continuous(breaks = seq(0, 250, 10)) +\n  scale_x_continuous(breaks = 0:11,\n                     labels = pitch_key_vals) +\n  scale_alpha(range = c(0, .6)) +\n  labs(x = \"Key/Pitch\",\n       y = NULL,\n       title = \"Let's Get Physical — Olivia Newton John\",\n       subtitle = \"Main pitch for each beat (in pink) and key for each segment (in blue)\",\n       caption = \"Data from Spotify via spotifyr | plot by @lisadebruine\")  +\n  theme_bw() +\n  theme(plot.subtitle = element_text(color = \"red\"),\n        panel.background = element_rect(fill = \"#091131\"),\n        panel.grid.major.y = element_blank(),\n        panel.grid.minor.x = element_blank())\n\n\n\n\n\n\n\nOK, that’s awful and I’m sorry."
+  },
+  {
+    "objectID": "08-mountains.html#data",
+    "href": "08-mountains.html#data",
+    "title": "\n8  Mountains\n",
+    "section": "\n8.1 Data",
+    "text": "8.1 Data\nThe Database of British and Irish Hills v17.3 has a table of the Munros, with columns for many years (I guess which hills are classified as Munros changes over time). Let’s get just the current munros and fix some of the names.\n\nCodemunros <- read_csv(\"data/munrotab_v8.0.1.csv\",\n                   show_col_types = FALSE) %>%\n  filter(`2021` == \"MUN\") %>%\n  select(-c(`1891`:`2021`)) %>% # get rid of the year columns\n  rename(height_m = \"Height (m)\", \n         height_ft = \"Height\\n(ft)\")\n\n\nMake a quick histogram of their heights to get an overview of the data. I’d usually use the metric system, but since Munros are defined as hills over 3000 feet, I’ll use feet.\n\nCodeggplot(munros, aes(x = height_ft)) +\n  geom_histogram(binwidth = 100, boundary = 0, \n                 color = \"black\", fill = \"white\")"
+  },
+  {
+    "objectID": "08-mountains.html#map-of-scotland",
+    "href": "08-mountains.html#map-of-scotland",
+    "title": "\n8  Mountains\n",
+    "section": "\n8.2 Map of Scotland",
+    "text": "8.2 Map of Scotland\nNow I need a map of Scotland.\n\nCodescotland_sf <- ne_states(geounit = \"Scotland\", \n                         returnclass = \"sf\")\n\n\nThe munro table locates the peaks using grid coordinates, and the map uses latitude and longitude. So I translated the grid coordinates to latitude and longitude using Stackoverflow code from hrbrmstr.\n\n\n\n\nCodelatlon <- map2(munros$xcoord, munros$ycoord, os.grid.to.lat.lon)\n\nmunros$lat <- map_dbl(latlon, `[[`, 1)\nmunros$lon <- map_dbl(latlon, `[[`, 2)\n\n\nThen plot the latitude and longitude coordinates on the map, colored by height.\n\nCodeggplot() + \n  geom_sf(data = scotland_sf,\n          mapping = aes(),\n          color = \"black\", \n          fill = \"grey\",\n          size = .1) +\n  coord_sf(xlim = c(-8, 0), ylim = c(54, 61)) +\n  geom_point(aes(x = lon, y = lat, color = height_ft), munros) +\n  theme_map()"
+  },
+  {
+    "objectID": "08-mountains.html#make-it-prettier",
+    "href": "08-mountains.html#make-it-prettier",
+    "title": "\n8  Mountains\n",
+    "section": "\n8.3 Make it prettier",
+    "text": "8.3 Make it prettier\nThere’s no munros on the Northern Isles, so I’ve cropped them out of the map. I also made the colours better. I added a label to geom_point(), which will produce a warning that it isn’t used, but you’ll see why in the next step.\n\nCodemunro_plot <- ggplot() + \n  geom_sf(data = scotland_sf,\n          mapping = aes(),\n          color = \"chocolate4\", \n          fill = \"tan\",\n          size = .1) +\n  coord_sf(xlim = c(-7.4, -2), ylim = c(54.8, 58.5)) +\n  geom_point(aes(label = Name, color = height_ft, y = lat, x = lon), \n             data = arrange(munros, height_ft),\n             size = 0.5) +\n  scale_color_viridis_c(name = \"Height (ft)\",\n                        limits = c(3000, 4500)) +\n  labs(x = NULL, y = NULL,\n       title = \"The Munros of Scotland\",\n       caption = \"Data from The Database of British and Irish Hills | Plot by @lisadebruine\") +\n  theme_map() +\n  theme(legend.position = c(0, 0),\n        legend.background = element_blank(),\n        panel.background = element_rect(fill = \"transparent\", color = \"transparent\"),\n        plot.background = element_rect(fill = \"lightskyblue1\", color = \"transparent\"),\n        plot.title = element_text(family = \"Hill House\", size = 26, hjust = .5)\n  )\n\nmunro_plot"
+  },
+  {
+    "objectID": "08-mountains.html#make-it-interactive",
+    "href": "08-mountains.html#make-it-interactive",
+    "title": "\n8  Mountains\n",
+    "section": "\n8.4 Make it interactive",
+    "text": "8.4 Make it interactive\nThe plotly package makes it pretty easy to make a ggplot interactive. Select an are to get a closer look, or hover over an individual munro to see why we added the unused label argument to geom_point() above.\nI had to add some css to get the hover bar to stop acting wierd, but it’s still not quite right.\nCode.js-plotly-plot .plotly .modebar { position: relative; top: -2em; }\n.plotly.plot-container { padding-top: 2em; background-color: #B0E1FE;}\n\n\nCodeplotly::ggplotly(\n  p = munro_plot, \n  tooltip = c(\"label\", \"colour\")\n)"
+  },
+  {
+    "objectID": "09-statistics.html#make-one-frame",
+    "href": "09-statistics.html#make-one-frame",
+    "title": "\n9  Statistics\n",
+    "section": "\n9.1 Make one frame",
+    "text": "9.1 Make one frame\nAs always, make one frame first. You can use stat_function() to plot data from a distribution using functions like dnorm(), and dbeta(). I can’t figure out how to set the args from the mapping, so I’m using a for loop to add each density line. This feels inefficient, but it works.\n\nCodeg <- ggplot()\n\ndat <- crossing(\n  shape1 = seq(1, 10, .25),\n  shape2 = 10\n)\ncolours <- plasma(nrow(dat), begin = .2)\n\nfor (i in seq_along(colours)) {\n  g <- g + stat_function(color = colours[i],\n                fun = dbeta, \n                args = list(shape1 = dat$shape1[i], \n                            shape2 = dat$shape2[i]))\n}\n\ng\n\n\n\n\n\n\n\nColours for each line come from plasma(), but this won’t give you a colour guide, so add geom_density(aes(x = 1, color = 1), alpha = 0) to make an invisible line that generates a colour guide that you can modify with scale_color_viridis_c(). This will generate a warning, so you can turn off warnings in the code chunk.\nClean up the plot and add an annotation for the shape2 value. I finally figured out how to make an annotation outside of the panel area: set clip = “off” in coord_cartesian().\n\nCodeshape1 <- seq(1, 10, .25)\nshape2 <- 10\nlabel <- sprintf(\"shape2 = %.2f\", shape2)\n\ng + coord_cartesian(xlim = c(0, 1),\n                    ylim = c(0, 10),\n                    clip = \"off\") +\n  labs(x = NULL, y = NULL) +\n  annotate(x = .5, y = 10, label = \"Beta Distribution\",\n           geom = \"text\", color = \"white\", family = \"Fira Code\",\n           vjust = 1, hjust = 0.5, size = 7) +\n  annotate(x = -.01, y = -2.8, label = label, \n           geom = \"text\", color = colours[which(shape1 == shape2)],\n           family = \"Fira Code\", hjust = 0, size = 3.9) +\n  geom_density(aes(x = 1, color = 1), alpha = 0) +\n  scale_color_viridis_c(name = \"shape1 =\\n\", \n                        option = \"B\", begin = .2,\n                        limits = c(1, 10), breaks = 1:10) + \n  theme_dark() +\n  theme(text = element_text(family = \"Fira Code\", color = \"white\"),\n        axis.text = element_text(family = \"Fira Code\", color = \"white\"),\n        panel.background = element_blank(),\n        plot.background = element_rect(fill = \"black\"),\n        plot.margin = unit(c(0.1, 0.1, .4, 0.1), \"in\"),\n        legend.position = \"bottom\",\n        legend.background = element_blank(),\n        legend.text = element_text(color = plasma(10, begin = .2)),\n        legend.key.width = unit(.14, \"npc\"))"
+  },
+  {
+    "objectID": "09-statistics.html#functionalise-it",
+    "href": "09-statistics.html#functionalise-it",
+    "title": "\n9  Statistics\n",
+    "section": "\n9.2 Functionalise it",
+    "text": "9.2 Functionalise it\nNow turn this into a function so you can vary shape1 and shape2. Save the resulting plot as a PNG to a temporary file and return the filename so gifski can it to make an annotated gif.\n\nSet up functionbeta_plot <- function(shape1 = 1, shape2 = 2) {\n  dat <- crossing(\n    shape1 = shape1,\n    shape2 = shape2\n  )\n  colours <- plasma(nrow(dat), begin = .2)\n  label <- sprintf(\"shape2 = %.2f\", shape2)\n  \n  g <- ggplot() \n  for (i in seq_along(colours)) {\n    g <- g + stat_function(color = colours[i],\n                  fun = dbeta, \n                  args = list(shape1 = dat$shape1[i], \n                              shape2 = dat$shape2[i]))\n  }\n\n  g <- g + coord_cartesian(xlim = c(0, 1),\n                      ylim = c(0, 10),\n                      clip = \"off\") +\n    labs(x = NULL, y = NULL) +\n    annotate(x = .5, y = 10, label = \"Beta Distribution\",\n             geom = \"text\", color = \"white\", family = \"Fira Code\",\n             vjust = 1, hjust = 0.5, size = 7) +\n    annotate(x = -.01, y = -2.8, label = label, \n             geom = \"text\", color = colours[which(shape1 == shape2)],\n             family = \"Fira Code\", hjust = 0, size = 3.9) +\n    geom_density(aes(x = 1, color = 1), alpha = 0) +\n    scale_color_viridis_c(name = \"shape1 =\\n\", \n                          option = \"B\", begin = .2,\n                          limits = c(1, 10), breaks = 1:10) + \n    theme_dark() +\n    theme(text = element_text(family = \"Fira Code\", color = \"white\"),\n          axis.text = element_text(family = \"Fira Code\", color = \"white\"),\n          panel.background = element_blank(),\n          plot.background = element_rect(fill = \"black\"),\n          plot.margin = unit(c(0.1, 0.1, .4, 0.1), \"in\"),\n          legend.position = \"bottom\",\n          legend.background = element_blank(),\n          legend.text = element_text(color = plasma(10, begin = .2)),\n          legend.key.width = unit(.14, \"npc\"))\n  \n  # save to a temporary file\n  f <- tempfile(fileext = \".png\")\n  ggsave(f, g, width = 6, height = 6, device = png)\n  \n  f\n}\n\n\nTest out the function. I hid a few warnings, including one about setting legend.text colour to 10 values, but it seems to work fine for now.\n\nCodef <- beta_plot(seq(1, 10, .25), 1)\n\n\nMap the function over a range of shape2 values. Keep shape1 always the same vector.\n\nCodebeta_plots <- map_chr(c(seq(1, 10, .25)), \n                      beta_plot, \n                      shape1 = seq(1, 10, .25))"
+  },
+  {
+    "objectID": "09-statistics.html#animate",
+    "href": "09-statistics.html#animate",
+    "title": "\n9  Statistics\n",
+    "section": "\n9.3 Animate",
+    "text": "9.3 Animate\nCombine the plots in forward order with the same plots in reverse order to make the frames loop back and forth, then save as an animated gif.\n\nCodec(beta_plots, rev(beta_plots)) %>%\n  gifski(gif_file = \"images/day9.gif\", \n         width = 600, height = 600, delay = 0.1)"
+  },
+  {
+    "objectID": "10-experimental.html#data",
+    "href": "10-experimental.html#data",
+    "title": "\n10  Experimental\n",
+    "section": "\n10.1 Data",
+    "text": "10.1 Data\nThe sim_design() function is meant to make the simulation of data for factorial designs easier. You can name the factors and their levels (see extensive vignettes), but here we’ll just use the generic naming from faux and only specify the number of levels of each factor. By default, it simulates 100 observations in each between group, with means of 0 and standard deviations of 1. The function also produces a design plot.\n\n10.1.1 One factor\n\nCodeb2 <- sim_design(between = 2, \n                 mu = c(0, 0.5))\n\n\n\n\n\n\n\nFor within-subject designs, you have to specify the correlation between each level. If there are any within factors, the check_sim_stats() table will include the sampled correlations. You can turn off the design plot with plot = FALSE.\n\nCodew2 <- sim_design(within = 2, \n                 mu = c(0, 0),\n                 sd = c(1, 5),\n                 r = 0.5,\n                 plot = FALSE)\ncheck_sim_stats(w2)\n\n    n var  W1a  W1b  mean   sd\n1 100 W1a 1.00 0.45 -0.07 1.05\n2 100 W1b 0.45 1.00 -0.47 5.52\n\n\n\n10.1.2 Two factors\nYou can also give the factors names and labels. You can set the correlations separately for each between-subject cell.\n\nCode# df version uses row and column labels, \n# so allows rows and columns to be out of order\nmu <- data.frame(cat = c(0, 0.5),\n                 dog = c(0.25, 1),\n                 row.names = c(\"am\", \"pm\"))\n\nw2b2 <- sim_design(within = list(time = c(\"am\", \"pm\")), \n                   between = list(pet = c(\"cat\", \"dog\")),\n                   mu = mu,\n                   dv = list(y = \"Something Score\"),\n                   r = list(cat = 0,\n                            dog = .5),\n                   long = TRUE)\n\n\n\n\n\n\nCodecheck_sim_stats(w2b2)\n\n  pet   n var   am   pm  mean   sd\n1 cat 100  am 1.00 0.05 -0.07 1.03\n2 cat 100  pm 0.05 1.00  0.52 0.94\n3 dog 100  am 1.00 0.58  0.19 1.07\n4 dog 100  pm 0.58 1.00  1.07 0.94"
+  },
+  {
+    "objectID": "10-experimental.html#plots",
+    "href": "10-experimental.html#plots",
+    "title": "\n10  Experimental\n",
+    "section": "\n10.2 Plots",
+    "text": "10.2 Plots\n\n10.2.1 Data Plots\nNow it’s time for the fun part: making plots! The plot() function makes it easy to plot data made with faux. See the plotting vignette for more details.\nThe output is a ggplot, so you can add more ggplot options to it.\n\nCodeplot(b2, geoms = c(\"violin\", \"box\"), palette = \"Accent\") +\n  ggtitle(\"Between-Subject Factor\")\n\n\n\n\n\n\n\n\n10.2.2 Design Plots\nYou can also plot the design (not the data). If you plot a violin, the shape will be estimated by simulating a very large sample with these parameters.\n\nCodeget_design(w2) %>%\n  plot(geoms = c(\"violin\", \"pointrangeSD\"), palette = \"Dark2\") +\n  ggtitle(\"Within-Subject Factor\")\n\n\n\n\n\n\n\n\n10.2.3 Combo Plots\nCreate a design plot for the main effects and interaction in w2b2. You can specify the order color, x, facet row(s), facet col(s) [this function needs a little work to be more intuitive]. Add a title and custom colours (you’ll get a warning about the duplicate scale for fill; just ignore it).\n\nCodegeoms <- c(\"violin\", \"pointrangeSD\")\nb_colors <- scale_color_manual(values = c(\"red3\", \"dodgerblue3\"), guide = \"none\")\nw_colors <- scale_color_manual(values = c(\"darkorchid\", \"darkorange\"), guide = \"none\")\nb_fill <- scale_fill_manual(values = c(\"red3\", \"dodgerblue3\"), guide = \"none\")\nw_fill <- scale_fill_manual(values = c(\"darkorchid\", \"darkorange\"), guide = \"none\")\n\nplot_b2 <- get_design(w2b2) %>% \n  plot(geoms = geoms, \"pet\", \"pet\") + \n  b_colors + b_fill +\n  labs(x = NULL, title = \"Main Effect of Pet Type\")\n\nplot_w2 <- get_design(w2b2) %>% \n  plot(geoms = geoms, \"time\", \"time\") + \n  w_colors + w_fill +\n  labs(x = NULL, title = \"Main Effect of Time of Day\")\n\nplot_w2b2 <- get_design(w2b2) %>% \n  plot(geoms = geoms, \"time\", \"pet\") + \n  w_colors + w_fill +\n  labs(x = NULL, title = \"Interaction between Time of Day and Pet Type\")\n\nplot_b2w2 <- get_design(w2b2) %>% \n  plot(geoms = geoms, \"pet\", \"time\") + \n  b_colors + b_fill +\n  labs(x = NULL, title = \"Interaction between Pet Type and Time of Day\")\n\n\nCombine with patchwork\n\nCodelayout <- paste(\"AB\", \"CC\", \"DD\", sep = \"\\n\")\nplot_b2  + plot_w2 + plot_w2b2 + plot_b2w2 +\n  plot_layout(design = layout)"
+  },
+  {
+    "objectID": "11-circular.html#data",
+    "href": "11-circular.html#data",
+    "title": "\n11  Circular\n",
+    "section": "\n11.1 Data",
+    "text": "11.1 Data\nI downloaded the UK sexual orientation data from the Office for National Statistics. It needs a little cleaning first. I’ll leave it wide because I just want to plot the most recent year.\n\nCodeukso <- read_csv(\"data/uk_sexual-orientation_8c21318e.csv\",\n                 skip = 3, n_max = 5, \n                 show_col_types = FALSE) %>%\n  mutate(`Sexual orientation` = gsub(\"\\n\", \"\", `Sexual orientation`),\n         `Sexual orientation` = gsub(\" or \", \"/\", `Sexual orientation`),\n         `Sexual orientation` = factor(`Sexual orientation`, `Sexual orientation`))\n\nukso\n\n# A tibble: 5 × 6\n  `Sexual orientation`  `2015` `2016` `2017` `2018` `2019`\n  <fct>                  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>\n1 Heterosexual/straight   95.2   95     95     94.6   93.7\n2 Gay/lesbian              1.2    1.2    1.3    1.4    1.6\n3 Bisexual                 0.7    0.8    0.8    0.9    1.1\n4 Other                    0.4    0.5    0.6    0.6    0.7\n5 Do not know/refuse       2.6    2.5    2.3    2.5    3  \n\n\nI wish they’d distinguished “don’t know” and “don’t want to tell you”; they’re two very different things."
+  },
+  {
+    "objectID": "11-circular.html#simple-polar-plot",
+    "href": "11-circular.html#simple-polar-plot",
+    "title": "\n11  Circular\n",
+    "section": "\n11.2 Simple Polar Plot",
+    "text": "11.2 Simple Polar Plot\nMy first thought was to just add coord_polar() to a bar plot. Not quite. I kind of hate this plot style, but at least I know how to make one now.\n\nCodeggplot(ukso, aes(x = `Sexual orientation`, \n                 y = `2019`, \n                 fill = `Sexual orientation`)) +\n  geom_col() +\n  coord_polar()"
+  },
+  {
+    "objectID": "11-circular.html#polar-y",
+    "href": "11-circular.html#polar-y",
+    "title": "\n11  Circular\n",
+    "section": "\n11.3 Polar Y",
+    "text": "11.3 Polar Y\nIf you set theta = \"y\", you get a different type of polar plot.\n\nCodeggplot(ukso, aes(x = `Sexual orientation`,\n                 y = `2019`, \n                 fill = `Sexual orientation`)) + \n  geom_col() +\n  coord_polar(theta = \"y\")\n\n\n\n\n\n\n\nThis is closer to what I want, but I’m not keen on the x-axis limit being defined by the largest group and the y-axis needs to go."
+  },
+  {
+    "objectID": "11-circular.html#fix-it-up",
+    "href": "11-circular.html#fix-it-up",
+    "title": "\n11  Circular\n",
+    "section": "\n11.4 Fix it up",
+    "text": "11.4 Fix it up\nI reversed the order of the categories by setting limits = rev in scale_x_discrete() and made some space in the middle by setting the expand argument to add 3 “columns” of space to the inside.\nI added geom_text() to include the exactly values at the end of each bar. I had to use trial and error to get the angles to match. I also used theme() to get rid of the y-axis.\n\nCodeggplot(ukso, aes(x = `Sexual orientation`, \n                 y = `2019`, \n                 fill = `Sexual orientation`, \n                 color = `Sexual orientation`)) + \n  geom_col(width = 1, color = \"black\") +\n  geom_text(aes(label = paste0(`2019`, \"%\"),\n                angle = c(15, -10, -10, -10, -10)), \n            size = 3, nudge_y = 0.5, hjust = 0) +\n  coord_polar(theta = \"y\") +\n  scale_x_discrete(expand = expansion(add = c(3, 0)), limits = rev) +\n  scale_y_continuous(breaks = seq(0, 90, 10), \n                     labels = paste0(seq(0, 90, 10), \"%\"),\n                     limits = c(0, 100)) +\n  theme(axis.ticks = element_blank(),\n        axis.text.y = element_blank(),\n        axis.title = element_blank())"
+  },
+  {
+    "objectID": "11-circular.html#theme",
+    "href": "11-circular.html#theme",
+    "title": "\n11  Circular\n",
+    "section": "\n11.5 Theme",
+    "text": "11.5 Theme\nNow I’ll really customise the appearance. I found the theme() function intimidating at first, but once you work with it for a bit and get your head around the element_* functions, it’s straightforward and very powerful. I just wish I could figure out how to put the plot caption in the margin like I did for the legend.\n\nCoderbcol <- c(\"red3\", \n           \"darkgoldenrod1\", \n           \"springgreen3\", \n           \"dodgerblue2\", \n           \"darkorchid\")\n\nggplot(ukso, aes(x = `Sexual orientation`, \n                 y = `2019`, \n                 fill = `Sexual orientation`, \n                 color = `Sexual orientation`)) + \n  geom_col(width = 1, color = \"black\") +\n  geom_text(aes(label = paste0(`2019`, \"%\"),\n                angle = c(15, -10, -10, -10, -10)), \n            size = 3, nudge_y = 0.5, hjust = 0) +\n  coord_polar(theta = \"y\") +\n  scale_fill_manual(values = rbcol) +\n  scale_color_manual(values = rbcol) +\n  scale_x_discrete(expand = expansion(add = c(3, 0)), limits = rev) +\n  scale_y_continuous(breaks = seq(0, 90, 10), \n                     labels = paste0(seq(0, 90, 10), \"%\"),\n                     limits = c(0, 100)) +\n  labs(title = \"Sexual Orientation in the UK (2019)\",\n       caption = \"Data from the UK Office for National Statistics\\nPlot by @lisadebruine for the 2022 #30DayChartChallenge\") +\n  theme_dark() +\n  theme(\n    axis.ticks = element_blank(),\n    axis.text.y = element_blank(),\n    axis.title = element_blank(),\n    panel.border = element_blank(),\n    panel.grid.major.x = element_blank(),\n    panel.grid.major.y = element_line(color = \"grey60\"),\n    panel.grid.minor.y = element_line(color = \"grey30\"),\n    panel.background = element_blank(),\n    plot.background = element_rect(fill = \"black\", color = \"transparent\"),\n    plot.margin = unit(c(.15, 0, 0, 1.1), \"in\"),\n    text = element_text(color = \"white\"),\n    plot.title = element_text(hjust = 0.5),\n    axis.text.x = element_text(color = \"white\"),\n    legend.background = element_blank(),\n    legend.title = element_blank(),\n    legend.position = c(-.06, 0.84),\n    plot.caption.position = \"plot\",\n    plot.caption = element_text(color = \"grey80\", size = 7, hjust = 0.5, \n                                margin = margin(b = .1, unit = \"in\"))\n  )"
+  },
+  {
+    "objectID": "12-economist.html#data",
+    "href": "12-economist.html#data",
+    "title": "12  The Economist",
+    "section": "\n12.1 Data",
+    "text": "12.1 Data\nThey don’t give a data source beyond “Press reports; The Economist”, but there aren’t that many countries, so I can just create the data table myself, with the help of Wikipedia’s article on legal recognition of non-binary gender. I also added the year that the first non-gendered passport was issued.\n\nCodenb_passports <- tribble(\n  ~country, ~restriction, ~year,\n  \"Argentina\", \"Self-declaration\", 2021,\n  \"Australia\", \"Self-declaration\", 2003,\n  \"Canada\", \"Self-declaration\", 2017,\n  \"Colombia\", \"Self-declaration\", 2022,\n  \"Denmark\", \"Self-declaration\", 2014,\n  \"Ireland\", \"Self-declaration\", 2015, # unclear if X or just gender change introduced then\n  \"Iceland\", \"Self-declaration\", 2020,\n  \"Nepal\", \"Self-declaration\", 2007,\n  \"New Zealand\", \"Self-declaration\", 2012,\n  \"Pakistan\", \"Self-declaration\", 2017,\n  \"United States of America\", \"Self-declaration\", 2021,\n  \"Malta\", \"Self-declaration\", 2017,\n  #\"Taiwan\", \"Medical assessment\", 2020, # planned, not confirmed https://en.wikipedia.org/wiki/Intersex_rights_in_Taiwan\n  \"India\", \"Medical assessment\", 2005,\n  \"Bangladesh\", \"Medical assessment\", 2001,\n  \"Germany\", \"Medical assessment\", 2019,\n  \"Austria\", \"Medical assessment\", 2018,\n  \"Netherlands\", \"Medical assessment\", 2018\n) %>%\n  mutate(restriction = factor(restriction, c(\"Self-declaration\", \"Medical assessment\")))"
+  },
+  {
+    "objectID": "12-economist.html#map-setup",
+    "href": "12-economist.html#map-setup",
+    "title": "12  The Economist",
+    "section": "\n12.2 Map Setup",
+    "text": "12.2 Map Setup\nI’ll use the code from Day 6 to make the map.\n\nWintri projection# translate the coordinate reference system\ncrs <- \"+proj=wintri\"  # winkel tripel projection\nworld_wintri <- ne_countries(returnclass = \"sf\", scale = \"medium\") %>%\n  lwgeom::st_transform_proj(crs = crs)\n\n# translate and crop coordinates\ntrans_coords <- st_sfc(\n  st_point(c(-1.4e7, -6.5e6)), # lower left lat and lon\n  st_point(c(2e7, 1e7)),       # upper right lat and lon\n  crs = crs) %>%\n  st_transform(crs = crs) %>%\n  st_coordinates()\n\ncrop_coords <- coord_sf(\n  datum = NULL, \n  xlim = trans_coords[,'X'], \n  ylim = trans_coords[,'Y'], \n  expand = FALSE)\n\n\nAdd the data\n\nCodedata_map <- left_join(world_wintri, nb_passports, \n                          by = c(\"geounit\" = \"country\")) %>%\n  select(country = geounit, restriction, year, geometry)"
+  },
+  {
+    "objectID": "12-economist.html#map-in-economist-theme",
+    "href": "12-economist.html#map-in-economist-theme",
+    "title": "12  The Economist",
+    "section": "\n12.3 Map in Economist theme",
+    "text": "12.3 Map in Economist theme\nI found the Econ Sans Cnd font that matched The Economist plots. You can use Arial Narrow if you can’t find this one.\n\nCodefont_add(family = \"EconSans\",\n         regular = \"fonts/econsanscndreg-webfont.woff.ttf\",\n         bold = \"fonts/econsanscndmed-webfont.woff.ttf\")\nshowtext_auto()\n\n\nNow build the plot without annotations and try to match the theme.\n\nCodebase_map <- ggplot(data_map) + \n  geom_sf(size = 0.5/.pt,\n          fill = \"#CECCBF\",\n          color = \"white\") +\n  geom_sf(mapping = aes(fill = restriction), \n          size = 0.5/.pt,\n          color = \"white\") +\n  crop_coords +\n  scale_fill_manual(name = NULL,\n                    values = c(\"#2F5C94\", \"#5DBDCC\"), \n                    na.translate = F) +\n  labs(title = \"Press X to Enter\",\n       subtitle = \"Countries which include a third-gender marker on their passport, April 2022\",\n       caption = \"Data: Wikipedia | Plot: @lisadebruine\") +\n  theme_map(base_family = \"EconSans\", base_size = 12) +\n  theme(\n    plot.title = element_text(hjust = 0.025, face = \"bold\"),\n    plot.subtitle = element_text(hjust = 0.07),\n    plot.margin = unit(c(0.2, 0, 0, 0), \"in\"),\n    legend.position = \"top\",\n    legend.text = element_text(size = 11),\n    plot.caption = element_text(hjust = 0, color = \"grey30\")\n  )\n\nbase_map"
+  },
+  {
+    "objectID": "12-economist.html#get-centroids",
+    "href": "12-economist.html#get-centroids",
+    "title": "12  The Economist",
+    "section": "\n12.4 Get Centroids",
+    "text": "12.4 Get Centroids\nGet the centre x- and y- coordinates from each country to plot the annotations.\n\nCodeget_centroid <- function(geounit) {\n  data_map %>%\n    filter(country == geounit) %>%\n    pull(geometry) %>%\n    sf::st_centroid() %>%\n    `[[`(1) %>%\n    unclass()\n}\n\nusa <- get_centroid(\"United States of America\")\narg <- get_centroid(\"Argentina\")\ncol <- get_centroid(\"Colombia\")\nnep <- get_centroid(\"Nepal\")\nind <- get_centroid(\"India\")\npak <- get_centroid(\"Pakistan\")\nger <- get_centroid(\"Germany\")\nire <- get_centroid(\"Ireland\")"
+  },
+  {
+    "objectID": "12-economist.html#add-annotations",
+    "href": "12-economist.html#add-annotations",
+    "title": "12  The Economist",
+    "section": "\n12.5 Add Annotations",
+    "text": "12.5 Add Annotations\nThese needed a lot of trial-and-error.\n\nCodebase_map +\n  annotate(\"text\", label = \"United States\", color = \"white\", \n           hjust = 0.5, vjust = 0.5,\n           x = usa[1] + 2e5, y = usa[2] - 5e5, size = 3) +\n  annotate(\"text\", label = \"Argentina\", color = \"#2F5C94\", \n           hjust = 0, vjust = 1,\n           x = arg[1] + 1e6, y = arg[2] - 1.4e6, size = 3) +\n  annotate(geom = \"curve\", curvature = 0.3, size = 0.25,\n            x = arg[1] + 1e6, y = arg[2] - 1.4e6, \n            xend = arg[1], yend = arg[2],\n            arrow = arrow(length = unit(0.2, \"lines\"))) +\n  annotate(\"text\", label = \"Colombia\", color = \"#2F5C94\", \n           hjust = 1, vjust = 1,\n           x = col[1] - 1.5e6, y = col[2] - 2e5, size = 3) +\n  annotate(geom = \"curve\", curvature = -0.3, size = 0.25,\n            x = col[1] - 1.5e6, y = col[2] - 2e5, \n            xend = col[1], yend = col[2],\n            arrow = arrow(length = unit(0.2, \"lines\"))) +\n  annotate(\"text\", label = \"Nepal\", color = \"#2F5C94\",\n           hjust = 0, vjust = 0,\n           x = nep[1] + 5e5, y = nep[2] + 7e5, size = 3) +\n  annotate(geom = \"curve\", curvature = 0.1, size = 0.25,\n            x = nep[1] + 4e5, y = nep[2] + 6e5, \n            xend = nep[1], yend = nep[2],\n            arrow = arrow(length = unit(0.2, \"lines\"))) +\n  annotate(\"text\", label = \"India\", color = \"#35809B\",\n           hjust = 0.5, vjust = 1,\n           x = ind[1] + 1e6, y = ind[2] - 2.5e6, size = 3) +\n  annotate(geom = \"curve\", curvature = 0.3, size = 0.25,\n            x = ind[1] + 1e6, y = ind[2] - 2.4e6, \n            xend = ind[1], yend = ind[2],\n            arrow = arrow(length = unit(0.2, \"lines\"))) +\n  annotate(\"text\", label = \"Pakistan\", color = \"#2F5C94\",\n           hjust = 0.5, vjust = 1,\n           x = pak[1] - 5e5, y = pak[2] - 2.1e6, size = 3) +\n  annotate(geom = \"curve\", curvature = -0.1, size = 0.25,\n            x = pak[1] - 5e5, y = pak[2] - 2e6, \n            xend = pak[1], yend = pak[2],\n            arrow = arrow(length = unit(0.2, \"lines\"))) +\n  annotate(\"text\", label = \"Germany\", color = \"#35809B\",\n           hjust = 0.5, vjust = 0,\n           x = ger[1] - 1.2e6, y = ger[2] + 2.5e6, size = 3) +\n  annotate(geom = \"curve\", curvature = 0.2, size = 0.25,\n            x = ger[1] - 1.2e6, y = ger[2] + 2.4e6, \n            xend = ger[1], yend = ger[2],\n            arrow = arrow(length = unit(0.2, \"lines\"))) +\n  annotate(\"text\", label = \"Ireland\", color = \"#2F5C94\",\n           hjust = 1, vjust = 1,\n           x = ire[1] - 1e6, y = ire[2] - 5e5, size = 3) +\n  annotate(geom = \"curve\", curvature = -0.2, size = 0.25,\n            x = ire[1] - 1e6, y = ire[2] - 5e5, \n            xend = ire[1], yend = ire[2],\n            arrow = arrow(length = unit(0.2, \"lines\")))\n\n\n\n\n\n\n\nI tried do this with a new data table containing each country’s label, plus values for the text’s color, hjust, vjust, x, y, and the curve’s curvature, x, y, xend, and yend. However, you can’t set curvature in the mapping, so I had to sort that with pmap().\n\nCodeannotations <- tribble(\n  ~label, ~color, ~hjust, ~vjust, ~x, ~y, ~text_x, ~text_y, ~curvature, ~curve_x, ~curve_y,\n  \"United States\", \"white\", 0.5, 0.5, usa[1], usa[2], +2e5, -5e5, NA, NA, NA,\n  \"Argentina\", \"#2F5C94\", 0, 1, arg[1], arg[2], 1e6, -1.4e6, 0.3, 1e6, -1.4e6,\n  \"Colombia\", \"#2F5C94\", 1, 1, col[1], col[2], -1.5e6, -2e5, -0.3, -1.5e6, -2e5,\n  \"Nepal\", \"#2F5C94\", 0, 0, nep[1], nep[2], 5e5, 7e5, 0.1, 4e5, 6e5, \n  \"India\", \"#35809B\", 0.5, 1, ind[1], ind[2], 1e6, -2.5e6, 0.3, 1e6, -2.4e6, \n  \"Pakistan\", \"#2F5C94\", 0.5, 1, pak[1], pak[2], -5e5, -2.1e6, -0.1, -5e5, -2e6, \n  \"Germany\", \"#35809B\", 0.5, 0, ger[1], ger[2], -1.2e6, 2.5e6, 0.2, -1.2e6, 2.4e6,\n  \"Ireland\", \"#2F5C94\", 1, 1, ire[1], ire[2], -1e6, -5e5, -0.2, -1e6, -5e5\n)\n\ncurves <- annotations %>%\n  filter(label != \"United States\") %>%\n  pmap(function(label, color, hjust, vjust, \n                 x, y, text_x, text_y, \n                 curvature, curve_x, curve_y) {\n    annotate(geom = \"curve\", \n             x = x + curve_x, \n             y = y + curve_y, \n             xend = x, \n             yend = y, \n             curvature = curvature, \n             size = 0.3, \n             arrow = arrow(length = unit(0.2, \"lines\")))\n  })\n\n\nbase_map +\n  geom_text(data = annotations, \n            mapping = aes(label = label, \n            color = I(color),\n            hjust = hjust,\n            vjust = vjust,\n            x = x + text_x,\n            y = y + text_y),\n            size = 3) +\n  curves"
+  },
+  {
+    "objectID": "12-economist.html#add-red-rectangle",
+    "href": "12-economist.html#add-red-rectangle",
+    "title": "12  The Economist",
+    "section": "\n12.6 Add red rectangle",
+    "text": "12.6 Add red rectangle\nLast, we need to add the classic red rectangle to the top left of the plot. Save the plot as a PNG, then add the red rectangle using magick.\n\nCodeggsave(\"images/day12.png\", width = 8, height = 5, device = png, bg = \"white\")\n\n\n\nCodechart <- image_read(\"images/day12.png\")\nrect <- image_blank(100, 20, \"#D9352C\")\nimg <- image_composite(chart, rect, offset = \"+180+0\")\nimage_write(img, \"images/day12.png\")\n\n\n\nCodeknitr::include_graphics(\"images/day12.png\")"
+  },
+  {
+    "objectID": "13-correlation.html#craft-shops",
+    "href": "13-correlation.html#craft-shops",
+    "title": "\n13  Correlation\n",
+    "section": "\n13.1 Craft Shops",
+    "text": "13.1 Craft Shops\nI wanted to find the country of all the users on Ravelry, but the ravelRy package doesn’t have a function for searching people and I don’t have time to write one today, so I just searched for yarn shops, which also have a country attribute.\nThe slowly() function below is from purrr and retrieves 1000 yarn shops’ details every 10 seconds. There turned out to be 8072. You get an error if you try to retrieve an empty page of shops, so I wrapped the search_shops() code in tryCatch() so the function didn’t fail then. I saved the result to RDS so I can set this code chunk to eval = FALSE and read this in without calling the ravelry API every time I knit this book.\n\nCodeslow_shop <- slowly(function(page) { \n  tryCatch({\n    shops <- search_shops(page_size = 1000, page = page) \n    shops$country.name\n  }, error = function(e) {})\n}, rate = rate_delay(10))\n\nshops <- map(1:10, slow_shop) %>% unlist()\nsaveRDS(shops, \"data/yarn_shops.rds\")\n\n\nI had to fix some country names so they match with the other data sets. There is only one happiness value for the UK, so I reluctantly combined the four countries in the UK.\n\nCodeshops <- readRDS(\"data/yarn_shops.rds\")\n\nshop_countries <- tibble(\n  country = shops\n) %>%\n  mutate(country = recode(country,\n                          Wales = \"United Kingdom\", \n                          Scotland = \"United Kingdom\",\n                          England = \"United Kingdom\",\n                          \"Northern Ireland\" = \"United Kingdom\",\n                          \"Viet Nam\" = \"Vietnam\",\n                          \"Bosnia and Herzegowina\" = \"Bosnia and Herzegovina\",\n                          \"Korea, Republic of\" = \"South Korea\",\n                          .default = country)) %>%\n  count(country, name = \"yarn_shops\")"
+  },
+  {
+    "objectID": "13-correlation.html#temperature",
+    "href": "13-correlation.html#temperature",
+    "title": "\n13  Correlation\n",
+    "section": "\n13.2 Temperature",
+    "text": "13.2 Temperature\nI feel like average temperature might have something to do with the number of yarn shops in a country, so I scraped that from a Wikipedia page using rvest. I had to edit the Wikipedia page first because the table formatting was borked. I also had to fix the html minus symbol because it made the negative numbers read in as character strings.\n\nCodetemp <- read_html(\"https://en.wikipedia.org/wiki/List_of_countries_by_average_yearly_temperature\") %>%\n  html_nodes('table.wikitable') %>%\n  html_table(header = TRUE) %>%\n  bind_rows() %>%\n  as_tibble() %>%\n  rename(country = 1, temp = 2) %>%\n  mutate(temp = gsub(\"−\", \"-\", temp)) %>%\n  type_convert(col_types = \"cd\")\n\nhead(temp)\n\n# A tibble: 6 × 2\n  country       temp\n  <chr>        <dbl>\n1 Burkina Faso  28.3\n2 Mali          28.2\n3 Kiribati      28.2\n4 Djibouti      28  \n5 Maldives      28  \n6 Senegal       27.8\n\n\nThen I decided maybe the average temperature for the coldest month was better, which I found on a site with the rather upsetting name listfist, but had problems reading it with rvest so gave up.\n\nCodehtml <- read_html(\"https://listfist.com/list-of-countries-by-average-temperature\")"
+  },
+  {
+    "objectID": "13-correlation.html#happiness",
+    "href": "13-correlation.html#happiness",
+    "title": "\n13  Correlation\n",
+    "section": "\n13.3 Happiness",
+    "text": "13.3 Happiness\nI got the happiness ratings from the World Happiness Report, which also included a population column in units of thousands.\n\nCodehappy <- read_csv(\"data/happiness_2022.csv\",\n                  show_col_types = FALSE) %>%\n  mutate(pop2022 = pop2022 * 1000)"
+  },
+  {
+    "objectID": "13-correlation.html#join-data",
+    "href": "13-correlation.html#join-data",
+    "title": "\n13  Correlation\n",
+    "section": "\n13.4 Join Data",
+    "text": "13.4 Join Data\nNow to join all the data together.\n\nCodehappy_craft <- shop_countries %>%\n  left_join(happy, by = \"country\") %>%\n  filter(!is.na(pop2022)) %>%\n  left_join(temp, by = \"country\") %>%\n  mutate(shops_per_M = 1e6 * yarn_shops / pop2022)\n\n\nIn case you want to find your country in the data.\nCodehappy_craft %>%\n  mutate(shops_per_M = round(shops_per_M, 3)) %>%\n  select(\"Country\" = country, \n         \"Yarn Shops\" = yarn_shops, \n         \"Shops/M\" = shops_per_M,\n         Happiness = happiness2021, \n         Population = pop2022, \n         \"Mean Temp\" = temp) %>%\n  DT::datatable()"
+  },
+  {
+    "objectID": "13-correlation.html#correlations",
+    "href": "13-correlation.html#correlations",
+    "title": "\n13  Correlation\n",
+    "section": "\n13.5 Correlations",
+    "text": "13.5 Correlations\nLet’s just have a quick look at the correlations here. The number of yarn shops per million population is positively correlated with happiness and negatively correlated with mean annual temperature. However, temperature is also negatively correlated with happiness.\n\nCodehappy_craft %>%\n  select(shops_per_M, happiness2021, temp) %>%\n  cor(use = \"pairwise.complete.obs\") %>%\n  round(2)\n\n              shops_per_M happiness2021  temp\nshops_per_M          1.00          0.55 -0.43\nhappiness2021        0.55          1.00 -0.35\ntemp                -0.43         -0.35  1.00"
+  },
+  {
+    "objectID": "13-correlation.html#initial-plot",
+    "href": "13-correlation.html#initial-plot",
+    "title": "\n13  Correlation\n",
+    "section": "\n13.6 Initial Plot",
+    "text": "13.6 Initial Plot\nFirst, I made a simple plot of the correlation between the number of yarn shops per million people and happiness score for each country. I set the size of the points relative to the population and the colour relative to the mean annual temperature.\n\nCodeggplot(happy_craft, aes(x = shops_per_M, \n                        y = happiness2021, \n                        size = pop2022,\n                        color = temp)) +\n  geom_point()"
+  },
+  {
+    "objectID": "13-correlation.html#customise-the-plot",
+    "href": "13-correlation.html#customise-the-plot",
+    "title": "\n13  Correlation\n",
+    "section": "\n13.7 Customise the plot",
+    "text": "13.7 Customise the plot\nIceland is the outlier, with 72.4 yarn shops on Ravelry, so I’ll set the x-axis to log10. I’ll also use some annotations tricks I learned for Day 12.\n\nCodeggplot(happy_craft, aes(x = shops_per_M, \n                        y = happiness2021, \n                        size = pop2022,\n                        color = temp)) +\n  geom_smooth(mapping = aes(weight = pop2022),\n              method = lm, formula = y~x, \n              color = \"grey\", alpha = 0.1,\n              show.legend = FALSE) +\n  geom_point() +\n  \n  # label a few countries\n  annotate(\"text\", label = \"Iceland\", color = \"#404763\", \n           hjust = 1, vjust = 1,\n           x = 80, y = 7, size = 4) +\n  annotate(geom = \"curve\", curvature = 0.3, size = 0.25,\n            x = 80, y = 7, \n            xend = 73, yend = 7.5,\n            arrow = arrow(length = unit(0.4, \"lines\"))) +\n  annotate(\"text\", label = \"India\", color = \"#EF6E62\", \n           hjust = 0, vjust = 0.5,\n           x = .03, y = 4.1, size = 4) +\n  annotate(geom = \"curve\", curvature = 0.3, size = 0.25,\n            x = .03, y = 4.1, \n            xend = .017, yend = 4,\n            arrow = arrow(length = unit(0.4, \"lines\"))) +\n  annotate(\"text\", label = \"UK\", color = \"#94616C\", \n           hjust = 1, vjust = 0.5,\n           x = 8, y = 8.2, size = 4) +\n  annotate(geom = \"curve\", curvature = -0.2, size = 0.25,\n            x = 8, y = 8.2, \n            xend = 13, yend = 7.164,\n            arrow = arrow(length = unit(0.4, \"lines\"))) +\n  \n  # scale functions\n  scale_size_area(\"Population\",\n                  max_size = 10,\n                  breaks = 10^(5:9),\n                  labels = c(\"100K\", \"1M\", \"10M\", \"100M\", \"1B\")) +\n  scale_color_gradient(\"Mean Annual\\nTemperature\\n\",\n                       low = \"#404763\", high = \"#EF6E62\") +\n  scale_y_continuous(\"Happiness Score (2021)\",\n                     limits = c(3.5, 8.5)) +\n  scale_x_log10(\"Number of Yarn Shops on Ravelry per Million Population\") +\n  guides(size = \"none\") +\n  labs(title = \"Do Yarn Shops Cause Happiness?\",\n       subtitle = \"Data from Ravelry, Wikipedia & World Happiness Report | Plot by @lisadebruine\") +\n  theme_classic(base_family = \"Jost\", base_size = 13) +\n  theme(\n    plot.title = element_text(face = \"bold\", color = \"#EF6E62\", size = 20),\n    plot.subtitle = element_text(face = \"italic\", color = \"#404763\"),\n    legend.position = c(.73, .12),\n    legend.key.width = unit(.07, \"npc\"),\n    legend.direction = \"horizontal\",\n    legend.background = element_blank()\n  )"
+  },
+  {
+    "objectID": "14-3-dimensional.html",
+    "href": "14-3-dimensional.html",
+    "title": "\n14  3-dimensional\n",
+    "section": "",
+    "text": "I originally tried to use rgl to show a 3D face, but after I updated my Mac OS to Monterey, it no longer supports Open GL, so I’ve removed that part. Instead, I’ll make some 3-dimensional data from a multivariate normal distribution using faux, and 3D plot it using plotly.\n\nCodelibrary(plotly)\nlibrary(faux)\nlibrary(dplyr)\n\n\n\n14.0.1 Simulate multivariate distribution\nIn faux, you can set the correlations using a matrix, or just the upper right triangle values as a vector. So c(.1, .2, .3) would mean that \\(r_{xy} = .1\\), \\(r_{xz} = .2\\), and \\(r_{yz} = .3\\).\n\nCodedat_ppp <- faux::rnorm_multi(\n  r = c(.9, .9, .9),\n  varnames = c(\"x\", \"y\", \"z\")\n) %>%\n  mutate(cors = \"+++\")\n\ndat_nnp <- faux::rnorm_multi(\n  r = c(-.9, -.9, .9),\n  varnames = c(\"x\", \"y\", \"z\")\n) %>%\n  mutate(cors = \"--+\")\n\ndat_pnn <- faux::rnorm_multi(\n  r = c(.9, -.9, -.9),\n  varnames = c(\"x\", \"y\", \"z\")\n) %>%\n  mutate(cors = \"+--\")\n\ndat <- bind_rows(dat_ppp, dat_nnp, dat_pnn)\n\n\n\n14.0.2 Marker style\nNext, set up the marker style.\n\nCode#set up the marker style\nmarker_style = list(\n    line = list(\n      color = \"#444\", \n      width = 1\n    ), \n    opacity = 0.5,\n    size = 3\n  )\n\n\n\n14.0.3 3D Plot\nFinally, make the plot and add markers. These plots look cool, but I find them pretty hard for inference with data.\n\nCode# plot and add markers\nplot_ly(data = dat,\n        x = ~x, y = ~y, z = ~z, \n        color = ~cors,\n        marker = marker_style) %>%\n  add_markers()"
+  },
+  {
+    "objectID": "15-multivariate.html#simulate-data",
+    "href": "15-multivariate.html#simulate-data",
+    "title": "\n15  Multivariate\n",
+    "section": "\n15.1 Simulate data",
+    "text": "15.1 Simulate data\nThe rmulti() function uses simulation to determine what correlations among normally distributed variables is equivalent to the specified correlations among non-normally distributed variables, then simulates correlated data from a multivariate normal distribution and converts it to the specified distributions using quantile functions.\nIt works pretty much like rnorm_multi(), with the addition of a dist argument where you can set the distribution and a params argument where you can set their parameters.\nThe code below simulates 1000 people with uniformly distributed age between 50 and 70, and the number of texts they send per day, which we’ll simulated with a Poisson distribution with a mean (lambda) of 5. They’re given a questionnaire with 1-7 Likert ratings, which are averaged, so the resulting scores are truncated from 1 to 7, with a mean of 3.5 and SS of 2.1. Age and texts are negatively correlated with \\(r =-0.3\\). Age is also negatively related to the score, \\(r = -.4\\), while score and texts are positively correlated \\(r = 0.5\\).\n\nCodeset.seed(8675309) # for reproducibility\n\ndat <- rmulti(\n  n = 1000, \n  dist = c(age = \"unif\",\n           texts = \"pois\",\n           score = \"truncnorm\"),\n  params = list(\n    age = c(min = 50, max = 70),\n    texts = c(lambda = 5),\n    score = c(a = 1, b = 7, mean = 3.5, sd = 2.1)\n  ),\n  r = c(-0.3, -0.4, +.5)\n)\n\ncheck_sim_stats(dat)\n\n     n   var   age texts score  mean   sd\n1 1000   age  1.00 -0.30 -0.42 60.28 5.76\n2 1000 texts -0.30  1.00  0.45  4.92 2.10\n3 1000 score -0.42  0.45  1.00  3.74 1.53"
+  },
+  {
+    "objectID": "15-multivariate.html#plot-individual-distributions",
+    "href": "15-multivariate.html#plot-individual-distributions",
+    "title": "\n15  Multivariate\n",
+    "section": "\n15.2 Plot individual distributions",
+    "text": "15.2 Plot individual distributions\n\n15.2.1 Age\nAge is uniformly distributed from 50 to 70, so a histogram is probably most appropriate here. Why is the default histogram so ugly?\n\nCodeggplot(dat, aes(x = age)) +\n  geom_histogram(binwidth = 1)\n\n\n\n\n\n\n\nOops, I forgot that the uniform distribution is continuous and we normally think of age in integers. There are about half as many 50 and 70 year olds than the other ages. You can fix that by simulating age from 50.501 to 70.499 (I can never remember which way exact .5s round, so I just make sure they won’t round to 49 or 71.)\n\nCodeset.seed(8675309) # for reproducibility\ndat <- rmulti(\n  n = 1000, \n  dist = c(age = \"unif\",\n           texts = \"pois\",\n           score = \"truncnorm\"),\n  params = list(\n    age = c(min = 50 - .499, max = 70 + .499),\n    texts = c(lambda = 5),\n    score = c(a = 1, b = 7, mean = 3.5, sd = 2.1)\n  ),\n  r = c(-0.3, -0.4, +.5)\n)\n\ndat$age <- round(dat$age)\n\n\nI’ll also fix the histogram style.\n\nCodeggplot(dat, aes(x = age)) +\n  geom_histogram(binwidth = 1, fill = \"white\", color = \"black\")\n\n\n\n\n\n\n\n\n15.2.2 Texts - Poisson\nThe Poisson distribution approaches the normal when lambda gets large, which is why I set the example to a low number of texts.\n\nCodeggplot(dat, aes(x = texts)) +\n  geom_histogram(binwidth = 1, fill = \"white\", color = \"black\")\n\n\n\n\n\n\n\n\n15.2.3 Score\nThe truncated normal distribution for our score has a minimum value of 1 and a maximum value of 7.\n\nCodeggplot(dat, aes(x = score)) +\n  geom_histogram(binwidth = 1, fill = \"white\", color = \"black\")\n\n\n\n\n\n\n\nThe default histogram isn’t great for this. The first column is scores between 0.5 and 1.5, and half of those are impossible scores. Set the histogram boundary to 1 to and x-axis breaks to 1:7 to fix this. Now each bar is the number of people with scores between the breaks.\n\nCodeggplot(dat, aes(x = score)) +\n  geom_histogram(binwidth = 1, boundary = 1, \n                 fill = \"white\", color = \"black\") +\n  scale_x_continuous(breaks = 1:7)"
+  },
+  {
+    "objectID": "15-multivariate.html#plot-bivariate-distributions",
+    "href": "15-multivariate.html#plot-bivariate-distributions",
+    "title": "\n15  Multivariate\n",
+    "section": "\n15.3 Plot bivariate distributions",
+    "text": "15.3 Plot bivariate distributions\nNow that we have a bit of a handle on the data, we can try to plot all the joint distributions.\nFirst, I’ll calculate a few things I’ll need in all the plots. I set the limits for age and texts to ±0.5 from the actual range so that the margin histograms display like above, rather than with boundaries at the limits.\n\nCode# axis limits\nage_limit <- c(50-0.5, 70 + 0.5)\ntexts_limit <- c(0-0.5, max(dat$texts) + 0.5)\nscore_limit <- c(1, 7)\n\n# custom colours\nage_col <- \"#D7A9E3\"\nscore_col <- \"#8BBEE8\"\ntexts_col <- \"#A8D5BA\"\n\n# plot titles\ntitles <- c(\n  age_texts = cor(dat$age, dat$texts),\n  score_age = cor(dat$age, dat$score),\n  texts_score = cor(dat$texts, dat$score)\n) %>%\n  round(2) %>%\n  list(\"r = %.2f\", .) %>%\n  do.call(sprintf, .) %>%\n  paste0(c(\"Age vs Texts\", \"Score vs Age\", \"Texts vs Score\"), \" (\", ., \")\")\n\n\n\n15.3.1 Age vs Texts\n\nCodeggplot(dat, aes(age, texts)) +\n  geom_point() +\n  geom_smooth(method = lm, formula = y~x)\n\n\n\n\n\n\n\nThese are both integer values, so there is a lot of overplotting with 1000 subjects. There are a few ways to deal with this. Let’s compare them.\n\nCodeoverplot_jitter <- ggplot(dat, aes(age, texts)) +\n  geom_jitter(width = .2, height = .2) +\n  ggtitle(\"Use geom_jitter()\")\n\noverplot_alpha <- ggplot(dat, aes(age, texts)) +\n  geom_point(size = 3, alpha = 0.1) +\n  ggtitle(\"Reduce the point alpha\")\n\noverplot_color <- ggplot(dat, aes(age, texts)) +\n  geom_count(aes(color = ..n..), size = 3, show.legend = FALSE) +\n  scale_color_viridis_c() +\n  ggtitle(\"Use colour\")\n\noverplot_count <- ggplot(dat, aes(age, texts)) +\n  geom_count(show.legend = FALSE) +\n  scale_color_viridis_c() +\n  ggtitle(\"Use geom_count()\")\n\noverplot_2dhist <- ggplot(dat, aes(age, texts)) +\n  geom_bin2d(binwidth = c(1, 1), show.legend = FALSE) +\n  scale_fill_viridis_c() +\n  ggtitle(\"Use geom_bin2d()\")\n\noverplot_density <- ggplot(dat, aes(age, texts)) +\n  geom_density_2d_filled(show.legend = FALSE) +\n  ggtitle(\"Use geom_density_2d_filled()\")\n\noverplot_jitter + overplot_alpha + overplot_color +\n  overplot_count +overplot_2dhist + overplot_density +\n  plot_layout(nrow = 2)\n\n\n\n\n\n\n\nNow I can add the marginal distributions with ggExtra and tidy up the plot a bit. I decided to use geom_count() first, but then realised that the marginal distribution plots looked wrong because the marginal histograms were counting the number of plotted points per bin, not the number of data points. So I ended up using a combination of geom_density_2d_filled() and geom_point() with a low alpha. The marginal plots don’t work unless you have some version of geom_point() (although you could set the alpha to 0 to make it invisible).\n\nCodep1 <- ggplot(dat, aes(age, texts)) +\n  geom_density_2d_filled(alpha = 0.7) +\n  scale_fill_grey() +\n  geom_point(alpha = 0.1) +\n  geom_smooth(method = lm, formula = y~x, \n              color = \"black\") +\n  coord_cartesian(xlim = age_limit, ylim = texts_limit) +\n  scale_y_continuous(breaks = seq(0, 20, 2)) +\n  labs(x = \"Age (in years)\",\n       y = \"Number of texts sent per day\",\n       title = titles[1]) +\n  theme(legend.position = \"none\")\n\nage_texts <- ggMarginal(p1, type = \"histogram\", \n                        binwidth = 1, \n                        xparams = list(fill = age_col),\n                        yparams = list(fill = texts_col, boundary = 0))\n\nage_texts\n\n\n\n\n\n\n\n\n15.3.2 Score vs Age\n\nCodep2 <- ggplot(dat, aes(score, age)) +\n  geom_density_2d_filled(alpha = 0.7) +\n  scale_fill_grey() +\n  geom_point(alpha = 0.1) +\n  geom_smooth(method = lm, formula = y~x, \n              color = \"black\") +\n  scale_x_continuous(breaks = 1:7) +\n  coord_cartesian(xlim = score_limit, ylim = age_limit) +\n  labs(y = \"Age (in years)\",\n       x = \"Score on questionnaire\",\n       title = titles[2]) +\n  theme(legend.position = \"none\")\n\nscore_age <- ggMarginal(p2, type = \"histogram\", \n                        xparams = list(binwidth = 0.5, fill = score_col),\n                        yparams = list(binwidth = 1, fill = age_col))\n\nscore_age\n\n\n\n\n\n\n\n\n15.3.3 Texts vs Score\n\nCodep3 <- ggplot(dat, aes(texts, score)) +\n  geom_density_2d_filled(alpha = 0.7) +\n  scale_fill_grey() +\n  geom_point(alpha = 0.1) +\n  geom_smooth(method = lm, formula = y~x, \n              color = \"black\") +\n  scale_x_continuous(breaks = seq(0, 20, 2)) +\n  scale_y_continuous(breaks = 1:7) +\n  coord_cartesian(xlim = texts_limit, ylim = score_limit ) +\n  labs(x = \"Number of texts sent per day\",\n       y = \"Score on questionnaire\",\n       title = titles[3]) +\n  theme(legend.position = \"none\")\n\ntexts_score <- ggMarginal(p3, type = \"histogram\", \n                        xparams = list(binwidth = 1, fill = texts_col),\n                        yparams = list(binwidth = 0.5, fill = score_col))\n\ntexts_score"
+  },
+  {
+    "objectID": "15-multivariate.html#combine",
+    "href": "15-multivariate.html#combine",
+    "title": "\n15  Multivariate\n",
+    "section": "\n15.4 Combine",
+    "text": "15.4 Combine\nYou can’t combine plots with margins made by ggExtra using patchwork, so I have to save each to a file individually and combine them with webmorphR.\n\nCodeggsave(\"images/mv_1_age_texts.png\", age_texts, width = 5, height = 5)\nggsave(\"images/mv_2_score_age.png\", score_age, width = 5, height = 5)\nggsave(\"images/mv_3_texts_score.png\", texts_score, width = 5, height = 5)\n\n\nWebmorphR is an R package I’m developing for making visual stimuli for research in a way that is computationally reproducible. It uses magick under the hood, but has a lot of convenient functions for making figures.\n\nCode# read in images starting with mv_\nimgs <- webmorphR::read_stim(\"images\", \"^mv_\\\\d\")\n\n# plot in a single row\nfig <- plot(imgs, nrow = 1)\n\nfig\n\n\n\n\n\n\n\nSave the figure to a file.\n\nCodewrite_stim(fig, dir = \"images\", names = \"day15\", format = \"png\")"
+  },
+  {
+    "objectID": "app-a-colours.html",
+    "href": "app-a-colours.html",
+    "title": "Appendix A — Colours",
+    "section": "",
+    "text": "Hover over a colour to see its R name.\n\n\n\nblack\n\n\ngray1\n\n\ngray2\n\n\ngray3\n\n\ngray4\n\n\ngray5\n\n\ngray6\n\n\ngray7\n\n\ngray8\n\n\ngray9\n\n\ngray10\n\n\ngray11\n\n\ngray12\n\n\ngray13\n\n\ngray14\n\n\ngray15\n\n\ngray16\n\n\ngray17\n\n\ngray18\n\n\ngray19\n\n\ngray20\n\n\ngray21\n\n\ngray22\n\n\ngray23\n\n\ngray24\n\n\ngray25\n\n\ngray26\n\n\ngray27\n\n\ngray28\n\n\ngray29\n\n\ngray30\n\n\ngray31\n\n\ngray32\n\n\ngray33\n\n\ngray34\n\n\ngray35\n\n\ngray36\n\n\ngray37\n\n\ngray38\n\n\ngray39\n\n\ngray40\n\n\ndimgray\n\n\ngray42\n\n\ngray43\n\n\ngray44\n\n\ngray45\n\n\ngray46\n\n\ngray47\n\n\ngray48\n\n\ngray49\n\n\ngray50\n\n\ngray51\n\n\ngray52\n\n\ngray53\n\n\ngray54\n\n\ngray55\n\n\ngray56\n\n\ngray57\n\n\ngray58\n\n\ngray59\n\n\ngray60\n\n\ngray61\n\n\ngray62\n\n\ngray63\n\n\ngray64\n\n\ngray65\n\n\ndarkgray\n\n\ngray66\n\n\ngray67\n\n\ngray68\n\n\ngray69\n\n\ngray70\n\n\ngray71\n\n\ngray72\n\n\ngray73\n\n\ngray74\n\n\ngray\n\n\ngray75\n\n\ngray76\n\n\ngray77\n\n\ngray78\n\n\ngray79\n\n\ngray80\n\n\ngray81\n\n\ngray82\n\n\ngray83\n\n\nlightgray\n\n\ngray84\n\n\ngray85\n\n\ngainsboro\n\n\ngray86\n\n\ngray87\n\n\ngray88\n\n\ngray89\n\n\ngray90\n\n\ngray91\n\n\ngray92\n\n\ngray93\n\n\ngray94\n\n\ngray95\n\n\ngray96\n\n\ngray97\n\n\ngray98\n\n\ngray99\n\n\nwhite\n\n\nsnow4\n\n\nsnow3\n\n\nsnow2\n\n\nsnow\n\n\nrosybrown4\n\n\nrosybrown\n\n\nrosybrown3\n\n\nrosybrown2\n\n\nrosybrown1\n\n\nlightcoral\n\n\nindianred\n\n\nindianred4\n\n\nindianred2\n\n\nindianred1\n\n\nindianred3\n\n\nbrown4\n\n\nbrown\n\n\nbrown3\n\n\nbrown2\n\n\nbrown1\n\n\nfirebrick4\n\n\nfirebrick\n\n\nfirebrick3\n\n\nfirebrick1\n\n\nfirebrick2\n\n\ndarkred\n\n\nred3\n\n\nred2\n\n\nred\n\n\nmistyrose3\n\n\nmistyrose4\n\n\nmistyrose2\n\n\nmistyrose\n\n\nsalmon\n\n\ntomato3\n\n\ncoral4\n\n\ncoral3\n\n\ncoral2\n\n\ncoral1\n\n\ntomato2\n\n\ntomato\n\n\ntomato4\n\n\ndarksalmon\n\n\nsalmon4\n\n\nsalmon3\n\n\nsalmon2\n\n\nsalmon1\n\n\ncoral\n\n\norangered4\n\n\norangered3\n\n\norangered2\n\n\nlightsalmon3\n\n\nlightsalmon2\n\n\nlightsalmon\n\n\nlightsalmon4\n\n\nsienna\n\n\nsienna3\n\n\nsienna2\n\n\nsienna1\n\n\nsienna4\n\n\norangered\n\n\nseashell4\n\n\nseashell3\n\n\nseashell2\n\n\nseashell\n\n\nchocolate4\n\n\nchocolate3\n\n\nchocolate\n\n\nchocolate2\n\n\nchocolate1\n\n\nlinen\n\n\npeachpuff4\n\n\npeachpuff3\n\n\npeachpuff2\n\n\npeachpuff\n\n\nsandybrown\n\n\ntan4\n\n\nperu\n\n\ntan2\n\n\ntan1\n\n\ndarkorange4\n\n\ndarkorange3\n\n\ndarkorange2\n\n\ndarkorange1\n\n\nantiquewhite3\n\n\nantiquewhite2\n\n\nantiquewhite1\n\n\nbisque4\n\n\nbisque3\n\n\nbisque2\n\n\nbisque\n\n\nburlywood4\n\n\nburlywood3\n\n\nburlywood\n\n\nburlywood2\n\n\nburlywood1\n\n\ndarkorange\n\n\nantiquewhite4\n\n\nantiquewhite\n\n\npapayawhip\n\n\nblanchedalmond\n\n\nnavajowhite4\n\n\nnavajowhite3\n\n\nnavajowhite2\n\n\nnavajowhite\n\n\ntan\n\n\nfloralwhite\n\n\noldlace\n\n\nwheat4\n\n\nwheat3\n\n\nwheat2\n\n\nwheat\n\n\nwheat1\n\n\nmoccasin\n\n\norange4\n\n\norange3\n\n\norange2\n\n\norange\n\n\ngoldenrod\n\n\ngoldenrod1\n\n\ngoldenrod4\n\n\ngoldenrod3\n\n\ngoldenrod2\n\n\ndarkgoldenrod4\n\n\ndarkgoldenrod\n\n\ndarkgoldenrod3\n\n\ndarkgoldenrod2\n\n\ndarkgoldenrod1\n\n\ncornsilk\n\n\ncornsilk4\n\n\ncornsilk3\n\n\ncornsilk2\n\n\nlightgoldenrod4\n\n\nlightgoldenrod3\n\n\nlightgoldenrod\n\n\nlightgoldenrod2\n\n\nlightgoldenrod1\n\n\ngold4\n\n\ngold3\n\n\ngold2\n\n\ngold\n\n\nlemonchiffon4\n\n\nlemonchiffon3\n\n\nlemonchiffon2\n\n\nlemonchiffon\n\n\npalegoldenrod\n\n\nkhaki\n\n\ndarkkhaki\n\n\nkhaki4\n\n\nkhaki3\n\n\nkhaki2\n\n\nkhaki1\n\n\nivory4\n\n\nivory3\n\n\nivory2\n\n\nivory\n\n\nbeige\n\n\nlightyellow4\n\n\nlightyellow3\n\n\nlightyellow2\n\n\nlightyellow\n\n\nlightgoldenrodyellow\n\n\nyellow4\n\n\nyellow3\n\n\nyellow2\n\n\nyellow\n\n\nolivedrab\n\n\nolivedrab4\n\n\nolivedrab3\n\n\nolivedrab2\n\n\nolivedrab1\n\n\ndarkolivegreen\n\n\ndarkolivegreen4\n\n\ndarkolivegreen3\n\n\ndarkolivegreen2\n\n\ndarkolivegreen1\n\n\ngreenyellow\n\n\nchartreuse4\n\n\nchartreuse3\n\n\nchartreuse2\n\n\nlawngreen\n\n\nchartreuse\n\n\nhoneydew4\n\n\nhoneydew3\n\n\nhoneydew2\n\n\nhoneydew\n\n\ndarkseagreen4\n\n\ndarkseagreen\n\n\ndarkseagreen3\n\n\ndarkseagreen2\n\n\ndarkseagreen1\n\n\nlightgreen\n\n\npalegreen\n\n\npalegreen4\n\n\npalegreen3\n\n\npalegreen1\n\n\nforestgreen\n\n\nlimegreen\n\n\ndarkgreen\n\n\ngreen4\n\n\ngreen3\n\n\ngreen2\n\n\ngreen\n\n\nmediumseagreen\n\n\nseagreen\n\n\nseagreen3\n\n\nseagreen2\n\n\nseagreen1\n\n\nmintcream\n\n\nspringgreen4\n\n\nspringgreen3\n\n\nspringgreen2\n\n\nspringgreen\n\n\naquamarine3\n\n\naquamarine2\n\n\naquamarine\n\n\nmediumspringgreen\n\n\naquamarine4\n\n\nturquoise\n\n\nmediumturquoise\n\n\nlightseagreen\n\n\nazure4\n\n\nazure3\n\n\nazure2\n\n\nazure\n\n\nlightcyan4\n\n\nlightcyan3\n\n\nlightcyan2\n\n\nlightcyan\n\n\npaleturquoise\n\n\npaleturquoise4\n\n\npaleturquoise3\n\n\npaleturquoise2\n\n\npaleturquoise1\n\n\ndarkslategray\n\n\ndarkslategray4\n\n\ndarkslategray3\n\n\ndarkslategray2\n\n\ndarkslategray1\n\n\ncyan4\n\n\ncyan3\n\n\ndarkturquoise\n\n\ncyan2\n\n\ncyan\n\n\ncadetblue4\n\n\ncadetblue\n\n\nturquoise4\n\n\nturquoise3\n\n\nturquoise2\n\n\nturquoise1\n\n\npowderblue\n\n\ncadetblue3\n\n\ncadetblue2\n\n\ncadetblue1\n\n\nlightblue4\n\n\nlightblue3\n\n\nlightblue\n\n\nlightblue2\n\n\nlightblue1\n\n\ndeepskyblue4\n\n\ndeepskyblue3\n\n\ndeepskyblue2\n\n\ndeepskyblue\n\n\nskyblue\n\n\nlightskyblue4\n\n\nlightskyblue3\n\n\nlightskyblue2\n\n\nlightskyblue1\n\n\nlightskyblue\n\n\nskyblue4\n\n\nskyblue3\n\n\nskyblue2\n\n\nskyblue1\n\n\naliceblue\n\n\nslategray\n\n\nlightslategray\n\n\nslategray3\n\n\nslategray2\n\n\nslategray1\n\n\nsteelblue4\n\n\nsteelblue\n\n\nsteelblue3\n\n\nsteelblue2\n\n\nsteelblue1\n\n\ndodgerblue4\n\n\ndodgerblue3\n\n\ndodgerblue2\n\n\ndodgerblue\n\n\nlightsteelblue4\n\n\nlightsteelblue3\n\n\nlightsteelblue\n\n\nlightsteelblue2\n\n\nlightsteelblue1\n\n\nslategray4\n\n\ncornflowerblue\n\n\nroyalblue\n\n\nroyalblue4\n\n\nroyalblue3\n\n\nroyalblue2\n\n\nroyalblue1\n\n\nghostwhite\n\n\nlavender\n\n\nmidnightblue\n\n\nnavy\n\n\nblue4\n\n\nblue3\n\n\nblue2\n\n\nblue\n\n\ndarkslateblue\n\n\nslateblue\n\n\nmediumslateblue\n\n\nlightslateblue\n\n\nslateblue1\n\n\nslateblue4\n\n\nslateblue3\n\n\nslateblue2\n\n\nmediumpurple4\n\n\nmediumpurple3\n\n\nmediumpurple\n\n\nmediumpurple2\n\n\nmediumpurple1\n\n\npurple4\n\n\npurple3\n\n\nblueviolet\n\n\npurple1\n\n\npurple2\n\n\npurple\n\n\ndarkorchid\n\n\ndarkorchid4\n\n\ndarkorchid3\n\n\ndarkorchid2\n\n\ndarkorchid1\n\n\ndarkviolet\n\n\nmediumorchid4\n\n\nmediumorchid3\n\n\nmediumorchid\n\n\nmediumorchid2\n\n\nmediumorchid1\n\n\nthistle4\n\n\nthistle3\n\n\nthistle\n\n\nthistle2\n\n\nthistle1\n\n\nplum4\n\n\nplum3\n\n\nplum2\n\n\nplum1\n\n\nplum\n\n\nviolet\n\n\ndarkmagenta\n\n\nmagenta3\n\n\nmagenta2\n\n\nmagenta\n\n\norchid4\n\n\norchid3\n\n\norchid\n\n\norchid2\n\n\norchid1\n\n\nmaroon4\n\n\nvioletred\n\n\nmaroon3\n\n\nmaroon2\n\n\nmaroon1\n\n\nmediumvioletred\n\n\ndeeppink3\n\n\ndeeppink2\n\n\ndeeppink\n\n\ndeeppink4\n\n\nhotpink2\n\n\nhotpink1\n\n\nhotpink4\n\n\nhotpink\n\n\nvioletred4\n\n\nvioletred3\n\n\nvioletred2\n\n\nvioletred1\n\n\nhotpink3\n\n\nlavenderblush4\n\n\nlavenderblush3\n\n\nlavenderblush2\n\n\nlavenderblush\n\n\nmaroon\n\n\npalevioletred4\n\n\npalevioletred3\n\n\npalevioletred\n\n\npalevioletred2\n\n\npalevioletred1\n\n\npink4\n\n\npink3\n\n\npink2\n\n\npink1\n\n\npink\n\n\nlightpink\n\n\nlightpink4\n\n\nlightpink3\n\n\nlightpink2\n\n\nlightpink1"
+  },
+  {
+    "objectID": "app-b-stained-glass.html#variables",
+    "href": "app-b-stained-glass.html#variables",
+    "title": "Appendix B — Stained Glass Heart",
+    "section": "\nB.1 Variables",
+    "text": "B.1 Variables\nFirst, set up some variables, like a seed to use for the random elements, the number of points (more will make the glass pieces smaller), and your base palette (I’m using the psyTeachR rainbow colours).\n\nCodeseed <- 8675309\nn_pts <- 150 ### Number of points to try to put inside the window\npalette <- c(\n  \"pink\" = \"#983E82\",\n  \"orange\" = \"#E2A458\",\n  \"yellow\" = \"#F5DC70\",\n  \"green\" = \"#59935B\",\n  \"blue\" = \"#467AAC\",\n  \"purple\" = \"#61589C\"\n)"
+  },
+  {
+    "objectID": "app-b-stained-glass.html#frame",
+    "href": "app-b-stained-glass.html#frame",
+    "title": "Appendix B — Stained Glass Heart",
+    "section": "\nB.2 Frame",
+    "text": "B.2 Frame\nMake a matrix of the x and y coordinates of the frame. The code below is the maths for a heart.\n\nCode# make heart frame\nt <- seq(0, 2*pi, by=0.05)\nt <- c(t, t[[1]]) # append starting value\nframe <- cbind(\n  16*sin(t)^3,\n  13*cos(t)-5*cos(2*t)-2*cos(3*t)-cos(4*t)\n)\n\n\nThen convert the matrix to a polygon. Plot to check it looks right.\n\nCode# convert to a polygon\nframe_sf <- frame %>%\n  list() %>% \n  sf::st_polygon()\n\nggplot(frame_sf) + geom_sf()"
+  },
+  {
+    "objectID": "app-b-stained-glass.html#random-points",
+    "href": "app-b-stained-glass.html#random-points",
+    "title": "Appendix B — Stained Glass Heart",
+    "section": "\nB.3 Random points",
+    "text": "B.3 Random points\nMake some random points within the range of x and y values of the frame.\n\nCode## Create random data points in frame bounds\nset.seed(seed)\npoints <- tibble(\n  x = runif(n_pts, min = min(frame[,1]), max = max(frame[,1])),\n  y = runif(n_pts, min = min(frame[,2]), max = max(frame[,2]))\n)\n\n# plot to check\nggplot() + \n  geom_sf(data = frame_sf) +\n  geom_point(aes(x, y), points)"
+  },
+  {
+    "objectID": "app-b-stained-glass.html#constrain-points",
+    "href": "app-b-stained-glass.html#constrain-points",
+    "title": "Appendix B — Stained Glass Heart",
+    "section": "\nB.4 Constrain points",
+    "text": "B.4 Constrain points\nConstrain the points to just those inside the frame. Do this by creating an sf version of the points, then using sf::st_contains() to check which are contained in the frame sf object. Then, select just the contained points from the points table.\n\nCode## Creates a new sf object to hold the created points\npoints_sf <- sf::st_as_sf(points, coords = c(\"x\",\"y\"))\n\n## Keeps only the random points that are within the frame\ncontained <- sf::st_contains(frame_sf, points_sf)\npoints <- points %>% dplyr::slice(contained[[1]])\n\n# plot to check\nggplot() + \n  geom_sf(data = frame_sf) +\n  geom_point(aes(x, y), points)"
+  },
+  {
+    "objectID": "app-b-stained-glass.html#pane-colours",
+    "href": "app-b-stained-glass.html#pane-colours",
+    "title": "Appendix B — Stained Glass Heart",
+    "section": "\nB.5 Pane colours",
+    "text": "B.5 Pane colours\nAdd to the points table a column called fill with randomly sampled colours from the paletteand a column calledalpha` with randomly sampled values between 0.2 and 0.9. You can change these to make your window more or less transparent.\n\nCodeset.seed(seed)\npoints <- points %>% \n  mutate(\n    fill = sample(palette, nrow(.), T),\n    alpha = runif(nrow(.), min = 0.2, max = 0.9)\n  )"
+  },
+  {
+    "objectID": "app-b-stained-glass.html#plot",
+    "href": "app-b-stained-glass.html#plot",
+    "title": "Appendix B — Stained Glass Heart",
+    "section": "\nB.6 Plot",
+    "text": "B.6 Plot\nNow plot! Note the I() function for fill and alpha, which uses the actual value in these columns, instead of mapping new values to each unique value.\n\nCodeggplot(points) +\n  geom_voronoi_tile(aes(x = x, y = y, \n                        group = -1L, \n                        fill = I(fill),\n                        alpha = I(alpha)),\n                    color = \"black\", \n                    size = 1.5, \n                    bound = frame) +\n  geom_sf(data = frame_sf, \n          size = 4, \n          color = \"grey10\", \n          fill = \"transparent\") +\n  theme_void()\n\n\n\n\nI like it even better with a black background.\n\nCodeggplot2::last_plot() +\n  theme(plot.background = element_rect(fill = \"black\"))"
+  }
+]

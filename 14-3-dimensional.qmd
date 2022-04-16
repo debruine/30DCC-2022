@@ -1,0 +1,69 @@
+# 3-dimensional
+
+```{r, include = FALSE}
+source("R/setup.R")
+```
+
+I originally tried to use `r pkg("rgl")` to show a 3D face, but after I updated my Mac OS to Monterey, it no longer supports Open GL, so I've removed that part. Instead, I'll make some 3-dimensional data from a multivariate normal distribution using `r pkg("faux")`, and 3D plot it using `r pkg("plotly")`.
+
+```{r}
+library(plotly)
+library(faux)
+library(dplyr)
+```
+
+### Simulate multivariate distribution
+
+In faux, you can set the correlations using a matrix, or just the upper right triangle values as a vector. So `c(.1, .2, .3)` would mean that $r_{xy} = .1$, $r_{xz} = .2$, and $r_{yz} = .3$.
+
+```{r}
+dat_ppp <- faux::rnorm_multi(
+  r = c(.9, .9, .9),
+  varnames = c("x", "y", "z")
+) %>%
+  mutate(cors = "+++")
+
+dat_nnp <- faux::rnorm_multi(
+  r = c(-.9, -.9, .9),
+  varnames = c("x", "y", "z")
+) %>%
+  mutate(cors = "--+")
+
+dat_pnn <- faux::rnorm_multi(
+  r = c(.9, -.9, -.9),
+  varnames = c("x", "y", "z")
+) %>%
+  mutate(cors = "+--")
+
+dat <- bind_rows(dat_ppp, dat_nnp, dat_pnn)
+```
+
+### Marker style
+
+Next, set up the marker style.
+
+```{r}
+#set up the marker style
+marker_style = list(
+    line = list(
+      color = "#444", 
+      width = 1
+    ), 
+    opacity = 0.5,
+    size = 3
+  )
+```
+
+
+### 3D Plot
+
+Finally, make the plot and add markers. These plots look cool, but I find them pretty hard for inference with data.
+
+```{r plotly-3d}
+# plot and add markers
+plot_ly(data = dat,
+        x = ~x, y = ~y, z = ~z, 
+        color = ~cors,
+        marker = marker_style) %>%
+  add_markers()
+```

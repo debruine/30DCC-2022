@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.80">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="description" content="Code and charts for the 2022 30-Day Chart Challenge">
+<title>30DCC - 1&nbsp; Part-to-whole</title>
+<style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+<script src="site_libs/quarto-nav/quarto-nav.js"></script><script src="site_libs/quarto-nav/headroom.min.js"></script><script src="site_libs/clipboard/clipboard.min.js"></script><meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script><script src="site_libs/quarto-search/fuse.min.js"></script><script src="site_libs/quarto-search/quarto-search.js"></script><link href="./02-pictogram.html" rel="next">
+<link href="./index.html" rel="prev">
+<script src="site_libs/cookie-consent/cookie-consent.js"></script><link href="site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
+<script src="site_libs/quarto-html/quarto.js"></script><script src="site_libs/quarto-html/popper.min.js"></script><script src="site_libs/quarto-html/tippy.umd.min.js"></script><script src="site_libs/quarto-html/anchor.min.js"></script><link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script><link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+    "location": "sidebar",
+    "copy-button": false,
+    "collapse-after": 2,
+    "panel-placement": "start",
+    "type": "textbox",
+    "limit": 20,
+    "language": {
+      "search-no-results-text": "No results",
+      "search-matching-documents-text": "matching documents",
+      "search-copy-link-title": "Copy link to search",
+      "search-hide-matches-text": "Hide additional matches",
+      "search-more-match-text": "more match in this document",
+      "search-more-matches-text": "more matches in this document",
+      "search-clear-button-title": "Clear",
+      "search-detached-cancel-button-title": "Cancel",
+      "search-submit-button-title": "Submit"
+    }
+  }</script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script><script type="text/plain" cookie-consent="tracking">
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
+  </script><script type="text/javascript" charset="UTF-8">
+  document.addEventListener('DOMContentLoaded', function () {
+  cookieconsent.run({
+    "notice_banner_type":"simple",
+    "consent_type":"implied",
+    "palette":"light",
+    "language":"en",
+    "page_load_consent_levels":["strictly-necessary","functionality","tracking","targeting"],
+    "notice_banner_reject_button_hide":false,
+    "preferences_center_close_button_hide":false,
+    "website_name":""
+    });
+  });
+  </script><script type="application/json" class="js-hypothesis-config">
+  {
+    "theme": "clean",
+    "openSidebar": false
+  }
+  </script><script async="" src="https://hypothes.is/embed.js"></script><!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]--><link rel="stylesheet" href="include/style.css">
+</head>
+<body class="floating">
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">
+<span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Part-to-whole</span>
+</h1>
+      <button type="button" class="quarto-btn-toggle btn">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">30DCC</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/debruine/30DCC-2022/" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+    <a href="" title="Share" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-share"></i></a>
+    <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
+<li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=%7Curl%7C">
+            <i class="bi bi-bi-twitter pe-1"></i>
+          Twitter
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=%7Curl%7C">
+            <i class="bi bi-bi-facebook pe-1"></i>
+          Facebook
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=%7Curl%7C">
+            <i class="bi bi-bi-linkedin pe-1"></i>
+          LinkedIn
+          </a>
+        </li>
+    </ul>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Overview</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-comparisons" aria-expanded="true">Comparisons</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-comparisons" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-comparisons" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-part-to-whole.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Part-to-whole</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-pictogram.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Pictogram</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-historical.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Historical</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-flora.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Flora</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-slope.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Slope</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-owid.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">OWiD</span></a>
+  </div>
+</li>
+    </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-distributions" aria-expanded="true">Distributions</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-distributions" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-distributions" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-physical.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Physical</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-mountains.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Mountains</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-statistics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Statistics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-experimental.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Experimental</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-circular.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Circular</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-economist.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">The Economist</span></a>
+  </div>
+</li>
+    </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-relationships" aria-expanded="true">Relationships</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-relationships" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-relationships" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-correlation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Correlation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-3-dimensional.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">3-dimensional</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15-multivariate.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multivariate</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-environment.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Environment</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-connections.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Connections</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./18-oecd.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">OECD</span></a>
+  </div>
+</li>
+    </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-timeseries" aria-expanded="true">Timeseries</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-timeseries" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-timeseries" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./19-global-challenge.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Global Challenge</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./20-new-tool.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">New Tool</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./21-down-upwards.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Down/Upwards</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./22-animation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Animation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./23-tiles.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Tiles</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./24-financial-times.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Financial Times</span></a>
+  </div>
+</li>
+    </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-uncertainties" aria-expanded="true">Uncertainties</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-uncertainties" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-uncertainties" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./25-trend.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Trend</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./26-interactive.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Interactive</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./27-future.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Future</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./28-deviations.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Deviations</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./29-storytelling.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Storytelling</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./30-un-population.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">UN Population</span></a>
+  </div>
+</li>
+    </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-appendices" aria-expanded="true">Appendices</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-appendices" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-appendices" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./app-a-colours.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Colours</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./app-b-stained-glass.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Stained Glass Heart</span></a>
+  </div>
+</li>
+    </ul>
+</li>
+    </ul>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc"><h2 id="toc-title">Table of contents</h2>
+<ul>
+<li><a href="#simulate-data" class="nav-link active" data-scroll-target="#simulate-data"> <span class="header-section-number">1.1</span> Simulate data</a></li>
+<li><a href="#basic-treemap" class="nav-link" data-scroll-target="#basic-treemap"> <span class="header-section-number">1.2</span> Basic Treemap</a></li>
+<li><a href="#adjust-labels" class="nav-link" data-scroll-target="#adjust-labels"> <span class="header-section-number">1.3</span> Adjust Labels</a></li>
+<li><a href="#colour-scheme" class="nav-link" data-scroll-target="#colour-scheme"> <span class="header-section-number">1.4</span> Colour scheme</a></li>
+<li><a href="#change-text" class="nav-link" data-scroll-target="#change-text"> <span class="header-section-number">1.5</span> Change text</a></li>
+<li><a href="#saving-a-treemap" class="nav-link" data-scroll-target="#saving-a-treemap"> <span class="header-section-number">1.6</span> Saving a treemap</a></li>
+</ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/debruine/30DCC-2022/edit/main/01-part-to-whole.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/debruine/30DCC-2022/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/debruine/30DCC-2022/blob/main/01-part-to-whole.qmd" class="toc-action">View source</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header"><h1 class="title d-none d-lg-block display-7">
+<span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Part-to-whole</span>
+</h1>
+</header><div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(treemap)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(faux)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>I’ve been wanting to get more familiar with treemap plots.</p>
+<section id="simulate-data" class="level2" data-number="1.1"><h2 data-number="1.1" class="anchored" data-anchor-id="simulate-data">
+<span class="header-section-number">1.1</span> Simulate data</h2>
+<p>I always like to start my exploration with simulated data. The mixed design simulation functions below are from <a href="https://debruine.github.io/faux/articles/sim_mixed.html">faux</a>.</p>
+<p>Make a school with 5 grades, 1-4 classes per grade, and 15-35 students per class.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">set.seed</span>(<span class="dv">8675309</span>) <span class="co"># for reproducible data simulation</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a>school <span class="ot">&lt;-</span> <span class="fu">add_random</span>(<span class="at">grade =</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>  <span class="fu">add_random</span>(<span class="at">class =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="fu">nrow</span>(.), <span class="cn">TRUE</span>), </span>
+<span id="cb2-5"><a href="#cb2-5"></a>             <span class="at">.nested_in =</span> <span class="st">"grade"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>  <span class="fu">add_random</span>(<span class="at">student =</span> <span class="fu">sample</span>(<span class="dv">15</span><span class="sc">:</span><span class="dv">35</span>, <span class="fu">nrow</span>(.), <span class="cn">TRUE</span>), </span>
+<span id="cb2-7"><a href="#cb2-7"></a>             <span class="at">.nested_in =</span> <span class="st">"class"</span>)</span>
+<span id="cb2-8"><a href="#cb2-8"></a></span>
+<span id="cb2-9"><a href="#cb2-9"></a><span class="fu">head</span>(school)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  grade  class   student   
+  &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;     
+1 grade1 class01 student001
+2 grade1 class01 student002
+3 grade1 class01 student003
+4 grade1 class01 student004
+5 grade1 class01 student005
+6 grade1 class01 student006</code></pre>
+</div>
+</div>
+</section><section id="basic-treemap" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="basic-treemap">
+<span class="header-section-number">1.2</span> Basic Treemap</h2>
+<p>The basic version is OK, but I think we can do better here.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>school <span class="sc">%&gt;%</span> </span>
+<span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">count</span>(grade, class) <span class="sc">%&gt;%</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>  <span class="fu">treemap</span>(</span>
+<span id="cb4-4"><a href="#cb4-4"></a>    <span class="at">index =</span> <span class="fu">c</span>(<span class="st">"grade"</span>, <span class="st">"class"</span>), </span>
+<span id="cb4-5"><a href="#cb4-5"></a>    <span class="at">vSize =</span> <span class="st">"n"</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="01-part-to-whole_files/figure-html/pth-treemap-basic-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="adjust-labels" class="level2" data-number="1.3"><h2 data-number="1.3" class="anchored" data-anchor-id="adjust-labels">
+<span class="header-section-number">1.3</span> Adjust Labels</h2>
+<p>First, I’ll adjust the label size and alignment. I adapted this code from a book that Emily Nordmann and I recently wrote: <a href="https://psyteachr.github.io/ads-v1/custom.html#treemap">Applied Data Skills</a>. For <code>fontsize.labels</code> and <code>align.labels</code>, I added vector names to help me remember which is which, but the names aren’t used by <code>treemap()</code> at all, just the order.</p>
+<p>The class labels aligned to the bottom right are too close to the edges, so give them some padding with <code>xmod.labels</code> and <code>ymod.labels</code>. I’m also going to remove the transparent grey label background with <code>bg.labels = 0</code></p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>school <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">count</span>(grade, class) <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">treemap</span>(</span>
+<span id="cb5-4"><a href="#cb5-4"></a>    <span class="at">index =</span> <span class="fu">c</span>(<span class="st">"grade"</span>, <span class="st">"class"</span>), </span>
+<span id="cb5-5"><a href="#cb5-5"></a>    <span class="at">vSize =</span> <span class="st">"n"</span>, </span>
+<span id="cb5-6"><a href="#cb5-6"></a>    <span class="at">title =</span> <span class="st">""</span>,</span>
+<span id="cb5-7"><a href="#cb5-7"></a>    <span class="co"># set different label sizes for each type of label</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a>    <span class="at">fontsize.labels =</span> <span class="fu">c</span>(<span class="at">grade =</span> <span class="dv">30</span>, <span class="at">class =</span> <span class="dv">15</span>), </span>
+<span id="cb5-9"><a href="#cb5-9"></a>    <span class="co"># remove shaded background</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a>    <span class="at">bg.labels =</span> <span class="dv">0</span>,</span>
+<span id="cb5-11"><a href="#cb5-11"></a>    <span class="co"># set different alignments for two label types</span></span>
+<span id="cb5-12"><a href="#cb5-12"></a>    <span class="at">align.labels =</span> <span class="fu">list</span>(</span>
+<span id="cb5-13"><a href="#cb5-13"></a>      <span class="at">grade =</span> <span class="fu">c</span>(<span class="st">"left"</span>, <span class="st">"top"</span>), </span>
+<span id="cb5-14"><a href="#cb5-14"></a>      <span class="at">class =</span> <span class="fu">c</span>(<span class="st">"right"</span>, <span class="st">"bottom"</span>)</span>
+<span id="cb5-15"><a href="#cb5-15"></a>    ),</span>
+<span id="cb5-16"><a href="#cb5-16"></a>    <span class="at">xmod.labels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="sc">-</span>.<span class="dv">1</span>), <span class="co"># nudge class labels left</span></span>
+<span id="cb5-17"><a href="#cb5-17"></a>    <span class="at">ymod.labels =</span> <span class="fu">c</span>(<span class="dv">0</span>, .<span class="dv">1</span>)   <span class="co"># nudge class labels up</span></span>
+<span id="cb5-18"><a href="#cb5-18"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="01-part-to-whole_files/figure-html/pth-treemap-labels-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="colour-scheme" class="level2" data-number="1.4"><h2 data-number="1.4" class="anchored" data-anchor-id="colour-scheme">
+<span class="header-section-number">1.4</span> Colour scheme</h2>
+<p>I’d like to use the #30DayChartChallenge theme colours for my plots, so let’s set that up. I’m going to name the colours after the chapter they represent.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Theme Colours</summary><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>dcc_theme <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="at">comp =</span> <span class="st">"#4864DB"</span>, <span class="co"># ~royalblue</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a>  <span class="at">dist =</span> <span class="st">"#10D4CF"</span>, <span class="co"># ~darkturquoise</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a>  <span class="at">rels =</span> <span class="st">"#8DEA74"</span>, <span class="co"># ~lightgreen</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a>  <span class="at">time =</span> <span class="st">"#F5C748"</span>, <span class="co"># ~tan1</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a>  <span class="at">cert =</span> <span class="st">"#EA4E11"</span>  <span class="co"># ~orangered2</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell" data-layout-align="center">
+<details><summary>Plot</summary><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>school <span class="sc">%&gt;%</span> </span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">count</span>(grade, class) <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>  <span class="fu">treemap</span>(</span>
+<span id="cb7-4"><a href="#cb7-4"></a>    <span class="at">index =</span> <span class="fu">c</span>(<span class="st">"grade"</span>, <span class="st">"class"</span>), </span>
+<span id="cb7-5"><a href="#cb7-5"></a>    <span class="at">vSize =</span> <span class="st">"n"</span>, </span>
+<span id="cb7-6"><a href="#cb7-6"></a>    <span class="at">title =</span> <span class="st">""</span>,</span>
+<span id="cb7-7"><a href="#cb7-7"></a>    <span class="at">palette =</span> dcc_theme,</span>
+<span id="cb7-8"><a href="#cb7-8"></a>    <span class="at">fontsize.labels =</span> <span class="fu">c</span>(<span class="at">grade =</span> <span class="dv">30</span>, <span class="at">class =</span> <span class="dv">10</span>), </span>
+<span id="cb7-9"><a href="#cb7-9"></a>    <span class="at">bg.labels =</span> <span class="dv">0</span>,</span>
+<span id="cb7-10"><a href="#cb7-10"></a>    <span class="at">align.labels =</span> <span class="fu">list</span>(</span>
+<span id="cb7-11"><a href="#cb7-11"></a>      <span class="at">grade =</span> <span class="fu">c</span>(<span class="st">"left"</span>, <span class="st">"top"</span>), </span>
+<span id="cb7-12"><a href="#cb7-12"></a>      <span class="at">class =</span> <span class="fu">c</span>(<span class="st">"center"</span>, <span class="st">"center"</span>)</span>
+<span id="cb7-13"><a href="#cb7-13"></a>    ),</span>
+<span id="cb7-14"><a href="#cb7-14"></a>    <span class="at">xmod.labels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="sc">-</span>.<span class="dv">1</span>),</span>
+<span id="cb7-15"><a href="#cb7-15"></a>    <span class="at">ymod.labels =</span> <span class="fu">c</span>(<span class="dv">0</span>, .<span class="dv">1</span>)</span>
+<span id="cb7-16"><a href="#cb7-16"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="01-part-to-whole_files/figure-html/pth-treemap-colours-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="change-text" class="level2" data-number="1.5"><h2 data-number="1.5" class="anchored" data-anchor-id="change-text">
+<span class="header-section-number">1.5</span> Change text</h2>
+<p>Now I want to upgrade the labels. It’s probably easiest to do this in the data using <code>mutate()</code>. I’ll set them to the kind of primary school grade labels we use in Scotland, where each grade is P1, P2, … and each class within a grade gets a letter suffix.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>New labels</summary><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>school2 <span class="ot">&lt;-</span> school <span class="sc">%&gt;%</span> </span>
+<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">count</span>(grade, class) <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">mutate</span>(<span class="at">grade =</span> <span class="fu">gsub</span>(<span class="st">"grade"</span>, <span class="st">"P"</span>, grade)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a>  <span class="fu">group_by</span>(grade) <span class="sc">%&gt;%</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a>  <span class="fu">mutate</span>(<span class="at">class =</span> <span class="fu">paste0</span>(grade, letters[<span class="dv">1</span><span class="sc">:</span><span class="fu">n</span>()])) <span class="sc">%&gt;%</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a>  <span class="fu">mutate</span>(<span class="at">class =</span> <span class="fu">paste0</span>(class, <span class="st">"</span><span class="sc">\n</span><span class="st">n = "</span>, n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Finally, make the borders thicker. It’s starting to look like a Mondrian!</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>day1_plot <span class="ot">&lt;-</span> school2 <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">treemap</span>(</span>
+<span id="cb9-3"><a href="#cb9-3"></a>    <span class="at">index =</span> <span class="fu">c</span>(<span class="st">"grade"</span>, <span class="st">"class"</span>), </span>
+<span id="cb9-4"><a href="#cb9-4"></a>    <span class="at">vSize =</span> <span class="st">"n"</span>, </span>
+<span id="cb9-5"><a href="#cb9-5"></a>    <span class="at">title =</span> <span class="st">""</span>,</span>
+<span id="cb9-6"><a href="#cb9-6"></a>    <span class="at">palette =</span> dcc_theme,</span>
+<span id="cb9-7"><a href="#cb9-7"></a>    <span class="at">fontcolor.labels =</span> <span class="st">"white"</span>,</span>
+<span id="cb9-8"><a href="#cb9-8"></a>    <span class="at">fontsize.labels =</span> <span class="fu">c</span>(<span class="at">grade =</span> <span class="dv">30</span>, <span class="at">class =</span> <span class="dv">15</span>), </span>
+<span id="cb9-9"><a href="#cb9-9"></a>    <span class="at">bg.labels =</span> <span class="dv">0</span>,</span>
+<span id="cb9-10"><a href="#cb9-10"></a>    <span class="at">align.labels =</span> <span class="fu">list</span>(</span>
+<span id="cb9-11"><a href="#cb9-11"></a>      <span class="at">grade =</span> <span class="fu">c</span>(<span class="st">"left"</span>, <span class="st">"top"</span>), </span>
+<span id="cb9-12"><a href="#cb9-12"></a>      <span class="at">class =</span> <span class="fu">c</span>(<span class="st">"right"</span>, <span class="st">"bottom"</span>)</span>
+<span id="cb9-13"><a href="#cb9-13"></a>    ),</span>
+<span id="cb9-14"><a href="#cb9-14"></a>    <span class="at">xmod.labels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="sc">-</span>.<span class="dv">1</span>),</span>
+<span id="cb9-15"><a href="#cb9-15"></a>    <span class="at">ymod.labels =</span> <span class="fu">c</span>(<span class="dv">0</span>, .<span class="dv">1</span>),</span>
+<span id="cb9-16"><a href="#cb9-16"></a>    <span class="at">border.lwds =</span> <span class="dv">5</span> <span class="co"># thicker borders</span></span>
+<span id="cb9-17"><a href="#cb9-17"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="01-part-to-whole_files/figure-html/pth-treemap-final-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Treemap plot of classes nested in grades (P1 to P5). There are 2-4 classes in each grade with 16-35 students. The size of each box represents the size of the class, and the colour of the box represents the grade.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="saving-a-treemap" class="level2" data-number="1.6"><h2 data-number="1.6" class="anchored" data-anchor-id="saving-a-treemap">
+<span class="header-section-number">1.6</span> Saving a treemap</h2>
+<p>I tried <code>ggsave()</code> first and it took a <em>really</em> long time to save, and then the resulting image was blank. I should remember that not everything is ggplot; the output of the <code>treemap()</code> function is a list that draws a plot as a side effect (unless you set <code>draw = FALSE</code>), so you have to use base R plot saving techniques.</p>
+<p>I couldn’t figure out how to re-plot from the <code>day1_plot</code> object, so just had to retype the plot. This didn’t work well in an Rmd code chunk (I think treemap can sense if it’s in a code chunk with inline plot rendering and overrides the dev), so I had to run it in the console.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Save treemap</summary><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># open the png file</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>ragg<span class="sc">::</span><span class="fu">agg_png</span>(<span class="st">"images/day1.png"</span>, </span>
+<span id="cb10-3"><a href="#cb10-3"></a>              <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="fl">4.5</span>, </span>
+<span id="cb10-4"><a href="#cb10-4"></a>              <span class="at">background =</span> <span class="st">"transparent"</span>,</span>
+<span id="cb10-5"><a href="#cb10-5"></a>              <span class="at">units =</span> <span class="st">"in"</span>, <span class="at">res =</span> <span class="dv">150</span>)</span>
+<span id="cb10-6"><a href="#cb10-6"></a></span>
+<span id="cb10-7"><a href="#cb10-7"></a><span class="co"># plot the treemap</span></span>
+<span id="cb10-8"><a href="#cb10-8"></a>school2 <span class="sc">%&gt;%</span></span>
+<span id="cb10-9"><a href="#cb10-9"></a>  <span class="fu">treemap</span>(</span>
+<span id="cb10-10"><a href="#cb10-10"></a>    <span class="at">index =</span> <span class="fu">c</span>(<span class="st">"grade"</span>, <span class="st">"class"</span>), </span>
+<span id="cb10-11"><a href="#cb10-11"></a>    <span class="at">vSize =</span> <span class="st">"n"</span>, </span>
+<span id="cb10-12"><a href="#cb10-12"></a>    <span class="at">title =</span> <span class="st">""</span>,</span>
+<span id="cb10-13"><a href="#cb10-13"></a>    <span class="at">palette =</span> dcc_theme,</span>
+<span id="cb10-14"><a href="#cb10-14"></a>    <span class="at">fontcolor.labels =</span> <span class="st">"white"</span>,</span>
+<span id="cb10-15"><a href="#cb10-15"></a>    <span class="at">fontsize.labels =</span> <span class="fu">c</span>(<span class="at">grade =</span> <span class="dv">30</span>, <span class="at">class =</span> <span class="dv">15</span>), </span>
+<span id="cb10-16"><a href="#cb10-16"></a>    <span class="at">bg.labels =</span> <span class="dv">0</span>,</span>
+<span id="cb10-17"><a href="#cb10-17"></a>    <span class="at">align.labels =</span> <span class="fu">list</span>(</span>
+<span id="cb10-18"><a href="#cb10-18"></a>      <span class="at">grade =</span> <span class="fu">c</span>(<span class="st">"left"</span>, <span class="st">"top"</span>), </span>
+<span id="cb10-19"><a href="#cb10-19"></a>      <span class="at">class =</span> <span class="fu">c</span>(<span class="st">"right"</span>, <span class="st">"bottom"</span>)</span>
+<span id="cb10-20"><a href="#cb10-20"></a>    ),</span>
+<span id="cb10-21"><a href="#cb10-21"></a>    <span class="at">xmod.labels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="sc">-</span>.<span class="dv">1</span>),</span>
+<span id="cb10-22"><a href="#cb10-22"></a>    <span class="at">ymod.labels =</span> <span class="fu">c</span>(<span class="dv">0</span>, .<span class="dv">1</span>),</span>
+<span id="cb10-23"><a href="#cb10-23"></a>    <span class="at">border.lwds =</span> <span class="dv">5</span> <span class="co"># thicker borders</span></span>
+<span id="cb10-24"><a href="#cb10-24"></a>  )</span>
+<span id="cb10-25"><a href="#cb10-25"></a></span>
+<span id="cb10-26"><a href="#cb10-26"></a><span class="co"># close the png file</span></span>
+<span id="cb10-27"><a href="#cb10-27"></a><span class="cf">while</span> (<span class="sc">!</span><span class="fu">is.null</span>(<span class="fu">dev.list</span>())) <span class="fu">dev.off</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+
+
+</section></main><!-- /main --><script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    setTimeout(function() {
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Overview</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./02-pictogram.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Pictogram</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">CC-BY 2022, Lisa DeBruine</div>   
+      <div class="nav-footer-center"><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+<li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/debruine/30DCC-2022">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/lisadebruine">
+      <i class="bi bi-twitter" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+</div>
+  </div>
+</footer>
+include/script.js
+
+
+</body></html>

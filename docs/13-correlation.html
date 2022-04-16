@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.80">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="description" content="Code and charts for the 2022 30-Day Chart Challenge">
+<title>30DCC - 13&nbsp; Correlation</title>
+<style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+<script src="site_libs/quarto-nav/quarto-nav.js"></script><script src="site_libs/quarto-nav/headroom.min.js"></script><script src="site_libs/clipboard/clipboard.min.js"></script><meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script><script src="site_libs/quarto-search/fuse.min.js"></script><script src="site_libs/quarto-search/quarto-search.js"></script><link href="./14-3-dimensional.html" rel="next">
+<link href="./12-economist.html" rel="prev">
+<script src="site_libs/cookie-consent/cookie-consent.js"></script><link href="site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
+<script src="site_libs/quarto-html/quarto.js"></script><script src="site_libs/quarto-html/popper.min.js"></script><script src="site_libs/quarto-html/tippy.umd.min.js"></script><script src="site_libs/quarto-html/anchor.min.js"></script><link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script><link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+    "location": "sidebar",
+    "copy-button": false,
+    "collapse-after": 2,
+    "panel-placement": "start",
+    "type": "textbox",
+    "limit": 20,
+    "language": {
+      "search-no-results-text": "No results",
+      "search-matching-documents-text": "matching documents",
+      "search-copy-link-title": "Copy link to search",
+      "search-hide-matches-text": "Hide additional matches",
+      "search-more-match-text": "more match in this document",
+      "search-more-matches-text": "more matches in this document",
+      "search-clear-button-title": "Clear",
+      "search-detached-cancel-button-title": "Cancel",
+      "search-submit-button-title": "Submit"
+    }
+  }</script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script><script type="text/plain" cookie-consent="tracking">
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
+  </script><script type="text/javascript" charset="UTF-8">
+  document.addEventListener('DOMContentLoaded', function () {
+  cookieconsent.run({
+    "notice_banner_type":"simple",
+    "consent_type":"implied",
+    "palette":"light",
+    "language":"en",
+    "page_load_consent_levels":["strictly-necessary","functionality","tracking","targeting"],
+    "notice_banner_reject_button_hide":false,
+    "preferences_center_close_button_hide":false,
+    "website_name":""
+    });
+  });
+  </script><script type="application/json" class="js-hypothesis-config">
+  {
+    "theme": "clean",
+    "openSidebar": false
+  }
+  </script><script async="" src="https://hypothes.is/embed.js"></script><script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="site_libs/datatables-binding-0.22/datatables.js"></script><script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><link href="site_libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="site_libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="site_libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script><link href="site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]--><link rel="stylesheet" href="include/style.css">
+</head>
+<body class="floating">
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">
+<span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Correlation</span>
+</h1>
+      <button type="button" class="quarto-btn-toggle btn">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">30DCC</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/debruine/30DCC-2022/" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+    <a href="" title="Share" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-share"></i></a>
+    <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
+<li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=%7Curl%7C">
+            <i class="bi bi-bi-twitter pe-1"></i>
+          Twitter
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=%7Curl%7C">
+            <i class="bi bi-bi-facebook pe-1"></i>
+          Facebook
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=%7Curl%7C">
+            <i class="bi bi-bi-linkedin pe-1"></i>
+          LinkedIn
+          </a>
+        </li>
+    </ul>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Overview</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-comparisons" aria-expanded="true">Comparisons</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-comparisons" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-comparisons" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-part-to-whole.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Part-to-whole</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-pictogram.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Pictogram</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-historical.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Historical</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-flora.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Flora</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-slope.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Slope</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-owid.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">OWiD</span></a>
+  </div>
+</li>
+    </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-distributions" aria-expanded="true">Distributions</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-distributions" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-distributions" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-physical.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Physical</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-mountains.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Mountains</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-statistics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Statistics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-experimental.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Experimental</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-circular.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Circular</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-economist.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">The Economist</span></a>
+  </div>
+</li>
+    </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-relationships" aria-expanded="true">Relationships</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-relationships" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-relationships" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-correlation.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Correlation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-3-dimensional.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">3-dimensional</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15-multivariate.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multivariate</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-environment.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Environment</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-connections.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Connections</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./18-oecd.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">OECD</span></a>
+  </div>
+</li>
+    </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-timeseries" aria-expanded="true">Timeseries</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-timeseries" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-timeseries" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./19-global-challenge.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Global Challenge</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./20-new-tool.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">New Tool</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./21-down-upwards.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Down/Upwards</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./22-animation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Animation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./23-tiles.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Tiles</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./24-financial-times.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Financial Times</span></a>
+  </div>
+</li>
+    </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-uncertainties" aria-expanded="true">Uncertainties</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-uncertainties" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-uncertainties" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./25-trend.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Trend</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./26-interactive.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Interactive</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./27-future.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Future</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./28-deviations.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Deviations</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./29-storytelling.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Storytelling</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./30-un-population.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">UN Population</span></a>
+  </div>
+</li>
+    </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-appendices" aria-expanded="true">Appendices</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-appendices" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-appendices" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./app-a-colours.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Colours</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./app-b-stained-glass.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Stained Glass Heart</span></a>
+  </div>
+</li>
+    </ul>
+</li>
+    </ul>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc"><h2 id="toc-title">Table of contents</h2>
+<ul>
+<li><a href="#craft-shops" class="nav-link active" data-scroll-target="#craft-shops"> <span class="header-section-number">13.1</span> Craft Shops</a></li>
+<li><a href="#temperature" class="nav-link" data-scroll-target="#temperature"> <span class="header-section-number">13.2</span> Temperature</a></li>
+<li><a href="#happiness" class="nav-link" data-scroll-target="#happiness"> <span class="header-section-number">13.3</span> Happiness</a></li>
+<li><a href="#join-data" class="nav-link" data-scroll-target="#join-data"> <span class="header-section-number">13.4</span> Join Data</a></li>
+<li><a href="#correlations" class="nav-link" data-scroll-target="#correlations"> <span class="header-section-number">13.5</span> Correlations</a></li>
+<li><a href="#initial-plot" class="nav-link" data-scroll-target="#initial-plot"> <span class="header-section-number">13.6</span> Initial Plot</a></li>
+<li><a href="#customise-the-plot" class="nav-link" data-scroll-target="#customise-the-plot"> <span class="header-section-number">13.7</span> Customise the plot</a></li>
+</ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/debruine/30DCC-2022/edit/main/13-correlation.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/debruine/30DCC-2022/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/debruine/30DCC-2022/blob/main/13-correlation.qmd" class="toc-action">View source</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header"><h1 class="title d-none d-lg-block display-7">
+<span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Correlation</span>
+</h1>
+</header><p>I’m a sucker for a silly correlation, and I’ve also been meaning to try out the <code class="package"><a href="https://www.kaylinpavlik.com/introducing-new-r-package-ravelry/" target="_blank">ravelRy</a></code> package for working with the <a href="https://www.ravelry.com/groups/ravelry-api">ravelry API</a>.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># for data wrangling</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(ravelRy)   <span class="co"># for searching ravelry </span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(rvest)     <span class="co"># for web scraping</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(DT)        <span class="co"># for interactive table</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">library</span>(showtext)  <span class="co"># for fonts</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="co"># add the font Ravelry uses on their webpage</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="fu">font_add_google</span>(<span class="at">name =</span> <span class="st">"Jost"</span>, <span class="at">family =</span> <span class="st">"Jost"</span>)</span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="fu">showtext_auto</span>()</span>
+<span id="cb1-10"><a href="#cb1-10"></a></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="co"># increase penalty for scientific notation</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="craft-shops" class="level2" data-number="13.1"><h2 data-number="13.1" class="anchored" data-anchor-id="craft-shops">
+<span class="header-section-number">13.1</span> Craft Shops</h2>
+<p>I wanted to find the country of all the users on Ravelry, but the <code class="package">ravelRy</code> package doesn’t have a function for searching people and I don’t have time to write one today, so I just searched for yarn shops, which also have a country attribute.</p>
+<p>The <code>slowly()</code> function below is from <code class="package">purrr</code> and retrieves 1000 yarn shops’ details every 10 seconds. There turned out to be 8072. You get an error if you try to retrieve an empty page of shops, so I wrapped the <code>search_shops()</code> code in <code><a href="https://rdrr.io/r/base/conditions.html">tryCatch()</a></code> so the function didn’t fail then. I saved the result to RDS so I can set this code chunk to <code>eval = FALSE</code> and read this in without calling the ravelry API every time I knit this book.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>slow_shop <span class="ot">&lt;-</span> <span class="fu">slowly</span>(<span class="cf">function</span>(page) { </span>
+<span id="cb2-2"><a href="#cb2-2"></a>  <span class="fu">tryCatch</span>({</span>
+<span id="cb2-3"><a href="#cb2-3"></a>    shops <span class="ot">&lt;-</span> <span class="fu">search_shops</span>(<span class="at">page_size =</span> <span class="dv">1000</span>, <span class="at">page =</span> page) </span>
+<span id="cb2-4"><a href="#cb2-4"></a>    shops<span class="sc">$</span>country.name</span>
+<span id="cb2-5"><a href="#cb2-5"></a>  }, <span class="at">error =</span> <span class="cf">function</span>(e) {})</span>
+<span id="cb2-6"><a href="#cb2-6"></a>}, <span class="at">rate =</span> <span class="fu">rate_delay</span>(<span class="dv">10</span>))</span>
+<span id="cb2-7"><a href="#cb2-7"></a></span>
+<span id="cb2-8"><a href="#cb2-8"></a>shops <span class="ot">&lt;-</span> <span class="fu">map</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, slow_shop) <span class="sc">%&gt;%</span> <span class="fu">unlist</span>()</span>
+<span id="cb2-9"><a href="#cb2-9"></a><span class="fu">saveRDS</span>(shops, <span class="st">"data/yarn_shops.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>I had to fix some country names so they match with the other data sets. There is only one happiness value for the UK, so I reluctantly combined the four countries in the UK.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>shops <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"data/yarn_shops.rds"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2"></a></span>
+<span id="cb3-3"><a href="#cb3-3"></a>shop_countries <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb3-4"><a href="#cb3-4"></a>  <span class="at">country =</span> shops</span>
+<span id="cb3-5"><a href="#cb3-5"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a>  <span class="fu">mutate</span>(<span class="at">country =</span> <span class="fu">recode</span>(country,</span>
+<span id="cb3-7"><a href="#cb3-7"></a>                          <span class="at">Wales =</span> <span class="st">"United Kingdom"</span>, </span>
+<span id="cb3-8"><a href="#cb3-8"></a>                          <span class="at">Scotland =</span> <span class="st">"United Kingdom"</span>,</span>
+<span id="cb3-9"><a href="#cb3-9"></a>                          <span class="at">England =</span> <span class="st">"United Kingdom"</span>,</span>
+<span id="cb3-10"><a href="#cb3-10"></a>                          <span class="st">"Northern Ireland"</span> <span class="ot">=</span> <span class="st">"United Kingdom"</span>,</span>
+<span id="cb3-11"><a href="#cb3-11"></a>                          <span class="st">"Viet Nam"</span> <span class="ot">=</span> <span class="st">"Vietnam"</span>,</span>
+<span id="cb3-12"><a href="#cb3-12"></a>                          <span class="st">"Bosnia and Herzegowina"</span> <span class="ot">=</span> <span class="st">"Bosnia and Herzegovina"</span>,</span>
+<span id="cb3-13"><a href="#cb3-13"></a>                          <span class="st">"Korea, Republic of"</span> <span class="ot">=</span> <span class="st">"South Korea"</span>,</span>
+<span id="cb3-14"><a href="#cb3-14"></a>                          <span class="at">.default =</span> country)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-15"><a href="#cb3-15"></a>  <span class="fu">count</span>(country, <span class="at">name =</span> <span class="st">"yarn_shops"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section><section id="temperature" class="level2" data-number="13.2"><h2 data-number="13.2" class="anchored" data-anchor-id="temperature">
+<span class="header-section-number">13.2</span> Temperature</h2>
+<p>I feel like average temperature might have something to do with the number of yarn shops in a country, so I scraped that from a Wikipedia page using <code class="package">rvest</code>. I had to edit the Wikipedia page first because the table formatting was borked. I also had to fix the html minus symbol because it made the negative numbers read in as character strings.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>temp <span class="ot">&lt;-</span> <span class="fu">read_html</span>(<span class="st">"https://en.wikipedia.org/wiki/List_of_countries_by_average_yearly_temperature"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">html_nodes</span>(<span class="st">'table.wikitable'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>  <span class="fu">html_table</span>(<span class="at">header =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>  <span class="fu">bind_rows</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a>  <span class="fu">rename</span>(<span class="at">country =</span> <span class="dv">1</span>, <span class="at">temp =</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a>  <span class="fu">mutate</span>(<span class="at">temp =</span> <span class="fu">gsub</span>(<span class="st">"−"</span>, <span class="st">"-"</span>, temp)) <span class="sc">%&gt;%</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a>  <span class="fu">type_convert</span>(<span class="at">col_types =</span> <span class="st">"cd"</span>)</span>
+<span id="cb4-9"><a href="#cb4-9"></a></span>
+<span id="cb4-10"><a href="#cb4-10"></a><span class="fu">head</span>(temp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+  country       temp
+  &lt;chr&gt;        &lt;dbl&gt;
+1 Burkina Faso  28.3
+2 Mali          28.2
+3 Kiribati      28.2
+4 Djibouti      28  
+5 Maldives      28  
+6 Senegal       27.8</code></pre>
+</div>
+</div>
+<p>Then I decided maybe the average temperature for the coldest month was better, which I found on a site with the rather upsetting name <a href="https://listfist.com/list-of-countries-by-average-temperature">listfist</a>, but had problems reading it with rvest so gave up.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>html <span class="ot">&lt;-</span> <span class="fu">read_html</span>(<span class="st">"https://listfist.com/list-of-countries-by-average-temperature"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section><section id="happiness" class="level2" data-number="13.3"><h2 data-number="13.3" class="anchored" data-anchor-id="happiness">
+<span class="header-section-number">13.3</span> Happiness</h2>
+<p>I got the happiness ratings from the <a href="https://worldpopulationreview.com/country-rankings/happiest-countries-in-the-world">World Happiness Report</a>, which also included a population column in units of thousands.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>happy <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/happiness_2022.csv"</span>,</span>
+<span id="cb7-2"><a href="#cb7-2"></a>                  <span class="at">show_col_types =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>  <span class="fu">mutate</span>(<span class="at">pop2022 =</span> pop2022 <span class="sc">*</span> <span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section><section id="join-data" class="level2" data-number="13.4"><h2 data-number="13.4" class="anchored" data-anchor-id="join-data">
+<span class="header-section-number">13.4</span> Join Data</h2>
+<p>Now to join all the data together.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>happy_craft <span class="ot">&lt;-</span> shop_countries <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">left_join</span>(happy, <span class="at">by =</span> <span class="st">"country"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(pop2022)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a>  <span class="fu">left_join</span>(temp, <span class="at">by =</span> <span class="st">"country"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a>  <span class="fu">mutate</span>(<span class="at">shops_per_M =</span> <span class="fl">1e6</span> <span class="sc">*</span> yarn_shops <span class="sc">/</span> pop2022)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>In case you want to find your country in the data.</p>
+<details><summary>Code</summary><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>happy_craft <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">mutate</span>(<span class="at">shops_per_M =</span> <span class="fu">round</span>(shops_per_M, <span class="dv">3</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a>  <span class="fu">select</span>(<span class="st">"Country"</span> <span class="ot">=</span> country, </span>
+<span id="cb9-4"><a href="#cb9-4"></a>         <span class="st">"Yarn Shops"</span> <span class="ot">=</span> yarn_shops, </span>
+<span id="cb9-5"><a href="#cb9-5"></a>         <span class="st">"Shops/M"</span> <span class="ot">=</span> shops_per_M,</span>
+<span id="cb9-6"><a href="#cb9-6"></a>         <span class="at">Happiness =</span> happiness2021, </span>
+<span id="cb9-7"><a href="#cb9-7"></a>         <span class="at">Population =</span> pop2022, </span>
+<span id="cb9-8"><a href="#cb9-8"></a>         <span class="st">"Mean Temp"</span> <span class="ot">=</span> temp) <span class="sc">%&gt;%</span></span>
+<span id="cb9-9"><a href="#cb9-9"></a>  DT<span class="sc">::</span><span class="fu">datatable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div id="htmlwidget-bc6121613d21b14bdb7e" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-bc6121613d21b14bdb7e">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65"],["Argentina","Australia","Austria","Azerbaijan","Belgium","Bosnia and Herzegovina","Brazil","Bulgaria","Canada","Chile","China","Costa Rica","Croatia","Czech Republic","Denmark","Ecuador","Estonia","Finland","France","Germany","Greece","Greece","Hong Kong","Hungary","Iceland","India","Indonesia","Ireland","Israel","Italy","Japan","Latvia","Lithuania","Luxembourg","Malaysia","Malta","Mexico","Netherlands","New Zealand","Norway","Peru","Philippines","Poland","Portugal","Romania","Russia","Saudi Arabia","Serbia","Singapore","Slovakia","South Africa","South Korea","Spain","Sweden","Switzerland","Taiwan","Thailand","Togo","Turkey","Ukraine","United Arab Emirates","United Kingdom","United States","Uruguay","Vietnam"],[75,411,71,1,93,1,11,8,596,11,11,1,12,27,129,1,19,95,226,658,15,15,18,11,25,19,4,79,9,97,48,11,12,4,9,1,14,289,148,240,3,5,33,27,1,29,3,10,5,4,89,10,83,145,68,9,2,1,11,6,6,913,3059,3,4],[1.63,15.766,7.831,0.097,7.97,0.308,0.051,1.169,15.526,0.571,0.008,0.193,2.956,2.515,22.108,0.055,14.373,17.102,3.446,7.844,1.454,1.454,2.367,1.145,72.381,0.014,0.014,15.736,1.009,1.61,0.382,5.95,4.508,6.227,0.271,2.252,0.106,16.791,30.215,43.546,0.089,0.044,0.874,2.663,0.053,0.199,0.084,1.156,0.841,0.733,1.465,0.195,1.777,14.189,7.75,0.377,0.029,0.115,0.129,0.139,0.595,13.329,9.137,0.858,0.04],[5.929,7.183,7.268,5.171,6.834,5.813,6.33,5.266,7.103,6.172,5.339,7.069,5.882,6.965,7.62,5.764,6.189,7.842,6.69,7.155,5.723,5.723,5.477,5.992,7.554,3.819,5.345,7.085,7.157,6.483,5.94,6.032,6.255,7.324,5.384,6.602,6.317,7.464,7.277,7.392,5.84,5.88,6.166,5.929,6.14,5.477,6.494,6.078,6.377,6.331,4.956,5.845,6.491,7.363,7.571,6.584,5.985,4.107,4.948,4.875,6.561,7.064,6.951,6.431,5.411],[46010234,26068792,9066710,10300205,11668278,3249317,215353593,6844597,38388419,19250195,1448471400,5182354,4059286,10736784,5834950,18113361,1321910,5554960,65584518,83883596,10316637,10316637,7604299,9606259,345393,1406631776,279134505,5020199,8922892,60262770,125584838,1848837,2661708,642371,33181072,444033,131562772,17211447,4898203,5511370,33684208,112508994,37739785,10140570,19031335,145805947,35844909,8653016,5943546,5460193,60756135,51329899,46719142,10218971,8773637,23888595,70078203,8680837,85561976,43192122,10081785,68497907,334805269,3496016,98953541],[14.8,21.65,6.35,11.95,9.55,9.85,24.95,10.55,-5.1,8.45,6.95,24.8,10.9,7.55,7.5,21.85,2,1.7,10.7,8.4,15.4,-5.58,21.45,9.75,-0.7,23.65,25.85,9.3,19.2,13.45,11.15,5.6,6.2,8.65,25.4,19.2,21,9.25,10.55,1.5,19.6,25.85,7.85,15.15,8.8,-5.35,24.65,10.55,26.45,6.8,17.75,11.5,13.3,2.1,5.1,null,26.3,27.15,9.9,8.3,27,8.45,8.55,17.55,24.45]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Country<\/th>\n      <th>Yarn Shops<\/th>\n      <th>Shops/M<\/th>\n      <th>Happiness<\/th>\n      <th>Population<\/th>\n      <th>Mean Temp<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</section><section id="correlations" class="level2" data-number="13.5"><h2 data-number="13.5" class="anchored" data-anchor-id="correlations">
+<span class="header-section-number">13.5</span> Correlations</h2>
+<p>Let’s just have a quick look at the correlations here. The number of yarn shops per million population is positively correlated with happiness and negatively correlated with mean annual temperature. However, temperature is also negatively correlated with happiness.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>happy_craft <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">select</span>(shops_per_M, happiness2021, temp) <span class="sc">%&gt;%</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a>  <span class="fu">cor</span>(<span class="at">use =</span> <span class="st">"pairwise.complete.obs"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a>  <span class="fu">round</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-stdout">
+<pre><code>              shops_per_M happiness2021  temp
+shops_per_M          1.00          0.55 -0.43
+happiness2021        0.55          1.00 -0.35
+temp                -0.43         -0.35  1.00</code></pre>
+</div>
+</div>
+</section><section id="initial-plot" class="level2" data-number="13.6"><h2 data-number="13.6" class="anchored" data-anchor-id="initial-plot">
+<span class="header-section-number">13.6</span> Initial Plot</h2>
+<p>First, I made a simple plot of the correlation between the number of yarn shops per million people and happiness score for each country. I set the size of the points relative to the population and the colour relative to the mean annual temperature.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">ggplot</span>(happy_craft, <span class="fu">aes</span>(<span class="at">x =</span> shops_per_M, </span>
+<span id="cb12-2"><a href="#cb12-2"></a>                        <span class="at">y =</span> happiness2021, </span>
+<span id="cb12-3"><a href="#cb12-3"></a>                        <span class="at">size =</span> pop2022,</span>
+<span id="cb12-4"><a href="#cb12-4"></a>                        <span class="at">color =</span> temp)) <span class="sc">+</span></span>
+<span id="cb12-5"><a href="#cb12-5"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="13-correlation_files/figure-html/corr-plot-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="customise-the-plot" class="level2" data-number="13.7"><h2 data-number="13.7" class="anchored" data-anchor-id="customise-the-plot">
+<span class="header-section-number">13.7</span> Customise the plot</h2>
+<p>Iceland is the outlier, with 72.4 yarn shops on Ravelry, so I’ll set the x-axis to log10. I’ll also use some annotations tricks I learned for <a href="12-economist.html">Day&nbsp;<span>12</span></a>.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">ggplot</span>(happy_craft, <span class="fu">aes</span>(<span class="at">x =</span> shops_per_M, </span>
+<span id="cb13-2"><a href="#cb13-2"></a>                        <span class="at">y =</span> happiness2021, </span>
+<span id="cb13-3"><a href="#cb13-3"></a>                        <span class="at">size =</span> pop2022,</span>
+<span id="cb13-4"><a href="#cb13-4"></a>                        <span class="at">color =</span> temp)) <span class="sc">+</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">weight =</span> pop2022),</span>
+<span id="cb13-6"><a href="#cb13-6"></a>              <span class="at">method =</span> lm, <span class="at">formula =</span> y<span class="sc">~</span>x, </span>
+<span id="cb13-7"><a href="#cb13-7"></a>              <span class="at">color =</span> <span class="st">"grey"</span>, <span class="at">alpha =</span> <span class="fl">0.1</span>,</span>
+<span id="cb13-8"><a href="#cb13-8"></a>              <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb13-9"><a href="#cb13-9"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb13-10"><a href="#cb13-10"></a>  </span>
+<span id="cb13-11"><a href="#cb13-11"></a>  <span class="co"># label a few countries</span></span>
+<span id="cb13-12"><a href="#cb13-12"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">label =</span> <span class="st">"Iceland"</span>, <span class="at">color =</span> <span class="st">"#404763"</span>, </span>
+<span id="cb13-13"><a href="#cb13-13"></a>           <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">vjust =</span> <span class="dv">1</span>,</span>
+<span id="cb13-14"><a href="#cb13-14"></a>           <span class="at">x =</span> <span class="dv">80</span>, <span class="at">y =</span> <span class="dv">7</span>, <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb13-15"><a href="#cb13-15"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"curve"</span>, <span class="at">curvature =</span> <span class="fl">0.3</span>, <span class="at">size =</span> <span class="fl">0.25</span>,</span>
+<span id="cb13-16"><a href="#cb13-16"></a>            <span class="at">x =</span> <span class="dv">80</span>, <span class="at">y =</span> <span class="dv">7</span>, </span>
+<span id="cb13-17"><a href="#cb13-17"></a>            <span class="at">xend =</span> <span class="dv">73</span>, <span class="at">yend =</span> <span class="fl">7.5</span>,</span>
+<span id="cb13-18"><a href="#cb13-18"></a>            <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.4</span>, <span class="st">"lines"</span>))) <span class="sc">+</span></span>
+<span id="cb13-19"><a href="#cb13-19"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">label =</span> <span class="st">"India"</span>, <span class="at">color =</span> <span class="st">"#EF6E62"</span>, </span>
+<span id="cb13-20"><a href="#cb13-20"></a>           <span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>,</span>
+<span id="cb13-21"><a href="#cb13-21"></a>           <span class="at">x =</span> .<span class="dv">03</span>, <span class="at">y =</span> <span class="fl">4.1</span>, <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb13-22"><a href="#cb13-22"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"curve"</span>, <span class="at">curvature =</span> <span class="fl">0.3</span>, <span class="at">size =</span> <span class="fl">0.25</span>,</span>
+<span id="cb13-23"><a href="#cb13-23"></a>            <span class="at">x =</span> .<span class="dv">03</span>, <span class="at">y =</span> <span class="fl">4.1</span>, </span>
+<span id="cb13-24"><a href="#cb13-24"></a>            <span class="at">xend =</span> .<span class="dv">017</span>, <span class="at">yend =</span> <span class="dv">4</span>,</span>
+<span id="cb13-25"><a href="#cb13-25"></a>            <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.4</span>, <span class="st">"lines"</span>))) <span class="sc">+</span></span>
+<span id="cb13-26"><a href="#cb13-26"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">label =</span> <span class="st">"UK"</span>, <span class="at">color =</span> <span class="st">"#94616C"</span>, </span>
+<span id="cb13-27"><a href="#cb13-27"></a>           <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>,</span>
+<span id="cb13-28"><a href="#cb13-28"></a>           <span class="at">x =</span> <span class="dv">8</span>, <span class="at">y =</span> <span class="fl">8.2</span>, <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb13-29"><a href="#cb13-29"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"curve"</span>, <span class="at">curvature =</span> <span class="sc">-</span><span class="fl">0.2</span>, <span class="at">size =</span> <span class="fl">0.25</span>,</span>
+<span id="cb13-30"><a href="#cb13-30"></a>            <span class="at">x =</span> <span class="dv">8</span>, <span class="at">y =</span> <span class="fl">8.2</span>, </span>
+<span id="cb13-31"><a href="#cb13-31"></a>            <span class="at">xend =</span> <span class="dv">13</span>, <span class="at">yend =</span> <span class="fl">7.164</span>,</span>
+<span id="cb13-32"><a href="#cb13-32"></a>            <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.4</span>, <span class="st">"lines"</span>))) <span class="sc">+</span></span>
+<span id="cb13-33"><a href="#cb13-33"></a>  </span>
+<span id="cb13-34"><a href="#cb13-34"></a>  <span class="co"># scale functions</span></span>
+<span id="cb13-35"><a href="#cb13-35"></a>  <span class="fu">scale_size_area</span>(<span class="st">"Population"</span>,</span>
+<span id="cb13-36"><a href="#cb13-36"></a>                  <span class="at">max_size =</span> <span class="dv">10</span>,</span>
+<span id="cb13-37"><a href="#cb13-37"></a>                  <span class="at">breaks =</span> <span class="dv">10</span><span class="sc">^</span>(<span class="dv">5</span><span class="sc">:</span><span class="dv">9</span>),</span>
+<span id="cb13-38"><a href="#cb13-38"></a>                  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"100K"</span>, <span class="st">"1M"</span>, <span class="st">"10M"</span>, <span class="st">"100M"</span>, <span class="st">"1B"</span>)) <span class="sc">+</span></span>
+<span id="cb13-39"><a href="#cb13-39"></a>  <span class="fu">scale_color_gradient</span>(<span class="st">"Mean Annual</span><span class="sc">\n</span><span class="st">Temperature</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb13-40"><a href="#cb13-40"></a>                       <span class="at">low =</span> <span class="st">"#404763"</span>, <span class="at">high =</span> <span class="st">"#EF6E62"</span>) <span class="sc">+</span></span>
+<span id="cb13-41"><a href="#cb13-41"></a>  <span class="fu">scale_y_continuous</span>(<span class="st">"Happiness Score (2021)"</span>,</span>
+<span id="cb13-42"><a href="#cb13-42"></a>                     <span class="at">limits =</span> <span class="fu">c</span>(<span class="fl">3.5</span>, <span class="fl">8.5</span>)) <span class="sc">+</span></span>
+<span id="cb13-43"><a href="#cb13-43"></a>  <span class="fu">scale_x_log10</span>(<span class="st">"Number of Yarn Shops on Ravelry per Million Population"</span>) <span class="sc">+</span></span>
+<span id="cb13-44"><a href="#cb13-44"></a>  <span class="fu">guides</span>(<span class="at">size =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb13-45"><a href="#cb13-45"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Do Yarn Shops Cause Happiness?"</span>,</span>
+<span id="cb13-46"><a href="#cb13-46"></a>       <span class="at">subtitle =</span> <span class="st">"Data from Ravelry, Wikipedia &amp; World Happiness Report | Plot by @lisadebruine"</span>) <span class="sc">+</span></span>
+<span id="cb13-47"><a href="#cb13-47"></a>  <span class="fu">theme_classic</span>(<span class="at">base_family =</span> <span class="st">"Jost"</span>, <span class="at">base_size =</span> <span class="dv">13</span>) <span class="sc">+</span></span>
+<span id="cb13-48"><a href="#cb13-48"></a>  <span class="fu">theme</span>(</span>
+<span id="cb13-49"><a href="#cb13-49"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">color =</span> <span class="st">"#EF6E62"</span>, <span class="at">size =</span> <span class="dv">20</span>),</span>
+<span id="cb13-50"><a href="#cb13-50"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"italic"</span>, <span class="at">color =</span> <span class="st">"#404763"</span>),</span>
+<span id="cb13-51"><a href="#cb13-51"></a>    <span class="at">legend.position =</span> <span class="fu">c</span>(.<span class="dv">73</span>, .<span class="dv">12</span>),</span>
+<span id="cb13-52"><a href="#cb13-52"></a>    <span class="at">legend.key.width =</span> <span class="fu">unit</span>(.<span class="dv">07</span>, <span class="st">"npc"</span>),</span>
+<span id="cb13-53"><a href="#cb13-53"></a>    <span class="at">legend.direction =</span> <span class="st">"horizontal"</span>,</span>
+<span id="cb13-54"><a href="#cb13-54"></a>    <span class="at">legend.background =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb13-55"><a href="#cb13-55"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="13-correlation_files/figure-html/corr-day13-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section></main><!-- /main --><script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    setTimeout(function() {
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./12-economist.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">The Economist</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./14-3-dimensional.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">3-dimensional</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">CC-BY 2022, Lisa DeBruine</div>   
+      <div class="nav-footer-center"><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+<li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/debruine/30DCC-2022">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/lisadebruine">
+      <i class="bi bi-twitter" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+</div>
+  </div>
+</footer>
+include/script.js
+
+
+</body></html>

@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.80">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="description" content="Code and charts for the 2022 30-Day Chart Challenge">
+<title>30DCC - 3&nbsp; Historical</title>
+<style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+<script src="site_libs/quarto-nav/quarto-nav.js"></script><script src="site_libs/quarto-nav/headroom.min.js"></script><script src="site_libs/clipboard/clipboard.min.js"></script><meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script><script src="site_libs/quarto-search/fuse.min.js"></script><script src="site_libs/quarto-search/quarto-search.js"></script><link href="./04-flora.html" rel="next">
+<link href="./02-pictogram.html" rel="prev">
+<script src="site_libs/cookie-consent/cookie-consent.js"></script><link href="site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
+<script src="site_libs/quarto-html/quarto.js"></script><script src="site_libs/quarto-html/popper.min.js"></script><script src="site_libs/quarto-html/tippy.umd.min.js"></script><script src="site_libs/quarto-html/anchor.min.js"></script><link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script><link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+    "location": "sidebar",
+    "copy-button": false,
+    "collapse-after": 2,
+    "panel-placement": "start",
+    "type": "textbox",
+    "limit": 20,
+    "language": {
+      "search-no-results-text": "No results",
+      "search-matching-documents-text": "matching documents",
+      "search-copy-link-title": "Copy link to search",
+      "search-hide-matches-text": "Hide additional matches",
+      "search-more-match-text": "more match in this document",
+      "search-more-matches-text": "more matches in this document",
+      "search-clear-button-title": "Clear",
+      "search-detached-cancel-button-title": "Cancel",
+      "search-submit-button-title": "Submit"
+    }
+  }</script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script><script type="text/plain" cookie-consent="tracking">
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
+  </script><script type="text/javascript" charset="UTF-8">
+  document.addEventListener('DOMContentLoaded', function () {
+  cookieconsent.run({
+    "notice_banner_type":"simple",
+    "consent_type":"implied",
+    "palette":"light",
+    "language":"en",
+    "page_load_consent_levels":["strictly-necessary","functionality","tracking","targeting"],
+    "notice_banner_reject_button_hide":false,
+    "preferences_center_close_button_hide":false,
+    "website_name":""
+    });
+  });
+  </script><script type="application/json" class="js-hypothesis-config">
+  {
+    "theme": "clean",
+    "openSidebar": false
+  }
+  </script><script async="" src="https://hypothes.is/embed.js"></script><!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]--><link rel="stylesheet" href="include/style.css">
+</head>
+<body class="floating">
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">
+<span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Historical</span>
+</h1>
+      <button type="button" class="quarto-btn-toggle btn">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">30DCC</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/debruine/30DCC-2022/" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+    <a href="" title="Share" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-share"></i></a>
+    <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
+<li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=%7Curl%7C">
+            <i class="bi bi-bi-twitter pe-1"></i>
+          Twitter
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=%7Curl%7C">
+            <i class="bi bi-bi-facebook pe-1"></i>
+          Facebook
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=%7Curl%7C">
+            <i class="bi bi-bi-linkedin pe-1"></i>
+          LinkedIn
+          </a>
+        </li>
+    </ul>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Overview</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-comparisons" aria-expanded="true">Comparisons</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-comparisons" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-comparisons" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-part-to-whole.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Part-to-whole</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-pictogram.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Pictogram</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-historical.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Historical</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-flora.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Flora</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-slope.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Slope</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-owid.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">OWiD</span></a>
+  </div>
+</li>
+    </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-distributions" aria-expanded="true">Distributions</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-distributions" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-distributions" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-physical.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Physical</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-mountains.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Mountains</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-statistics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Statistics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-experimental.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Experimental</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-circular.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Circular</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-economist.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">The Economist</span></a>
+  </div>
+</li>
+    </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-relationships" aria-expanded="true">Relationships</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-relationships" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-relationships" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-correlation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Correlation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-3-dimensional.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">3-dimensional</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15-multivariate.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multivariate</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-environment.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Environment</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-connections.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Connections</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./18-oecd.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">OECD</span></a>
+  </div>
+</li>
+    </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-timeseries" aria-expanded="true">Timeseries</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-timeseries" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-timeseries" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./19-global-challenge.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Global Challenge</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./20-new-tool.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">New Tool</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./21-down-upwards.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Down/Upwards</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./22-animation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Animation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./23-tiles.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Tiles</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./24-financial-times.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Financial Times</span></a>
+  </div>
+</li>
+    </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-uncertainties" aria-expanded="true">Uncertainties</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-uncertainties" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-uncertainties" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./25-trend.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Trend</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./26-interactive.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Interactive</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./27-future.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Future</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./28-deviations.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Deviations</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./29-storytelling.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Storytelling</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./30-un-population.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">UN Population</span></a>
+  </div>
+</li>
+    </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-appendices" aria-expanded="true">Appendices</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-appendices" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-appendices" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./app-a-colours.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Colours</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./app-b-stained-glass.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Stained Glass Heart</span></a>
+  </div>
+</li>
+    </ul>
+</li>
+    </ul>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc"><h2 id="toc-title">Table of contents</h2>
+<ul>
+<li><a href="#population-data" class="nav-link active" data-scroll-target="#population-data"> <span class="header-section-number">3.1</span> Population Data</a></li>
+<li><a href="#select-relevant-data" class="nav-link" data-scroll-target="#select-relevant-data"> <span class="header-section-number">3.2</span> Select relevant data</a></li>
+<li><a href="#transform-y-axis" class="nav-link" data-scroll-target="#transform-y-axis"> <span class="header-section-number">3.3</span> Transform y-axis</a></li>
+<li><a href="#region-order" class="nav-link" data-scroll-target="#region-order"> <span class="header-section-number">3.4</span> Region order</a></li>
+<li><a href="#variable-x-axis" class="nav-link" data-scroll-target="#variable-x-axis"> <span class="header-section-number">3.5</span> Variable x-axis</a></li>
+<li><a href="#clean-up" class="nav-link" data-scroll-target="#clean-up"> <span class="header-section-number">3.6</span> Clean Up</a></li>
+<li><a href="#change-time-periods" class="nav-link" data-scroll-target="#change-time-periods"> <span class="header-section-number">3.7</span> Change time periods</a></li>
+</ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/debruine/30DCC-2022/edit/main/03-historical.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/debruine/30DCC-2022/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/debruine/30DCC-2022/blob/main/03-historical.qmd" class="toc-action">View source</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header"><h1 class="title d-none d-lg-block display-7">
+<span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Historical</span>
+</h1>
+</header><div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(showtext)</span>
+<span id="cb1-3"><a href="#cb1-3"></a></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">font_add</span>(<span class="at">family =</span> <span class="st">"Market Deco"</span>,</span>
+<span id="cb1-5"><a href="#cb1-5"></a>         <span class="at">regular =</span> <span class="st">"fonts/Market_Deco.ttf"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="fu">font_add_google</span>(<span class="st">"Sen"</span>)</span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="fu">showtext_auto</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="population-data" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="population-data">
+<span class="header-section-number">3.1</span> Population Data</h2>
+<p>I got this dataset from <a href="https://ourworldindata.org/population-sources">Our World in Data</a>.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>pop <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/population-past-future.csv"</span>,</span>
+<span id="cb2-2"><a href="#cb2-2"></a>                <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-3"><a href="#cb2-3"></a></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="fu">spec</span>(pop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-stdout">
+<pre><code>cols(
+  Entity = col_character(),
+  Code = col_character(),
+  Year = col_double(),
+  `Population (historical estimates and future projections)` = col_double()
+)</code></pre>
+</div>
+</div>
+<p>The column names need some cleaning (I prefer to work with column names that are all lowercase with no spaces), and I don’t need some of the data.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>pop <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/population-past-future.csv"</span>,</span>
+<span id="cb4-2"><a href="#cb4-2"></a>                <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"region"</span>, <span class="st">"year"</span>, <span class="st">"population"</span>),</span>
+<span id="cb4-3"><a href="#cb4-3"></a>                <span class="at">skip =</span> <span class="dv">1</span>,</span>
+<span id="cb4-4"><a href="#cb4-4"></a>                <span class="at">col_types =</span> <span class="st">"c-id"</span>)</span>
+<span id="cb4-5"><a href="#cb4-5"></a></span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="fu">head</span>(pop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  region        year population
+  &lt;chr&gt;        &lt;int&gt;      &lt;dbl&gt;
+1 Afghanistan -10000      14737
+2 Afghanistan  -9000      20405
+3 Afghanistan  -8000      28253
+4 Afghanistan  -7000      39120
+5 Afghanistan  -6000      54166
+6 Afghanistan  -5000      74999</code></pre>
+</div>
+</div>
+</section><section id="select-relevant-data" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="select-relevant-data">
+<span class="header-section-number">3.2</span> Select relevant data</h2>
+<p>I just want to plot the population for the 6 major world regions, so I’ll filter that and make a quick line plot to see what I’ve got.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>world_regions <span class="ot">&lt;-</span> pop <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">filter</span>(region <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Africa"</span>, <span class="st">"Asia"</span>, <span class="st">"Europe"</span>, <span class="st">"Oceania"</span>, <span class="st">"North America"</span>, <span class="st">"South America"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">ggplot</span>(world_regions, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> population, <span class="at">color =</span> region)) <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="03-historical_files/figure-html/hist-plot1-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="transform-y-axis" class="level2" data-number="3.3"><h2 data-number="3.3" class="anchored" data-anchor-id="transform-y-axis">
+<span class="header-section-number">3.3</span> Transform y-axis</h2>
+<p>The population growth is pretty exponential at the end, so a log transformation of the y-axis might help.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">ggplot</span>(world_regions, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> population, <span class="at">color =</span> region)) <span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">scale_y_log10</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="03-historical_files/figure-html/hist-log-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="region-order" class="level2" data-number="3.4"><h2 data-number="3.4" class="anchored" data-anchor-id="region-order">
+<span class="header-section-number">3.4</span> Region order</h2>
+<p>It would make more sense if the legend was in the same order as the lines, so I’ll turn that column into a factor ordered by the population at the latest year.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>region_order <span class="ot">&lt;-</span> world_regions <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="fu">max</span>(year)) <span class="sc">%&gt;%</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(population)) <span class="sc">%&gt;%</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a>  <span class="fu">pull</span>(region)</span>
+<span id="cb9-5"><a href="#cb9-5"></a></span>
+<span id="cb9-6"><a href="#cb9-6"></a>world_regions <span class="ot">&lt;-</span> world_regions <span class="sc">%&gt;%</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a>  <span class="fu">mutate</span>(<span class="at">region =</span> <span class="fu">factor</span>(region, region_order))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>I’ll also add a point for each year with data.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">ggplot</span>(world_regions, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> population, <span class="at">color =</span> region)) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a>  <span class="fu">scale_y_log10</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="03-historical_files/figure-html/hist-order-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="variable-x-axis" class="level2" data-number="3.5"><h2 data-number="3.5" class="anchored" data-anchor-id="variable-x-axis">
+<span class="header-section-number">3.5</span> Variable x-axis</h2>
+<p>The data collection isn’t even at all. The years go every 1000 from -10000 to 0, then every 100 from 0 to 1700, then every 10 from 1700 to 1800, then every year from 1800 to 2021.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">unique</span>(world_regions<span class="sc">$</span>year) <span class="sc">%&gt;%</span> <span class="fu">sort</span>() <span class="sc">%&gt;%</span> <span class="st">`</span><span class="at">[</span><span class="st">`</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-stdout">
+<pre><code> [1] -10000  -9000  -8000  -7000  -6000  -5000  -4000  -3000  -2000  -1000
+[11]      0    100    200    300    400    500    600    700    800    900
+[21]   1000   1100   1200   1300   1400   1500   1600   1700   1710   1720
+[31]   1730   1740   1750   1760   1770   1780   1790   1800   1801   1802
+[41]   1803   1804   1805   1806   1807   1808   1809   1810   1811   1812</code></pre>
+</div>
+</div>
+<p>I tried a few x-axis transformations, and they’re not straightforward because the x-axis crosses 0, which most transformations can’t handle. This was one of the silliest.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">ggplot</span>(world_regions, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> population, <span class="at">color =</span> region)) <span class="sc">+</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a>  <span class="fu">scale_y_log10</span>() <span class="sc">+</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">trans =</span> <span class="st">"reciprocal"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="03-historical_files/figure-html/hist-log-x-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>So I’ll add a new column that specifies which time period they’re in. I’ll replace this text later, so it’s probably easiest to give them alphabetic labels now.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>world_regions <span class="ot">&lt;-</span> world_regions <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a>  <span class="fu">mutate</span>(<span class="at">time_period =</span> <span class="fu">case_when</span>(</span>
+<span id="cb14-3"><a href="#cb14-3"></a>      year <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">~</span> <span class="st">"A"</span>,</span>
+<span id="cb14-4"><a href="#cb14-4"></a>      year <span class="sc">&lt;</span> <span class="dv">1700</span> <span class="sc">~</span> <span class="st">"B"</span>,</span>
+<span id="cb14-5"><a href="#cb14-5"></a>      year <span class="sc">&lt;</span> <span class="dv">1800</span> <span class="sc">~</span> <span class="st">"C"</span>,</span>
+<span id="cb14-6"><a href="#cb14-6"></a>      year <span class="sc">&lt;</span> <span class="dv">2022</span> <span class="sc">~</span> <span class="st">"D"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">ggplot</span>(world_regions, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> population, <span class="at">color =</span> region)) <span class="sc">+</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb15-3"><a href="#cb15-3"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb15-4"><a href="#cb15-4"></a>  <span class="fu">scale_y_log10</span>() <span class="sc">+</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a>  <span class="fu">facet_grid</span>(<span class="sc">~</span>time_period, <span class="at">scales =</span> <span class="st">"free_x"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="03-historical_files/figure-html/hist-facet-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="clean-up" class="level2" data-number="3.6"><h2 data-number="3.6" class="anchored" data-anchor-id="clean-up">
+<span class="header-section-number">3.6</span> Clean Up</h2>
+<p>Now we’re getting somewhere, but still need to clean this up a lot. I’m going to remove the panel spacing and expansion so the plots touch each other. I’ll also customise the breaks and labels for the y-axis to make that easier to understand, and customise the colours (I do love a rainbow).</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># custom colours</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a>rainbow <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"#983E82"</span>,<span class="st">"#E2A458"</span>,<span class="st">"#F5DC70"</span>,<span class="st">"#59935B"</span>,<span class="st">"#467AAC"</span>,<span class="st">"#61589C"</span>)</span>
+<span id="cb16-3"><a href="#cb16-3"></a></span>
+<span id="cb16-4"><a href="#cb16-4"></a><span class="fu">ggplot</span>(world_regions, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> population, <span class="at">color =</span> region)) <span class="sc">+</span></span>
+<span id="cb16-5"><a href="#cb16-5"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb16-6"><a href="#cb16-6"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb16-7"><a href="#cb16-7"></a>  <span class="fu">facet_grid</span>(<span class="sc">~</span>time_period, <span class="at">scales =</span> <span class="st">"free_x"</span>) <span class="sc">+</span></span>
+<span id="cb16-8"><a href="#cb16-8"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="cn">NULL</span>,</span>
+<span id="cb16-9"><a href="#cb16-9"></a>                     <span class="at">expand =</span> <span class="fu">expansion</span>(<span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb16-10"><a href="#cb16-10"></a>  <span class="fu">scale_y_log10</span>(<span class="at">name =</span> <span class="st">"Population (log scale)"</span>,</span>
+<span id="cb16-11"><a href="#cb16-11"></a>                <span class="at">breaks =</span> <span class="dv">10</span><span class="sc">^</span>(<span class="dv">5</span><span class="sc">:</span><span class="dv">10</span>),</span>
+<span id="cb16-12"><a href="#cb16-12"></a>                <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"100K"</span>, <span class="st">"1M"</span>, <span class="st">"10M"</span>, <span class="st">"100M"</span>, <span class="st">"1B"</span>, <span class="st">"10B"</span>),</span>
+<span id="cb16-13"><a href="#cb16-13"></a>                <span class="at">limit =</span> <span class="fu">c</span>(<span class="fl">1e5</span>, <span class="fl">1e10</span>)) <span class="sc">+</span></span>
+<span id="cb16-14"><a href="#cb16-14"></a>  <span class="fu">scale_color_manual</span>(<span class="at">name =</span> <span class="cn">NULL</span>,</span>
+<span id="cb16-15"><a href="#cb16-15"></a>                     <span class="at">values =</span> rainbow) <span class="sc">+</span></span>
+<span id="cb16-16"><a href="#cb16-16"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb16-17"><a href="#cb16-17"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb16-18"><a href="#cb16-18"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">1</span>),</span>
+<span id="cb16-19"><a href="#cb16-19"></a>        <span class="at">panel.spacing.x =</span> <span class="fu">unit</span>(<span class="dv">0</span>, <span class="st">"cm"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="03-historical_files/figure-html/hist-cleaner-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>However, the borders of each time period don’t meet. I can fix that by duplicating the border years and assigning them to the previous time period.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb17"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>borders <span class="ot">&lt;-</span> world_regions <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a>  <span class="fu">group_by</span>(time_period) <span class="sc">%&gt;%</span></span>
+<span id="cb17-3"><a href="#cb17-3"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="fu">min</span>(year)) <span class="sc">%&gt;%</span></span>
+<span id="cb17-4"><a href="#cb17-4"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb17-5"><a href="#cb17-5"></a>  <span class="fu">filter</span>(time_period <span class="sc">!=</span> <span class="st">"A"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb17-6"><a href="#cb17-6"></a>  <span class="fu">mutate</span>(<span class="at">time_period =</span> <span class="fu">recode</span>(time_period, <span class="at">B =</span> <span class="st">"A"</span>, <span class="at">C =</span> <span class="st">"B"</span>, <span class="at">D =</span> <span class="st">"C"</span>))</span>
+<span id="cb17-7"><a href="#cb17-7"></a></span>
+<span id="cb17-8"><a href="#cb17-8"></a>world_regions2 <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(world_regions, borders)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Let’s also fix the facet labels. The function <code>as_labeller()</code> lets you translate between the data labels and custom labels for facets. And set some custom colours and custom x-axis breaks and labels. I moved the legend inside the plot to give the plot more horizontal room.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb18"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="co"># custom facet labels</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a>tp_labels <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb18-3"><a href="#cb18-3"></a>  <span class="at">A =</span> <span class="st">"10000BC to 0"</span>,</span>
+<span id="cb18-4"><a href="#cb18-4"></a>  <span class="at">B =</span> <span class="st">"0 to 1700"</span>,</span>
+<span id="cb18-5"><a href="#cb18-5"></a>  <span class="at">C =</span> <span class="st">"1700 to 1800"</span>,</span>
+<span id="cb18-6"><a href="#cb18-6"></a>  <span class="at">D =</span> <span class="st">"1800 to 2021"</span></span>
+<span id="cb18-7"><a href="#cb18-7"></a>)</span>
+<span id="cb18-8"><a href="#cb18-8"></a></span>
+<span id="cb18-9"><a href="#cb18-9"></a><span class="co"># custom x-axis breaks and labels</span></span>
+<span id="cb18-10"><a href="#cb18-10"></a>x_breaks <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="dv">10000</span>, <span class="sc">-</span><span class="dv">2000</span>, <span class="dv">2000</span>),</span>
+<span id="cb18-11"><a href="#cb18-11"></a>              <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1600</span>, <span class="dv">200</span>),</span>
+<span id="cb18-12"><a href="#cb18-12"></a>              <span class="fu">seq</span>(<span class="dv">1700</span>, <span class="dv">1790</span>, <span class="dv">10</span>),</span>
+<span id="cb18-13"><a href="#cb18-13"></a>              <span class="fu">seq</span>(<span class="dv">1800</span>, <span class="dv">2021</span>, <span class="dv">20</span>))</span>
+<span id="cb18-14"><a href="#cb18-14"></a></span>
+<span id="cb18-15"><a href="#cb18-15"></a>x_labels <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">paste</span>(<span class="fu">seq</span>(<span class="dv">10000</span>, <span class="dv">2000</span>, <span class="sc">-</span><span class="dv">2000</span>), <span class="st">"BCE"</span>),</span>
+<span id="cb18-16"><a href="#cb18-16"></a>              <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1700</span>, <span class="dv">200</span>),</span>
+<span id="cb18-17"><a href="#cb18-17"></a>              <span class="fu">seq</span>(<span class="dv">1700</span>, <span class="dv">1790</span>, <span class="dv">10</span>),</span>
+<span id="cb18-18"><a href="#cb18-18"></a>              <span class="fu">seq</span>(<span class="dv">1800</span>, <span class="dv">2021</span>, <span class="dv">20</span>))</span>
+<span id="cb18-19"><a href="#cb18-19"></a></span>
+<span id="cb18-20"><a href="#cb18-20"></a><span class="fu">ggplot</span>(world_regions2, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> population, <span class="at">color =</span> region)) <span class="sc">+</span></span>
+<span id="cb18-21"><a href="#cb18-21"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb18-22"><a href="#cb18-22"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb18-23"><a href="#cb18-23"></a>  <span class="fu">facet_grid</span>(<span class="sc">~</span>time_period, </span>
+<span id="cb18-24"><a href="#cb18-24"></a>             <span class="at">scales =</span> <span class="st">"free_x"</span>, </span>
+<span id="cb18-25"><a href="#cb18-25"></a>             <span class="at">labeller =</span> <span class="fu">as_labeller</span>(tp_labels)) <span class="sc">+</span></span>
+<span id="cb18-26"><a href="#cb18-26"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="cn">NULL</span>,</span>
+<span id="cb18-27"><a href="#cb18-27"></a>                   <span class="at">breaks =</span> x_breaks,</span>
+<span id="cb18-28"><a href="#cb18-28"></a>                   <span class="at">labels =</span> x_labels,</span>
+<span id="cb18-29"><a href="#cb18-29"></a>                   <span class="at">expand =</span> <span class="fu">expansion</span>(<span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb18-30"><a href="#cb18-30"></a>  <span class="fu">scale_y_log10</span>(<span class="at">name =</span> <span class="st">"Population (log scale)"</span>,</span>
+<span id="cb18-31"><a href="#cb18-31"></a>                <span class="at">breaks =</span> <span class="dv">10</span><span class="sc">^</span>(<span class="dv">5</span><span class="sc">:</span><span class="dv">10</span>),</span>
+<span id="cb18-32"><a href="#cb18-32"></a>                <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"100K"</span>, <span class="st">"1M"</span>, <span class="st">"10M"</span>, <span class="st">"100M"</span>, <span class="st">"1B"</span>, <span class="st">"10B"</span>),</span>
+<span id="cb18-33"><a href="#cb18-33"></a>                <span class="at">limit =</span> <span class="fu">c</span>(<span class="fl">1e5</span>, <span class="fl">1e10</span>)) <span class="sc">+</span></span>
+<span id="cb18-34"><a href="#cb18-34"></a>  <span class="fu">scale_color_manual</span>(<span class="at">name =</span> <span class="cn">NULL</span>,</span>
+<span id="cb18-35"><a href="#cb18-35"></a>                     <span class="at">values =</span> rainbow) <span class="sc">+</span></span>
+<span id="cb18-36"><a href="#cb18-36"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb18-37"><a href="#cb18-37"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">1</span>),</span>
+<span id="cb18-38"><a href="#cb18-38"></a>        <span class="at">panel.spacing.x =</span> <span class="fu">unit</span>(<span class="dv">0</span>, <span class="st">"cm"</span>),</span>
+<span id="cb18-39"><a href="#cb18-39"></a>        <span class="at">legend.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"transparent"</span>),</span>
+<span id="cb18-40"><a href="#cb18-40"></a>        <span class="at">legend.position =</span> <span class="fu">c</span>(.<span class="dv">1</span>, .<span class="dv">75</span>) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="03-historical_files/figure-html/hist-custom-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="change-time-periods" class="level2" data-number="3.7"><h2 data-number="3.7" class="anchored" data-anchor-id="change-time-periods">
+<span class="header-section-number">3.7</span> Change time periods</h2>
+<p>I changed by mind about 1700 to 1800. This plot gives it too much prominence. so I’ll combine it with 1800+. It looked weird to specify “BCE” only for the years before 0, so I added “CE” (Common Era) to the years after 0 and adjusted the angle and number of labels to make it easier to read.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb19"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="co"># recode time period to 3 periods (merge C and D)</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a>world_regions3 <span class="ot">&lt;-</span> world_regions2 <span class="sc">%&gt;%</span></span>
+<span id="cb19-3"><a href="#cb19-3"></a>  <span class="fu">mutate</span>(<span class="at">time_period =</span> <span class="fu">recode</span>(time_period, <span class="at">A =</span> <span class="st">"A"</span>, <span class="at">B =</span> <span class="st">"B"</span>, <span class="at">C =</span> <span class="st">"C"</span>, <span class="at">D =</span> <span class="st">"C"</span>))</span>
+<span id="cb19-4"><a href="#cb19-4"></a></span>
+<span id="cb19-5"><a href="#cb19-5"></a><span class="co"># remake facet labels</span></span>
+<span id="cb19-6"><a href="#cb19-6"></a>tp_labels <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb19-7"><a href="#cb19-7"></a>  <span class="at">A =</span> <span class="st">"10000 BCE to 0"</span>,</span>
+<span id="cb19-8"><a href="#cb19-8"></a>  <span class="at">B =</span> <span class="st">"0 to 1700 CE"</span>,</span>
+<span id="cb19-9"><a href="#cb19-9"></a>  <span class="at">C =</span> <span class="st">"1700 CE to 2021 CE"</span></span>
+<span id="cb19-10"><a href="#cb19-10"></a>)</span>
+<span id="cb19-11"><a href="#cb19-11"></a></span>
+<span id="cb19-12"><a href="#cb19-12"></a><span class="co"># remake x-axis breaks and labels</span></span>
+<span id="cb19-13"><a href="#cb19-13"></a>x_breaks <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="dv">10000</span>, <span class="sc">-</span><span class="dv">2000</span>, <span class="dv">2000</span>),</span>
+<span id="cb19-14"><a href="#cb19-14"></a>              <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1500</span>, <span class="dv">300</span>),</span>
+<span id="cb19-15"><a href="#cb19-15"></a>              <span class="fu">seq</span>(<span class="dv">1700</span>, <span class="dv">2021</span>, <span class="dv">50</span>))</span>
+<span id="cb19-16"><a href="#cb19-16"></a></span>
+<span id="cb19-17"><a href="#cb19-17"></a>x_labels <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">paste</span>(<span class="fu">seq</span>(<span class="dv">10000</span>, <span class="dv">2000</span>, <span class="sc">-</span><span class="dv">2000</span>), <span class="st">"BCE"</span>),</span>
+<span id="cb19-18"><a href="#cb19-18"></a>              <span class="fu">paste</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1500</span>, <span class="dv">300</span>), <span class="st">"CE"</span>),</span>
+<span id="cb19-19"><a href="#cb19-19"></a>              <span class="fu">paste</span>(<span class="fu">seq</span>(<span class="dv">1700</span>, <span class="dv">2021</span>, <span class="dv">50</span>), <span class="st">"CE"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb20"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">ggplot</span>(world_regions3, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> population, <span class="at">color =</span> region)) <span class="sc">+</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb20-3"><a href="#cb20-3"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb20-4"><a href="#cb20-4"></a>  <span class="fu">facet_grid</span>(<span class="sc">~</span>time_period, </span>
+<span id="cb20-5"><a href="#cb20-5"></a>             <span class="at">scales =</span> <span class="st">"free_x"</span>, </span>
+<span id="cb20-6"><a href="#cb20-6"></a>             <span class="at">labeller =</span> <span class="fu">as_labeller</span>(tp_labels)) <span class="sc">+</span></span>
+<span id="cb20-7"><a href="#cb20-7"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="cn">NULL</span>,</span>
+<span id="cb20-8"><a href="#cb20-8"></a>                   <span class="at">breaks =</span> x_breaks,</span>
+<span id="cb20-9"><a href="#cb20-9"></a>                   <span class="at">labels =</span> x_labels,</span>
+<span id="cb20-10"><a href="#cb20-10"></a>                   <span class="at">expand =</span> <span class="fu">expansion</span>(<span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb20-11"><a href="#cb20-11"></a>  <span class="fu">scale_y_log10</span>(<span class="at">name =</span> <span class="st">"Population (log scale)"</span>,</span>
+<span id="cb20-12"><a href="#cb20-12"></a>                <span class="at">breaks =</span> <span class="dv">10</span><span class="sc">^</span>(<span class="dv">5</span><span class="sc">:</span><span class="dv">10</span>),</span>
+<span id="cb20-13"><a href="#cb20-13"></a>                <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"100K"</span>, <span class="st">"1M"</span>, <span class="st">"10M"</span>, <span class="st">"100M"</span>, <span class="st">"1B"</span>, <span class="st">"10B"</span>),</span>
+<span id="cb20-14"><a href="#cb20-14"></a>                <span class="at">limit =</span> <span class="fu">c</span>(<span class="fl">1e5</span>, <span class="fl">1e10</span>)) <span class="sc">+</span></span>
+<span id="cb20-15"><a href="#cb20-15"></a>  <span class="fu">scale_color_manual</span>(<span class="at">name =</span> <span class="cn">NULL</span>,</span>
+<span id="cb20-16"><a href="#cb20-16"></a>                     <span class="at">values =</span> rainbow) <span class="sc">+</span></span>
+<span id="cb20-17"><a href="#cb20-17"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"World Population (Historical Estimates)"</span>,</span>
+<span id="cb20-18"><a href="#cb20-18"></a>       <span class="at">caption =</span> <span class="st">"Data from Our World in Data | Plot by @lisadebruine"</span>) <span class="sc">+</span></span>
+<span id="cb20-19"><a href="#cb20-19"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb20-20"><a href="#cb20-20"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Sen"</span>),</span>
+<span id="cb20-21"><a href="#cb20-21"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">30</span>, <span class="at">hjust =</span> <span class="dv">1</span>),</span>
+<span id="cb20-22"><a href="#cb20-22"></a>        <span class="at">panel.spacing.x =</span> <span class="fu">unit</span>(<span class="dv">0</span>, <span class="st">"cm"</span>),</span>
+<span id="cb20-23"><a href="#cb20-23"></a>        <span class="at">legend.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"transparent"</span>),</span>
+<span id="cb20-24"><a href="#cb20-24"></a>        <span class="at">legend.position =</span> <span class="fu">c</span>(.<span class="dv">1</span>, .<span class="dv">75</span>),</span>
+<span id="cb20-25"><a href="#cb20-25"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb20-26"><a href="#cb20-26"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Market Deco"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="03-historical_files/figure-html/hist-3-time-periods-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section></main><!-- /main --><script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    setTimeout(function() {
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./02-pictogram.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Pictogram</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./04-flora.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Flora</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">CC-BY 2022, Lisa DeBruine</div>   
+      <div class="nav-footer-center"><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+<li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/debruine/30DCC-2022">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/lisadebruine">
+      <i class="bi bi-twitter" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+</div>
+  </div>
+</footer>
+include/script.js
+
+
+</body></html>

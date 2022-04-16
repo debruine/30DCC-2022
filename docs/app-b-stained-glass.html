@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.80">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="description" content="Code and charts for the 2022 30-Day Chart Challenge">
+<title>30DCC - Appendix B — Stained Glass Heart</title>
+<style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+<script src="site_libs/quarto-nav/quarto-nav.js"></script><script src="site_libs/quarto-nav/headroom.min.js"></script><script src="site_libs/clipboard/clipboard.min.js"></script><meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script><script src="site_libs/quarto-search/fuse.min.js"></script><script src="site_libs/quarto-search/quarto-search.js"></script><link href="./app-a-colours.html" rel="prev">
+<script src="site_libs/cookie-consent/cookie-consent.js"></script><link href="site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
+<script src="site_libs/quarto-html/quarto.js"></script><script src="site_libs/quarto-html/popper.min.js"></script><script src="site_libs/quarto-html/tippy.umd.min.js"></script><script src="site_libs/quarto-html/anchor.min.js"></script><link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script><link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+    "location": "sidebar",
+    "copy-button": false,
+    "collapse-after": 2,
+    "panel-placement": "start",
+    "type": "textbox",
+    "limit": 20,
+    "language": {
+      "search-no-results-text": "No results",
+      "search-matching-documents-text": "matching documents",
+      "search-copy-link-title": "Copy link to search",
+      "search-hide-matches-text": "Hide additional matches",
+      "search-more-match-text": "more match in this document",
+      "search-more-matches-text": "more matches in this document",
+      "search-clear-button-title": "Clear",
+      "search-detached-cancel-button-title": "Cancel",
+      "search-submit-button-title": "Submit"
+    }
+  }</script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script><script type="text/plain" cookie-consent="tracking">
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
+  </script><script type="text/javascript" charset="UTF-8">
+  document.addEventListener('DOMContentLoaded', function () {
+  cookieconsent.run({
+    "notice_banner_type":"simple",
+    "consent_type":"implied",
+    "palette":"light",
+    "language":"en",
+    "page_load_consent_levels":["strictly-necessary","functionality","tracking","targeting"],
+    "notice_banner_reject_button_hide":false,
+    "preferences_center_close_button_hide":false,
+    "website_name":""
+    });
+  });
+  </script><script type="application/json" class="js-hypothesis-config">
+  {
+    "theme": "clean",
+    "openSidebar": false
+  }
+  </script><script async="" src="https://hypothes.is/embed.js"></script><!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]--><link rel="stylesheet" href="include/style.css">
+</head>
+<body class="floating">
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Appendix B — Stained Glass Heart</h1>
+      <button type="button" class="quarto-btn-toggle btn">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">30DCC</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/debruine/30DCC-2022/" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+    <a href="" title="Share" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-share"></i></a>
+    <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
+<li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=%7Curl%7C">
+            <i class="bi bi-bi-twitter pe-1"></i>
+          Twitter
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=%7Curl%7C">
+            <i class="bi bi-bi-facebook pe-1"></i>
+          Facebook
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=%7Curl%7C">
+            <i class="bi bi-bi-linkedin pe-1"></i>
+          LinkedIn
+          </a>
+        </li>
+    </ul>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Overview</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-comparisons" aria-expanded="true">Comparisons</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-comparisons" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-comparisons" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-part-to-whole.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Part-to-whole</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-pictogram.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Pictogram</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-historical.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Historical</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-flora.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Flora</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-slope.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Slope</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-owid.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">OWiD</span></a>
+  </div>
+</li>
+    </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-distributions" aria-expanded="true">Distributions</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-distributions" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-distributions" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-physical.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Physical</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-mountains.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Mountains</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-statistics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Statistics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-experimental.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Experimental</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-circular.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Circular</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-economist.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">The Economist</span></a>
+  </div>
+</li>
+    </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-relationships" aria-expanded="true">Relationships</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-relationships" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-relationships" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-correlation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Correlation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-3-dimensional.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">3-dimensional</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15-multivariate.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multivariate</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-environment.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Environment</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-connections.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Connections</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./18-oecd.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">OECD</span></a>
+  </div>
+</li>
+    </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-timeseries" aria-expanded="true">Timeseries</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-timeseries" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-timeseries" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./19-global-challenge.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Global Challenge</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./20-new-tool.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">New Tool</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./21-down-upwards.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Down/Upwards</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./22-animation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Animation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./23-tiles.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Tiles</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./24-financial-times.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Financial Times</span></a>
+  </div>
+</li>
+    </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-uncertainties" aria-expanded="true">Uncertainties</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-uncertainties" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-uncertainties" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./25-trend.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Trend</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./26-interactive.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Interactive</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./27-future.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Future</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./28-deviations.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Deviations</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./29-storytelling.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Storytelling</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./30-un-population.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">UN Population</span></a>
+  </div>
+</li>
+    </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-appendices" aria-expanded="true">Appendices</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-appendices" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-appendices" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./app-a-colours.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Colours</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./app-b-stained-glass.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Stained Glass Heart</span></a>
+  </div>
+</li>
+    </ul>
+</li>
+    </ul>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc"><h2 id="toc-title">Table of contents</h2>
+<ul>
+<li><a href="#variables" class="nav-link active" data-scroll-target="#variables"> <span class="header-section-number">B.1</span> Variables</a></li>
+<li><a href="#frame" class="nav-link" data-scroll-target="#frame"> <span class="header-section-number">B.2</span> Frame</a></li>
+<li><a href="#random-points" class="nav-link" data-scroll-target="#random-points"> <span class="header-section-number">B.3</span> Random points</a></li>
+<li><a href="#constrain-points" class="nav-link" data-scroll-target="#constrain-points"> <span class="header-section-number">B.4</span> Constrain points</a></li>
+<li><a href="#pane-colours" class="nav-link" data-scroll-target="#pane-colours"> <span class="header-section-number">B.5</span> Pane colours</a></li>
+<li><a href="#plot" class="nav-link" data-scroll-target="#plot"> <span class="header-section-number">B.6</span> Plot</a></li>
+</ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/debruine/30DCC-2022/edit/main/app-b-stained-glass.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/debruine/30DCC-2022/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/debruine/30DCC-2022/blob/main/app-b-stained-glass.qmd" class="toc-action">View source</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header"><h1 class="title d-none d-lg-block display-7">Appendix B — Stained Glass Heart</h1>
+</header><p>I’ve been inspired by a lot of the charts I see on the #30DayChartChallenge hashtag, but Icaro Bernardes` <a href="https://twitter.com/IcaroBSC/status/1515169762778697732">stained glass</a> was the first I wanted to make my own. His <a href="https://github.com/IcaroBernardes/30DayChartChallenge/blob/master/2022/day10/day10.R">original code</a> shows how to create a gorgeous stained-glass window with text. I’ve simplified the code a bit and am just making a heart (using maths) in stained glass.</p>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(ggplot2) <span class="co"># for plotting</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(dplyr)   <span class="co"># for data wrangling</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<details><summary>Code</summary><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">library</span>(sf)      <span class="co"># for shapes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-stderr">
+<pre><code>Linking to GEOS 3.9.1, GDAL 3.4.0, PROJ 8.1.1; sf_use_s2() is TRUE</code></pre>
+</div>
+<details><summary>Code</summary><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">library</span>(ggforce) <span class="co"># for voroni tiles</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-stderr">
+<pre><code>Registered S3 method overwritten by 'ggforce':
+  method           from 
+  scale_type.units units</code></pre>
+</div>
+</div>
+<section id="variables" class="level2" data-number="B.1"><h2 data-number="B.1" class="anchored" data-anchor-id="variables">
+<span class="header-section-number">B.1</span> Variables</h2>
+<p>First, set up some variables, like a seed to use for the random elements, the number of points (more will make the glass pieces smaller), and your base palette (I’m using the psyTeachR rainbow colours).</p>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>seed <span class="ot">&lt;-</span> <span class="dv">8675309</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>n_pts <span class="ot">&lt;-</span> <span class="dv">150</span> <span class="do">### Number of points to try to put inside the window</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a>palette <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb9-4"><a href="#cb9-4"></a>  <span class="st">"pink"</span> <span class="ot">=</span> <span class="st">"#983E82"</span>,</span>
+<span id="cb9-5"><a href="#cb9-5"></a>  <span class="st">"orange"</span> <span class="ot">=</span> <span class="st">"#E2A458"</span>,</span>
+<span id="cb9-6"><a href="#cb9-6"></a>  <span class="st">"yellow"</span> <span class="ot">=</span> <span class="st">"#F5DC70"</span>,</span>
+<span id="cb9-7"><a href="#cb9-7"></a>  <span class="st">"green"</span> <span class="ot">=</span> <span class="st">"#59935B"</span>,</span>
+<span id="cb9-8"><a href="#cb9-8"></a>  <span class="st">"blue"</span> <span class="ot">=</span> <span class="st">"#467AAC"</span>,</span>
+<span id="cb9-9"><a href="#cb9-9"></a>  <span class="st">"purple"</span> <span class="ot">=</span> <span class="st">"#61589C"</span></span>
+<span id="cb9-10"><a href="#cb9-10"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section><section id="frame" class="level2" data-number="B.2"><h2 data-number="B.2" class="anchored" data-anchor-id="frame">
+<span class="header-section-number">B.2</span> Frame</h2>
+<p>Make a matrix of the x and y coordinates of the frame. The code below is the maths for a heart.</p>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># make heart frame</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>t <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">2</span><span class="sc">*</span>pi, <span class="at">by=</span><span class="fl">0.05</span>)</span>
+<span id="cb10-3"><a href="#cb10-3"></a>t <span class="ot">&lt;-</span> <span class="fu">c</span>(t, t[[<span class="dv">1</span>]]) <span class="co"># append starting value</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a>frame <span class="ot">&lt;-</span> <span class="fu">cbind</span>(</span>
+<span id="cb10-5"><a href="#cb10-5"></a>  <span class="dv">16</span><span class="sc">*</span><span class="fu">sin</span>(t)<span class="sc">^</span><span class="dv">3</span>,</span>
+<span id="cb10-6"><a href="#cb10-6"></a>  <span class="dv">13</span><span class="sc">*</span><span class="fu">cos</span>(t)<span class="sc">-</span><span class="dv">5</span><span class="sc">*</span><span class="fu">cos</span>(<span class="dv">2</span><span class="sc">*</span>t)<span class="sc">-</span><span class="dv">2</span><span class="sc">*</span><span class="fu">cos</span>(<span class="dv">3</span><span class="sc">*</span>t)<span class="sc">-</span><span class="fu">cos</span>(<span class="dv">4</span><span class="sc">*</span>t)</span>
+<span id="cb10-7"><a href="#cb10-7"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Then convert the matrix to a polygon. Plot to check it looks right.</p>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># convert to a polygon</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>frame_sf <span class="ot">&lt;-</span> frame <span class="sc">%&gt;%</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a>  <span class="fu">list</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb11-4"><a href="#cb11-4"></a>  sf<span class="sc">::</span><span class="fu">st_polygon</span>()</span>
+<span id="cb11-5"><a href="#cb11-5"></a></span>
+<span id="cb11-6"><a href="#cb11-6"></a><span class="fu">ggplot</span>(frame_sf) <span class="sc">+</span> <span class="fu">geom_sf</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><img src="app-b-stained-glass_files/figure-html/heart-check-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section><section id="random-points" class="level2" data-number="B.3"><h2 data-number="B.3" class="anchored" data-anchor-id="random-points">
+<span class="header-section-number">B.3</span> Random points</h2>
+<p>Make some random points within the range of x and y values of the frame.</p>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="do">## Create random data points in frame bounds</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="fu">set.seed</span>(seed)</span>
+<span id="cb12-3"><a href="#cb12-3"></a>points <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb12-4"><a href="#cb12-4"></a>  <span class="at">x =</span> <span class="fu">runif</span>(n_pts, <span class="at">min =</span> <span class="fu">min</span>(frame[,<span class="dv">1</span>]), <span class="at">max =</span> <span class="fu">max</span>(frame[,<span class="dv">1</span>])),</span>
+<span id="cb12-5"><a href="#cb12-5"></a>  <span class="at">y =</span> <span class="fu">runif</span>(n_pts, <span class="at">min =</span> <span class="fu">min</span>(frame[,<span class="dv">2</span>]), <span class="at">max =</span> <span class="fu">max</span>(frame[,<span class="dv">2</span>]))</span>
+<span id="cb12-6"><a href="#cb12-6"></a>)</span>
+<span id="cb12-7"><a href="#cb12-7"></a></span>
+<span id="cb12-8"><a href="#cb12-8"></a><span class="co"># plot to check</span></span>
+<span id="cb12-9"><a href="#cb12-9"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb12-10"><a href="#cb12-10"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> frame_sf) <span class="sc">+</span></span>
+<span id="cb12-11"><a href="#cb12-11"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(x, y), points)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><img src="app-b-stained-glass_files/figure-html/all-points-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section><section id="constrain-points" class="level2" data-number="B.4"><h2 data-number="B.4" class="anchored" data-anchor-id="constrain-points">
+<span class="header-section-number">B.4</span> Constrain points</h2>
+<p>Constrain the points to just those inside the frame. Do this by creating an sf version of the points, then using <code><a href="https://r-spatial.github.io/sf/reference/geos_binary_pred.html">sf::st_contains()</a></code> to check which are contained in the frame sf object. Then, select just the contained points from the points table.</p>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="do">## Creates a new sf object to hold the created points</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>points_sf <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_as_sf</span>(points, <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"x"</span>,<span class="st">"y"</span>))</span>
+<span id="cb13-3"><a href="#cb13-3"></a></span>
+<span id="cb13-4"><a href="#cb13-4"></a><span class="do">## Keeps only the random points that are within the frame</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a>contained <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_contains</span>(frame_sf, points_sf)</span>
+<span id="cb13-6"><a href="#cb13-6"></a>points <span class="ot">&lt;-</span> points <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">slice</span>(contained[[<span class="dv">1</span>]])</span>
+<span id="cb13-7"><a href="#cb13-7"></a></span>
+<span id="cb13-8"><a href="#cb13-8"></a><span class="co"># plot to check</span></span>
+<span id="cb13-9"><a href="#cb13-9"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb13-10"><a href="#cb13-10"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> frame_sf) <span class="sc">+</span></span>
+<span id="cb13-11"><a href="#cb13-11"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(x, y), points)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><img src="app-b-stained-glass_files/figure-html/constrained-points-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section><section id="pane-colours" class="level2" data-number="B.5"><h2 data-number="B.5" class="anchored" data-anchor-id="pane-colours">
+<span class="header-section-number">B.5</span> Pane colours</h2>
+<p>Add to the points table a column called <code>fill</code> with randomly sampled colours from the palette<code>and a column called</code>alpha` with randomly sampled values between 0.2 and 0.9. You can change these to make your window more or less transparent.</p>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">set.seed</span>(seed)</span>
+<span id="cb14-2"><a href="#cb14-2"></a>points <span class="ot">&lt;-</span> points <span class="sc">%&gt;%</span> </span>
+<span id="cb14-3"><a href="#cb14-3"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb14-4"><a href="#cb14-4"></a>    <span class="at">fill =</span> <span class="fu">sample</span>(palette, <span class="fu">nrow</span>(.), T),</span>
+<span id="cb14-5"><a href="#cb14-5"></a>    <span class="at">alpha =</span> <span class="fu">runif</span>(<span class="fu">nrow</span>(.), <span class="at">min =</span> <span class="fl">0.2</span>, <span class="at">max =</span> <span class="fl">0.9</span>)</span>
+<span id="cb14-6"><a href="#cb14-6"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section><section id="plot" class="level2" data-number="B.6"><h2 data-number="B.6" class="anchored" data-anchor-id="plot">
+<span class="header-section-number">B.6</span> Plot</h2>
+<p>Now plot! Note the <code><a href="https://rdrr.io/r/base/AsIs.html">I()</a></code> function for fill and alpha, which uses the actual value in these columns, instead of mapping new values to each unique value.</p>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">ggplot</span>(points) <span class="sc">+</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a>  <span class="fu">geom_voronoi_tile</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, </span>
+<span id="cb15-3"><a href="#cb15-3"></a>                        <span class="at">group =</span> <span class="sc">-</span>1L, </span>
+<span id="cb15-4"><a href="#cb15-4"></a>                        <span class="at">fill =</span> <span class="fu">I</span>(fill),</span>
+<span id="cb15-5"><a href="#cb15-5"></a>                        <span class="at">alpha =</span> <span class="fu">I</span>(alpha)),</span>
+<span id="cb15-6"><a href="#cb15-6"></a>                    <span class="at">color =</span> <span class="st">"black"</span>, </span>
+<span id="cb15-7"><a href="#cb15-7"></a>                    <span class="at">size =</span> <span class="fl">1.5</span>, </span>
+<span id="cb15-8"><a href="#cb15-8"></a>                    <span class="at">bound =</span> frame) <span class="sc">+</span></span>
+<span id="cb15-9"><a href="#cb15-9"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> frame_sf, </span>
+<span id="cb15-10"><a href="#cb15-10"></a>          <span class="at">size =</span> <span class="dv">4</span>, </span>
+<span id="cb15-11"><a href="#cb15-11"></a>          <span class="at">color =</span> <span class="st">"grey10"</span>, </span>
+<span id="cb15-12"><a href="#cb15-12"></a>          <span class="at">fill =</span> <span class="st">"transparent"</span>) <span class="sc">+</span></span>
+<span id="cb15-13"><a href="#cb15-13"></a>  <span class="fu">theme_void</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><img src="app-b-stained-glass_files/figure-html/stained-glass-heart-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>I like it even better with a black background.</p>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>ggplot2<span class="sc">::</span><span class="fu">last_plot</span>() <span class="sc">+</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a>  <span class="fu">theme</span>(<span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"black"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><img src="app-b-stained-glass_files/figure-html/black-heart-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+
+
+</section></main><!-- /main --><script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    setTimeout(function() {
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./app-a-colours.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Colours</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">CC-BY 2022, Lisa DeBruine</div>   
+      <div class="nav-footer-center"><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+<li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/debruine/30DCC-2022">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/lisadebruine">
+      <i class="bi bi-twitter" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+</div>
+  </div>
+</footer>
+include/script.js
+
+
+</body></html>

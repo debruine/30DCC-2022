@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.80">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="description" content="Code and charts for the 2022 30-Day Chart Challenge">
+<title>30DCC - 12&nbsp; The Economist</title>
+<style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+<script src="site_libs/quarto-nav/quarto-nav.js"></script><script src="site_libs/quarto-nav/headroom.min.js"></script><script src="site_libs/clipboard/clipboard.min.js"></script><meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script><script src="site_libs/quarto-search/fuse.min.js"></script><script src="site_libs/quarto-search/quarto-search.js"></script><link href="./13-correlation.html" rel="next">
+<link href="./11-circular.html" rel="prev">
+<script src="site_libs/cookie-consent/cookie-consent.js"></script><link href="site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
+<script src="site_libs/quarto-html/quarto.js"></script><script src="site_libs/quarto-html/popper.min.js"></script><script src="site_libs/quarto-html/tippy.umd.min.js"></script><script src="site_libs/quarto-html/anchor.min.js"></script><link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script><link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+    "location": "sidebar",
+    "copy-button": false,
+    "collapse-after": 2,
+    "panel-placement": "start",
+    "type": "textbox",
+    "limit": 20,
+    "language": {
+      "search-no-results-text": "No results",
+      "search-matching-documents-text": "matching documents",
+      "search-copy-link-title": "Copy link to search",
+      "search-hide-matches-text": "Hide additional matches",
+      "search-more-match-text": "more match in this document",
+      "search-more-matches-text": "more matches in this document",
+      "search-clear-button-title": "Clear",
+      "search-detached-cancel-button-title": "Cancel",
+      "search-submit-button-title": "Submit"
+    }
+  }</script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script><script type="text/plain" cookie-consent="tracking">
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
+  </script><script type="text/javascript" charset="UTF-8">
+  document.addEventListener('DOMContentLoaded', function () {
+  cookieconsent.run({
+    "notice_banner_type":"simple",
+    "consent_type":"implied",
+    "palette":"light",
+    "language":"en",
+    "page_load_consent_levels":["strictly-necessary","functionality","tracking","targeting"],
+    "notice_banner_reject_button_hide":false,
+    "preferences_center_close_button_hide":false,
+    "website_name":""
+    });
+  });
+  </script><script type="application/json" class="js-hypothesis-config">
+  {
+    "theme": "clean",
+    "openSidebar": false
+  }
+  </script><script async="" src="https://hypothes.is/embed.js"></script><!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]--><link rel="stylesheet" href="include/style.css">
+</head>
+<body class="floating">
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">The Economist</span></h1>
+      <button type="button" class="quarto-btn-toggle btn">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">30DCC</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/debruine/30DCC-2022/" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+    <a href="" title="Share" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-share"></i></a>
+    <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
+<li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=%7Curl%7C">
+            <i class="bi bi-bi-twitter pe-1"></i>
+          Twitter
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=%7Curl%7C">
+            <i class="bi bi-bi-facebook pe-1"></i>
+          Facebook
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=%7Curl%7C">
+            <i class="bi bi-bi-linkedin pe-1"></i>
+          LinkedIn
+          </a>
+        </li>
+    </ul>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Overview</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-comparisons" aria-expanded="true">Comparisons</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-comparisons" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-comparisons" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-part-to-whole.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Part-to-whole</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-pictogram.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Pictogram</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-historical.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Historical</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-flora.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Flora</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-slope.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Slope</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-owid.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">OWiD</span></a>
+  </div>
+</li>
+    </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-distributions" aria-expanded="true">Distributions</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-distributions" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-distributions" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-physical.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Physical</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-mountains.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Mountains</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-statistics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Statistics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-experimental.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Experimental</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-circular.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Circular</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-economist.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">The Economist</span></a>
+  </div>
+</li>
+    </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-relationships" aria-expanded="true">Relationships</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-relationships" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-relationships" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-correlation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Correlation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-3-dimensional.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">3-dimensional</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15-multivariate.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multivariate</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-environment.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Environment</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-connections.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Connections</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./18-oecd.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">OECD</span></a>
+  </div>
+</li>
+    </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-timeseries" aria-expanded="true">Timeseries</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-timeseries" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-timeseries" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./19-global-challenge.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Global Challenge</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./20-new-tool.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">New Tool</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./21-down-upwards.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Down/Upwards</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./22-animation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Animation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./23-tiles.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Tiles</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./24-financial-times.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Financial Times</span></a>
+  </div>
+</li>
+    </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-uncertainties" aria-expanded="true">Uncertainties</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-uncertainties" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-uncertainties" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./25-trend.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Trend</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./26-interactive.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Interactive</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./27-future.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Future</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./28-deviations.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Deviations</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./29-storytelling.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Storytelling</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./30-un-population.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">UN Population</span></a>
+  </div>
+</li>
+    </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-appendices" aria-expanded="true">Appendices</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-appendices" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-appendices" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./app-a-colours.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Colours</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./app-b-stained-glass.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Stained Glass Heart</span></a>
+  </div>
+</li>
+    </ul>
+</li>
+    </ul>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc"><h2 id="toc-title">Table of contents</h2>
+<ul>
+<li><a href="#data" class="nav-link active" data-scroll-target="#data"> <span class="header-section-number">12.1</span> Data</a></li>
+<li><a href="#map-setup" class="nav-link" data-scroll-target="#map-setup"> <span class="header-section-number">12.2</span> Map Setup</a></li>
+<li><a href="#map-in-economist-theme" class="nav-link" data-scroll-target="#map-in-economist-theme"> <span class="header-section-number">12.3</span> Map in Economist theme</a></li>
+<li><a href="#get-centroids" class="nav-link" data-scroll-target="#get-centroids"> <span class="header-section-number">12.4</span> Get Centroids</a></li>
+<li><a href="#add-annotations" class="nav-link" data-scroll-target="#add-annotations"> <span class="header-section-number">12.5</span> Add Annotations</a></li>
+<li><a href="#add-red-rectangle" class="nav-link" data-scroll-target="#add-red-rectangle"> <span class="header-section-number">12.6</span> Add red rectangle</a></li>
+</ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/debruine/30DCC-2022/edit/main/12-economist.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/debruine/30DCC-2022/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/debruine/30DCC-2022/blob/main/12-economist.qmd" class="toc-action">View source</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header"><h1 class="title display-7"><span id="sec-economist" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">The Economist</span></span></h1>
+</header><p>I hadn’t realised The Economist do a <a href="https://www.economist.com/search?q=daily%20chart">daily chart</a>. They range from the simple and powerful to really complex visualisations. I won’t show any here, as their website/blog licensing of a single chart for 1 month to an academic costs £159, but you can see the map I’m going to recreate here: <a href="https://www.economist.com/graphic-detail/2022/04/11/which-countries-offer-gender-neutral-passports">Which countries offer gender-neutral passports?</a></p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)     <span class="co"># for data wrangling and visualisation</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(sf)            <span class="co"># for maps</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(rnaturalearth) <span class="co"># for map coordinates</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(ggthemes)      <span class="co"># for map theme</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">library</span>(lwgeom)        <span class="co"># for map projection</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="fu">library</span>(showtext)      <span class="co"># for adding fonts</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="fu">library</span>(magick)        <span class="co"># for adding a red rectangle to the top of the plot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="data" class="level2" data-number="12.1"><h2 data-number="12.1" class="anchored" data-anchor-id="data">
+<span class="header-section-number">12.1</span> Data</h2>
+<p>They don’t give a data source beyond “Press reports; <em>The Economist</em>”, but there aren’t that many countries, so I can just create the data table myself, with the help of Wikipedia’s article on <a href="https://en.wikipedia.org/wiki/Legal_recognition_of_non-binary_gender">legal recognition of non-binary gender</a>. I also added the year that the first non-gendered passport was issued.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>nb_passports <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb2-2"><a href="#cb2-2"></a>  <span class="sc">~</span>country, <span class="sc">~</span>restriction, <span class="sc">~</span>year,</span>
+<span id="cb2-3"><a href="#cb2-3"></a>  <span class="st">"Argentina"</span>, <span class="st">"Self-declaration"</span>, <span class="dv">2021</span>,</span>
+<span id="cb2-4"><a href="#cb2-4"></a>  <span class="st">"Australia"</span>, <span class="st">"Self-declaration"</span>, <span class="dv">2003</span>,</span>
+<span id="cb2-5"><a href="#cb2-5"></a>  <span class="st">"Canada"</span>, <span class="st">"Self-declaration"</span>, <span class="dv">2017</span>,</span>
+<span id="cb2-6"><a href="#cb2-6"></a>  <span class="st">"Colombia"</span>, <span class="st">"Self-declaration"</span>, <span class="dv">2022</span>,</span>
+<span id="cb2-7"><a href="#cb2-7"></a>  <span class="st">"Denmark"</span>, <span class="st">"Self-declaration"</span>, <span class="dv">2014</span>,</span>
+<span id="cb2-8"><a href="#cb2-8"></a>  <span class="st">"Ireland"</span>, <span class="st">"Self-declaration"</span>, <span class="dv">2015</span>, <span class="co"># unclear if X or just gender change introduced then</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a>  <span class="st">"Iceland"</span>, <span class="st">"Self-declaration"</span>, <span class="dv">2020</span>,</span>
+<span id="cb2-10"><a href="#cb2-10"></a>  <span class="st">"Nepal"</span>, <span class="st">"Self-declaration"</span>, <span class="dv">2007</span>,</span>
+<span id="cb2-11"><a href="#cb2-11"></a>  <span class="st">"New Zealand"</span>, <span class="st">"Self-declaration"</span>, <span class="dv">2012</span>,</span>
+<span id="cb2-12"><a href="#cb2-12"></a>  <span class="st">"Pakistan"</span>, <span class="st">"Self-declaration"</span>, <span class="dv">2017</span>,</span>
+<span id="cb2-13"><a href="#cb2-13"></a>  <span class="st">"United States of America"</span>, <span class="st">"Self-declaration"</span>, <span class="dv">2021</span>,</span>
+<span id="cb2-14"><a href="#cb2-14"></a>  <span class="st">"Malta"</span>, <span class="st">"Self-declaration"</span>, <span class="dv">2017</span>,</span>
+<span id="cb2-15"><a href="#cb2-15"></a>  <span class="co">#"Taiwan", "Medical assessment", 2020, # planned, not confirmed https://en.wikipedia.org/wiki/Intersex_rights_in_Taiwan</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a>  <span class="st">"India"</span>, <span class="st">"Medical assessment"</span>, <span class="dv">2005</span>,</span>
+<span id="cb2-17"><a href="#cb2-17"></a>  <span class="st">"Bangladesh"</span>, <span class="st">"Medical assessment"</span>, <span class="dv">2001</span>,</span>
+<span id="cb2-18"><a href="#cb2-18"></a>  <span class="st">"Germany"</span>, <span class="st">"Medical assessment"</span>, <span class="dv">2019</span>,</span>
+<span id="cb2-19"><a href="#cb2-19"></a>  <span class="st">"Austria"</span>, <span class="st">"Medical assessment"</span>, <span class="dv">2018</span>,</span>
+<span id="cb2-20"><a href="#cb2-20"></a>  <span class="st">"Netherlands"</span>, <span class="st">"Medical assessment"</span>, <span class="dv">2018</span></span>
+<span id="cb2-21"><a href="#cb2-21"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-22"><a href="#cb2-22"></a>  <span class="fu">mutate</span>(<span class="at">restriction =</span> <span class="fu">factor</span>(restriction, <span class="fu">c</span>(<span class="st">"Self-declaration"</span>, <span class="st">"Medical assessment"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section><section id="map-setup" class="level2" data-number="12.2"><h2 data-number="12.2" class="anchored" data-anchor-id="map-setup">
+<span class="header-section-number">12.2</span> Map Setup</h2>
+<p>I’ll use the code from <a href="06-owid.html">Day&nbsp;<span>6</span></a> to make the map.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Wintri projection</summary><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># translate the coordinate reference system</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>crs <span class="ot">&lt;-</span> <span class="st">"+proj=wintri"</span>  <span class="co"># winkel tripel projection</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a>world_wintri <span class="ot">&lt;-</span> <span class="fu">ne_countries</span>(<span class="at">returnclass =</span> <span class="st">"sf"</span>, <span class="at">scale =</span> <span class="st">"medium"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a>  lwgeom<span class="sc">::</span><span class="fu">st_transform_proj</span>(<span class="at">crs =</span> crs)</span>
+<span id="cb3-5"><a href="#cb3-5"></a></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="co"># translate and crop coordinates</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a>trans_coords <span class="ot">&lt;-</span> <span class="fu">st_sfc</span>(</span>
+<span id="cb3-8"><a href="#cb3-8"></a>  <span class="fu">st_point</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.4e7</span>, <span class="sc">-</span><span class="fl">6.5e6</span>)), <span class="co"># lower left lat and lon</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a>  <span class="fu">st_point</span>(<span class="fu">c</span>(<span class="fl">2e7</span>, <span class="fl">1e7</span>)),       <span class="co"># upper right lat and lon</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a>  <span class="at">crs =</span> crs) <span class="sc">%&gt;%</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a>  <span class="fu">st_transform</span>(<span class="at">crs =</span> crs) <span class="sc">%&gt;%</span></span>
+<span id="cb3-12"><a href="#cb3-12"></a>  <span class="fu">st_coordinates</span>()</span>
+<span id="cb3-13"><a href="#cb3-13"></a></span>
+<span id="cb3-14"><a href="#cb3-14"></a>crop_coords <span class="ot">&lt;-</span> <span class="fu">coord_sf</span>(</span>
+<span id="cb3-15"><a href="#cb3-15"></a>  <span class="at">datum =</span> <span class="cn">NULL</span>, </span>
+<span id="cb3-16"><a href="#cb3-16"></a>  <span class="at">xlim =</span> trans_coords[,<span class="st">'X'</span>], </span>
+<span id="cb3-17"><a href="#cb3-17"></a>  <span class="at">ylim =</span> trans_coords[,<span class="st">'Y'</span>], </span>
+<span id="cb3-18"><a href="#cb3-18"></a>  <span class="at">expand =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Add the data</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>data_map <span class="ot">&lt;-</span> <span class="fu">left_join</span>(world_wintri, nb_passports, </span>
+<span id="cb4-2"><a href="#cb4-2"></a>                          <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"geounit"</span> <span class="ot">=</span> <span class="st">"country"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>  <span class="fu">select</span>(<span class="at">country =</span> geounit, restriction, year, geometry)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section><section id="map-in-economist-theme" class="level2" data-number="12.3"><h2 data-number="12.3" class="anchored" data-anchor-id="map-in-economist-theme">
+<span class="header-section-number">12.3</span> Map in Economist theme</h2>
+<p>I found the <a href="https://eng.m.fontke.com/font/17459412/download/">Econ Sans Cnd font</a> that matched The Economist plots. You can use Arial Narrow if you can’t find this one.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">font_add</span>(<span class="at">family =</span> <span class="st">"EconSans"</span>,</span>
+<span id="cb5-2"><a href="#cb5-2"></a>         <span class="at">regular =</span> <span class="st">"fonts/econsanscndreg-webfont.woff.ttf"</span>,</span>
+<span id="cb5-3"><a href="#cb5-3"></a>         <span class="at">bold =</span> <span class="st">"fonts/econsanscndmed-webfont.woff.ttf"</span>)</span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="fu">showtext_auto</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Now build the plot without annotations and try to match the theme.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>base_map <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(data_map) <span class="sc">+</span> </span>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">geom_sf</span>(<span class="at">size =</span> <span class="fl">0.5</span><span class="sc">/</span>.pt,</span>
+<span id="cb6-3"><a href="#cb6-3"></a>          <span class="at">fill =</span> <span class="st">"#CECCBF"</span>,</span>
+<span id="cb6-4"><a href="#cb6-4"></a>          <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a>  <span class="fu">geom_sf</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">fill =</span> restriction), </span>
+<span id="cb6-6"><a href="#cb6-6"></a>          <span class="at">size =</span> <span class="fl">0.5</span><span class="sc">/</span>.pt,</span>
+<span id="cb6-7"><a href="#cb6-7"></a>          <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a>  crop_coords <span class="sc">+</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">name =</span> <span class="cn">NULL</span>,</span>
+<span id="cb6-10"><a href="#cb6-10"></a>                    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#2F5C94"</span>, <span class="st">"#5DBDCC"</span>), </span>
+<span id="cb6-11"><a href="#cb6-11"></a>                    <span class="at">na.translate =</span> F) <span class="sc">+</span></span>
+<span id="cb6-12"><a href="#cb6-12"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Press X to Enter"</span>,</span>
+<span id="cb6-13"><a href="#cb6-13"></a>       <span class="at">subtitle =</span> <span class="st">"Countries which include a third-gender marker on their passport, April 2022"</span>,</span>
+<span id="cb6-14"><a href="#cb6-14"></a>       <span class="at">caption =</span> <span class="st">"Data: Wikipedia | Plot: @lisadebruine"</span>) <span class="sc">+</span></span>
+<span id="cb6-15"><a href="#cb6-15"></a>  <span class="fu">theme_map</span>(<span class="at">base_family =</span> <span class="st">"EconSans"</span>, <span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb6-16"><a href="#cb6-16"></a>  <span class="fu">theme</span>(</span>
+<span id="cb6-17"><a href="#cb6-17"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.025</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb6-18"><a href="#cb6-18"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.07</span>),</span>
+<span id="cb6-19"><a href="#cb6-19"></a>    <span class="at">plot.margin =</span> <span class="fu">unit</span>(<span class="fu">c</span>(<span class="fl">0.2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>), <span class="st">"in"</span>),</span>
+<span id="cb6-20"><a href="#cb6-20"></a>    <span class="at">legend.position =</span> <span class="st">"top"</span>,</span>
+<span id="cb6-21"><a href="#cb6-21"></a>    <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>),</span>
+<span id="cb6-22"><a href="#cb6-22"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"grey30"</span>)</span>
+<span id="cb6-23"><a href="#cb6-23"></a>  )</span>
+<span id="cb6-24"><a href="#cb6-24"></a></span>
+<span id="cb6-25"><a href="#cb6-25"></a>base_map</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="12-economist_files/figure-html/econ-base-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="get-centroids" class="level2" data-number="12.4"><h2 data-number="12.4" class="anchored" data-anchor-id="get-centroids">
+<span class="header-section-number">12.4</span> Get Centroids</h2>
+<p>Get the centre x- and y- coordinates from each country to plot the annotations.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>get_centroid <span class="ot">&lt;-</span> <span class="cf">function</span>(geounit) {</span>
+<span id="cb7-2"><a href="#cb7-2"></a>  data_map <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>    <span class="fu">filter</span>(country <span class="sc">==</span> geounit) <span class="sc">%&gt;%</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>    <span class="fu">pull</span>(geometry) <span class="sc">%&gt;%</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a>    sf<span class="sc">::</span><span class="fu">st_centroid</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a>    <span class="st">`</span><span class="at">[[</span><span class="st">`</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a>    <span class="fu">unclass</span>()</span>
+<span id="cb7-8"><a href="#cb7-8"></a>}</span>
+<span id="cb7-9"><a href="#cb7-9"></a></span>
+<span id="cb7-10"><a href="#cb7-10"></a>usa <span class="ot">&lt;-</span> <span class="fu">get_centroid</span>(<span class="st">"United States of America"</span>)</span>
+<span id="cb7-11"><a href="#cb7-11"></a>arg <span class="ot">&lt;-</span> <span class="fu">get_centroid</span>(<span class="st">"Argentina"</span>)</span>
+<span id="cb7-12"><a href="#cb7-12"></a>col <span class="ot">&lt;-</span> <span class="fu">get_centroid</span>(<span class="st">"Colombia"</span>)</span>
+<span id="cb7-13"><a href="#cb7-13"></a>nep <span class="ot">&lt;-</span> <span class="fu">get_centroid</span>(<span class="st">"Nepal"</span>)</span>
+<span id="cb7-14"><a href="#cb7-14"></a>ind <span class="ot">&lt;-</span> <span class="fu">get_centroid</span>(<span class="st">"India"</span>)</span>
+<span id="cb7-15"><a href="#cb7-15"></a>pak <span class="ot">&lt;-</span> <span class="fu">get_centroid</span>(<span class="st">"Pakistan"</span>)</span>
+<span id="cb7-16"><a href="#cb7-16"></a>ger <span class="ot">&lt;-</span> <span class="fu">get_centroid</span>(<span class="st">"Germany"</span>)</span>
+<span id="cb7-17"><a href="#cb7-17"></a>ire <span class="ot">&lt;-</span> <span class="fu">get_centroid</span>(<span class="st">"Ireland"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section><section id="add-annotations" class="level2" data-number="12.5"><h2 data-number="12.5" class="anchored" data-anchor-id="add-annotations">
+<span class="header-section-number">12.5</span> Add Annotations</h2>
+<p>These needed a lot of trial-and-error.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>base_map <span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">label =</span> <span class="st">"United States"</span>, <span class="at">color =</span> <span class="st">"white"</span>, </span>
+<span id="cb8-3"><a href="#cb8-3"></a>           <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>,</span>
+<span id="cb8-4"><a href="#cb8-4"></a>           <span class="at">x =</span> usa[<span class="dv">1</span>] <span class="sc">+</span> <span class="fl">2e5</span>, <span class="at">y =</span> usa[<span class="dv">2</span>] <span class="sc">-</span> <span class="fl">5e5</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">label =</span> <span class="st">"Argentina"</span>, <span class="at">color =</span> <span class="st">"#2F5C94"</span>, </span>
+<span id="cb8-6"><a href="#cb8-6"></a>           <span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">vjust =</span> <span class="dv">1</span>,</span>
+<span id="cb8-7"><a href="#cb8-7"></a>           <span class="at">x =</span> arg[<span class="dv">1</span>] <span class="sc">+</span> <span class="fl">1e6</span>, <span class="at">y =</span> arg[<span class="dv">2</span>] <span class="sc">-</span> <span class="fl">1.4e6</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb8-8"><a href="#cb8-8"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"curve"</span>, <span class="at">curvature =</span> <span class="fl">0.3</span>, <span class="at">size =</span> <span class="fl">0.25</span>,</span>
+<span id="cb8-9"><a href="#cb8-9"></a>            <span class="at">x =</span> arg[<span class="dv">1</span>] <span class="sc">+</span> <span class="fl">1e6</span>, <span class="at">y =</span> arg[<span class="dv">2</span>] <span class="sc">-</span> <span class="fl">1.4e6</span>, </span>
+<span id="cb8-10"><a href="#cb8-10"></a>            <span class="at">xend =</span> arg[<span class="dv">1</span>], <span class="at">yend =</span> arg[<span class="dv">2</span>],</span>
+<span id="cb8-11"><a href="#cb8-11"></a>            <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.2</span>, <span class="st">"lines"</span>))) <span class="sc">+</span></span>
+<span id="cb8-12"><a href="#cb8-12"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">label =</span> <span class="st">"Colombia"</span>, <span class="at">color =</span> <span class="st">"#2F5C94"</span>, </span>
+<span id="cb8-13"><a href="#cb8-13"></a>           <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">vjust =</span> <span class="dv">1</span>,</span>
+<span id="cb8-14"><a href="#cb8-14"></a>           <span class="at">x =</span> col[<span class="dv">1</span>] <span class="sc">-</span> <span class="fl">1.5e6</span>, <span class="at">y =</span> col[<span class="dv">2</span>] <span class="sc">-</span> <span class="fl">2e5</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb8-15"><a href="#cb8-15"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"curve"</span>, <span class="at">curvature =</span> <span class="sc">-</span><span class="fl">0.3</span>, <span class="at">size =</span> <span class="fl">0.25</span>,</span>
+<span id="cb8-16"><a href="#cb8-16"></a>            <span class="at">x =</span> col[<span class="dv">1</span>] <span class="sc">-</span> <span class="fl">1.5e6</span>, <span class="at">y =</span> col[<span class="dv">2</span>] <span class="sc">-</span> <span class="fl">2e5</span>, </span>
+<span id="cb8-17"><a href="#cb8-17"></a>            <span class="at">xend =</span> col[<span class="dv">1</span>], <span class="at">yend =</span> col[<span class="dv">2</span>],</span>
+<span id="cb8-18"><a href="#cb8-18"></a>            <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.2</span>, <span class="st">"lines"</span>))) <span class="sc">+</span></span>
+<span id="cb8-19"><a href="#cb8-19"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">label =</span> <span class="st">"Nepal"</span>, <span class="at">color =</span> <span class="st">"#2F5C94"</span>,</span>
+<span id="cb8-20"><a href="#cb8-20"></a>           <span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">vjust =</span> <span class="dv">0</span>,</span>
+<span id="cb8-21"><a href="#cb8-21"></a>           <span class="at">x =</span> nep[<span class="dv">1</span>] <span class="sc">+</span> <span class="fl">5e5</span>, <span class="at">y =</span> nep[<span class="dv">2</span>] <span class="sc">+</span> <span class="fl">7e5</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb8-22"><a href="#cb8-22"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"curve"</span>, <span class="at">curvature =</span> <span class="fl">0.1</span>, <span class="at">size =</span> <span class="fl">0.25</span>,</span>
+<span id="cb8-23"><a href="#cb8-23"></a>            <span class="at">x =</span> nep[<span class="dv">1</span>] <span class="sc">+</span> <span class="fl">4e5</span>, <span class="at">y =</span> nep[<span class="dv">2</span>] <span class="sc">+</span> <span class="fl">6e5</span>, </span>
+<span id="cb8-24"><a href="#cb8-24"></a>            <span class="at">xend =</span> nep[<span class="dv">1</span>], <span class="at">yend =</span> nep[<span class="dv">2</span>],</span>
+<span id="cb8-25"><a href="#cb8-25"></a>            <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.2</span>, <span class="st">"lines"</span>))) <span class="sc">+</span></span>
+<span id="cb8-26"><a href="#cb8-26"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">label =</span> <span class="st">"India"</span>, <span class="at">color =</span> <span class="st">"#35809B"</span>,</span>
+<span id="cb8-27"><a href="#cb8-27"></a>           <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">vjust =</span> <span class="dv">1</span>,</span>
+<span id="cb8-28"><a href="#cb8-28"></a>           <span class="at">x =</span> ind[<span class="dv">1</span>] <span class="sc">+</span> <span class="fl">1e6</span>, <span class="at">y =</span> ind[<span class="dv">2</span>] <span class="sc">-</span> <span class="fl">2.5e6</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb8-29"><a href="#cb8-29"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"curve"</span>, <span class="at">curvature =</span> <span class="fl">0.3</span>, <span class="at">size =</span> <span class="fl">0.25</span>,</span>
+<span id="cb8-30"><a href="#cb8-30"></a>            <span class="at">x =</span> ind[<span class="dv">1</span>] <span class="sc">+</span> <span class="fl">1e6</span>, <span class="at">y =</span> ind[<span class="dv">2</span>] <span class="sc">-</span> <span class="fl">2.4e6</span>, </span>
+<span id="cb8-31"><a href="#cb8-31"></a>            <span class="at">xend =</span> ind[<span class="dv">1</span>], <span class="at">yend =</span> ind[<span class="dv">2</span>],</span>
+<span id="cb8-32"><a href="#cb8-32"></a>            <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.2</span>, <span class="st">"lines"</span>))) <span class="sc">+</span></span>
+<span id="cb8-33"><a href="#cb8-33"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">label =</span> <span class="st">"Pakistan"</span>, <span class="at">color =</span> <span class="st">"#2F5C94"</span>,</span>
+<span id="cb8-34"><a href="#cb8-34"></a>           <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">vjust =</span> <span class="dv">1</span>,</span>
+<span id="cb8-35"><a href="#cb8-35"></a>           <span class="at">x =</span> pak[<span class="dv">1</span>] <span class="sc">-</span> <span class="fl">5e5</span>, <span class="at">y =</span> pak[<span class="dv">2</span>] <span class="sc">-</span> <span class="fl">2.1e6</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb8-36"><a href="#cb8-36"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"curve"</span>, <span class="at">curvature =</span> <span class="sc">-</span><span class="fl">0.1</span>, <span class="at">size =</span> <span class="fl">0.25</span>,</span>
+<span id="cb8-37"><a href="#cb8-37"></a>            <span class="at">x =</span> pak[<span class="dv">1</span>] <span class="sc">-</span> <span class="fl">5e5</span>, <span class="at">y =</span> pak[<span class="dv">2</span>] <span class="sc">-</span> <span class="fl">2e6</span>, </span>
+<span id="cb8-38"><a href="#cb8-38"></a>            <span class="at">xend =</span> pak[<span class="dv">1</span>], <span class="at">yend =</span> pak[<span class="dv">2</span>],</span>
+<span id="cb8-39"><a href="#cb8-39"></a>            <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.2</span>, <span class="st">"lines"</span>))) <span class="sc">+</span></span>
+<span id="cb8-40"><a href="#cb8-40"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">label =</span> <span class="st">"Germany"</span>, <span class="at">color =</span> <span class="st">"#35809B"</span>,</span>
+<span id="cb8-41"><a href="#cb8-41"></a>           <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">vjust =</span> <span class="dv">0</span>,</span>
+<span id="cb8-42"><a href="#cb8-42"></a>           <span class="at">x =</span> ger[<span class="dv">1</span>] <span class="sc">-</span> <span class="fl">1.2e6</span>, <span class="at">y =</span> ger[<span class="dv">2</span>] <span class="sc">+</span> <span class="fl">2.5e6</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb8-43"><a href="#cb8-43"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"curve"</span>, <span class="at">curvature =</span> <span class="fl">0.2</span>, <span class="at">size =</span> <span class="fl">0.25</span>,</span>
+<span id="cb8-44"><a href="#cb8-44"></a>            <span class="at">x =</span> ger[<span class="dv">1</span>] <span class="sc">-</span> <span class="fl">1.2e6</span>, <span class="at">y =</span> ger[<span class="dv">2</span>] <span class="sc">+</span> <span class="fl">2.4e6</span>, </span>
+<span id="cb8-45"><a href="#cb8-45"></a>            <span class="at">xend =</span> ger[<span class="dv">1</span>], <span class="at">yend =</span> ger[<span class="dv">2</span>],</span>
+<span id="cb8-46"><a href="#cb8-46"></a>            <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.2</span>, <span class="st">"lines"</span>))) <span class="sc">+</span></span>
+<span id="cb8-47"><a href="#cb8-47"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">label =</span> <span class="st">"Ireland"</span>, <span class="at">color =</span> <span class="st">"#2F5C94"</span>,</span>
+<span id="cb8-48"><a href="#cb8-48"></a>           <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">vjust =</span> <span class="dv">1</span>,</span>
+<span id="cb8-49"><a href="#cb8-49"></a>           <span class="at">x =</span> ire[<span class="dv">1</span>] <span class="sc">-</span> <span class="fl">1e6</span>, <span class="at">y =</span> ire[<span class="dv">2</span>] <span class="sc">-</span> <span class="fl">5e5</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb8-50"><a href="#cb8-50"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"curve"</span>, <span class="at">curvature =</span> <span class="sc">-</span><span class="fl">0.2</span>, <span class="at">size =</span> <span class="fl">0.25</span>,</span>
+<span id="cb8-51"><a href="#cb8-51"></a>            <span class="at">x =</span> ire[<span class="dv">1</span>] <span class="sc">-</span> <span class="fl">1e6</span>, <span class="at">y =</span> ire[<span class="dv">2</span>] <span class="sc">-</span> <span class="fl">5e5</span>, </span>
+<span id="cb8-52"><a href="#cb8-52"></a>            <span class="at">xend =</span> ire[<span class="dv">1</span>], <span class="at">yend =</span> ire[<span class="dv">2</span>],</span>
+<span id="cb8-53"><a href="#cb8-53"></a>            <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.2</span>, <span class="st">"lines"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="12-economist_files/figure-html/econ-annotate-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>I tried do this with a new data table containing each country’s label, plus values for the text’s color, hjust, vjust, x, y, and the curve’s curvature, x, y, xend, and yend. However, you can’t set curvature in the mapping, so I had to sort that with <code>pmap()</code>.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>annotations <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="sc">~</span>label, <span class="sc">~</span>color, <span class="sc">~</span>hjust, <span class="sc">~</span>vjust, <span class="sc">~</span>x, <span class="sc">~</span>y, <span class="sc">~</span>text_x, <span class="sc">~</span>text_y, <span class="sc">~</span>curvature, <span class="sc">~</span>curve_x, <span class="sc">~</span>curve_y,</span>
+<span id="cb9-3"><a href="#cb9-3"></a>  <span class="st">"United States"</span>, <span class="st">"white"</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, usa[<span class="dv">1</span>], usa[<span class="dv">2</span>], <span class="sc">+</span><span class="fl">2e5</span>, <span class="sc">-</span><span class="fl">5e5</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="cn">NA</span>,</span>
+<span id="cb9-4"><a href="#cb9-4"></a>  <span class="st">"Argentina"</span>, <span class="st">"#2F5C94"</span>, <span class="dv">0</span>, <span class="dv">1</span>, arg[<span class="dv">1</span>], arg[<span class="dv">2</span>], <span class="fl">1e6</span>, <span class="sc">-</span><span class="fl">1.4e6</span>, <span class="fl">0.3</span>, <span class="fl">1e6</span>, <span class="sc">-</span><span class="fl">1.4e6</span>,</span>
+<span id="cb9-5"><a href="#cb9-5"></a>  <span class="st">"Colombia"</span>, <span class="st">"#2F5C94"</span>, <span class="dv">1</span>, <span class="dv">1</span>, col[<span class="dv">1</span>], col[<span class="dv">2</span>], <span class="sc">-</span><span class="fl">1.5e6</span>, <span class="sc">-</span><span class="fl">2e5</span>, <span class="sc">-</span><span class="fl">0.3</span>, <span class="sc">-</span><span class="fl">1.5e6</span>, <span class="sc">-</span><span class="fl">2e5</span>,</span>
+<span id="cb9-6"><a href="#cb9-6"></a>  <span class="st">"Nepal"</span>, <span class="st">"#2F5C94"</span>, <span class="dv">0</span>, <span class="dv">0</span>, nep[<span class="dv">1</span>], nep[<span class="dv">2</span>], <span class="fl">5e5</span>, <span class="fl">7e5</span>, <span class="fl">0.1</span>, <span class="fl">4e5</span>, <span class="fl">6e5</span>, </span>
+<span id="cb9-7"><a href="#cb9-7"></a>  <span class="st">"India"</span>, <span class="st">"#35809B"</span>, <span class="fl">0.5</span>, <span class="dv">1</span>, ind[<span class="dv">1</span>], ind[<span class="dv">2</span>], <span class="fl">1e6</span>, <span class="sc">-</span><span class="fl">2.5e6</span>, <span class="fl">0.3</span>, <span class="fl">1e6</span>, <span class="sc">-</span><span class="fl">2.4e6</span>, </span>
+<span id="cb9-8"><a href="#cb9-8"></a>  <span class="st">"Pakistan"</span>, <span class="st">"#2F5C94"</span>, <span class="fl">0.5</span>, <span class="dv">1</span>, pak[<span class="dv">1</span>], pak[<span class="dv">2</span>], <span class="sc">-</span><span class="fl">5e5</span>, <span class="sc">-</span><span class="fl">2.1e6</span>, <span class="sc">-</span><span class="fl">0.1</span>, <span class="sc">-</span><span class="fl">5e5</span>, <span class="sc">-</span><span class="fl">2e6</span>, </span>
+<span id="cb9-9"><a href="#cb9-9"></a>  <span class="st">"Germany"</span>, <span class="st">"#35809B"</span>, <span class="fl">0.5</span>, <span class="dv">0</span>, ger[<span class="dv">1</span>], ger[<span class="dv">2</span>], <span class="sc">-</span><span class="fl">1.2e6</span>, <span class="fl">2.5e6</span>, <span class="fl">0.2</span>, <span class="sc">-</span><span class="fl">1.2e6</span>, <span class="fl">2.4e6</span>,</span>
+<span id="cb9-10"><a href="#cb9-10"></a>  <span class="st">"Ireland"</span>, <span class="st">"#2F5C94"</span>, <span class="dv">1</span>, <span class="dv">1</span>, ire[<span class="dv">1</span>], ire[<span class="dv">2</span>], <span class="sc">-</span><span class="fl">1e6</span>, <span class="sc">-</span><span class="fl">5e5</span>, <span class="sc">-</span><span class="fl">0.2</span>, <span class="sc">-</span><span class="fl">1e6</span>, <span class="sc">-</span><span class="fl">5e5</span></span>
+<span id="cb9-11"><a href="#cb9-11"></a>)</span>
+<span id="cb9-12"><a href="#cb9-12"></a></span>
+<span id="cb9-13"><a href="#cb9-13"></a>curves <span class="ot">&lt;-</span> annotations <span class="sc">%&gt;%</span></span>
+<span id="cb9-14"><a href="#cb9-14"></a>  <span class="fu">filter</span>(label <span class="sc">!=</span> <span class="st">"United States"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-15"><a href="#cb9-15"></a>  <span class="fu">pmap</span>(<span class="cf">function</span>(label, color, hjust, vjust, </span>
+<span id="cb9-16"><a href="#cb9-16"></a>                 x, y, text_x, text_y, </span>
+<span id="cb9-17"><a href="#cb9-17"></a>                 curvature, curve_x, curve_y) {</span>
+<span id="cb9-18"><a href="#cb9-18"></a>    <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"curve"</span>, </span>
+<span id="cb9-19"><a href="#cb9-19"></a>             <span class="at">x =</span> x <span class="sc">+</span> curve_x, </span>
+<span id="cb9-20"><a href="#cb9-20"></a>             <span class="at">y =</span> y <span class="sc">+</span> curve_y, </span>
+<span id="cb9-21"><a href="#cb9-21"></a>             <span class="at">xend =</span> x, </span>
+<span id="cb9-22"><a href="#cb9-22"></a>             <span class="at">yend =</span> y, </span>
+<span id="cb9-23"><a href="#cb9-23"></a>             <span class="at">curvature =</span> curvature, </span>
+<span id="cb9-24"><a href="#cb9-24"></a>             <span class="at">size =</span> <span class="fl">0.3</span>, </span>
+<span id="cb9-25"><a href="#cb9-25"></a>             <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.2</span>, <span class="st">"lines"</span>)))</span>
+<span id="cb9-26"><a href="#cb9-26"></a>  })</span>
+<span id="cb9-27"><a href="#cb9-27"></a></span>
+<span id="cb9-28"><a href="#cb9-28"></a></span>
+<span id="cb9-29"><a href="#cb9-29"></a>base_map <span class="sc">+</span></span>
+<span id="cb9-30"><a href="#cb9-30"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> annotations, </span>
+<span id="cb9-31"><a href="#cb9-31"></a>            <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">label =</span> label, </span>
+<span id="cb9-32"><a href="#cb9-32"></a>            <span class="at">color =</span> <span class="fu">I</span>(color),</span>
+<span id="cb9-33"><a href="#cb9-33"></a>            <span class="at">hjust =</span> hjust,</span>
+<span id="cb9-34"><a href="#cb9-34"></a>            <span class="at">vjust =</span> vjust,</span>
+<span id="cb9-35"><a href="#cb9-35"></a>            <span class="at">x =</span> x <span class="sc">+</span> text_x,</span>
+<span id="cb9-36"><a href="#cb9-36"></a>            <span class="at">y =</span> y <span class="sc">+</span> text_y),</span>
+<span id="cb9-37"><a href="#cb9-37"></a>            <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb9-38"><a href="#cb9-38"></a>  curves</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="12-economist_files/figure-html/econ-day12-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="add-red-rectangle" class="level2" data-number="12.6"><h2 data-number="12.6" class="anchored" data-anchor-id="add-red-rectangle">
+<span class="header-section-number">12.6</span> Add red rectangle</h2>
+<p>Last, we need to add the classic red rectangle to the top left of the plot. Save the plot as a PNG, then add the red rectangle using <code class="package">magick</code>.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">ggsave</span>(<span class="st">"images/day12.png"</span>, <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">5</span>, <span class="at">device =</span> png, <span class="at">bg =</span> <span class="st">"white"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>chart <span class="ot">&lt;-</span> <span class="fu">image_read</span>(<span class="st">"images/day12.png"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2"></a>rect <span class="ot">&lt;-</span> <span class="fu">image_blank</span>(<span class="dv">100</span>, <span class="dv">20</span>, <span class="st">"#D9352C"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3"></a>img <span class="ot">&lt;-</span> <span class="fu">image_composite</span>(chart, rect, <span class="at">offset =</span> <span class="st">"+180+0"</span>)</span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="fu">image_write</span>(img, <span class="st">"images/day12.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"images/day12.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/day12.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section></main><!-- /main --><script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    setTimeout(function() {
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./11-circular.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Circular</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./13-correlation.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Correlation</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">CC-BY 2022, Lisa DeBruine</div>   
+      <div class="nav-footer-center"><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+<li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/debruine/30DCC-2022">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/lisadebruine">
+      <i class="bi bi-twitter" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+</div>
+  </div>
+</footer>
+include/script.js
+
+
+</body></html>

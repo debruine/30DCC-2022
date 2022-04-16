@@ -1,0 +1,45 @@
+# Overview {-}
+
+```{r cite-packages, include = FALSE}
+# automatically create a bib database for R packages
+# add any packages you want to cite here
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'tidyverse'
+), 'include/packages.bib')
+
+source("R/setup.R")
+```
+
+This is my first year participating in the [30-day chart challenge](https://github.com/30DayChartChallenge/Edition2022). In my work with [PsyTeachR](https://psyteachr.github.io), we do almost everything in bookdown, so I thought I'd make a book with our open-source [PsyTeachR template](https://psyteachr.github.io/template/).
+
+![](images/30-day-chart-challenge.jpg)
+
+I'm going to use data simulation for most of my charts, so this will also end up being a resource for how to simulate different types of data. 
+
+<style>
+.daily_imgs a {
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    width: 31%;
+    height: 0;
+    display: inline-block;
+    margin: 1%;
+    padding-bottom: 31%;
+    float: left;
+}
+</style>
+
+```{r day1, eval = FALSE, include = FALSE, results='asis'}
+imgpaths <- list.files("images", pattern = "^day\\d{1}\\.(png|gif)")
+chapters <- c("part-to-whole", "pictogram", "historical", "flora", "slope", "owid", "physical", "mountains", "statistics")[seq_along(imgpaths)]
+
+glue::glue("<a href='{{chapters}.html' style='background-image: url(\"images/{{imgpaths}\")'></a>",
+           .open = "{{") %>%
+  paste(collapse = "") %>%
+  cat()
+```
+
+<div class='daily_imgs'><a href='01-part-to-whole.html' style='background-image: url("images/day1.png")'></a><a href='02-pictogram.html' style='background-image: url("images/day2.png")'></a><a href='03-historical.html' style='background-image: url("images/day3.png")'></a><a href='04-flora.html' style='background-image: url("images/day4.png")'></a><a href='05-slope.html' style='background-image: url("images/day5.png")'></a><a href='06-owid.html' style='background-image: url("images/day6.gif")'></a><a href='07-physical.html' style='background-image: url("images/day7.png")'></a><a href='08-mountains.html' style='background-image: url("images/day8.png")'></a><a href='09-statistics.html' style='background-image: url("images/day9.gif")'></a><a href='10-experimental.html' style='background-image: url("images/day10.png")'></a><a href='11-circular.html' style='background-image: url("images/day11.png")'></a><a href='12-economist.html' style='background-image: url("images/day12.png")'></a><a href='13-correlation.html' style='background-image: url("images/day13.png")'></a><a href='14-3-dimensional.html' style='background-image: url("images/day14.png")'></a><a href='15-multivariate.html' style='background-image: url("images/day15.gif")'></a></div>
+
+<br style="clear:both;">

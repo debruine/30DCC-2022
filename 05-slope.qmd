@@ -1,0 +1,221 @@
+# Slope
+
+```{r, include = FALSE}
+source("R/setup.R")
+```
+
+I'm going back to data simulation. Someone asked me recently how to add a continuous predictor to a mixed effects model. I'm going to build a function for simulating data with a nested structure sampling people within countries and a continuous predictor of time (0-10). I'll plot the data with various values for the parameters, including random intercepts and *slopes*. If you need a refresher on mixed effects models, see [this tutorial by Dale Barr and me](https://debruine.github.io/lmem_sim/).
+
+```{r, message=FALSE}
+library(tidyverse)
+library(faux)
+theme_set(theme_bw())
+set.seed(8675309)
+```
+
+
+## Data Simulation Function
+
+First, I need to write a function to generate the simulated data. I want to be able to vary the fixed and random effects parameters, but am setting almost everything to 0 as a default. I'm using mixed design simulation functions from the faux package, which you can learn more about in this [vignette](https://debruine.github.io/faux/articles/sim_mixed.html). 
+
+```{r}
+#| code-summary: Data simulation function
+sim <- function(
+  n_countries = 10, # number of countries samples
+  n_people = 10,    # number of people sampled per country
+  c_int_sd = 0,     # SD of random intercept for countries
+  c_time_sd = 0,    # SD of random slope for time (by country)
+  c_cors = 0,       # correlation between c_int and c_time
+  p_int_sd = 0,     # SD of random intercept for people
+  p_time_sd = 0,    # SD of random slope for time (by person)
+  p_cors = 0,       # correlations among p_int, p_time, p_height
+  err_sd = 0,       # error SD
+  intercept = 0,    # grand intercept
+  b_time = 0        # fixed effect of time
+){
+
+add_random(country = LETTERS[1:n_countries]) %>%
+  add_random(person = n_people, 
+             .nested_in = "country") %>%
+  add_ranef(.by = "country", 
+            c_int = c_int_sd,
+            c_time = c_time_sd,
+            .cors = c_cors) %>%
+  add_ranef(.by = "person", 
+            p_int = p_int_sd, 
+            p_time = p_time_sd, 
+            .cors = p_cors) %>%
+  crossing(time = 0:10) %>%
+  add_ranef(err = err_sd) %>%
+  mutate(dv = intercept + c_int + p_int + 
+           (b_time + p_time + c_time) * time + 
+           err)
+}
+  
+```
+
+## Default
+
+The default plot is pretty boring. Everyone's score is is equal to the grand intercept.
+
+```{r slope-default}
+data <- sim()
+ggplot(data, aes(x = time, y = dv, color = country)) +
+  geom_smooth(method = lm, formula = y ~ x) +
+  stat_summary(geom = "point", fun = mean)
+```
+
+## Random error
+
+We can make the simulation more realistic by adding random error.
+
+```{r slope-err}
+data <- sim(err_sd = 1)
+ggplot(data, aes(x = time, y = dv, color = country, group = person)) +
+  geom_smooth(method = lm, formula = y ~ x, alpha = 0.1, show.legend = FALSE) +
+  facet_wrap(~country, nrow = 2)
+```
+
+Here are the data for each person in country A.
+
+```{r slope-err-person}
+data %>%
+  filter(country == "A") %>%
+  ggplot(aes(x = time, y = dv, color = person)) +
+  geom_smooth(method = lm, formula = y ~ x, alpha = 0.2, show.legend = FALSE) +
+  stat_summary(geom = "point", fun = mean, show.legend = FALSE) +
+  facet_wrap(~person, nrow = 2)
+```
+
+We're going to leave the error SD as a totally unrealistic 0 for the next few plots to make it easier to see what happens to the data when you're changing random effects parameters.
+
+## Random intercepts for country
+
+Now let's add a random intercept per country. Setting c_int_sd to 1 means that the intercepts for each country are simulated to vary with an SD of 1.
+
+```{r slope-c-int}
+data <- sim(c_int_sd = 1)
+ggplot(data, aes(x = time, y = dv, color = country)) +
+  geom_smooth(method = lm, formula = y ~ x) +
+  stat_summary(geom = "point", fun = mean)
+```
+
+## Random slopes for country
+
+What does it look like if we leave the random intercepts at 0 and set the random slope of time for countries to 1?
+
+```{r slope-c-time}
+data <- sim(c_time_sd = 1)
+ggplot(data, aes(x = time, y = dv, color = country)) +
+  geom_smooth(method = lm, formula = y ~ x) +
+  stat_summary(geom = "point", fun = mean)
+```
+
+## Random intercepts and slopes for country
+
+What if we set both the random intercept and slope of time for country to 1? Now, the intercepts vary around 0 and the slopes of the lines also vary.
+
+```{r slope-c-int-time}
+data <- sim(c_int_sd = 1, c_time_sd = 1)
+ggplot(data, aes(x = time, y = dv, color = country)) +
+  geom_smooth(method = lm, formula = y ~ x) +
+  stat_summary(geom = "point", fun = mean)
+```
+
+Random intercepts and slopes can be correlated. For example, the time effect might be larger in countries where people tend to have lower scores, leading the random slope and intercept for country to be negatively correlated.
+
+I increased the SD of the random intercept to make it easier to see that countries with a higher intercept tend to have more negative slopes than those with a lower intercept.
+
+```{r slope-c-int-time-cor-neg}
+data <- sim(c_int_sd = 5, c_time_sd = 1, c_cors = -0.5)
+ggplot(data, aes(x = time, y = dv, color = country)) +
+  geom_smooth(method = lm, formula = y ~ x) +
+  stat_summary(geom = "point", fun = mean)
+```
+And here's the same plot with a positive correlation. Now the countries with a higher intercept tend to have a more positive effect of time. 
+
+```{r slope-c-int-time-cor-pos}
+data <- sim(c_int_sd = 5, c_time_sd = 1, c_cors = +0.5)
+ggplot(data, aes(x = time, y = dv, color = country)) +
+  geom_smooth(method = lm, formula = y ~ x) +
+  stat_summary(geom = "point", fun = mean)
+```
+
+## Random intercepts for person
+
+If we vary the random intercepts by person, this increases the variability within each country. Note that because we're only sampling 10 people in each country, this means the intercept for each country will vary a bit depending on the mean of the 10 people from that country.
+
+```{r slope-p-int}
+data <- sim(p_int_sd = 1)
+ggplot(data, aes(x = time, y = dv, color = country)) +
+  geom_smooth(method = lm, formula = y ~ x, alpha = 0.1)
+```
+
+Let's look at the data for each country separately.
+
+```{r slope-p-int-country}
+ggplot(data, aes(x = time, y = dv, color = country, group = person)) +
+  geom_smooth(method = lm, size = 0.5, formula = y ~ x, show.legend = FALSE) +
+  facet_wrap(~country, nrow = 2)
+```
+
+
+## Random slopes for person
+
+Vary the random slopes by person. Here, we're viewing the data for each country separately. The thick lines are the average slope for the country.
+
+```{r slope-p-time}
+ggplot(data, aes(x = time, y = dv, color = country)) +
+  geom_smooth(aes(group = person), size = .2, 
+              method = lm, formula = y ~ x, 
+              show.legend = FALSE) +
+  geom_smooth(method = lm, size = 1.5, formula = y ~ x, show.legend = FALSE) +
+  facet_wrap(~country, nrow = 2)
+```
+
+## Fixed effect of time
+
+Let's add a fixed effect of time.
+
+```{r slope-fixed}
+data <- sim(b_time = 1)
+ggplot(data, aes(x = time, y = dv, color = country)) +
+  geom_smooth(method = lm, formula = y ~ x)
+```
+
+That's pretty boring, so lets also add random time slopes for both country and person. Make the fixed effect of time bigger to emphasise how the average slopes by country tend to be positive, even though there is a lot of variation in the slopes for individual people.
+
+```{r slope-fixed-rand}
+data <- sim(b_time = 2, c_time_sd = 1, p_time_sd = 1)
+ggplot(data, aes(x = time, y = dv, color = country)) +
+  geom_smooth(aes(group = person), size = .2, 
+              method = lm, formula = y ~ x, 
+              show.legend = FALSE) +
+  geom_smooth(size = 1.5, method = lm, formula = y ~ x, 
+              show.legend = FALSE) +
+  facet_wrap(~country, nrow = 2)
+```
+
+## Realistic data
+
+Finally, let's set all of the fixed and random effect parameters to non-zero values. 
+
+```{r slope-realistic}
+data <- sim(c_int_sd = 10, c_time_sd = 1, c_cors = 0.5,
+            p_int_sd = 10, p_time_sd = 1, p_cors = 0.5, 
+            err_sd = 5, intercept = 100, b_time = 2)
+
+ggplot(data, aes(x = time, y = dv, color = country)) +
+  geom_smooth(aes(group = person), size = .2, 
+              method = lm, formula = y ~ x, 
+              se = FALSE, show.legend = FALSE) +
+  geom_smooth(size = 1.5, method = lm, formula = y ~ x, 
+              alpha = 0.3, show.legend = FALSE) +
+  facet_wrap(~country, nrow = 2) +
+  scale_x_continuous(breaks = seq(0, 10, 2))
+```
+
+```{r, include = FALSE, eval = FALSE}
+ggsave("images/day5.png", width = 8, height = 4.5, device = png)
+```
+

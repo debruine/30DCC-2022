@@ -1,0 +1,133 @@
+# Experimental
+
+```{r, include = FALSE}
+source("R/setup.R")
+```
+
+Today I'm going to use faux to generate some simulated data for a factorial experimental design and make some plots.
+
+```{r}
+library(faux)      # for data simulation
+library(ggplot2)   # for plotting
+library(patchwork) # for multi-panel plots
+theme_set(theme_bw())
+set.seed(8675309)  # for reproducibility
+```
+
+```{r, include = FALSE}
+# reset to default
+faux_options(plot = TRUE)
+```
+
+
+## Data
+
+The `sim_design()` function is meant to make the simulation of data for factorial designs  easier. You can name the factors and their levels (see extensive [vignettes](https://debruine.github.io/faux/)), but here we'll just use the generic naming from faux and only specify the number of levels of each factor. By default, it simulates 100 observations in each between group, with means of 0 and standard deviations of 1. The function also produces a design plot.
+
+### One factor
+
+```{r exp-b2-sim}
+b2 <- sim_design(between = 2, 
+                 mu = c(0, 0.5))
+```
+
+For within-subject designs, you have to specify the correlation between each level. If there are any within factors, the `check_sim_stats()` table will include the sampled correlations. You can turn off the design plot with `plot = FALSE`. 
+
+```{r}
+w2 <- sim_design(within = 2, 
+                 mu = c(0, 0),
+                 sd = c(1, 5),
+                 r = 0.5,
+                 plot = FALSE)
+check_sim_stats(w2)
+```
+
+
+
+### Two factors
+
+You can also give the factors names and labels. You can set the correlations separately for each between-subject cell.
+
+```{r}
+# df version uses row and column labels, 
+# so allows rows and columns to be out of order
+mu <- data.frame(cat = c(0, 0.5),
+                 dog = c(0.25, 1),
+                 row.names = c("am", "pm"))
+
+w2b2 <- sim_design(within = list(time = c("am", "pm")), 
+                   between = list(pet = c("cat", "dog")),
+                   mu = mu,
+                   dv = list(y = "Something Score"),
+                   r = list(cat = 0,
+                            dog = .5),
+                   long = TRUE)
+check_sim_stats(w2b2)
+```
+
+## Plots
+
+### Data Plots
+
+Now it's time for the fun part: making plots! The `plot()` function makes it easy to plot data made with faux. See the [plotting vignette](https://debruine.github.io/faux/articles/plots.html) for more details.
+
+The output is a ggplot, so you can add more ggplot options to it.
+
+```{r exp-b2-plot}
+plot(b2, geoms = c("violin", "box"), palette = "Accent") +
+  ggtitle("Between-Subject Factor")
+```
+
+### Design Plots
+
+You can also plot the design (not the data). If you plot a violin, the shape will be estimated by simulating a very large sample with these parameters.
+
+```{r exp-w2-plot}
+get_design(w2) %>%
+  plot(geoms = c("violin", "pointrangeSD"), palette = "Dark2") +
+  ggtitle("Within-Subject Factor")
+```
+
+### Combo Plots
+
+Create a design plot for the main effects and interaction in `w2b2`. You can specify the order color, x, facet row(s), facet col(s) [this function needs a little work to be more intuitive]. Add a title and custom colours (you'll get a warning about the duplicate scale for fill; just ignore it).
+
+```{r, warning=FALSE, message=FALSE}
+geoms <- c("violin", "pointrangeSD")
+b_colors <- scale_color_manual(values = c("red3", "dodgerblue3"), guide = "none")
+w_colors <- scale_color_manual(values = c("darkorchid", "darkorange"), guide = "none")
+b_fill <- scale_fill_manual(values = c("red3", "dodgerblue3"), guide = "none")
+w_fill <- scale_fill_manual(values = c("darkorchid", "darkorange"), guide = "none")
+
+plot_b2 <- get_design(w2b2) %>% 
+  plot(geoms = geoms, "pet", "pet") + 
+  b_colors + b_fill +
+  labs(x = NULL, title = "Main Effect of Pet Type")
+
+plot_w2 <- get_design(w2b2) %>% 
+  plot(geoms = geoms, "time", "time") + 
+  w_colors + w_fill +
+  labs(x = NULL, title = "Main Effect of Time of Day")
+
+plot_w2b2 <- get_design(w2b2) %>% 
+  plot(geoms = geoms, "time", "pet") + 
+  w_colors + w_fill +
+  labs(x = NULL, title = "Interaction between Time of Day and Pet Type")
+
+plot_b2w2 <- get_design(w2b2) %>% 
+  plot(geoms = geoms, "pet", "time") + 
+  b_colors + b_fill +
+  labs(x = NULL, title = "Interaction between Pet Type and Time of Day")
+```
+
+Combine with `r pkg("patchwork")` 
+
+```{r exp-day10, fig.width = 8, fig.height = 8}
+layout <- paste("AB", "CC", "DD", sep = "\n")
+plot_b2  + plot_w2 + plot_w2b2 + plot_b2w2 +
+  plot_layout(design = layout)
+```
+
+```{r, include = FALSE, eval = FALSE}
+ggsave("images/day10.png", width = 8, height = 8, device = png)
+```

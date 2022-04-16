@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.80">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="description" content="Code and charts for the 2022 30-Day Chart Challenge">
+<title>30DCC - 11&nbsp; Circular</title>
+<style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+<script src="site_libs/quarto-nav/quarto-nav.js"></script><script src="site_libs/quarto-nav/headroom.min.js"></script><script src="site_libs/clipboard/clipboard.min.js"></script><meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script><script src="site_libs/quarto-search/fuse.min.js"></script><script src="site_libs/quarto-search/quarto-search.js"></script><link href="./12-economist.html" rel="next">
+<link href="./10-experimental.html" rel="prev">
+<script src="site_libs/cookie-consent/cookie-consent.js"></script><link href="site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
+<script src="site_libs/quarto-html/quarto.js"></script><script src="site_libs/quarto-html/popper.min.js"></script><script src="site_libs/quarto-html/tippy.umd.min.js"></script><script src="site_libs/quarto-html/anchor.min.js"></script><link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script><link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+    "location": "sidebar",
+    "copy-button": false,
+    "collapse-after": 2,
+    "panel-placement": "start",
+    "type": "textbox",
+    "limit": 20,
+    "language": {
+      "search-no-results-text": "No results",
+      "search-matching-documents-text": "matching documents",
+      "search-copy-link-title": "Copy link to search",
+      "search-hide-matches-text": "Hide additional matches",
+      "search-more-match-text": "more match in this document",
+      "search-more-matches-text": "more matches in this document",
+      "search-clear-button-title": "Clear",
+      "search-detached-cancel-button-title": "Cancel",
+      "search-submit-button-title": "Submit"
+    }
+  }</script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script><script type="text/plain" cookie-consent="tracking">
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
+  </script><script type="text/javascript" charset="UTF-8">
+  document.addEventListener('DOMContentLoaded', function () {
+  cookieconsent.run({
+    "notice_banner_type":"simple",
+    "consent_type":"implied",
+    "palette":"light",
+    "language":"en",
+    "page_load_consent_levels":["strictly-necessary","functionality","tracking","targeting"],
+    "notice_banner_reject_button_hide":false,
+    "preferences_center_close_button_hide":false,
+    "website_name":""
+    });
+  });
+  </script><script type="application/json" class="js-hypothesis-config">
+  {
+    "theme": "clean",
+    "openSidebar": false
+  }
+  </script><script async="" src="https://hypothes.is/embed.js"></script><!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]--><link rel="stylesheet" href="include/style.css">
+</head>
+<body class="floating">
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">
+<span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Circular</span>
+</h1>
+      <button type="button" class="quarto-btn-toggle btn">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">30DCC</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/debruine/30DCC-2022/" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+    <a href="" title="Share" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-share"></i></a>
+    <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
+<li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=%7Curl%7C">
+            <i class="bi bi-bi-twitter pe-1"></i>
+          Twitter
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=%7Curl%7C">
+            <i class="bi bi-bi-facebook pe-1"></i>
+          Facebook
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=%7Curl%7C">
+            <i class="bi bi-bi-linkedin pe-1"></i>
+          LinkedIn
+          </a>
+        </li>
+    </ul>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Overview</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-comparisons" aria-expanded="true">Comparisons</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-comparisons" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-comparisons" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-part-to-whole.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Part-to-whole</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-pictogram.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Pictogram</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-historical.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Historical</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-flora.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Flora</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-slope.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Slope</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-owid.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">OWiD</span></a>
+  </div>
+</li>
+    </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-distributions" aria-expanded="true">Distributions</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-distributions" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-distributions" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-physical.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Physical</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-mountains.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Mountains</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-statistics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Statistics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-experimental.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Experimental</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-circular.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Circular</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-economist.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">The Economist</span></a>
+  </div>
+</li>
+    </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-relationships" aria-expanded="true">Relationships</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-relationships" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-relationships" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-correlation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Correlation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-3-dimensional.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">3-dimensional</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15-multivariate.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multivariate</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-environment.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Environment</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-connections.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Connections</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./18-oecd.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">OECD</span></a>
+  </div>
+</li>
+    </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-timeseries" aria-expanded="true">Timeseries</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-timeseries" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-timeseries" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./19-global-challenge.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Global Challenge</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./20-new-tool.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">New Tool</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./21-down-upwards.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Down/Upwards</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./22-animation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Animation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./23-tiles.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Tiles</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./24-financial-times.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Financial Times</span></a>
+  </div>
+</li>
+    </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-uncertainties" aria-expanded="true">Uncertainties</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-uncertainties" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-uncertainties" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./25-trend.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Trend</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./26-interactive.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Interactive</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./27-future.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Future</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./28-deviations.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Deviations</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./29-storytelling.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Storytelling</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./30-un-population.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">UN Population</span></a>
+  </div>
+</li>
+    </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-appendices" aria-expanded="true">Appendices</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-appendices" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-appendices" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./app-a-colours.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Colours</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./app-b-stained-glass.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Stained Glass Heart</span></a>
+  </div>
+</li>
+    </ul>
+</li>
+    </ul>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc"><h2 id="toc-title">Table of contents</h2>
+<ul>
+<li><a href="#data" class="nav-link active" data-scroll-target="#data"> <span class="header-section-number">11.1</span> Data</a></li>
+<li><a href="#simple-polar-plot" class="nav-link" data-scroll-target="#simple-polar-plot"> <span class="header-section-number">11.2</span> Simple Polar Plot</a></li>
+<li><a href="#polar-y" class="nav-link" data-scroll-target="#polar-y"> <span class="header-section-number">11.3</span> Polar Y</a></li>
+<li><a href="#fix-it-up" class="nav-link" data-scroll-target="#fix-it-up"> <span class="header-section-number">11.4</span> Fix it up</a></li>
+<li><a href="#theme" class="nav-link" data-scroll-target="#theme"> <span class="header-section-number">11.5</span> Theme</a></li>
+</ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/debruine/30DCC-2022/edit/main/11-circular.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/debruine/30DCC-2022/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/debruine/30DCC-2022/blob/main/11-circular.qmd" class="toc-action">View source</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header"><h1 class="title d-none d-lg-block display-7">
+<span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Circular</span>
+</h1>
+</header><p>I’ve never used <code>coord_polar()</code> before, but it seems pretty good for when you want to show values that vary a lot in magnitude between categories.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># for wrangling data</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="data" class="level2" data-number="11.1"><h2 data-number="11.1" class="anchored" data-anchor-id="data">
+<span class="header-section-number">11.1</span> Data</h2>
+<p>I downloaded the <a href="https://www.ons.gov.uk/peoplepopulationandcommunity/culturalidentity/sexuality/bulletins/sexualidentityuk/2019">UK sexual orientation data</a> from the Office for National Statistics. It needs a little cleaning first. I’ll leave it wide because I just want to plot the most recent year.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>ukso <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/uk_sexual-orientation_8c21318e.csv"</span>,</span>
+<span id="cb2-2"><a href="#cb2-2"></a>                 <span class="at">skip =</span> <span class="dv">3</span>, <span class="at">n_max =</span> <span class="dv">5</span>, </span>
+<span id="cb2-3"><a href="#cb2-3"></a>                 <span class="at">show_col_types =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>  <span class="fu">mutate</span>(<span class="st">`</span><span class="at">Sexual orientation</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">gsub</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">"</span>, <span class="st">""</span>, <span class="st">`</span><span class="at">Sexual orientation</span><span class="st">`</span>),</span>
+<span id="cb2-5"><a href="#cb2-5"></a>         <span class="st">`</span><span class="at">Sexual orientation</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">gsub</span>(<span class="st">" or "</span>, <span class="st">"/"</span>, <span class="st">`</span><span class="at">Sexual orientation</span><span class="st">`</span>),</span>
+<span id="cb2-6"><a href="#cb2-6"></a>         <span class="st">`</span><span class="at">Sexual orientation</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">factor</span>(<span class="st">`</span><span class="at">Sexual orientation</span><span class="st">`</span>, <span class="st">`</span><span class="at">Sexual orientation</span><span class="st">`</span>))</span>
+<span id="cb2-7"><a href="#cb2-7"></a></span>
+<span id="cb2-8"><a href="#cb2-8"></a>ukso</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-stdout">
+<pre><code># A tibble: 5 × 6
+  `Sexual orientation`  `2015` `2016` `2017` `2018` `2019`
+  &lt;fct&gt;                  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+1 Heterosexual/straight   95.2   95     95     94.6   93.7
+2 Gay/lesbian              1.2    1.2    1.3    1.4    1.6
+3 Bisexual                 0.7    0.8    0.8    0.9    1.1
+4 Other                    0.4    0.5    0.6    0.6    0.7
+5 Do not know/refuse       2.6    2.5    2.3    2.5    3  </code></pre>
+</div>
+</div>
+<p>I wish they’d distinguished “don’t know” and “don’t want to tell you”; they’re two very different things.</p>
+</section><section id="simple-polar-plot" class="level2" data-number="11.2"><h2 data-number="11.2" class="anchored" data-anchor-id="simple-polar-plot">
+<span class="header-section-number">11.2</span> Simple Polar Plot</h2>
+<p>My first thought was to just add <code>coord_polar()</code> to a bar plot. Not quite. I kind of hate this plot style, but at least I know how to make one now.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">ggplot</span>(ukso, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Sexual orientation</span><span class="st">`</span>, </span>
+<span id="cb4-2"><a href="#cb4-2"></a>                 <span class="at">y =</span> <span class="st">`</span><span class="at">2019</span><span class="st">`</span>, </span>
+<span id="cb4-3"><a href="#cb4-3"></a>                 <span class="at">fill =</span> <span class="st">`</span><span class="at">Sexual orientation</span><span class="st">`</span>)) <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>  <span class="fu">coord_polar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="11-circular_files/figure-html/circular-polar-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="polar-y" class="level2" data-number="11.3"><h2 data-number="11.3" class="anchored" data-anchor-id="polar-y">
+<span class="header-section-number">11.3</span> Polar Y</h2>
+<p>If you set <code>theta = "y"</code>, you get a different type of polar plot.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">ggplot</span>(ukso, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Sexual orientation</span><span class="st">`</span>,</span>
+<span id="cb5-2"><a href="#cb5-2"></a>                 <span class="at">y =</span> <span class="st">`</span><span class="at">2019</span><span class="st">`</span>, </span>
+<span id="cb5-3"><a href="#cb5-3"></a>                 <span class="at">fill =</span> <span class="st">`</span><span class="at">Sexual orientation</span><span class="st">`</span>)) <span class="sc">+</span> </span>
+<span id="cb5-4"><a href="#cb5-4"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a>  <span class="fu">coord_polar</span>(<span class="at">theta =</span> <span class="st">"y"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="11-circular_files/figure-html/circular-y-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This is closer to what I want, but I’m not keen on the x-axis limit being defined by the largest group and the y-axis needs to go.</p>
+</section><section id="fix-it-up" class="level2" data-number="11.4"><h2 data-number="11.4" class="anchored" data-anchor-id="fix-it-up">
+<span class="header-section-number">11.4</span> Fix it up</h2>
+<p>I reversed the order of the categories by setting <code>limits = rev</code> in <code>scale_x_discrete()</code> and made some space in the middle by setting the <code>expand</code> argument to add 3 “columns” of space to the inside.</p>
+<p>I added <code>geom_text()</code> to include the exactly values at the end of each bar. I had to use trial and error to get the angles to match. I also used <code>theme()</code> to get rid of the y-axis.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">ggplot</span>(ukso, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Sexual orientation</span><span class="st">`</span>, </span>
+<span id="cb6-2"><a href="#cb6-2"></a>                 <span class="at">y =</span> <span class="st">`</span><span class="at">2019</span><span class="st">`</span>, </span>
+<span id="cb6-3"><a href="#cb6-3"></a>                 <span class="at">fill =</span> <span class="st">`</span><span class="at">Sexual orientation</span><span class="st">`</span>, </span>
+<span id="cb6-4"><a href="#cb6-4"></a>                 <span class="at">color =</span> <span class="st">`</span><span class="at">Sexual orientation</span><span class="st">`</span>)) <span class="sc">+</span> </span>
+<span id="cb6-5"><a href="#cb6-5"></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">`</span><span class="at">2019</span><span class="st">`</span>, <span class="st">"%"</span>),</span>
+<span id="cb6-7"><a href="#cb6-7"></a>                <span class="at">angle =</span> <span class="fu">c</span>(<span class="dv">15</span>, <span class="sc">-</span><span class="dv">10</span>, <span class="sc">-</span><span class="dv">10</span>, <span class="sc">-</span><span class="dv">10</span>, <span class="sc">-</span><span class="dv">10</span>)), </span>
+<span id="cb6-8"><a href="#cb6-8"></a>            <span class="at">size =</span> <span class="dv">3</span>, <span class="at">nudge_y =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a>  <span class="fu">coord_polar</span>(<span class="at">theta =</span> <span class="st">"y"</span>) <span class="sc">+</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">add =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">0</span>)), <span class="at">limits =</span> rev) <span class="sc">+</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">90</span>, <span class="dv">10</span>), </span>
+<span id="cb6-12"><a href="#cb6-12"></a>                     <span class="at">labels =</span> <span class="fu">paste0</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">90</span>, <span class="dv">10</span>), <span class="st">"%"</span>),</span>
+<span id="cb6-13"><a href="#cb6-13"></a>                     <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>)) <span class="sc">+</span></span>
+<span id="cb6-14"><a href="#cb6-14"></a>  <span class="fu">theme</span>(<span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb6-15"><a href="#cb6-15"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb6-16"><a href="#cb6-16"></a>        <span class="at">axis.title =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="11-circular_files/figure-html/circular-fix-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="theme" class="level2" data-number="11.5"><h2 data-number="11.5" class="anchored" data-anchor-id="theme">
+<span class="header-section-number">11.5</span> Theme</h2>
+<p>Now I’ll really customise the appearance. I found the <code>theme()</code> function intimidating at first, but once you work with it for a bit and get your head around the <code>element_*</code> functions, it’s straightforward and very powerful. I just wish I could figure out how to put the plot caption in the margin like I did for the legend.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>rbcol <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"red3"</span>, </span>
+<span id="cb7-2"><a href="#cb7-2"></a>           <span class="st">"darkgoldenrod1"</span>, </span>
+<span id="cb7-3"><a href="#cb7-3"></a>           <span class="st">"springgreen3"</span>, </span>
+<span id="cb7-4"><a href="#cb7-4"></a>           <span class="st">"dodgerblue2"</span>, </span>
+<span id="cb7-5"><a href="#cb7-5"></a>           <span class="st">"darkorchid"</span>)</span>
+<span id="cb7-6"><a href="#cb7-6"></a></span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="fu">ggplot</span>(ukso, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Sexual orientation</span><span class="st">`</span>, </span>
+<span id="cb7-8"><a href="#cb7-8"></a>                 <span class="at">y =</span> <span class="st">`</span><span class="at">2019</span><span class="st">`</span>, </span>
+<span id="cb7-9"><a href="#cb7-9"></a>                 <span class="at">fill =</span> <span class="st">`</span><span class="at">Sexual orientation</span><span class="st">`</span>, </span>
+<span id="cb7-10"><a href="#cb7-10"></a>                 <span class="at">color =</span> <span class="st">`</span><span class="at">Sexual orientation</span><span class="st">`</span>)) <span class="sc">+</span> </span>
+<span id="cb7-11"><a href="#cb7-11"></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb7-12"><a href="#cb7-12"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">`</span><span class="at">2019</span><span class="st">`</span>, <span class="st">"%"</span>),</span>
+<span id="cb7-13"><a href="#cb7-13"></a>                <span class="at">angle =</span> <span class="fu">c</span>(<span class="dv">15</span>, <span class="sc">-</span><span class="dv">10</span>, <span class="sc">-</span><span class="dv">10</span>, <span class="sc">-</span><span class="dv">10</span>, <span class="sc">-</span><span class="dv">10</span>)), </span>
+<span id="cb7-14"><a href="#cb7-14"></a>            <span class="at">size =</span> <span class="dv">3</span>, <span class="at">nudge_y =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb7-15"><a href="#cb7-15"></a>  <span class="fu">coord_polar</span>(<span class="at">theta =</span> <span class="st">"y"</span>) <span class="sc">+</span></span>
+<span id="cb7-16"><a href="#cb7-16"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> rbcol) <span class="sc">+</span></span>
+<span id="cb7-17"><a href="#cb7-17"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> rbcol) <span class="sc">+</span></span>
+<span id="cb7-18"><a href="#cb7-18"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">add =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">0</span>)), <span class="at">limits =</span> rev) <span class="sc">+</span></span>
+<span id="cb7-19"><a href="#cb7-19"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">90</span>, <span class="dv">10</span>), </span>
+<span id="cb7-20"><a href="#cb7-20"></a>                     <span class="at">labels =</span> <span class="fu">paste0</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">90</span>, <span class="dv">10</span>), <span class="st">"%"</span>),</span>
+<span id="cb7-21"><a href="#cb7-21"></a>                     <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>)) <span class="sc">+</span></span>
+<span id="cb7-22"><a href="#cb7-22"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Sexual Orientation in the UK (2019)"</span>,</span>
+<span id="cb7-23"><a href="#cb7-23"></a>       <span class="at">caption =</span> <span class="st">"Data from the UK Office for National Statistics</span><span class="sc">\n</span><span class="st">Plot by @lisadebruine for the 2022 #30DayChartChallenge"</span>) <span class="sc">+</span></span>
+<span id="cb7-24"><a href="#cb7-24"></a>  <span class="fu">theme_dark</span>() <span class="sc">+</span></span>
+<span id="cb7-25"><a href="#cb7-25"></a>  <span class="fu">theme</span>(</span>
+<span id="cb7-26"><a href="#cb7-26"></a>    <span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb7-27"><a href="#cb7-27"></a>    <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb7-28"><a href="#cb7-28"></a>    <span class="at">axis.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb7-29"><a href="#cb7-29"></a>    <span class="at">panel.border =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb7-30"><a href="#cb7-30"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb7-31"><a href="#cb7-31"></a>    <span class="at">panel.grid.major.y =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"grey60"</span>),</span>
+<span id="cb7-32"><a href="#cb7-32"></a>    <span class="at">panel.grid.minor.y =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"grey30"</span>),</span>
+<span id="cb7-33"><a href="#cb7-33"></a>    <span class="at">panel.background =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb7-34"><a href="#cb7-34"></a>    <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"black"</span>, <span class="at">color =</span> <span class="st">"transparent"</span>),</span>
+<span id="cb7-35"><a href="#cb7-35"></a>    <span class="at">plot.margin =</span> <span class="fu">unit</span>(<span class="fu">c</span>(.<span class="dv">15</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">1.1</span>), <span class="st">"in"</span>),</span>
+<span id="cb7-36"><a href="#cb7-36"></a>    <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"white"</span>),</span>
+<span id="cb7-37"><a href="#cb7-37"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb7-38"><a href="#cb7-38"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"white"</span>),</span>
+<span id="cb7-39"><a href="#cb7-39"></a>    <span class="at">legend.background =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb7-40"><a href="#cb7-40"></a>    <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb7-41"><a href="#cb7-41"></a>    <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">06</span>, <span class="fl">0.84</span>),</span>
+<span id="cb7-42"><a href="#cb7-42"></a>    <span class="at">plot.caption.position =</span> <span class="st">"plot"</span>,</span>
+<span id="cb7-43"><a href="#cb7-43"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"grey80"</span>, <span class="at">size =</span> <span class="dv">7</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>, </span>
+<span id="cb7-44"><a href="#cb7-44"></a>                                <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">b =</span> .<span class="dv">1</span>, <span class="at">unit =</span> <span class="st">"in"</span>))</span>
+<span id="cb7-45"><a href="#cb7-45"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="11-circular_files/figure-html/circular-day11-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section></main><!-- /main --><script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    setTimeout(function() {
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./10-experimental.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Experimental</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./12-economist.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">The Economist</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">CC-BY 2022, Lisa DeBruine</div>   
+      <div class="nav-footer-center"><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+<li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/debruine/30DCC-2022">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/lisadebruine">
+      <i class="bi bi-twitter" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+</div>
+  </div>
+</footer>
+include/script.js
+
+
+</body></html>

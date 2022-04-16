@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.80">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="description" content="Code and charts for the 2022 30-Day Chart Challenge">
+<title>30DCC - 5&nbsp; Slope</title>
+<style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+<script src="site_libs/quarto-nav/quarto-nav.js"></script><script src="site_libs/quarto-nav/headroom.min.js"></script><script src="site_libs/clipboard/clipboard.min.js"></script><meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script><script src="site_libs/quarto-search/fuse.min.js"></script><script src="site_libs/quarto-search/quarto-search.js"></script><link href="./06-owid.html" rel="next">
+<link href="./04-flora.html" rel="prev">
+<script src="site_libs/cookie-consent/cookie-consent.js"></script><link href="site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
+<script src="site_libs/quarto-html/quarto.js"></script><script src="site_libs/quarto-html/popper.min.js"></script><script src="site_libs/quarto-html/tippy.umd.min.js"></script><script src="site_libs/quarto-html/anchor.min.js"></script><link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script><link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+    "location": "sidebar",
+    "copy-button": false,
+    "collapse-after": 2,
+    "panel-placement": "start",
+    "type": "textbox",
+    "limit": 20,
+    "language": {
+      "search-no-results-text": "No results",
+      "search-matching-documents-text": "matching documents",
+      "search-copy-link-title": "Copy link to search",
+      "search-hide-matches-text": "Hide additional matches",
+      "search-more-match-text": "more match in this document",
+      "search-more-matches-text": "more matches in this document",
+      "search-clear-button-title": "Clear",
+      "search-detached-cancel-button-title": "Cancel",
+      "search-submit-button-title": "Submit"
+    }
+  }</script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script><script type="text/plain" cookie-consent="tracking">
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
+  </script><script type="text/javascript" charset="UTF-8">
+  document.addEventListener('DOMContentLoaded', function () {
+  cookieconsent.run({
+    "notice_banner_type":"simple",
+    "consent_type":"implied",
+    "palette":"light",
+    "language":"en",
+    "page_load_consent_levels":["strictly-necessary","functionality","tracking","targeting"],
+    "notice_banner_reject_button_hide":false,
+    "preferences_center_close_button_hide":false,
+    "website_name":""
+    });
+  });
+  </script><script type="application/json" class="js-hypothesis-config">
+  {
+    "theme": "clean",
+    "openSidebar": false
+  }
+  </script><script async="" src="https://hypothes.is/embed.js"></script><!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]--><link rel="stylesheet" href="include/style.css">
+</head>
+<body class="floating">
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">
+<span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Slope</span>
+</h1>
+      <button type="button" class="quarto-btn-toggle btn">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">30DCC</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/debruine/30DCC-2022/" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+    <a href="" title="Share" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-share"></i></a>
+    <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
+<li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=%7Curl%7C">
+            <i class="bi bi-bi-twitter pe-1"></i>
+          Twitter
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=%7Curl%7C">
+            <i class="bi bi-bi-facebook pe-1"></i>
+          Facebook
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=%7Curl%7C">
+            <i class="bi bi-bi-linkedin pe-1"></i>
+          LinkedIn
+          </a>
+        </li>
+    </ul>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Overview</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-comparisons" aria-expanded="true">Comparisons</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-comparisons" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-comparisons" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-part-to-whole.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Part-to-whole</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-pictogram.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Pictogram</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-historical.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Historical</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-flora.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Flora</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-slope.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Slope</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-owid.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">OWiD</span></a>
+  </div>
+</li>
+    </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-distributions" aria-expanded="true">Distributions</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-distributions" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-distributions" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-physical.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Physical</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-mountains.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Mountains</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-statistics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Statistics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-experimental.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Experimental</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-circular.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Circular</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-economist.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">The Economist</span></a>
+  </div>
+</li>
+    </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-relationships" aria-expanded="true">Relationships</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-relationships" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-relationships" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-correlation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Correlation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-3-dimensional.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">3-dimensional</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15-multivariate.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multivariate</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-environment.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Environment</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-connections.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Connections</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./18-oecd.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">OECD</span></a>
+  </div>
+</li>
+    </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-timeseries" aria-expanded="true">Timeseries</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-timeseries" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-timeseries" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./19-global-challenge.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Global Challenge</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./20-new-tool.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">New Tool</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./21-down-upwards.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Down/Upwards</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./22-animation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Animation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./23-tiles.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Tiles</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./24-financial-times.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Financial Times</span></a>
+  </div>
+</li>
+    </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-uncertainties" aria-expanded="true">Uncertainties</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-uncertainties" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-uncertainties" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./25-trend.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Trend</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./26-interactive.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Interactive</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./27-future.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Future</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./28-deviations.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Deviations</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./29-storytelling.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Storytelling</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./30-un-population.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">UN Population</span></a>
+  </div>
+</li>
+    </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-appendices" aria-expanded="true">Appendices</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-appendices" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-appendices" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./app-a-colours.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Colours</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./app-b-stained-glass.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Stained Glass Heart</span></a>
+  </div>
+</li>
+    </ul>
+</li>
+    </ul>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc"><h2 id="toc-title">Table of contents</h2>
+<ul>
+<li><a href="#data-simulation-function" class="nav-link active" data-scroll-target="#data-simulation-function"> <span class="header-section-number">5.1</span> Data Simulation Function</a></li>
+<li><a href="#default" class="nav-link" data-scroll-target="#default"> <span class="header-section-number">5.2</span> Default</a></li>
+<li><a href="#random-error" class="nav-link" data-scroll-target="#random-error"> <span class="header-section-number">5.3</span> Random error</a></li>
+<li><a href="#random-intercepts-for-country" class="nav-link" data-scroll-target="#random-intercepts-for-country"> <span class="header-section-number">5.4</span> Random intercepts for country</a></li>
+<li><a href="#random-slopes-for-country" class="nav-link" data-scroll-target="#random-slopes-for-country"> <span class="header-section-number">5.5</span> Random slopes for country</a></li>
+<li><a href="#random-intercepts-and-slopes-for-country" class="nav-link" data-scroll-target="#random-intercepts-and-slopes-for-country"> <span class="header-section-number">5.6</span> Random intercepts and slopes for country</a></li>
+<li><a href="#random-intercepts-for-person" class="nav-link" data-scroll-target="#random-intercepts-for-person"> <span class="header-section-number">5.7</span> Random intercepts for person</a></li>
+<li><a href="#random-slopes-for-person" class="nav-link" data-scroll-target="#random-slopes-for-person"> <span class="header-section-number">5.8</span> Random slopes for person</a></li>
+<li><a href="#fixed-effect-of-time" class="nav-link" data-scroll-target="#fixed-effect-of-time"> <span class="header-section-number">5.9</span> Fixed effect of time</a></li>
+<li><a href="#realistic-data" class="nav-link" data-scroll-target="#realistic-data"> <span class="header-section-number">5.10</span> Realistic data</a></li>
+</ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/debruine/30DCC-2022/edit/main/05-slope.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/debruine/30DCC-2022/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/debruine/30DCC-2022/blob/main/05-slope.qmd" class="toc-action">View source</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header"><h1 class="title d-none d-lg-block display-7">
+<span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Slope</span>
+</h1>
+</header><p>I’m going back to data simulation. Someone asked me recently how to add a continuous predictor to a mixed effects model. I’m going to build a function for simulating data with a nested structure sampling people within countries and a continuous predictor of time (0-10). I’ll plot the data with various values for the parameters, including random intercepts and <em>slopes</em>. If you need a refresher on mixed effects models, see <a href="https://debruine.github.io/lmem_sim/">this tutorial by Dale Barr and me</a>.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(faux)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">set.seed</span>(<span class="dv">8675309</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="data-simulation-function" class="level2" data-number="5.1"><h2 data-number="5.1" class="anchored" data-anchor-id="data-simulation-function">
+<span class="header-section-number">5.1</span> Data Simulation Function</h2>
+<p>First, I need to write a function to generate the simulated data. I want to be able to vary the fixed and random effects parameters, but am setting almost everything to 0 as a default. I’m using mixed design simulation functions from the faux package, which you can learn more about in this <a href="https://debruine.github.io/faux/articles/sim_mixed.html">vignette</a>.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Data simulation function</summary><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>sim <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb2-2"><a href="#cb2-2"></a>  <span class="at">n_countries =</span> <span class="dv">10</span>, <span class="co"># number of countries samples</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a>  <span class="at">n_people =</span> <span class="dv">10</span>,    <span class="co"># number of people sampled per country</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>  <span class="at">c_int_sd =</span> <span class="dv">0</span>,     <span class="co"># SD of random intercept for countries</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>  <span class="at">c_time_sd =</span> <span class="dv">0</span>,    <span class="co"># SD of random slope for time (by country)</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>  <span class="at">c_cors =</span> <span class="dv">0</span>,       <span class="co"># correlation between c_int and c_time</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>  <span class="at">p_int_sd =</span> <span class="dv">0</span>,     <span class="co"># SD of random intercept for people</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a>  <span class="at">p_time_sd =</span> <span class="dv">0</span>,    <span class="co"># SD of random slope for time (by person)</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a>  <span class="at">p_cors =</span> <span class="dv">0</span>,       <span class="co"># correlations among p_int, p_time, p_height</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a>  <span class="at">err_sd =</span> <span class="dv">0</span>,       <span class="co"># error SD</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a>  <span class="at">intercept =</span> <span class="dv">0</span>,    <span class="co"># grand intercept</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a>  <span class="at">b_time =</span> <span class="dv">0</span>        <span class="co"># fixed effect of time</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a>){</span>
+<span id="cb2-14"><a href="#cb2-14"></a></span>
+<span id="cb2-15"><a href="#cb2-15"></a><span class="fu">add_random</span>(<span class="at">country =</span> LETTERS[<span class="dv">1</span><span class="sc">:</span>n_countries]) <span class="sc">%&gt;%</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a>  <span class="fu">add_random</span>(<span class="at">person =</span> n_people, </span>
+<span id="cb2-17"><a href="#cb2-17"></a>             <span class="at">.nested_in =</span> <span class="st">"country"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a>  <span class="fu">add_ranef</span>(<span class="at">.by =</span> <span class="st">"country"</span>, </span>
+<span id="cb2-19"><a href="#cb2-19"></a>            <span class="at">c_int =</span> c_int_sd,</span>
+<span id="cb2-20"><a href="#cb2-20"></a>            <span class="at">c_time =</span> c_time_sd,</span>
+<span id="cb2-21"><a href="#cb2-21"></a>            <span class="at">.cors =</span> c_cors) <span class="sc">%&gt;%</span></span>
+<span id="cb2-22"><a href="#cb2-22"></a>  <span class="fu">add_ranef</span>(<span class="at">.by =</span> <span class="st">"person"</span>, </span>
+<span id="cb2-23"><a href="#cb2-23"></a>            <span class="at">p_int =</span> p_int_sd, </span>
+<span id="cb2-24"><a href="#cb2-24"></a>            <span class="at">p_time =</span> p_time_sd, </span>
+<span id="cb2-25"><a href="#cb2-25"></a>            <span class="at">.cors =</span> p_cors) <span class="sc">%&gt;%</span></span>
+<span id="cb2-26"><a href="#cb2-26"></a>  <span class="fu">crossing</span>(<span class="at">time =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-27"><a href="#cb2-27"></a>  <span class="fu">add_ranef</span>(<span class="at">err =</span> err_sd) <span class="sc">%&gt;%</span></span>
+<span id="cb2-28"><a href="#cb2-28"></a>  <span class="fu">mutate</span>(<span class="at">dv =</span> intercept <span class="sc">+</span> c_int <span class="sc">+</span> p_int <span class="sc">+</span> </span>
+<span id="cb2-29"><a href="#cb2-29"></a>           (b_time <span class="sc">+</span> p_time <span class="sc">+</span> c_time) <span class="sc">*</span> time <span class="sc">+</span> </span>
+<span id="cb2-30"><a href="#cb2-30"></a>           err)</span>
+<span id="cb2-31"><a href="#cb2-31"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section><section id="default" class="level2" data-number="5.2"><h2 data-number="5.2" class="anchored" data-anchor-id="default">
+<span class="header-section-number">5.2</span> Default</h2>
+<p>The default plot is pretty boring. Everyone’s score is is equal to the grand intercept.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>data <span class="ot">&lt;-</span> <span class="fu">sim</span>()</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> dv, <span class="at">color =</span> country)) <span class="sc">+</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">formula =</span> y <span class="sc">~</span> x) <span class="sc">+</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a>  <span class="fu">stat_summary</span>(<span class="at">geom =</span> <span class="st">"point"</span>, <span class="at">fun =</span> mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="05-slope_files/figure-html/slope-default-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="random-error" class="level2" data-number="5.3"><h2 data-number="5.3" class="anchored" data-anchor-id="random-error">
+<span class="header-section-number">5.3</span> Random error</h2>
+<p>We can make the simulation more realistic by adding random error.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>data <span class="ot">&lt;-</span> <span class="fu">sim</span>(<span class="at">err_sd =</span> <span class="dv">1</span>)</span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> dv, <span class="at">color =</span> country, <span class="at">group =</span> person)) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">formula =</span> y <span class="sc">~</span> x, <span class="at">alpha =</span> <span class="fl">0.1</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>country, <span class="at">nrow =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="05-slope_files/figure-html/slope-err-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Here are the data for each person in country A.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>data <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">filter</span>(country <span class="sc">==</span> <span class="st">"A"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> dv, <span class="at">color =</span> person)) <span class="sc">+</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">formula =</span> y <span class="sc">~</span> x, <span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a>  <span class="fu">stat_summary</span>(<span class="at">geom =</span> <span class="st">"point"</span>, <span class="at">fun =</span> mean, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>person, <span class="at">nrow =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="05-slope_files/figure-html/slope-err-person-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We’re going to leave the error SD as a totally unrealistic 0 for the next few plots to make it easier to see what happens to the data when you’re changing random effects parameters.</p>
+</section><section id="random-intercepts-for-country" class="level2" data-number="5.4"><h2 data-number="5.4" class="anchored" data-anchor-id="random-intercepts-for-country">
+<span class="header-section-number">5.4</span> Random intercepts for country</h2>
+<p>Now let’s add a random intercept per country. Setting c_int_sd to 1 means that the intercepts for each country are simulated to vary with an SD of 1.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>data <span class="ot">&lt;-</span> <span class="fu">sim</span>(<span class="at">c_int_sd =</span> <span class="dv">1</span>)</span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> dv, <span class="at">color =</span> country)) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">formula =</span> y <span class="sc">~</span> x) <span class="sc">+</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a>  <span class="fu">stat_summary</span>(<span class="at">geom =</span> <span class="st">"point"</span>, <span class="at">fun =</span> mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="05-slope_files/figure-html/slope-c-int-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="random-slopes-for-country" class="level2" data-number="5.5"><h2 data-number="5.5" class="anchored" data-anchor-id="random-slopes-for-country">
+<span class="header-section-number">5.5</span> Random slopes for country</h2>
+<p>What does it look like if we leave the random intercepts at 0 and set the random slope of time for countries to 1?</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>data <span class="ot">&lt;-</span> <span class="fu">sim</span>(<span class="at">c_time_sd =</span> <span class="dv">1</span>)</span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> dv, <span class="at">color =</span> country)) <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">formula =</span> y <span class="sc">~</span> x) <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>  <span class="fu">stat_summary</span>(<span class="at">geom =</span> <span class="st">"point"</span>, <span class="at">fun =</span> mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="05-slope_files/figure-html/slope-c-time-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="random-intercepts-and-slopes-for-country" class="level2" data-number="5.6"><h2 data-number="5.6" class="anchored" data-anchor-id="random-intercepts-and-slopes-for-country">
+<span class="header-section-number">5.6</span> Random intercepts and slopes for country</h2>
+<p>What if we set both the random intercept and slope of time for country to 1? Now, the intercepts vary around 0 and the slopes of the lines also vary.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>data <span class="ot">&lt;-</span> <span class="fu">sim</span>(<span class="at">c_int_sd =</span> <span class="dv">1</span>, <span class="at">c_time_sd =</span> <span class="dv">1</span>)</span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> dv, <span class="at">color =</span> country)) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">formula =</span> y <span class="sc">~</span> x) <span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a>  <span class="fu">stat_summary</span>(<span class="at">geom =</span> <span class="st">"point"</span>, <span class="at">fun =</span> mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="05-slope_files/figure-html/slope-c-int-time-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Random intercepts and slopes can be correlated. For example, the time effect might be larger in countries where people tend to have lower scores, leading the random slope and intercept for country to be negatively correlated.</p>
+<p>I increased the SD of the random intercept to make it easier to see that countries with a higher intercept tend to have more negative slopes than those with a lower intercept.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>data <span class="ot">&lt;-</span> <span class="fu">sim</span>(<span class="at">c_int_sd =</span> <span class="dv">5</span>, <span class="at">c_time_sd =</span> <span class="dv">1</span>, <span class="at">c_cors =</span> <span class="sc">-</span><span class="fl">0.5</span>)</span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> dv, <span class="at">color =</span> country)) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">formula =</span> y <span class="sc">~</span> x) <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a>  <span class="fu">stat_summary</span>(<span class="at">geom =</span> <span class="st">"point"</span>, <span class="at">fun =</span> mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="05-slope_files/figure-html/slope-c-int-time-cor-neg-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>And here’s the same plot with a positive correlation. Now the countries with a higher intercept tend to have a more positive effect of time.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>data <span class="ot">&lt;-</span> <span class="fu">sim</span>(<span class="at">c_int_sd =</span> <span class="dv">5</span>, <span class="at">c_time_sd =</span> <span class="dv">1</span>, <span class="at">c_cors =</span> <span class="sc">+</span><span class="fl">0.5</span>)</span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> dv, <span class="at">color =</span> country)) <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">formula =</span> y <span class="sc">~</span> x) <span class="sc">+</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a>  <span class="fu">stat_summary</span>(<span class="at">geom =</span> <span class="st">"point"</span>, <span class="at">fun =</span> mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="05-slope_files/figure-html/slope-c-int-time-cor-pos-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="random-intercepts-for-person" class="level2" data-number="5.7"><h2 data-number="5.7" class="anchored" data-anchor-id="random-intercepts-for-person">
+<span class="header-section-number">5.7</span> Random intercepts for person</h2>
+<p>If we vary the random intercepts by person, this increases the variability within each country. Note that because we’re only sampling 10 people in each country, this means the intercept for each country will vary a bit depending on the mean of the 10 people from that country.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>data <span class="ot">&lt;-</span> <span class="fu">sim</span>(<span class="at">p_int_sd =</span> <span class="dv">1</span>)</span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> dv, <span class="at">color =</span> country)) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">formula =</span> y <span class="sc">~</span> x, <span class="at">alpha =</span> <span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="05-slope_files/figure-html/slope-p-int-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Let’s look at the data for each country separately.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> dv, <span class="at">color =</span> country, <span class="at">group =</span> person)) <span class="sc">+</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">size =</span> <span class="fl">0.5</span>, <span class="at">formula =</span> y <span class="sc">~</span> x, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>country, <span class="at">nrow =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="05-slope_files/figure-html/slope-p-int-country-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="random-slopes-for-person" class="level2" data-number="5.8"><h2 data-number="5.8" class="anchored" data-anchor-id="random-slopes-for-person">
+<span class="header-section-number">5.8</span> Random slopes for person</h2>
+<p>Vary the random slopes by person. Here, we’re viewing the data for each country separately. The thick lines are the average slope for the country.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> dv, <span class="at">color =</span> country)) <span class="sc">+</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">group =</span> person), <span class="at">size =</span> .<span class="dv">2</span>, </span>
+<span id="cb13-3"><a href="#cb13-3"></a>              <span class="at">method =</span> lm, <span class="at">formula =</span> y <span class="sc">~</span> x, </span>
+<span id="cb13-4"><a href="#cb13-4"></a>              <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">size =</span> <span class="fl">1.5</span>, <span class="at">formula =</span> y <span class="sc">~</span> x, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb13-6"><a href="#cb13-6"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>country, <span class="at">nrow =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="05-slope_files/figure-html/slope-p-time-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="fixed-effect-of-time" class="level2" data-number="5.9"><h2 data-number="5.9" class="anchored" data-anchor-id="fixed-effect-of-time">
+<span class="header-section-number">5.9</span> Fixed effect of time</h2>
+<p>Let’s add a fixed effect of time.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>data <span class="ot">&lt;-</span> <span class="fu">sim</span>(<span class="at">b_time =</span> <span class="dv">1</span>)</span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> dv, <span class="at">color =</span> country)) <span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">formula =</span> y <span class="sc">~</span> x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="05-slope_files/figure-html/slope-fixed-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>That’s pretty boring, so lets also add random time slopes for both country and person. Make the fixed effect of time bigger to emphasise how the average slopes by country tend to be positive, even though there is a lot of variation in the slopes for individual people.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>data <span class="ot">&lt;-</span> <span class="fu">sim</span>(<span class="at">b_time =</span> <span class="dv">2</span>, <span class="at">c_time_sd =</span> <span class="dv">1</span>, <span class="at">p_time_sd =</span> <span class="dv">1</span>)</span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> dv, <span class="at">color =</span> country)) <span class="sc">+</span></span>
+<span id="cb15-3"><a href="#cb15-3"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">group =</span> person), <span class="at">size =</span> .<span class="dv">2</span>, </span>
+<span id="cb15-4"><a href="#cb15-4"></a>              <span class="at">method =</span> lm, <span class="at">formula =</span> y <span class="sc">~</span> x, </span>
+<span id="cb15-5"><a href="#cb15-5"></a>              <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb15-6"><a href="#cb15-6"></a>  <span class="fu">geom_smooth</span>(<span class="at">size =</span> <span class="fl">1.5</span>, <span class="at">method =</span> lm, <span class="at">formula =</span> y <span class="sc">~</span> x, </span>
+<span id="cb15-7"><a href="#cb15-7"></a>              <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb15-8"><a href="#cb15-8"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>country, <span class="at">nrow =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="05-slope_files/figure-html/slope-fixed-rand-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="realistic-data" class="level2" data-number="5.10"><h2 data-number="5.10" class="anchored" data-anchor-id="realistic-data">
+<span class="header-section-number">5.10</span> Realistic data</h2>
+<p>Finally, let’s set all of the fixed and random effect parameters to non-zero values.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>data <span class="ot">&lt;-</span> <span class="fu">sim</span>(<span class="at">c_int_sd =</span> <span class="dv">10</span>, <span class="at">c_time_sd =</span> <span class="dv">1</span>, <span class="at">c_cors =</span> <span class="fl">0.5</span>,</span>
+<span id="cb16-2"><a href="#cb16-2"></a>            <span class="at">p_int_sd =</span> <span class="dv">10</span>, <span class="at">p_time_sd =</span> <span class="dv">1</span>, <span class="at">p_cors =</span> <span class="fl">0.5</span>, </span>
+<span id="cb16-3"><a href="#cb16-3"></a>            <span class="at">err_sd =</span> <span class="dv">5</span>, <span class="at">intercept =</span> <span class="dv">100</span>, <span class="at">b_time =</span> <span class="dv">2</span>)</span>
+<span id="cb16-4"><a href="#cb16-4"></a></span>
+<span id="cb16-5"><a href="#cb16-5"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> dv, <span class="at">color =</span> country)) <span class="sc">+</span></span>
+<span id="cb16-6"><a href="#cb16-6"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">group =</span> person), <span class="at">size =</span> .<span class="dv">2</span>, </span>
+<span id="cb16-7"><a href="#cb16-7"></a>              <span class="at">method =</span> lm, <span class="at">formula =</span> y <span class="sc">~</span> x, </span>
+<span id="cb16-8"><a href="#cb16-8"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb16-9"><a href="#cb16-9"></a>  <span class="fu">geom_smooth</span>(<span class="at">size =</span> <span class="fl">1.5</span>, <span class="at">method =</span> lm, <span class="at">formula =</span> y <span class="sc">~</span> x, </span>
+<span id="cb16-10"><a href="#cb16-10"></a>              <span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb16-11"><a href="#cb16-11"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>country, <span class="at">nrow =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb16-12"><a href="#cb16-12"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="05-slope_files/figure-html/slope-realistic-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section></main><!-- /main --><script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    setTimeout(function() {
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./04-flora.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Flora</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./06-owid.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">OWiD</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">CC-BY 2022, Lisa DeBruine</div>   
+      <div class="nav-footer-center"><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+<li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/debruine/30DCC-2022">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/lisadebruine">
+      <i class="bi bi-twitter" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+</div>
+  </div>
+</footer>
+include/script.js
+
+
+</body></html>

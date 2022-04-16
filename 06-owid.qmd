@@ -1,0 +1,294 @@
+# OWiD {#sec-owid}
+
+```{r, include = FALSE}
+source("R/setup.R")
+```
+
+```{r, message = FALSE}
+library(tidyverse)     # for data wrangling and visualisation
+library(sf)            # for maps
+library(rnaturalearth) # for map coordinates
+library(gganimate)     # for animated plots
+library(transformr)    # for animated maps
+library(gifski)        # for more efficient gif creation
+library(ggthemes)      # for map theme
+library(lwgeom)        # for map projection
+library(showtext)      # for adding fonts
+
+# add the playfair font for the plot title
+font_add_google(name = "Playfair Display", family = "Playfair Display")
+# font_add(family = "Playfair Display",
+#          regular = "~/Library/Fonts/PlayfairDisplay-VariableFont_wght.ttf")
+showtext_auto()
+```
+
+I hadn't ever really looked at [Our World in Data](https://ourworldindata.org/) in detail before. It's amazing! So much data and so many clever visualisations. I love the maps, so I thought I'd try to recreate the [share of individuals using the internet](https://ourworldindata.org/technology-adoption#share-of-population-with-internet-access).
+
+```{r owid-original, echo = FALSE}
+knitr::include_graphics("images/share-of-individuals-using-the-internet.png")
+```
+
+
+
+
+## Data
+
+I hate working with columns that have uppercase letters or spaces in the names, so I adjusted the column names when importing. I also found out later that this dataset labels South Sudan as "SSD", but the data from sf labels it as "SDS", so I'll fix it here.
+
+```{r}
+#| code-summary: Load data
+# data from https://ourworldindata.org/technology-adoption
+data_orig <- read_csv("data/share-of-individuals-using-the-internet.csv",
+                      col_names = c("country", "code", "year", "it_net_users"),
+                      skip = 1, show_col_types = FALSE) %>%
+  mutate(code = recode(code, SSD = "SDS", .default = code))
+```
+
+There are a lot of missing years. I want them in the map explicitly as rows with it_net_users == NA, for reasons that will get clear later. Pivot wider, which will create a column for each year with NA as the value for any countries that don't have a row for that year, then pivot back longer. 
+
+```{r}
+data_na <- data_orig %>% 
+  pivot_wider(names_from = year, 
+              values_from = it_net_users) %>%
+  pivot_longer(cols = -c(country, code),
+               names_to = "year",
+               values_to = "it_net_users", 
+               names_transform = list(year = as.integer))
+```
+
+
+## Map
+
+Now I need some world map coordinates. The `r pkg("sf")` and `r pkg("rnaturalearth")` packages make this easy.
+
+```{r owid-map}
+#| code-summary: Get map coordinates
+world_sf <- ne_countries(returnclass = "sf", scale = "medium")
+
+ggplot(world_sf) + 
+  geom_sf(size = 0.3) +
+  theme_map()
+```
+
+## Projection
+
+Here's a better projection. You have to use the `st_transform_proj()` function from `r pkg("lwgeom")` to transform the coordinates. You need to add `coord_sf(datum = NULL)` to the plots to avoid an error message when `r pkg("sf")` tries to plot the graticule. I also cropped the coordinates to remove giant Antarctica and centre the continents better.
+
+This is tricky, and I found tutorials by [Claus Wilke](https://wilkelab.org/practicalgg/articles/Winkel_tripel.html) and the [WZB Data Science Blog](https://datascience.blog.wzb.eu/2019/04/30/zooming-in-on-maps-with-sf-and-ggplot2/) really helpful.
+
+```{r owid-wintri}
+#| code-summary: Wintri projection
+
+# translate the coordinate reference system
+crs <- "+proj=wintri"  # winkel tripel projection
+world_wintri <- lwgeom::st_transform_proj(world_sf, crs = crs)
+
+# translate and crop coordinates
+trans_coords <- st_sfc(
+  st_point(c(-1.4e7, -6.5e6)), # lower left lat and lon
+  st_point(c(2e7, 1e7)),       # upper right lat and lon
+  crs = crs) %>%
+  st_transform(crs = crs) %>%
+  st_coordinates()
+
+crop_coords <- coord_sf(
+  datum = NULL, 
+  xlim = trans_coords[,'X'], 
+  ylim = trans_coords[,'Y'], 
+  expand = FALSE)
+
+ggplot(world_wintri) + 
+  geom_sf(size = 0.5/.pt) +
+  crop_coords +
+  theme_map() +
+  theme(plot.background = element_rect(color = "black"))
+```
+
+## Data Map
+
+Now to add the internet use data to the map data. I select down to the relevant columns to make visual inspection easier.
+
+```{r}
+data_map_int <- left_join(world_wintri, data_na, 
+                          by = c("gu_a3" = "code")) %>%
+  select(country, year, code = gu_a3, it_net_users, geometry)
+```
+
+Plot with facets by year. This takes a while to run, but it's useful to see what each frame will look like. 
+
+```{r owid-data-map}
+#| cache: true
+
+ggplot(data_map_int) + 
+  geom_sf(mapping = aes(fill = it_net_users),
+          size = 0.1) +
+  crop_coords +
+  scale_fill_distiller(palette = "Blues", direction = -1) +
+  facet_wrap(~year) +
+  theme_map() +
+  theme(legend.position = "right")
+```
+
+Where is the NA facet coming from? It must be regions that never have any data. I'll group by country and omit any that are entirely NA.
+
+```{r}
+# get data for countries with at least one valid year
+data_map_int_valid <- data_map_int %>%
+  group_by(country) %>%
+  filter(!all(is.na(year))) %>%
+  ungroup()
+```
+
+Now let's retry the map, and switch the fill to a nicer viridis gradient. Set the na.value to red to more easily see where the missing data is.
+
+```{r owid-map-na}
+#| cache: true
+
+ggplot(data_map_int_valid) + 
+  geom_sf(mapping = aes(fill = it_net_users),
+          size = 0.1) +
+  crop_coords +
+  scale_fill_viridis_c(na.value = "red") +
+  facet_wrap(~year) +
+  theme_map() +
+  theme(legend.position = "right")
+```
+
+## Missing data
+
+We don't have data for a lot of countries in some years. I'm going to use the previous year's data where there is missing data. I'll also add a column for whether or not it's a filled value so I can indicate this on the map if I want. 
+
+```{r}
+data_map_int_no_missing <- data_map_int_valid %>%
+  mutate(it_net_users_no_na = it_net_users,
+         missing = is.na(it_net_users)) %>%
+  arrange(code, year) %>%
+  group_by(country) %>%
+  fill(it_net_users_no_na, .direction = "down") %>%
+  ungroup()
+```
+
+
+There's still one big persistently missing country in the middle of Africa.
+
+```{r owid-map-missing}
+#| cache: true
+
+ggplot(data_map_int_no_missing) + 
+  geom_sf(mapping = aes(fill = it_net_users_no_na),
+          size = 0.1) +
+  crop_coords +
+  scale_fill_viridis_c(na.value = "red") +
+  facet_wrap(~year) +
+  theme_map() +
+  theme(legend.position = "right")
+```
+
+## South Sudan
+
+South Sudan got independence from Sudan in 2011, so lets fill in the values for South Sudan from 1990 to 2012 using the values from Sudan. I found it weirdly hard to do this, and would appreciate if someone could show me a tidier way. Also, I'm sure it will come back to bite me, but I've named this data table `data_map_int_final`.
+
+```{r}
+sudan <- data_map_int_no_missing %>%
+  filter(country == "Sudan",
+         year <= 2012) %>%
+  pull(it_net_users_no_na)
+
+ss_rows <- which(data_map_int_no_missing$country == "South Sudan" & 
+                 data_map_int_no_missing$year <= 2012)
+
+nona <- data_map_int_no_missing$it_net_users_no_na
+nona[ss_rows] <- sudan
+
+data_map_int_final <- data_map_int_no_missing %>%
+  mutate(it_net_users_no_na = nona)
+  
+```
+
+
+## Single frame
+
+Now I want to set up what a single frame will look like in my animation. I'll filter the data down to the year 2019 and work on the plot until I'm happy.
+
+```{r owid-map-frame, fig.width = 8, fig.height = 5}
+
+ggplot(filter(data_map_int_final, year == 2019)) + 
+  geom_sf(mapping = aes(fill = it_net_users_no_na/100),
+          size = 0.1) +
+  crop_coords +
+  scale_fill_viridis_c(
+    name = NULL,
+    limits = c(0, 1),
+    breaks = seq(0, 1, .1),
+    labels = function(x)scales::percent(x, accuracy = 1),
+    guide = guide_colorbar(
+      label.position = "top", 
+      barheight = unit(.1, "in"),
+      frame.colour = "black",
+      ticks.colour = "black"
+    )
+  ) +
+  labs(title = "Share of the population using the internet, 2019",
+       caption = "Recreation of OurWorldInData.org/technology-adoption | Plot by @lisadebruine") +
+  theme_map() +
+  theme(
+    legend.background = element_blank(),
+    legend.position = "bottom",
+    legend.key.width = unit(.187, "npc"),
+    plot.title = element_text(family = "Playfair Display", size = 20, colour = "#555555"),
+    plot.caption = element_text(size = 10, color = "#555555")
+  )
+  
+```
+
+
+
+## Animated plot
+
+```{r, eval = FALSE}
+anim <- ggplot(data_map_int_final) + 
+  geom_sf(mapping = aes(fill = it_net_users_no_na/100),
+          size = 0.1) +
+  crop_coords +
+  scale_fill_viridis_c(
+    name = NULL,
+    limits = c(0, 1),
+    breaks = seq(0, 1, .1),
+    labels = function(x)scales::percent(x, accuracy = 1),
+    guide = guide_colorbar(
+      label.position = "top", 
+      barheight = unit(.1, "in"),
+      frame.colour = "black",
+      ticks.colour = "black"
+    )
+  ) +
+  labs(title = "Share of the population using the internet, {frame_time}",
+       caption = "Recreation of OurWorldInData.org/technology-adoption | Plot by @lisadebruine") +
+  theme_map() +
+  theme(
+    legend.background = element_blank(),
+    legend.position = "bottom",
+    legend.key.width = unit(.187, "npc"),
+    plot.title = element_text(family = "Playfair Display", size = 20, colour = "#555555"),
+    plot.caption = element_text(size = 10, color = "#555555")
+  ) +
+  transition_time(year)
+```
+
+It takes absolutely forever to create the animation (I think because it's unnecessarily tweening the shapes, but I don't have time to learn more about gganimate today), so run this once and set the code chunk to `eval = FALSE` and load the gif from file.
+
+```{r, eval = FALSE}
+anim_save("images/day6.gif", animation = anim, 
+          nframes = 30, fps = 4, start_pause = 6, end_pause = 6, 
+          width = 8, height = 5, units = "in", res = 150)
+```
+
+
+
+```{r owid-day6}
+knitr::include_graphics("images/day6.gif")
+```
+
+
+
+

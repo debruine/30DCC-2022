@@ -1,0 +1,158 @@
+/* psyTeachR default styles. Do not edit this !! */
+/* (edit style.css for your own book styles) */
+
+:root {
+  --pink: #983E82;   /* hsl(315, 42%, 42%) */
+  --orange: #E2A458; /* hsl( 33, 70%, 62%) */
+  --yellow: #F5DC70; /* hsl( 49, 87%, 70%) */
+  --green: #59935B;  /* hsl(122, 25%, 46%) */
+  --blue: #467AAC;   /* hsl(209, 42%, 47%) */
+  --purple: #61589C; /* hsl(248, 28%, 48%) */
+}
+
+@media screen and (max-width: 991px) {
+  #main-nav nav {
+    width: 49%;
+    display: inline-block;
+    vertical-align: text-top;
+  }
+
+  .book-toc {
+    column-count: 1;
+  }
+
+  #content {
+    flex:0 0 100%;
+    -webkit-flex:0 0 100%;
+    max-width:100%
+  }
+}
+
+.chapter-nav .next, .chapter-nav .prev {
+  box-shadow: none;
+  border-color: var(--blue);
+}
+
+/* references with hanging indent */
+.csl-entry {
+  padding-left: 2em ;
+  text-indent: -2em ;
+}
+
+.package { font-weight: 600; }
+.package::before { content: "{"; }
+.package::after { content: "}"; }
+
+.small_right, .small_left {
+  display: inline-block;
+  width: 25%;
+  max-width: 200px;
+}
+.small_right { float: right; margin: 1em 0 1em 1em;}
+.small_left { float: left; margin: 1em 1em 1em 0;}
+.small_right img, .small_left img { max-width: 100%; }
+
+/* rainbow borders */
+body {
+  margin-top: 18px;
+  box-shadow: 0 -3px 0 0px var(--purple),
+              0 -6px 0 0px var(--blue),
+              0 -9px 0 0px var(--green),
+              0 -12px 0 0px var(--yellow),
+              0 -15px 0 0px var(--orange),
+              0 -18px 0 0px var(--pink);
+}
+
+/* set styles for alert boxes */
+
+.dangerous, .warning, .info , .alert, .try {
+  padding: 1em 1em 0.25em 3.5em;
+  margin: 10px 0;
+  background-color: hsla(0, 0%, 100%, .1);
+  background-position: 0.5em 0.5em;
+  background-size: 2.5em;
+  background-repeat: no-repeat;
+  border-radius: 5px;
+}
+
+.dangerous {
+  background-image: url("../images/alerts/danger.svg");
+  background-color: hsla(315, 42%, 42%, .10);
+  border: 1px solid var(--pink);
+}
+
+.warning {
+  background-image: url("../images/alerts/warning.svg");
+  background-color: hsla(49, 87%, 70%, .1);
+  border: 1px solid var(--yellow);
+}
+
+.info {
+  background-image: url("../images/alerts/info.svg");
+  background-color: hsla(209, 42%, 47%, .1);
+  border: 1px solid var(--blue);
+}
+
+.try {
+  background-image: url("../images/alerts/rainbow.svg");
+  background-color: hsla(248, 28%, 48%, .1);
+  border: 1px solid var(--purple);
+  background-position: 0.5em -.25em;
+}
+
+
+/* verbatim code chunks with ```{r ...} at top */
+
+div.verbatim {
+  border: 1px solid rgb(238, 238, 238);
+  padding: 0.25em 0 0 0;
+  border-radius: 3.2px;
+  margin: 0 -0.5rem 1rem -0.5rem;
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+div.verbatim code {
+  border: none !important;
+  font-size: 100% !important;
+  display: block;
+}
+
+div.verbatim pre.sourceCode.r {
+  border: none !important;
+}
+
+div.verbatim {
+  background-color: rgb(247, 247, 247) !important;
+}
+
+div.verbatim * {
+  background-color: transparent !important;
+}
+
+div.verbatim div.sourceCode {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+div.verbatim pre.sourceCode {
+  margin: 0 !important;
+  padding: 0 1em !important;
+}
+
+
+/* external link icons */
+a[target="_blank"]::after {
+  margin: 0 3px 0 5px;
+  font-weight: 900;
+  font-family:"Font Awesome 5 Free";
+  content:"\f360"; /* f35d or  f360*/
+}
+
+a.glossary::after, code a::after {
+  content: none !important;
+  margin: 0 !important;
+}
+
+a.glossary, a:visited.glossary {
+  color: var(--purple) !important;
+}
+
