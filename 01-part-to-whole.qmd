@@ -4,7 +4,9 @@
 source("R/setup.R")
 ```
 
-```{r, message=FALSE}
+```{r}
+#| code.summary: Setup
+
 library(treemap)
 library(faux)
 library(tidyverse)
@@ -123,7 +125,7 @@ school2 <- school %>%
 Finally, make the borders thicker. It's starting to look like a Mondrian!
 
 ```{r pth-treemap-final}
-#| fig-cap: Treemap plot of classes nested in grades (P1 to P5). There are 2-4 classes in each grade with 16-35 students. The size of each box represents the size of the class, and the colour of the box represents the grade.
+#| fig-alt: Treemap plot of classes nested in grades (P1 to P5). There are 2-4 classes in each grade with 16-35 students. The size of each box represents the size of the class, and the colour of the box represents the grade.
 day1_plot <- school2 %>%
   treemap(
     index = c("grade", "class"), 

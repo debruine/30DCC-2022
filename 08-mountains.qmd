@@ -9,7 +9,9 @@ Munros are the hills in Scotland over 3000 feet high. Many Scottish people are o
 
 So I thought for the mountains prompt, I'd map all of the Munros in Scotland by height. Then someday, when I bag a munro, I can mark it on the map.
 
-```{r, message=FALSE}
+```{r}
+#| code.summary: Setup
+
 library(tidyverse)     # for data wrangling
 library(sf)            # for maps
 library(rnaturalearth) # for map coordinates
@@ -166,7 +168,10 @@ ggplot() +
 
 There's no munros on the Northern Isles, so I've cropped them out of the map. I also made the colours better. I added a label to `geom_point()`, which will produce a warning that it isn't used, but you'll see why in the next step.
 
-```{r mountains-pretty, fig.width = 4.5, fig.height = 6, warning=FALSE}
+```{r mountains-pretty, fig.width = 4.5, fig.height = 6}
+#| fig.cap: The location and height of Scotland's Munros.
+#| fig.alt: A map of Scotland with the location of all the munros (hills over 3000 feet) mapped with their height shown by colour.
+
 munro_plot <- ggplot() + 
   geom_sf(data = scotland_sf,
           mapping = aes(),

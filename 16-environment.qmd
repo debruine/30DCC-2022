@@ -1,7 +1,16 @@
 # Environment
 
+```{r, include = FALSE}
+source("R/setup.R")
+```
+
+Bees are an important environmental issue. They pollinate crops, trees and other plants. They're a keystone species that much of life on Earth depends on. So I went looking for some data on bee populations over time.
+
 ```{r}
-library(tidyverse)
+#| code.summary: Setup
+
+library(tidyverse) # for data wrangling and viz
+theme_set(theme_minimal())
 ```
 
 
@@ -14,28 +23,30 @@ bees <- read_csv("data/Bee Colony Survey Data by State.csv",
                  show_col_types = FALSE)
 ```
 
-
-
-It looks like Data Item is different types of values, so let's make this wide.
+After looking at the table, it seems that the data I want is probably in the Year, Period, State, Data Item, and Value columns. I'll familiarise myself with the data using the `count()` function.
 
 ```{r}
 bees %>%
   count(`Data Item`)
 ```
 
+It looks like Data Item is different types of values, so let's select just the interesting columns and filter to 
+
 ```{r}
-wide_bees <- bees %>%
-  pivot_wider(names_from = `Data Item`,
-              values_from = Value) %>%
-  select(Year, Period, State, INVENTORY)
+bee_inventory <- bees %>%
+  filter(`Data Item` == "INVENTORY") %>%
+  select(Year, Period, State, Inventory = Value)
+
+head(bee_inventory)
 ```
+
 
 ## Initial Plot
 
 Make a quick plot to orient to the data.
 
 ```{r}
-ggplot(wide_bees, aes(x = Year, y = INVENTORY, color = State)) +
+ggplot(bee_inventory, aes(x = Year, y = Inventory, color = State)) +
   geom_line(show.legend = FALSE)
 ```
 
@@ -43,82 +54,131 @@ ggplot(wide_bees, aes(x = Year, y = INVENTORY, color = State)) +
 OK, there's something odd going on after 2015. It looks like data were just recorded for the "MARKETING YEAR" up to 2015, when they also started getting recorded by quarter. 
 
 ```{r, results='asis'}
-wide_bees %>%
+bee_inventory %>%
   count(Year, Period) %>%
-  DT::datatable()
+  pivot_wider(names_from = Period, values_from = n) %>%
+  arrange(desc(Year)) %>%
+  head(10)
 ```
 
 Let's limit the data to just "MARKETING YEAR".
 
 ```{r}
-wide_bees %>%
+bee_inventory %>%
   filter(Period == "MARKETING YEAR") %>%
-  ggplot(aes(x = Year, y = INVENTORY, color = State)) +
+  ggplot(aes(x = Year, y = Inventory, color = State)) +
   geom_line(show.legend = FALSE)
 ```
 
 ## Too much data
 
-There's too much data on the plot. Let's deal with it by faceting the plot by tertiles.
+There's too much data on the plot. Let's deal with it by faceting the plot by quantiles.
 
 ```{r}
-qu <- seq(0, 1, length.out = 4)
+qu <- seq(0, 1, length.out = 5)
 
-bee_quants <- wide_bees %>%
+state_quantiles <- bee_inventory %>%
   filter(Period == "MARKETING YEAR") %>%
   group_by(State) %>%
-  filter(n() > 5) %>%
-  mutate(mean_inv = mean(INVENTORY)) %>%
-  ungroup() %>%
+  summarise(max_inv = max(Inventory),
+            .groups = "drop") %>%
   mutate(quantile = case_when(
-    mean_inv <= quantile(mean_inv, qu[2]) ~ 1,
-    mean_inv <= quantile(mean_inv, qu[3]) ~ 2,
-    mean_inv <= quantile(mean_inv, qu[4]) ~ 3
+    max_inv <= quantile(max_inv, qu[2]) ~ 1,
+    max_inv <= quantile(max_inv, qu[3]) ~ 2,
+    max_inv <= quantile(max_inv, qu[4]) ~ 3,
+    max_inv <= quantile(max_inv, qu[5]) ~ 4
   ))
 
+bee_quants <- bee_inventory %>%
+  filter(Period == "MARKETING YEAR") %>%
+  left_join(state_quantiles, by = "State") %>%
+  mutate(State = str_to_title(State))
 ```
 
 ## Labels
 
-Make a label for each tertile with the names of all the states. Use `str_wrap()` to make sure it fits on the plot facet.
+Make labels for each state with a y-axis value that spaces them evenly but roughly orders them by the last year's inventory.
 
 ```{r}
-labels <- bee_quants %>%
-  select(State, quantile) %>%
-  distinct() %>%
+# make labels for each state
+state_labels <- bee_quants %>%
+  group_by(State) %>%
+  filter(Year == max(Year)) %>%
+  ungroup() %>%
   group_by(quantile) %>%
-  arrange(State) %>%
-  mutate(State = str_to_title(State)) %>%
-  summarise(label = paste(State, collapse = ", ")) %>%
-  mutate(label = str_wrap(label, width = 50, indent = 0, exdent = 0)) %>%
+  arrange(Inventory) %>%
+  mutate(rank = n() + 1 - row_number(),
+         y = seq(0, max(max_inv), length.out = n())) %>%
+  ungroup() %>%
+  select(State, quantile, y, rank)
+
+## Add ranks to bee_quants
+bee_quants <- bee_quants %>%
+  left_join(state_labels, by = c("State", "quantile"))
+```
+
+Make a label for each quantile with the names of all the states. Use `str_wrap()` to make sure it fits on the plot facet. 
+
+```{r}
+facet_labels <- state_quantiles %>%
+  group_by(quantile) %>%
+  summarise(max = paste0(max(max_inv)/1000, "K"),
+            states = paste(State, collapse = ", "),
+            .groups = "drop") %>%
+  mutate(
+    label = glue::glue("States under {max} Colonies")
+  ) %>%
   arrange(quantile) %>%
   pull(label)
 
-names(labels) <- c("1", "2", "3")
+names(facet_labels) <- as.character(seq_along(facet_labels))
 ```
+
+
 
 
 ## Plot
 
-```{r, fig.width = 12, fig.height = 5, out.width = "100%"}
+Styling the colour-coded states on the right was tricky. I had to add some padding to the right, using `expand = expansion(add = c(1, 11)` in `scale_x_continuous()`. It still had the grid lines, so I first tried to cover it with a white square using `geom_rect()`, but realised I needed to use `stat_summary()` to calculate the maximum value on the y-axis for each facet. Then I used `geom_text()` to place all of the state labels at 2018 on the x-axis and the y-value calculated in `state_labels`.
+
+```{r, fig.width = 10, fig.height = 6}
+#|fig.cap: Bee colonies are decreasing, especially in states with a maximum inventory under 46K colonies. 
+#| fig.alt: Bee colony inventories for each US state, plotted from 1985 to 2017. Data are plotted in 4 panels based on maximum inventory: under 20K, under 46K, under 94K and under 640K. States under 20K have mostly decreased, but some increased. States under 46K decreased dramatically in the late 1990s and never recovered. States under 94K are mixed, some have decreased and some increased. States under 106K have most held steady, with a big decrease in California but a comparable increase in North Dakota. 
+
 bee_quants %>%
-  ggplot(aes(x = Year, y = INVENTORY, group = State, color = log(mean_inv))) +
+  ggplot(aes(x = Year, y = Inventory, group = State, color = as.factor(rank))) +
   geom_line(show.legend = FALSE) +
-  facet_wrap(~quantile, scales = "free_y", 
-             labeller = as_labeller(labels),
-             nrow = 1) +
-  scale_color_viridis_c() +
-  labs(x = NULL, title = "Bee Inventories in US States",
-       caption = "Data from data.world | Plot by @lisadebruine") +
+  stat_summary(aes(ymax = Inventory, group = quantile),
+               geom = "rect", fun.max = max,
+               xmin = 2017.5, xmax = 2028, ymin = 0, 
+               fill = "white", color = "white") +
+  geom_text(aes(label = State, y = y), 
+            state_labels, 
+            hjust = 0, vjust = 0.5, x = 2018,
+            show.legend = FALSE) +
+  scale_x_continuous(NULL, 
+                     breaks = seq(1990, 2015, 10),
+                     expand = expansion(add = c(1, 11))) +
   scale_y_continuous(
     name = "Bee Inventory",
     labels = scales::label_number(scale = 1/1000, suffix = "K")) +
-  expand_limits(y=0)
+  expand_limits(y=0) +
+  scale_color_manual(values = rainbow(13, v = .7)) +
+  facet_wrap(~quantile, scales = "free_y", 
+             labeller = as_labeller(facet_labels),
+             nrow = 2) +
+  labs(title = "Bee Colony Inventories in the United States",
+       caption = "Data from data.world | Plot by @lisadebruine") +
+  theme(
+    plot.title = element_text(size = 20, hjust = 0.5),
+    strip.text = element_text(size = 15)
+  )
 ```
 
 
+
 ```{r, include = FALSE, eval = FALSE}
-ggsave("images/day16.png", width = 12, height = 5, device = png)
+ggsave("images/day16.png", width = 10, height = 6, device = png, bg = "white")
 knitr::include_graphics("images/day16.png")
 ```
 

@@ -4,7 +4,9 @@
 source("R/setup.R")
 ```
 
-```{r, message = FALSE}
+```{r}
+#| code.summary: Setup
+
 library(tidyverse) # for everything
 library(gifski)    # for making the gif
 library(viridis)   # for nicer colours
@@ -158,5 +160,8 @@ c(beta_plots, rev(beta_plots)) %>%
 ```
 
 ```{r day9, echo = FALSE}
+#| fig.cap: Beta distribution with shape1 and shape2 parameters varying from 1 to 10.
+#| fig.alt: A set of beta distributions in purple (shape1 = 1) to yellow (shape1 = 10) and animated to move from shape2 = 1 to shape2 = 10.
+
 knitr::include_graphics("images/day9.gif")
 ```

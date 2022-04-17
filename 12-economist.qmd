@@ -6,7 +6,9 @@ source("R/setup.R")
  
 I hadn't realised The Economist do a [daily chart](https://www.economist.com/search?q=daily%20chart). They range from the simple and powerful to really complex visualisations. I won't show any here, as their website/blog licensing of a single chart for 1 month to an academic costs £159, but you can see the map I'm going to recreate here: [Which countries offer gender-neutral passports?](https://www.economist.com/graphic-detail/2022/04/11/which-countries-offer-gender-neutral-passports)
 
-```{r, message = FALSE}
+```{r}
+#| code.summary: Setup
+
 library(tidyverse)     # for data wrangling and visualisation
 library(sf)            # for maps
 library(rnaturalearth) # for map coordinates
@@ -210,6 +212,8 @@ base_map +
 I tried do this with a new data table containing each country's label, plus values for the text's color, hjust, vjust, x, y, and the curve's curvature, x, y, xend, and yend. However, you can't set curvature in the mapping, so I had to sort that with `pmap()`.
 
 ```{r econ-day12, fig.width = 8, fig.height = 5}
+#| fig.alt: Countries which include a third-gender marker on their passport, April 2022 USA, Canada, Colombia, Argentina, Germany, Austria, Netherlands, Denmark, Ireland, Malta, Iceland, Austria, Australia, New Zealand, India, Bangladesh, Pakistan, Nepal
+#| 
 annotations <- tribble(
   ~label, ~color, ~hjust, ~vjust, ~x, ~y, ~text_x, ~text_y, ~curvature, ~curve_x, ~curve_y,
   "United States", "white", 0.5, 0.5, usa[1], usa[2], +2e5, -5e5, NA, NA, NA,
@@ -268,7 +272,9 @@ image_write(img, "images/day12.png")
 ```
 
 
-```{r}
+```{r day12-red}
+#| fig.alt: Countries which include a third-gender marker on their passport, April 2022 USA, Canada, Colombia, Argentina, Germany, Austria, Netherlands, Denmark, Ireland, Malta, Iceland, Austria, Australia, New Zealand, India, Bangladesh, Pakistan, Nepal. Plot is in the visual style of plots from The Economist.
+
 knitr::include_graphics("images/day12.png")
 ```
 

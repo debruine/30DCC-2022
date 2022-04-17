@@ -6,7 +6,9 @@ source("R/setup.R")
 
 I've never used `coord_polar()` before, but it seems pretty good for when you want to show values that vary a lot in magnitude between categories.
 
-```{r, message=FALSE}
+```{r}
+#| code.summary: Setup
+
 library(tidyverse) # for wrangling data
 ```
 
@@ -86,6 +88,8 @@ ggplot(ukso, aes(x = `Sexual orientation`,
 Now I'll really customise the appearance. I found the `theme()` function intimidating at first, but once you work with it for a bit and get your head around the `element_*` functions, it's straightforward and very powerful. I just wish I could figure out how to put the plot caption in the margin like I did for the legend.
 
 ```{r circular-day11, fig.width = 5, fig.height = 5}
+#| fig.alt: Circular plot showing the proportion of people with each sexual orientation in the UK (2019) . Heterosexual = 93.7%, Gay/lesbian = 1.6%, Bisexual = 1.1%, Other = 0.7%, Do not know/refuse = 3%.
+
 rbcol <- c("red3", 
            "darkgoldenrod1", 
            "springgreen3", 

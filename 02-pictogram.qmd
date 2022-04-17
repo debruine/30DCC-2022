@@ -6,7 +6,9 @@ source("R/setup.R")
 
 I recently discovered the `r pkg("waffle", "https://github.com/hrbrmstr/waffle/")` package for making waffle plots. Emily and I refuse to teach students on our [Applied Data Skills](https://psyteachr.github.io/ads-v1/) course how to make pie charts, and these are a sweet alternative. 
 
-```{r, message=FALSE}
+```{r}
+#| code.summary: Setup
+
 #devtools::install_github("hrbrmstr/waffle")
 library(tidyverse)  # for data wrangling
 library(waffle)     # for pictograms

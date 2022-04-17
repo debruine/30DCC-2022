@@ -4,7 +4,9 @@
 source("R/setup.R")
 ```
 
-```{r, message = FALSE}
+```{r}
+#| code.summary: Setup
+
 library(tidyverse)     # for data wrangling and visualisation
 library(sf)            # for maps
 library(rnaturalearth) # for map coordinates
@@ -286,6 +288,8 @@ anim_save("images/day6.gif", animation = anim,
 
 
 ```{r owid-day6}
+#| fig.alt: World map showing the share of the population in each country using the internet from 1990 to 2020 using colour. Animated across years.
+
 knitr::include_graphics("images/day6.gif")
 ```
 

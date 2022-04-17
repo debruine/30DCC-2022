@@ -276,7 +276,7 @@
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./14-3-dimensional.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">3-dimensional</span></a>
+  <a href="./14-3-dimensional.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">3-Dimensional</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -417,7 +417,7 @@
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header"><h1 class="title display-7"><span id="sec-economist" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">The Economist</span></span></h1>
 </header><p>I hadn’t realised The Economist do a <a href="https://www.economist.com/search?q=daily%20chart">daily chart</a>. They range from the simple and powerful to really complex visualisations. I won’t show any here, as their website/blog licensing of a single chart for 1 month to an academic costs £159, but you can see the map I’m going to recreate here: <a href="https://www.economist.com/graphic-detail/2022/04/11/which-countries-offer-gender-neutral-passports">Which countries offer gender-neutral passports?</a></p>
-<div class="cell" data-layout-align="center">
+<div class="cell" data-layout-align="center" data-code.summary="Setup">
 <details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)     <span class="co"># for data wrangling and visualisation</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(sf)            <span class="co"># for maps</span></span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(rnaturalearth) <span class="co"># for map coordinates</span></span>
@@ -659,7 +659,7 @@
 <span id="cb9-38"><a href="#cb9-38"></a>  curves</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="12-economist_files/figure-html/econ-day12-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="12-economist_files/figure-html/econ-day12-1.png" class="img-fluid figure-img" alt="Countries which include a third-gender marker on their passport, April 2022 USA, Canada, Colombia, Argentina, Germany, Austria, Netherlands, Denmark, Ireland, Malta, Iceland, Austria, Australia, New Zealand, India, Bangladesh, Pakistan, Nepal" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -682,7 +682,7 @@
 <details><summary>Code</summary><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"images/day12.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/day12.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="images/day12.png" class="img-fluid figure-img" alt="Countries which include a third-gender marker on their passport, April 2022 USA, Canada, Colombia, Argentina, Germany, Austria, Netherlands, Denmark, Ireland, Malta, Iceland, Austria, Australia, New Zealand, India, Bangladesh, Pakistan, Nepal. Plot is in the visual style of plots from The Economist." style="width:100.0%"></p>
 </figure>
 </div>
 </div>

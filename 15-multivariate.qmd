@@ -8,8 +8,10 @@ I wrote `r pkg("faux")` to make it easier to simulate multivariate normal distri
 
 I'll be using the new NORTA (NORmal-To-Anything) methods for today's chart, which are currently only in the development version of faux, so you need to download the GitHub version, not 1.1.0 on CRAN. You can see a [tutorial here](https://debruine.github.io/faux/dev/articles/norta.html).
 
-```{r, message=FALSE}
-# devtools::install_github("debruine/faux", type = "source")
+```{r}
+#| code.summary: Setup
+
+# devtools::install_github("debruine/faux")
 # devtools::install_github("debruine/webmorphR")
 library(faux)      # for data simulation
 library(ggplot2)   # for plotting
@@ -283,6 +285,9 @@ WebmorphR is an R package I'm developing for making visual stimuli for research 
 
 
 ```{r day15}
+#| fig.cap: PLots showing multivariate correlations among non-normally distributed variables.
+#| fig.alt: Three plots showing the correlations between 1) Age vs Texts (r = -0.30), 2) Score vs Age (r = -0.42), 3) Texts vs Score (r = 0.45). Age has a uniform distribution between 50 and 70, texts have a poisson distribution with a mean of 5, and score has a truncated normal distribution ranging from 1 to 7.
+
 # read in images starting with mv_
 imgs <- webmorphR::read_stim("images", "^mv_\\d")
 

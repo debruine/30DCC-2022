@@ -1,2 +1,124 @@
 # Connections
 
+I've been meaning to learn more about visualising text, and where better to start than Julia Silge and David Robinson's [Text Mining with R](https://www.tidytextmining.com)! I'll be focusing on the [ngrams chapter](https://www.tidytextmining.com/ngrams.html).
+
+```{r, include = FALSE}
+source("R/setup.R")
+```
+
+```{r}
+#| code.summary: Setup
+
+library(tidyverse) # always useful
+library(tidytext)  # for text analysis
+library(ggraph)    # for plotting ngrams
+library(showtext)  # for custom fonts
+library(ggtext)    # for adding the twitter logo
+
+font_add("arista", "fonts/arista_light.ttf")
+font_add("fa-brands", "fonts/fa-brands-400.ttf")
+showtext_auto()
+```
+
+## Data
+
+I'll be using my own tweets from 2021. I have a [tutorial in the Applied Data Skills book](https://psyteachr.github.io/ads-v1/twitter-data.html) on how to get these data and process them.
+
+```{r}
+tweet_files <- list.files(
+  path = "data/tweets", 
+  pattern = "^tweet_activity_metrics",
+  full.names = TRUE
+)
+
+ct <- cols("Tweet id" = col_character())
+
+tweets <- map_df(tweet_files, read_csv, col_types = ct) %>%
+  select(text = `Tweet text`)
+```
+
+## Bigrams
+
+```{r}
+bigrams <- tweets %>%
+  mutate(no_usernames = gsub("@[A-Za-z_0-9]+", "", text)) %>%
+  unnest_tokens(bigram, no_usernames, token = "ngrams", n = 2)
+
+bigram_counts <- bigrams %>% 
+  count(bigram, sort = TRUE)
+
+head(bigram_counts, 10)
+```
+
+Handle stop words. Separate the words into word1 and word2 and get rid of any rows without words (e.g., 1-word tweets). I added a few custom entries to the `stop_words$words` list: "https", "t.co", "gt", "lt", and the numbers 0 to 100.
+
+```{r}
+bigrams_separated <- bigrams %>%
+  separate(bigram, c("word1", "word2"), sep = " ") %>%
+  filter(!is.na(word1), !is.na(word2))
+
+my_stop_words <- c(stop_words$word, "https", "t.co", "gt", "lt", 0:100, "00")
+
+bigrams_filtered <- bigrams_separated %>%
+  filter(!word1 %in% my_stop_words) %>%
+  filter(!word2 %in% my_stop_words)
+
+bigram_counts <- bigrams_filtered %>% 
+  count(word1, word2, sort = TRUE)
+
+head(bigram_counts, 10)
+```
+
+## Plot ngrams
+
+```{r}
+bigram_graph <- bigram_counts %>%
+  filter(n > 10)
+```
+
+```{r ggraph-basic}
+set.seed(8675309)
+
+ggraph(bigram_graph, layout = "fr") +
+  geom_edge_link() +
+  geom_node_point() +
+  geom_node_text(aes(label = name), vjust = 1, hjust = 1)
+```
+
+The word "pak" looks all by itself because, for no reason I can recall, I tweeted "pak pak" 11 times last year.
+
+## Tidy the plot
+
+As always, now it's time to make the plot prettier. 
+
+I tried a bunch of layouts (see `?layout_tbl_graph_igraph`) and the spring-based algorithm by Kamada and Kawai ("kk") looked best.
+
+Add a bit of padding to the margins and set `coord_cartesian(clip = "off")` to avoid clipping labels that are too close to the edge.
+
+I added the twitter logo to the middle using `r pkg("ggtext")` and [Albert Rapp's tutorial](https://albert-rapp.de/post/2022-03-04-fonts-and-icons/).
+
+```{r ggraph-styled, fig.width=6, fig.height=6}
+#| fig.cap: Bigram graph of my 2021 tweets.
+#| fig.alt: Plot of the 21 word pairs that occured more than 10 times in my 2021 tweets -- shiny app = 45, team science	 = 26, blog post = 21, data wrangling = 21, twitch stream =20, data simulation = 18, rstats package = 16, data skills = 14, shiny apps = 14, coding club = 13, journal club = 13, power analysis = 13, random effects = 13, code check = 12, code review = 12, mixed effects = 12, mixed models = 12, unit	tests = 12, data frame = 11, pak pak = 11, peer review = 11	
+
+
+ggraph(bigram_graph, layout = "kk") +
+  geom_edge_link(aes(width = n), color = "grey", show.legend = FALSE) +
+  geom_node_label(aes(label = name), vjust = 0.5, hjust = 0.5,
+                  fill = "dodgerblue3", color = "white", 
+                  label.padding = unit(.5, "lines"),
+                  label.r = unit(.75, "lines")) +
+  annotate("richtext", label = "<span style='font-family:fa-brands'>&#xf099;</span>",
+           x = 0.3, y = -.2, col = 'dodgerblue3', label.colour = NA,
+           family='fa-brands', size=16) +
+  coord_cartesian(clip = "off") +
+  theme_void() +
+  theme(plot.margin = unit(rep(.5, 4), "inches"))
+```
+
+```{r, include = FALSE, eval = FALSE}
+ggsave("images/day17.png", width = 6, height = 6, device = png, bg = "white")
+knitr::include_graphics("images/day17.png")
+```
+
+

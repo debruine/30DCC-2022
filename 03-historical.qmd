@@ -4,7 +4,9 @@
 source("R/setup.R")
 ```
 
-```{r hist-setup, message=FALSE}
+```{r}
+#| code.summary: Setup
+
 library(tidyverse)
 library(showtext)
 
@@ -241,6 +243,9 @@ x_labels <- c(paste(seq(10000, 2000, -2000), "BCE"),
 
 
 ```{r hist-3-time-periods}
+#| fig.cap: World population estimates from 10000 BCE to 2021 CE.
+#| fig.alt: World population estimates from 10000 BCE to 2021 CE for Asia, Africa, Europe, North America, South America, and Oceania. The plot is divided in 3 parts -- 10000 BCE to 0, 0 to 1700 CE, and 1700CE to 2021 CE.
+
 ggplot(world_regions3, aes(x = year, y = population, color = region)) +
   geom_line() +
   geom_point(size = 1, alpha = 0.5) +

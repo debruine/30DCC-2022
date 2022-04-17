@@ -1,4 +1,4 @@
-# 3-dimensional
+# 3-Dimensional
 
 ```{r, include = FALSE}
 source("R/setup.R")
@@ -7,6 +7,8 @@ source("R/setup.R")
 I originally tried to use `r pkg("rgl")` to show a 3D face, but after I updated my Mac OS to Monterey, it no longer supports Open GL, so I've removed that part. Instead, I'll make some 3-dimensional data from a multivariate normal distribution using `r pkg("faux")`, and 3D plot it using `r pkg("plotly")`.
 
 ```{r}
+#| code.summary: Setup
+
 library(plotly)
 library(faux)
 library(dplyr)
@@ -60,6 +62,8 @@ marker_style = list(
 Finally, make the plot and add markers. These plots look cool, but I find them pretty hard for inference with data.
 
 ```{r plotly-3d}
+#| fig.alt: 3D chart of three sets of correlated data. The patterns go from corner to corner of the box. Click on points to show their x, y and z coordinates.
+
 # plot and add markers
 plot_ly(data = dat,
         x = ~x, y = ~y, z = ~z, 

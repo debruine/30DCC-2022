@@ -7,6 +7,8 @@ source("R/setup.R")
 Today I'm going to use faux to generate some simulated data for a factorial experimental design and make some plots.
 
 ```{r}
+#| code.summary: Setup
+
 library(faux)      # for data simulation
 library(ggplot2)   # for plotting
 library(patchwork) # for multi-panel plots
@@ -123,6 +125,9 @@ plot_b2w2 <- get_design(w2b2) %>%
 Combine with `r pkg("patchwork")` 
 
 ```{r exp-day10, fig.width = 8, fig.height = 8}
+#| fig.cap: Plots of the parameters for a simulated 2B2W experimental design.
+#| fig.alt: A set of violin plots of the two main effects in a 2-between by 2-within design, plus two different views of the interaction plot.
+
 layout <- paste("AB", "CC", "DD", sep = "\n")
 plot_b2  + plot_w2 + plot_w2b2 + plot_b2w2 +
   plot_layout(design = layout)

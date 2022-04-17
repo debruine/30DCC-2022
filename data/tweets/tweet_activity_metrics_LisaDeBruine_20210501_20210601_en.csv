@@ -1,0 +1,695 @@
+"Tweet id","Tweet permalink","Tweet text","time","impressions","engagements","engagement rate","retweets","replies","likes","user profile clicks","url clicks","hashtag clicks","detail expands","permalink clicks","app opens","app installs","follows","email tweet","dial phone","media views","media engagements","promoted impressions","promoted engagements","promoted engagement rate","promoted retweets","promoted replies","promoted likes","promoted user profile clicks","promoted url clicks","promoted hashtag clicks","promoted detail expands","promoted permalink clicks","promoted app opens","promoted app installs","promoted follows","promoted email tweet","promoted dial phone","promoted media views","promoted media engagements"
+"1399468055818870791","https://twitter.com/LisaDeBruine/status/1399468055818870791","@LottyBrand Very cool :) I once went for dessert with Douglas Hofstadter in the middle of a blizzard in Canada. I remember him being really lovely.","2021-05-31 20:49 +0000","532.0","4.0","0.007518796992481203","0.0","0.0","1.0","1.0","0.0","0.0","2.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1399466884001636355","https://twitter.com/LisaDeBruine/status/1399466884001636355","@hisotalus I saw so many pasty white men taps aff in the park today who I expect are currently somewhere between bright pink and lobster red.","2021-05-31 20:44 +0000","743.0","6.0","0.008075370121130552","0.0","1.0","3.0","1.0","0.0","0.0","1.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1399465235220729868","https://twitter.com/LisaDeBruine/status/1399465235220729868","@babeheim @anthrolog Unit tests are one of my favourite things about package writing, but I haven’t gotten in the habit of writing them systematically for analysis scripts (just a bunch of plots and tables to sense-check). I’d devour a blog post on it if you wrote one.","2021-05-31 20:38 +0000","237.0","4.0","0.016877637130801686","0.0","0.0","4.0","0.0","0.0","0.0","0.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1399368688847962113","https://twitter.com/LisaDeBruine/status/1399368688847962113","(And before anyone tries to explain to me how this can be done much more efficiently, I totally know, but the point of this exercise is to introduce power calculations through simulation using faux to #rstats beginners.)","2021-05-31 14:14 +0000","2263.0","17.0","0.007512152010605391","1.0","0.0","1.0","0.0","2.0","0.0","13.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1399368686708867076","https://twitter.com/LisaDeBruine/status/1399368686708867076","Here's the first draft. I still need to check how the original paper handled directional hypotheses and corrections for the contrasts, but my simulation values are pretty similar to the re-analysis paper's values.
+
+https://t.co/xru31f0Grj","2021-05-31 14:14 +0000","1583.0","19.0","0.012002526847757423","0.0","1.0","2.0","2.0","12.0","0.0","2.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1399332836981739522","https://twitter.com/LisaDeBruine/status/1399332836981739522","@sharoz I'd like to keep the correction, but I'm not looking forward to teaching newbies how to wrangle the resulting table, as you need to turn the row names into a column and deal with the ""Pr(&lt;F)"" column name somehow.","2021-05-31 11:52 +0000","220.0","9.0","0.04090909090909091","0.0","1.0","1.0","1.0","0.0","0.0","6.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1399326787558166528","https://twitter.com/LisaDeBruine/status/1399326787558166528","TIL that afex's returned anova_table uses GG corrections, while aov doesn't (I hardly ever use ANOVAs). I wish broom would tidy the anova_table  #rstats 
+
+a = aov_ez(""id"", ""rt"", md_12.1, within = c(""angle"", ""noise""))
+as_tibble(a$anova_table, rownames = ""term"")
+broom::tidy(a$aov) https://t.co/osSQycZ9ot","2021-05-31 11:27 +0000","5942.0","262.0","0.044092898014136656","1.0","4.0","12.0","10.0","3.0","0.0","95.0","0.0","0","0","0","0","0","137","137","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1398971845173448711","https://twitter.com/LisaDeBruine/status/1398971845173448711","In the workshop, we'll learn run through some more complex examples and recreate a few of the simulation analyses from this @Meta_Psy paper using the values in Table 1.
+
+https://t.co/FIzL2TDBrX","2021-05-30 11:57 +0000","2428.0","51.0","0.021004942339373972","2.0","1.0","6.0","6.0","22.0","0.0","14.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1398964366435835904","https://twitter.com/LisaDeBruine/status/1398964366435835904","@JimProvost Progress on training up the 189-point delineation so far... https://t.co/s6vTtEj4gm","2021-05-30 11:27 +0000","49.0","7.0","0.14285714285714285","0.0","1.0","1.0","0.0","0.0","0.0","1.0","0.0","0","0","0","0","0","4","4","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1398963150809149441","https://twitter.com/LisaDeBruine/status/1398963150809149441","Then you can summarise the resulting table to calculate power or mean effect size (this example design had unrealistically huge effect sizes).
+
+sim %&gt;% group_by(term) %&gt;%
+  summarise(
+    power = sum(`Pr(&gt;F)` &lt; 0.05),
+    mean_ges = mean(ges)
+  ) https://t.co/1YS9LBoQyz","2021-05-30 11:23 +0000","2006.0","53.0","0.02642073778664008","1.0","1.0","3.0","4.0","2.0","0.0","12.0","0.0","0","0","0","0","0","30","30","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1398963144895172616","https://twitter.com/LisaDeBruine/status/1398963144895172616","Run the analysis on each simulated dataset.
+
+sim &lt;- df %&gt;%
+  mutate(analysis = lapply(data, analyse)) %&gt;%
+  select(-data) %&gt;%
+  unnest(analysis) https://t.co/OwTnI4VnKc","2021-05-30 11:22 +0000","1096.0","16.0","0.014598540145985401","0.0","1.0","1.0","1.0","0.0","0.0","2.0","0.0","0","0","0","0","0","11","11","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1398963138830258177","https://twitter.com/LisaDeBruine/status/1398963138830258177","Define an analysis (afex::aov_ez args map onto faux::sim_design args)
+
+analyse &lt;- function(data) {
+  afex::aov_ez(
+    id = ""id"",
+    dv = ""y"",
+    between = ""pet"",
+    within = ""time"",
+    data = data,
+    include_aov = F
+  )$anova_table %&gt;%
+    as_tibble(rownames = ""term"")
+}","2021-05-30 11:22 +0000","608.0","5.0","0.008223684210526315","0.0","1.0","1.0","0.0","1.0","0.0","2.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1398963136988856328","https://twitter.com/LisaDeBruine/status/1398963136988856328","To do a power calculation for an ANOVA analysis, simulate 100 datasets in long format:
+
+df &lt;- sim_design(
+  within, between, 
+  n = 100, mu = mu, sd = sd, r = r,
+  long = TRUE, rep = 100
+)","2021-05-30 11:22 +0000","508.0","2.0","0.003937007874015748","0.0","1.0","1.0","0.0","0.0","0.0","0.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1398963134732308480","https://twitter.com/LisaDeBruine/status/1398963134732308480","The put these together with the sim_design() function:
+
+df &lt;- sim_design(
+  within, between, 
+  n = 100, mu = mu, sd = sd, r = r
+) https://t.co/4aiIK57UCu","2021-05-30 11:22 +0000","556.0","13.0","0.023381294964028777","0.0","1.0","1.0","0.0","0.0","0.0","2.0","0.0","0","0","0","0","0","9","9","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1398963132006121474","https://twitter.com/LisaDeBruine/status/1398963132006121474","Set parameters mu, sd, and r with vectors, data frames, or matrices:
+
+# specify mean for each cell
+mu &lt;- data.frame(
+  cat = c(10, 12, 14, 16),
+  dog = c(10, 15, 20, 25),
+  row.names = within$time
+)
+
+# all SD same
+sd &lt;- 5 
+
+# get correlations from pilot data
+r &lt;- cor(pilot_data)","2021-05-30 11:22 +0000","464.0","4.0","0.008620689655172414","0.0","1.0","1.0","1.0","0.0","0.0","1.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1398963130286419969","https://twitter.com/LisaDeBruine/status/1398963130286419969","In faux, you set up within- and between-subject factors as lists:
+
+between &lt;- list(
+  pet = c(cat = ""Cat Owners"", dog = ""Dog Owners"")
+)
+
+within &lt;- list(
+  time = c(""morning"",  ""noon"", ""evening"", ""night"")
+)","2021-05-30 11:22 +0000","514.0","5.0","0.009727626459143969","0.0","1.0","0.0","1.0","0.0","0.0","3.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1398951344749355008","https://twitter.com/LisaDeBruine/status/1398951344749355008","I'm excited to be giving the first session in the @PsyPAG/@bpsmscp data simulation summer school. I'll be introducing the #rstats package {faux} for simulating factorial designs and showing how you can use this to plan analyses and do power calculations for any analysis. https://t.co/vdG4mEQOe9","2021-05-30 10:36 +0000","20423.0","259.0","0.012681780345688684","19.0","2.0","67.0","71.0","3.0","0.0","96.0","0.0","0","0","0","0","0","1","1","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1398701178763026438","https://twitter.com/LisaDeBruine/status/1398701178763026438","@jeroenbosman ❌ driving a combustion car
+✅ flying
+❌ eating meat
+✅ eating dairy other than cheese
+✅✅ eating cheese
+❌ fossil heating the house
+❌ buying lots of stuff
+❌ using fossil electricity","2021-05-29 18:02 +0000","49.0","3.0","0.061224489795918366","0.0","0.0","1.0","1.0","0.0","0.0","1.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1398667370860777478","https://twitter.com/LisaDeBruine/status/1398667370860777478","@emilynordmann @webmorph_org “Have you thought about getting in the sea?” is going to be my new stock reply to anything like this now :)
+
+I ended the reply email to the guy above with “No thanks for your unkind feedback,”","2021-05-29 15:47 +0000","322.0","11.0","0.034161490683229816","0.0","0.0","6.0","1.0","0.0","0.0","4.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1398638158808588300","https://twitter.com/LisaDeBruine/status/1398638158808588300","“Even well-intentioned people’s judgements can vary dramatically in unintended ways. ... Even scientists who’ve spent their careers building good-quality evidence can lower their standards when discussing fields other than their own.” @StuartJRitchie https://t.co/X5FAGBLoxH","2021-05-29 13:51 +0000","2158.0","27.0","0.012511584800741427","0.0","0.0","6.0","3.0","1.0","0.0","17.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1398635678540480512","https://twitter.com/LisaDeBruine/status/1398635678540480512","@bmwiernik @ShinyBlackShoe @rstatstweet Same. I recently read a brilliant idea to make a teaching user on your laptop so you don’t accidentally bork your teaching setup with updates, and just realised it would also solve my problem of forgetting to turn FiraCode off when teaching.","2021-05-29 13:41 +0000","205.0","7.0","0.03414634146341464","0.0","1.0","5.0","0.0","0.0","0.0","1.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1398634922613559296","https://twitter.com/LisaDeBruine/status/1398634922613559296","@MaartenvSmeden @bmwiernik @lakens @emilynordmann I also find it a lot easier to insert steps into my processing with pipes. Otherwise you have to make a new object for the interred step *and* remember to change the name of the object in the next step.","2021-05-29 13:38 +0000","432.0","13.0","0.03009259259259259","0.0","1.0","6.0","0.0","0.0","0.0","6.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1398634246319845388","https://twitter.com/LisaDeBruine/status/1398634246319845388","@MaartenvSmeden @bmwiernik @lakens In the R course @emilynordmann and I taught last week, we were reassigning the object at each step and many learners had trouble because they ran code twice that recoded a column the first time but changed it all to NA the second time. New objects at each step clutters the env.","2021-05-29 13:36 +0000","409.0","14.0","0.034229828850855744","0.0","1.0","4.0","2.0","1.0","0.0","6.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1398633185941016579","https://twitter.com/LisaDeBruine/status/1398633185941016579","@MaartenvSmeden @bmwiernik Here’s the blog post I wrote about pipes in an attempt to get @lakens to love them. I never succeeded, but it helps all my students understand them now. 
+
+https://t.co/XjZWvFBp3U","2021-05-29 13:31 +0000","455.0","88.0","0.1934065934065934","0.0","2.0","3.0","8.0","64.0","0.0","11.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1398632713633075206","https://twitter.com/LisaDeBruine/status/1398632713633075206","@bmwiernik Oh no! I love the . pronoun for %&gt;% but this looks like a nightmare to teach. I haven’t tried the new pipe yet and none of those examples make intuitive sense. I think I’d have to play with breaking it for a bit before I could explain it to others.","2021-05-29 13:29 +0000","241.0","8.0","0.03319502074688797","0.0","1.0","2.0","0.0","0.0","0.0","5.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1398631778919800834","https://twitter.com/LisaDeBruine/status/1398631778919800834","@CrystalNSYoung @webmorph_org Thanks :) Fortunately, this sort of correspondence is really rare in comparison to the nice notes I get from people, but like course evals, the mean ones tend to have an oversized impact on me.","2021-05-29 13:26 +0000","180.0","8.0","0.044444444444444446","0.0","0.0","5.0","3.0","0.0","0.0","0.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1398630325614530564","https://twitter.com/LisaDeBruine/status/1398630325614530564","@CrystalNSYoung @webmorph_org I’m totally unclear what that part of the rant is about. If anything, my automatic educational email detector is biased towards the US (since almost all US educational emails end in .edu it’s easier to auto-detect them).","2021-05-29 13:20 +0000","215.0","6.0","0.027906976744186046","0.0","1.0","3.0","0.0","0.0","0.0","2.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1398593435775422467","https://twitter.com/LisaDeBruine/status/1398593435775422467","I’ve politely reminded him about the guest accounts, the fact the code is open source so he can make a Windows version if he wants (and has the relevant skills, which I don’t), and the new R package that’s free for all.","2021-05-29 10:53 +0000","2095.0","95.0","0.045346062052505964","0.0","3.0","22.0","2.0","0.0","0.0","66.0","0.0","0","0","0","0","0","2","2","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1398592869326331906","https://twitter.com/LisaDeBruine/status/1398592869326331906","It’s really disheartening to get emails like this about @webmorph_org, which only requires an academic email for permanent storage because server space isn’t free. Guest accounts have *no* other restrictions and you can always download and re-upload files between sessions. https://t.co/DlYs5Wznri","2021-05-29 10:51 +0000","5936.0","582.0","0.09804582210242588","0.0","3.0","27.0","80.0","2.0","0.0","195.0","0.0","0","0","0","0","0","275","275","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1398313166493392900","https://twitter.com/LisaDeBruine/status/1398313166493392900","@giollabhui The CRediT contributor roles taxonomy is a good place to start thinking about contributions. I think data collection warrants co-authorship, but my personal ethics may be more liberal than journals. 
+
+https://t.co/LinL4Td0YG","2021-05-28 16:20 +0000","128.0","22.0","0.171875","0.0","1.0","6.0","1.0","10.0","0.0","4.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1398311305816256515","https://twitter.com/LisaDeBruine/status/1398311305816256515","@capilgram @zgmallett @kimistry8 Have you reached the stage yet where sometimes you Google a question and the stackoverflow answer is one you wrote yourself?","2021-05-28 16:12 +0000","78.0","3.0","0.038461538461538464","0.0","1.0","0.0","2.0","0.0","0.0","0.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1398308515417137153","https://twitter.com/LisaDeBruine/status/1398308515417137153","@chrisdc77 I’ve been a ghost reviewer more times than it’s comfortable to admit. I hardly ever accept review requests now unless I know I have time to do it *today* because I know future me sucks and that’s not fair on anyone.","2021-05-28 16:01 +0000","679.0","22.0","0.03240058910162003","0.0","1.0","6.0","5.0","0.0","0.0","10.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1398307450139426821","https://twitter.com/LisaDeBruine/status/1398307450139426821","@DrMowinckels It’s in a package where I’m trying to minimise dependencies, but I might rethink including purrr. It’s so useful!","2021-05-28 15:57 +0000","147.0","5.0","0.034013605442176874","0.0","1.0","1.0","1.0","0.0","0.0","2.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1398252901596897284","https://twitter.com/LisaDeBruine/status/1398252901596897284","@cedricbatailler @patilindrajeets @rstatstweet I'm trying to get some useful info from the ORCiD person descriptors, which return XML that I'm parsing with xml2::read_xml()
+
+E.g. https://t.co/az7Ppwfrb2
+
+I wrote a wee helper function in the package that's pretty specific for this format now.","2021-05-28 12:20 +0000","108.0","2.0","0.018518518518518517","0.0","0.0","0.0","0.0","2.0","0.0","0.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1398231234434715652","https://twitter.com/LisaDeBruine/status/1398231234434715652","@bmwiernik Yeah, I was hoping for something a little more elegant, but I guess I'll be writing a helper function (since x$b is always a list that I want to extract further same-named items from).","2021-05-28 10:54 +0000","283.0","5.0","0.0176678445229682","0.0","1.0","1.0","0.0","0.0","0.0","3.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1398230584154112001","https://twitter.com/LisaDeBruine/status/1398230584154112001","@bioinformagic But no, R lets you name more than one list item with the same name and they don't overwrite each other in the list, it's just hard to access the items now, since x$b and x[""b""] only return the first item with that name.","2021-05-28 10:52 +0000","123.0","0.0","0.0","0.0","0.0","0.0","0.0","0.0","0.0","0.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1398230239910707204","https://twitter.com/LisaDeBruine/status/1398230239910707204","@bioinformagic This is the code I have at the moment that works:
+
+x[which(names(x) == ""b"")]
+
+Which is fine but a little clunky when x is actually info$person$`researcher-urls` and b is `reseaarcher-url` (and I have to do this for a bunch of info in this list).","2021-05-28 10:50 +0000","102.0","1.0","0.00980392156862745","0.0","1.0","0.0","0.0","0.0","0.0","0.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1398226046575693826","https://twitter.com/LisaDeBruine/status/1398226046575693826","#rstats is there an efficient way to access all list items with the same name?  It's a list with names I have no control over from the ORCiD API. E.g. I want *both* of the items named ""b"" from the following list, but x$b just returns 2:
+
+x &lt;- list(a = 1, b = 2, b = 3)","2021-05-28 10:34 +0000","7071.0","263.0","0.03719417338424551","2.0","8.0","10.0","9.0","0.0","0.0","224.0","0.0","0","0","0","0","0","10","10","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1397817330642698240","https://twitter.com/LisaDeBruine/status/1397817330642698240","@EJWagenmakers @Mister36 @stephensenn @richarddmorey Given the weirdly constrained structure of your hypothetical, the SESOI (here the smallest *possible* non-H0 effect size) is 0.6, and your third example definitely is sig &lt; 0.6, so the conclusion would be inconclusive. It would lead me to question the premise there are 10 balls.","2021-05-27 07:29 +0000","856.0","28.0","0.03271028037383177","0.0","2.0","4.0","1.0","0.0","0.0","21.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1397815351489056773","https://twitter.com/LisaDeBruine/status/1397815351489056773","@ipmonger @NateSilver538 Since science is an iterative process, your posterior becomes your prior for the next round of evidence analysis.","2021-05-27 07:22 +0000","478.0","7.0","0.014644351464435146","0.0","1.0","0.0","2.0","0.0","0.0","4.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1397641982692954120","https://twitter.com/LisaDeBruine/status/1397641982692954120","@d_olivaw How is dplyr not on that enormous list? I can usually manage to do without purrr or tidyr using base functions, but dplyr is too useful.","2021-05-26 19:53 +0000","813.0","17.0","0.020910209102091022","0.0","1.0","5.0","1.0","0.0","0.0","8.0","0.0","0","0","0","0","0","2","2","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1397639974078619649","https://twitter.com/LisaDeBruine/status/1397639974078619649","So excited for this month’s LGBTQIA+ journal club on Friday!
+❤️🧡💛💚💙💜
+We’ll be discussing SCT and how it can provide a better framework for classifying sexual orientation in research. @SarivanAnders herself will attend the last 20 minutes to answer any questions. https://t.co/oKHMf4ezv6","2021-05-26 19:45 +0000","4344.0","49.0","0.011279926335174955","4.0","0.0","14.0","15.0","0.0","0.0","16.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1397492798564229124","https://twitter.com/LisaDeBruine/status/1397492798564229124","@JohnJJShaw @maddi_pow @emilynordmann Part of our teaching process is modelling making as many errors as possible so you get experience finding and fixing these annoying bugs. Expert coders probably make more errors per minute than novice coders, they just know how to find and fix them efficiently. https://t.co/tnHr65wQkD","2021-05-26 10:00 +0000","562.0","17.0","0.030249110320284697","0.0","1.0","4.0","5.0","0.0","0.0","5.0","0.0","0","0","0","0","0","216","2","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1397491252782903298","https://twitter.com/LisaDeBruine/status/1397491252782903298","I love to see the things people can do with their data after only a few lessons. It's definitely worthwhile to learn a computational way to process and visualise your data #psyTeachR https://t.co/kGoCwUyV1d","2021-05-26 09:54 +0000","11858.0","159.0","0.013408669252825097","7.0","1.0","75.0","24.0","0.0","9.0","43.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1397489989362012160","https://twitter.com/LisaDeBruine/status/1397489989362012160","@maddi_pow @emilynordmann You should be proud! It's a lot to learn in a short time. The plot looks awesome. Your labels are all perfect and you've even used facets and a custom colour scheme!","2021-05-26 09:49 +0000","1313.0","19.0","0.014470677837014471","0.0","1.0","7.0","7.0","0.0","0.0","4.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1397455020958928901","https://twitter.com/LisaDeBruine/status/1397455020958928901","Everyone is welcome to today’s #psyTeachR #CodingClub (14:00 UK time), where we will learn how to check user inputs so the #shiny app we made last week doesn’t crash on impossible values.
+
+Zoom link and code from last week to download:
+
+https://t.co/BlxxAoSSfN","2021-05-26 07:30 +0000","2766.0","60.0","0.021691973969631236","2.0","0.0","10.0","1.0","24.0","5.0","18.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1397090571173384195","https://twitter.com/LisaDeBruine/status/1397090571173384195","@DrRenPen @aeryn_thrace @Apple This is a known vulnerability with close relatives. Do you look really like your mum? But almost all face recognition problems are worse for POC, so it’s hard to tell if your case is badly trained face recognition algorithms or family resemblance (probably both).","2021-05-25 07:22 +0000","357.0","26.0","0.07282913165266107","1.0","0.0","3.0","0.0","0.0","0.0","22.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1396934180932661251","https://twitter.com/LisaDeBruine/status/1396934180932661251","@dishwash_expert My guesses in order if mylist is the Latin alphabet:
+
+VW
+UV
+WX
+VWX
+UVW
+
+But really no clue without looking up the rule.","2021-05-24 21:00 +0000","37.0","3.0","0.08108108108108109","0.0","1.0","0.0","0.0","0.0","0.0","2.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1396924737356550148","https://twitter.com/LisaDeBruine/status/1396924737356550148","@michael_chirico The idea of zeroth both makes sense and also makes me make this face. https://t.co/dhMA4gAU3b","2021-05-24 20:23 +0000","165.0","4.0","0.024242424242424242","0.0","0.0","0.0","0.0","0.0","0.0","1.0","0.0","0","0","0","0","0","74","3","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1396924077747625986","https://twitter.com/LisaDeBruine/status/1396924077747625986","@bearloga @CMastication @DRMacIver That was fantastic. And a great argument for Open Science at the end, too.","2021-05-24 20:20 +0000","52.0","5.0","0.09615384615384616","0.0","0.0","1.0","2.0","0.0","0.0","2.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1396918049589141511","https://twitter.com/LisaDeBruine/status/1396918049589141511","@DRMacIver Weirdly, people are even more wrong on this one (the most popular answer gets both 0-based indexing and n wrong, while the most popular answer on the previous one at least gets 0-based indexing right).","2021-05-24 19:56 +0000","66.0","4.0","0.06060606060606061","0.0","1.0","1.0","0.0","0.0","0.0","2.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1396873507397644292","https://twitter.com/LisaDeBruine/status/1396873507397644292","@VassilisSide Haha, I don't like it either :)","2021-05-24 16:59 +0000","376.0","5.0","0.013297872340425532","0.0","0.0","2.0","1.0","0.0","0.0","2.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1396873048502976512","https://twitter.com/LisaDeBruine/status/1396873048502976512","@darwinb0y Nope","2021-05-24 16:57 +0000","112.0","1.0","0.008928571428571428","0.0","0.0","1.0","0.0","0.0","0.0","0.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1396799320779788288","https://twitter.com/LisaDeBruine/status/1396799320779788288","@pjbhancock I’m down the rabbit hole of dlib now and going to start training the 189-point template, so expect big improvements soon!","2021-05-24 12:04 +0000","82.0","2.0","0.024390243902439025","0.0","1.0","1.0","0.0","0.0","0.0","0.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1396790508823977985","https://twitter.com/LisaDeBruine/status/1396790508823977985","@CMastication @DRMacIver Sorry, I meant to say I prefer 0-based indices.","2021-05-24 11:29 +0000","116.0","3.0","0.02586206896551724","0.0","1.0","1.0","1.0","0.0","0.0","0.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1396790409842642945","https://twitter.com/LisaDeBruine/status/1396790409842642945","The first version was maybe a little confusing (and most people were getting it wrong) but I still don’t think the right answer will win here :) https://t.co/nN7ybRaiHk","2021-05-24 11:29 +0000","2698.0","29.0","0.010748702742772424","0.0","1.0","3.0","2.0","0.0","0.0","23.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1396790132846563332","https://twitter.com/LisaDeBruine/status/1396790132846563332","@CMastication @DRMacIver What’s your argument for 1-based indices? I prefer them, but that might be a product of my particular coding journey (PHP &gt; JavaScript &gt; Java &gt; R &gt; Python)
+
+(That’s order of learning, definitely not preference!)","2021-05-24 11:28 +0000","67.0","6.0","0.08955223880597014","1.0","1.0","1.0","0.0","0.0","0.0","3.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1396787293025931266","https://twitter.com/LisaDeBruine/status/1396787293025931266","@DRMacIver New version:
+
+mylist = [A, B, C, D, E, F, G]
+
+which items are in mylist[3:5]","2021-05-24 11:16 +0000","2861.0","141.0","0.04928346731911919","1.0","2.0","2.0","1.0","0.0","0.0","50.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1396785607473602562","https://twitter.com/LisaDeBruine/status/1396785607473602562","The right answer is nearly tied for last place after more than 100 votes. I feel vindicated that this is unintuitive.","2021-05-24 11:10 +0000","2653.0","67.0","0.025254428948360347","0.0","1.0","12.0","5.0","0.0","0.0","49.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1396772585514409986","https://twitter.com/LisaDeBruine/status/1396772585514409986","I found a new thing I *hate* about python. I know, every language has its idiosyncrasies. I felt like this about R at one point (and still hate its 1-based indices).
+
+For non-python coders only: 
+guess which items are in mylist[3:5]","2021-05-24 10:18 +0000","9905.0","990.0","0.09994952044422009","4.0","12.0","20.0","12.0","0.0","0.0","535.0","0.0","0","0","0","0","0","1","1","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1396768151895937027","https://twitter.com/LisaDeBruine/status/1396768151895937027","Further debugging shows that these messages happen the first time any reticulate code runs, not just py_available().
+
+I'm using delayed load in the .onLoad of this package:
+
+face_rec &lt;&lt;- reticulate::import(""face_recognition"", convert = FALSE, delay_load = TRUE)","2021-05-24 10:00 +0000","1560.0","9.0","0.0057692307692307696","0.0","1.0","0.0","2.0","0.0","0.0","6.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1396765967590514690","https://twitter.com/LisaDeBruine/status/1396765967590514690","I've tried wrapping it in:
+
+suppressMessages
+suppressWarnings
+capture.output
+py_suppress_warnings
+
+And I've downloaded reticulate's source code to search for the string ""Requirement already satisfied"" but can't find it. Where are these message coming from and how do I stop them?","2021-05-24 09:52 +0000","1857.0","2.0","0.0010770059235325794","0.0","1.0","0.0","1.0","0.0","0.0","0.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1396765964901965829","https://twitter.com/LisaDeBruine/status/1396765964901965829","Please help #rstats:
+
+I'm checking for python when one function runs using reticulate::py_available(TRUE), but the first time the function runs, I get 9 messages like this:
+
+Requirement already satisfied: face_recognition in /Users/.../python3.6/...
+
+How do I suppress them?","2021-05-24 09:52 +0000","4002.0","46.0","0.011494252873563218","4.0","1.0","5.0","2.0","0.0","0.0","34.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1396591424309768196","https://twitter.com/LisaDeBruine/status/1396591424309768196","@ed_hagen I also love stat_density_2d(aes(fill = ..level..), geom = ""polygon"") for really dense continuous data. 
+
+https://t.co/Rg5I0FZWyz https://t.co/FkrOidd1Iq","2021-05-23 22:18 +0000","1093.0","35.0","0.03202195791399817","1.0","0.0","11.0","1.0","4.0","0.0","4.0","0.0","0","0","0","0","0","14","14","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1396587268245233670","https://twitter.com/LisaDeBruine/status/1396587268245233670","It would be awesome if people could download it, try it out, and let me know if they run into problems with anything. You just need this code:
+
+remotes::install_github(""debruine/webmorphR"")
+library(webmorphR)
+
+s &lt;- read_stim(""imgdir"") %&gt;% auto_delin()
+
+draw_tem(s) %&gt;% plot()","2021-05-23 22:02 +0000","1480.0","13.0","0.008783783783783784","0.0","1.0","2.0","3.0","0.0","0.0","7.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1396587265263030279","https://twitter.com/LisaDeBruine/status/1396587265263030279","I've uploaded a new version of #webmorphR that uses a python module for automatic delineation with dlib, following a new paper by @AlexJonesPhD, @SchildChristoph and Ben Jones (https://t.co/rxG3Rj0P5z) in addition to the @faceplusplus delineation options.
+
+https://t.co/UHHl3omsZO https://t.co/ENcofMY1vc","2021-05-23 22:02 +0000","3891.0","125.0","0.0321254176304292","6.0","1.0","13.0","15.0","20.0","1.0","23.0","0.0","0","0","0","0","0","46","46","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1396574128115703810","https://twitter.com/LisaDeBruine/status/1396574128115703810","@RealFabianBerg I was just trying to write a very short script in a code chunk in an Rmd document in RStudio. But it turns out I can just import face_recognition with reticulate and use the two functions I need directly in R now!
+
+I’ll properly learn Python someday, but not right now.","2021-05-23 21:09 +0000","123.0","2.0","0.016260162601626018","0.0","1.0","1.0","0.0","0.0","0.0","0.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1396567817785421840","https://twitter.com/LisaDeBruine/status/1396567817785421840","@JimProvost I don’t know much about OpenCV, but can’t find any face detection capability more detailed than this. (Why do the docs for image software have so few image examples?!)
+
+https://t.co/EYE5HxoX0n","2021-05-23 20:44 +0000","76.0","1.0","0.013157894736842105","0.0","0.0","0.0","0.0","1.0","0.0","0.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1396513585690554369","https://twitter.com/LisaDeBruine/status/1396513585690554369","@DrLizDickinson R does have a C interface, but I don't write C at all, so can't help beyond this:
+
+https://t.co/I6UdkWFLap","2021-05-23 17:09 +0000","91.0","5.0","0.054945054945054944","0.0","0.0","0.0","0.0","4.0","0.0","1.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1396513347093372932","https://twitter.com/LisaDeBruine/status/1396513347093372932","I've now incorporated the face_recognition python package into webmorphR (update soon), but it's systematically poor at mouths on darker faces. Does anyone know a better open-source library for delineating faces?
+
+https://t.co/17dP2TsjYy https://t.co/zBtqybIDWr","2021-05-23 17:08 +0000","4229.0","159.0","0.03759754078978482","4.0","1.0","11.0","6.0","8.0","0.0","43.0","0.0","0","0","0","0","0","86","86","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1396493029394067461","https://twitter.com/LisaDeBruine/status/1396493029394067461","@cristi_vicas @cantabile @DrVeronikaCH I have my own very systematic indentation style and it’s not the same as python’s. But turns out I can avoid 100% of python-style code with reticulate!","2021-05-23 15:47 +0000","60.0","5.0","0.08333333333333333","0.0","0.0","5.0","0.0","0.0","0.0","0.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1396468076275814400","https://twitter.com/LisaDeBruine/status/1396468076275814400","@d_olivaw Thanks! I've already immediately learned a new thing. I had no idea &lt;&lt;- was called ""superassignment""; I'd always read it as ""assign global"".","2021-05-23 14:08 +0000","369.0","8.0","0.02168021680216802","1.0","0.0","3.0","3.0","0.0","0.0","1.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1396466402433847303","https://twitter.com/LisaDeBruine/status/1396466402433847303","I'd be keen to hear any tips on how to incorporate python code into an R package. I can get things to work in a script using reticulate, but I'm not sure what's best practice for checking a user's python installation and prompting one if it isn't there.","2021-05-23 14:01 +0000","11121.0","106.0","0.009531516949914576","2.0","5.0","11.0","11.0","9.0","0.0","68.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1396465615280513026","https://twitter.com/LisaDeBruine/status/1396465615280513026","I finally caved and downloaded python today because it has an open-source face_recognition module that I want to incorporate into #webmorphR.
+
+I already despise the use of indentation as syntax, but I only need to write 4 lines in python and then I can handle the rest in R :) https://t.co/mxy0xbPHfD","2021-05-23 13:58 +0000","7266.0","398.0","0.0547756674924305","0.0","6.0","53.0","33.0","2.0","12.0","178.0","0.0","0","0","0","0","0","114","114","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1396165769386512385","https://twitter.com/LisaDeBruine/status/1396165769386512385","@helenahhartmann @SarahMillican75 One You Couch to 5K (on the U.K. Apple store) https://t.co/SaOVg2IX9r","2021-05-22 18:07 +0000","130.0","6.0","0.046153846153846156","0.0","0.0","1.0","0.0","0.0","0.0","0.0","0.0","0","0","0","0","0","5","5","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1396116141249081348","https://twitter.com/LisaDeBruine/status/1396116141249081348","@cconrymurray @psforscher @SarahMillican75 I seem to repeat c25k every 6 years. This is my third time through. I still hate running, but at least now I know it’s a thing I *can* do (while I wait for a shoulder injury to heal so I can go back to beat saber :)","2021-05-22 14:50 +0000","99.0","3.0","0.030303030303030304","0.0","1.0","2.0","0.0","0.0","0.0","0.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1396086171483127808","https://twitter.com/LisaDeBruine/status/1396086171483127808","@BrianNosek @cconrymurray Here’s a pretty convincing argument that we should absolutely expect this. https://t.co/ya4DIfTqHJ","2021-05-22 12:50 +0000","3438.0","88.0","0.025596276905177427","3.0","1.0","20.0","5.0","0.0","0.0","59.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1396085337143848961","https://twitter.com/LisaDeBruine/status/1396085337143848961","I just finished day 6 of the #Couchto5K and I’m really appreciating @SarahMillican75’s supportive narration in the app :)","2021-05-22 12:47 +0000","3928.0","135.0","0.03436863543788187","0.0","5.0","32.0","31.0","0.0","16.0","51.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1396042324149522433","https://twitter.com/LisaDeBruine/status/1396042324149522433","@RebeccaSear https://t.co/ya4DIfTqHJ","2021-05-22 09:56 +0000","1901.0","29.0","0.015255128879537085","1.0","0.0","12.0","1.0","1.0","0.0","14.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1395749900705480712","https://twitter.com/LisaDeBruine/status/1395749900705480712","@___inCANdescent The ones who think they’re “intellectual” seem keen on:
+
+- Jordan Peterson
+- Geoffrey Miller 
+- Tucker Max 
+- Quillette 
+- Almost anything related to pop culture versions of evolutionary psych","2021-05-21 14:34 +0000","275.0","2.0","0.007272727272727273","0.0","0.0","0.0","1.0","0.0","0.0","1.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1395713769003696132","https://twitter.com/LisaDeBruine/status/1395713769003696132","@emilynordmann ""Working with Data""?","2021-05-21 12:11 +0000","860.0","15.0","0.01744186046511628","0.0","0.0","4.0","0.0","0.0","0.0","11.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1395712278822113281","https://twitter.com/LisaDeBruine/status/1395712278822113281","@datingdecisions @JkayFlake And too many categories makes the colour scheme difficult to read. I was first wondering how you make a chocolate mousse with 40% orange rind.","2021-05-21 12:05 +0000","318.0","9.0","0.02830188679245283","0.0","1.0","5.0","0.0","0.0","0.0","3.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1395643992033873927","https://twitter.com/LisaDeBruine/status/1395643992033873927","@MarkAnnuncio I just use my own materials, as simulation is only a small part of my data skills class. https://t.co/Jx3SP2MO5k
+
+I also have some web tutorials:
+https://t.co/JnwdnRTYFD
+
+https://t.co/0YMSkMskNx
+
+https://t.co/MtF513dmt4","2021-05-21 07:33 +0000","136.0","13.0","0.09558823529411764","1.0","0.0","2.0","0.0","10.0","0.0","0.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1395643161792454656","https://twitter.com/LisaDeBruine/status/1395643161792454656","@AndyPerfors It’s an iPhone game, but Killer Sudoku has levels and Medium reliably takes me &lt;5 minutes. 
+
+If you like short videos, the Kids Try epicurious series is short and funny https://t.co/MkraTRFGKR","2021-05-21 07:30 +0000","249.0","4.0","0.01606425702811245","0.0","1.0","1.0","1.0","0.0","0.0","1.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1395425339778768900","https://twitter.com/LisaDeBruine/status/1395425339778768900","@dan_p_simpson This is better than ASMR","2021-05-20 17:05 +0000","454.0","0.0","0.0","0.0","0.0","0.0","0.0","0.0","0.0","0.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1395417254708322308","https://twitter.com/LisaDeBruine/status/1395417254708322308","This is a fantastic short analysis of excess positive results in a multi-study paper. I think I’ll use it in the future when I teach simulation, as the table of means and SDs gives all you need to run some informative simple simulations. https://t.co/eyv33iFw73","2021-05-20 16:32 +0000","7321.0","68.0","0.009288348586258708","2.0","1.0","9.0","3.0","1.0","0.0","52.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1395347401301450757","https://twitter.com/LisaDeBruine/status/1395347401301450757","@CarolynBot Do you keep *all* your code? I’m pretty sure I’ve deleted more code than I have in my GitHub.","2021-05-20 11:55 +0000","658.0","12.0","0.0182370820668693","0.0","1.0","0.0","7.0","0.0","0.0","4.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1395060675018375170","https://twitter.com/LisaDeBruine/status/1395060675018375170","@micahgallen @DrGBuckingham @lakens is always good for gluten-free recipes.","2021-05-19 16:55 +0000","171.0","3.0","0.017543859649122806","0.0","0.0","0.0","2.0","0.0","0.0","1.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1395059338268577801","https://twitter.com/LisaDeBruine/status/1395059338268577801","@micahgallen @DrGBuckingham The biggest surprise was how tasty and easy the “instant” injera is. Buckwheat flour is the most unusual ingredient. I found it needs more sparkling water than the recipe to get it the right thickness, but it’s easier than crepes. https://t.co/VP3gWPeRvK","2021-05-19 16:50 +0000","195.0","14.0","0.07179487179487179","0.0","1.0","2.0","3.0","0.0","0.0","1.0","0.0","0","0","0","0","0","7","7","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1395058394038407173","https://twitter.com/LisaDeBruine/status/1395058394038407173","@micahgallen @DrGBuckingham And in case you can’t read my handwriting...
+
+Niter Kibbeh
+https://t.co/N4PwrJkyxg
+
+Misir Wot
+https://t.co/AoutULYrfX
+
+Kik Alicha
+https://t.co/9LwIzWbahU
+
+Atakilt Wot
+https://t.co/i0enr6KAdC
+
+Gomen
+https://t.co/aogMYiAv0Z
+
+Injera
+https://t.co/o2iRqon7dO","2021-05-19 16:46 +0000","211.0","8.0","0.037914691943127965","0.0","1.0","3.0","0.0","2.0","0.0","2.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1395047092696006666","https://twitter.com/LisaDeBruine/status/1395047092696006666","@micahgallen I made Ethiopian food this weekend and it was totally amazing. The injera recipe was really good and didn’t need teff or fermentation. If you can read my terrible handwriting, here are all the recipes in the order we made them. https://t.co/J0fisfokdH","2021-05-19 16:02 +0000","1911.0","152.0","0.07953950811093669","1.0","1.0","6.0","6.0","1.0","0.0","12.0","0.0","0","0","0","0","0","125","125","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1395041030454583296","https://twitter.com/LisaDeBruine/status/1395041030454583296",".@Joris4stalkers on the erasure of @jovialjoy’s work on bias in face recognition algorithms. https://t.co/EUEDSbS9Ag","2021-05-19 15:37 +0000","6035.0","236.0","0.039105219552609774","12.0","0.0","33.0","18.0","0.0","0.0","26.0","0.0","0","0","0","0","0","843","147","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1395020721164857346","https://twitter.com/LisaDeBruine/status/1395020721164857346","@charliejhadley Stan is very much Darmok and Jalad at Tanagra, so you're unlikely to ever get it from context.","2021-05-19 14:17 +0000","600.0","15.0","0.025","2.0","2.0","3.0","3.0","0.0","0.0","5.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1395013157488300036","https://twitter.com/LisaDeBruine/status/1395013157488300036","With a standard CI, a single outlier increases the CI in both directions, but the bootstrap CI increases only in the direction of the outlier. https://t.co/aFujn9yakd","2021-05-19 13:47 +0000","1611.0","35.0","0.021725636250775917","1.0","0.0","6.0","0.0","0.0","0.0","2.0","0.0","0","0","0","0","0","26","26","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1395012010488868865","https://twitter.com/LisaDeBruine/status/1395012010488868865","Strengths of the bootstrap + robust methods:
+
+* Robust to heteroscedasticity
+* Robust to non-normality
+* Robust to outliers
+* CIs can be computed for any statistic","2021-05-19 13:42 +0000","2154.0","28.0","0.012999071494893221","2.0","1.0","4.0","9.0","2.0","0.0","9.0","0.0","0","0","0","0","0","1","1","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1395004413681487883","https://twitter.com/LisaDeBruine/status/1395004413681487883","Some recommended articles:
+
+The Percentile Bootstrap: A Primer With Step-by-Step Instructions in R
+by @robustgar @CyrilRPernet @randWilcox 
+https://t.co/ZAwCs0AyPB
+
+What Teachers Should Know about the Bootstrap
+by Tim Hesterberg
+https://t.co/fCla0bKwab","2021-05-19 13:12 +0000","1142.0","18.0","0.01576182136602452","0.0","1.0","4.0","0.0","12.0","0.0","1.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1395003311800127490","https://twitter.com/LisaDeBruine/status/1395003311800127490","Benefits of teaching bootstrap methods by @robustgar 
+
+1. Introduce or consolidate key frequentist concepts
+2. Inferential stats
+3. Experimental design
+4. Robust statistics
+5. Simulations
+6. R Skills
+7. Distributions of plausible population values -&gt; Bayes","2021-05-19 13:08 +0000","1315.0","13.0","0.00988593155893536","1.0","1.0","2.0","6.0","0.0","0.0","3.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1394940901009600514","https://twitter.com/LisaDeBruine/status/1394940901009600514","@richarddmorey @chrisdc77 Despite all the time I spend working on how to make journals better, I always come back around to the conclusion we should burn them all down and start over with a better system for sharing science.","2021-05-19 09:00 +0000","1936.0","42.0","0.02169421487603306","1.0","1.0","19.0","4.0","0.0","0.0","17.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1394927263091675142","https://twitter.com/LisaDeBruine/status/1394927263091675142","Join us today at 14:00 UK time for @robustgar’s bootstrapping seminar. The Zoom link is on the #MethodsMetaScience schedule https://t.co/A2KZYqiv9b","2021-05-19 08:05 +0000","4843.0","99.0","0.02044187487094776","3.0","1.0","17.0","5.0","38.0","0.0","34.0","0.0","0","0","0","0","0","1","1","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1394714613711790085","https://twitter.com/LisaDeBruine/status/1394714613711790085","@PsychScientists I recently binge-read the two newest ones (only ones I hadn’t read) and they were really satisfying. The plot twists are pretty easy to see, but in a way that makes you feel clever.","2021-05-18 18:00 +0000","566.0","6.0","0.01060070671378092","0.0","1.0","2.0","3.0","0.0","0.0","0.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1394706856334012417","https://twitter.com/LisaDeBruine/status/1394706856334012417","@cantabile @emilynordmann @daniellequinn88 @sciencewithtyus @mikenealis @WhySharksMatter @TiffanyTimbers @cbahlai Please do. You so deserve a proper Scottish night out once you make it over here.","2021-05-18 17:30 +0000","95.0","1.0","0.010526315789473684","0.0","0.0","1.0","0.0","0.0","0.0","0.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1394625892207546372","https://twitter.com/LisaDeBruine/status/1394625892207546372","@thuyvytnguyen @KangTarandeep @JASPStats @Sam_D_Parsons I love this blog post :) https://t.co/bRIYU98viN","2021-05-18 12:08 +0000","436.0","35.0","0.08027522935779817","0.0","1.0","2.0","0.0","0.0","0.0","7.0","0.0","0","0","0","0","0","25","25","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1394611304032243714","https://twitter.com/LisaDeBruine/status/1394611304032243714","@silParacchini @emilynordmann I'm just helping out at this workshop. It's being led by the fabulous @emilynordmann, who I've already learned a bunch of things from that I plan to incorporate into my teaching, like debugging exercises and having students practice reading code in plain English.","2021-05-18 11:10 +0000","65.0","2.0","0.03076923076923077","0.0","0.0","1.0","0.0","0.0","0.0","1.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1394582684547043328","https://twitter.com/LisaDeBruine/status/1394582684547043328","The most helpful advice from @emilynordmann:
+
+If you want to learn R,
+you need to use R!","2021-05-18 09:16 +0000","2460.0","46.0","0.01869918699186992","2.0","2.0","18.0","6.0","0.0","0.0","18.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1394581452260626433","https://twitter.com/LisaDeBruine/status/1394581452260626433","The @UofGPsychology  R workshop is just starting with @emilynordmann reminding us that the R in #psyTeachR is for Reproducibility, and R is just one of the tools we use for that. https://t.co/YugVk1bxNd","2021-05-18 09:11 +0000","7635.0","243.0","0.03182711198428291","8.0","2.0","48.0","24.0","0.0","1.0","63.0","0.0","0","0","0","0","0","97","97","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1394270029097615365","https://twitter.com/LisaDeBruine/status/1394270029097615365","@cedricbatailler @robustgar “All are welcome” means all are welcome :) We’d love to see you there.","2021-05-17 12:34 +0000","127.0","2.0","0.015748031496062992","0.0","0.0","1.0","1.0","0.0","0.0","0.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1394219785202946053","https://twitter.com/LisaDeBruine/status/1394219785202946053","@tomstafford One thing we’re obsessed with at #psyTeachR @UofGPsychology is teaching transparent data wrangling. If you just give students clean datasets in the right format for analysis, they panic the first time they see real data. And the choices you make are important for reproducibility.","2021-05-17 09:14 +0000","359.0","9.0","0.025069637883008356","0.0","2.0","2.0","0.0","0.0","1.0","4.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1394218953459867652","https://twitter.com/LisaDeBruine/status/1394218953459867652","Two days until @robustgar’s bootstrapping seminar, where he will “illustrate how teaching the bootstrap is a great opportunity to introduce or consolidate key statistical concepts. ... a bootstrap distribution requires discussions about sampling and the data acquisition process.” https://t.co/MahCVMhNFJ","2021-05-17 09:11 +0000","10985.0","84.0","0.007646791078743742","6.0","1.0","28.0","16.0","0.0","0.0","33.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1394211080889675776","https://twitter.com/LisaDeBruine/status/1394211080889675776","@tomstafford The practicalities and ethics of collaboration, like how to make sure each team members gets appropriate credit and no one is being exploited. I think most people just pick up widely varying norms as they go and it’s seldom explicitly discussed.","2021-05-17 08:39 +0000","574.0","20.0","0.03484320557491289","0.0","3.0","5.0","0.0","0.0","0.0","12.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1394209200784424962","https://twitter.com/LisaDeBruine/status/1394209200784424962","@AyaGolan1 I can totally recommend this workshop series. I’m teaching the first session on simulating data with factorial designs using the faux #rstats package https://t.co/xEMSMvSWyo","2021-05-17 08:32 +0000","1053.0","7.0","0.006647673314339981","1.0","1.0","1.0","2.0","0.0","0.0","2.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1394208492001628161","https://twitter.com/LisaDeBruine/status/1394208492001628161","@AyaGolan1 Simulation is just making a fake dataset that has the relationships you hypothesise. You can use it to plan your analysis code or run power simulations. See my intro tutorial here https://t.co/JnwdnRTYFD or articles here https://t.co/fCsPDSi0Ye","2021-05-17 08:29 +0000","33.0","9.0","0.2727272727272727","0.0","2.0","2.0","0.0","2.0","0.0","3.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1394207593187401729","https://twitter.com/LisaDeBruine/status/1394207593187401729","@ChelseaParlett Craft hangouts are awesome. What do you make? (Are you on Ravelry?)","2021-05-17 08:26 +0000","951.0","7.0","0.007360672975814932","0.0","0.0","2.0","4.0","0.0","0.0","1.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1393973647732269057","https://twitter.com/LisaDeBruine/status/1393973647732269057","@AlexandraErin Ooh, that makes so much sense of my reading habits! I read a novel in a oner recently and was pleased that I’m able to enjoy novels “again”, but I bet it was just the bingeing. I read lots of fanfic in the years I didn’t have time to read a novel in one sitting.","2021-05-16 16:56 +0000","1329.0","15.0","0.011286681715575621","0.0","1.0","4.0","3.0","0.0","0.0","7.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1393511585747030017","https://twitter.com/LisaDeBruine/status/1393511585747030017","@SRevelare @mirkoschaefer @rinireg @Abebab @AcademicChatter That’s a pretty odd reading of the original tweet, which I read as a caution to be aware of prevailing biases not to cite some people and don’t perpetuate them.","2021-05-15 10:20 +0000","36.0","3.0","0.08333333333333333","0.0","1.0","1.0","1.0","0.0","0.0","0.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1393501595619446787","https://twitter.com/LisaDeBruine/status/1393501595619446787","@SRevelare @mirkoschaefer @rinireg @Abebab @AcademicChatter There are almost always several relevant citations for an idea. How do you decide when you can’t cite them all: the first, most recent, most cited, most well-known author, in the most prestigious journal? Do you think about how these choices cause bias? Even (especially) in STEM?","2021-05-15 09:40 +0000","52.0","3.0","0.057692307692307696","0.0","1.0","1.0","0.0","0.0","0.0","1.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1393496514971029506","https://twitter.com/LisaDeBruine/status/1393496514971029506","@siminevazire @jamesheathers Wow. It seems inconceivable that a zombie fact like this could end up in every textbook with almost no way to tell where it came from. An interesting counter to arguments that flaws can be easily detected without direct replication.","2021-05-15 09:20 +0000","1007.0","37.0","0.036742800397219465","1.0","2.0","4.0","0.0","0.0","0.0","30.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1393187288159506432","https://twitter.com/LisaDeBruine/status/1393187288159506432","@CoRGiS_UoS @UofGPsychology Slides:  https://t.co/4SHONwwrqZ
+Materials:  https://t.co/MtF513dmt4
+Shiny App: https://t.co/q9yI1jmp0u https://t.co/iae08pUMWP","2021-05-14 12:51 +0000","1376.0","64.0","0.046511627906976744","3.0","1.0","12.0","4.0","13.0","0.0","19.0","0.0","0","0","0","0","0","222","12","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1392864756961251332","https://twitter.com/LisaDeBruine/status/1392864756961251332","@Berbesque Including a codebook with your data is a good first step. 
+
+@rubenarslan’s codebook #rstats package is great
+
+https://t.co/tme0PyWhqT
+
+@lakens and I have a project on integrating metadata and made a shiny app to help make codebooks from data files
+
+https://t.co/INTHfmcjFv","2021-05-13 15:30 +0000","1297.0","45.0","0.03469545104086353","4.0","1.0","5.0","4.0","22.0","0.0","9.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1392851303190179842","https://twitter.com/LisaDeBruine/status/1392851303190179842","Lessons learned:
+
+“The journals that required data archives were vastly better able to evaluate the data and suspicions ... quite a few data archives were incomplete, highlighting the need for better enforcement of compliance - good meta-data, all relevant variables included.” https://t.co/qdJHjLhRvd","2021-05-13 14:36 +0000","5319.0","48.0","0.009024252679075015","4.0","2.0","18.0","10.0","0.0","0.0","14.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1392842808738918404","https://twitter.com/LisaDeBruine/status/1392842808738918404","@charliejhadley @willemsleegers @lakens and I just submitted a grant to develop a sort of “results manager” like a reference manager that records your statistical results in a machine-readable format (similar to bibtex) so you can insert formatted references into a paper with a given style.","2021-05-13 14:02 +0000","99.0","10.0","0.10101010101010101","0.0","1.0","3.0","1.0","3.0","0.0","2.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1392841995933032450","https://twitter.com/LisaDeBruine/status/1392841995933032450","@charliejhadley And @willemsleegers’ tidystats package helps you insert formatted stats in R. 
+
+https://t.co/DGDHN4sddC","2021-05-13 13:59 +0000","144.0","15.0","0.10416666666666667","0.0","1.0","3.0","1.0","8.0","0.0","2.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1392841701555949570","https://twitter.com/LisaDeBruine/status/1392841701555949570","@charliejhadley Papaja’s apa_print function does for some things. https://t.co/7OvS9wgx21","2021-05-13 13:58 +0000","530.0","18.0","0.033962264150943396","0.0","1.0","4.0","2.0","9.0","0.0","2.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1392835973092839427","https://twitter.com/LisaDeBruine/status/1392835973092839427","@kierisi @ambernoelle @benavides_c_ I’d forgotten about Night Court! https://t.co/7xo9o2j6GI","2021-05-13 13:35 +0000","447.0","17.0","0.03803131991051454","0.0","1.0","4.0","3.0","0.0","0.0","0.0","0.0","0","0","0","0","0","141","9","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1392746973086765062","https://twitter.com/LisaDeBruine/status/1392746973086765062","Wishing peace and happiness to all who celebrate. Eid Mubarak!","2021-05-13 07:42 +0000","2925.0","45.0","0.015384615384615385","0.0","0.0","13.0","8.0","0.0","0.0","24.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1392745503448838144","https://twitter.com/LisaDeBruine/status/1392745503448838144","@Bilal_A_Mateen This needs to be *totally* explicit in a funding call if it will accept grants with outcomes that are 100% tools or infrastructure (and documentation) without addressing a theory or hypothesis. And explicit to reviewers and the panel, of course.","2021-05-13 07:36 +0000","102.0","4.0","0.0392156862745098","0.0","0.0","4.0","0.0","0.0","0.0","0.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1392743153552302081","https://twitter.com/LisaDeBruine/status/1392743153552302081","🧵↕️ Funders definitely need to be more clear about how to apply for grants to build tools and infrastructure. I hear over and over how you have to also have “scientific” content but that often detracts from the main goals and makes the application less coherent. https://t.co/1Z4DQiAuPx","2021-05-13 07:26 +0000","4221.0","50.0","0.011845534233593935","2.0","1.0","21.0","3.0","0.0","0.0","23.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1392533812152786947","https://twitter.com/LisaDeBruine/status/1392533812152786947","TIL about I() to set aes values to the identity of a value from your data table.
+
+via @DrMowinckels at @RLadiesEdinb 
+
+df &lt;- data.frame(
+  x = 1:3,
+  y = 1:3,
+  color = c(""red"", ""green"", ""blue"")
+)
+
+ggplot(df, aes(x, y, color = I(color))) +
+  geom_point(size = 10) https://t.co/H9HlpnX3Kv","2021-05-12 17:35 +0000","34237.0","1220.0","0.035633963256126416","21.0","7.0","160.0","51.0","3.0","0.0","375.0","0.0","0","0","0","0","0","603","603","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1392531153370947585","https://twitter.com/LisaDeBruine/status/1392531153370947585","@dlivingstone Malicious compliance 🤣","2021-05-12 17:24 +0000","43.0","2.0","0.046511627906976744","0.0","0.0","1.0","0.0","0.0","0.0","1.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1392506876248662018","https://twitter.com/LisaDeBruine/status/1392506876248662018","@jmcastagnetto @eolasinntinn @Eavanmac @JSTorrance It would be awesome if they could convert that to a fixed-width font, but unfortunately it's a variable-width font, which is really hard to use for coding.","2021-05-12 15:48 +0000","61.0","1.0","0.01639344262295082","0.0","1.0","0.0","0.0","0.0","0.0","0.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1392504992632823810","https://twitter.com/LisaDeBruine/status/1392504992632823810","Next week's @UofGPsychology #MethodsMetaScience seminar will feature @robustgar on the benefits of learning and teaching bootstrap methods. All are welcome.
+
+Wednesday, May 19, 14:00 (UK)
+Zoom link at https://t.co/A2KZYqiv9b","2021-05-12 15:40 +0000","14241.0","239.0","0.01678252931676146","11.0","2.0","32.0","40.0","78.0","2.0","74.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1392503140952461318","https://twitter.com/LisaDeBruine/status/1392503140952461318","@Eavanmac @eolasinntinn @JSTorrance, do you have suggestions in addition to the resources listed here?
+
+https://t.co/eIJ8YOIOhn","2021-05-12 15:33 +0000","274.0","26.0","0.0948905109489051","0.0","2.0","2.0","0.0","17.0","0.0","5.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1392502226950705154","https://twitter.com/LisaDeBruine/status/1392502226950705154","@richarddmorey I'm not entirely sure what you mean about order constraints, but if you want to generate a vector with a specified correlation to an existing vector, this might help:
+
+https://t.co/DQ1p3hXUiM","2021-05-12 15:29 +0000","807.0","21.0","0.026022304832713755","0.0","0.0","0.0","8.0","11.0","0.0","2.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1392501255977816078","https://twitter.com/LisaDeBruine/status/1392501255977816078","@cantabile https://t.co/1SLWXlQgLC https://t.co/FtakAgjpyJ","2021-05-12 15:25 +0000","367.0","7.0","0.01907356948228883","0.0","0.0","3.0","0.0","0.0","0.0","1.0","0.0","0","0","0","0","0","3","3","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1392498238100541443","https://twitter.com/LisaDeBruine/status/1392498238100541443","Today's #psyTeachR #CodingClub was really fun; thanks everyone who attended! The website is updated with the recording, a zip file of our progress, and optional ""homework"". Next week, we'll learn how to handle input errors without crashing.
+
+https://t.co/BlxxAoSSfN https://t.co/Yod0UQKwzH","2021-05-12 15:13 +0000","6562.0","153.0","0.023316062176165803","2.0","1.0","21.0","3.0","35.0","6.0","13.0","0.0","0","0","0","0","0","72","72","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1392463233420873731","https://twitter.com/LisaDeBruine/status/1392463233420873731","@dishwash_expert @cantabile Great idea! It’s changed now :)","2021-05-12 12:54 +0000","46.0","4.0","0.08695652173913043","0.0","0.0","1.0","1.0","1.0","0.0","1.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1392452407032954882","https://twitter.com/LisaDeBruine/status/1392452407032954882","@DiscordianKitty This👆🌈 My PhD student @_R_Lai_ made me this adorable mask and I love showing it off in public (plus it has a toggle to fasten in back instead of looping over my tiny ears :) https://t.co/LmsdG3mJ7Q","2021-05-12 12:11 +0000","80.0","9.0","0.1125","0.0","0.0","4.0","1.0","2.0","0.0","1.0","0.0","0","0","0","0","0","1","1","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1392448438000885763","https://twitter.com/LisaDeBruine/status/1392448438000885763","Don’t count your chickens... 🤣 https://t.co/f5iGLHkfFg","2021-05-12 11:55 +0000","4173.0","47.0","0.011262880421758926","2.0","1.0","30.0","1.0","0.0","0.0","13.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1392418324131233792","https://twitter.com/LisaDeBruine/status/1392418324131233792","@Sam_D_Parsons @ChelseaParlett I won’t name names, but that was from a senior vision scientist. I never convinced him that pairing up responses in 2 conditions in the order they were randomly run (excluding error trials and deleting trials at the end with no match) was not a sensible way to analyse data.","2021-05-12 09:56 +0000","360.0","15.0","0.041666666666666664","0.0","1.0","2.0","1.0","0.0","0.0","11.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1392399384541806593","https://twitter.com/LisaDeBruine/status/1392399384541806593","#psyTeachR #CodingClub is today at 14:00 (UK). We’re starting a new #shiny app from scratch, so no previous experience necessary except very basic #rstats https://t.co/2F7KaMpxmh","2021-05-12 08:40 +0000","9067.0","94.0","0.010367265909341568","12.0","1.0","22.0","10.0","0.0","4.0","45.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1392394803632087044","https://twitter.com/LisaDeBruine/status/1392394803632087044","@aeryn_thrace @ceptional Sorry, I did misread that initially. But both points stand. Solutions will cost money (researchers already do way too much ‘grey’ work; it can’t be up to individual unrewarded efforts) and consultants should be paid.","2021-05-12 08:22 +0000","195.0","5.0","0.02564102564102564","0.0","1.0","2.0","0.0","0.0","0.0","2.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1392389157171961861","https://twitter.com/LisaDeBruine/status/1392389157171961861","@ChelseaParlett Paired samples tests on independent samples data. (“Just exclude the few trials at the end that don’t have a match!”)","2021-05-12 08:00 +0000","2429.0","26.0","0.01070399341292713","0.0","2.0","5.0","4.0","0.0","0.0","15.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1392384964310749185","https://twitter.com/LisaDeBruine/status/1392384964310749185","@SolomonKurz @kareem_carr The top-rated response to this is maddeningly conciliatory, concluding “Nonetheless, sorting first is definitely harmful.” Like it’s a valid choice, just not ideal. Needs more gifs. https://t.co/3KdCJqPGXA","2021-05-12 07:43 +0000","1802.0","34.0","0.018867924528301886","0.0","0.0","3.0","6.0","2.0","0.0","10.0","0.0","0","0","0","0","0","813","13","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1392381731815272448","https://twitter.com/LisaDeBruine/status/1392381731815272448","@aeryn_thrace @ceptional I want to second this. The govt needs people like @aeryn_thrace, not just full profs from Ivy League unis, and they need to *pay* them like the professional, highly skilled consultants they are.","2021-05-12 07:30 +0000","217.0","15.0","0.06912442396313365","0.0","1.0","4.0","2.0","0.0","0.0","7.0","0.0","0","0","0","0","0","1","1","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1392087598387040256","https://twitter.com/LisaDeBruine/status/1392087598387040256","@lysanderjames For all its faults, this issue gets a fair amount of attention in ev psych. 
+
+https://t.co/7VxwDNaNKE","2021-05-11 12:02 +0000","487.0","5.0","0.01026694045174538","0.0","0.0","1.0","0.0","3.0","0.0","1.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1392037966151827456","https://twitter.com/LisaDeBruine/status/1392037966151827456","@PsychScientists Oh, that's just right on the border of ""obviously a parody"" and ""maybe actual Americans"".","2021-05-11 08:44 +0000","335.0","13.0","0.03880597014925373","0.0","0.0","6.0","1.0","0.0","0.0","6.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1392036205345312768","https://twitter.com/LisaDeBruine/status/1392036205345312768","@djnavarro You can skip the separate with pivot_longer:
+
+dat %&gt;%
+  mutate(id = row_number()) %&gt;%
+  pivot_longer(cols = !id, 
+     names_to = c(""var"", ""i""), 
+     names_sep = ""_"") %&gt;%
+  group_by(var, id) %&gt;%
+  summarise(v = sum(value)) %&gt;%
+  spread(var, v)","2021-05-11 08:37 +0000","889.0","39.0","0.043869516310461196","0.0","1.0","19.0","10.0","0.0","0.0","9.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1392026012536512514","https://twitter.com/LisaDeBruine/status/1392026012536512514","@djnavarro You need to add an id column first for the later grouping.","2021-05-11 07:57 +0000","608.0","4.0","0.006578947368421052","0.0","0.0","2.0","2.0","0.0","0.0","0.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1392025785482059776","https://twitter.com/LisaDeBruine/status/1392025785482059776","@djnavarro Can you make completely long (so all headers in a column), split the column at the underscore, group and summarise, then make wide?","2021-05-11 07:56 +0000","638.0","20.0","0.03134796238244514","0.0","1.0","12.0","2.0","0.0","0.0","5.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1392025355406483456","https://twitter.com/LisaDeBruine/status/1392025355406483456","How is it so hard to get two different images of a model to photoshop? It’s like they don’t even care that this is obviously fake. https://t.co/osv182AvO2","2021-05-11 07:54 +0000","3154.0","28.0","0.008877615726062143","0.0","1.0","10.0","2.0","1.0","0.0","14.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1391881386584420355","https://twitter.com/LisaDeBruine/status/1391881386584420355","@hankgreen I downloaded it immediately after that tweet and just finished it and downloaded the sequel. I’m not sure I can stop myself from starting on it tonight, but I have so many things to do tomorrow! Damn you, Hank Green 🤖","2021-05-10 22:22 +0000","362.0","3.0","0.008287292817679558","0.0","0.0","0.0","0.0","0.0","0.0","3.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1391847443441098754","https://twitter.com/LisaDeBruine/status/1391847443441098754","@samuelmehr @talyarkoni @tallinzen In those circumstances, the 20 minute talk is hardly every the most important part. You get to meet colleagues for an extended time to discuss ideas that you would never have otherwise gotten in-depth feedback on. Or meet with ECRs to expand their networks.","2021-05-10 20:07 +0000","173.0","18.0","0.10404624277456648","0.0","1.0","3.0","0.0","0.0","0.0","14.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1391803922348642307","https://twitter.com/LisaDeBruine/status/1391803922348642307","@hankgreen I just finished the newest Murderbot book, and this book keeps popping up in different parts of my digital life, so now for something completely different....","2021-05-10 17:14 +0000","1339.0","9.0","0.006721433905899925","0.0","1.0","3.0","4.0","0.0","0.0","1.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1391729826986352645","https://twitter.com/LisaDeBruine/status/1391729826986352645","@page_gould @drboothroyd @TheRealJimShady It helps knowing that people I respect who are obviously good scientists and good people also struggle with this.","2021-05-10 12:20 +0000","349.0","6.0","0.017191977077363897","0.0","0.0","4.0","0.0","0.0","0.0","2.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1391729337246830593","https://twitter.com/LisaDeBruine/status/1391729337246830593","@YaraKadulina This is totally well-meaning advice, but I've done that about a dozen times over the past 6 years and it doesn't seem to be a method that works for me. I now have several old folders of ""emails to sort"", as well as an overflowing inbox, and sorting all that is a whole extra task.","2021-05-10 12:18 +0000","45.0","0.0","0.0","0.0","0.0","0.0","0.0","0.0","0.0","0.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1391704832982065154","https://twitter.com/LisaDeBruine/status/1391704832982065154","The simulation app won, so we'll be working on something similar to https://t.co/ynVlKhcJAs in this week's #psyTeachR #CodingClub.
+
+All are welcome. See https://t.co/BlxxAoSSfN for resources and the Zoom link. https://t.co/c9aZ7LrABV","2021-05-10 10:41 +0000","9537.0","111.0","0.011638880150990877","2.0","2.0","5.0","5.0","48.0","0.0","49.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1391693452350574592","https://twitter.com/LisaDeBruine/status/1391693452350574592","If you're interested in a more academic treatment of SCT, the papers are linked to this site, as well as videos, a workbook, and a Spanish translation of the zine. I absolutely love how much work the authors have done to make this accessible!
+
+https://t.co/SmhYEy76Iw","2021-05-10 09:55 +0000","1630.0","30.0","0.018404907975460124","0.0","2.0","3.0","3.0","17.0","0.0","5.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1391689774478630914","https://twitter.com/LisaDeBruine/status/1391689774478630914","This month, the LGBTQIA+ journal club will discuss Sexual Configurations Theory and reading the zine by @SarivanAnders @megjohnbarker &amp; @XTaffi, illustrated by @julesscheele!
+
+Message me or @emilynordmann to access the Teams channel 28 May 14:00 UK time
+
+https://t.co/lmpXgTfVF3 https://t.co/hBoDY3wle8","2021-05-10 09:41 +0000","17334.0","353.0","0.020364601361486098","14.0","1.0","37.0","29.0","46.0","0.0","83.0","0.0","0","0","0","0","0","143","143","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1391677039237865475","https://twitter.com/LisaDeBruine/status/1391677039237865475","@DrGBuckingham Haha, I’m pretty sure my line manager would say that’s the most important one in the list!","2021-05-10 08:50 +0000","348.0","8.0","0.022988505747126436","0.0","1.0","2.0","0.0","0.0","0.0","5.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1391674261513834498","https://twitter.com/LisaDeBruine/status/1391674261513834498","@drboothroyd @TheRealJimShady I just posted a pretty representative list of the type of emails that need checking (so excluding the obvious spam and FYI emails that I can delete after a few seconds). https://t.co/mT7QSMPehW","2021-05-10 08:39 +0000","803.0","15.0","0.0186799501867995","0.0","3.0","2.0","1.0","2.0","0.0","7.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1391673718171131904","https://twitter.com/LisaDeBruine/status/1391673718171131904","26. ERC advanced grant call - webinar is tomorrow! register, add to calendar, archive, change availability in doodle poll from before
+
+27. Reminder for PSACR002 - update authorship questionnaire, draft still loading after 3 minutes,  add to todo (1hr?), archive","2021-05-10 08:37 +0000","1534.0","19.0","0.012385919165580182","0.0","2.0","2.0","5.0","0.0","0.0","10.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1391673716023648257","https://twitter.com/LisaDeBruine/status/1391673716023648257","23. Github repo invitation - looked at before but on phone, click to accept invite now that I’m on my laptop, delete
+
+24. Github subscription confirmation - delete
+
+25. Flagged thread - met about this last week, unflag, archive","2021-05-10 08:37 +0000","1599.0","6.0","0.00375234521575985","0.0","1.0","1.0","1.0","0.0","0.0","3.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1391673713855246336","https://twitter.com/LisaDeBruine/status/1391673713855246336","20. Request for MSc supervision - confirm I already dealt with this, archive
+
+21. Dutch spam - try to figure out how to unsubscribe myself, google translate because my Dutch sucks, delete
+
+22. Confirmation of unsubscription - translate to be sure, delete","2021-05-10 08:37 +0000","502.0","3.0","0.00597609561752988","0.0","1.0","1.0","0.0","0.0","0.0","1.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1391673708532613122","https://twitter.com/LisaDeBruine/status/1391673708532613122","17. OSM - email with link to something I might find interesting, click on it, add to weblinks folder, archive
+
+18. Office notification - check document, already addressed that comment, delete
+
+19. Link to talk I gave last week - delete","2021-05-10 08:37 +0000","448.0","2.0","0.004464285714285714","0.0","1.0","1.0","0.0","0.0","0.0","0.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1391673706766798854","https://twitter.com/LisaDeBruine/status/1391673706766798854","14. Conference abstracts to assess (15) - add to to-do list (2hr), download, archive
+
+15. Teams email -  log into other account, check teams, request to update website, add to todo (0.5 hr), archive
+
+16. Admin email - someone else already responded, no action, delete","2021-05-10 08:37 +0000","428.0","5.0","0.011682242990654205","0.0","1.0","1.0","1.0","0.0","0.0","2.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1391673705139421184","https://twitter.com/LisaDeBruine/status/1391673705139421184","11. OSM - mentions web mockup, can’t figure out what they mean, archive
+
+12. Request to be an ERC expert evaluator - not sure I have time, but respond for more info, archive
+
+13. Confirmation UK is an ERC associated country - determine I already told the relevant people, archive","2021-05-10 08:37 +0000","441.0","2.0","0.0045351473922902496","0.0","1.0","1.0","0.0","0.0","0.0","0.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1391673703012917248","https://twitter.com/LisaDeBruine/status/1391673703012917248","7. Google email - delete
+
+8. Trello login email - delete
+
+9. Enquiry about PhD - needs me to read a 13-page research proposal and CV (0.5 hr), flag for later, leave in inbox
+
+10. OSM - info email and follow-up thanks, read and archive","2021-05-10 08:37 +0000","376.0","4.0","0.010638297872340425","0.0","1.0","1.0","1.0","0.0","0.0","1.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1391673700857040896","https://twitter.com/LisaDeBruine/status/1391673700857040896","5. Workshop attendee list - no action, archive
+
+6. Workshop schedule - write abstract, put 3 items in calendar, add prep to todo list (3+hr) [login to trello, make Alsatian account, ID crosswalks &amp; traffic lights, wrong account, login w/ google, wait for code email], archive","2021-05-10 08:37 +0000","383.0","2.0","0.005221932114882507","0.0","1.0","1.0","0.0","0.0","0.0","0.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1391673698789244928","https://twitter.com/LisaDeBruine/status/1391673698789244928","3. Manuscript R&amp;R thread - review 8 connected emails, some very long (3 haven’t read yet), fill out doodle poll, add to todo (2hr?)
+
+4. Conference acceptance - check if we scheduled a meeting, remind Helena to schedule meeting for this, archive","2021-05-10 08:37 +0000","419.0","2.0","0.00477326968973747","0.0","1.0","1.0","0.0","0.0","0.0","0.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1391673696578834432","https://twitter.com/LisaDeBruine/status/1391673696578834432","1. Data/code for a meeting tomorrow - download to desktop and archive, add to todo list (2hr)
+
+2. Open Science and Methods Committee (OSM) comments (2) - response to offhand comment needs info, flag for later, leave in inbox (0.5hr)","2021-05-10 08:37 +0000","524.0","4.0","0.007633587786259542","0.0","1.0","1.0","1.0","0.0","0.0","1.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1391673694305636352","https://twitter.com/LisaDeBruine/status/1391673694305636352","I was worried I was exaggerating the extent of this in my memory, so I tracked a full hour of work on my emails this morning. I handled 27 emails, added 6 substantial tasks to my to-do list, and am caught up back to May 3rd. Summaries below: https://t.co/cbwo4F7c5A","2021-05-10 08:37 +0000","7631.0","200.0","0.02620888481195125","4.0","1.0","17.0","25.0","0.0","0.0","153.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1391505770823438346","https://twitter.com/LisaDeBruine/status/1391505770823438346","@massimo006 Haha, every new tool is useful for that up to a point. I now have enough DMs that some get lost, too. But I don’t have much anxiety about it (yet).","2021-05-09 21:30 +0000","134.0","3.0","0.022388059701492536","0.0","0.0","2.0","1.0","0.0","0.0","0.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1391505357835472902","https://twitter.com/LisaDeBruine/status/1391505357835472902","@PsychScientists But then each individual person ends up thinking I’m some asshole professor who can’t take 5 minutes out of their day to answer a simple question :(","2021-05-09 21:28 +0000","232.0","6.0","0.02586206896551724","0.0","2.0","0.0","1.0","0.0","0.0","3.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1391499621302689796","https://twitter.com/LisaDeBruine/status/1391499621302689796","@PsychScientists Maybe ~5% of them are important, but I have to read them all to make sure. And some send me down rabbit holes. Another ~5% are people asking for help/advice, and I try not to ignore them, but with 4200 unread emails and 5 minutes for each of the help ones, that’s 21 hours.","2021-05-09 21:05 +0000","236.0","3.0","0.012711864406779662","0.0","1.0","0.0","0.0","0.0","0.0","2.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1391393181720367105","https://twitter.com/LisaDeBruine/status/1391393181720367105","@TheRealJimShady Who says I sleep?
+
+But really, it’s causing such an unproductive anxiety spiral that makes it hard to even start fixing it.","2021-05-09 14:02 +0000","414.0","20.0","0.04830917874396135","0.0","3.0","4.0","5.0","0.0","0.0","8.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1391392810998419458","https://twitter.com/LisaDeBruine/status/1391392810998419458","@EPronizius 50/50, but this is after I’ve weeded out the obvious spam, so I have to open and at least minimally read all these.","2021-05-09 14:01 +0000","188.0","2.0","0.010638297872340425","0.0","0.0","1.0","1.0","0.0","0.0","0.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1391383362175217664","https://twitter.com/LisaDeBruine/status/1391383362175217664","@djnavarro That’s gorgeous! https://t.co/3gNqvgyIbL","2021-05-09 13:23 +0000","1384.0","6.0","0.004335260115606936","0.0","0.0","4.0","0.0","0.0","0.0","1.0","0.0","0","0","0","0","0","201","1","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1391379310062276610","https://twitter.com/LisaDeBruine/status/1391379310062276610","I’ve been trying to clear my backlog of unresponded emails for the past 5 hours. I reduced the unread badge from 4500 to 4200, but feel like I’ve accomplished almost nothing. I probably need another session like this just to clear April 2021. https://t.co/leywoEfXcu","2021-05-09 13:07 +0000","13683.0","269.0","0.019659431411240224","2.0","8.0","33.0","20.0","1.0","0.0","165.0","0.0","0","0","0","0","0","2613","40","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1391373376258707460","https://twitter.com/LisaDeBruine/status/1391373376258707460","@EikoFried @CollabraOA @PeerCommunityIn is a great platform for this https://t.co/MhLLd1VvP7","2021-05-09 12:43 +0000","423.0","29.0","0.06855791962174941","0.0","0.0","4.0","10.0","10.0","0.0","5.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1391332372533108737","https://twitter.com/LisaDeBruine/status/1391332372533108737","@eolasinntinn It’s pretty clear that they capitalised on having a similar name to a more mainstream party, but I’m not sure how you could quantify the extent of the problem after the fact. Definitely this shouldn’t be allowed in the future.","2021-05-09 10:01 +0000","735.0","12.0","0.0163265306122449","0.0","1.0","3.0","1.0","0.0","0.0","7.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1391016899614543875","https://twitter.com/LisaDeBruine/status/1391016899614543875","@thomasp85 When I click the menu button on my Apple remote or my phone remote app, the AppleTV turns on, wakes up the TV, and switches it to the right input if I’d been gaming before. I lost my TV remote and only ever have to touch the TV to turn it off.","2021-05-08 13:07 +0000","971.0","4.0","0.004119464469618949","0.0","0.0","1.0","1.0","0.0","0.0","2.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390963873147142145","https://twitter.com/LisaDeBruine/status/1390963873147142145","@glas_james Apply for citizenship. (I’ve been a permanent resident in Scotland for 17 years and intend to stay.)","2021-05-08 09:36 +0000","1626.0","48.0","0.02952029520295203","1.0","1.0","16.0","13.0","0.0","0.0","17.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390960375961690114","https://twitter.com/LisaDeBruine/status/1390960375961690114","@hioberman @alliemchoate I have a tutorial here that starts with simple factorial designs and continues to mixed models.
+
+https://t.co/JnwdnRTYFD","2021-05-08 09:22 +0000","2858.0","146.0","0.05108467459762071","4.0","1.0","27.0","18.0","49.0","0.0","47.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390959691841351681","https://twitter.com/LisaDeBruine/status/1390959691841351681","@christapeterso She seems totally unconcerned about a parallel implication of her argument: that cis women who tend to get misgendered (e.g., who have facial hair) should just give up correcting people so they don’t slow down everyone’s cognition. Ugh.","2021-05-08 09:20 +0000","867.0","18.0","0.020761245674740483","0.0","1.0","9.0","3.0","0.0","0.0","5.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390951963731365891","https://twitter.com/LisaDeBruine/status/1390951963731365891","@DrLeo037 If you have, say, 20 groups, but only want the top 5 in the legend, split your data into 2 and hide 1 legend. 
+
+ggplot(data_bottom15, aes(x,y, colour=group)) +
+  geom_smooth(color =“grey”, show.legend= F) +
+  geom_smooth(data = data_top5)","2021-05-08 08:49 +0000","41.0","1.0","0.024390243902439025","0.0","0.0","1.0","0.0","0.0","0.0","0.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390950372529872897","https://twitter.com/LisaDeBruine/status/1390950372529872897","@DrLeo037 You can omit the legend for any individual geom like this:
+
+geom_violin(show.legend = FALSE)","2021-05-08 08:43 +0000","167.0","4.0","0.023952095808383235","0.0","2.0","1.0","0.0","0.0","0.0","1.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390694814623145984","https://twitter.com/LisaDeBruine/status/1390694814623145984","@joieprout This code looks different in the source pane vs knit
+
+```{r setup}
+library(ggplot2)
+p &lt;- ggplot(cars, aes(speed, dist)) + geom_point()
+ggsave(""plot.png"", p, width = 9, height = 5)
+```
+
+```{r, fig.width = 9, fig.height = 5}
+p
+```
+
+```{r}
+knitr::include_graphics(""plot.png"")
+``` https://t.co/O2TXI2m75F","2021-05-07 15:47 +0000","87.0","6.0","0.06896551724137931","0.0","0.0","1.0","0.0","0.0","0.0","0.0","0.0","0","0","0","0","0","5","5","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390692967149604865","https://twitter.com/LisaDeBruine/status/1390692967149604865","@joieprout When you knit, the displayed and ggsaved plots are the same (if the width &amp; height are set to the same values for the plot chunk and ggsave); it's just the preview while you're running code in the source pane that is weird. Saving &amp; displaying with knitr::include_graphics helps.","2021-05-07 15:40 +0000","68.0","3.0","0.04411764705882353","0.0","2.0","1.0","0.0","0.0","0.0","0.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390692070935998469","https://twitter.com/LisaDeBruine/status/1390692070935998469","@javierecon @mdancho84 @cantoflor_87 I can't help but always read the name of that package as Ján Ītor. https://t.co/zCckZaWdcG","2021-05-07 15:36 +0000","498.0","12.0","0.024096385542168676","0.0","1.0","3.0","0.0","2.0","0.0","1.0","0.0","0","0","0","0","0","242","5","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390684658866733056","https://twitter.com/LisaDeBruine/status/1390684658866733056","Moth Brain Swap!
+
+@TomLumPerson https://t.co/nNCvRIarL1","2021-05-07 15:07 +0000","6436.0","313.0","0.04863269111249223","8.0","1.0","28.0","33.0","1.0","0.0","44.0","0.0","0","0","0","0","0","1031","198","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390647285818744839","https://twitter.com/LisaDeBruine/status/1390647285818744839","@joieprout Definitely a big frustration. It requires a bit of understanding of DPI to get an intuition for how big you should save plots. And it doesn’t help that the preview you see when working interactively in an Rmd isn’t ifentical to the saved plot.","2021-05-07 12:38 +0000","82.0","4.0","0.04878048780487805","0.0","1.0","2.0","0.0","0.0","0.0","1.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390622938823602177","https://twitter.com/LisaDeBruine/status/1390622938823602177","@Letxuga007 You can bind the dfs and set colour to be determined by the `region` column and manually set the color values:
+
+geom_line(
+  data = bind_rows(nottingham, nottinghamshire),
+  aes(x = period, y = number, color = region)
+) +
+  scale_color_manual(values = c(""darkgreen"", ""green"")) https://t.co/XHZlncFp50","2021-05-07 11:01 +0000","113.0","7.0","0.061946902654867256","0.0","1.0","1.0","0.0","0.0","0.0","2.0","0.0","0","0","0","0","0","3","3","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390620175897071618","https://twitter.com/LisaDeBruine/status/1390620175897071618","@Letxuga007 Do it like this and it will be what I think you want:
+
+geom_line(
+  data = nottingham,
+  color = ""green"",
+  aes(x = period, y = number)
+)","2021-05-07 10:51 +0000","39.0","1.0","0.02564102564102564","0.0","0.0","1.0","0.0","0.0","0.0","0.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390619985656127488","https://twitter.com/LisaDeBruine/status/1390619985656127488","@Letxuga007 You need to move the colour outside of aes(). The aes() function refers to the data columns that should be used to determine groups for that aesthetic, so setting it to a constant string (no matter what string), just defaults to everything in 1 group and all the default colour.","2021-05-07 10:50 +0000","57.0","3.0","0.05263157894736842","0.0","1.0","2.0","0.0","0.0","0.0","0.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390618201441153026","https://twitter.com/LisaDeBruine/status/1390618201441153026","@page_gould @ibddoctor Use @ClausWilke's ggtext and html to style the caption:
+
+ggplot(msleep, aes(vore, sleep_total)) + 
+  geom_violin() +
+  labs(caption = ""&lt;strong&gt;&lt;i&gt;Figure 1&lt;/i&gt;&lt;/strong&gt;: My caption"") +
+  theme(plot.caption = ggtext::element_textbox_simple(hjust = 0)) https://t.co/tKPMFCWoaW","2021-05-07 10:43 +0000","1106.0","49.0","0.04430379746835443","1.0","2.0","3.0","0.0","0.0","0.0","5.0","0.0","0","0","0","0","0","38","38","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390613669076217856","https://twitter.com/LisaDeBruine/status/1390613669076217856","@ibddoctor Remove legend from a single geom like this: 
+
+p + geom_violin(show.legend = FALSE)
+
+Or remove all legends like this:
+
+p + theme(legend.position = ""none"")","2021-05-07 10:25 +0000","23.0","1.0","0.043478260869565216","0.0","0.0","0.0","1.0","0.0","0.0","0.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390613137209057281","https://twitter.com/LisaDeBruine/status/1390613137209057281","@ibddoctor Patchwork is good for combining plots with a common legend (where facet doesn't work).
+
+p = ggplot(diamonds, aes(y = price, color = cut))
+x = p + geom_smooth(aes(x = x))
+y = p + geom_smooth(aes(x = y))
+x + y + patchwork::plot_layout(guides = ""collect"")","2021-05-07 10:23 +0000","39.0","2.0","0.05128205128205128","0.0","0.0","2.0","0.0","0.0","0.0","0.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390610059298803715","https://twitter.com/LisaDeBruine/status/1390610059298803715","@ajamesgreen You can put aes that are common to *all* geoms in the ggplot function, but it's a problem if an aes is specified in the default mapping that isn't relevant to a latter geom.
+
+ggplot(diamonds, aes(cut)) +
+  geom_violin(aes(y = price)) +
+  geom_point(aes(y = m), data = s, size = 5)","2021-05-07 10:10 +0000","104.0","5.0","0.04807692307692308","0.0","2.0","1.0","0.0","0.0","0.0","2.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390609412188950530","https://twitter.com/LisaDeBruine/status/1390609412188950530","@ajamesgreen If you're using multiple df, don't put aes() in the ggplot function, but set it separately in each geom_* function:
+
+s = group_by(diamonds, cut) %&gt;% summarise(m = median(price))
+
+ggplot(diamonds) + 
+  geom_violin(aes(cut, price)) +
+  geom_point(aes(cut, m), data = s, size = 5)","2021-05-07 10:08 +0000","145.0","15.0","0.10344827586206896","0.0","1.0","5.0","0.0","0.0","0.0","9.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390599040597991424","https://twitter.com/LisaDeBruine/status/1390599040597991424","@BertieArbon @lsdan I'm not sure about learning from scratch, but once you know enough to write a few lines, I find https://t.co/Ed0ZNvuSm8 really helpful. Especially the tryit editor for each function (e.g., https://t.co/aojYkrBPFQ)","2021-05-07 09:27 +0000","568.0","7.0","0.01232394366197183","0.0","1.0","2.0","0.0","2.0","0.0","2.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390597095632117760","https://twitter.com/LisaDeBruine/status/1390597095632117760","It's pretty clear that people are having a lot of trouble customising plots. It would be useful to see what the common problems are, and I like trying to see if I can explain a concept in a single tweet, so respond to this with your specific problems/questions. https://t.co/2A12rja6ln","2021-05-07 09:19 +0000","11140.0","183.0","0.01642728904847397","4.0","11.0","23.0","7.0","0.0","0.0","137.0","0.0","0","0","0","0","0","1","1","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390595294807695360","https://twitter.com/LisaDeBruine/status/1390595294807695360","@alexkyllo @charliejhadley The aes() function specifies which data columns define aspects of the plot, so ymin is the minimum y-axis value for geoms that span the y-axis, like errorbars (and is irrelevant to other geoms like violin).","2021-05-07 09:12 +0000","27.0","1.0","0.037037037037037035","0.0","0.0","1.0","0.0","0.0","0.0","0.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390594566252896256","https://twitter.com/LisaDeBruine/status/1390594566252896256","@alexkyllo @charliejhadley All those limit functions are the same (apart from the aes one), just different way to set limits.
+
+But it's often better to use coord_cartesian, which draws the plot with all data then crops to limits, rather than lims, which draws the plot *after* deleting data outside limits. https://t.co/acL2IOPSSU","2021-05-07 09:09 +0000","68.0","13.0","0.19117647058823528","0.0","1.0","3.0","0.0","0.0","0.0","2.0","0.0","0","0","0","0","0","7","7","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390584803532152835","https://twitter.com/LisaDeBruine/status/1390584803532152835","@massimo006 Yeah, there's never enough time to learn all the interesting languages and tools!","2021-05-07 08:30 +0000","74.0","3.0","0.04054054054054054","0.0","1.0","1.0","0.0","0.0","0.0","1.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390558544693506048","https://twitter.com/LisaDeBruine/status/1390558544693506048","@massimo006 I’ll ask you the same question I ask the python-stans then. Do you “wish you could make nicer graphs” (see the first part of the original post), or are you just proud you learned MatLab (which is also cool, congrats :)","2021-05-07 06:46 +0000","129.0","5.0","0.03875968992248062","0.0","1.0","1.0","0.0","0.0","0.0","3.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390358328136568837","https://twitter.com/LisaDeBruine/status/1390358328136568837","@HollyDunsworth Evolution will happen if they reproduce sexually, even if just by drift, and there will probably be some evolution by natural selection on their way to extinction (assuming there is &lt;100% survival to reproduction and anything about this is linked to genes).","2021-05-06 17:30 +0000","1144.0","25.0","0.021853146853146852","0.0","1.0","6.0","7.0","0.0","0.0","11.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390356228254179330","https://twitter.com/LisaDeBruine/status/1390356228254179330","@ClausWilke @GracoRoza @kaiblin @stefanomammola1 I've used nested dataframes for simulations, but I'd never thought about using them for lists of classed lists that store image pointers, vectors, and arrays. Still not sure I've wrapped my head around it (I'd been using a pseudo-OO mental model), but I'll have a try. Thanks!","2021-05-06 17:22 +0000","281.0","8.0","0.028469750889679714","0.0","1.0","0.0","1.0","0.0","0.0","4.0","0.0","0","0","0","0","0","2","2","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390332236961046536","https://twitter.com/LisaDeBruine/status/1390332236961046536","@HumBehEvoSoc @patbarclay FYI: Pat doesn’t have a Twitter, you tagged a random guy with the same name.","2021-05-06 15:46 +0000","273.0","30.0","0.10989010989010989","0.0","2.0","6.0","1.0","0.0","0.0","21.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390331043077660680","https://twitter.com/LisaDeBruine/status/1390331043077660680","@hankgreen @jennPLUSn Ok, now it’s going on my list 🌈","2021-05-06 15:42 +0000","483.0","3.0","0.006211180124223602","0.0","0.0","2.0","1.0","0.0","0.0","0.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390327984142360582","https://twitter.com/LisaDeBruine/status/1390327984142360582","@hisotalus Does it control your cat or does the cat use it to control something?","2021-05-06 15:29 +0000","1214.0","43.0","0.03542009884678748","0.0","1.0","17.0","8.0","0.0","0.0","15.0","0.0","0","0","0","0","0","2","2","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390327677584912384","https://twitter.com/LisaDeBruine/status/1390327677584912384","@emma_cogdev I'm not sure what you mean by ""which arguments get grouped together""?","2021-05-06 15:28 +0000","50.0","0.0","0.0","0.0","0.0","0.0","0.0","0.0","0.0","0.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390327253674909703","https://twitter.com/LisaDeBruine/status/1390327253674909703","@emma_cogdev For example, this gives the color legend the title 'Letter' and changes the labels to A and B:
+
+scale_color_discrete(name = ""Letter"", labels = c(""A"", ""B""))
+
+This changes the x-axis to go from 1 to 10 in steps of 2:
+
+scale_x_continuous(limits = c(1, 10), breaks = seq(1, 10, 2))","2021-05-06 15:27 +0000","68.0","2.0","0.029411764705882353","0.0","1.0","0.0","0.0","0.0","0.0","1.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390326560465559556","https://twitter.com/LisaDeBruine/status/1390326560465559556","@emma_cogdev I only recently really understood how to generalise what happens in scale_{aes}_{type} functions. You can use these to change the name of an axis or legend, and also the labels for discrete values or breaks for continuous values.","2021-05-06 15:24 +0000","67.0","1.0","0.014925373134328358","0.0","1.0","0.0","0.0","0.0","0.0","0.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390324032290107392","https://twitter.com/LisaDeBruine/status/1390324032290107392","So excited!! I’m going to as many of these as I can this summer (and teaching the first one). Data simulation might be the one skill I’ve learned with the most positive impact on how I understand stats and plan studies. https://t.co/xEMSMvSWyo","2021-05-06 15:14 +0000","5144.0","54.0","0.010497667185069984","5.0","0.0","31.0","4.0","0.0","0.0","14.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390314680137265158","https://twitter.com/LisaDeBruine/status/1390314680137265158","@somacrat I now teach it as the function that defines what data columns are represented by what aspect of the plot. E.g., to represent carats along the x-axis, price along the y-axis, and cuts as different colors, use aes(x = carat, y = price, color = cut).","2021-05-06 14:37 +0000","357.0","8.0","0.022408963585434174","0.0","2.0","4.0","1.0","0.0","0.0","1.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390312520146108419","https://twitter.com/LisaDeBruine/status/1390312520146108419","@ClausWilke @GracoRoza @kaiblin @stefanomammola1 In my example, I have lists of stimuli (images &amp; associated coordinates mapping face shape). I frequently iterate over the list to process each image with parameters specified by 1 or more user-input vectors. Some of the processes are long and it would be nice to parallelize this","2021-05-06 14:28 +0000","206.0","7.0","0.03398058252427184","0.0","1.0","0.0","0.0","0.0","0.0","6.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390307902381072384","https://twitter.com/LisaDeBruine/status/1390307902381072384","@emma_cogdev p = list()
+p$a = ggplot(diamonds, aes(x = carat, y = price, color = cut))
+p$b = p$a + geom_point(alpha = 0.1)
+p$c = p$b + geom_smooth(method = lm)
+p$d = p$c + facet_wrap(~color, labeller = ""label_both"")
+p$e = p$d + labs(x = ""Weight in Carats"", y = ""Price in $"", color = ""Quality"") https://t.co/jT4IspQQp5","2021-05-06 14:10 +0000","204.0","32.0","0.1568627450980392","0.0","0.0","3.0","0.0","0.0","0.0","2.0","0.0","0","0","0","0","0","27","27","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390305956223803394","https://twitter.com/LisaDeBruine/status/1390305956223803394","@emma_cogdev Do you remember how you were first taught? I could use ggplot by following examples but didn't really ""get"" it until someone showed me how to build up a plot in layers.","2021-05-06 14:02 +0000","352.0","15.0","0.04261363636363636","0.0","3.0","2.0","1.0","0.0","0.0","8.0","0.0","0","0","0","0","0","1","1","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390299100612988933","https://twitter.com/LisaDeBruine/status/1390299100612988933","@hioberman I was the same. @emilynordmann, @McAleerP and I were talking today about how to explain the format data should be in for plotting, and decided a good rule of thumb is that anything that could share an axis should be in the same column.","2021-05-06 13:35 +0000","243.0","5.0","0.0205761316872428","0.0","0.0","4.0","0.0","0.0","0.0","1.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390297876832522244","https://twitter.com/LisaDeBruine/status/1390297876832522244","@manfredh Do you wish you could make nicer graphs? Or just keen to announce you're using 🐍 :)","2021-05-06 13:30 +0000","185.0","5.0","0.02702702702702703","0.0","1.0","0.0","0.0","0.0","0.0","4.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390287961237901314","https://twitter.com/LisaDeBruine/status/1390287961237901314","@DrMowinckels @RLadiesEdinb It’s in my calendar now! https://t.co/UsoQhyfrjw","2021-05-06 12:50 +0000","265.0","3.0","0.011320754716981131","0.0","0.0","2.0","0.0","0.0","0.0","0.0","0.0","0","0","0","0","0","95","1","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390284266303598594","https://twitter.com/LisaDeBruine/status/1390284266303598594","@DermotLynott WtF? Why does the whole plane go spinning away at the end? 😂","2021-05-06 12:36 +0000","365.0","5.0","0.0136986301369863","0.0","2.0","1.0","0.0","0.0","0.0","2.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390283268268953604","https://twitter.com/LisaDeBruine/status/1390283268268953604","If you wish you could make nicer graphs but are having trouble using #rstats and/or #ggplot, what’s your main barrier?","2021-05-06 12:32 +0000","21271.0","579.0","0.02722015890179117","12.0","14.0","13.0","24.0","3.0","3.0","206.0","0.0","0","0","0","0","0","3","3","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390245509135314950","https://twitter.com/LisaDeBruine/status/1390245509135314950","@Ru54229343 @scottishgreens I’ve been a @scottishgreens member since indyref when I saw all the party leaders speak at @YoungAcademySco and was particularly impressed with policies outlined by @patrickharvie.  It’s nice to finally be able to translate that into a vote in the country I’ve lived in since 2003","2021-05-06 10:02 +0000","3605.0","65.0","0.018030513176144243","3.0","1.0","18.0","17.0","0.0","0.0","26.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390243774597672960","https://twitter.com/LisaDeBruine/status/1390243774597672960","@hamish_macphee @scottishgreens Thanks! I’m extremely proud to have lived in Scotland for 17 years and plan to stay the rest of my life. I want to rejoin the EU so my son can enjoy the advantages of European citizenship. And I am hopeful an independent 🏴󠁧󠁢󠁳󠁣󠁴󠁿 can choose a different direction than the U.K.","2021-05-06 09:55 +0000","333.0","14.0","0.042042042042042045","1.0","2.0","3.0","3.0","0.0","0.0","5.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390225316153630720","https://twitter.com/LisaDeBruine/status/1390225316153630720","@rorfitelli @VerbingNouns Is it just Scotland that’s letting all permanent residents vote now?","2021-05-06 08:41 +0000","166.0","3.0","0.018072289156626505","0.0","0.0","1.0","0.0","0.0","0.0","2.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390220558294519818","https://twitter.com/LisaDeBruine/status/1390220558294519818","I just voted for the first time in Scotland (it wasn’t possible for non-EU permanent residents before) and my first in-person #vote ever (I turned 18 at uni, then left the US). I was so excited about voting that the @scottishgreens campaigner took my photo for their WhatsApp :)","2021-05-06 08:23 +0000","18848.0","749.0","0.03973896434634974","13.0","10.0","209.0","234.0","0.0","1.0","282.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390206717972070400","https://twitter.com/LisaDeBruine/status/1390206717972070400","@GracoRoza @kaiblin @stefanomammola1 @ClausWilke And this is probably idiosyncratic to me, but overwriting a whole list feels wrong in a way that adding/changing list items doesn’t. Like this is fine:
+
+data$new = 1:10
+
+But this is bad:
+
+data = mutate(data, new = 1:10)
+
+And the lists in this context are &gt;1MB.","2021-05-06 07:28 +0000","111.0","4.0","0.036036036036036036","0.0","1.0","0.0","1.0","0.0","0.0","2.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390204817008640000","https://twitter.com/LisaDeBruine/status/1390204817008640000","@GracoRoza @kaiblin @stefanomammola1 @ClausWilke x2 &lt;- lapply(seq_along(x), function(i) {
+  x[[i]]$name &lt;- newnames[i]
+  x[[i]]
+})
+
+class(x2) &lt;- ""x""
+
+This works, but I’m not sure what it buys me over the for loop apart from needing to debug constantly because I forgot to reclass (which is important for my S3 functions).","2021-05-06 07:20 +0000","207.0","10.0","0.04830917874396135","0.0","2.0","2.0","0.0","0.0","0.0","6.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390203711230816256","https://twitter.com/LisaDeBruine/status/1390203711230816256","@GracoRoza @kaiblin @stefanomammola1 @ClausWilke The result of that is just a list of the new names (you have to return x[[i]] from the function) and needs to be reclassed if you’re using a custom class.","2021-05-06 07:16 +0000","198.0","5.0","0.025252525252525252","0.0","2.0","0.0","1.0","0.0","0.0","2.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390202236035342340","https://twitter.com/LisaDeBruine/status/1390202236035342340","@ElenaInLimbo @vkempe And non-EU permanent residents! It’s my first time since moving to Scotland in 2003 that I’m allowed to vote and I’m so excited!!","2021-05-06 07:10 +0000","1233.0","35.0","0.028386050283860504","2.0","1.0","16.0","8.0","0.0","0.0","8.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390201233080733697","https://twitter.com/LisaDeBruine/status/1390201233080733697","@kaiblin @GracoRoza @stefanomammola1 @ClausWilke I know I can use 
+
+mapply(function(a, b) {...}, x, newnames)
+
+But sometimes I have to do something more complicated, like check if newnames has a null value and create a name out of the index. And the result still needs to be re-classed if you’re using a custom class.","2021-05-06 07:06 +0000","37.0","3.0","0.08108108108108109","0.0","1.0","0.0","0.0","0.0","0.0","2.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390199862898089986","https://twitter.com/LisaDeBruine/status/1390199862898089986","@kaiblin @GracoRoza @stefanomammola1 @ClausWilke I prefer for loops when I need to iterate over a list with a custom class and change something about it (especially something that relates to the same-index item in another list). 
+
+for (i in seq_along(x)) {
+  x[[i]]$name = newnames[i]
+}
+
+Is there a non-for way to do this in R?","2021-05-06 07:00 +0000","235.0","10.0","0.0425531914893617","0.0","2.0","1.0","0.0","0.0","0.0","7.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390042703380033545","https://twitter.com/LisaDeBruine/status/1390042703380033545","@ed_hagen @tvpollet @Oliver_S_Curry Thanks. I’m off to bed (got my first vaccine yesterday and I’m weirdly tired) but I’ll have a look ASAP. I was just skimming the OSF page on my phone and it looks like something that will take some effort to digest.","2021-05-05 20:36 +0000","174.0","4.0","0.022988505747126436","0.0","0.0","2.0","1.0","0.0","0.0","1.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1390039015265603592","https://twitter.com/LisaDeBruine/status/1390039015265603592","@tvpollet @ed_hagen @Oliver_S_Curry This one seems entirely bizarre to include in a meta-analysis about whether animals avoid inbreeding. (I haven’t looked at the rest yet, but it’s on my list now.)","2021-05-05 20:21 +0000","180.0","8.0","0.044444444444444446","0.0","1.0","1.0","0.0","0.0","0.0","6.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1389953337970282496","https://twitter.com/LisaDeBruine/status/1389953337970282496","@brembs @mbeisen @MicrobiomDigest Agreed. Is there a group who is putting together a nomination? It’s a fair amount of work, so it would be a shame for everyone to assume someone else is going to do it and nobody end up actually doing it.","2021-05-05 14:41 +0000","1438.0","23.0","0.015994436717663423","0.0","1.0","9.0","0.0","0.0","0.0","13.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1389908699540504577","https://twitter.com/LisaDeBruine/status/1389908699540504577","@LucaLeisten @becbot The simr package is also great for doing simulation-based power calculations for glmm. 
+
+https://t.co/uUvIPwpT6E","2021-05-05 11:43 +0000","38.0","2.0","0.05263157894736842","0.0","0.0","2.0","0.0","0.0","0.0","0.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1389908170802405378","https://twitter.com/LisaDeBruine/status/1389908170802405378","@LucaLeisten @becbot It’s pretty tricky if you don’t have pilot data to estimate some of the parameters, but this tutorial shows how to simulate data for a binomial logistic mixed model (and there’s a more complicated example on the site).
+
+https://t.co/XBcQ4aC7kG","2021-05-05 11:41 +0000","63.0","5.0","0.07936507936507936","0.0","1.0","2.0","1.0","1.0","0.0","0.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1389876643351650311","https://twitter.com/LisaDeBruine/status/1389876643351650311","@MetaMethodsPH @julianquandt @Heinonmatti @lakens @dalejbarr In that font, e_si also has a bit of the https://t.co/WDa6pOLPzy","2021-05-05 09:36 +0000","129.0","11.0","0.08527131782945736","0.0","0.0","1.0","1.0","0.0","0.0","2.0","0.0","0","0","0","0","0","26","7","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1389874294734327810","https://twitter.com/LisaDeBruine/status/1389874294734327810","@MetaMethodsPH @julianquandt @Heinonmatti @lakens @dalejbarr and I spent a lot of time thinking about the notation in that paper and the best way to make it clear how the parameters were related instead of just being “scary maths notation”. He won me over from my previous preference for variable names like item_int_sd :)","2021-05-05 09:27 +0000","672.0","15.0","0.022321428571428572","0.0","2.0","3.0","1.0","0.0","0.0","7.0","0.0","0","0","0","0","0","2","2","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1389862220356636678","https://twitter.com/LisaDeBruine/status/1389862220356636678","@Heinonmatti @ajamesgreen @MatthiasAulbach @EikoFried @SachaEpskamp @matherion You could bypass the whole thing by presenting the values in the tile plot as fractions like 1/2 or 2/6 (not simplifying to give the extra info about the denominator if they're different in the different cells?)","2021-05-05 08:39 +0000","97.0","3.0","0.030927835051546393","0.0","0.0","1.0","0.0","0.0","0.0","1.0","0.0","0","0","0","0","0","1","1","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1389861662279208962","https://twitter.com/LisaDeBruine/status/1389861662279208962","@MatthiasAulbach @Heinonmatti @ajamesgreen @EikoFried @SachaEpskamp @matherion In panel B they're visually clarifying because otherwise the . might get missed when it's too close to the connecting lines. Context should let readers know they're all &lt;1, but I don't see a problem keeping them in B.","2021-05-05 08:36 +0000","135.0","3.0","0.022222222222222223","0.0","1.0","1.0","0.0","0.0","0.0","1.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1389856537368203264","https://twitter.com/LisaDeBruine/status/1389856537368203264","We finished the Buzzfeed-style quiz app last week, so what new Shiny app should we start next week for #CodingClub? 
+
+See https://t.co/FxWWgHvYMA for working examples (that I'll probably simplify for the class).","2021-05-05 08:16 +0000","4878.0","83.0","0.017015170151701516","1.0","0.0","1.0","3.0","32.0","0.0","28.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1389855202275205120","https://twitter.com/LisaDeBruine/status/1389855202275205120","The zoom link is now available for today's #MethodsMetaSci talk by @CrystalNSYoung @lysanderjames and @D_BasnightBrown at 14:00 BST! All are welcome for an informative discussion about diversity issues relevant to open science &amp; scientific organisations. 
+
+https://t.co/A2KZYqiv9b https://t.co/HePZg1ttyo","2021-05-05 08:11 +0000","5496.0","139.0","0.025291120815138284","10.0","2.0","22.0","13.0","21.0","0.0","19.0","0.0","0","0","0","0","0","52","52","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1389840261442908162","https://twitter.com/LisaDeBruine/status/1389840261442908162","@Heinonmatti @EikoFried @ajamesgreen @SachaEpskamp @matherion I agree that leading 0s are totally unnecessary when values can’t be &gt;1 and thought this was consistent with APA guidance. Also adding all those 0s to this plot just adds unnecessary visual clutter.","2021-05-05 07:11 +0000","782.0","13.0","0.016624040920716114","0.0","1.0","5.0","2.0","0.0","0.0","5.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1389495958229045248","https://twitter.com/LisaDeBruine/status/1389495958229045248","@CaAl @gravinpetra Sadly, these systems are massively entrenched and a single editor has no chance of changing it. It’s often a year or more of work to get a single drop-down menu added to a journal’s submission portal.","2021-05-04 08:23 +0000","942.0","17.0","0.018046709129511677","1.0","1.0","3.0","2.0","0.0","0.0","10.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1389495026347089921","https://twitter.com/LisaDeBruine/status/1389495026347089921","This is a serious misstep by the @news_RSE, who I know can do better. If your applications are this severely biased, your processes have failed and you need to fix it with a second call, not just go ahead and give all the awards to men. https://t.co/pd3RIU6oTJ","2021-05-04 08:20 +0000","6426.0","96.0","0.014939309056956116","7.0","0.0","27.0","17.0","0.0","0.0","45.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1389490356975198209","https://twitter.com/LisaDeBruine/status/1389490356975198209","Ok, fess up, who described me like this? I assume you mean this sort of machine :) https://t.co/qFCYa9AHgz https://t.co/dxhClZ0w4L","2021-05-04 08:01 +0000","2758.0","48.0","0.01740391588107324","0.0","2.0","9.0","5.0","0.0","0.0","17.0","0.0","0","0","0","0","0","443","15","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1389482531746164736","https://twitter.com/LisaDeBruine/status/1389482531746164736","Come hear about geographical diversity in open science tomorrow at 14:00 U.K. time; open to anyone. Just check the webpage linked below for the zoom link right before the talk. https://t.co/lSetnycXpp","2021-05-04 07:30 +0000","2726.0","12.0","0.004402054292002935","2.0","0.0","6.0","2.0","0.0","0.0","2.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1389466844495552512","https://twitter.com/LisaDeBruine/status/1389466844495552512","@aarontay @libcce @ORCID_Org @NISOInfo @rescognito @ShelleyStall See the Contributions section at the end of this paper (even the paywalled version) for a way to do it that is really hard to make machine-readable. 
+
+https://t.co/JZwJAoh7lY","2021-05-04 06:28 +0000","80.0","12.0","0.15","0.0","0.0","2.0","0.0","8.0","0.0","2.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1389334267747082247","https://twitter.com/LisaDeBruine/status/1389334267747082247","Eventually there will be a whole rant in the discussion about how studies that have people rate composite images of two groups and try to conclude something about group differences have an effective N=1 (and I'll provide tools for fixing that).
+
+https://t.co/ClBlV2Vl7i","2021-05-03 21:41 +0000","1433.0","21.0","0.01465457083042568","1.0","0.0","1.0","1.0","10.0","0.0","8.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1389331226922737667","https://twitter.com/LisaDeBruine/status/1389331226922737667","I couldn't even bring myself to include the code for making left-left and right-right mirrored images:
+
+""The code for making these images is in the supplemental materials, but we only recommend using this method to demonstrate how misleading it is."" https://t.co/uDn6Fo3R6r","2021-05-03 21:29 +0000","1707.0","49.0","0.02870533099004101","0.0","1.0","1.0","1.0","0.0","0.0","4.0","0.0","0","0","0","0","0","42","42","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1389331222732623873","https://twitter.com/LisaDeBruine/status/1389331222732623873","There was originally an ""is stupid, but"" in this sentence:
+
+The “standard oval mask” has enjoyed widespread popularity because it is straightforward to add to images using programs like PhotoShop.
+
+Although I still don't have a good name for the better masks. https://t.co/2hEN7a6Uc1","2021-05-03 21:29 +0000","866.0","26.0","0.03002309468822171","0.0","1.0","1.0","0.0","0.0","0.0","2.0","0.0","0","0","0","0","0","22","22","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1389331219402350602","https://twitter.com/LisaDeBruine/status/1389331219402350602","It's a good place to park some opinions I've come to after many years of doing research with dodgy methods because that's just what we do, e.g., ""While it is possible to calculate metrics such as width-to-height ratio from 2D face images, this does not mean it is a good idea.""","2021-05-03 21:29 +0000","501.0","5.0","0.00998003992015968","0.0","1.0","1.0","1.0","0.0","0.0","1.0","0.0","0","0","0","0","0","1","1","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1389329025739407361","https://twitter.com/LisaDeBruine/status/1389329025739407361","The intro is sketchy the discussion is just bullet points (I hate writing them), but I think I finally have the main content of a paper on Reproducible Methods for Face Research. Let me know if you have suggestions for more demos.
+
+https://t.co/17RDqb56KY https://t.co/71bQVzRgxR","2021-05-03 21:20 +0000","4548.0","180.0","0.0395778364116095","6.0","1.0","21.0","2.0","34.0","0.0","60.0","0.0","0","0","0","0","0","56","56","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1389278530194845704","https://twitter.com/LisaDeBruine/status/1389278530194845704","(Just had to delete the cache)","2021-05-03 17:59 +0000","1426.0","9.0","0.006311360448807854","0.0","0.0","3.0","2.0","0.0","0.0","4.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1389202105055993856","https://twitter.com/LisaDeBruine/status/1389202105055993856","@grimbough @Ref Yup, that was the problem! I'm still getting (Fig. ??), but at least it's recognising the ref now :)","2021-05-03 12:56 +0000","38.0","4.0","0.10526315789473684","0.0","0.0","1.0","1.0","0.0","0.0","2.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1389201848851210242","https://twitter.com/LisaDeBruine/status/1389201848851210242","I'm getting ""(Fig. ??)"" now :(","2021-05-03 12:55 +0000","3542.0","5.0","0.001411631846414455","0.0","1.0","1.0","1.0","0.0","0.0","2.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1389199254720323592","https://twitter.com/LisaDeBruine/status/1389199254720323592","@grimbough @Ref I use a non-breaking space before the reference so it doesn't allow line breaks between Fig. and the number (my example was Fig.\ \@, not Fig.\\@)","2021-05-03 12:44 +0000","62.0","5.0","0.08064516129032258","0.0","1.0","1.0","0.0","0.0","0.0","3.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1389198864989802498","https://twitter.com/LisaDeBruine/status/1389198864989802498","Figured it out. I was using 
+  output: rmarkdown::html_document
+
+instead of 
+  output: bookdown::html_document2","2021-05-03 12:43 +0000","1800.0","9.0","0.005","0.0","1.0","2.0","0.0","0.0","0.0","6.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1389196326378917889","https://twitter.com/LisaDeBruine/status/1389196326378917889","@bxjaeger @LeadAmsterdam @VUamsterdam Congratulations on the new job! https://t.co/DxvMUL7fco","2021-05-03 12:33 +0000","542.0","7.0","0.012915129151291513","0.0","1.0","1.0","1.0","0.0","0.0","2.0","0.0","0","0","0","0","0","161","2","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1389195652798746625","https://twitter.com/LisaDeBruine/status/1389195652798746625","Does anyone have tips for debugging figure references in #rmarkdown? 
+
+Example Rmd in-text ref:
+   (Fig.\ \@ref(fig:mask))
+
+Corresponding chunk:
+   ```{r mask, fig.cap=""Caption""}
+   plot(x)
+   ```
+
+But the rendered version is:
+   (Fig. @ref(fig:mask))
+
+Instead of:
+   (Fig. 1)","2021-05-03 12:30 +0000","4876.0","59.0","0.01210008203445447","1.0","2.0","4.0","10.0","0.0","0.0","42.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1389176574633709568","https://twitter.com/LisaDeBruine/status/1389176574633709568","@AdamCSchembri This reminded me of an influential academic who I really liked when I saw her speak, but kept posting TERF nonsense, so I unfollowed her years ago. But people can grow, so I thought I’d check. She’s still uncritically retweeting Singal :(","2021-05-03 11:14 +0000","2272.0","58.0","0.025528169014084508","0.0","0.0","13.0","23.0","0.0","0.0","22.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"
+"1388892348386586624","https://twitter.com/LisaDeBruine/status/1388892348386586624","@Mammals_Suck 22, but 10 were while I was studying.","2021-05-02 16:25 +0000","944.0","11.0","0.011652542372881356","0.0","2.0","1.0","2.0","0.0","0.0","6.0","0.0","0","0","0","0","0","0","0","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"

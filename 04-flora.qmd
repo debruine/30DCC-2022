@@ -4,7 +4,9 @@
 source("R/setup.R")
 ```
 
-```{r, message=FALSE}
+```{r}
+#| code.summary: Setup
+
 library(tidyverse) # always useful
 library(glue) # for editing SVG text
 library(rsvg) # to convert SVG to other formats
@@ -360,7 +362,8 @@ cat(svg)
 
 You can write it to an svg file, or use svgr to convert to an image. 
 
-```{r}
+```{r flower-chart, fig.alt = '"Flower" chart with 8 "petals", each representing one colour from the original 8-colour pride flag. pink = sex, red = life, orange = healing, yellow = sunlight, green = nature, aqua = magic/art, blue = serenity, purple = spirit'}
+
 write(svg, "images/day4.svg")
 rsvg::rsvg_png(svg = charToRaw(svg), 
                file = "images/day4.png", 
