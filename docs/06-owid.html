@@ -418,8 +418,8 @@
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header"><h1 class="title display-7"><span id="sec-owid" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">OWiD</span></span></h1>
-</header><div class="cell" data-layout-align="center" data-code.summary="Setup">
-<details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)     <span class="co"># for data wrangling and visualisation</span></span>
+</header><div class="cell" data-layout-align="center">
+<details><summary>Setup</summary><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)     <span class="co"># for data wrangling and visualisation</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(sf)            <span class="co"># for maps</span></span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(rnaturalearth) <span class="co"># for map coordinates</span></span>
 <span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(gganimate)     <span class="co"># for animated plots</span></span>
@@ -706,7 +706,34 @@
 </div>
 
 
-</section></main><!-- /main --><script type="application/javascript">
+</section></main><!-- /main --><script>
+// open rdrr links externally ----
+
+var exlinks = document.querySelectorAll("a[href^='https://rdrr.io']");
+var exlink_func = function(){
+  window.open(this.href);
+  return false;
+};
+for (var i = 0; i < exlinks.length; i++) {
+    exlinks[i].addEventListener('click', exlink_func, false);
+}
+
+// visible second sidebar in mobile ----
+
+function move_sidebar() {
+  var toc = document.getElementById("TOC");
+  var small_sidebar = document.querySelector("#quarto-sidebar .sidebar-menu-container");
+  var right_sidebar = document.getElementById("quarto-margin-sidebar");
+
+  if (window.innerWidth < 768) {
+    small_sidebar.append(toc);
+  } else {
+    right_sidebar.append(toc);
+  }
+}
+move_sidebar();
+window.onresize = move_sidebar;
+</script><script type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const icon = "";
   const anchorJS = new window.AnchorJS();
@@ -814,7 +841,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-include/script.js
 
 
 </body></html>

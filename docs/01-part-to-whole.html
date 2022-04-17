@@ -420,8 +420,8 @@
 <main class="content" id="quarto-document-content"><header id="title-block-header"><h1 class="title d-none d-lg-block display-7">
 <span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Part-to-whole</span>
 </h1>
-</header><div class="cell" data-layout-align="center" data-code.summary="Setup">
-<details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(treemap)</span>
+</header><div class="cell" data-layout-align="center">
+<details><summary>Setup</summary><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(treemap)</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(faux)</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -432,7 +432,7 @@
 <p>I always like to start my exploration with simulated data. The mixed design simulation functions below are from <a href="https://debruine.github.io/faux/articles/sim_mixed.html">faux</a>.</p>
 <p>Make a school with 5 grades, 1-4 classes per grade, and 15-35 students per class.</p>
 <div class="cell" data-layout-align="center">
-<details><summary>Code</summary><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">set.seed</span>(<span class="dv">8675309</span>) <span class="co"># for reproducible data simulation</span></span>
+<details><summary>Simulate data</summary><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">set.seed</span>(<span class="dv">8675309</span>) <span class="co"># for reproducible data simulation</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a></span>
 <span id="cb2-3"><a href="#cb2-3"></a>school <span class="ot">&lt;-</span> <span class="fu">add_random</span>(<span class="at">grade =</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb2-4"><a href="#cb2-4"></a>  <span class="fu">add_random</span>(<span class="at">class =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="fu">nrow</span>(.), <span class="cn">TRUE</span>), </span>
@@ -612,7 +612,34 @@
 </div>
 
 
-</section></main><!-- /main --><script type="application/javascript">
+</section></main><!-- /main --><script>
+// open rdrr links externally ----
+
+var exlinks = document.querySelectorAll("a[href^='https://rdrr.io']");
+var exlink_func = function(){
+  window.open(this.href);
+  return false;
+};
+for (var i = 0; i < exlinks.length; i++) {
+    exlinks[i].addEventListener('click', exlink_func, false);
+}
+
+// visible second sidebar in mobile ----
+
+function move_sidebar() {
+  var toc = document.getElementById("TOC");
+  var small_sidebar = document.querySelector("#quarto-sidebar .sidebar-menu-container");
+  var right_sidebar = document.getElementById("quarto-margin-sidebar");
+
+  if (window.innerWidth < 768) {
+    small_sidebar.append(toc);
+  } else {
+    right_sidebar.append(toc);
+  }
+}
+move_sidebar();
+window.onresize = move_sidebar;
+</script><script type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const icon = "";
   const anchorJS = new window.AnchorJS();
@@ -720,7 +747,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-include/script.js
 
 
 </body></html>

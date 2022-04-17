@@ -9,7 +9,7 @@ I wrote `r pkg("faux")` to make it easier to simulate multivariate normal distri
 I'll be using the new NORTA (NORmal-To-Anything) methods for today's chart, which are currently only in the development version of faux, so you need to download the GitHub version, not 1.1.0 on CRAN. You can see a [tutorial here](https://debruine.github.io/faux/dev/articles/norta.html).
 
 ```{r}
-#| code.summary: Setup
+#| code-summary: Setup
 
 # devtools::install_github("debruine/faux")
 # devtools::install_github("debruine/webmorphR")

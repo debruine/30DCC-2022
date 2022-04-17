@@ -5,7 +5,7 @@ source("R/setup.R")
 ```
 
 ```{r}
-#| code.summary: Setup
+#| code-summary: Setup
 
 library(tidyverse) # always useful
 library(glue) # for editing SVG text

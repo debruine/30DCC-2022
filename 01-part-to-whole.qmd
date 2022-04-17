@@ -5,7 +5,7 @@ source("R/setup.R")
 ```
 
 ```{r}
-#| code.summary: Setup
+#| code-summary: Setup
 
 library(treemap)
 library(faux)
@@ -21,6 +21,8 @@ I always like to start my exploration with simulated data. The mixed design simu
 Make a school with 5 grades, 1-4 classes per grade, and 15-35 students per class.
 
 ```{r pth-data-sim}
+#| code-summary: Simulate data
+
 set.seed(8675309) # for reproducible data simulation
 
 school <- add_random(grade = 5) %>%

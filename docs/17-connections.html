@@ -418,9 +418,9 @@
 <main class="content" id="quarto-document-content"><header id="title-block-header"><h1 class="title d-none d-lg-block display-7">
 <span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Connections</span>
 </h1>
-</header><p>I’ve been meaning to learn more about visualising text, and where better to start than Julia Silge and David Robinson’s <a href="https://www.tidytextmining.com">Text Mining with R</a>! I’ll be focusing on the <a href="https://www.tidytextmining.com/ngrams.html">ngrams chapter</a>.</p>
-<div class="cell" data-layout-align="center" data-code.summary="Setup">
-<details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># always useful</span></span>
+</header><p>I’ve been meaning to learn more about visualising text, and where better to start than Julia Silge and David Robinson’s <a href="https://www.tidytextmining.com">Text Mining with R</a>!</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Setup</summary><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># always useful</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(tidytext)  <span class="co"># for text analysis</span></span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(ggraph)    <span class="co"># for plotting ngrams</span></span>
 <span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(showtext)  <span class="co"># for custom fonts</span></span>
@@ -435,7 +435,7 @@
 <span class="header-section-number">17.1</span> Data</h2>
 <p>I’ll be using my own tweets from 2021. I have a <a href="https://psyteachr.github.io/ads-v1/twitter-data.html">tutorial in the Applied Data Skills book</a> on how to get these data and process them.</p>
 <div class="cell" data-layout-align="center">
-<details><summary>Code</summary><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>tweet_files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(</span>
+<details><summary>Load data</summary><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>tweet_files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(</span>
 <span id="cb2-2"><a href="#cb2-2"></a>  <span class="at">path =</span> <span class="st">"data/tweets"</span>, </span>
 <span id="cb2-3"><a href="#cb2-3"></a>  <span class="at">pattern =</span> <span class="st">"^tweet_activity_metrics"</span>,</span>
 <span id="cb2-4"><a href="#cb2-4"></a>  <span class="at">full.names =</span> <span class="cn">TRUE</span></span>
@@ -449,6 +449,7 @@
 </div>
 </section><section id="bigrams" class="level2" data-number="17.2"><h2 data-number="17.2" class="anchored" data-anchor-id="bigrams">
 <span class="header-section-number">17.2</span> Bigrams</h2>
+<p>Here I used the code from the <a href="https://www.tidytextmining.com/ngrams.html">ngrams chapter</a> to get a table of all the word pairs in my tweets. I added one line to get rid of all the twitter usernames (i.e., any word that starts with @).</p>
 <div class="cell" data-layout-align="center">
 <details><summary>Code</summary><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>bigrams <span class="ot">&lt;-</span> tweets <span class="sc">%&gt;%</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">mutate</span>(<span class="at">no_usernames =</span> <span class="fu">gsub</span>(<span class="st">"@[A-Za-z_0-9]+"</span>, <span class="st">""</span>, text)) <span class="sc">%&gt;%</span></span>
@@ -474,7 +475,7 @@
 10 in a         129</code></pre>
 </div>
 </div>
-<p>Handle stop words. Separate the words into word1 and word2 and get rid of any rows without words (e.g., 1-word tweets). I added a few custom entries to the <code>stop_words$words</code> list: “https”, “t.co”, “gt”, “lt”, and the numbers 0 to 100.</p>
+<p>The most common ones are stop words, so separate the words into word1 and word2 and get rid of any rows without words (e.g., 1-word tweets). I added a few custom entries to the <code>stop_words$words</code> list: “https”, “t.co”, “gt”, “lt”, and the numbers 0 to 100.</p>
 <div class="cell" data-layout-align="center">
 <details><summary>Code</summary><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>bigrams_separated <span class="ot">&lt;-</span> bigrams <span class="sc">%&gt;%</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">separate</span>(bigram, <span class="fu">c</span>(<span class="st">"word1"</span>, <span class="st">"word2"</span>), <span class="at">sep =</span> <span class="st">" "</span>) <span class="sc">%&gt;%</span></span>
@@ -489,25 +490,22 @@
 <span id="cb5-11"><a href="#cb5-11"></a>bigram_counts <span class="ot">&lt;-</span> bigrams_filtered <span class="sc">%&gt;%</span> </span>
 <span id="cb5-12"><a href="#cb5-12"></a>  <span class="fu">count</span>(word1, word2, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb5-13"><a href="#cb5-13"></a></span>
-<span id="cb5-14"><a href="#cb5-14"></a><span class="fu">head</span>(bigram_counts, <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-14"><a href="#cb5-14"></a><span class="fu">head</span>(bigram_counts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-stdout">
-<pre><code># A tibble: 10 × 3
-   word1  word2          n
-   &lt;chr&gt;  &lt;chr&gt;      &lt;int&gt;
- 1 shiny  app           45
- 2 team   science       26
- 3 blog   post          21
- 4 data   wrangling     21
- 5 twitch stream        20
- 6 data   simulation    18
- 7 rstats package       16
- 8 data   skills        14
- 9 shiny  apps          14
-10 coding club          13</code></pre>
+<pre><code># A tibble: 6 × 3
+  word1  word2          n
+  &lt;chr&gt;  &lt;chr&gt;      &lt;int&gt;
+1 shiny  app           45
+2 team   science       26
+3 blog   post          21
+4 data   wrangling     21
+5 twitch stream        20
+6 data   simulation    18</code></pre>
 </div>
 </div>
 </section><section id="plot-ngrams" class="level2" data-number="17.3"><h2 data-number="17.3" class="anchored" data-anchor-id="plot-ngrams">
 <span class="header-section-number">17.3</span> Plot ngrams</h2>
+<p>First, I’ll follow the chapter example to create a basic plot.</p>
 <div class="cell" data-layout-align="center">
 <details><summary>Code</summary><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>bigram_graph <span class="ot">&lt;-</span> bigram_counts <span class="sc">%&gt;%</span></span>
 <span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -557,7 +555,34 @@
 </div>
 
 
-</section></main><!-- /main --><script type="application/javascript">
+</section></main><!-- /main --><script>
+// open rdrr links externally ----
+
+var exlinks = document.querySelectorAll("a[href^='https://rdrr.io']");
+var exlink_func = function(){
+  window.open(this.href);
+  return false;
+};
+for (var i = 0; i < exlinks.length; i++) {
+    exlinks[i].addEventListener('click', exlink_func, false);
+}
+
+// visible second sidebar in mobile ----
+
+function move_sidebar() {
+  var toc = document.getElementById("TOC");
+  var small_sidebar = document.querySelector("#quarto-sidebar .sidebar-menu-container");
+  var right_sidebar = document.getElementById("quarto-margin-sidebar");
+
+  if (window.innerWidth < 768) {
+    small_sidebar.append(toc);
+  } else {
+    right_sidebar.append(toc);
+  }
+}
+move_sidebar();
+window.onresize = move_sidebar;
+</script><script type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const icon = "";
   const anchorJS = new window.AnchorJS();
@@ -665,7 +690,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-include/script.js
 
 
 </body></html>

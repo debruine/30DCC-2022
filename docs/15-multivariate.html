@@ -434,8 +434,8 @@
 </h1>
 </header><p>I wrote <code class="package">faux</code> to make it easier to simulate multivariate normal distribution data with different patterns of correlations, because I was doing it manually using <code>mvrnorm()</code> so often. It’s expanded to a whole package dedicated to making simulation easier, focusing on simulation from the kinds of parameters you might find in the descriptives table of a paper.</p>
 <p>I’ll be using the new NORTA (NORmal-To-Anything) methods for today’s chart, which are currently only in the development version of faux, so you need to download the GitHub version, not 1.1.0 on CRAN. You can see a <a href="https://debruine.github.io/faux/dev/articles/norta.html">tutorial here</a>.</p>
-<div class="cell" data-layout-align="center" data-code.summary="Setup">
-<details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># devtools::install_github("debruine/faux")</span></span>
+<div class="cell" data-layout-align="center">
+<details><summary>Setup</summary><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># devtools::install_github("debruine/faux")</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="co"># devtools::install_github("debruine/webmorphR")</span></span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(faux)      <span class="co"># for data simulation</span></span>
 <span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(ggplot2)   <span class="co"># for plotting</span></span>
@@ -756,7 +756,34 @@
 </div>
 
 
-</section></main><!-- /main --><script type="application/javascript">
+</section></main><!-- /main --><script>
+// open rdrr links externally ----
+
+var exlinks = document.querySelectorAll("a[href^='https://rdrr.io']");
+var exlink_func = function(){
+  window.open(this.href);
+  return false;
+};
+for (var i = 0; i < exlinks.length; i++) {
+    exlinks[i].addEventListener('click', exlink_func, false);
+}
+
+// visible second sidebar in mobile ----
+
+function move_sidebar() {
+  var toc = document.getElementById("TOC");
+  var small_sidebar = document.querySelector("#quarto-sidebar .sidebar-menu-container");
+  var right_sidebar = document.getElementById("quarto-margin-sidebar");
+
+  if (window.innerWidth < 768) {
+    small_sidebar.append(toc);
+  } else {
+    right_sidebar.append(toc);
+  }
+}
+move_sidebar();
+window.onresize = move_sidebar;
+</script><script type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const icon = "";
   const anchorJS = new window.AnchorJS();
@@ -864,7 +891,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-include/script.js
 
 
 </body></html>

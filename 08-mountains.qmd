@@ -10,7 +10,7 @@ Munros are the hills in Scotland over 3000 feet high. Many Scottish people are o
 So I thought for the mountains prompt, I'd map all of the Munros in Scotland by height. Then someday, when I bag a munro, I can mark it on the map.
 
 ```{r}
-#| code.summary: Setup
+#| code-summary: Setup
 
 library(tidyverse)     # for data wrangling
 library(sf)            # for maps

@@ -7,7 +7,7 @@ source("R/setup.R")
 Bees are an important environmental issue. They pollinate crops, trees and other plants. They're a keystone species that much of life on Earth depends on. So I went looking for some data on bee populations over time.
 
 ```{r}
-#| code.summary: Setup
+#| code-summary: Setup
 
 library(tidyverse) # for data wrangling and viz
 theme_set(theme_minimal())

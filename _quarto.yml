@@ -96,8 +96,9 @@ format:
     # code-block-border-left: "#4864DB"
     highlight-style: a11y
     monofont: Fira Code
+    mainfont: Open Sans
     css: include/style.css
-    include-after: include/script.js
+    include-after-body: include/script.js
   pdf:
     documentclass: scrreprt
     include-in-header: include/preamble.tex

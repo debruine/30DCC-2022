@@ -1,13 +1,13 @@
 # Connections
 
-I've been meaning to learn more about visualising text, and where better to start than Julia Silge and David Robinson's [Text Mining with R](https://www.tidytextmining.com)! I'll be focusing on the [ngrams chapter](https://www.tidytextmining.com/ngrams.html).
+I've been meaning to learn more about visualising text, and where better to start than Julia Silge and David Robinson's [Text Mining with R](https://www.tidytextmining.com)!
 
 ```{r, include = FALSE}
 source("R/setup.R")
 ```
 
 ```{r}
-#| code.summary: Setup
+#| code-summary: Setup
 
 library(tidyverse) # always useful
 library(tidytext)  # for text analysis
@@ -25,6 +25,8 @@ showtext_auto()
 I'll be using my own tweets from 2021. I have a [tutorial in the Applied Data Skills book](https://psyteachr.github.io/ads-v1/twitter-data.html) on how to get these data and process them.
 
 ```{r}
+#| code-summary: Load data
+
 tweet_files <- list.files(
   path = "data/tweets", 
   pattern = "^tweet_activity_metrics",
@@ -39,6 +41,8 @@ tweets <- map_df(tweet_files, read_csv, col_types = ct) %>%
 
 ## Bigrams
 
+Here I used the code from the [ngrams chapter](https://www.tidytextmining.com/ngrams.html) to get a table of all the word pairs in my tweets. I added one line to get rid of all the twitter usernames (i.e., any word that starts with @). 
+
 ```{r}
 bigrams <- tweets %>%
   mutate(no_usernames = gsub("@[A-Za-z_0-9]+", "", text)) %>%
@@ -50,7 +54,7 @@ bigram_counts <- bigrams %>%
 head(bigram_counts, 10)
 ```
 
-Handle stop words. Separate the words into word1 and word2 and get rid of any rows without words (e.g., 1-word tweets). I added a few custom entries to the `stop_words$words` list: "https", "t.co", "gt", "lt", and the numbers 0 to 100.
+The most common ones are stop words, so separate the words into word1 and word2 and get rid of any rows without words (e.g., 1-word tweets). I added a few custom entries to the `stop_words$words` list: "https", "t.co", "gt", "lt", and the numbers 0 to 100.
 
 ```{r}
 bigrams_separated <- bigrams %>%
@@ -66,10 +70,12 @@ bigrams_filtered <- bigrams_separated %>%
 bigram_counts <- bigrams_filtered %>% 
   count(word1, word2, sort = TRUE)
 
-head(bigram_counts, 10)
+head(bigram_counts)
 ```
 
 ## Plot ngrams
+
+First, I'll follow the chapter example to create a basic plot.
 
 ```{r}
 bigram_graph <- bigram_counts %>%

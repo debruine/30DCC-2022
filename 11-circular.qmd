@@ -7,7 +7,7 @@ source("R/setup.R")
 I've never used `coord_polar()` before, but it seems pretty good for when you want to show values that vary a lot in magnitude between categories.
 
 ```{r}
-#| code.summary: Setup
+#| code-summary: Setup
 
 library(tidyverse) # for wrangling data
 ```

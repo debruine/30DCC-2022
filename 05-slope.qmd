@@ -7,7 +7,7 @@ source("R/setup.R")
 I'm going back to data simulation. Someone asked me recently how to add a continuous predictor to a mixed effects model. I'm going to build a function for simulating data with a nested structure sampling people within countries and a continuous predictor of time (0-10). I'll plot the data with various values for the parameters, including random intercepts and *slopes*. If you need a refresher on mixed effects models, see [this tutorial by Dale Barr and me](https://debruine.github.io/lmem_sim/).
 
 ```{r}
-#| code.summary: Setup
+#| code-summary: Setup
 
 library(tidyverse)
 library(faux)

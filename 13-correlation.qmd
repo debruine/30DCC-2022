@@ -7,7 +7,7 @@ source("R/setup.R")
 I'm a sucker for a silly correlation, and I've also been meaning to try out the `r pkg("ravelRy", "https://www.kaylinpavlik.com/introducing-new-r-package-ravelry/")` package for working with the [ravelry API](https://www.ravelry.com/groups/ravelry-api).
 
 ```{r}
-#| code.summary: Setup
+#| code-summary: Setup
 
 library(tidyverse) # for data wrangling
 library(ravelRy)   # for searching ravelry 

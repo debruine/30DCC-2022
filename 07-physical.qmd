@@ -12,7 +12,7 @@ Every time I thought about today's prompt, by brain started playing Let's Get Ph
 So I decided to adapt some code from a tutorial I wrote on [spotifyr](https://psyteachr.github.io/ads-v1/spotify-data.html), which is based on a [tutorial by Michael Mullarkey](https://mcmullarkey.github.io/mcm-blog/posts/2022-01-07-spotify-api-r/). You can check those tutorials for the setup details if you haven't used `r pkg("spotifyr")` before.
 
 ```{r}
-#| code.summary: Setup
+#| code-summary: Setup
 
 library(spotifyr)   # to access Spotify
 library(tidyverse)  # for data wrangling

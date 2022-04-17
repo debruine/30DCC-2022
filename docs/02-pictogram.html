@@ -422,8 +422,8 @@
 <span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Pictogram</span>
 </h1>
 </header><p>I recently discovered the <code class="package"><a href="https://github.com/hrbrmstr/waffle/" target="_blank">waffle</a></code> package for making waffle plots. Emily and I refuse to teach students on our <a href="https://psyteachr.github.io/ads-v1/">Applied Data Skills</a> course how to make pie charts, and these are a sweet alternative.</p>
-<div class="cell" data-layout-align="center" data-code.summary="Setup">
-<details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">#devtools::install_github("hrbrmstr/waffle")</span></span>
+<div class="cell" data-layout-align="center">
+<details><summary>Setup</summary><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">#devtools::install_github("hrbrmstr/waffle")</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(tidyverse)  <span class="co"># for data wrangling</span></span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(waffle)     <span class="co"># for pictograms</span></span>
 <span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(showtext)   <span class="co"># for fonts</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -596,7 +596,34 @@
 </div>
 
 
-</section></main><!-- /main --><script type="application/javascript">
+</section></main><!-- /main --><script>
+// open rdrr links externally ----
+
+var exlinks = document.querySelectorAll("a[href^='https://rdrr.io']");
+var exlink_func = function(){
+  window.open(this.href);
+  return false;
+};
+for (var i = 0; i < exlinks.length; i++) {
+    exlinks[i].addEventListener('click', exlink_func, false);
+}
+
+// visible second sidebar in mobile ----
+
+function move_sidebar() {
+  var toc = document.getElementById("TOC");
+  var small_sidebar = document.querySelector("#quarto-sidebar .sidebar-menu-container");
+  var right_sidebar = document.getElementById("quarto-margin-sidebar");
+
+  if (window.innerWidth < 768) {
+    small_sidebar.append(toc);
+  } else {
+    right_sidebar.append(toc);
+  }
+}
+move_sidebar();
+window.onresize = move_sidebar;
+</script><script type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const icon = "";
   const anchorJS = new window.AnchorJS();
@@ -704,7 +731,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-include/script.js
 
 
 </body></html>

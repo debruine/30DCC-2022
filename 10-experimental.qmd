@@ -7,7 +7,7 @@ source("R/setup.R")
 Today I'm going to use faux to generate some simulated data for a factorial experimental design and make some plots.
 
 ```{r}
-#| code.summary: Setup
+#| code-summary: Setup
 
 library(faux)      # for data simulation
 library(ggplot2)   # for plotting

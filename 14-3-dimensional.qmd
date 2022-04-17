@@ -7,7 +7,7 @@ source("R/setup.R")
 I originally tried to use `r pkg("rgl")` to show a 3D face, but after I updated my Mac OS to Monterey, it no longer supports Open GL, so I've removed that part. Instead, I'll make some 3-dimensional data from a multivariate normal distribution using `r pkg("faux")`, and 3D plot it using `r pkg("plotly")`.
 
 ```{r}
-#| code.summary: Setup
+#| code-summary: Setup
 
 library(plotly)
 library(faux)
