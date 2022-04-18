@@ -495,77 +495,228 @@
 <span id="cb7-8"><a href="#cb7-8"></a>  <span class="fu">select</span>(start, duration, loudness_start, pitch)</span>
 <span id="cb7-9"><a href="#cb7-9"></a></span>
 <span id="cb7-10"><a href="#cb7-10"></a><span class="fu">head</span>(pitch_analysis)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-stdout">
-<pre><code># A tibble: 6 × 4
-  start duration loudness_start pitch
-  &lt;dbl&gt;    &lt;dbl&gt;          &lt;dbl&gt; &lt;dbl&gt;
-1 0        0.488          -28.8     9
-2 0.488    0.359          -25.7     9
-3 0.847    0.204          -24.8     8
-4 1.05     0.256          -24.4     1
-5 1.31     0.573          -21.2     8
-6 1.88     0.483          -23.1     9</code></pre>
+</details><div class="cell-output-display">
+<div class="kable-table">
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<thead><tr>
+<th style="text-align:right;"> start </th>
+   <th style="text-align:right;"> duration </th>
+   <th style="text-align:right;"> loudness_start </th>
+   <th style="text-align:right;"> pitch </th>
+  </tr></thead>
+<tbody>
+<tr>
+<td style="text-align:right;"> 0.000 </td>
+   <td style="text-align:right;"> 0.488 </td>
+   <td style="text-align:right;"> -28.812 </td>
+   <td style="text-align:right;"> 9 </td>
+  </tr>
+<tr>
+<td style="text-align:right;"> 0.488 </td>
+   <td style="text-align:right;"> 0.359 </td>
+   <td style="text-align:right;"> -25.662 </td>
+   <td style="text-align:right;"> 9 </td>
+  </tr>
+<tr>
+<td style="text-align:right;"> 0.847 </td>
+   <td style="text-align:right;"> 0.204 </td>
+   <td style="text-align:right;"> -24.822 </td>
+   <td style="text-align:right;"> 8 </td>
+  </tr>
+<tr>
+<td style="text-align:right;"> 1.051 </td>
+   <td style="text-align:right;"> 0.256 </td>
+   <td style="text-align:right;"> -24.402 </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+<tr>
+<td style="text-align:right;"> 1.307 </td>
+   <td style="text-align:right;"> 0.573 </td>
+   <td style="text-align:right;"> -21.224 </td>
+   <td style="text-align:right;"> 8 </td>
+  </tr>
+<tr>
+<td style="text-align:right;"> 1.880 </td>
+   <td style="text-align:right;"> 0.483 </td>
+   <td style="text-align:right;"> -23.087 </td>
+   <td style="text-align:right;"> 9 </td>
+  </tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 <p>Now I want to figure out the main pitch for each beat, so I need to somehow map the pitch table to the beat table. First, I need to work out the main segment in each beat.</p>
 <div class="cell" data-layout-align="center">
-<details><summary>Main pitch for each beat</summary><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>seg <span class="ot">&lt;-</span> song_analysis<span class="sc">$</span>segments <span class="sc">%&gt;%</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">select</span>(<span class="at">seg_start =</span> start, <span class="at">seg_dur =</span> duration)</span>
-<span id="cb9-3"><a href="#cb9-3"></a></span>
-<span id="cb9-4"><a href="#cb9-4"></a>beat <span class="ot">&lt;-</span> song_analysis<span class="sc">$</span>beats <span class="sc">%&gt;%</span></span>
-<span id="cb9-5"><a href="#cb9-5"></a>  <span class="fu">select</span>(<span class="at">beat_start =</span> start, <span class="at">beat_dur =</span> duration)</span>
-<span id="cb9-6"><a href="#cb9-6"></a></span>
-<span id="cb9-7"><a href="#cb9-7"></a>main_seg_in_beat <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(seg, beat, <span class="at">by =</span> <span class="fu">character</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb9-8"><a href="#cb9-8"></a>  <span class="fu">mutate</span>(<span class="at">seg_end =</span> seg_start <span class="sc">+</span> seg_dur, </span>
-<span id="cb9-9"><a href="#cb9-9"></a>         <span class="at">beat_end =</span> beat_start <span class="sc">+</span> beat_dur,</span>
-<span id="cb9-10"><a href="#cb9-10"></a>         <span class="at">seg_in_beat =</span> (seg_start <span class="sc">&lt;=</span> beat_end) <span class="sc">&amp;</span> (seg_end <span class="sc">&gt;=</span> beat_start)) <span class="sc">%&gt;%</span></span>
-<span id="cb9-11"><a href="#cb9-11"></a>  <span class="fu">filter</span>(seg_in_beat) <span class="sc">%&gt;%</span></span>
-<span id="cb9-12"><a href="#cb9-12"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb9-13"><a href="#cb9-13"></a>  <span class="fu">mutate</span>(<span class="at">overlap =</span> <span class="fu">min</span>(seg_end, beat_end) <span class="sc">-</span> <span class="fu">max</span>(<span class="fu">c</span>(seg_start, beat_start)),</span>
-<span id="cb9-14"><a href="#cb9-14"></a>         <span class="at">pcnt_in_beat =</span> overlap<span class="sc">/</span>beat_dur) <span class="sc">%&gt;%</span></span>
-<span id="cb9-15"><a href="#cb9-15"></a>  <span class="fu">group_by</span>(beat_start) <span class="sc">%&gt;%</span></span>
-<span id="cb9-16"><a href="#cb9-16"></a>  <span class="fu">slice_max</span>(<span class="at">order_by =</span> pcnt_in_beat, <span class="at">n =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb9-17"><a href="#cb9-17"></a>  <span class="fu">ungroup</span>()</span>
-<span id="cb9-18"><a href="#cb9-18"></a></span>
-<span id="cb9-19"><a href="#cb9-19"></a><span class="fu">head</span>(main_seg_in_beat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-stdout">
-<pre><code># A tibble: 6 × 9
-  seg_start seg_dur beat_start beat_dur seg_end beat_end seg_in_beat overlap
-      &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;lgl&gt;         &lt;dbl&gt;
-1     0.488   0.359      0.504    0.460   0.847    0.964 TRUE          0.344
-2     1.05    0.256      0.964    0.473   1.31     1.44  TRUE          0.256
-3     1.31    0.573      1.44     0.474   1.88     1.91  TRUE          0.443
-4     1.88    0.483      1.91     0.469   2.36     2.38  TRUE          0.452
-5     2.36    0.465      2.38     0.469   2.83     2.85  TRUE          0.448
-6     2.83    0.446      2.85     0.474   3.27     3.32  TRUE          0.425
-# … with 1 more variable: pcnt_in_beat &lt;dbl&gt;</code></pre>
+<details><summary>Main pitch for each beat</summary><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>seg <span class="ot">&lt;-</span> song_analysis<span class="sc">$</span>segments <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">select</span>(<span class="at">seg_start =</span> start, <span class="at">seg_dur =</span> duration)</span>
+<span id="cb8-3"><a href="#cb8-3"></a></span>
+<span id="cb8-4"><a href="#cb8-4"></a>beat <span class="ot">&lt;-</span> song_analysis<span class="sc">$</span>beats <span class="sc">%&gt;%</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a>  <span class="fu">select</span>(<span class="at">beat_start =</span> start, <span class="at">beat_dur =</span> duration)</span>
+<span id="cb8-6"><a href="#cb8-6"></a></span>
+<span id="cb8-7"><a href="#cb8-7"></a>main_seg_in_beat <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(seg, beat, <span class="at">by =</span> <span class="fu">character</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb8-8"><a href="#cb8-8"></a>  <span class="fu">mutate</span>(<span class="at">seg_end =</span> seg_start <span class="sc">+</span> seg_dur, </span>
+<span id="cb8-9"><a href="#cb8-9"></a>         <span class="at">beat_end =</span> beat_start <span class="sc">+</span> beat_dur,</span>
+<span id="cb8-10"><a href="#cb8-10"></a>         <span class="at">seg_in_beat =</span> (seg_start <span class="sc">&lt;=</span> beat_end) <span class="sc">&amp;</span> (seg_end <span class="sc">&gt;=</span> beat_start)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-11"><a href="#cb8-11"></a>  <span class="fu">filter</span>(seg_in_beat) <span class="sc">%&gt;%</span></span>
+<span id="cb8-12"><a href="#cb8-12"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb8-13"><a href="#cb8-13"></a>  <span class="fu">mutate</span>(<span class="at">overlap =</span> <span class="fu">min</span>(seg_end, beat_end) <span class="sc">-</span> <span class="fu">max</span>(<span class="fu">c</span>(seg_start, beat_start)),</span>
+<span id="cb8-14"><a href="#cb8-14"></a>         <span class="at">pcnt_in_beat =</span> overlap<span class="sc">/</span>beat_dur) <span class="sc">%&gt;%</span></span>
+<span id="cb8-15"><a href="#cb8-15"></a>  <span class="fu">group_by</span>(beat_start) <span class="sc">%&gt;%</span></span>
+<span id="cb8-16"><a href="#cb8-16"></a>  <span class="fu">slice_max</span>(<span class="at">order_by =</span> pcnt_in_beat, <span class="at">n =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-17"><a href="#cb8-17"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb8-18"><a href="#cb8-18"></a></span>
+<span id="cb8-19"><a href="#cb8-19"></a><span class="fu">head</span>(main_seg_in_beat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="kable-table">
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<thead><tr>
+<th style="text-align:right;"> seg_start </th>
+   <th style="text-align:right;"> seg_dur </th>
+   <th style="text-align:right;"> beat_start </th>
+   <th style="text-align:right;"> beat_dur </th>
+   <th style="text-align:right;"> seg_end </th>
+   <th style="text-align:right;"> beat_end </th>
+   <th style="text-align:left;"> seg_in_beat </th>
+   <th style="text-align:right;"> overlap </th>
+   <th style="text-align:right;"> pcnt_in_beat </th>
+  </tr></thead>
+<tbody>
+<tr>
+<td style="text-align:right;"> 0.488 </td>
+   <td style="text-align:right;"> 0.359 </td>
+   <td style="text-align:right;"> 0.504 </td>
+   <td style="text-align:right;"> 0.460 </td>
+   <td style="text-align:right;"> 0.847 </td>
+   <td style="text-align:right;"> 0.964 </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:right;"> 0.344 </td>
+   <td style="text-align:right;"> 0.747 </td>
+  </tr>
+<tr>
+<td style="text-align:right;"> 1.051 </td>
+   <td style="text-align:right;"> 0.256 </td>
+   <td style="text-align:right;"> 0.964 </td>
+   <td style="text-align:right;"> 0.473 </td>
+   <td style="text-align:right;"> 1.307 </td>
+   <td style="text-align:right;"> 1.437 </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:right;"> 0.256 </td>
+   <td style="text-align:right;"> 0.541 </td>
+  </tr>
+<tr>
+<td style="text-align:right;"> 1.307 </td>
+   <td style="text-align:right;"> 0.573 </td>
+   <td style="text-align:right;"> 1.437 </td>
+   <td style="text-align:right;"> 0.474 </td>
+   <td style="text-align:right;"> 1.880 </td>
+   <td style="text-align:right;"> 1.910 </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:right;"> 0.443 </td>
+   <td style="text-align:right;"> 0.936 </td>
+  </tr>
+<tr>
+<td style="text-align:right;"> 1.880 </td>
+   <td style="text-align:right;"> 0.483 </td>
+   <td style="text-align:right;"> 1.910 </td>
+   <td style="text-align:right;"> 0.469 </td>
+   <td style="text-align:right;"> 2.363 </td>
+   <td style="text-align:right;"> 2.380 </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:right;"> 0.452 </td>
+   <td style="text-align:right;"> 0.964 </td>
+  </tr>
+<tr>
+<td style="text-align:right;"> 2.363 </td>
+   <td style="text-align:right;"> 0.465 </td>
+   <td style="text-align:right;"> 2.380 </td>
+   <td style="text-align:right;"> 0.469 </td>
+   <td style="text-align:right;"> 2.827 </td>
+   <td style="text-align:right;"> 2.849 </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:right;"> 0.448 </td>
+   <td style="text-align:right;"> 0.954 </td>
+  </tr>
+<tr>
+<td style="text-align:right;"> 2.827 </td>
+   <td style="text-align:right;"> 0.446 </td>
+   <td style="text-align:right;"> 2.849 </td>
+   <td style="text-align:right;"> 0.474 </td>
+   <td style="text-align:right;"> 3.274 </td>
+   <td style="text-align:right;"> 3.322 </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:right;"> 0.425 </td>
+   <td style="text-align:right;"> 0.897 </td>
+  </tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 <p>And then join this with the pitch analysis table to get a main pitch for each beat.</p>
 <div class="cell" data-layout-align="center">
-<details><summary>Pitch by beat</summary><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>pitch_by_beat <span class="ot">&lt;-</span> main_seg_in_beat <span class="sc">%&gt;%</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">select</span>(<span class="at">start =</span> seg_start) <span class="sc">%&gt;%</span></span>
-<span id="cb11-3"><a href="#cb11-3"></a>  <span class="fu">left_join</span>(pitch_analysis, <span class="st">"start"</span>)</span>
-<span id="cb11-4"><a href="#cb11-4"></a></span>
-<span id="cb11-5"><a href="#cb11-5"></a><span class="fu">head</span>(pitch_by_beat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-stdout">
-<pre><code># A tibble: 6 × 4
-  start duration loudness_start pitch
-  &lt;dbl&gt;    &lt;dbl&gt;          &lt;dbl&gt; &lt;dbl&gt;
-1 0.488    0.359          -25.7     9
-2 1.05     0.256          -24.4     1
-3 1.31     0.573          -21.2     8
-4 1.88     0.483          -23.1     9
-5 2.36     0.465          -15.0    11
-6 2.83     0.446          -21.0     0</code></pre>
+<details><summary>Pitch by beat</summary><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>pitch_by_beat <span class="ot">&lt;-</span> main_seg_in_beat <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">select</span>(<span class="at">start =</span> seg_start) <span class="sc">%&gt;%</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a>  <span class="fu">left_join</span>(pitch_analysis, <span class="st">"start"</span>)</span>
+<span id="cb9-4"><a href="#cb9-4"></a></span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="fu">head</span>(pitch_by_beat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="kable-table">
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<thead><tr>
+<th style="text-align:right;"> start </th>
+   <th style="text-align:right;"> duration </th>
+   <th style="text-align:right;"> loudness_start </th>
+   <th style="text-align:right;"> pitch </th>
+  </tr></thead>
+<tbody>
+<tr>
+<td style="text-align:right;"> 0.488 </td>
+   <td style="text-align:right;"> 0.359 </td>
+   <td style="text-align:right;"> -25.662 </td>
+   <td style="text-align:right;"> 9 </td>
+  </tr>
+<tr>
+<td style="text-align:right;"> 1.051 </td>
+   <td style="text-align:right;"> 0.256 </td>
+   <td style="text-align:right;"> -24.402 </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+<tr>
+<td style="text-align:right;"> 1.307 </td>
+   <td style="text-align:right;"> 0.573 </td>
+   <td style="text-align:right;"> -21.224 </td>
+   <td style="text-align:right;"> 8 </td>
+  </tr>
+<tr>
+<td style="text-align:right;"> 1.880 </td>
+   <td style="text-align:right;"> 0.483 </td>
+   <td style="text-align:right;"> -23.087 </td>
+   <td style="text-align:right;"> 9 </td>
+  </tr>
+<tr>
+<td style="text-align:right;"> 2.363 </td>
+   <td style="text-align:right;"> 0.465 </td>
+   <td style="text-align:right;"> -15.020 </td>
+   <td style="text-align:right;"> 11 </td>
+  </tr>
+<tr>
+<td style="text-align:right;"> 2.827 </td>
+   <td style="text-align:right;"> 0.446 </td>
+   <td style="text-align:right;"> -21.016 </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 </section><section id="plot-pitch-by-beat" class="level2" data-number="7.4"><h2 data-number="7.4" class="anchored" data-anchor-id="plot-pitch-by-beat">
 <span class="header-section-number">7.4</span> Plot Pitch by Beat</h2>
 <div class="cell" data-layout-align="center">
-<details><summary>Code</summary><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">ggplot</span>(pitch_by_beat,</span>
-<span id="cb13-2"><a href="#cb13-2"></a>       <span class="fu">aes</span>(<span class="at">x =</span> start, <span class="at">y =</span> pitch, <span class="at">color =</span> loudness_start)) <span class="sc">+</span></span>
-<span id="cb13-3"><a href="#cb13-3"></a>  <span class="fu">geom_point</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">ggplot</span>(pitch_by_beat,</span>
+<span id="cb10-2"><a href="#cb10-2"></a>       <span class="fu">aes</span>(<span class="at">x =</span> start, <span class="at">y =</span> pitch, <span class="at">color =</span> loudness_start)) <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a>  <span class="fu">geom_point</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="07-physical_files/figure-html/physical-pitch-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -577,11 +728,11 @@
 <span class="header-section-number">7.5</span> Plot Key by Segment</h2>
 <p>I also wanted to map the key of each segment using a horizontal linerange, so I mapped it vertically first and flipped the coordinates.</p>
 <div class="cell" data-layout-align="center">
-<details><summary>Code</summary><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">ggplot</span>(song_analysis<span class="sc">$</span>sections, <span class="fu">aes</span>(<span class="at">ymin =</span> start, </span>
-<span id="cb14-2"><a href="#cb14-2"></a>                               <span class="at">ymax =</span> start <span class="sc">+</span> duration,</span>
-<span id="cb14-3"><a href="#cb14-3"></a>                               <span class="at">x =</span> key)) <span class="sc">+</span></span>
-<span id="cb14-4"><a href="#cb14-4"></a>  <span class="fu">geom_linerange</span>(<span class="at">size =</span> <span class="dv">10</span>) <span class="sc">+</span></span>
-<span id="cb14-5"><a href="#cb14-5"></a>  <span class="fu">coord_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">ggplot</span>(song_analysis<span class="sc">$</span>sections, <span class="fu">aes</span>(<span class="at">ymin =</span> start, </span>
+<span id="cb11-2"><a href="#cb11-2"></a>                               <span class="at">ymax =</span> start <span class="sc">+</span> duration,</span>
+<span id="cb11-3"><a href="#cb11-3"></a>                               <span class="at">x =</span> key)) <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a>  <span class="fu">geom_linerange</span>(<span class="at">size =</span> <span class="dv">10</span>) <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a>  <span class="fu">coord_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="07-physical_files/figure-html/physical-key-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -593,15 +744,15 @@
 <span class="header-section-number">7.6</span> Combine Plots</h2>
 <p>So to combine them, I need to move the data and mapping to the relevant geoms and swap the x and y coordinates for the pitch points.</p>
 <div class="cell" data-layout-align="center">
-<details><summary>Code</summary><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a>  <span class="fu">geom_linerange</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">ymin =</span> start, </span>
-<span id="cb15-3"><a href="#cb15-3"></a>                               <span class="at">ymax =</span> start <span class="sc">+</span> duration,</span>
-<span id="cb15-4"><a href="#cb15-4"></a>                               <span class="at">x =</span> key),</span>
-<span id="cb15-5"><a href="#cb15-5"></a>                 <span class="at">data =</span> song_analysis<span class="sc">$</span>sections,</span>
-<span id="cb15-6"><a href="#cb15-6"></a>                 <span class="at">size =</span> <span class="dv">6</span>) <span class="sc">+</span></span>
-<span id="cb15-7"><a href="#cb15-7"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb15-8"><a href="#cb15-8"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> start, <span class="at">x =</span> pitch, <span class="at">color =</span> loudness_start),</span>
-<span id="cb15-9"><a href="#cb15-9"></a>             <span class="at">data =</span> pitch_by_beat, <span class="at">show.legend =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a>  <span class="fu">geom_linerange</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">ymin =</span> start, </span>
+<span id="cb12-3"><a href="#cb12-3"></a>                               <span class="at">ymax =</span> start <span class="sc">+</span> duration,</span>
+<span id="cb12-4"><a href="#cb12-4"></a>                               <span class="at">x =</span> key),</span>
+<span id="cb12-5"><a href="#cb12-5"></a>                 <span class="at">data =</span> song_analysis<span class="sc">$</span>sections,</span>
+<span id="cb12-6"><a href="#cb12-6"></a>                 <span class="at">size =</span> <span class="dv">6</span>) <span class="sc">+</span></span>
+<span id="cb12-7"><a href="#cb12-7"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb12-8"><a href="#cb12-8"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> start, <span class="at">x =</span> pitch, <span class="at">color =</span> loudness_start),</span>
+<span id="cb12-9"><a href="#cb12-9"></a>             <span class="at">data =</span> pitch_by_beat, <span class="at">show.legend =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="07-physical_files/figure-html/physical-combo-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -614,36 +765,36 @@
 <p>Let’s remind ourselves of this monstrosity.</p>
 <p><img src="images/physical.png" class="img-fluid"></p>
 <div class="cell" data-layout-align="center">
-<details><summary>Code</summary><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># translate spotify's 0-11 to notes</span></span>
-<span id="cb16-2"><a href="#cb16-2"></a>pitch_key_vals <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'C'</span>, <span class="st">'C#/Db'</span>, <span class="st">'D'</span>, <span class="st">'D#/Eb'</span>, <span class="st">'E'</span>, <span class="st">'F'</span>, </span>
-<span id="cb16-3"><a href="#cb16-3"></a>                     <span class="st">'F#/Gb'</span>, <span class="st">'G'</span>, <span class="st">'G#/Ab'</span>, <span class="st">'A'</span>, <span class="st">'A#/Bb'</span>, <span class="st">'B'</span>)</span>
-<span id="cb16-4"><a href="#cb16-4"></a></span>
-<span id="cb16-5"><a href="#cb16-5"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb16-6"><a href="#cb16-6"></a>  <span class="fu">geom_linerange</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">ymin =</span> start, </span>
-<span id="cb16-7"><a href="#cb16-7"></a>                               <span class="at">ymax =</span> start <span class="sc">+</span> duration,</span>
-<span id="cb16-8"><a href="#cb16-8"></a>                               <span class="at">x =</span> key),</span>
-<span id="cb16-9"><a href="#cb16-9"></a>                 <span class="at">data =</span> song_analysis<span class="sc">$</span>sections,</span>
-<span id="cb16-10"><a href="#cb16-10"></a>                 <span class="at">size =</span> <span class="dv">10</span>,</span>
-<span id="cb16-11"><a href="#cb16-11"></a>                 <span class="at">color =</span> <span class="st">"#60E1FE"</span>) <span class="sc">+</span></span>
-<span id="cb16-12"><a href="#cb16-12"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb16-13"><a href="#cb16-13"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> start, <span class="at">x =</span> pitch, <span class="at">alpha =</span> loudness_start),</span>
-<span id="cb16-14"><a href="#cb16-14"></a>             <span class="at">data =</span> pitch_by_beat, </span>
-<span id="cb16-15"><a href="#cb16-15"></a>             <span class="at">color =</span> <span class="st">"#BB1DA8"</span>, <span class="at">size =</span> <span class="dv">3</span>,</span>
-<span id="cb16-16"><a href="#cb16-16"></a>             <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb16-17"><a href="#cb16-17"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">250</span>, <span class="dv">10</span>)) <span class="sc">+</span></span>
-<span id="cb16-18"><a href="#cb16-18"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">11</span>,</span>
-<span id="cb16-19"><a href="#cb16-19"></a>                     <span class="at">labels =</span> pitch_key_vals) <span class="sc">+</span></span>
-<span id="cb16-20"><a href="#cb16-20"></a>  <span class="fu">scale_alpha</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">0</span>, .<span class="dv">6</span>)) <span class="sc">+</span></span>
-<span id="cb16-21"><a href="#cb16-21"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Key/Pitch"</span>,</span>
-<span id="cb16-22"><a href="#cb16-22"></a>       <span class="at">y =</span> <span class="cn">NULL</span>,</span>
-<span id="cb16-23"><a href="#cb16-23"></a>       <span class="at">title =</span> <span class="st">"Let's Get Physical — Olivia Newton John"</span>,</span>
-<span id="cb16-24"><a href="#cb16-24"></a>       <span class="at">subtitle =</span> <span class="st">"Main pitch for each beat (in pink) and key for each segment (in blue)"</span>,</span>
-<span id="cb16-25"><a href="#cb16-25"></a>       <span class="at">caption =</span> <span class="st">"Data from Spotify via spotifyr | plot by @lisadebruine"</span>)  <span class="sc">+</span></span>
-<span id="cb16-26"><a href="#cb16-26"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb16-27"><a href="#cb16-27"></a>  <span class="fu">theme</span>(<span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"red"</span>),</span>
-<span id="cb16-28"><a href="#cb16-28"></a>        <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"#091131"</span>),</span>
-<span id="cb16-29"><a href="#cb16-29"></a>        <span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb16-30"><a href="#cb16-30"></a>        <span class="at">panel.grid.minor.x =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># translate spotify's 0-11 to notes</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>pitch_key_vals <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'C'</span>, <span class="st">'C#/Db'</span>, <span class="st">'D'</span>, <span class="st">'D#/Eb'</span>, <span class="st">'E'</span>, <span class="st">'F'</span>, </span>
+<span id="cb13-3"><a href="#cb13-3"></a>                     <span class="st">'F#/Gb'</span>, <span class="st">'G'</span>, <span class="st">'G#/Ab'</span>, <span class="st">'A'</span>, <span class="st">'A#/Bb'</span>, <span class="st">'B'</span>)</span>
+<span id="cb13-4"><a href="#cb13-4"></a></span>
+<span id="cb13-5"><a href="#cb13-5"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb13-6"><a href="#cb13-6"></a>  <span class="fu">geom_linerange</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">ymin =</span> start, </span>
+<span id="cb13-7"><a href="#cb13-7"></a>                               <span class="at">ymax =</span> start <span class="sc">+</span> duration,</span>
+<span id="cb13-8"><a href="#cb13-8"></a>                               <span class="at">x =</span> key),</span>
+<span id="cb13-9"><a href="#cb13-9"></a>                 <span class="at">data =</span> song_analysis<span class="sc">$</span>sections,</span>
+<span id="cb13-10"><a href="#cb13-10"></a>                 <span class="at">size =</span> <span class="dv">10</span>,</span>
+<span id="cb13-11"><a href="#cb13-11"></a>                 <span class="at">color =</span> <span class="st">"#60E1FE"</span>) <span class="sc">+</span></span>
+<span id="cb13-12"><a href="#cb13-12"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb13-13"><a href="#cb13-13"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> start, <span class="at">x =</span> pitch, <span class="at">alpha =</span> loudness_start),</span>
+<span id="cb13-14"><a href="#cb13-14"></a>             <span class="at">data =</span> pitch_by_beat, </span>
+<span id="cb13-15"><a href="#cb13-15"></a>             <span class="at">color =</span> <span class="st">"#BB1DA8"</span>, <span class="at">size =</span> <span class="dv">3</span>,</span>
+<span id="cb13-16"><a href="#cb13-16"></a>             <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb13-17"><a href="#cb13-17"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">250</span>, <span class="dv">10</span>)) <span class="sc">+</span></span>
+<span id="cb13-18"><a href="#cb13-18"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">11</span>,</span>
+<span id="cb13-19"><a href="#cb13-19"></a>                     <span class="at">labels =</span> pitch_key_vals) <span class="sc">+</span></span>
+<span id="cb13-20"><a href="#cb13-20"></a>  <span class="fu">scale_alpha</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">0</span>, .<span class="dv">6</span>)) <span class="sc">+</span></span>
+<span id="cb13-21"><a href="#cb13-21"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Key/Pitch"</span>,</span>
+<span id="cb13-22"><a href="#cb13-22"></a>       <span class="at">y =</span> <span class="cn">NULL</span>,</span>
+<span id="cb13-23"><a href="#cb13-23"></a>       <span class="at">title =</span> <span class="st">"Let's Get Physical — Olivia Newton John"</span>,</span>
+<span id="cb13-24"><a href="#cb13-24"></a>       <span class="at">subtitle =</span> <span class="st">"Main pitch for each beat (in pink) and key for each segment (in blue)"</span>,</span>
+<span id="cb13-25"><a href="#cb13-25"></a>       <span class="at">caption =</span> <span class="st">"Data from Spotify via spotifyr | plot by @lisadebruine"</span>)  <span class="sc">+</span></span>
+<span id="cb13-26"><a href="#cb13-26"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb13-27"><a href="#cb13-27"></a>  <span class="fu">theme</span>(<span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"red"</span>),</span>
+<span id="cb13-28"><a href="#cb13-28"></a>        <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"#091131"</span>),</span>
+<span id="cb13-29"><a href="#cb13-29"></a>        <span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb13-30"><a href="#cb13-30"></a>        <span class="at">panel.grid.minor.x =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <p><img src="07-physical_files/figure-html/physical-theme-1.png" class="img-fluid" alt="OK, that’s awful and I’m sorry.">{fig-align=‘center’ fig-alt=‘Chart of Let’s Get Physical by Olivia Newton John, showing the main pitch for each beat (in pink) and key for each segment (in blue). The 80s visual theme is reminiscent of the gym from the music video for the song.’ width=100%}</p>
 </div>

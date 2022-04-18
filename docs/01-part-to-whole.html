@@ -441,28 +441,60 @@
 <span id="cb2-7"><a href="#cb2-7"></a>             <span class="at">.nested_in =</span> <span class="st">"class"</span>)</span>
 <span id="cb2-8"><a href="#cb2-8"></a></span>
 <span id="cb2-9"><a href="#cb2-9"></a><span class="fu">head</span>(school)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-stdout">
-<pre><code># A tibble: 6 × 3
-  grade  class   student   
-  &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;     
-1 grade1 class01 student001
-2 grade1 class01 student002
-3 grade1 class01 student003
-4 grade1 class01 student004
-5 grade1 class01 student005
-6 grade1 class01 student006</code></pre>
+</details><div class="cell-output-display">
+<div class="kable-table">
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<thead><tr>
+<th style="text-align:left;"> grade </th>
+   <th style="text-align:left;"> class </th>
+   <th style="text-align:left;"> student </th>
+  </tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;"> grade1 </td>
+   <td style="text-align:left;"> class01 </td>
+   <td style="text-align:left;"> student001 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> grade1 </td>
+   <td style="text-align:left;"> class01 </td>
+   <td style="text-align:left;"> student002 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> grade1 </td>
+   <td style="text-align:left;"> class01 </td>
+   <td style="text-align:left;"> student003 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> grade1 </td>
+   <td style="text-align:left;"> class01 </td>
+   <td style="text-align:left;"> student004 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> grade1 </td>
+   <td style="text-align:left;"> class01 </td>
+   <td style="text-align:left;"> student005 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> grade1 </td>
+   <td style="text-align:left;"> class01 </td>
+   <td style="text-align:left;"> student006 </td>
+  </tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 </section><section id="basic-treemap" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="basic-treemap">
 <span class="header-section-number">1.2</span> Basic Treemap</h2>
 <p>The basic version is OK, but I think we can do better here.</p>
 <div class="cell" data-layout-align="center">
-<details><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>school <span class="sc">%&gt;%</span> </span>
-<span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">count</span>(grade, class) <span class="sc">%&gt;%</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a>  <span class="fu">treemap</span>(</span>
-<span id="cb4-4"><a href="#cb4-4"></a>    <span class="at">index =</span> <span class="fu">c</span>(<span class="st">"grade"</span>, <span class="st">"class"</span>), </span>
-<span id="cb4-5"><a href="#cb4-5"></a>    <span class="at">vSize =</span> <span class="st">"n"</span></span>
-<span id="cb4-6"><a href="#cb4-6"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>school <span class="sc">%&gt;%</span> </span>
+<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">count</span>(grade, class) <span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a>  <span class="fu">treemap</span>(</span>
+<span id="cb3-4"><a href="#cb3-4"></a>    <span class="at">index =</span> <span class="fu">c</span>(<span class="st">"grade"</span>, <span class="st">"class"</span>), </span>
+<span id="cb3-5"><a href="#cb3-5"></a>    <span class="at">vSize =</span> <span class="st">"n"</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="01-part-to-whole_files/figure-html/pth-treemap-basic-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -475,24 +507,24 @@
 <p>First, I’ll adjust the label size and alignment. I adapted this code from a book that Emily Nordmann and I recently wrote: <a href="https://psyteachr.github.io/ads-v1/custom.html#treemap">Applied Data Skills</a>. For <code>fontsize.labels</code> and <code>align.labels</code>, I added vector names to help me remember which is which, but the names aren’t used by <code>treemap()</code> at all, just the order.</p>
 <p>The class labels aligned to the bottom right are too close to the edges, so give them some padding with <code>xmod.labels</code> and <code>ymod.labels</code>. I’m also going to remove the transparent grey label background with <code>bg.labels = 0</code></p>
 <div class="cell" data-layout-align="center">
-<details><summary>Code</summary><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>school <span class="sc">%&gt;%</span> </span>
-<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">count</span>(grade, class) <span class="sc">%&gt;%</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">treemap</span>(</span>
-<span id="cb5-4"><a href="#cb5-4"></a>    <span class="at">index =</span> <span class="fu">c</span>(<span class="st">"grade"</span>, <span class="st">"class"</span>), </span>
-<span id="cb5-5"><a href="#cb5-5"></a>    <span class="at">vSize =</span> <span class="st">"n"</span>, </span>
-<span id="cb5-6"><a href="#cb5-6"></a>    <span class="at">title =</span> <span class="st">""</span>,</span>
-<span id="cb5-7"><a href="#cb5-7"></a>    <span class="co"># set different label sizes for each type of label</span></span>
-<span id="cb5-8"><a href="#cb5-8"></a>    <span class="at">fontsize.labels =</span> <span class="fu">c</span>(<span class="at">grade =</span> <span class="dv">30</span>, <span class="at">class =</span> <span class="dv">15</span>), </span>
-<span id="cb5-9"><a href="#cb5-9"></a>    <span class="co"># remove shaded background</span></span>
-<span id="cb5-10"><a href="#cb5-10"></a>    <span class="at">bg.labels =</span> <span class="dv">0</span>,</span>
-<span id="cb5-11"><a href="#cb5-11"></a>    <span class="co"># set different alignments for two label types</span></span>
-<span id="cb5-12"><a href="#cb5-12"></a>    <span class="at">align.labels =</span> <span class="fu">list</span>(</span>
-<span id="cb5-13"><a href="#cb5-13"></a>      <span class="at">grade =</span> <span class="fu">c</span>(<span class="st">"left"</span>, <span class="st">"top"</span>), </span>
-<span id="cb5-14"><a href="#cb5-14"></a>      <span class="at">class =</span> <span class="fu">c</span>(<span class="st">"right"</span>, <span class="st">"bottom"</span>)</span>
-<span id="cb5-15"><a href="#cb5-15"></a>    ),</span>
-<span id="cb5-16"><a href="#cb5-16"></a>    <span class="at">xmod.labels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="sc">-</span>.<span class="dv">1</span>), <span class="co"># nudge class labels left</span></span>
-<span id="cb5-17"><a href="#cb5-17"></a>    <span class="at">ymod.labels =</span> <span class="fu">c</span>(<span class="dv">0</span>, .<span class="dv">1</span>)   <span class="co"># nudge class labels up</span></span>
-<span id="cb5-18"><a href="#cb5-18"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>school <span class="sc">%&gt;%</span> </span>
+<span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">count</span>(grade, class) <span class="sc">%&gt;%</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>  <span class="fu">treemap</span>(</span>
+<span id="cb4-4"><a href="#cb4-4"></a>    <span class="at">index =</span> <span class="fu">c</span>(<span class="st">"grade"</span>, <span class="st">"class"</span>), </span>
+<span id="cb4-5"><a href="#cb4-5"></a>    <span class="at">vSize =</span> <span class="st">"n"</span>, </span>
+<span id="cb4-6"><a href="#cb4-6"></a>    <span class="at">title =</span> <span class="st">""</span>,</span>
+<span id="cb4-7"><a href="#cb4-7"></a>    <span class="co"># set different label sizes for each type of label</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a>    <span class="at">fontsize.labels =</span> <span class="fu">c</span>(<span class="at">grade =</span> <span class="dv">30</span>, <span class="at">class =</span> <span class="dv">15</span>), </span>
+<span id="cb4-9"><a href="#cb4-9"></a>    <span class="co"># remove shaded background</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a>    <span class="at">bg.labels =</span> <span class="dv">0</span>,</span>
+<span id="cb4-11"><a href="#cb4-11"></a>    <span class="co"># set different alignments for two label types</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a>    <span class="at">align.labels =</span> <span class="fu">list</span>(</span>
+<span id="cb4-13"><a href="#cb4-13"></a>      <span class="at">grade =</span> <span class="fu">c</span>(<span class="st">"left"</span>, <span class="st">"top"</span>), </span>
+<span id="cb4-14"><a href="#cb4-14"></a>      <span class="at">class =</span> <span class="fu">c</span>(<span class="st">"right"</span>, <span class="st">"bottom"</span>)</span>
+<span id="cb4-15"><a href="#cb4-15"></a>    ),</span>
+<span id="cb4-16"><a href="#cb4-16"></a>    <span class="at">xmod.labels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="sc">-</span>.<span class="dv">1</span>), <span class="co"># nudge class labels left</span></span>
+<span id="cb4-17"><a href="#cb4-17"></a>    <span class="at">ymod.labels =</span> <span class="fu">c</span>(<span class="dv">0</span>, .<span class="dv">1</span>)   <span class="co"># nudge class labels up</span></span>
+<span id="cb4-18"><a href="#cb4-18"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="01-part-to-whole_files/figure-html/pth-treemap-labels-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -504,32 +536,32 @@
 <span class="header-section-number">1.4</span> Colour scheme</h2>
 <p>I’d like to use the #30DayChartChallenge theme colours for my plots, so let’s set that up. I’m going to name the colours after the chapter they represent.</p>
 <div class="cell" data-layout-align="center">
-<details><summary>Theme Colours</summary><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>dcc_theme <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb6-2"><a href="#cb6-2"></a>  <span class="at">comp =</span> <span class="st">"#4864DB"</span>, <span class="co"># ~royalblue</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a>  <span class="at">dist =</span> <span class="st">"#10D4CF"</span>, <span class="co"># ~darkturquoise</span></span>
-<span id="cb6-4"><a href="#cb6-4"></a>  <span class="at">rels =</span> <span class="st">"#8DEA74"</span>, <span class="co"># ~lightgreen</span></span>
-<span id="cb6-5"><a href="#cb6-5"></a>  <span class="at">time =</span> <span class="st">"#F5C748"</span>, <span class="co"># ~tan1</span></span>
-<span id="cb6-6"><a href="#cb6-6"></a>  <span class="at">cert =</span> <span class="st">"#EA4E11"</span>  <span class="co"># ~orangered2</span></span>
-<span id="cb6-7"><a href="#cb6-7"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Theme Colours</summary><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>dcc_theme <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="at">comp =</span> <span class="st">"#4864DB"</span>, <span class="co"># ~royalblue</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a>  <span class="at">dist =</span> <span class="st">"#10D4CF"</span>, <span class="co"># ~darkturquoise</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a>  <span class="at">rels =</span> <span class="st">"#8DEA74"</span>, <span class="co"># ~lightgreen</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a>  <span class="at">time =</span> <span class="st">"#F5C748"</span>, <span class="co"># ~tan1</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a>  <span class="at">cert =</span> <span class="st">"#EA4E11"</span>  <span class="co"># ~orangered2</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell" data-layout-align="center">
-<details><summary>Plot</summary><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>school <span class="sc">%&gt;%</span> </span>
-<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">count</span>(grade, class) <span class="sc">%&gt;%</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a>  <span class="fu">treemap</span>(</span>
-<span id="cb7-4"><a href="#cb7-4"></a>    <span class="at">index =</span> <span class="fu">c</span>(<span class="st">"grade"</span>, <span class="st">"class"</span>), </span>
-<span id="cb7-5"><a href="#cb7-5"></a>    <span class="at">vSize =</span> <span class="st">"n"</span>, </span>
-<span id="cb7-6"><a href="#cb7-6"></a>    <span class="at">title =</span> <span class="st">""</span>,</span>
-<span id="cb7-7"><a href="#cb7-7"></a>    <span class="at">palette =</span> dcc_theme,</span>
-<span id="cb7-8"><a href="#cb7-8"></a>    <span class="at">fontsize.labels =</span> <span class="fu">c</span>(<span class="at">grade =</span> <span class="dv">30</span>, <span class="at">class =</span> <span class="dv">10</span>), </span>
-<span id="cb7-9"><a href="#cb7-9"></a>    <span class="at">bg.labels =</span> <span class="dv">0</span>,</span>
-<span id="cb7-10"><a href="#cb7-10"></a>    <span class="at">align.labels =</span> <span class="fu">list</span>(</span>
-<span id="cb7-11"><a href="#cb7-11"></a>      <span class="at">grade =</span> <span class="fu">c</span>(<span class="st">"left"</span>, <span class="st">"top"</span>), </span>
-<span id="cb7-12"><a href="#cb7-12"></a>      <span class="at">class =</span> <span class="fu">c</span>(<span class="st">"center"</span>, <span class="st">"center"</span>)</span>
-<span id="cb7-13"><a href="#cb7-13"></a>    ),</span>
-<span id="cb7-14"><a href="#cb7-14"></a>    <span class="at">xmod.labels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="sc">-</span>.<span class="dv">1</span>),</span>
-<span id="cb7-15"><a href="#cb7-15"></a>    <span class="at">ymod.labels =</span> <span class="fu">c</span>(<span class="dv">0</span>, .<span class="dv">1</span>)</span>
-<span id="cb7-16"><a href="#cb7-16"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Plot</summary><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>school <span class="sc">%&gt;%</span> </span>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">count</span>(grade, class) <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a>  <span class="fu">treemap</span>(</span>
+<span id="cb6-4"><a href="#cb6-4"></a>    <span class="at">index =</span> <span class="fu">c</span>(<span class="st">"grade"</span>, <span class="st">"class"</span>), </span>
+<span id="cb6-5"><a href="#cb6-5"></a>    <span class="at">vSize =</span> <span class="st">"n"</span>, </span>
+<span id="cb6-6"><a href="#cb6-6"></a>    <span class="at">title =</span> <span class="st">""</span>,</span>
+<span id="cb6-7"><a href="#cb6-7"></a>    <span class="at">palette =</span> dcc_theme,</span>
+<span id="cb6-8"><a href="#cb6-8"></a>    <span class="at">fontsize.labels =</span> <span class="fu">c</span>(<span class="at">grade =</span> <span class="dv">30</span>, <span class="at">class =</span> <span class="dv">10</span>), </span>
+<span id="cb6-9"><a href="#cb6-9"></a>    <span class="at">bg.labels =</span> <span class="dv">0</span>,</span>
+<span id="cb6-10"><a href="#cb6-10"></a>    <span class="at">align.labels =</span> <span class="fu">list</span>(</span>
+<span id="cb6-11"><a href="#cb6-11"></a>      <span class="at">grade =</span> <span class="fu">c</span>(<span class="st">"left"</span>, <span class="st">"top"</span>), </span>
+<span id="cb6-12"><a href="#cb6-12"></a>      <span class="at">class =</span> <span class="fu">c</span>(<span class="st">"center"</span>, <span class="st">"center"</span>)</span>
+<span id="cb6-13"><a href="#cb6-13"></a>    ),</span>
+<span id="cb6-14"><a href="#cb6-14"></a>    <span class="at">xmod.labels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="sc">-</span>.<span class="dv">1</span>),</span>
+<span id="cb6-15"><a href="#cb6-15"></a>    <span class="at">ymod.labels =</span> <span class="fu">c</span>(<span class="dv">0</span>, .<span class="dv">1</span>)</span>
+<span id="cb6-16"><a href="#cb6-16"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="01-part-to-whole_files/figure-html/pth-treemap-colours-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -541,34 +573,34 @@
 <span class="header-section-number">1.5</span> Change text</h2>
 <p>Now I want to upgrade the labels. It’s probably easiest to do this in the data using <code>mutate()</code>. I’ll set them to the kind of primary school grade labels we use in Scotland, where each grade is P1, P2, … and each class within a grade gets a letter suffix.</p>
 <div class="cell" data-layout-align="center">
-<details><summary>New labels</summary><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>school2 <span class="ot">&lt;-</span> school <span class="sc">%&gt;%</span> </span>
-<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">count</span>(grade, class) <span class="sc">%&gt;%</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">mutate</span>(<span class="at">grade =</span> <span class="fu">gsub</span>(<span class="st">"grade"</span>, <span class="st">"P"</span>, grade)) <span class="sc">%&gt;%</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a>  <span class="fu">group_by</span>(grade) <span class="sc">%&gt;%</span></span>
-<span id="cb8-5"><a href="#cb8-5"></a>  <span class="fu">mutate</span>(<span class="at">class =</span> <span class="fu">paste0</span>(grade, letters[<span class="dv">1</span><span class="sc">:</span><span class="fu">n</span>()])) <span class="sc">%&gt;%</span></span>
-<span id="cb8-6"><a href="#cb8-6"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb8-7"><a href="#cb8-7"></a>  <span class="fu">mutate</span>(<span class="at">class =</span> <span class="fu">paste0</span>(class, <span class="st">"</span><span class="sc">\n</span><span class="st">n = "</span>, n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>New labels</summary><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>school2 <span class="ot">&lt;-</span> school <span class="sc">%&gt;%</span> </span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">count</span>(grade, class) <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>  <span class="fu">mutate</span>(<span class="at">grade =</span> <span class="fu">gsub</span>(<span class="st">"grade"</span>, <span class="st">"P"</span>, grade)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>  <span class="fu">group_by</span>(grade) <span class="sc">%&gt;%</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a>  <span class="fu">mutate</span>(<span class="at">class =</span> <span class="fu">paste0</span>(grade, letters[<span class="dv">1</span><span class="sc">:</span><span class="fu">n</span>()])) <span class="sc">%&gt;%</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a>  <span class="fu">mutate</span>(<span class="at">class =</span> <span class="fu">paste0</span>(class, <span class="st">"</span><span class="sc">\n</span><span class="st">n = "</span>, n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>Finally, make the borders thicker. It’s starting to look like a Mondrian!</p>
 <div class="cell" data-layout-align="center">
-<details><summary>Code</summary><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>day1_plot <span class="ot">&lt;-</span> school2 <span class="sc">%&gt;%</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">treemap</span>(</span>
-<span id="cb9-3"><a href="#cb9-3"></a>    <span class="at">index =</span> <span class="fu">c</span>(<span class="st">"grade"</span>, <span class="st">"class"</span>), </span>
-<span id="cb9-4"><a href="#cb9-4"></a>    <span class="at">vSize =</span> <span class="st">"n"</span>, </span>
-<span id="cb9-5"><a href="#cb9-5"></a>    <span class="at">title =</span> <span class="st">""</span>,</span>
-<span id="cb9-6"><a href="#cb9-6"></a>    <span class="at">palette =</span> dcc_theme,</span>
-<span id="cb9-7"><a href="#cb9-7"></a>    <span class="at">fontcolor.labels =</span> <span class="st">"white"</span>,</span>
-<span id="cb9-8"><a href="#cb9-8"></a>    <span class="at">fontsize.labels =</span> <span class="fu">c</span>(<span class="at">grade =</span> <span class="dv">30</span>, <span class="at">class =</span> <span class="dv">15</span>), </span>
-<span id="cb9-9"><a href="#cb9-9"></a>    <span class="at">bg.labels =</span> <span class="dv">0</span>,</span>
-<span id="cb9-10"><a href="#cb9-10"></a>    <span class="at">align.labels =</span> <span class="fu">list</span>(</span>
-<span id="cb9-11"><a href="#cb9-11"></a>      <span class="at">grade =</span> <span class="fu">c</span>(<span class="st">"left"</span>, <span class="st">"top"</span>), </span>
-<span id="cb9-12"><a href="#cb9-12"></a>      <span class="at">class =</span> <span class="fu">c</span>(<span class="st">"right"</span>, <span class="st">"bottom"</span>)</span>
-<span id="cb9-13"><a href="#cb9-13"></a>    ),</span>
-<span id="cb9-14"><a href="#cb9-14"></a>    <span class="at">xmod.labels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="sc">-</span>.<span class="dv">1</span>),</span>
-<span id="cb9-15"><a href="#cb9-15"></a>    <span class="at">ymod.labels =</span> <span class="fu">c</span>(<span class="dv">0</span>, .<span class="dv">1</span>),</span>
-<span id="cb9-16"><a href="#cb9-16"></a>    <span class="at">border.lwds =</span> <span class="dv">5</span> <span class="co"># thicker borders</span></span>
-<span id="cb9-17"><a href="#cb9-17"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>day1_plot <span class="ot">&lt;-</span> school2 <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">treemap</span>(</span>
+<span id="cb8-3"><a href="#cb8-3"></a>    <span class="at">index =</span> <span class="fu">c</span>(<span class="st">"grade"</span>, <span class="st">"class"</span>), </span>
+<span id="cb8-4"><a href="#cb8-4"></a>    <span class="at">vSize =</span> <span class="st">"n"</span>, </span>
+<span id="cb8-5"><a href="#cb8-5"></a>    <span class="at">title =</span> <span class="st">""</span>,</span>
+<span id="cb8-6"><a href="#cb8-6"></a>    <span class="at">palette =</span> dcc_theme,</span>
+<span id="cb8-7"><a href="#cb8-7"></a>    <span class="at">fontcolor.labels =</span> <span class="st">"white"</span>,</span>
+<span id="cb8-8"><a href="#cb8-8"></a>    <span class="at">fontsize.labels =</span> <span class="fu">c</span>(<span class="at">grade =</span> <span class="dv">30</span>, <span class="at">class =</span> <span class="dv">15</span>), </span>
+<span id="cb8-9"><a href="#cb8-9"></a>    <span class="at">bg.labels =</span> <span class="dv">0</span>,</span>
+<span id="cb8-10"><a href="#cb8-10"></a>    <span class="at">align.labels =</span> <span class="fu">list</span>(</span>
+<span id="cb8-11"><a href="#cb8-11"></a>      <span class="at">grade =</span> <span class="fu">c</span>(<span class="st">"left"</span>, <span class="st">"top"</span>), </span>
+<span id="cb8-12"><a href="#cb8-12"></a>      <span class="at">class =</span> <span class="fu">c</span>(<span class="st">"right"</span>, <span class="st">"bottom"</span>)</span>
+<span id="cb8-13"><a href="#cb8-13"></a>    ),</span>
+<span id="cb8-14"><a href="#cb8-14"></a>    <span class="at">xmod.labels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="sc">-</span>.<span class="dv">1</span>),</span>
+<span id="cb8-15"><a href="#cb8-15"></a>    <span class="at">ymod.labels =</span> <span class="fu">c</span>(<span class="dv">0</span>, .<span class="dv">1</span>),</span>
+<span id="cb8-16"><a href="#cb8-16"></a>    <span class="at">border.lwds =</span> <span class="dv">5</span> <span class="co"># thicker borders</span></span>
+<span id="cb8-17"><a href="#cb8-17"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="01-part-to-whole_files/figure-html/pth-treemap-final-1.png" class="img-fluid figure-img" alt="Treemap plot of classes nested in grades (P1 to P5). There are 2-4 classes in each grade with 16-35 students. The size of each box represents the size of the class, and the colour of the box represents the grade." style="width:100.0%"></p>
@@ -581,33 +613,33 @@
 <p>I tried <code>ggsave()</code> first and it took a <em>really</em> long time to save, and then the resulting image was blank. I should remember that not everything is ggplot; the output of the <code>treemap()</code> function is a list that draws a plot as a side effect (unless you set <code>draw = FALSE</code>), so you have to use base R plot saving techniques.</p>
 <p>I couldn’t figure out how to re-plot from the <code>day1_plot</code> object, so just had to retype the plot. This didn’t work well in an Rmd code chunk (I think treemap can sense if it’s in a code chunk with inline plot rendering and overrides the dev), so I had to run it in the console.</p>
 <div class="cell" data-layout-align="center">
-<details><summary>Save treemap</summary><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># open the png file</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a>ragg<span class="sc">::</span><span class="fu">agg_png</span>(<span class="st">"images/day1.png"</span>, </span>
-<span id="cb10-3"><a href="#cb10-3"></a>              <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="fl">4.5</span>, </span>
-<span id="cb10-4"><a href="#cb10-4"></a>              <span class="at">background =</span> <span class="st">"transparent"</span>,</span>
-<span id="cb10-5"><a href="#cb10-5"></a>              <span class="at">units =</span> <span class="st">"in"</span>, <span class="at">res =</span> <span class="dv">150</span>)</span>
-<span id="cb10-6"><a href="#cb10-6"></a></span>
-<span id="cb10-7"><a href="#cb10-7"></a><span class="co"># plot the treemap</span></span>
-<span id="cb10-8"><a href="#cb10-8"></a>school2 <span class="sc">%&gt;%</span></span>
-<span id="cb10-9"><a href="#cb10-9"></a>  <span class="fu">treemap</span>(</span>
-<span id="cb10-10"><a href="#cb10-10"></a>    <span class="at">index =</span> <span class="fu">c</span>(<span class="st">"grade"</span>, <span class="st">"class"</span>), </span>
-<span id="cb10-11"><a href="#cb10-11"></a>    <span class="at">vSize =</span> <span class="st">"n"</span>, </span>
-<span id="cb10-12"><a href="#cb10-12"></a>    <span class="at">title =</span> <span class="st">""</span>,</span>
-<span id="cb10-13"><a href="#cb10-13"></a>    <span class="at">palette =</span> dcc_theme,</span>
-<span id="cb10-14"><a href="#cb10-14"></a>    <span class="at">fontcolor.labels =</span> <span class="st">"white"</span>,</span>
-<span id="cb10-15"><a href="#cb10-15"></a>    <span class="at">fontsize.labels =</span> <span class="fu">c</span>(<span class="at">grade =</span> <span class="dv">30</span>, <span class="at">class =</span> <span class="dv">15</span>), </span>
-<span id="cb10-16"><a href="#cb10-16"></a>    <span class="at">bg.labels =</span> <span class="dv">0</span>,</span>
-<span id="cb10-17"><a href="#cb10-17"></a>    <span class="at">align.labels =</span> <span class="fu">list</span>(</span>
-<span id="cb10-18"><a href="#cb10-18"></a>      <span class="at">grade =</span> <span class="fu">c</span>(<span class="st">"left"</span>, <span class="st">"top"</span>), </span>
-<span id="cb10-19"><a href="#cb10-19"></a>      <span class="at">class =</span> <span class="fu">c</span>(<span class="st">"right"</span>, <span class="st">"bottom"</span>)</span>
-<span id="cb10-20"><a href="#cb10-20"></a>    ),</span>
-<span id="cb10-21"><a href="#cb10-21"></a>    <span class="at">xmod.labels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="sc">-</span>.<span class="dv">1</span>),</span>
-<span id="cb10-22"><a href="#cb10-22"></a>    <span class="at">ymod.labels =</span> <span class="fu">c</span>(<span class="dv">0</span>, .<span class="dv">1</span>),</span>
-<span id="cb10-23"><a href="#cb10-23"></a>    <span class="at">border.lwds =</span> <span class="dv">5</span> <span class="co"># thicker borders</span></span>
-<span id="cb10-24"><a href="#cb10-24"></a>  )</span>
-<span id="cb10-25"><a href="#cb10-25"></a></span>
-<span id="cb10-26"><a href="#cb10-26"></a><span class="co"># close the png file</span></span>
-<span id="cb10-27"><a href="#cb10-27"></a><span class="cf">while</span> (<span class="sc">!</span><span class="fu">is.null</span>(<span class="fu">dev.list</span>())) <span class="fu">dev.off</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Save treemap</summary><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># open the png file</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>ragg<span class="sc">::</span><span class="fu">agg_png</span>(<span class="st">"images/day1.png"</span>, </span>
+<span id="cb9-3"><a href="#cb9-3"></a>              <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="fl">4.5</span>, </span>
+<span id="cb9-4"><a href="#cb9-4"></a>              <span class="at">background =</span> <span class="st">"transparent"</span>,</span>
+<span id="cb9-5"><a href="#cb9-5"></a>              <span class="at">units =</span> <span class="st">"in"</span>, <span class="at">res =</span> <span class="dv">150</span>)</span>
+<span id="cb9-6"><a href="#cb9-6"></a></span>
+<span id="cb9-7"><a href="#cb9-7"></a><span class="co"># plot the treemap</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a>school2 <span class="sc">%&gt;%</span></span>
+<span id="cb9-9"><a href="#cb9-9"></a>  <span class="fu">treemap</span>(</span>
+<span id="cb9-10"><a href="#cb9-10"></a>    <span class="at">index =</span> <span class="fu">c</span>(<span class="st">"grade"</span>, <span class="st">"class"</span>), </span>
+<span id="cb9-11"><a href="#cb9-11"></a>    <span class="at">vSize =</span> <span class="st">"n"</span>, </span>
+<span id="cb9-12"><a href="#cb9-12"></a>    <span class="at">title =</span> <span class="st">""</span>,</span>
+<span id="cb9-13"><a href="#cb9-13"></a>    <span class="at">palette =</span> dcc_theme,</span>
+<span id="cb9-14"><a href="#cb9-14"></a>    <span class="at">fontcolor.labels =</span> <span class="st">"white"</span>,</span>
+<span id="cb9-15"><a href="#cb9-15"></a>    <span class="at">fontsize.labels =</span> <span class="fu">c</span>(<span class="at">grade =</span> <span class="dv">30</span>, <span class="at">class =</span> <span class="dv">15</span>), </span>
+<span id="cb9-16"><a href="#cb9-16"></a>    <span class="at">bg.labels =</span> <span class="dv">0</span>,</span>
+<span id="cb9-17"><a href="#cb9-17"></a>    <span class="at">align.labels =</span> <span class="fu">list</span>(</span>
+<span id="cb9-18"><a href="#cb9-18"></a>      <span class="at">grade =</span> <span class="fu">c</span>(<span class="st">"left"</span>, <span class="st">"top"</span>), </span>
+<span id="cb9-19"><a href="#cb9-19"></a>      <span class="at">class =</span> <span class="fu">c</span>(<span class="st">"right"</span>, <span class="st">"bottom"</span>)</span>
+<span id="cb9-20"><a href="#cb9-20"></a>    ),</span>
+<span id="cb9-21"><a href="#cb9-21"></a>    <span class="at">xmod.labels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="sc">-</span>.<span class="dv">1</span>),</span>
+<span id="cb9-22"><a href="#cb9-22"></a>    <span class="at">ymod.labels =</span> <span class="fu">c</span>(<span class="dv">0</span>, .<span class="dv">1</span>),</span>
+<span id="cb9-23"><a href="#cb9-23"></a>    <span class="at">border.lwds =</span> <span class="dv">5</span> <span class="co"># thicker borders</span></span>
+<span id="cb9-24"><a href="#cb9-24"></a>  )</span>
+<span id="cb9-25"><a href="#cb9-25"></a></span>
+<span id="cb9-26"><a href="#cb9-26"></a><span class="co"># close the png file</span></span>
+<span id="cb9-27"><a href="#cb9-27"></a><span class="cf">while</span> (<span class="sc">!</span><span class="fu">is.null</span>(<span class="fu">dev.list</span>())) <span class="fu">dev.off</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 

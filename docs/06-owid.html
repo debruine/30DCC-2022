@@ -528,7 +528,7 @@
 </details>
 </div>
 <p>Plot with facets by year. This takes a while to run, but it’s useful to see what each frame will look like.</p>
-<div class="cell" data-layout-align="center" data-hash="06-owid_cache/html/owid-data-map_2e309b95dad38fb7b5aebd579ce5b654">
+<div class="cell" data-layout-align="center" data-hash="06-owid_cache/html/owid-data-map_3d189520642de921aaedfe3a030caeef">
 <details><summary>Code</summary><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">ggplot</span>(data_map_int) <span class="sc">+</span> </span>
 <span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">geom_sf</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">fill =</span> it_net_users),</span>
 <span id="cb7-3"><a href="#cb7-3"></a>          <span class="at">size =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
@@ -554,7 +554,7 @@
 </details>
 </div>
 <p>Now let’s retry the map, and switch the fill to a nicer viridis gradient. Set the na.value to red to more easily see where the missing data is.</p>
-<div class="cell" data-layout-align="center" data-hash="06-owid_cache/html/owid-map-na_400895f318902c282be16e1b0dd18f4a">
+<div class="cell" data-layout-align="center" data-hash="06-owid_cache/html/owid-map-na_9da2323778c1821ff29c2734c5a1cc73">
 <details><summary>Code</summary><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">ggplot</span>(data_map_int_valid) <span class="sc">+</span> </span>
 <span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">geom_sf</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">fill =</span> it_net_users),</span>
 <span id="cb9-3"><a href="#cb9-3"></a>          <span class="at">size =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
@@ -584,7 +584,7 @@
 </details>
 </div>
 <p>There’s still one big persistently missing country in the middle of Africa.</p>
-<div class="cell" data-layout-align="center" data-hash="06-owid_cache/html/owid-map-missing_b29e01ce4505115ff7db3be9d084dde2">
+<div class="cell" data-layout-align="center" data-hash="06-owid_cache/html/owid-map-missing_30f6e09d2f097b726ebc5cc6adcd26a0">
 <details><summary>Code</summary><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">ggplot</span>(data_map_int_no_missing) <span class="sc">+</span> </span>
 <span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">geom_sf</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">fill =</span> it_net_users_no_na),</span>
 <span id="cb11-3"><a href="#cb11-3"></a>          <span class="at">size =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>

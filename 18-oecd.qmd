@@ -1,2 +1,192 @@
 # OECD
 
+```{r, include = FALSE}
+source("R/setup.R")
+```
+
+I have a potential thesis student who wants to work with topic modelling next year. Although I have a publication using latent dirichtlet analysis (LDA), my former postdoc, Ant Lee, did the main analysis, so I need to brush up. I'm also keen to practice my web scraping skills, so I thought I'd scrape the OECD [data insights](https://www.oecd.org/coronavirus/en/data-insights/) page to see what topics they've been posting about.
+
+```{r}
+library(tidyverse)   # for data wrangling
+library(rvest)       # for web scraping
+library(tidytext)    # for text analysis
+library(topicmodels) # for topic modelling
+library(MetBrewer)   # for beautiful colourblind-friendly colour schemes
+
+theme_set(theme_minimal())
+```
+
+
+## Data
+
+The data insights page only shows a few entries at first. So I had to click on "Show more" a bunch of times until I accessed all of them, and download the webpage first, then search the download with rvest.
+
+I used the developer tools in FireFox to find out that each "card" had a class of "card-list-card-50" and the link to the insight page was in the only "a" tag in each card.
+
+```{r firefox-devtools-oecd, echo = FALSE}
+#| fig.cap: Figuring out the right nodes to search to scrape all the URLs.
+knitr::include_graphics("images/firefox-devtools-oecd.png")
+```
+
+
+```{r}
+#| code-summary: Scrape URLS
+
+# saved from https://www.oecd.org/coronavirus/en/data-insights/
+html <- read_html("data/OECD | Data insights.html")
+nodes <- html_nodes(html, ".card-list-card-50 a")
+urls <- html_attr(nodes, "href")
+
+# narrow down to only links to the data-insights section
+insight <- map_lgl(urls, str_detect, "/data-insights/")
+insight_urls <- urls[insight] %>% unique()
+```
+
+Then scrape the contents of each link and extract all of the paragraph text. Save this as a RDS object, set the code chunk to `eval = FALSE`, and load from that so this doesn't scrape OECD every time.
+
+```{r, eval = FALSE}
+#| code-summary: Scrape paragraphs
+
+p <- map_df(insight_urls, function(x) {
+  read_html(x) %>%
+    html_nodes("p") %>%
+    html_text() %>%
+    data.frame(url = x, p = .)
+})
+
+saveRDS(p, "data/oecd_covid_insights.rds")
+
+```
+
+Get rid of the rows that just have the text, "Follow us (Social Media):".
+
+```{r}
+#| code-summary: Read previously scraped data
+p <- readRDS("data/oecd_covid_insights.rds") %>%
+  filter(p != "Follow us (Social Media):")
+```
+
+## Topic Modelling
+
+Now the fun part. I used the [Topic Modelling chapter](https://www.tidytextmining.com/topicmodeling.html) from Text Mining with R.
+
+```{r}
+words <- p %>%
+  unnest_tokens(word, p)
+
+# find document-word counts
+word_counts <- words %>%
+  anti_join(stop_words, by = "word") %>%
+  count(word, sort = TRUE)
+
+head(word_counts, 50) %>% pull(word)
+```
+
+Let's get rid of all the integers 0 to 2030, "countries", and "oecd", which are likely to be so common as to be meaningless.
+
+```{r}
+sw <- data.frame(word = c(stop_words$word, 0:2030, "oecd", "countries"))
+
+word_counts <- words %>%
+  anti_join(sw, by = "word") %>%
+  count(url, word, sort = TRUE)
+
+```
+
+
+### LDA
+
+Convert the word_counts table to dtm format and run the LDA. I used k = 6 to extract 6 topics. I tried a few different values with the interpretive steps below, and 6 seemed reasonable to interpret. There are formal ways to assess this, but it's beyond what I have time to do today. 
+
+```{r}
+# document term matrix
+lda <- word_counts %>%
+  cast_dtm(document = url, term = word, value = n) %>%
+  LDA(k = 6, control = list(seed = 8675309))
+```
+
+### Top Terms
+
+Get the top 7 terms for each topic.
+
+```{r}
+top_terms <- tidy(lda, matrix = "beta") %>%
+  group_by(topic) %>%
+  slice_max(beta, n = 7) %>% 
+  ungroup() %>%
+  arrange(topic, -beta)
+
+top_terms %>%
+  group_by(topic) %>%
+  summarise(words = paste(term, collapse = ", "))
+
+```
+
+### Document Topics
+
+Now we need to figure out what these topics are. I don't have a great sense from the top words, so we'll can also make a table of gammas, which score each "document" (url in our case) on each of the 6 topics. 
+
+```{r}
+gammas <- tidy(lda, matrix = "gamma") %>%
+  mutate(title = gsub("https://www.oecd.org/coronavirus/en/data-insights/", 
+                      "", document, fixed = TRUE))
+```
+
+Then determine the main topic for each document and plot the topic mix for each document, grouped by main topic.
+
+```{r, fig.width = 10, fig.height = 25}
+gammas %>%
+  group_by(title) %>%
+  mutate(main_topic = max(gamma) == gamma,
+         main_topic = ifelse(main_topic, topic, 0),
+         main_topic = sum(main_topic)) %>%
+  ungroup() %>%
+  ggplot(aes(x = title, y = gamma, fill = as.factor(topic))) +
+  geom_col() +
+  coord_flip() +
+  scale_x_discrete(labels = rev)+
+  MetBrewer::scale_fill_met_d("Archambault") +
+  labs(x = NULL, fill = "Topic") +
+  facet_wrap(~main_topic, scales = "free", ncol = 1) +
+  theme(legend.position = "top")
+```
+
+
+### Add Topic Labels
+
+After looking at the table above, there are my best guesses for topic labels. Update the facet labels with the `as_labeller()` function.
+
+```{r day18}
+#| fig.cap: LDA Topic Analysis of OECD Data Insights
+#| fig.alt: LDA Topic Analysis of OECD Data Insights -- A plot of six topics and their top 7 words -- global covid effects = green, covid, global, pandemic, bond, bonds, sovereign; household economics = income, measures, capita, household, total, percentage, employment; economic recovery = inflation, economic, pandemic, pre, global, outlook, compared; pandemic recovery = covid, pandemic, recovery, economic, trade, people, education; economic growth = tax, economic, growth, carbon, economies, emissions, gdp; personal covid effects = covid, health, crisis, people, pandemic, public, women
+
+topics <- c("global covid effects",
+            "household economics",
+            "economic recovery",
+            "pandemic recovery",
+            "economic growth",
+            "personal covid effects")
+names(topics) <- 1:6
+
+top_terms %>%
+  mutate(term = reorder_within(term, beta, topic)) %>%
+  ggplot(aes(beta, term, fill = factor(topic))) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~ topic, scales = "free_y", nrow = 2,
+             labeller = as_labeller(topics)) +
+  scale_x_continuous(breaks = seq(0, 1, .01)) +
+  scale_y_reordered() +
+  labs(x = NULL, y = NULL,
+       title = "LDA Topic Analysis of OECD Data Insights",
+       caption = "Data from www.oecd.org/coronavirus/en/data-insights/ | Plot by @lisadebruine") +
+  MetBrewer::scale_fill_met_d("Archambault")
+```
+
+
+```{r, include = FALSE, eval = FALSE}
+ggsave("images/day18.png", width = 8, height = 5, device = png, bg = "white")
+knitr::include_graphics("images/day18.png")
+```
+
+
+

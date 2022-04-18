@@ -436,15 +436,61 @@
 <span id="cb2-6"><a href="#cb2-6"></a>         <span class="st">`</span><span class="at">Sexual orientation</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">factor</span>(<span class="st">`</span><span class="at">Sexual orientation</span><span class="st">`</span>, <span class="st">`</span><span class="at">Sexual orientation</span><span class="st">`</span>))</span>
 <span id="cb2-7"><a href="#cb2-7"></a></span>
 <span id="cb2-8"><a href="#cb2-8"></a>ukso</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-stdout">
-<pre><code># A tibble: 5 × 6
-  `Sexual orientation`  `2015` `2016` `2017` `2018` `2019`
-  &lt;fct&gt;                  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-1 Heterosexual/straight   95.2   95     95     94.6   93.7
-2 Gay/lesbian              1.2    1.2    1.3    1.4    1.6
-3 Bisexual                 0.7    0.8    0.8    0.9    1.1
-4 Other                    0.4    0.5    0.6    0.6    0.7
-5 Do not know/refuse       2.6    2.5    2.3    2.5    3  </code></pre>
+</details><div class="cell-output-display">
+<div class="kable-table">
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<thead><tr>
+<th style="text-align:left;"> Sexual orientation </th>
+   <th style="text-align:right;"> 2015 </th>
+   <th style="text-align:right;"> 2016 </th>
+   <th style="text-align:right;"> 2017 </th>
+   <th style="text-align:right;"> 2018 </th>
+   <th style="text-align:right;"> 2019 </th>
+  </tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;"> Heterosexual/straight </td>
+   <td style="text-align:right;"> 95.2 </td>
+   <td style="text-align:right;"> 95.0 </td>
+   <td style="text-align:right;"> 95.0 </td>
+   <td style="text-align:right;"> 94.6 </td>
+   <td style="text-align:right;"> 93.7 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Gay/lesbian </td>
+   <td style="text-align:right;"> 1.2 </td>
+   <td style="text-align:right;"> 1.2 </td>
+   <td style="text-align:right;"> 1.3 </td>
+   <td style="text-align:right;"> 1.4 </td>
+   <td style="text-align:right;"> 1.6 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Bisexual </td>
+   <td style="text-align:right;"> 0.7 </td>
+   <td style="text-align:right;"> 0.8 </td>
+   <td style="text-align:right;"> 0.8 </td>
+   <td style="text-align:right;"> 0.9 </td>
+   <td style="text-align:right;"> 1.1 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Other </td>
+   <td style="text-align:right;"> 0.4 </td>
+   <td style="text-align:right;"> 0.5 </td>
+   <td style="text-align:right;"> 0.6 </td>
+   <td style="text-align:right;"> 0.6 </td>
+   <td style="text-align:right;"> 0.7 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Do not know/refuse </td>
+   <td style="text-align:right;"> 2.6 </td>
+   <td style="text-align:right;"> 2.5 </td>
+   <td style="text-align:right;"> 2.3 </td>
+   <td style="text-align:right;"> 2.5 </td>
+   <td style="text-align:right;"> 3.0 </td>
+  </tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 <p>I wish they’d distinguished “don’t know” and “don’t want to tell you”; they’re two very different things.</p>
@@ -452,11 +498,11 @@
 <span class="header-section-number">11.2</span> Simple Polar Plot</h2>
 <p>My first thought was to just add <code>coord_polar()</code> to a bar plot. Not quite. I kind of hate this plot style, but at least I know how to make one now.</p>
 <div class="cell" data-layout-align="center">
-<details><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">ggplot</span>(ukso, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Sexual orientation</span><span class="st">`</span>, </span>
-<span id="cb4-2"><a href="#cb4-2"></a>                 <span class="at">y =</span> <span class="st">`</span><span class="at">2019</span><span class="st">`</span>, </span>
-<span id="cb4-3"><a href="#cb4-3"></a>                 <span class="at">fill =</span> <span class="st">`</span><span class="at">Sexual orientation</span><span class="st">`</span>)) <span class="sc">+</span></span>
-<span id="cb4-4"><a href="#cb4-4"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a>  <span class="fu">coord_polar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">ggplot</span>(ukso, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Sexual orientation</span><span class="st">`</span>, </span>
+<span id="cb3-2"><a href="#cb3-2"></a>                 <span class="at">y =</span> <span class="st">`</span><span class="at">2019</span><span class="st">`</span>, </span>
+<span id="cb3-3"><a href="#cb3-3"></a>                 <span class="at">fill =</span> <span class="st">`</span><span class="at">Sexual orientation</span><span class="st">`</span>)) <span class="sc">+</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>  <span class="fu">coord_polar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="11-circular_files/figure-html/circular-polar-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -468,11 +514,11 @@
 <span class="header-section-number">11.3</span> Polar Y</h2>
 <p>If you set <code>theta = "y"</code>, you get a different type of polar plot.</p>
 <div class="cell" data-layout-align="center">
-<details><summary>Code</summary><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">ggplot</span>(ukso, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Sexual orientation</span><span class="st">`</span>,</span>
-<span id="cb5-2"><a href="#cb5-2"></a>                 <span class="at">y =</span> <span class="st">`</span><span class="at">2019</span><span class="st">`</span>, </span>
-<span id="cb5-3"><a href="#cb5-3"></a>                 <span class="at">fill =</span> <span class="st">`</span><span class="at">Sexual orientation</span><span class="st">`</span>)) <span class="sc">+</span> </span>
-<span id="cb5-4"><a href="#cb5-4"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb5-5"><a href="#cb5-5"></a>  <span class="fu">coord_polar</span>(<span class="at">theta =</span> <span class="st">"y"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">ggplot</span>(ukso, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Sexual orientation</span><span class="st">`</span>,</span>
+<span id="cb4-2"><a href="#cb4-2"></a>                 <span class="at">y =</span> <span class="st">`</span><span class="at">2019</span><span class="st">`</span>, </span>
+<span id="cb4-3"><a href="#cb4-3"></a>                 <span class="at">fill =</span> <span class="st">`</span><span class="at">Sexual orientation</span><span class="st">`</span>)) <span class="sc">+</span> </span>
+<span id="cb4-4"><a href="#cb4-4"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>  <span class="fu">coord_polar</span>(<span class="at">theta =</span> <span class="st">"y"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="11-circular_files/figure-html/circular-y-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -486,22 +532,22 @@
 <p>I reversed the order of the categories by setting <code>limits = rev</code> in <code>scale_x_discrete()</code> and made some space in the middle by setting the <code>expand</code> argument to add 3 “columns” of space to the inside.</p>
 <p>I added <code>geom_text()</code> to include the exactly values at the end of each bar. I had to use trial and error to get the angles to match. I also used <code>theme()</code> to get rid of the y-axis.</p>
 <div class="cell" data-layout-align="center">
-<details><summary>Code</summary><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">ggplot</span>(ukso, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Sexual orientation</span><span class="st">`</span>, </span>
-<span id="cb6-2"><a href="#cb6-2"></a>                 <span class="at">y =</span> <span class="st">`</span><span class="at">2019</span><span class="st">`</span>, </span>
-<span id="cb6-3"><a href="#cb6-3"></a>                 <span class="at">fill =</span> <span class="st">`</span><span class="at">Sexual orientation</span><span class="st">`</span>, </span>
-<span id="cb6-4"><a href="#cb6-4"></a>                 <span class="at">color =</span> <span class="st">`</span><span class="at">Sexual orientation</span><span class="st">`</span>)) <span class="sc">+</span> </span>
-<span id="cb6-5"><a href="#cb6-5"></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
-<span id="cb6-6"><a href="#cb6-6"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">`</span><span class="at">2019</span><span class="st">`</span>, <span class="st">"%"</span>),</span>
-<span id="cb6-7"><a href="#cb6-7"></a>                <span class="at">angle =</span> <span class="fu">c</span>(<span class="dv">15</span>, <span class="sc">-</span><span class="dv">10</span>, <span class="sc">-</span><span class="dv">10</span>, <span class="sc">-</span><span class="dv">10</span>, <span class="sc">-</span><span class="dv">10</span>)), </span>
-<span id="cb6-8"><a href="#cb6-8"></a>            <span class="at">size =</span> <span class="dv">3</span>, <span class="at">nudge_y =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
-<span id="cb6-9"><a href="#cb6-9"></a>  <span class="fu">coord_polar</span>(<span class="at">theta =</span> <span class="st">"y"</span>) <span class="sc">+</span></span>
-<span id="cb6-10"><a href="#cb6-10"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">add =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">0</span>)), <span class="at">limits =</span> rev) <span class="sc">+</span></span>
-<span id="cb6-11"><a href="#cb6-11"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">90</span>, <span class="dv">10</span>), </span>
-<span id="cb6-12"><a href="#cb6-12"></a>                     <span class="at">labels =</span> <span class="fu">paste0</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">90</span>, <span class="dv">10</span>), <span class="st">"%"</span>),</span>
-<span id="cb6-13"><a href="#cb6-13"></a>                     <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>)) <span class="sc">+</span></span>
-<span id="cb6-14"><a href="#cb6-14"></a>  <span class="fu">theme</span>(<span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb6-15"><a href="#cb6-15"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb6-16"><a href="#cb6-16"></a>        <span class="at">axis.title =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">ggplot</span>(ukso, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Sexual orientation</span><span class="st">`</span>, </span>
+<span id="cb5-2"><a href="#cb5-2"></a>                 <span class="at">y =</span> <span class="st">`</span><span class="at">2019</span><span class="st">`</span>, </span>
+<span id="cb5-3"><a href="#cb5-3"></a>                 <span class="at">fill =</span> <span class="st">`</span><span class="at">Sexual orientation</span><span class="st">`</span>, </span>
+<span id="cb5-4"><a href="#cb5-4"></a>                 <span class="at">color =</span> <span class="st">`</span><span class="at">Sexual orientation</span><span class="st">`</span>)) <span class="sc">+</span> </span>
+<span id="cb5-5"><a href="#cb5-5"></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">`</span><span class="at">2019</span><span class="st">`</span>, <span class="st">"%"</span>),</span>
+<span id="cb5-7"><a href="#cb5-7"></a>                <span class="at">angle =</span> <span class="fu">c</span>(<span class="dv">15</span>, <span class="sc">-</span><span class="dv">10</span>, <span class="sc">-</span><span class="dv">10</span>, <span class="sc">-</span><span class="dv">10</span>, <span class="sc">-</span><span class="dv">10</span>)), </span>
+<span id="cb5-8"><a href="#cb5-8"></a>            <span class="at">size =</span> <span class="dv">3</span>, <span class="at">nudge_y =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a>  <span class="fu">coord_polar</span>(<span class="at">theta =</span> <span class="st">"y"</span>) <span class="sc">+</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">add =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">0</span>)), <span class="at">limits =</span> rev) <span class="sc">+</span></span>
+<span id="cb5-11"><a href="#cb5-11"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">90</span>, <span class="dv">10</span>), </span>
+<span id="cb5-12"><a href="#cb5-12"></a>                     <span class="at">labels =</span> <span class="fu">paste0</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">90</span>, <span class="dv">10</span>), <span class="st">"%"</span>),</span>
+<span id="cb5-13"><a href="#cb5-13"></a>                     <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>)) <span class="sc">+</span></span>
+<span id="cb5-14"><a href="#cb5-14"></a>  <span class="fu">theme</span>(<span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb5-15"><a href="#cb5-15"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb5-16"><a href="#cb5-16"></a>        <span class="at">axis.title =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="11-circular_files/figure-html/circular-fix-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -513,51 +559,51 @@
 <span class="header-section-number">11.5</span> Theme</h2>
 <p>Now I’ll really customise the appearance. I found the <code>theme()</code> function intimidating at first, but once you work with it for a bit and get your head around the <code>element_*</code> functions, it’s straightforward and very powerful. I just wish I could figure out how to put the plot caption in the margin like I did for the legend.</p>
 <div class="cell" data-layout-align="center">
-<details><summary>Code</summary><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>rbcol <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"red3"</span>, </span>
-<span id="cb7-2"><a href="#cb7-2"></a>           <span class="st">"darkgoldenrod1"</span>, </span>
-<span id="cb7-3"><a href="#cb7-3"></a>           <span class="st">"springgreen3"</span>, </span>
-<span id="cb7-4"><a href="#cb7-4"></a>           <span class="st">"dodgerblue2"</span>, </span>
-<span id="cb7-5"><a href="#cb7-5"></a>           <span class="st">"darkorchid"</span>)</span>
-<span id="cb7-6"><a href="#cb7-6"></a></span>
-<span id="cb7-7"><a href="#cb7-7"></a><span class="fu">ggplot</span>(ukso, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Sexual orientation</span><span class="st">`</span>, </span>
-<span id="cb7-8"><a href="#cb7-8"></a>                 <span class="at">y =</span> <span class="st">`</span><span class="at">2019</span><span class="st">`</span>, </span>
-<span id="cb7-9"><a href="#cb7-9"></a>                 <span class="at">fill =</span> <span class="st">`</span><span class="at">Sexual orientation</span><span class="st">`</span>, </span>
-<span id="cb7-10"><a href="#cb7-10"></a>                 <span class="at">color =</span> <span class="st">`</span><span class="at">Sexual orientation</span><span class="st">`</span>)) <span class="sc">+</span> </span>
-<span id="cb7-11"><a href="#cb7-11"></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
-<span id="cb7-12"><a href="#cb7-12"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">`</span><span class="at">2019</span><span class="st">`</span>, <span class="st">"%"</span>),</span>
-<span id="cb7-13"><a href="#cb7-13"></a>                <span class="at">angle =</span> <span class="fu">c</span>(<span class="dv">15</span>, <span class="sc">-</span><span class="dv">10</span>, <span class="sc">-</span><span class="dv">10</span>, <span class="sc">-</span><span class="dv">10</span>, <span class="sc">-</span><span class="dv">10</span>)), </span>
-<span id="cb7-14"><a href="#cb7-14"></a>            <span class="at">size =</span> <span class="dv">3</span>, <span class="at">nudge_y =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
-<span id="cb7-15"><a href="#cb7-15"></a>  <span class="fu">coord_polar</span>(<span class="at">theta =</span> <span class="st">"y"</span>) <span class="sc">+</span></span>
-<span id="cb7-16"><a href="#cb7-16"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> rbcol) <span class="sc">+</span></span>
-<span id="cb7-17"><a href="#cb7-17"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> rbcol) <span class="sc">+</span></span>
-<span id="cb7-18"><a href="#cb7-18"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">add =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">0</span>)), <span class="at">limits =</span> rev) <span class="sc">+</span></span>
-<span id="cb7-19"><a href="#cb7-19"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">90</span>, <span class="dv">10</span>), </span>
-<span id="cb7-20"><a href="#cb7-20"></a>                     <span class="at">labels =</span> <span class="fu">paste0</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">90</span>, <span class="dv">10</span>), <span class="st">"%"</span>),</span>
-<span id="cb7-21"><a href="#cb7-21"></a>                     <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>)) <span class="sc">+</span></span>
-<span id="cb7-22"><a href="#cb7-22"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Sexual Orientation in the UK (2019)"</span>,</span>
-<span id="cb7-23"><a href="#cb7-23"></a>       <span class="at">caption =</span> <span class="st">"Data from the UK Office for National Statistics</span><span class="sc">\n</span><span class="st">Plot by @lisadebruine for the 2022 #30DayChartChallenge"</span>) <span class="sc">+</span></span>
-<span id="cb7-24"><a href="#cb7-24"></a>  <span class="fu">theme_dark</span>() <span class="sc">+</span></span>
-<span id="cb7-25"><a href="#cb7-25"></a>  <span class="fu">theme</span>(</span>
-<span id="cb7-26"><a href="#cb7-26"></a>    <span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb7-27"><a href="#cb7-27"></a>    <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb7-28"><a href="#cb7-28"></a>    <span class="at">axis.title =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb7-29"><a href="#cb7-29"></a>    <span class="at">panel.border =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb7-30"><a href="#cb7-30"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb7-31"><a href="#cb7-31"></a>    <span class="at">panel.grid.major.y =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"grey60"</span>),</span>
-<span id="cb7-32"><a href="#cb7-32"></a>    <span class="at">panel.grid.minor.y =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"grey30"</span>),</span>
-<span id="cb7-33"><a href="#cb7-33"></a>    <span class="at">panel.background =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb7-34"><a href="#cb7-34"></a>    <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"black"</span>, <span class="at">color =</span> <span class="st">"transparent"</span>),</span>
-<span id="cb7-35"><a href="#cb7-35"></a>    <span class="at">plot.margin =</span> <span class="fu">unit</span>(<span class="fu">c</span>(.<span class="dv">15</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">1.1</span>), <span class="st">"in"</span>),</span>
-<span id="cb7-36"><a href="#cb7-36"></a>    <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"white"</span>),</span>
-<span id="cb7-37"><a href="#cb7-37"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
-<span id="cb7-38"><a href="#cb7-38"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"white"</span>),</span>
-<span id="cb7-39"><a href="#cb7-39"></a>    <span class="at">legend.background =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb7-40"><a href="#cb7-40"></a>    <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb7-41"><a href="#cb7-41"></a>    <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">06</span>, <span class="fl">0.84</span>),</span>
-<span id="cb7-42"><a href="#cb7-42"></a>    <span class="at">plot.caption.position =</span> <span class="st">"plot"</span>,</span>
-<span id="cb7-43"><a href="#cb7-43"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"grey80"</span>, <span class="at">size =</span> <span class="dv">7</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>, </span>
-<span id="cb7-44"><a href="#cb7-44"></a>                                <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">b =</span> .<span class="dv">1</span>, <span class="at">unit =</span> <span class="st">"in"</span>))</span>
-<span id="cb7-45"><a href="#cb7-45"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>rbcol <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"red3"</span>, </span>
+<span id="cb6-2"><a href="#cb6-2"></a>           <span class="st">"darkgoldenrod1"</span>, </span>
+<span id="cb6-3"><a href="#cb6-3"></a>           <span class="st">"springgreen3"</span>, </span>
+<span id="cb6-4"><a href="#cb6-4"></a>           <span class="st">"dodgerblue2"</span>, </span>
+<span id="cb6-5"><a href="#cb6-5"></a>           <span class="st">"darkorchid"</span>)</span>
+<span id="cb6-6"><a href="#cb6-6"></a></span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="fu">ggplot</span>(ukso, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Sexual orientation</span><span class="st">`</span>, </span>
+<span id="cb6-8"><a href="#cb6-8"></a>                 <span class="at">y =</span> <span class="st">`</span><span class="at">2019</span><span class="st">`</span>, </span>
+<span id="cb6-9"><a href="#cb6-9"></a>                 <span class="at">fill =</span> <span class="st">`</span><span class="at">Sexual orientation</span><span class="st">`</span>, </span>
+<span id="cb6-10"><a href="#cb6-10"></a>                 <span class="at">color =</span> <span class="st">`</span><span class="at">Sexual orientation</span><span class="st">`</span>)) <span class="sc">+</span> </span>
+<span id="cb6-11"><a href="#cb6-11"></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb6-12"><a href="#cb6-12"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">`</span><span class="at">2019</span><span class="st">`</span>, <span class="st">"%"</span>),</span>
+<span id="cb6-13"><a href="#cb6-13"></a>                <span class="at">angle =</span> <span class="fu">c</span>(<span class="dv">15</span>, <span class="sc">-</span><span class="dv">10</span>, <span class="sc">-</span><span class="dv">10</span>, <span class="sc">-</span><span class="dv">10</span>, <span class="sc">-</span><span class="dv">10</span>)), </span>
+<span id="cb6-14"><a href="#cb6-14"></a>            <span class="at">size =</span> <span class="dv">3</span>, <span class="at">nudge_y =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb6-15"><a href="#cb6-15"></a>  <span class="fu">coord_polar</span>(<span class="at">theta =</span> <span class="st">"y"</span>) <span class="sc">+</span></span>
+<span id="cb6-16"><a href="#cb6-16"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> rbcol) <span class="sc">+</span></span>
+<span id="cb6-17"><a href="#cb6-17"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> rbcol) <span class="sc">+</span></span>
+<span id="cb6-18"><a href="#cb6-18"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">add =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">0</span>)), <span class="at">limits =</span> rev) <span class="sc">+</span></span>
+<span id="cb6-19"><a href="#cb6-19"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">90</span>, <span class="dv">10</span>), </span>
+<span id="cb6-20"><a href="#cb6-20"></a>                     <span class="at">labels =</span> <span class="fu">paste0</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">90</span>, <span class="dv">10</span>), <span class="st">"%"</span>),</span>
+<span id="cb6-21"><a href="#cb6-21"></a>                     <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>)) <span class="sc">+</span></span>
+<span id="cb6-22"><a href="#cb6-22"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Sexual Orientation in the UK (2019)"</span>,</span>
+<span id="cb6-23"><a href="#cb6-23"></a>       <span class="at">caption =</span> <span class="st">"Data from the UK Office for National Statistics</span><span class="sc">\n</span><span class="st">Plot by @lisadebruine for the 2022 #30DayChartChallenge"</span>) <span class="sc">+</span></span>
+<span id="cb6-24"><a href="#cb6-24"></a>  <span class="fu">theme_dark</span>() <span class="sc">+</span></span>
+<span id="cb6-25"><a href="#cb6-25"></a>  <span class="fu">theme</span>(</span>
+<span id="cb6-26"><a href="#cb6-26"></a>    <span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb6-27"><a href="#cb6-27"></a>    <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb6-28"><a href="#cb6-28"></a>    <span class="at">axis.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb6-29"><a href="#cb6-29"></a>    <span class="at">panel.border =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb6-30"><a href="#cb6-30"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb6-31"><a href="#cb6-31"></a>    <span class="at">panel.grid.major.y =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"grey60"</span>),</span>
+<span id="cb6-32"><a href="#cb6-32"></a>    <span class="at">panel.grid.minor.y =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"grey30"</span>),</span>
+<span id="cb6-33"><a href="#cb6-33"></a>    <span class="at">panel.background =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb6-34"><a href="#cb6-34"></a>    <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"black"</span>, <span class="at">color =</span> <span class="st">"transparent"</span>),</span>
+<span id="cb6-35"><a href="#cb6-35"></a>    <span class="at">plot.margin =</span> <span class="fu">unit</span>(<span class="fu">c</span>(.<span class="dv">15</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">1.1</span>), <span class="st">"in"</span>),</span>
+<span id="cb6-36"><a href="#cb6-36"></a>    <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"white"</span>),</span>
+<span id="cb6-37"><a href="#cb6-37"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb6-38"><a href="#cb6-38"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"white"</span>),</span>
+<span id="cb6-39"><a href="#cb6-39"></a>    <span class="at">legend.background =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb6-40"><a href="#cb6-40"></a>    <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb6-41"><a href="#cb6-41"></a>    <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">06</span>, <span class="fl">0.84</span>),</span>
+<span id="cb6-42"><a href="#cb6-42"></a>    <span class="at">plot.caption.position =</span> <span class="st">"plot"</span>,</span>
+<span id="cb6-43"><a href="#cb6-43"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"grey80"</span>, <span class="at">size =</span> <span class="dv">7</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>, </span>
+<span id="cb6-44"><a href="#cb6-44"></a>                                <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">b =</span> .<span class="dv">1</span>, <span class="at">unit =</span> <span class="st">"in"</span>))</span>
+<span id="cb6-45"><a href="#cb6-45"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="11-circular_files/figure-html/circular-day11-1.png" class="img-fluid figure-img" alt="Circular plot showing the proportion of people with each sexual orientation in the UK (2019) . Heterosexual = 93.7%, Gay/lesbian = 1.6%, Bisexual = 1.1%, Other = 0.7%, Do not know/refuse = 3%." style="width:100.0%"></p>
