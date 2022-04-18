@@ -7,6 +7,8 @@ source("R/setup.R")
 I have a potential thesis student who wants to work with topic modelling next year. Although I have a publication using latent dirichtlet analysis (LDA), my former postdoc, Ant Lee, did the main analysis, so I need to brush up. I'm also keen to practice my web scraping skills, so I thought I'd scrape the OECD [data insights](https://www.oecd.org/coronavirus/en/data-insights/) page to see what topics they've been posting about.
 
 ```{r}
+#| code-summary: Setup
+
 library(tidyverse)   # for data wrangling
 library(rvest)       # for web scraping
 library(tidytext)    # for text analysis

@@ -119,7 +119,6 @@ data_map_int <- left_join(world_wintri, data_na,
 Plot with facets by year. This takes a while to run, but it's useful to see what each frame will look like. 
 
 ```{r owid-data-map}
-#| cache: true
 
 ggplot(data_map_int) + 
   geom_sf(mapping = aes(fill = it_net_users),
@@ -144,7 +143,6 @@ data_map_int_valid <- data_map_int %>%
 Now let's retry the map, and switch the fill to a nicer viridis gradient. Set the na.value to red to more easily see where the missing data is.
 
 ```{r owid-map-na}
-#| cache: true
 
 ggplot(data_map_int_valid) + 
   geom_sf(mapping = aes(fill = it_net_users),
@@ -174,7 +172,6 @@ data_map_int_no_missing <- data_map_int_valid %>%
 There's still one big persistently missing country in the middle of Africa.
 
 ```{r owid-map-missing}
-#| cache: true
 
 ggplot(data_map_int_no_missing) + 
   geom_sf(mapping = aes(fill = it_net_users_no_na),

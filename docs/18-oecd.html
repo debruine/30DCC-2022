@@ -426,7 +426,7 @@
 </h1>
 </header><p>I have a potential thesis student who wants to work with topic modelling next year. Although I have a publication using latent dirichtlet analysis (LDA), my former postdoc, Ant Lee, did the main analysis, so I need to brush up. I’m also keen to practice my web scraping skills, so I thought I’d scrape the OECD <a href="https://www.oecd.org/coronavirus/en/data-insights/">data insights</a> page to see what topics they’ve been posting about.</p>
 <div class="cell" data-layout-align="center">
-<details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)   <span class="co"># for data wrangling</span></span>
+<details><summary>Setup</summary><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)   <span class="co"># for data wrangling</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(rvest)       <span class="co"># for web scraping</span></span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(tidytext)    <span class="co"># for text analysis</span></span>
 <span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(topicmodels) <span class="co"># for topic modelling</span></span>
