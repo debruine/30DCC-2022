@@ -4,10 +4,11 @@ I've been inspired by a lot of the charts I see on the #30DayChartChallenge hash
 
 ```{r, message=FALSE}
 #| code-summary: Setup
+
 library(ggplot2) # for plotting
 library(dplyr)   # for data wrangling
 library(sf)      # for shapes
-library(ggforce) # for voroni tiles
+library(ggforce) # for voronoi tiles
 ```
 
 ## Variables

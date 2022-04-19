@@ -2,9 +2,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "30DCC",
+    "title": "30DCC (2022)",
     "section": "",
-    "text": "Overview\nThis is my first year participating in the 30-day chart challenge. In my work with PsyTeachR, we do almost everything in bookdown, so I thought I’d make a book with our open-source PsyTeachR template.\n\nI’m going to use data simulation for most of my charts, so this will also end up being a resource for how to simulate different types of data."
+    "text": "Overview\nThis is my first year participating in the 30-day chart challenge. In my work with PsyTeachR, we do almost everything in bookdown, so I thought I’d make a book with our open-source PsyTeachR template. That was started here, but this version of the book uses quarto, an open-source scientific and technical publishing system built on Pandoc.\n\nI’m going to use data simulation for many of my charts, so this will also end up being a resource for how to simulate different types of data.\n\n\nPart To WholePictogramHistoricalFloraSlopeOwidPhysicalMountainsStatisticsExperimentalCircularEconomistCorrelation3 DimensionalMultivariateEnvironmentConnectionsOecdGlobal ChallengeNew ToolDown UpwardsAnimationTilesFinancial TimesTrendInteractiveFutureDeviationsStorytellingUn Population"
   },
   {
     "objectID": "01-part-to-whole.html#simulate-data",
@@ -599,7 +599,7 @@
     "href": "15-multivariate.html#combine",
     "title": "\n15  Multivariate\n",
     "section": "\n15.4 Combine",
-    "text": "15.4 Combine\nYou can’t combine plots with margins made by ggExtra using patchwork, so I have to save each to a file individually and combine them with webmorphR.\n\nCodeggsave(\"images/mv_1_age_texts.png\", age_texts, width = 5, height = 5)\nggsave(\"images/mv_2_score_age.png\", score_age, width = 5, height = 5)\nggsave(\"images/mv_3_texts_score.png\", texts_score, width = 5, height = 5)\n\n\nWebmorphR is an R package I’m developing for making visual stimuli for research in a way that is computationally reproducible. It uses magick under the hood, but has a lot of convenient functions for making figures.\n\nCode# read in images starting with mv_\nimgs <- webmorphR::read_stim(\"images\", \"^mv_\\\\d\")\n\n# plot in a single row\nfig <- plot(imgs, nrow = 1)\n\nfig\n\n\n\nPLots showing multivariate correlations among non-normally distributed variables.\n\n\n\n\nSave the figure to a file.\n\nCodewrite_stim(fig, dir = \"images\", names = \"day15\", format = \"png\")"
+    "text": "15.4 Combine\nYou can’t combine plots with margins made by ggExtra using patchwork, so I have to save each to a file individually and combine them with webmorphR.\n\nCodeggsave(\"images/mv_1_age_texts.png\", age_texts, width = 5, height = 5, bg = \"white\")\nggsave(\"images/mv_2_score_age.png\", score_age, width = 5, height = 5, bg = \"white\")\nggsave(\"images/mv_3_texts_score.png\", texts_score, width = 5, height = 5, bg = \"white\")\n\n\nWebmorphR is an R package I’m developing for making visual stimuli for research in a way that is computationally reproducible. It uses magick under the hood, but has a lot of convenient functions for making figures.\n\nCode# read in images starting with mv_\nimgs <- webmorphR::read_stim(\"images\", \"^mv_\\\\d\")\n\n# plot in a single row\nfig <- plot(imgs, nrow = 1)\n\nfig\n\n\n\nPLots showing multivariate correlations among non-normally distributed variables.\n\n\n\n\nSave the figure to a file.\n\nCodewrite_stim(fig, dir = \"images\", names = \"day15\", format = \"png\")"
   },
   {
     "objectID": "16-environment.html#data",

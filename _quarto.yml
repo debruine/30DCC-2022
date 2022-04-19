@@ -7,14 +7,13 @@ project:
   - "data/*"
 
 book:
-  title: "30DCC"
-  subtitle: "2022"
+  title: "30DCC (2022)"
   author: "Lisa DeBruine"
   description: "Code and charts for the 2022 30-Day Chart Challenge"
   cover-image: images/logos/logo.png
   image: images/logos/logo.png
   fav-icon: images/logos/favicon.ico
-  cookie-consent: true
+  #cookie-consent: true
   google-analytics: "G-6NP3MF25W3"
   page-navigation: true
   search: true
@@ -39,7 +38,7 @@ book:
   chapters:
     - index.qmd
     - part: "Comparisons"
-      chapters: 
+      chapters:
       - 01-part-to-whole.qmd
       - 02-pictogram.qmd
       - 03-historical.qmd
@@ -47,7 +46,7 @@ book:
       - 05-slope.qmd
       - 06-owid.qmd
     - part: "Distributions"
-      chapters: 
+      chapters:
       - 07-physical.qmd
       - 08-mountains.qmd
       - 09-statistics.qmd
@@ -55,7 +54,7 @@ book:
       - 11-circular.qmd
       - 12-economist.qmd
     - part: "Relationships"
-      chapters: 
+      chapters:
       - 13-correlation.qmd
       - 14-3-dimensional.qmd
       - 15-multivariate.qmd
@@ -63,7 +62,7 @@ book:
       - 17-connections.qmd
       - 18-oecd.qmd
     - part: "Timeseries"
-      chapters: 
+      chapters:
       - 19-global-challenge.qmd
       - 20-new-tool.qmd
       - 21-down-upwards.qmd
@@ -71,7 +70,7 @@ book:
       - 23-tiles.qmd
       - 24-financial-times.qmd
     - part: "Uncertainties"
-      chapters: 
+      chapters:
       - 25-trend.qmd
       - 26-interactive.qmd
       - 27-future.qmd
@@ -95,8 +94,8 @@ format:
     code-copy: true
     # code-block-border-left: "#4864DB"
     highlight-style: a11y
-    monofont: Fira Code
-    mainfont: Open Sans
+    # monofont: Fira Code
+    # mainfont: Open Sans
     css: include/style.css
     include-after-body: include/script.js
   pdf:

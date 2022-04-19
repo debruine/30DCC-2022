@@ -276,9 +276,9 @@ texts_score
 You can't combine plots with margins made by ggExtra using patchwork, so I have to save each to a file individually and combine them with `r pkg("webmorphR", "https://debruine.github.io/webmorphR/")`. 
 
 ```{r}
-ggsave("images/mv_1_age_texts.png", age_texts, width = 5, height = 5)
-ggsave("images/mv_2_score_age.png", score_age, width = 5, height = 5)
-ggsave("images/mv_3_texts_score.png", texts_score, width = 5, height = 5)
+ggsave("images/mv_1_age_texts.png", age_texts, width = 5, height = 5, bg = "white")
+ggsave("images/mv_2_score_age.png", score_age, width = 5, height = 5, bg = "white")
+ggsave("images/mv_3_texts_score.png", texts_score, width = 5, height = 5, bg = "white")
 ```
 
 WebmorphR is an R package I'm developing for making visual stimuli for research in a way that is computationally reproducible. It uses magick under the hood, but has a lot of convenient functions for [making figures](https://debruine.github.io/webmorphR/articles/figures.html).

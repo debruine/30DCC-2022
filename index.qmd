@@ -10,36 +10,59 @@ knitr::write_bib(c(
 source("R/setup.R")
 ```
 
-This is my first year participating in the [30-day chart challenge](https://github.com/30DayChartChallenge/Edition2022). In my work with [PsyTeachR](https://psyteachr.github.io), we do almost everything in bookdown, so I thought I'd make a book with our open-source [PsyTeachR template](https://psyteachr.github.io/template/).
+This is my first year participating in the [30-day chart challenge](https://github.com/30DayChartChallenge/Edition2022). In my work with [PsyTeachR](https://psyteachr.github.io), we do almost everything in bookdown, so I thought I'd make a book with our open-source [PsyTeachR template](https://psyteachr.github.io/template/). That was started [here](https://debruine.github.io/30-day-chart-challenge), but this version of the book uses [quarto](https://quarto.org), an open-source scientific and technical publishing system built on Pandoc.
 
 ![](images/30-day-chart-challenge.jpg)
 
-I'm going to use data simulation for most of my charts, so this will also end up being a resource for how to simulate different types of data. 
+I'm going to use data simulation for many of my charts, so this will also end up being a resource for how to simulate different types of data. 
 
 <style>
 .daily_imgs a {
+    position: relative;
     background-repeat: no-repeat;
-    background-position: center center;
+    background-position: center top;
     background-size: contain;
     width: 31%;
     height: 0;
     display: inline-block;
-    margin: 1%;
+    margin: 1.5em 1% 0 1%;
     padding-bottom: 31%;
     float: left;
 }
+.daily_imgs a span { 
+    position: relative;
+    top: -1.5em;
+}
+
+@media screen and (max-width: 600px) {
+    .daily_imgs a {
+        width: 48%;
+        padding-bottom: 48%;
+    }
+}
 </style>
 
-```{r day1, eval = FALSE, include = FALSE, results='asis'}
-imgpaths <- list.files("images", pattern = "^day\\d{1}\\.(png|gif)")
-chapters <- c("part-to-whole", "pictogram", "historical", "flora", "slope", "owid", "physical", "mountains", "statistics")[seq_along(imgpaths)]
+<div class='daily_imgs'>
 
-glue::glue("<a href='{{chapters}.html' style='background-image: url(\"images/{{imgpaths}\")'></a>",
-           .open = "{{") %>%
-  paste(collapse = "") %>%
+```{r day1, eval = TRUE, echo = FALSE, results='asis'}
+chapters <- list.files(".", pattern = "^\\d{2}-.+\\.qmd")
+names <- gsub("(^\\d+-|\\.qmd$)", "", chapters)
+names <- gsub("-", " ", names) |> stringr::str_to_title()
+imgpaths <- sapply(chapters, function(ch) {
+  i <- as.integer(substr(ch, 1, 2))
+  f <- list.files("images", pattern = glue::glue("^day{i}\\.(png|gif)"))
+  if (length(f)) {
+    f[[1]]
+  } else {
+    "logos/logo.png"
+  }
+})
+
+glue::glue("<a href='{chapters}.html' style='background-image: url(\"images/{imgpaths}\")'><span>{names}</span></a>") |>
+  paste(collapse = "") |>
   cat()
 ```
 
-<div class='daily_imgs'><a href='01-part-to-whole.html' style='background-image: url("images/day1.png")'></a><a href='02-pictogram.html' style='background-image: url("images/day2.png")'></a><a href='03-historical.html' style='background-image: url("images/day3.png")'></a><a href='04-flora.html' style='background-image: url("images/day4.png")'></a><a href='05-slope.html' style='background-image: url("images/day5.png")'></a><a href='06-owid.html' style='background-image: url("images/day6.gif")'></a><a href='07-physical.html' style='background-image: url("images/day7.png")'></a><a href='08-mountains.html' style='background-image: url("images/day8.png")'></a><a href='09-statistics.html' style='background-image: url("images/day9.gif")'></a><a href='10-experimental.html' style='background-image: url("images/day10.png")'></a><a href='11-circular.html' style='background-image: url("images/day11.png")'></a><a href='12-economist.html' style='background-image: url("images/day12.png")'></a><a href='13-correlation.html' style='background-image: url("images/day13.png")'></a><a href='14-3-dimensional.html' style='background-image: url("images/day14.png")'></a><a href='15-multivariate.html' style='background-image: url("images/day15.gif")'></a><a href='16-environment.html' style='background-image: url("images/day16.png")'></a><a href='17-connections.html' style='background-image: url("images/day17.png")'></a><a href='17-oecd.html' style='background-image: url("images/day18.png")'></a></div>
+</div>
 
 <br style="clear:both;">
