@@ -1,37 +1,88 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-  <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.9.80">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <meta name="description" content="Code and charts for the 2022 30-Day Chart Challenge">
-  <title>30DCC (2022) - 19&nbsp; Global Challenge</title>
-  <style>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.80">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="description" content="Code and charts for the 2022 30-Day Chart Challenge">
+<title>30DCC (2022) - Appendix C — Magic Eye</title>
+<style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     span.underline{text-decoration: underline;}
     div.column{display: inline-block; vertical-align: top; width: 50%;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
-
-  <script src="site_libs/quarto-nav/quarto-nav.js"></script>
-  <script src="site_libs/quarto-nav/headroom.min.js"></script>
-  <script src="site_libs/clipboard/clipboard.min.js"></script>
-  <meta name="quarto:offset" content="./">
-  <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-  <script src="site_libs/quarto-search/fuse.min.js"></script>
-  <script src="site_libs/quarto-search/quarto-search.js"></script>
-  <link href="./20-new-tool.html" rel="next">
-  <link href="./18-oecd.html" rel="prev">
-  <script src="site_libs/quarto-html/quarto.js"></script>
-  <script src="site_libs/quarto-html/popper.min.js"></script>
-  <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-  <script src="site_libs/quarto-html/anchor.min.js"></script>
-  <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-  <script src="site_libs/bootstrap/bootstrap.min.js"></script>
-  <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-  <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
-  <script id="quarto-search-options" type="application/json">{
+<script src="site_libs/quarto-nav/quarto-nav.js"></script><script src="site_libs/quarto-nav/headroom.min.js"></script><script src="site_libs/clipboard/clipboard.min.js"></script><meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script><script src="site_libs/quarto-search/fuse.min.js"></script><script src="site_libs/quarto-search/quarto-search.js"></script><link href="./app-b-stained-glass.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script><script src="site_libs/quarto-html/popper.min.js"></script><script src="site_libs/quarto-html/tippy.umd.min.js"></script><script src="site_libs/quarto-html/anchor.min.js"></script><link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script><link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
     "location": "sidebar",
     "copy-button": false,
     "collapse-after": 2,
@@ -49,65 +100,52 @@
       "search-detached-cancel-button-title": "Cancel",
       "search-submit-button-title": "Submit"
     }
-  }</script>
-  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script>
-
-  <script type="text/javascript">
+  }</script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script><script type="text/javascript">
 
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
-  </script>
-  <script type="application/json" class="js-hypothesis-config">
+  </script><script type="application/json" class="js-hypothesis-config">
   {
     "theme": "clean",
     "openSidebar": false
   }
-  </script>
-  <script async="" src="https://hypothes.is/embed.js"></script>
-  <!--[if lt IE 9]>
+  </script><script async="" src="https://hypothes.is/embed.js"></script><!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
-  <link rel="stylesheet" href="include/style.css">
+  <![endif]--><link rel="stylesheet" href="include/style.css">
 </head>
 <body class="floating fullcontent">
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Global Challenge</span></h1>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Appendix C — Magic Eye</h1>
       <button type="button" class="quarto-btn-toggle btn">
         <i class="bi bi-chevron-right"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">30DCC (2022)</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/debruine/30DCC-2022/" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
     <a href="" title="Share" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-share"></i></a>
     <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
-        <li>
-          <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
+<li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=%7Curl%7C">
             <i class="bi bi-bi-twitter pe-1"></i>
           Twitter
           </a>
         </li>
         <li>
-          <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=|url|">
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=%7Curl%7C">
             <i class="bi bi-bi-facebook pe-1"></i>
           Facebook
           </a>
         </li>
         <li>
-          <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=|url|">
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=%7Curl%7C">
             <i class="bi bi-bi-linkedin pe-1"></i>
           LinkedIn
           </a>
@@ -123,7 +161,7 @@
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">Overview</a>
   </div>
@@ -135,8 +173,8 @@
         <i class="bi bi-chevron-right ms-2"></i>
       </a>
     </div>
-    <ul id="quarto-sidebar-section-comparisons" class="collapse list-unstyled sidebar-section depth1 show">  
-        <li class="sidebar-item">
+    <ul id="quarto-sidebar-section-comparisons" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./01-part-to-whole.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Part-to-whole</span></a>
   </div>
@@ -167,7 +205,7 @@
   </div>
 </li>
     </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
     <div class="sidebar-item-container"> 
         <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-distributions" aria-expanded="true">Distributions</a>
@@ -175,8 +213,8 @@
         <i class="bi bi-chevron-right ms-2"></i>
       </a>
     </div>
-    <ul id="quarto-sidebar-section-distributions" class="collapse list-unstyled sidebar-section depth1 show">  
-        <li class="sidebar-item">
+    <ul id="quarto-sidebar-section-distributions" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07-physical.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Physical</span></a>
   </div>
@@ -207,7 +245,7 @@
   </div>
 </li>
     </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
     <div class="sidebar-item-container"> 
         <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-relationships" aria-expanded="true">Relationships</a>
@@ -215,8 +253,8 @@
         <i class="bi bi-chevron-right ms-2"></i>
       </a>
     </div>
-    <ul id="quarto-sidebar-section-relationships" class="collapse list-unstyled sidebar-section depth1 show">  
-        <li class="sidebar-item">
+    <ul id="quarto-sidebar-section-relationships" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./13-correlation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Correlation</span></a>
   </div>
@@ -247,7 +285,7 @@
   </div>
 </li>
     </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
     <div class="sidebar-item-container"> 
         <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-timeseries" aria-expanded="true">Timeseries</a>
@@ -255,10 +293,10 @@
         <i class="bi bi-chevron-right ms-2"></i>
       </a>
     </div>
-    <ul id="quarto-sidebar-section-timeseries" class="collapse list-unstyled sidebar-section depth1 show">  
-        <li class="sidebar-item">
+    <ul id="quarto-sidebar-section-timeseries" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./19-global-challenge.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Global Challenge</span></a>
+  <a href="./19-global-change.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Global Change</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -287,7 +325,7 @@
   </div>
 </li>
     </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
     <div class="sidebar-item-container"> 
         <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-uncertainties" aria-expanded="true">Uncertainties</a>
@@ -295,8 +333,8 @@
         <i class="bi bi-chevron-right ms-2"></i>
       </a>
     </div>
-    <ul id="quarto-sidebar-section-uncertainties" class="collapse list-unstyled sidebar-section depth1 show">  
-        <li class="sidebar-item">
+    <ul id="quarto-sidebar-section-uncertainties" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./25-trend.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Trend</span></a>
   </div>
@@ -327,7 +365,7 @@
   </div>
 </li>
     </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
     <div class="sidebar-item-container"> 
         <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-appendices" aria-expanded="true">Appendices</a>
@@ -335,8 +373,8 @@
         <i class="bi bi-chevron-right ms-2"></i>
       </a>
     </div>
-    <ul id="quarto-sidebar-section-appendices" class="collapse list-unstyled sidebar-section depth1 show">  
-        <li class="sidebar-item">
+    <ul id="quarto-sidebar-section-appendices" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./app-a-colours.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Colours</span></a>
   </div>
@@ -346,22 +384,82 @@
   <a href="./app-b-stained-glass.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Stained Glass Heart</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./app-c-magic-eye.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Magic Eye</span></a>
+  </div>
+</li>
     </ul>
-  </li>
+</li>
     </ul>
-    </div>
-</nav>
-<!-- margin-sidebar -->
-    
+</div>
+</nav><!-- margin-sidebar -->
 <!-- main -->
-<main class="content" id="quarto-document-content">
-<header id="title-block-header">
-<h1 class="title d-none d-lg-block display-7"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Global Challenge</span></h1>
-</header>
+<main class="content" id="quarto-document-content"><header id="title-block-header"><h1 class="title d-none d-lg-block display-7">Appendix C — Magic Eye</h1>
+</header><div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># for data wrangling</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-stderr">
+<pre><code>── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
+</div>
+<div class="cell-output-stderr">
+<pre><code>✓ ggplot2 3.3.5     ✓ purrr   0.3.4
+✓ tibble  3.1.6     ✓ dplyr   1.0.8
+✓ tidyr   1.2.0     ✓ stringr 1.4.0
+✓ readr   2.1.2     ✓ forcats 0.5.1</code></pre>
+</div>
+<div class="cell-output-stderr">
+<pre><code>── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+x dplyr::filter() masks stats::filter()
+x dplyr::lag()    masks stats::lag()</code></pre>
+</div>
+<details><summary>Code</summary><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">library</span>(MetBrewer) <span class="co"># for colour themes</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="fu">library</span>(ggforce)   <span class="co"># for the stereogram</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="fu">library</span>(sf)        <span class="co"># for finding the points in a frame</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-stderr">
+<pre><code>Linking to GEOS 3.8.1, GDAL 3.2.1, PROJ 7.2.1; sf_use_s2() is TRUE</code></pre>
+</div>
+</div>
+<p>I used to be obsessed with those MagicEye pictures and would waste so much time in the mall staring at them. This one is a bit chaotic, but I like it :)</p>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">set.seed</span>(<span class="dv">8675309</span>)</span>
+<span id="cb7-2"><a href="#cb7-2"></a>t <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">2</span><span class="sc">*</span>pi, <span class="at">by=</span><span class="fl">0.1</span>)</span>
+<span id="cb7-3"><a href="#cb7-3"></a>t <span class="ot">&lt;-</span> <span class="fu">c</span>(t, t[[<span class="dv">1</span>]]) <span class="co"># append starting value</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>x <span class="ot">=</span> <span class="dv">16</span><span class="sc">*</span><span class="fu">sin</span>(t)<span class="sc">^</span><span class="dv">3</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a>y <span class="ot">=</span> <span class="dv">13</span><span class="sc">*</span><span class="fu">cos</span>(t)<span class="sc">-</span><span class="dv">5</span><span class="sc">*</span><span class="fu">cos</span>(<span class="dv">2</span><span class="sc">*</span>t)<span class="sc">-</span><span class="dv">2</span><span class="sc">*</span><span class="fu">cos</span>(<span class="dv">3</span><span class="sc">*</span>t)<span class="sc">-</span><span class="fu">cos</span>(<span class="dv">4</span><span class="sc">*</span>t)</span>
+<span id="cb7-6"><a href="#cb7-6"></a>frame <span class="ot">&lt;-</span> <span class="fu">cbind</span>(x, y)</span>
+<span id="cb7-7"><a href="#cb7-7"></a></span>
+<span id="cb7-8"><a href="#cb7-8"></a>frame_sf <span class="ot">&lt;-</span> frame <span class="sc">%&gt;%</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a>  <span class="fu">list</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb7-10"><a href="#cb7-10"></a>  sf<span class="sc">::</span><span class="fu">st_polygon</span>()</span>
+<span id="cb7-11"><a href="#cb7-11"></a></span>
+<span id="cb7-12"><a href="#cb7-12"></a>cols <span class="ot">&lt;-</span> <span class="fu">met.brewer</span>(<span class="st">"Klimt"</span>, <span class="dv">6</span>)</span>
+<span id="cb7-13"><a href="#cb7-13"></a></span>
+<span id="cb7-14"><a href="#cb7-14"></a>n <span class="ot">=</span> <span class="dv">4000</span></span>
+<span id="cb7-15"><a href="#cb7-15"></a>points <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb7-16"><a href="#cb7-16"></a>  <span class="at">x =</span> <span class="fu">runif</span>(n, <span class="at">min =</span> <span class="fu">min</span>(x)<span class="sc">-</span><span class="dv">5</span>, <span class="at">max =</span> <span class="fu">max</span>(x)<span class="sc">+</span><span class="dv">5</span>),</span>
+<span id="cb7-17"><a href="#cb7-17"></a>  <span class="at">y =</span> <span class="fu">runif</span>(n, <span class="at">min =</span> <span class="fu">min</span>(y)<span class="sc">-</span><span class="dv">5</span>, <span class="at">max =</span> <span class="fu">max</span>(y)<span class="sc">+</span><span class="dv">5</span>),</span>
+<span id="cb7-18"><a href="#cb7-18"></a>  <span class="at">depth =</span> <span class="dv">0</span>,</span>
+<span id="cb7-19"><a href="#cb7-19"></a>  <span class="at">col =</span> <span class="fu">sample</span>(cols, n, T)</span>
+<span id="cb7-20"><a href="#cb7-20"></a>)</span>
+<span id="cb7-21"><a href="#cb7-21"></a></span>
+<span id="cb7-22"><a href="#cb7-22"></a>points_sf <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_as_sf</span>(points, <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"x"</span>,<span class="st">"y"</span>))</span>
+<span id="cb7-23"><a href="#cb7-23"></a></span>
+<span id="cb7-24"><a href="#cb7-24"></a><span class="do">## Keeps only the random points that are within the frame</span></span>
+<span id="cb7-25"><a href="#cb7-25"></a>contained <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_contains</span>(frame_sf, points_sf)</span>
+<span id="cb7-26"><a href="#cb7-26"></a>points<span class="sc">$</span>depth[contained[[<span class="dv">1</span>]]] <span class="ot">&lt;-</span> <span class="dv">4</span></span>
+<span id="cb7-27"><a href="#cb7-27"></a></span>
+<span id="cb7-28"><a href="#cb7-28"></a><span class="fu">ggplot</span>(points, <span class="fu">aes</span>(x, y, <span class="at">depth =</span> depth, <span class="at">color =</span> <span class="fu">I</span>(col))) <span class="sc">+</span> </span>
+<span id="cb7-29"><a href="#cb7-29"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb7-30"><a href="#cb7-30"></a>  <span class="fu">facet_stereo</span>(<span class="at">panel.size =</span> <span class="dv">200</span>) <span class="sc">+</span></span>
+<span id="cb7-31"><a href="#cb7-31"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb7-32"><a href="#cb7-32"></a>  <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">size =</span> <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><img src="app-c-magic-eye_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
 
 
-</main> <!-- /main -->
-<script>
+</main><!-- /main --><script>
 // open rdrr links externally ----
 
 var exlinks = document.querySelectorAll("a[href^='https://rdrr.io']");
@@ -388,8 +486,7 @@ function move_sidebar() {
 }
 move_sidebar();
 window.onresize = move_sidebar;
-</script>
-<script type="application/javascript">
+</script><script type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const icon = "";
   const anchorJS = new window.AnchorJS();
@@ -464,26 +561,20 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     });
   }
 });
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="./18-oecd.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">OECD</span></span>
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./app-b-stained-glass.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Stained Glass Heart</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./20-new-tool.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">New Tool</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">CC-BY 2022, Lisa DeBruine</div>   
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
-    <li class="nav-item compact">
+<li class="nav-item compact">
     <a class="nav-link" href="https://github.com/debruine/30DCC-2022">
       <i class="bi bi-github" role="img">
 </i> 
@@ -496,7 +587,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </a>
   </li>  
 </ul>
-    </div>
+</div>
   </div>
 </footer>
 

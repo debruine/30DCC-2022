@@ -284,7 +284,7 @@ anim_save("images/day6.gif", animation = anim,
 
 
 
-```{r owid-day6}
+```{r owid-day6, fig.width = 8, fig.height = 5}
 #| fig.alt: World map showing the share of the population in each country using the internet from 1990 to 2020 using colour. Animated across years.
 
 knitr::include_graphics("images/day6.gif")

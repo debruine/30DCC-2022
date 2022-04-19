@@ -1,0 +1,126 @@
+# Global Change
+
+```{r, include = FALSE}
+source("R/setup.R")
+```
+
+Much of the data over time about climate change has a scale problem. Things are pretty stable for quite a long period of time, and then there is a huge jump in the rate of change over the past 100 years. This makes things hard to plot. So today I thought I'd explore the `r pkg("ggforce")`, specifically the `facet_zoom()` function for zooming in on a particular part of a plot.
+
+
+```{r}
+#| code-summary: Setup
+
+library(readxl)    # for reading excel files
+library(tidyverse) # for data wrangling
+library(MetBrewer) # for colour themes
+library(ggforce)   # for plot zooming
+
+theme_set(theme_bw())
+```
+
+
+## Data
+
+The data come from a paper by [Matt Osman and colleagues](https://www.nature.com/articles/s41586-021-03984-4). The data for their Figure 2 are freely available, but there are two datasets side-by-side on one sheet, so extracting them took a few steps.
+
+The first dataset is global mean surface temperatures (GMST) from 24K years ago to present, in 200-year bins. The second dataset is GMST from 1000 years ago to 50 years in the future, in 10-year bins. They have some overlap, so I'll get rid of the years -1000 to present in the more coarse dataset.
+
+```{r}
+dat200 <- read_xlsx("data/41586_2021_3984_MOESM3_ESM.xlsx",
+                  range = "A2:L122") %>%
+  slice(-(1:5))
+dat10 <- read_xlsx("data/41586_2021_3984_MOESM3_ESM.xlsx",
+                  range = "N2:Y107")
+```
+
+
+```{r}
+dat_combo <- bind_rows(dat10, dat200)
+
+head(dat_combo)
+```
+
+Cleaning this is tricky. I want to separate on the "-", but not if it's the "- for a negative number (who chose this format?!). I get to use a regex lookbehind, which I just learned about! "(?<=0)-" means a dash that is preceded by (but not including) a 0. 
+
+```{r}
+dat <- dat_combo %>%
+  separate(1, into = c("start", "end"), sep = "(?<=0)-")
+```
+
+## Initial Plot
+
+```{r}
+ggplot(dat, aes(x = start, y = `50th`)) +
+  geom_point()
+```
+
+As always, the first plot leaves a bit to be desired. Mainly because I forgot to convert the type of the `start` and `end` columns when I split them. It's a quick fix with `type_convert()`. I also subtracted the start column from 2020 to calculate the year of each estimate, rather than "years before present".
+
+```{r}
+dat <- readr::type_convert(dat) %>%
+  mutate(year = 2020 - start)
+
+ggplot(dat, aes(x = year, y = `50th`)) +
+  geom_point()
+```
+
+## Ribbons
+
+```{r}
+col <- MetBrewer::met.brewer("Greek", 6)
+```
+
+
+```{r}
+ggplot(dat, aes(x = year, y = `50th`)) +
+  geom_ribbon(aes(ymin = `5th`, ymax = `95th`), 
+              fill = col[1]) +
+  geom_ribbon(aes(ymin = `10th`, ymax = `90th`), 
+              fill = col[2]) +
+  geom_ribbon(aes(ymin = `20th`, ymax = `80th`), 
+              fill = col[3]) +
+  geom_ribbon(aes(ymin = `30th`, ymax = `70th`), 
+              fill = col[4]) +
+  geom_ribbon(aes(ymin = `40th`, ymax = `60th`), 
+              fill = col[5]) +
+  geom_line(color = col[6])
+```
+
+## Facet Zoom
+
+Now I'll use `facet_zoom()` from ggforce to highlight the years since 1990. I do wish I could figure out how to specify the two x-axes separately. I'd like the top one to label every 2000 years, and the bottom one every 20. 
+
+```{r, fig.width = 6, fig.height = 6}
+#| fig.alt: Plot of global mean surface temperature from 22000BC to 50 years in the future. The recent rapid rise is highlighted in a zoomed out section from 1900 to 2070.
+
+ggplot(dat, aes(x = year, y = `50th`)) +
+  geom_ribbon(aes(ymin = `5th`, ymax = `95th`, fill = col[1])) +
+  geom_ribbon(aes(ymin = `10th`, ymax = `90th`, fill = col[2])) +
+  geom_ribbon(aes(ymin = `20th`, ymax = `80th`, fill = col[3])) +
+  geom_ribbon(aes(ymin = `30th`, ymax = `70th`, fill = col[4])) +
+  geom_ribbon(aes(ymin = `40th`, ymax = `60th`, fill = col[5])) +
+  geom_ribbon(aes(ymin = `50th`, ymax = `50th`, fill = col[6]), alpha = 0) +
+  geom_line(color = col[6], size = 1) +
+  scale_fill_identity(name = "Percentile",
+                      breaks = unclass(col[1:6]),
+                      labels = c("5-95%", "10-90%", "20-80%", "30-70%", "40-60%", "50%"),
+                      
+                      guide = "legend") +
+  #scale_x_continuous(breaks = seq(-24000, 2000, 2000)) +
+  facet_zoom(xlim = c(1900, 2070), 
+             ylim = c(-0.5, 0.75),
+             horizontal = FALSE, 
+             zoom.size = 1) +
+  labs(x = NULL, y = "Global mean surface temperature (GMST)\n") +
+  theme(legend.position = c(.81, .74),
+        legend.background = element_blank())
+```
+
+
+```{r, include = FALSE, eval = FALSE}
+ggsave("images/day19.png", width = 6, height = 6, device = png)
+knitr::include_graphics("images/day19.png")
+```
+
+
+

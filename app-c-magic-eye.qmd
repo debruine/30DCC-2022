@@ -1,0 +1,45 @@
+# Magic Eye
+
+```{r}
+library(tidyverse) # for data wrangling
+library(MetBrewer) # for colour themes
+library(ggforce)   # for the stereogram
+library(sf)        # for finding the points in a frame
+```
+
+I used to be obsessed with those MagicEye pictures and would waste so much time in the mall staring at them. This one is a bit chaotic, but I like it :)
+
+```{r, fig.width = 7, fig.height = 3}
+set.seed(8675309)
+t <- seq(0, 2*pi, by=0.1)
+t <- c(t, t[[1]]) # append starting value
+x = 16*sin(t)^3
+y = 13*cos(t)-5*cos(2*t)-2*cos(3*t)-cos(4*t)
+frame <- cbind(x, y)
+
+frame_sf <- frame %>%
+  list() %>% 
+  sf::st_polygon()
+
+cols <- met.brewer("Klimt", 6)
+
+n = 4000
+points <- data.frame(
+  x = runif(n, min = min(x)-5, max = max(x)+5),
+  y = runif(n, min = min(y)-5, max = max(y)+5),
+  depth = 0,
+  col = sample(cols, n, T)
+)
+
+points_sf <- sf::st_as_sf(points, coords = c("x","y"))
+
+## Keeps only the random points that are within the frame
+contained <- sf::st_contains(frame_sf, points_sf)
+points$depth[contained[[1]]] <- 4
+
+ggplot(points, aes(x, y, depth = depth, color = I(col))) + 
+  geom_point(size = 3) +
+  facet_stereo(panel.size = 200) +
+  theme_void() +
+  theme(panel.background = element_rect(color = "black", size = 3))
+```

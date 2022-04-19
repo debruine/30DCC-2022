@@ -58,7 +58,9 @@ imgpaths <- sapply(chapters, function(ch) {
   }
 })
 
-glue::glue("<a href='{chapters}.html' style='background-image: url(\"images/{imgpaths}\")'><span>{names}</span></a>") |>
+chapters <- gsub("qmd$", "html", chapters)
+
+glue::glue("<a href='{chapters}' style='background-image: url(\"images/{imgpaths}\")'><span>{names}</span></a>") |>
   paste(collapse = "") |>
   cat()
 ```

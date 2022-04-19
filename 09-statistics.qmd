@@ -159,7 +159,7 @@ c(beta_plots, rev(beta_plots)) %>%
          width = 600, height = 600, delay = 0.1)
 ```
 
-```{r day9, echo = FALSE}
+```{r day9, echo = FALSE, fig.width = 6, fig.height = 6}
 #| fig.cap: Beta distribution with shape1 and shape2 parameters varying from 1 to 10.
 #| fig.alt: A set of beta distributions in purple (shape1 = 1) to yellow (shape1 = 10) and animated to move from shape2 = 1 to shape2 = 10.
 

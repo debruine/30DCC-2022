@@ -63,7 +63,7 @@ book:
       - 18-oecd.qmd
     - part: "Timeseries"
       chapters:
-      - 19-global-challenge.qmd
+      - 19-global-change.qmd
       - 20-new-tool.qmd
       - 21-down-upwards.qmd
       - 22-animation.qmd
@@ -80,6 +80,7 @@ book:
   appendices:
     - app-a-colours.qmd
     - app-b-stained-glass.qmd
+    - app-c-magic-eye.qmd
 
 bibliography: include/book.bib
 csl: include/apa.csl
