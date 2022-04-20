@@ -10,7 +10,7 @@ knitr::write_bib(c(
 source("R/setup.R")
 ```
 
-This is my first year participating in the [30-day chart challenge](https://github.com/30DayChartChallenge/Edition2022). In my work with [PsyTeachR](https://psyteachr.github.io), we do almost everything in bookdown, so I thought I'd make a book with our open-source [PsyTeachR template](https://psyteachr.github.io/template/). That was started [here](https://debruine.github.io/30-day-chart-challenge), but this version of the book uses [quarto](https://quarto.org), an open-source scientific and technical publishing system built on Pandoc.
+This is my first year participating in the [30-day chart challenge](https://github.com/30DayChartChallenge/Edition2022). In my work with [PsyTeachR](https://psyteachr.github.io), we do almost everything in bookdown, so I thought I'd make a book with our open-source [PsyTeachR template](https://psyteachr.github.io/template/). That was started [here](https://github.com/debruine/30-day-chart-challenge), but this version of the book uses [quarto](https://quarto.org), an open-source scientific and technical publishing system built on Pandoc.
 
 ![](images/30-day-chart-challenge.jpg)
 

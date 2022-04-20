@@ -707,6 +707,34 @@
     "text": "19.4 Facet Zoom\nNow I’ll use facet_zoom() from ggforce to highlight the years since 1990. I do wish I could figure out how to specify the two x-axes separately. I’d like the top one to label every 2000 years, and the bottom one every 20.\n\nCodeggplot(dat, aes(x = year, y = `50th`)) +\n  geom_ribbon(aes(ymin = `5th`, ymax = `95th`, fill = col[1])) +\n  geom_ribbon(aes(ymin = `10th`, ymax = `90th`, fill = col[2])) +\n  geom_ribbon(aes(ymin = `20th`, ymax = `80th`, fill = col[3])) +\n  geom_ribbon(aes(ymin = `30th`, ymax = `70th`, fill = col[4])) +\n  geom_ribbon(aes(ymin = `40th`, ymax = `60th`, fill = col[5])) +\n  geom_ribbon(aes(ymin = `50th`, ymax = `50th`, fill = col[6]), alpha = 0) +\n  geom_line(color = col[6], size = 1) +\n  scale_fill_identity(name = \"Percentile\",\n                      breaks = unclass(col[1:6]),\n                      labels = c(\"5-95%\", \"10-90%\", \"20-80%\", \"30-70%\", \"40-60%\", \"50%\"),\n                      \n                      guide = \"legend\") +\n  #scale_x_continuous(breaks = seq(-24000, 2000, 2000)) +\n  facet_zoom(xlim = c(1900, 2070), \n             ylim = c(-0.5, 0.75),\n             horizontal = FALSE, \n             zoom.size = 1) +\n  labs(x = NULL, y = \"Global mean surface temperature (GMST)\\n\") +\n  theme(legend.position = c(.81, .74),\n        legend.background = element_blank())"
   },
   {
+    "objectID": "20-new-tool.html#london-faces",
+    "href": "20-new-tool.html#london-faces",
+    "title": "\n20  New Tool\n",
+    "section": "\n20.1 London Faces",
+    "text": "20.1 London Faces\nThere are 102 images in the CC-BY licensed Face Research Lab London Set. You’ll have to install the stimsets package from github first. Load them and resize so they’ll be faster to process for this demo.\n\nCode# remotes::install_github(\"debruine/stimsets\")\n\nlondon <- demo_stim(\"london\") %>%\n  resize(0.5)\n\nplot(london, nrow = 6)"
+  },
+  {
+    "objectID": "20-new-tool.html#add-info",
+    "href": "20-new-tool.html#add-info",
+    "title": "\n20  New Tool\n",
+    "section": "\n20.2 Add info",
+    "text": "20.2 Add info\nThe stimsets package also has a table of info about the images.\n\nCodehead(stimsets::london_info)\n\n\n\n\n face_id \n    face_age \n    face_gender \n    face_eth \n  \n\n\n 001 \n    24 \n    female \n    white \n  \n\n 002 \n    24 \n    female \n    white \n  \n\n 003 \n    38 \n    female \n    white \n  \n\n 004 \n    30 \n    male \n    white \n  \n\n 005 \n    28 \n    male \n    east_asian \n  \n\n 006 \n    31 \n    female \n    west_asian \n  \n\n\n\n\n\nAdd this to the stimuli. You can use it to subset the images using the subset() function.\n\nCodelondon <- london %>%\n  add_info(stimsets::london_info)\n\n\n\n20.2.1 Reduce Templates\nThe faces come already delineated (you can add delineations to your own images at webmorph.org, by using the auto_delin() function, or with the yet-to-be-documented quick_delin() function). You can use the delineations to morph and transform the faces, but here we’re going to visualise face shape.\nThis is the full delineation.\n\nCodelondon[42] %>% draw_tem()\n\n\n\n\n\n\n\nAnd this is a reduced delineation with just the face shape and main features. The crop_tem() function crops the image to just outside the template limits.\n\nCodelondon[42] %>% \n  subset_tem(features(c(\"face\", \"eyes\", \"nose\", \"mouth\"))) %>%\n  draw_tem() %>%\n  crop_tem()\n\n\n\n\n\n\n\nSample 15 random images, reduce the templates, procrustes align them so they’re all the same approximate size, and crop them.\n\nCodeset.seed(1)\nrand_samp <- sample(1:length(london), 15)\n\ntem <- london[rand_samp] %>%\n  subset_tem(features(c(\"face\", \"eyes\", \"nose\", \"mouth\"))) %>%\n  align(procrustes = TRUE) %>%\n  crop_tem()\n\n\n\n20.2.2 Draw Templates\nI’ll first draw on the template with a neutral purple colour and label them all with numbers. Before you scroll on, can you guess which are male and which are female?\n\nCodeneutral <- tem %>%\n  draw_tem(pt.alpha = 0,\n           line.color = \"purple\",\n           line.alpha = 1,\n           bg = \"white\") %>%\n  label(text = 1:102)\n\nplot(neutral, nrow = 3)\n\n\n\n\n\n\n\nWhat percent did you get right?\n\nCodecolor <- ifelse(\n  get_info(tem)$face_gender == \"female\",\n  \"hotpink\", \"dodgerblue\")\n\ngendered <- tem %>%\n  draw_tem(pt.alpha = 0,\n           line.color = color, \n           line.alpha = 1,\n           bg = \"white\") %>%\n  label(text = 1:102)\n\nplot(gendered, nrow = 3)"
+  },
+  {
+    "objectID": "20-new-tool.html#save-images",
+    "href": "20-new-tool.html#save-images",
+    "title": "\n20  New Tool\n",
+    "section": "\n20.3 Save images",
+    "text": "20.3 Save images\n\nCodeplot(neutral) %>%\n write_stim(dir = \"images\", names = \"wm-neutral\")\n\nplot(gendered) %>%\n write_stim(dir = \"images\", names = \"wm-gendered\")"
+  },
+  {
+    "objectID": "20-new-tool.html#gender-differences",
+    "href": "20-new-tool.html#gender-differences",
+    "title": "\n20  New Tool\n",
+    "section": "\n20.4 Gender differences",
+    "text": "20.4 Gender differences\nSo what is the difference between the average male and female face shape? The demo_stim() function gives you female and male composite (average) faces from the London set.\n\nCodedemo_stim() %>% plot()\n\n\n\n\n\n\n\nIt’s a little more complicated that I expected to superimpose the templates, but I got there in the end (and this will probably prompt some new functions.)\n\nCodecomposites <- demo_stim() %>%\n  subset_tem(features(c(\"face\", \"eyes\", \"nose\", \"mouth\"))) %>%\n  align(procrustes = TRUE) %>%\n  crop_tem() %>%\n  draw_tem(pt.alpha = 0, \n           line.color = c(\"hotpink\", \"dodgerblue\"),\n           line.alpha = 1,\n           bg = \"#FFFFFF\")\n\nplot(composites)\n\n\n\n\n\n\n\nThe continuum() function is like seq() for faces. It uses webmorph.org transforming to make a continuum from one face to another.\n\nCodecontinuum <- continuum(\n  from_img = composites$f_multi,\n  to_img = composites$m_multi,\n  from = 0,\n  to = 1,\n  by = 0.1\n)\n\nplot(continuum, nrow = 1)\n\n\n\n\n\n\n\n\nCodeanimation <- animate(continuum, fps = 10, rev = TRUE)\nwrite_stim(animation, dir = \"images\", name = \"day20\", format = \"gif\")\n\nknitr::include_graphics(\"images/day20.gif\")"
+  },
+  {
     "objectID": "app-a-colours.html",
     "href": "app-a-colours.html",
     "title": "Appendix A — Colours",

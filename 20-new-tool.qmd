@@ -1,2 +1,169 @@
 # New Tool
 
+```{r, include = FALSE}
+source("R/setup.R")
+```
+
+I'm going to cheat a little here and use a tool that is probably new to you, but not to me: `r pkg("webmorphR")`. This is the R companion to webmorph.org, a website I developed to morph and transform faces. It uses the open-source Java libraries from [psychomorph](https://users.aber.ac.uk/bpt/jpsychomorph/), but with an enhanced interface for delineating faces and batch-processing. The R package adds reproducible scripting. There are [several vignettes](https://debruine.github.io/webmorphR/) describing the package. 
+
+```{r}
+#| code-summary: Setup
+
+# remotes::install_github("debruine/webmorphR")
+# remotes::install_github("debruine/stimsets")
+library(webmorphR)
+
+wm_opts(plot.maxwidth = 850)
+```
+
+Some doofus on Twitter was arguing that they know who is "really" male and female from "bone structure" 100% of the time within milliseconds, and misinterpreted colleagues' research (and even some of my own) in support of this nonsense. So I'm going to make a quick test to see if you can guess the gender of 15 random faces (we don't know the cis/trans status of the face models, who I assume have the same probability of being cis or trans as your average Londoner) if you only have info from face shape and internal features (except eyebrows).
+
+
+
+## London Faces
+
+There are 102 images in the CC-BY licensed [Face Research Lab London Set](https://doi.org/10.6084/m9.figshare.5047666.v3). You'll have to install the stimsets package from github first. Load them and resize so they'll be faster to process for this demo.
+
+```{r wm-london}
+# remotes::install_github("debruine/stimsets")
+
+london <- demo_stim("london") %>%
+  resize(0.5)
+
+plot(london, nrow = 6)
+```
+
+## Add info
+
+The stimsets package also has a table of info about the images.
+
+```{r}
+head(stimsets::london_info)
+```
+
+Add this to the stimuli. You can use it to subset the images using the `subset()` function.
+
+```{r}
+london <- london %>%
+  add_info(stimsets::london_info)
+```
+
+### Reduce Templates
+
+The faces come already delineated (you can add delineations to your own images at webmorph.org, by using the `auto_delin()` function, or with the yet-to-be-documented `quick_delin()` function). You can use the delineations to morph and transform the faces, but here we're going to visualise face shape.
+
+This is the full delineation.
+
+```{r wm-tem}
+london[42] %>% draw_tem()
+```
+
+And this is a reduced delineation with just the face shape and main features. The `crop_tem()` function crops the image to just outside the template limits.
+
+```{r wm-subset-tem}
+london[42] %>% 
+  subset_tem(features(c("face", "eyes", "nose", "mouth"))) %>%
+  draw_tem() %>%
+  crop_tem()
+```
+
+Sample 15 random images, reduce the templates, procrustes align them so they're all the same approximate size, and crop them.
+
+```{r}
+set.seed(1)
+rand_samp <- sample(1:length(london), 15)
+
+tem <- london[rand_samp] %>%
+  subset_tem(features(c("face", "eyes", "nose", "mouth"))) %>%
+  align(procrustes = TRUE) %>%
+  crop_tem()
+```
+
+### Draw Templates
+
+I'll first draw on the template with a neutral purple colour and label them all with numbers. Before you scroll on, can you guess which are male and which are female?
+
+```{r wm-neutral}
+neutral <- tem %>%
+  draw_tem(pt.alpha = 0,
+           line.color = "purple",
+           line.alpha = 1,
+           bg = "white") %>%
+  label(text = 1:102)
+
+plot(neutral, nrow = 3)
+```
+
+What percent did you get right?
+
+```{r wm-gender}
+color <- ifelse(
+  get_info(tem)$face_gender == "female",
+  "hotpink", "dodgerblue")
+
+gendered <- tem %>%
+  draw_tem(pt.alpha = 0,
+           line.color = color, 
+           line.alpha = 1,
+           bg = "white") %>%
+  label(text = 1:102)
+
+plot(gendered, nrow = 3)
+```
+
+## Save images
+
+```{r}
+plot(neutral) %>%
+ write_stim(dir = "images", names = "wm-neutral")
+
+plot(gendered) %>%
+ write_stim(dir = "images", names = "wm-gendered")
+```
+
+## Gender differences
+
+So what is the difference between the average male and female face shape? The `demo_stim()` function gives you female and male composite (average) faces from the London set.
+
+```{r demo}
+demo_stim() %>% plot()
+```
+
+It's a little more complicated that I expected to superimpose the templates, but I got there in the end (and this will probably prompt some new functions.)
+
+```{r composite-tems}
+composites <- demo_stim() %>%
+  resize(3) %>%
+  subset_tem(features(c("face", "eyes", "nose", "mouth"))) %>%
+  align(procrustes = TRUE) %>%
+  crop_tem() %>%
+  draw_tem(pt.alpha = 0, 
+           line.color = c("hotpink", "dodgerblue"),
+           line.alpha = 1,
+           bg = "#FFFFFF")
+
+plot(composites)
+```
+
+The `continuum()` function is like seq() for faces. It uses webmorph.org transforming to make a continuum from one face to another.
+
+```{r wm-continuum}
+continuum <- continuum(
+  from_img = composites$f_multi,
+  to_img = composites$m_multi,
+  from = 0,
+  to = 1,
+  by = 0.1
+)
+
+plot(continuum, nrow = 1)
+```
+
+
+```{r wm-animate}
+animation <- animate(continuum, fps = 10, rev = TRUE)
+write_stim(animation, dir = "images", name = "day20", format = "gif")
+
+knitr::include_graphics("images/day20.gif")
+```
+
