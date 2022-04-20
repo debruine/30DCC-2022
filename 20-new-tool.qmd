@@ -54,7 +54,7 @@ The faces come already delineated (you can add delineations to your own images a
 
 This is the full delineation.
 
-```{r wm-tem}
+```{r wm-tem, out.width = "50%"}
 london[42] %>% draw_tem()
 ```
 
@@ -160,7 +160,7 @@ plot(continuum, nrow = 1)
 ```
 
 
-```{r wm-animate}
+```{r wm-animate, out.width = "50%"}
 animation <- animate(continuum, fps = 10, rev = TRUE)
 write_stim(animation, dir = "images", name = "day20", format = "gif")
 

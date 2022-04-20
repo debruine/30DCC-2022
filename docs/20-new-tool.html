@@ -512,7 +512,7 @@
 <details><summary>Code</summary><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>london[<span class="dv">42</span>] <span class="sc">%&gt;%</span> <span class="fu">draw_tem</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="20-new-tool_files/figure-html/wm-tem-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="20-new-tool_files/figure-html/wm-tem-1.png" class="img-fluid figure-img" style="width:50.0%"></p>
 </figure>
 </div>
 </div>
@@ -606,15 +606,16 @@
 <p>It’s a little more complicated that I expected to superimpose the templates, but I got there in the end (and this will probably prompt some new functions.)</p>
 <div class="cell" data-layout-align="center">
 <details><summary>Code</summary><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>composites <span class="ot">&lt;-</span> <span class="fu">demo_stim</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a>  <span class="fu">subset_tem</span>(<span class="fu">features</span>(<span class="fu">c</span>(<span class="st">"face"</span>, <span class="st">"eyes"</span>, <span class="st">"nose"</span>, <span class="st">"mouth"</span>))) <span class="sc">%&gt;%</span></span>
-<span id="cb12-3"><a href="#cb12-3"></a>  <span class="fu">align</span>(<span class="at">procrustes =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb12-4"><a href="#cb12-4"></a>  <span class="fu">crop_tem</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb12-5"><a href="#cb12-5"></a>  <span class="fu">draw_tem</span>(<span class="at">pt.alpha =</span> <span class="dv">0</span>, </span>
-<span id="cb12-6"><a href="#cb12-6"></a>           <span class="at">line.color =</span> <span class="fu">c</span>(<span class="st">"hotpink"</span>, <span class="st">"dodgerblue"</span>),</span>
-<span id="cb12-7"><a href="#cb12-7"></a>           <span class="at">line.alpha =</span> <span class="dv">1</span>,</span>
-<span id="cb12-8"><a href="#cb12-8"></a>           <span class="at">bg =</span> <span class="st">"#FFFFFF"</span>)</span>
-<span id="cb12-9"><a href="#cb12-9"></a></span>
-<span id="cb12-10"><a href="#cb12-10"></a><span class="fu">plot</span>(composites)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-2"><a href="#cb12-2"></a>  <span class="fu">resize</span>(<span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a>  <span class="fu">subset_tem</span>(<span class="fu">features</span>(<span class="fu">c</span>(<span class="st">"face"</span>, <span class="st">"eyes"</span>, <span class="st">"nose"</span>, <span class="st">"mouth"</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb12-4"><a href="#cb12-4"></a>  <span class="fu">align</span>(<span class="at">procrustes =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-5"><a href="#cb12-5"></a>  <span class="fu">crop_tem</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb12-6"><a href="#cb12-6"></a>  <span class="fu">draw_tem</span>(<span class="at">pt.alpha =</span> <span class="dv">0</span>, </span>
+<span id="cb12-7"><a href="#cb12-7"></a>           <span class="at">line.color =</span> <span class="fu">c</span>(<span class="st">"hotpink"</span>, <span class="st">"dodgerblue"</span>),</span>
+<span id="cb12-8"><a href="#cb12-8"></a>           <span class="at">line.alpha =</span> <span class="dv">1</span>,</span>
+<span id="cb12-9"><a href="#cb12-9"></a>           <span class="at">bg =</span> <span class="st">"#FFFFFF"</span>)</span>
+<span id="cb12-10"><a href="#cb12-10"></a></span>
+<span id="cb12-11"><a href="#cb12-11"></a><span class="fu">plot</span>(composites)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="20-new-tool_files/figure-html/composite-tems-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -647,7 +648,7 @@
 <span id="cb14-4"><a href="#cb14-4"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"images/day20.gif"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/day20.gif" class="img-fluid figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="images/day20.gif" class="img-fluid figure-img" style="width:50.0%"></p>
 </figure>
 </div>
 </div>
