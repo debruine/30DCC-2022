@@ -421,45 +421,18 @@
 </div>
 <section id="github-data" class="level2" data-number="21.1"><h2 data-number="21.1" class="anchored" data-anchor-id="github-data">
 <span class="header-section-number">21.1</span> GitHub Data</h2>
-<p>You can export all of your github account data on the <a href="https://github.com/settings/admin">settings administration page</a>. I got an email that it was ready 15 minutes after I requested it. It was 2.5 GB, so I won’t be sharing it all in this repo, but I will include the .json files.</p>
+<p>I used the <a href="https://docs.github.com/en/rest/guides/getting-started-with-the-rest-api">GitHub API</a> to get info on all my repositories.</p>
 <div class="cell" data-layout-align="center">
-<details><summary>Code</summary><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">list.files</span>(<span class="st">"data/github"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-stdout">
-<pre><code> [1] "attachments_000001.json"          "issue_comments_000001.json"      
- [3] "issue_events_000001.json"         "issue_events_000002.json"        
- [5] "issue_events_000003.json"         "issue_events_000004.json"        
- [7] "issues_000001.json"               "pull_request_reviews_000001.json"
- [9] "pull_requests_000001.json"        "releases_000001.json"            
-[11] "repositories_000001.json"         "repository_files_000001.json"    
-[13] "schema.json"                      "users_000001.json"               </code></pre>
-</div>
-</div>
-<div class="cell" data-layout-align="center">
-<details><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>repos <span class="ot">&lt;-</span> <span class="fu">read_json</span>(<span class="st">"data/github/repositories_000001.json"</span>, </span>
-<span id="cb4-2"><a href="#cb4-2"></a>                   <span class="at">simplifyVector =</span> T)</span>
-<span id="cb4-3"><a href="#cb4-3"></a></span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="fu">names</span>(repos)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-stdout">
-<pre><code> [1] "type"                     "url"                     
- [3] "owner"                    "name"                    
- [5] "description"              "website"                 
- [7] "private"                  "has_issues"              
- [9] "has_wiki"                 "has_downloads"           
-[11] "labels"                   "collaborators"           
-[13] "created_at"               "git_url"                 
-[15] "default_branch"           "webhooks"                
-[17] "page"                     "public_keys"             
-[19] "repository_topics"        "security_and_analysis"   
-[21] "autolinks"                "general_settings"        
-[23] "actions_general_settings"</code></pre>
-</div>
+<details><summary>Code</summary><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>repos <span class="ot">&lt;-</span> <span class="fu">read_json</span>(<span class="st">"https://api.github.com/users/debruine/repos"</span>,</span>
+<span id="cb2-2"><a href="#cb2-2"></a>                   <span class="at">simplifyVector =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section><section id="initial-plot" class="level2" data-number="21.2"><h2 data-number="21.2" class="anchored" data-anchor-id="initial-plot">
 <span class="header-section-number">21.2</span> Initial Plot</h2>
 <p>I’m going to try to make a timeline of when I created each repository.</p>
 <div class="cell" data-layout-align="center">
-<details><summary>Code</summary><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">ggplot</span>(repos, <span class="fu">aes</span>(<span class="at">x =</span> created_at, <span class="at">label =</span> name)) <span class="sc">+</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">geom_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">y =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">ggplot</span>(repos, <span class="fu">aes</span>(<span class="at">x =</span> created_at, <span class="at">label =</span> name)) <span class="sc">+</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">geom_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">y =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="21-down-upwards_files/figure-html/du-plot1-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -471,13 +444,13 @@
 <span class="header-section-number">21.3</span> Convert to date</h2>
 <p>Nope. I checked the data types and <code>created_at</code> is a character string, so I need to convert it to a date.</p>
 <div class="cell" data-layout-align="center">
-<details><summary>Code</summary><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>repos<span class="sc">$</span>date <span class="ot">&lt;-</span> lubridate<span class="sc">::</span><span class="fu">as_date</span>(repos<span class="sc">$</span>created_at)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>repos<span class="sc">$</span>date <span class="ot">&lt;-</span> lubridate<span class="sc">::</span><span class="fu">as_date</span>(repos<span class="sc">$</span>created_at)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>I also set <code>hjust = 0</code> so the labels are left-justified rather than centered. Better, but there’s still too much overlap.</p>
 <div class="cell" data-layout-align="center">
-<details><summary>Code</summary><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">ggplot</span>(repos, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">label =</span> name)) <span class="sc">+</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">geom_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">hjust =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">ggplot</span>(repos, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">label =</span> name)) <span class="sc">+</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">geom_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">hjust =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="21-down-upwards_files/figure-html/du-date-fix-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -489,13 +462,13 @@
 <span class="header-section-number">21.4</span> Alternate labels</h2>
 <p>Let’s try alternating the y and hjust values.</p>
 <div class="cell" data-layout-align="center">
-<details><summary>Code</summary><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>repos<span class="sc">$</span>y <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(.<span class="dv">1</span>, <span class="sc">-</span>.<span class="dv">1</span>), <span class="at">length.out =</span> <span class="fu">nrow</span>(repos))</span>
-<span id="cb9-2"><a href="#cb9-2"></a>repos<span class="sc">$</span>hjust <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>, <span class="at">length.out =</span> <span class="fu">nrow</span>(repos))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>repos<span class="sc">$</span>y <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(.<span class="dv">1</span>, <span class="sc">-</span>.<span class="dv">1</span>), <span class="at">length.out =</span> <span class="fu">nrow</span>(repos))</span>
+<span id="cb6-2"><a href="#cb6-2"></a>repos<span class="sc">$</span>hjust <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>, <span class="at">length.out =</span> <span class="fu">nrow</span>(repos))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell" data-layout-align="center">
-<details><summary>Code</summary><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">ggplot</span>(repos, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">label =</span> name, <span class="at">y =</span> y, <span class="at">hjust =</span> hjust)) <span class="sc">+</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">geom_text</span>(<span class="at">angle =</span> <span class="dv">45</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">ggplot</span>(repos, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">label =</span> name, <span class="at">y =</span> y, <span class="at">hjust =</span> hjust)) <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">geom_text</span>(<span class="at">angle =</span> <span class="dv">45</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="21-down-upwards_files/figure-html/du-y-hjust-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -505,12 +478,12 @@
 </div>
 <p>OK, I need to control the y-axis limits. I’ll also add a horizontal line for the timeline and a line from each label to the timeline.</p>
 <div class="cell" data-layout-align="center">
-<details><summary>Code</summary><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">ggplot</span>(repos, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">label =</span> name, <span class="at">y =</span> y, <span class="at">hjust =</span> hjust)) <span class="sc">+</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">geom_text</span>(<span class="at">angle =</span> <span class="dv">45</span>) <span class="sc">+</span></span>
-<span id="cb11-3"><a href="#cb11-3"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">xend =</span> date), <span class="at">yend =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"grey"</span>) <span class="sc">+</span></span>
-<span id="cb11-4"><a href="#cb11-4"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"dodgerblue"</span>) <span class="sc">+</span></span>
-<span id="cb11-5"><a href="#cb11-5"></a>  <span class="fu">scale_x_date</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(.<span class="dv">1</span>, .<span class="dv">2</span>))) <span class="sc">+</span></span>
-<span id="cb11-6"><a href="#cb11-6"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">6</span>, .<span class="dv">6</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">ggplot</span>(repos, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">label =</span> name, <span class="at">y =</span> y, <span class="at">hjust =</span> hjust)) <span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">geom_text</span>(<span class="at">angle =</span> <span class="dv">45</span>) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">xend =</span> date), <span class="at">yend =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"grey"</span>) <span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"dodgerblue"</span>) <span class="sc">+</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a>  <span class="fu">scale_x_date</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(.<span class="dv">1</span>, .<span class="dv">2</span>))) <span class="sc">+</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">6</span>, .<span class="dv">6</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="21-down-upwards_files/figure-html/du-alternating-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -522,15 +495,15 @@
 <span class="header-section-number">21.5</span> Facet by year</h2>
 <p>Better, but still crowded. What If I facet by year?</p>
 <div class="cell" data-layout-align="center">
-<details><summary>Code</summary><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>repos<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">year</span>(repos<span class="sc">$</span>date)</span>
-<span id="cb12-2"><a href="#cb12-2"></a></span>
-<span id="cb12-3"><a href="#cb12-3"></a><span class="fu">ggplot</span>(repos, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">label =</span> name, <span class="at">y =</span> y, <span class="at">hjust =</span> hjust)) <span class="sc">+</span></span>
-<span id="cb12-4"><a href="#cb12-4"></a>  <span class="fu">geom_text</span>(<span class="at">angle =</span> <span class="dv">45</span>) <span class="sc">+</span></span>
-<span id="cb12-5"><a href="#cb12-5"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">xend =</span> date), <span class="at">yend =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"grey"</span>) <span class="sc">+</span></span>
-<span id="cb12-6"><a href="#cb12-6"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"dodgerblue"</span>) <span class="sc">+</span></span>
-<span id="cb12-7"><a href="#cb12-7"></a>  <span class="fu">scale_x_date</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(.<span class="dv">2</span>, .<span class="dv">2</span>))) <span class="sc">+</span></span>
-<span id="cb12-8"><a href="#cb12-8"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">6</span>, .<span class="dv">6</span>)) <span class="sc">+</span></span>
-<span id="cb12-9"><a href="#cb12-9"></a>  <span class="fu">facet_grid</span>(year<span class="sc">~</span>.)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>repos<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">year</span>(repos<span class="sc">$</span>date)</span>
+<span id="cb9-2"><a href="#cb9-2"></a></span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="fu">ggplot</span>(repos, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">label =</span> name, <span class="at">y =</span> y, <span class="at">hjust =</span> hjust)) <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a>  <span class="fu">geom_text</span>(<span class="at">angle =</span> <span class="dv">45</span>) <span class="sc">+</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">xend =</span> date), <span class="at">yend =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"grey"</span>) <span class="sc">+</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"dodgerblue"</span>) <span class="sc">+</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a>  <span class="fu">scale_x_date</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(.<span class="dv">2</span>, .<span class="dv">2</span>))) <span class="sc">+</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">6</span>, .<span class="dv">6</span>)) <span class="sc">+</span></span>
+<span id="cb9-9"><a href="#cb9-9"></a>  <span class="fu">facet_grid</span>(year<span class="sc">~</span>.)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="21-down-upwards_files/figure-html/du-facet-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -540,13 +513,13 @@
 </div>
 <p>The y-axis scale needs to be set to “free”. This doesn’t work with <code>facet_grid()</code>, so I’ll change it to <code>facet_wrap()</code>. I also changed the figure dimensions to 15x20 and set <code>clip = "off"</code> in <code>coord_cartesian()</code> to avoid some of the longer labels from getting clipped.</p>
 <div class="cell" data-layout-align="center">
-<details><summary>Code</summary><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">ggplot</span>(repos, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">label =</span> name, <span class="at">y =</span> y, <span class="at">hjust =</span> hjust)) <span class="sc">+</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a>  <span class="fu">geom_text</span>(<span class="at">angle =</span> <span class="dv">45</span>) <span class="sc">+</span></span>
-<span id="cb13-3"><a href="#cb13-3"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">xend =</span> date), <span class="at">yend =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"grey"</span>) <span class="sc">+</span></span>
-<span id="cb13-4"><a href="#cb13-4"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"dodgerblue"</span>) <span class="sc">+</span></span>
-<span id="cb13-5"><a href="#cb13-5"></a>  <span class="fu">scale_x_date</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(.<span class="dv">2</span>, .<span class="dv">2</span>))) <span class="sc">+</span></span>
-<span id="cb13-6"><a href="#cb13-6"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">6</span>, .<span class="dv">6</span>), <span class="at">clip =</span> <span class="st">"off"</span>) <span class="sc">+</span></span>
-<span id="cb13-7"><a href="#cb13-7"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>year, <span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">scales =</span> <span class="st">"free"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">ggplot</span>(repos, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">label =</span> name, <span class="at">y =</span> y, <span class="at">hjust =</span> hjust)) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">geom_text</span>(<span class="at">angle =</span> <span class="dv">45</span>) <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">xend =</span> date), <span class="at">yend =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"grey"</span>) <span class="sc">+</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"dodgerblue"</span>) <span class="sc">+</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a>  <span class="fu">scale_x_date</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(.<span class="dv">2</span>, .<span class="dv">2</span>))) <span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">6</span>, .<span class="dv">6</span>), <span class="at">clip =</span> <span class="st">"off"</span>) <span class="sc">+</span></span>
+<span id="cb10-7"><a href="#cb10-7"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>year, <span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">scales =</span> <span class="st">"free"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="21-down-upwards_files/figure-html/du-free-x-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -554,29 +527,31 @@
 </div>
 </div>
 </div>
-<p>The scales aren’t all the same. I’m going to use a hacky solution and add labels for January 1 and December 31 every year, but give them no label.</p>
+<p>The scales aren’t all the same. I’m going to use a hacky solution and add labels for January 1 and December 31 every year, but give them a blank string for a name.</p>
 <div class="cell" data-layout-align="center">
-<details><summary>Code</summary><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>new_dates <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">paste0</span>(<span class="dv">2015</span><span class="sc">:</span><span class="dv">2022</span>, <span class="st">"-01-01"</span>),</span>
-<span id="cb14-2"><a href="#cb14-2"></a>               <span class="fu">paste0</span>(<span class="dv">2015</span><span class="sc">:</span><span class="dv">2022</span>, <span class="st">"-12-31"</span>))</span>
-<span id="cb14-3"><a href="#cb14-3"></a></span>
-<span id="cb14-4"><a href="#cb14-4"></a>new_entries <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb14-5"><a href="#cb14-5"></a>  <span class="at">name =</span> <span class="st">""</span>,</span>
-<span id="cb14-6"><a href="#cb14-6"></a>  <span class="at">y =</span> <span class="dv">0</span>, <span class="at">hjust =</span> <span class="dv">0</span>, </span>
-<span id="cb14-7"><a href="#cb14-7"></a>  <span class="at">date =</span> <span class="fu">as_date</span>(new_dates),</span>
-<span id="cb14-8"><a href="#cb14-8"></a>  <span class="at">year =</span> <span class="fu">year</span>(<span class="fu">as_date</span>(new_dates))</span>
-<span id="cb14-9"><a href="#cb14-9"></a>)</span>
-<span id="cb14-10"><a href="#cb14-10"></a></span>
-<span id="cb14-11"><a href="#cb14-11"></a>repos2 <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(repos, new_entries)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>new_dates <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">paste0</span>(<span class="dv">2015</span><span class="sc">:</span><span class="dv">2022</span>, <span class="st">"-01-01"</span>),</span>
+<span id="cb11-2"><a href="#cb11-2"></a>               <span class="fu">paste0</span>(<span class="dv">2015</span><span class="sc">:</span><span class="dv">2022</span>, <span class="st">"-12-31"</span>))</span>
+<span id="cb11-3"><a href="#cb11-3"></a></span>
+<span id="cb11-4"><a href="#cb11-4"></a>new_entries <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb11-5"><a href="#cb11-5"></a>  <span class="at">name =</span> <span class="st">""</span>,</span>
+<span id="cb11-6"><a href="#cb11-6"></a>  <span class="at">y =</span> <span class="dv">0</span>, <span class="at">hjust =</span> <span class="dv">0</span>, </span>
+<span id="cb11-7"><a href="#cb11-7"></a>  <span class="at">date =</span> <span class="fu">as_date</span>(new_dates),</span>
+<span id="cb11-8"><a href="#cb11-8"></a>  <span class="at">year =</span> <span class="fu">year</span>(<span class="fu">as_date</span>(new_dates))</span>
+<span id="cb11-9"><a href="#cb11-9"></a>)</span>
+<span id="cb11-10"><a href="#cb11-10"></a></span>
+<span id="cb11-11"><a href="#cb11-11"></a>repos2 <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(repos, new_entries)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
+<p>I’m also going to reduce the label angle to 20 degrees and make the timeline a different colour each year. I couldn’t set the colour of <code>geom_hline()</code> using <code>aes()</code> unless I was also setting <code>yintercept</code> in the mapping.</p>
 <div class="cell" data-layout-align="center">
-<details><summary>Code</summary><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">ggplot</span>(repos2, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">label =</span> name, <span class="at">y =</span> y, <span class="at">hjust =</span> hjust)) <span class="sc">+</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a>  <span class="fu">geom_text</span>(<span class="at">angle =</span> <span class="dv">45</span>) <span class="sc">+</span></span>
-<span id="cb15-3"><a href="#cb15-3"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">xend =</span> date), <span class="at">yend =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"grey"</span>) <span class="sc">+</span></span>
-<span id="cb15-4"><a href="#cb15-4"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"dodgerblue"</span>) <span class="sc">+</span></span>
-<span id="cb15-5"><a href="#cb15-5"></a>  <span class="fu">scale_x_date</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(.<span class="dv">2</span>, .<span class="dv">2</span>))) <span class="sc">+</span></span>
-<span id="cb15-6"><a href="#cb15-6"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">6</span>, .<span class="dv">6</span>), <span class="at">clip =</span> <span class="st">"off"</span>) <span class="sc">+</span></span>
-<span id="cb15-7"><a href="#cb15-7"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>year, <span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">scales =</span> <span class="st">"free"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">ggplot</span>(repos2, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">label =</span> name, <span class="at">y =</span> y, <span class="at">hjust =</span> hjust)) <span class="sc">+</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a>  <span class="fu">geom_text</span>(<span class="at">angle =</span> <span class="dv">20</span>) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">xend =</span> date), <span class="at">yend =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"grey"</span>) <span class="sc">+</span></span>
+<span id="cb12-4"><a href="#cb12-4"></a>  <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="fu">as.factor</span>(year)), </span>
+<span id="cb12-5"><a href="#cb12-5"></a>             <span class="at">size =</span> <span class="dv">3</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb12-6"><a href="#cb12-6"></a>  <span class="fu">scale_x_date</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(.<span class="dv">2</span>, .<span class="dv">2</span>))) <span class="sc">+</span></span>
+<span id="cb12-7"><a href="#cb12-7"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">6</span>, .<span class="dv">6</span>), <span class="at">clip =</span> <span class="st">"off"</span>) <span class="sc">+</span></span>
+<span id="cb12-8"><a href="#cb12-8"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>year, <span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">scales =</span> <span class="st">"free"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="21-down-upwards_files/figure-html/du-year-limits-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -588,63 +563,64 @@
 <span class="header-section-number">21.6</span> Manually adjust labels</h2>
 <p>That’s good until the last few months. I’ve been making too many repos! I’ll manually adjust those.</p>
 <div class="cell" data-layout-align="center">
-<details><summary>Code</summary><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>repos3 <span class="ot">&lt;-</span> repos2 <span class="sc">%&gt;%</span></span>
-<span id="cb16-2"><a href="#cb16-2"></a>  <span class="fu">mutate</span>(<span class="at">y =</span> <span class="fu">case_when</span>(</span>
-<span id="cb16-3"><a href="#cb16-3"></a>    name <span class="sc">==</span> <span class="st">"msc-data-skills"</span> <span class="sc">~</span> <span class="sc">-</span>.<span class="dv">2</span>,</span>
-<span id="cb16-4"><a href="#cb16-4"></a>    name <span class="sc">==</span> <span class="st">"NCOD2021"</span> <span class="sc">~</span> <span class="sc">-</span>.<span class="dv">2</span>, </span>
-<span id="cb16-5"><a href="#cb16-5"></a>    name <span class="sc">==</span> <span class="st">"30DCC-2022"</span> <span class="sc">~</span> <span class="sc">-</span>.<span class="dv">2</span>,</span>
-<span id="cb16-6"><a href="#cb16-6"></a>    name <span class="sc">==</span> <span class="st">"APA_TOP"</span> <span class="sc">~</span> <span class="sc">-</span>.<span class="dv">3</span>,</span>
-<span id="cb16-7"><a href="#cb16-7"></a>    name <span class="sc">==</span> <span class="st">"knitr"</span> <span class="sc">~</span> .<span class="dv">2</span>,</span>
-<span id="cb16-8"><a href="#cb16-8"></a>    name <span class="sc">==</span> <span class="st">"statistical_inferences"</span> <span class="sc">~</span> .<span class="dv">3</span>,</span>
-<span id="cb16-9"><a href="#cb16-9"></a>    name <span class="sc">==</span> <span class="st">"waffle"</span> <span class="sc">~</span> .<span class="dv">37</span>,</span>
-<span id="cb16-10"><a href="#cb16-10"></a>    name <span class="sc">==</span> <span class="st">"shiny2022"</span> <span class="sc">~</span> .<span class="dv">41</span>,</span>
-<span id="cb16-11"><a href="#cb16-11"></a>    name <span class="sc">==</span> <span class="st">"composite-sim"</span> <span class="sc">~</span> <span class="sc">-</span>.<span class="dv">2</span>,</span>
-<span id="cb16-12"><a href="#cb16-12"></a>    name <span class="sc">==</span> <span class="st">"ug1-practical"</span> <span class="sc">~</span> .<span class="dv">2</span>,</span>
-<span id="cb16-13"><a href="#cb16-13"></a>    name <span class="sc">==</span> <span class="st">"lmem_sim_private"</span> <span class="sc">~</span> .<span class="dv">2</span>,</span>
-<span id="cb16-14"><a href="#cb16-14"></a>    name <span class="sc">==</span> <span class="st">"webexercises"</span> <span class="sc">~</span> .<span class="dv">2</span>,</span>
-<span id="cb16-15"><a href="#cb16-15"></a>    name <span class="sc">==</span> <span class="st">"reprores_2021"</span> <span class="sc">~</span> .<span class="dv">22</span>,</span>
-<span id="cb16-16"><a href="#cb16-16"></a>    name <span class="sc">==</span> <span class="st">"debruine.github.io"</span> <span class="sc">~</span> .<span class="dv">2</span>,</span>
-<span id="cb16-17"><a href="#cb16-17"></a>    name <span class="sc">==</span> <span class="st">"statswithr"</span> <span class="sc">~</span> .<span class="dv">15</span>,</span>
-<span id="cb16-18"><a href="#cb16-18"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> y</span>
-<span id="cb16-19"><a href="#cb16-19"></a>  ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>repos3 <span class="ot">&lt;-</span> repos2 <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>  <span class="fu">mutate</span>(<span class="at">y =</span> <span class="fu">case_when</span>(</span>
+<span id="cb13-3"><a href="#cb13-3"></a>    name <span class="sc">==</span> <span class="st">"msc-data-skills"</span> <span class="sc">~</span> <span class="sc">-</span>.<span class="dv">2</span>,</span>
+<span id="cb13-4"><a href="#cb13-4"></a>    name <span class="sc">==</span> <span class="st">"NCOD2021"</span> <span class="sc">~</span> <span class="sc">-</span>.<span class="dv">2</span>, </span>
+<span id="cb13-5"><a href="#cb13-5"></a>    name <span class="sc">==</span> <span class="st">"30DCC-2022"</span> <span class="sc">~</span> <span class="sc">-</span>.<span class="dv">2</span>,</span>
+<span id="cb13-6"><a href="#cb13-6"></a>    name <span class="sc">==</span> <span class="st">"APA_TOP"</span> <span class="sc">~</span> <span class="sc">-</span>.<span class="dv">3</span>,</span>
+<span id="cb13-7"><a href="#cb13-7"></a>    name <span class="sc">==</span> <span class="st">"knitr"</span> <span class="sc">~</span> .<span class="dv">2</span>,</span>
+<span id="cb13-8"><a href="#cb13-8"></a>    name <span class="sc">==</span> <span class="st">"statistical_inferences"</span> <span class="sc">~</span> .<span class="dv">3</span>,</span>
+<span id="cb13-9"><a href="#cb13-9"></a>    name <span class="sc">==</span> <span class="st">"waffle"</span> <span class="sc">~</span> .<span class="dv">37</span>,</span>
+<span id="cb13-10"><a href="#cb13-10"></a>    name <span class="sc">==</span> <span class="st">"shiny2022"</span> <span class="sc">~</span> .<span class="dv">41</span>,</span>
+<span id="cb13-11"><a href="#cb13-11"></a>    name <span class="sc">==</span> <span class="st">"composite-sim"</span> <span class="sc">~</span> <span class="sc">-</span>.<span class="dv">2</span>,</span>
+<span id="cb13-12"><a href="#cb13-12"></a>    name <span class="sc">==</span> <span class="st">"ug1-practical"</span> <span class="sc">~</span> .<span class="dv">2</span>,</span>
+<span id="cb13-13"><a href="#cb13-13"></a>    name <span class="sc">==</span> <span class="st">"lmem_sim_private"</span> <span class="sc">~</span> .<span class="dv">2</span>,</span>
+<span id="cb13-14"><a href="#cb13-14"></a>    name <span class="sc">==</span> <span class="st">"webexercises"</span> <span class="sc">~</span> .<span class="dv">2</span>,</span>
+<span id="cb13-15"><a href="#cb13-15"></a>    name <span class="sc">==</span> <span class="st">"reprores_2021"</span> <span class="sc">~</span> .<span class="dv">22</span>,</span>
+<span id="cb13-16"><a href="#cb13-16"></a>    name <span class="sc">==</span> <span class="st">"debruine.github.io"</span> <span class="sc">~</span> .<span class="dv">2</span>,</span>
+<span id="cb13-17"><a href="#cb13-17"></a>    name <span class="sc">==</span> <span class="st">"statswithr"</span> <span class="sc">~</span> .<span class="dv">15</span>,</span>
+<span id="cb13-18"><a href="#cb13-18"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> y</span>
+<span id="cb13-19"><a href="#cb13-19"></a>  ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>I couldn’t set the colour of <code>geom_hline()</code> using <code>aes()</code> unless I was also setting <code>yintercept</code> in the mapping. I used the code from <a href="02-pictogram.html#sec-pictogram-colour">Day&nbsp;<span>2.4</span></a> to change the ugly green to yellow.</p>
+<p>I used the code from <a href="02-pictogram.html#sec-pictogram-colour">Day&nbsp;<span>2.4</span></a> to change the ugly green to yellow.</p>
 <div class="cell" data-layout-align="center">
-<details><summary>Code</summary><div class="sourceCode" id="cb17"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>ggplotColours <span class="ot">&lt;-</span> <span class="cf">function</span>(n, <span class="at">h =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">360</span>) <span class="sc">+</span> <span class="dv">15</span>){</span>
-<span id="cb17-2"><a href="#cb17-2"></a>  h[<span class="dv">2</span>] <span class="ot">&lt;-</span> h[<span class="dv">2</span>] <span class="sc">-</span> <span class="dv">360</span><span class="sc">/</span>n</span>
-<span id="cb17-3"><a href="#cb17-3"></a>  <span class="fu">hcl</span>(<span class="at">h =</span> (<span class="fu">seq</span>(h[<span class="dv">1</span>], h[<span class="dv">2</span>], <span class="at">length =</span> n)), <span class="at">c =</span> <span class="dv">100</span>, <span class="at">l =</span> <span class="dv">65</span>)</span>
-<span id="cb17-4"><a href="#cb17-4"></a>}</span>
-<span id="cb17-5"><a href="#cb17-5"></a>linecol <span class="ot">&lt;-</span> <span class="fu">ggplotColours</span>(<span class="dv">8</span>)</span>
-<span id="cb17-6"><a href="#cb17-6"></a>linecol[<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="st">"#F5C748"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>ggplotColours <span class="ot">&lt;-</span> <span class="cf">function</span>(n, <span class="at">h =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">360</span>) <span class="sc">+</span> <span class="dv">15</span>){</span>
+<span id="cb14-2"><a href="#cb14-2"></a>  h[<span class="dv">2</span>] <span class="ot">&lt;-</span> h[<span class="dv">2</span>] <span class="sc">-</span> <span class="dv">360</span><span class="sc">/</span>n</span>
+<span id="cb14-3"><a href="#cb14-3"></a>  <span class="fu">hcl</span>(<span class="at">h =</span> (<span class="fu">seq</span>(h[<span class="dv">1</span>], h[<span class="dv">2</span>], <span class="at">length =</span> n)), <span class="at">c =</span> <span class="dv">100</span>, <span class="at">l =</span> <span class="dv">65</span>)</span>
+<span id="cb14-4"><a href="#cb14-4"></a>}</span>
+<span id="cb14-5"><a href="#cb14-5"></a>linecol <span class="ot">&lt;-</span> <span class="fu">ggplotColours</span>(<span class="dv">8</span>)</span>
+<span id="cb14-6"><a href="#cb14-6"></a>linecol[<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="st">"#F5C748"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
+<p>I’m also going to remove the x-axis expansions, since it doesn’t make sense to have dates before January or after December each year, and add a plot margin using <code>theme()</code> to make room for labels that go off the edge a bit.</p>
 <div class="cell" data-layout-align="center">
-<details><summary>Code</summary><div class="sourceCode" id="cb18"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">ggplot</span>(repos3, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">label =</span> name, <span class="at">y =</span> y, </span>
-<span id="cb18-2"><a href="#cb18-2"></a>             <span class="at">hjust =</span> hjust, <span class="at">vjust =</span> hjust)) <span class="sc">+</span></span>
-<span id="cb18-3"><a href="#cb18-3"></a>  <span class="fu">geom_text</span>(<span class="at">angle =</span> <span class="dv">20</span>) <span class="sc">+</span></span>
-<span id="cb18-4"><a href="#cb18-4"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">xend =</span> date), <span class="at">yend =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"grey20"</span>) <span class="sc">+</span></span>
-<span id="cb18-5"><a href="#cb18-5"></a>  <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="fu">as.factor</span>(year)), </span>
-<span id="cb18-6"><a href="#cb18-6"></a>             <span class="at">size =</span> <span class="dv">3</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb18-7"><a href="#cb18-7"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> linecol) <span class="sc">+</span></span>
-<span id="cb18-8"><a href="#cb18-8"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"1 month"</span>,</span>
-<span id="cb18-9"><a href="#cb18-9"></a>               <span class="at">date_labels =</span> <span class="st">"%b"</span>,</span>
-<span id="cb18-10"><a href="#cb18-10"></a>               <span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))) <span class="sc">+</span></span>
-<span id="cb18-11"><a href="#cb18-11"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">6</span>, .<span class="dv">6</span>), <span class="at">clip =</span> <span class="st">"off"</span>) <span class="sc">+</span></span>
-<span id="cb18-12"><a href="#cb18-12"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>year, <span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">scales =</span> <span class="st">"free"</span>, <span class="at">strip.position =</span> <span class="st">"left"</span>) <span class="sc">+</span></span>
-<span id="cb18-13"><a href="#cb18-13"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>, </span>
-<span id="cb18-14"><a href="#cb18-14"></a>       <span class="at">title =</span> <span class="st">"&lt;span style='font-family:fa-brands'&gt;&amp;#xf09b;&lt;/span&gt; GitHub Repository Creation"</span>) <span class="sc">+</span></span>
-<span id="cb18-15"><a href="#cb18-15"></a>  <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb18-16"><a href="#cb18-16"></a>        <span class="at">axis.ticks.y =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb18-17"><a href="#cb18-17"></a>        <span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb18-18"><a href="#cb18-18"></a>        <span class="at">panel.grid.minor.y =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb18-19"><a href="#cb18-19"></a>        <span class="at">plot.title =</span> <span class="fu">element_markdown</span>(<span class="at">size =</span> <span class="dv">30</span>, <span class="at">vjust =</span> <span class="dv">1</span>),</span>
-<span id="cb18-20"><a href="#cb18-20"></a>        <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>),</span>
-<span id="cb18-21"><a href="#cb18-21"></a>        <span class="at">plot.margin =</span> <span class="fu">unit</span>(<span class="fu">c</span>(<span class="fl">0.1</span>, <span class="dv">1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>), <span class="st">"inches"</span>)</span>
-<span id="cb18-22"><a href="#cb18-22"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">ggplot</span>(repos3, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">label =</span> name, <span class="at">y =</span> y, </span>
+<span id="cb15-2"><a href="#cb15-2"></a>             <span class="at">hjust =</span> hjust, <span class="at">vjust =</span> hjust)) <span class="sc">+</span></span>
+<span id="cb15-3"><a href="#cb15-3"></a>  <span class="fu">geom_text</span>(<span class="at">angle =</span> <span class="dv">20</span>) <span class="sc">+</span></span>
+<span id="cb15-4"><a href="#cb15-4"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">xend =</span> date), <span class="at">yend =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"grey20"</span>) <span class="sc">+</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a>  <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="fu">as.factor</span>(year)), </span>
+<span id="cb15-6"><a href="#cb15-6"></a>             <span class="at">size =</span> <span class="dv">3</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb15-7"><a href="#cb15-7"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> linecol) <span class="sc">+</span></span>
+<span id="cb15-8"><a href="#cb15-8"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"1 month"</span>,</span>
+<span id="cb15-9"><a href="#cb15-9"></a>               <span class="at">date_labels =</span> <span class="st">"%b"</span>,</span>
+<span id="cb15-10"><a href="#cb15-10"></a>               <span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))) <span class="sc">+</span></span>
+<span id="cb15-11"><a href="#cb15-11"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">6</span>, .<span class="dv">6</span>), <span class="at">clip =</span> <span class="st">"off"</span>) <span class="sc">+</span></span>
+<span id="cb15-12"><a href="#cb15-12"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>year, <span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">scales =</span> <span class="st">"free"</span>, <span class="at">strip.position =</span> <span class="st">"left"</span>) <span class="sc">+</span></span>
+<span id="cb15-13"><a href="#cb15-13"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>, </span>
+<span id="cb15-14"><a href="#cb15-14"></a>       <span class="at">title =</span> <span class="st">"&lt;span style='font-family:fa-brands'&gt;&amp;#xf09b;&lt;/span&gt; GitHub Repository Creation"</span>) <span class="sc">+</span></span>
+<span id="cb15-15"><a href="#cb15-15"></a>  <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb15-16"><a href="#cb15-16"></a>        <span class="at">axis.ticks.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb15-17"><a href="#cb15-17"></a>        <span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb15-18"><a href="#cb15-18"></a>        <span class="at">panel.grid.minor.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb15-19"><a href="#cb15-19"></a>        <span class="at">plot.title =</span> <span class="fu">element_markdown</span>(<span class="at">size =</span> <span class="dv">30</span>, <span class="at">vjust =</span> <span class="dv">1</span>),</span>
+<span id="cb15-20"><a href="#cb15-20"></a>        <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>),</span>
+<span id="cb15-21"><a href="#cb15-21"></a>        <span class="at">plot.margin =</span> <span class="fu">unit</span>(<span class="fu">c</span>(<span class="fl">0.1</span>, <span class="dv">1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>), <span class="st">"inches"</span>)</span>
+<span id="cb15-22"><a href="#cb15-22"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="21-down-upwards_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" alt="A timeline of github repository creation from 2015 to 2022. The first few years only have a few repos, which the most recent months have tens of repos." style="width:100.0%"></p>
+<figure class="figure"><p><img src="21-down-upwards_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" alt="A timeline of github repository creation from 2015 to 2022. The first few years only have a few repos, which the most recent months have tens of repos." style="width:100.0%"></p>
 </figure>
 </div>
 </div>

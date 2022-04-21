@@ -277,9 +277,12 @@ anim <- ggplot(data_map_int_final) +
 It takes absolutely forever to create the animation (I think because it's unnecessarily tweening the shapes, but I don't have time to learn more about gganimate today), so run this once and set the code chunk to `eval = FALSE` and load the gif from file.
 
 ```{r, eval = FALSE}
-anim_save("images/day6.gif", animation = anim, 
-          nframes = 30, fps = 4, start_pause = 6, end_pause = 6, 
-          width = 8, height = 5, units = "in", res = 150)
+anim_save("images/day6.gif", 
+          animation = anim, 
+          nframes = 30, fps = 4, 
+          start_pause = 6, end_pause = 6, 
+          width = 8, height = 5, 
+          units = "in", res = 150)
 ```
 
 

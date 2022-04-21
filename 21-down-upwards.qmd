@@ -20,18 +20,13 @@ showtext_auto()
 
 ## GitHub Data
 
-You can export all of your github account data on the [settings administration page](https://github.com/settings/admin). I got an email that it was ready 15 minutes after I requested it. It was 2.5 GB, so I won't be sharing it all in this repo, but I will include the .json files.
+I used the [GitHub API](https://docs.github.com/en/rest/guides/getting-started-with-the-rest-api) to get info on all my repositories.
 
 ```{r}
-list.files("data/github")
+repos <- read_json("https://api.github.com/users/debruine/repos",
+                   simplifyVector = TRUE)
 ```
 
-```{r}
-repos <- read_json("data/github/repositories_000001.json", 
-                   simplifyVector = T)
-
-names(repos)
-```
 
 ## Initial Plot
 
@@ -112,7 +107,7 @@ ggplot(repos, aes(x = date, label = name, y = y, hjust = hjust)) +
 ```
 
 
-The scales aren't all the same. I'm going to use a hacky solution and add labels for January 1 and December 31 every year, but give them no label.
+The scales aren't all the same. I'm going to use a hacky solution and add labels for January 1 and December 31 every year, but give them a blank string for a name.
 
 
 ```{r}
@@ -129,12 +124,14 @@ new_entries <- tibble(
 repos2 <- bind_rows(repos, new_entries)
 ```
 
+I'm also going to reduce the label angle to 20 degrees and make the timeline a different colour each year. I couldn't set the colour of `geom_hline()` using `aes()` unless I was also setting `yintercept` in the mapping.
 
 ```{r du-year-limits, fig.height = 20, fig.width = 15}
 ggplot(repos2, aes(x = date, label = name, y = y, hjust = hjust)) +
-  geom_text(angle = 45) +
+  geom_text(angle = 20) +
   geom_segment(aes(xend = date), yend = 0, color = "grey") +
-  geom_hline(yintercept = 0, size = 3, color = "dodgerblue") +
+  geom_hline(aes(yintercept = 0, color = as.factor(year)), 
+             size = 3, show.legend = FALSE) +
   scale_x_date(expand = expansion(c(.2, .2))) +
   coord_cartesian(ylim = c(-.6, .6), clip = "off") +
   facet_wrap(~year, ncol = 1, scales = "free")
@@ -166,7 +163,7 @@ repos3 <- repos2 %>%
   ))
 ```
 
-I couldn't set the colour of `geom_hline()` using `aes()` unless I was also setting `yintercept` in the mapping. I used the code from [Day -@sec-pictogram-colour] to change the ugly green to yellow.
+I used the code from [Day -@sec-pictogram-colour] to change the ugly green to yellow.
 
 ```{r}
 ggplotColours <- function(n, h = c(0, 360) + 15){
@@ -177,6 +174,7 @@ linecol <- ggplotColours(8)
 linecol[3] <- "#F5C748"
 ```
 
+I'm also going to remove the x-axis expansions, since it doesn't make sense to have dates before January or after December each year, and add a plot margin using `theme()` to make room for labels that go off the edge a bit.
 
 ```{r, fig.height = 20, fig.width = 15}
 #| fig.alt: A timeline of github repository creation from 2015 to 2022. The first few years only have a few repos, which the most recent months have tens of repos.

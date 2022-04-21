@@ -4,7 +4,7 @@
 source("R/setup.R")
 ```
 
-I really love the github activity tile graphs. For today's plot, I'm going to use the data from  [Day -@sec-downup] to make a similar plot, but showing all of my contributions from when I Joined github on September 27, 2015
+I really love the github activity tile graphs. For today's plot, I'm going to use the methods from  [Day -@sec-downup] the get data to make a similar plot, but showing all of the commits to repositories from the [psyTeachR team](https://psyteachr.github.io).
 
 ```{r github-activity}
 knitr::include_graphics("images/github_activity.png")
@@ -15,4 +15,267 @@ knitr::include_graphics("images/github_activity.png")
 #| code-summary: Setup
 
 library(tidyverse)
+library(jsonlite)
+library(glue)
+library(lubridate)
+library(scales)
+```
+
+## Data
+
+I need to use the [GitHub API](https://docs.github.com/en/rest/guides/getting-started-with-the-rest-api) to get all the commit dates for the psyTeachR team.
+
+
+### Get repo names
+
+```{r}
+psyteachr_repos <- read_json("https://api.github.com/orgs/psyTeachR/repos",
+                             simplifyVector = TRUE)
+
+psyteachr_repos$name
+```
+
+### Forks
+
+Most of the team work mainly in a fork on their own account and commit to the psyteachr origin rarely, so to get a clear picture of the work that the team does, we'll also need to find all the forks.
+
+```{r, eval = FALSE}
+# get API URLs for repos with at least one fork
+forks_urls <- psyteachr_repos$forks_url[psyteachr_repos$forks > 0]
+
+# get forks data
+forks <- map_df(forks_urls, read_json, simplifyVector = TRUE)
+saveRDS(forks, "data/forks.rds")
+```
+
+We could get the members of the psyTeachR organisation through the GitHub API, but most haven't made their membership public, so I'm just hard-coding their account names. We'll use the `psyteachr_forks` list later.
+
+```{r}
+forks <- readRDS("data/forks.rds")
+
+members <- c("BertlettJE", "carolinakt", "clelandwoods", 
+             "dalejbarr", "debruine", "eavanmac", 
+             "emilynordmann", "HelenaPaterson", "JackEdTaylor",
+             "philmcaleer", "shannon-mcnee")
+
+psyteachr_forks <- forks %>%
+  select(full_name) %>%
+  separate(full_name, c("user", "repo"), sep = "/") %>%
+  filter(user %in% members)
+```
+
+
+### Get commits
+
+Get the commits for one repo first to see how they're structured. I'll choose the first ever psyTeachR group repo, called "R.House.2019", which we made on a trip to Islay for a long weekend to learn git (and drink whisky) and actually did stay in an airBnB that was an [R.House](https://www.ruralhouse.co.uk/).
+
+```{r}
+# get commits for one repo
+rhouse_commits <- read_json("https://api.github.com/repos/psyTeachR/R.House.2019/commits")
+```
+
+
+There's a lot of data here, so let's just extract the author, message and date for each commit.
+
+```{r}
+# get data for one commit
+commit <- rhouse_commits[[1]]
+commit_info <- list(
+  author = commit$commit$author$name,
+  message = commit$commit$message,
+  date = commit$commit$committer$date
+)
+
+str(commit_info)
+```
+
+### Iterate
+
+Now we just need to do this for every commit in every repository.
+
+First, iterate over repos. You're limited to 60 requests per hour without authenticating, which I don't have time to figure out right now, so make sure you save this so you don't lose it and set the code chunk to `eval = FALSE` or comment it out so you don't accidentally run it again.
+
+```{r, eval = FALSE}
+# create API URLs for repos and forks
+ptr_urls <- glue("https://api.github.com/repos/psyTeachR/{psyteachr_repos$name}/commits")
+fork_urls <- glue("https://api.github.com/repos/{psyteachr_forks$user}/{psyteachr_forks$repo}/commits")
+urls <- c(ptr_urls, fork_urls)
+
+# get commit info for each repo
+psyteachr_commits <- map(urls, read_json)
+# save to RDS object 
+saveRDS(psyteachr_commits, "data/psyteachr_commits.rds")
+```
+
+
+Iterate over all the repos and commits. Add columns with the date formatted as a date, year, week, and weekday.
+
+```{r}
+psyteachr_commits <- readRDS("data/psyteachr_commits.rds")
+
+commit_info <- map_df(psyteachr_commits, 
+                   function(commits) {
+    # iterate over commits for this repo
+    map_df(commits, function(commit) {
+      list(
+        author = commit$commit$author$name,
+        message = commit$commit$message,
+        date = commit$commit$committer$date,
+        url = gsub("(https\\://api\\.github\\.com/repos/|/commits/.*)", "", commit$url)
+      )
+    })%>%
+        separate(url, c("user", "repo"), sep = "/")
+  }) %>%
+  # process versions of the date column
+  mutate(date = lubridate::as_date(date),
+         year = year(date),
+         week = week(date),
+         wday = wday(date))
+```
+
+## Plot
+
+### Inital Plot
+
+The first plot is usually pretty horrific, but this isn't too bad.
+
+```{r tiles-plot1}
+commits_by_day <- commit_info %>%
+  count(date, wday, week, year)
+
+commits_by_day %>%
+  ggplot(aes(x = week, y = wday, alpha = n)) +
+  geom_tile(fill = "green") +
+  facet_wrap(~year, ncol = 1) +
+  theme_dark()
+```
+
+### GitHub Theme
+
+We can make this closer to the GitHub theme by fixing the coordinates so the tiles are square, making the panel backgrounds black, and getting rid of the grid lines. We can also free up a little more vertical space by putting the facet labels on the left. Add a black border to the tiles with `size = 1`.
+
+```{r tiles-github, fig.width = 8, fig.height = 6}
+commits_by_day %>%
+  ggplot(aes(x = week, y = wday, alpha = n)) +
+  geom_tile(fill = "green", color = "black", 
+            size = 1, show.legend = FALSE) +
+  facet_wrap(~year, ncol = 1, strip.position = "left") +
+  coord_fixed() +
+  theme_dark() +
+  theme(
+    panel.background = element_rect(fill = "black"),
+    panel.grid = element_blank()
+  )
+```
+
+
+### Add months
+
+The weeks of the year line up nicely, but don't exactly correspond to months, so I'm going to hack this a little. I'll add a secondary axis that rescales the weeks of the year to a 0.5 to 12.5 scale. The extra 0.5 is so the breaks can be set to 1:12 and the names of the month can go approximately in the middle of the month. I set position to "top" so the month axis would be on the bottom and I can hide the top axis 9and some other parts we don't need) using `theme()`. 
+
+I also refactored year in the data so that 2022 displays at the top.
+
+```{r tiles-months, fig.width = 8, fig.height = 6}
+commits_by_day$year <- factor(commits_by_day$year, levels = 2022:2018)
+
+commits_by_day %>%
+  ggplot(aes(x = week, y = wday, alpha = n)) +
+  geom_tile(fill = "green", color = "black", 
+            size = 1, show.legend = FALSE) +
+  scale_x_continuous(
+    position = "top",
+    sec.axis = sec_axis(
+      trans = ~scales::rescale(., to = c(0.5, 12.5)),
+      breaks = 1:12,
+      labels = lubridate::month(1:12, T)
+    )
+  ) +
+  facet_wrap(~year, ncol = 1, strip.position = "left") +
+  labs(x = NULL, y = NULL) +
+  coord_fixed() +
+  theme_dark() +
+  theme(
+    panel.background = element_rect(fill = "black"),
+    panel.grid = element_blank(),
+    axis.ticks = element_blank(),
+    axis.text.y = element_blank(),
+    axis.text.x.top = element_blank()
+  )
+```
+
+
+
+### PsyTeachR Theme
+
+The psyTeachR books and website have a distinctive rainbow theme.
+
+```{r}
+# psyTeachR colours
+ptrc <- c(
+  "#983E82",
+  "#E2A458",
+  "#F5DC70",
+  "#59935B",
+  "#467AAC",
+  "#61589C"
+)
+```
+
+Set the fill to year and remove the green fill from `geom_tile()`. Use `scale_fill_manual()` to set the colours to the first 5 psyTeachR colours. Use `scale_alpha()` to set the minimum and maximum alpha values.
+
+```{r tiles-psyteachr, fig.width = 8, fig.height = 6}
+commits_by_day %>%
+  ggplot(aes(x = week, y = wday, alpha = n, fill = year)) +
+  geom_tile(color = "black", size = 1, show.legend = FALSE) +
+  scale_x_continuous(
+    position = "top",
+    sec.axis = sec_axis(
+      trans = ~scales::rescale(., to = c(0.5, 12.5)),
+      breaks = 1:12,
+      labels = lubridate::month(1:12, T)
+    )
+  ) +
+  scale_alpha(range = c(0.25, 1)) +
+  scale_fill_manual(values = ptrc[1:5]) +
+  facet_wrap(~year, ncol = 1, strip.position = "left") +
+  labs(x = NULL, y = NULL) +
+  coord_fixed() +
+  theme_dark() +
+  theme(
+    panel.background = element_rect(fill = "black"),
+    strip.text = element_text(size = 18, face = "bold"),
+    panel.grid = element_blank(),
+    axis.ticks = element_blank(),
+    axis.text.y = element_blank(),
+    axis.text.x.top = element_blank()
+  )
+```
+
+
+### Change the facet strip color
+
+I wanted to make the facet strip colour match the year's tile colour, but it's trickier than it sounds. I found this [StackOverflow answer by utubun](https://stackoverflow.com/questions/53455092/r-ggplot2-change-colour-of-font-and-background-in-facet-strip).
+
+```{r tiles-facet, fig.width = 8, fig.height = 6}
+p <- last_plot()
+g <- ggplot_gtable(ggplot_build(p))
+strips <- which(grepl('strip-', g$layout$name))
+
+for (i in seq_along(strips)) {
+  k <- which(grepl('rect', g$grobs[[strips[i]]]$grobs[[1]]$childrenOrder))
+  l <- which(grepl('titleGrob', g$grobs[[strips[i]]]$grobs[[1]]$childrenOrder))
+  g$grobs[[strips[i]]]$grobs[[1]]$children[[k]]$gp$fill <- ptrc[i]
+  g$grobs[[strips[i]]]$grobs[[1]]$children[[l]]$children[[1]]$gp$col <- "black"
+}
+
+plot(g)
+```
+
+
+
+
+```{r, include = FALSE, eval = FALSE}
+p <- ggplotify::as.ggplot(g)
+ggsave("images/day23.png", p, width = 8, height = 6, device = png)
+knitr::include_graphics("images/day23.png")
 ```
