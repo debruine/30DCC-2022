@@ -1,0 +1,1071 @@
+[
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/frlgmm/issues/1#issuecomment-312615656",
+    "issue": "https://github.com/debruine/frlgmm/issues/1",
+    "user": "https://github.com/debruine",
+    "body": "I'll look into this. Can you send me 1 or 2 of your tem files?",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2017-07-03T10:57:06Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/frlgmm/issues/1#issuecomment-312618043",
+    "issue": "https://github.com/debruine/frlgmm/issues/1",
+    "user": "https://github.com/TobiasKor",
+    "body": "Sure, here you go - we've got one set with the whole \"facial mask\" set (0001_aligned_179.tem) and another set with 14 landmarks (0001_aligned_14.tem).\r\n\r\nThank you!\r\n\r\n[2 template files.zip](https://github.com/debruine/frlgmm/files/1119288/2.template.files.zip)\r\n\r\n\r\n",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2017-07-03T11:09:48Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/frlgmm/issues/1#issuecomment-319443039",
+    "issue": "https://github.com/debruine/frlgmm/issues/1",
+    "user": "https://github.com/TobiasKor",
+    "body": "Dear @debruine,\r\nAre there any news regarding the error with the readTems function I mentioned in my earlier post? \r\nI'd appreciate any help, since it would greatly simplify exporting our landmark data.\r\nBest,\r\nTobias\r\n",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2017-08-01T17:40:04Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/frlgmm/issues/1#issuecomment-321808375",
+    "issue": "https://github.com/debruine/frlgmm/issues/1",
+    "user": "https://github.com/TobiasKor",
+    "body": "We just solved the issue with the help of @rubenarslan. It appeared we had to manually install an earlier version of geomorph (3.0.1). If you'd like further detail, just give me a shout.\r\nBest,\r\nTobias",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2017-08-11T13:12:10Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/frlgmm/issues/1#issuecomment-324150809",
+    "issue": "https://github.com/debruine/frlgmm/issues/1",
+    "user": "https://github.com/debruine",
+    "body": "Sorry to be so slow! The new geomorph `arrayspec` function takes the coordinates in a different order and it took me awhile to figure this out. It's sorted now and the files are updated. It probably won't work with the old geomorph now.",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2017-08-22T21:02:38Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/frlgmm/issues/1#issuecomment-324301808",
+    "issue": "https://github.com/debruine/frlgmm/issues/1",
+    "user": "https://github.com/TobiasKor",
+    "body": "OK, thanks for that!",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2017-08-23T11:33:55Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/ddcreator/issues/5#issuecomment-400084074",
+    "issue": "https://github.com/debruine/ddcreator/issues/5",
+    "user": "https://github.com/debruine",
+    "body": "Sorted. It still saves and reads from the attribute_storage object, which may need to be converted to dataframe column attributes @ajhmohr ",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2018-06-25T20:26:40Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/ddcreator/issues/2#issuecomment-400399505",
+    "issue": "https://github.com/debruine/ddcreator/issues/2",
+    "user": "https://github.com/ajhmohr",
+    "body": "Fixed this. Added attributes in the section that writes the Rdata file. ",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2018-06-26T17:33:22Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/ddcreator/issues/1#issuecomment-400435111",
+    "issue": "https://github.com/debruine/ddcreator/issues/1",
+    "user": "https://github.com/ajhmohr",
+    "body": "Still need json format ",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2018-06-26T19:31:34Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/ddcreator/issues/6#issuecomment-400435789",
+    "issue": "https://github.com/debruine/ddcreator/issues/6",
+    "user": "https://github.com/ajhmohr",
+    "body": "Then carry this through to the value labels - only print/add value labels for the variables that are factors in R data and CSV/Json",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2018-06-26T19:34:06Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/ddcreator/issues/9#issuecomment-408103185",
+    "issue": "https://github.com/debruine/ddcreator/issues/9",
+    "user": "https://github.com/debruine",
+    "body": "I've added initial .sav file upload, but it doesn't pull metadata yet",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2018-07-26T13:47:22Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/ddcreator/issues/11#issuecomment-408103453",
+    "issue": "https://github.com/debruine/ddcreator/issues/11",
+    "user": "https://github.com/debruine",
+    "body": "This is done for interfaces, but still needs done for server functions",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2018-07-26T13:48:14Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/ddcreator/issues/12#issuecomment-408988228",
+    "issue": "https://github.com/debruine/ddcreator/issues/12",
+    "user": "https://github.com/doomlab",
+    "body": "@debruine - still trying to figure out why these are updating strangely. Did a couple of temp edits and they don't work. If we can't figure it out, we can also try: https://github.com/jrowen/rhandsontable\r\n\r\nSome of my banging away made it clear that the columns are being treated as factors, which was a problem we had before:\r\n![image](https://user-images.githubusercontent.com/27783894/43419650-8a123f3c-940f-11e8-9791-bd719edb32e0.png)\r\n\r\nTried changing it back to coerceValue() and got this:\r\n![image](https://user-images.githubusercontent.com/27783894/43419732-ca58900a-940f-11e8-941f-ae566f3d3250.png)\r\n\r\nSo I do think the problem is somewhat due to levels/factors being generated rather than characters. \r\n\r\n",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2018-07-30T19:51:14Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/proveit/pull/2#issuecomment-423134952",
+    "pull_request": "https://github.com/debruine/proveit/pull/2",
+    "user": "https://github.com/debruine",
+    "body": "Thanks! \r\n\r\n(You beat me to it; I fixed the URL in my local version a few days ago but got distracted and didn't push)",
+    "formatter": "markdown",
+    "reactions": [
+      {
+        "user": "https://github.com/GarrettMooney",
+        "content": "+1",
+        "subject_type": "IssueComment",
+        "created_at": "2018-09-27T13:14:41.000+01:00"
+      }
+    ],
+    "created_at": "2018-09-20T10:40:02Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/experimentum/issues/1#issuecomment-429800439",
+    "issue": "https://github.com/debruine/experimentum/issues/1",
+    "user": "https://github.com/debruine",
+    "body": "Just my prompt for the demo",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2018-10-15T10:44:51Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/experimentum/issues/4#issuecomment-429805852",
+    "issue": "https://github.com/debruine/experimentum/issues/4",
+    "user": "https://github.com/debruine",
+    "body": "Sorry, I'd forgotten a lot of the actual content is filler text. Don't worry about commenting on the actual text of things, just whether you find things intuitive (subjects don't always read the instructions anyways) and if you find any bugs.",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2018-10-15T11:01:32Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/experimentum/issues/5#issuecomment-429806371",
+    "issue": "https://github.com/debruine/experimentum/issues/5",
+    "user": "https://github.com/debruine",
+    "body": "Would a help button on the experiment page be useful? It could contain instructions for each type of study without having to add a lot of text.",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2018-10-15T11:03:04Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/experimentum/issues/5#issuecomment-429810263",
+    "issue": "https://github.com/debruine/experimentum/issues/5",
+    "user": "https://github.com/KieranJOShea",
+    "body": "I think that would be a good idea!\r\n\r\nI think the page looks great but wasn’t sure if my experience with the previous website made some of the tasks more intuitive than someone who has never used the website before.\r\n\r\n- K\r\n\r\n--------------------------------------------------------\r\nKieran J. O’Shea, Ph.D.\r\nInstitute of Neuroscience and Psychology\r\nUniversity of Glasgow\r\n62 Hillhead Street\r\nG12 8QB\r\n\r\n+44 (0) 141 330 1677\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nOn 15 Oct 2018, at 12:03, Lisa DeBruine <notifications@github.com<mailto:notifications@github.com>> wrote:\r\n\r\n\r\nWould a help button on the experiment page be useful? It could contain instructions for each type of study without having to add a lot of text.\r\n\r\n—\r\nYou are receiving this because you authored the thread.\r\nReply to this email directly, view it on GitHub<https://github.com/debruine/experimentum/issues/5#issuecomment-429806371>, or mute the thread<https://github.com/notifications/unsubscribe-auth/AgGhIFAsgg5wQaPvP9qcwDq108ZarxPqks5ulGtqgaJpZM4XcFrg>.\r\n\r\n",
+    "formatter": "email",
+    "reactions": [
+
+    ],
+    "created_at": "2018-10-15T11:15:32Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/experimentum/issues/6#issuecomment-429945534",
+    "issue": "https://github.com/debruine/experimentum/issues/6",
+    "user": "https://github.com/debruine",
+    "body": "I just tested it in Chrome 69.0.3497.100 on Mac and can't replicate the problem. Can anyone else replicate the problem?",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2018-10-15T17:37:48Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/experimentum/issues/12#issuecomment-433628834",
+    "issue": "https://github.com/debruine/experimentum/issues/12",
+    "user": "https://github.com/debruine",
+    "body": "Actually, turn xafc to trial_stim (exp_id, trial_n, stim_n, stim_id) and remove imgs from trial table and keep both",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2018-10-27T15:10:42Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/experimentum/issues/8#issuecomment-433641230",
+    "issue": "https://github.com/debruine/experimentum/issues/8",
+    "user": "https://github.com/debruine",
+    "body": "Changed the researcher table and researcher status to \"res\"",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2018-10-27T17:48:20Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/experimentum/issues/9#issuecomment-433693879",
+    "issue": "https://github.com/debruine/experimentum/issues/9",
+    "user": "https://github.com/debruine",
+    "body": "I've changed \"Researcher Name\" to \"Name for Researchers\". That's not meant to be your name, but a name for the study to display to researchers (often the name displayed to users isn't useful to us).",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2018-10-28T10:44:07Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/experimentum/issues/3#issuecomment-436196105",
+    "issue": "https://github.com/debruine/experimentum/issues/3",
+    "user": "https://github.com/debruine",
+    "body": "I removed the rating paradigm entirely (it's terrible on touchscreens)",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2018-11-06T09:59:07Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/experimentum/issues/25#issuecomment-437573356",
+    "issue": "https://github.com/debruine/experimentum/issues/25",
+    "user": "https://github.com/debruine",
+    "body": "Now available on the exp, quest, set and project info pages.",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2018-11-10T10:16:23Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/experimentum/issues/23#issuecomment-437576943",
+    "issue": "https://github.com/debruine/experimentum/issues/23",
+    "user": "https://github.com/debruine",
+    "body": "Project pages have buttons to download all exp or quest",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2018-11-10T11:22:00Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/experimentum/issues/6#issuecomment-437577516",
+    "issue": "https://github.com/debruine/experimentum/issues/6",
+    "user": "https://github.com/debruine",
+    "body": "I think moving the login interface to a separate p[age fixed this.",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2018-11-10T11:32:55Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/experimentum/issues/26#issuecomment-437595233",
+    "issue": "https://github.com/debruine/experimentum/issues/26",
+    "user": "https://github.com/debruine",
+    "body": "Warning popup message",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2018-11-10T16:18:08Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/experimentum/issues/30#issuecomment-440227128",
+    "issue": "https://github.com/debruine/experimentum/issues/30",
+    "user": "https://github.com/debruine",
+    "body": "Available on /res/admin/participant now",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2018-11-20T10:41:55Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/experimentum/issues/31#issuecomment-447866796",
+    "issue": "https://github.com/debruine/experimentum/issues/31",
+    "user": "https://github.com/debruine",
+    "body": "Mostly fixed (doesn't recursively check for sets that include the current set)",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2018-12-17T14:35:19Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/experimentum/issues/28#issuecomment-448654501",
+    "issue": "https://github.com/debruine/experimentum/issues/28",
+    "user": "https://github.com/debruine",
+    "body": "Builder pages now have a warning if the component is active.",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2018-12-19T16:20:08Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/faux/pull/1#issuecomment-466794584",
+    "pull_request": "https://github.com/debruine/faux/pull/1",
+    "user": "https://github.com/debruine",
+    "body": "Thanks! I'd love some help on this! I'm pretty new to working on packages, so let me know when I'm doing things that could be improved :)",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2019-02-24T17:01:26Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/faux/issues/15#issuecomment-496278020",
+    "issue": "https://github.com/debruine/faux/issues/15",
+    "user": "https://github.com/debruine",
+    "body": "fixed",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2019-05-27T18:07:56Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/experimentum/issues/39#issuecomment-502705715",
+    "issue": "https://github.com/debruine/experimentum/issues/39",
+    "user": "https://github.com/debruine",
+    "body": "The config file asks for admin name and email now.",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2019-06-17T14:26:47Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/experimentum/issues/46#issuecomment-504938909",
+    "issue": "https://github.com/debruine/experimentum/issues/46",
+    "user": "https://github.com/debruine",
+    "body": "Added blur() to interface inputs",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2019-06-24T09:44:10Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/experimentum/issues/44#issuecomment-504961290",
+    "issue": "https://github.com/debruine/experimentum/issues/44",
+    "user": "https://github.com/debruine",
+    "body": "Fixed by adding .blur() to inputs on nextTrial()",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2019-06-24T10:57:21Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/experimentum/issues/38#issuecomment-504962332",
+    "issue": "https://github.com/debruine/experimentum/issues/38",
+    "user": "https://github.com/debruine",
+    "body": "This is actually a purposeful feature to avoid the really bad anchoring problems with sliders.",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2019-06-24T11:01:14Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/webmorph/issues/2#issuecomment-507057166",
+    "issue": "https://github.com/debruine/webmorph/issues/2",
+    "user": "https://github.com/debruine",
+    "body": "Oh no, I just saw this!\r\n\r\nLocal server problems are really difficult to debug remotely. Did you sort it or give up?\r\n\r\nAre you not able to use the free web version on my server (webmorph.org)? If you sign up with an academic email you get an account immediately. \r\n",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2019-06-30T18:31:38Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/experimentum/issues/47#issuecomment-514558857",
+    "issue": "https://github.com/debruine/experimentum/issues/47",
+    "user": "https://github.com/debruine",
+    "body": "The code for URL validation was not working (.change) so I changed it to trigger on .keyup (can be bypassed by pasting using the mouse, but should be rare). \r\n\r\nThe new code gives feedback on the validity and availability of URLs as you type and prevents saving if the URL isn't valid.",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2019-07-24T09:38:06Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/experimentum/issues/45#issuecomment-514585100",
+    "issue": "https://github.com/debruine/experimentum/issues/45",
+    "user": "https://github.com/debruine",
+    "body": "fixed",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2019-07-24T10:57:45Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/faux/issues/29#issuecomment-518700652",
+    "issue": "https://github.com/debruine/faux/issues/29",
+    "user": "https://github.com/debruine",
+    "body": "I haven't used {simr} before; where are you getting the object `fit`?",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2019-08-06T14:44:02Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/faux/issues/29#issuecomment-518704781",
+    "issue": "https://github.com/debruine/faux/issues/29",
+    "user": "https://github.com/debruine",
+    "body": "It looks to me like extend will always give you the exact same output for the same input. Try this:\r\n\r\n```\r\nlibrary(simr)\r\n\r\nfm <- lmer(y ~ x + (1|g), data=simdata)\r\n\r\nextdata1 <- extend(fm, along=\"x\", n=20) %>% getData()\r\nextdata2 <- extend(fm, along=\"x\", n=20) %>% getData()\r\n\r\nall.equal(extdata1, extdata2)\r\n```",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2019-08-06T14:52:52Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/faux/issues/30#issuecomment-528268842",
+    "issue": "https://github.com/debruine/faux/issues/30",
+    "user": "https://github.com/debruine",
+    "body": "Thanks for reminding me to finish fixing this in the dev version and push to the main version :)\r\n\r\nI'll close this thread when I sort it (which probably won't happen until the weekend).",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2019-09-05T08:55:45Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/faux/issues/30#issuecomment-528269133",
+    "issue": "https://github.com/debruine/faux/issues/30",
+    "user": "https://github.com/WillemSleegers",
+    "body": "Sounds good!",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2019-09-05T08:56:24Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/faux/issues/30#issuecomment-528269517",
+    "issue": "https://github.com/debruine/faux/issues/30",
+    "user": "https://github.com/debruine",
+    "body": "I think it currently converts all non-alphanumeric characters to full stops (.), if that helps for now.",
+    "formatter": "markdown",
+    "reactions": [
+      {
+        "user": "https://github.com/WillemSleegers",
+        "content": "+1",
+        "subject_type": "IssueComment",
+        "created_at": "2019-09-05T12:02:55.000+01:00"
+      }
+    ],
+    "created_at": "2019-09-05T08:57:24Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/faux/issues/31#issuecomment-536042081",
+    "issue": "https://github.com/debruine/faux/issues/31",
+    "user": "https://github.com/doomlab",
+    "body": "Ok, so yeah, I think I was misunderstanding what you were doing. That code only worked because it had the right number of numbers. Here's what I should have done:\r\n\r\n```\r\n##simulated data\r\nbetween <- list(where_bought = c(online = \"Online\",\r\n                                 store = \"Store\"),\r\n                who_bought = c(different = \"Different\", \r\n                               same = \"Same\"))\r\nwithin <- list(rm_var = c(\"money\", \"time\"))\r\n\r\n##pattern is money, then time, so keep the numbers larger in the first one\r\nmu <- data.frame(\r\n  online_different = c(25, 10),\r\n  online_same = c(25, 10),\r\n  store_different = c(35, 15),\r\n  store_same = c(35, 20), \r\n  row.names = within$rm_var)\r\n  \r\nlab4_update <- sim_design(within, between, \r\n                          n = how_many, mu = mu, \r\n                          sd = 3, r = .10,\r\n                          interactive = FALSE,\r\n                          empirical = FALSE, \r\n                          plot = TRUE, \r\n                          seed = this_year_seed)\r\n```\r\nSo maybe the bug is the user ;). \r\n\r\n",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2019-09-27T18:06:31Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/faux/issues/36#issuecomment-591650680",
+    "issue": "https://github.com/debruine/faux/issues/36",
+    "user": "https://github.com/debruine",
+    "body": "I'm fixing this now to set min and max to 3 SD below and above the mean (calculated from x if those aren't set). If the min or max values in x are outside this range, the min or max are reset to the min or max of x, minus or plus 0.1 SD (otherwise they convert to +/-Inf). Does this make sense? Probably anyone using this function will manually set the min and max, but it makes some reasonable assumptions if not. ",
+    "formatter": "markdown",
+    "reactions": [
+      {
+        "user": "https://github.com/elctrc",
+        "content": "+1",
+        "subject_type": "IssueComment",
+        "created_at": "2020-03-01T17:19:19.000+00:00"
+      }
+    ],
+    "created_at": "2020-02-26T21:22:39Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/faux/issues/36#issuecomment-593120961",
+    "issue": "https://github.com/debruine/faux/issues/36",
+    "user": "https://github.com/elctrc",
+    "body": "That does make sense! I think it is a solid solution.",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2020-03-01T17:19:11Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/faux/issues/41#issuecomment-610299754",
+    "issue": "https://github.com/debruine/faux/issues/41",
+    "user": "https://github.com/debruine",
+    "body": "It's due to the changes to ggplot. I just pushed an update, so re-install the package and it should work now. Thanks!",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2020-04-07T10:10:32Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/faux/issues/41#issuecomment-610554833",
+    "issue": "https://github.com/debruine/faux/issues/41",
+    "user": "https://github.com/Michaeladebolt",
+    "body": "Works perfectly now. Thank you for your quick response! 👍 ",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2020-04-07T18:41:01Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/faux/issues/45#issuecomment-665696673",
+    "issue": "https://github.com/debruine/faux/issues/45",
+    "user": "https://github.com/debruine",
+    "body": "I added more unit tests to the package to check this and empirical seems to be working correctly for the examples I've tested. Can you give a specific example of the bug?",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2020-07-29T14:25:45Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/faux/issues/45#issuecomment-672003740",
+    "issue": "https://github.com/debruine/faux/issues/45",
+    "user": "https://github.com/pmeiners",
+    "body": "I'm sorry, it was an error on my end.",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2020-08-11T15:08:26Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/faux/issues/59#issuecomment-691353042",
+    "issue": "https://github.com/debruine/faux/issues/59",
+    "user": "https://github.com/debruine",
+    "body": "I resubmitted it to CRAN today. They pulled it because of an issue with pandoc on Solaris making a test fail. \n\n> On 11 Sep 2020, at 22:37, Graeme Hickey <notifications@github.com> wrote:\n> \n> ﻿\n> Is it possible to re-add this package to CRAN?\n> \n> —\n> You are receiving this because you are subscribed to this thread.\n> Reply to this email directly, view it on GitHub, or unsubscribe.\n",
+    "formatter": "email",
+    "reactions": [
+      {
+        "user": "https://github.com/graemeleehickey",
+        "content": "+1",
+        "subject_type": "IssueComment",
+        "created_at": "2021-02-15T15:12:45.000+00:00"
+      }
+    ],
+    "created_at": "2020-09-11T23:28:18Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/faux/issues/30#issuecomment-739131126",
+    "issue": "https://github.com/debruine/faux/issues/30",
+    "user": "https://github.com/shirdekel",
+    "body": "Any update on this? I'd also like to use names with underscores, so at the moment, I enter them in with full stops, and rename after using `sim_design`. Maybe in the future there could be a way to choose the \"clean name\" character?",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2020-12-05T05:48:08Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/lmem_sim/issues/1#issuecomment-751765397",
+    "issue": "https://github.com/debruine/lmem_sim/issues/1",
+    "user": "https://github.com/debruine",
+    "body": "Good catch, thanks!!",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2020-12-28T16:04:50Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/faux/issues/62#issuecomment-778643840",
+    "issue": "https://github.com/debruine/faux/issues/62",
+    "user": "https://github.com/debruine",
+    "body": "That's fixed now in the version on github. I have some tests, but would be grateful if you could test it on your own data and let me know if it makes sense. You can now add missingness with the same joint probabilities as your own data. \r\n\r\nI had to calculate the r with use = \"complete.obs\" because the pairwise version produces matrices that can be not positive definite.",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2021-02-13T16:47:40Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/faux/issues/62#issuecomment-778693709",
+    "issue": "https://github.com/debruine/faux/issues/62",
+    "user": "https://github.com/doomlab",
+    "body": "Thanks friend! Worked like a charm (and made sense). ",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2021-02-13T23:35:29Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/faux/pull/68#issuecomment-782100143",
+    "pull_request": "https://github.com/debruine/faux/pull/68",
+    "user": "https://github.com/debruine",
+    "body": "underscores fixed!",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2021-02-19T14:12:46Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/faux/issues/30#issuecomment-782104733",
+    "issue": "https://github.com/debruine/faux/issues/30",
+    "user": "https://github.com/debruine",
+    "body": "I think it's finally totally fixed!!",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2021-02-19T14:20:42Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/faux/issues/30#issuecomment-782105617",
+    "issue": "https://github.com/debruine/faux/issues/30",
+    "user": "https://github.com/debruine",
+    "body": "> Any update on this? I'd also like to use names with underscores, so at the moment, I enter them in with full stops, and rename after using `sim_design`. Maybe in the future there could be a way to choose the \"clean name\" character?\r\n\r\nYou can change the default separator with `faux_options(sep = \".\")` (or whatever you want to change it to).",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2021-02-19T14:22:19Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/faux/issues/30#issuecomment-784731000",
+    "issue": "https://github.com/debruine/faux/issues/30",
+    "user": "https://github.com/shirdekel",
+    "body": "Hi, I tried the code above, and it still doesn't work for me:\r\n\r\n``` r\r\n  library(faux)\r\n#> \r\n#> ************\r\n#> Welcome to faux. For support and examples visit:\r\n#> http://debruine.github.io/faux/\r\n#> - Get and set global package options with: faux_options()\r\n#> ************\r\n\r\n  ## Works:\r\n\r\n  between <- list(condition = c(\r\n    control = \"Control\",\r\n    low.choice = \"Low choice\", high.choice = \"High choice\"\r\n  ))\r\n  within <- list(time = c(\"Pre-essay\", \"Post-essay\"))\r\n\r\n  mu <- data.frame(\r\n    control = c(2, 2),\r\n    low.choice = c(2, 3),\r\n    high.choice = c(2, 5),\r\n    row.names = within$time\r\n  )\r\n\r\n  sim_design(within, between,\r\n    n = 100, mu = mu, sd = 2, r = .5,\r\n    empirical = TRUE, plot = TRUE\r\n  )\r\n```\r\n\r\n![](https://i.imgur.com/RUHrTGj.png)\r\n\r\n    #>       id   condition   Pre-essay  Post-essay\r\n    #> 1   S001     control  1.27785545  0.99490199\r\n    #> 2   S002     control -0.47844696 -0.74046704\r\n    #> 3   S003     control -0.78500596  0.43365150\r\n    #> 4   S004     control  3.62834761  2.41871277\r\n    #> 5   S005     control  5.14638034  1.39918612\r\n    #> 6   S006     control  2.04287322  1.30401855\r\n    #> 7   S007     control  2.46664971  2.84667942\r\n    #> 8   S008     control  2.30706561  2.02318980\r\n    #> 9   S009     control  5.22101455  5.82559575\r\n    #> 10  S010     control -0.21082029 -0.57814756\r\n    #> 11  S011     control  1.98425790  2.78860646\r\n    #> 12  S012     control  0.85414219  4.76440099\r\n    #> 13  S013     control -0.18039589  0.94977691\r\n    #> 14  S014     control  2.70887008  0.32505701\r\n    #> 15  S015     control  2.19570435 -0.11659867\r\n    #> 16  S016     control  2.10812568  3.30649734\r\n    #> 17  S017     control  1.66054971  1.47098709\r\n    #> 18  S018     control  1.92054040  3.31209146\r\n    #> 19  S019     control  0.52158798  1.11156820\r\n    #> 20  S020     control  2.21998718  0.60956906\r\n    #> 21  S021     control  1.31322126  1.15890928\r\n    #> 22  S022     control -0.99002125  1.03474119\r\n    #> 23  S023     control  2.33023943  0.61159899\r\n    #> 24  S024     control  3.83014233  0.77260138\r\n    #> 25  S025     control -1.43588545  0.16964579\r\n    #> 26  S026     control  3.11735191  2.99679806\r\n    #> 27  S027     control -0.26904330  0.28076478\r\n    #> 28  S028     control -1.11500660  2.50562068\r\n    #> 29  S029     control  0.70797014  2.58197434\r\n    #> 30  S030     control  3.94821246  3.54948675\r\n    #> 31  S031     control -0.16045337  0.44078625\r\n    #> 32  S032     control  2.06798550  1.79497818\r\n    #> 33  S033     control  1.06655012  0.27265412\r\n    #> 34  S034     control -2.14702788 -4.52997452\r\n    #> 35  S035     control  4.01658530  3.46519610\r\n    #> 36  S036     control  5.14682040  0.22405490\r\n    #> 37  S037     control  0.75459842  1.32686493\r\n    #> 38  S038     control  0.80523045  1.46671806\r\n    #> 39  S039     control  4.59727588  5.37238641\r\n    #> 40  S040     control  3.69738355  3.29764667\r\n    #> 41  S041     control -2.39576379 -2.17483364\r\n    #> 42  S042     control  2.57890615 -1.78027884\r\n    #> 43  S043     control  3.50745770  1.53132001\r\n    #> 44  S044     control  1.68637831 -0.12191079\r\n    #> 45  S045     control  5.21336918  6.50549539\r\n    #> 46  S046     control  5.24396770  3.51390385\r\n    #> 47  S047     control -0.30011261  0.65866295\r\n    #> 48  S048     control  5.12434374  5.90739107\r\n    #> 49  S049     control  5.11316033  3.75787694\r\n    #> 50  S050     control  0.56943304  2.44095309\r\n    #> 51  S051     control  4.37658386  2.30245036\r\n    #> 52  S052     control  1.49913689  0.49911430\r\n    #> 53  S053     control  1.02251744  4.95034320\r\n    #> 54  S054     control  1.63093686  6.22956006\r\n    #> 55  S055     control -0.76178714  1.29912565\r\n    #> 56  S056     control  0.19008212 -0.17268920\r\n    #> 57  S057     control  2.46492533  0.05133658\r\n    #> 58  S058     control -0.49535646 -0.31485582\r\n    #> 59  S059     control -1.56020446  0.21662344\r\n    #> 60  S060     control  4.09532320  4.03475027\r\n    #> 61  S061     control  3.20982957  4.63136146\r\n    #> 62  S062     control  2.10115431  0.51945964\r\n    #> 63  S063     control  0.67744166  1.12643024\r\n    #> 64  S064     control -0.61230596  5.59011529\r\n    #> 65  S065     control  5.36934210  3.09029223\r\n    #> 66  S066     control  2.84042983 -0.04894003\r\n    #> 67  S067     control  0.19631412  1.37434048\r\n    #> 68  S068     control  3.38885532  5.08883842\r\n    #> 69  S069     control  5.99827002  2.87794979\r\n    #> 70  S070     control  0.41324442  3.66711784\r\n    #> 71  S071     control  5.26446048  1.61131146\r\n    #> 72  S072     control  3.31008806  4.92588561\r\n    #> 73  S073     control  2.31035555  1.03280042\r\n    #> 74  S074     control  1.37070445  2.55245937\r\n    #> 75  S075     control  1.43296199 -0.19191325\r\n    #> 76  S076     control  1.94635499  4.33338081\r\n    #> 77  S077     control  3.05440448  2.86198843\r\n    #> 78  S078     control  2.42566100  1.39914806\r\n    #> 79  S079     control  1.48105270  2.18804446\r\n    #> 80  S080     control  2.79077807  3.78967072\r\n    #> 81  S081     control  0.68753670  1.34833288\r\n    #> 82  S082     control  4.12303986  2.31020853\r\n    #> 83  S083     control -0.49549656  1.58812867\r\n    #> 84  S084     control  1.52387305 -0.07745801\r\n    #> 85  S085     control  5.03743820  1.73610362\r\n    #> 86  S086     control  1.86721903  3.00354667\r\n    #> 87  S087     control  3.87742398  2.86552142\r\n    #> 88  S088     control -0.88470652 -0.75610894\r\n    #> 89  S089     control  2.01263828  1.00623128\r\n    #> 90  S090     control -0.74205619 -1.28210844\r\n    #> 91  S091     control  1.12666451  0.73498199\r\n    #> 92  S092     control  1.17979065  2.47083473\r\n    #> 93  S093     control  0.94061247  5.37349784\r\n    #> 94  S094     control  2.42405856  4.42547507\r\n    #> 95  S095     control  0.63954325  2.79972149\r\n    #> 96  S096     control  4.53901388  4.22873139\r\n    #> 97  S097     control  2.76270402  2.93246250\r\n    #> 98  S098     control  2.96345649  4.39476196\r\n    #> 99  S099     control  5.23667069  2.28709142\r\n    #> 100 S100     control  5.51646889  3.61323415\r\n    #> 101 S101  low.choice  0.58670797  2.72822439\r\n    #> 102 S102  low.choice  1.30762301  4.39450183\r\n    #> 103 S103  low.choice  2.47417876  3.44010864\r\n    #> 104 S104  low.choice -1.72708508  4.07936844\r\n    #> 105 S105  low.choice  1.50327980  3.05123741\r\n    #> 106 S106  low.choice  5.04443810  7.03333807\r\n    #> 107 S107  low.choice  0.35677749  3.26163538\r\n    #> 108 S108  low.choice  5.27030733  4.35724886\r\n    #> 109 S109  low.choice  2.88867859  3.41460989\r\n    #> 110 S110  low.choice  1.98212396  6.87061231\r\n    #> 111 S111  low.choice  5.64956425  1.48576771\r\n    #> 112 S112  low.choice  3.70652319  5.05292158\r\n    #> 113 S113  low.choice  4.61539230  6.02581517\r\n    #> 114 S114  low.choice  2.27906741  0.39493955\r\n    #> 115 S115  low.choice  1.77742241  2.09851484\r\n    #> 116 S116  low.choice  5.01824432  6.56645826\r\n    #> 117 S117  low.choice  3.76987178  3.32201764\r\n    #> 118 S118  low.choice  3.14481940  2.88754687\r\n    #> 119 S119  low.choice  1.70806301  0.94604709\r\n    #> 120 S120  low.choice -1.70596937  3.22327570\r\n    #> 121 S121  low.choice  2.01574778  3.68410526\r\n    #> 122 S122  low.choice -0.21202381  2.23455447\r\n    #> 123 S123  low.choice -1.75675280  0.22031815\r\n    #> 124 S124  low.choice  0.54976040  1.08187248\r\n    #> 125 S125  low.choice  4.08882887  7.65559611\r\n    #> 126 S126  low.choice  0.13020340  3.85045703\r\n    #> 127 S127  low.choice -0.92631900  0.98586107\r\n    #> 128 S128  low.choice  3.39683604  2.55573078\r\n    #> 129 S129  low.choice  2.34080055  2.47904669\r\n    #> 130 S130  low.choice  0.79674143  2.65596316\r\n    #> 131 S131  low.choice -1.79393960  1.77327141\r\n    #> 132 S132  low.choice  0.45278752  0.57450218\r\n    #> 133 S133  low.choice  0.32736172 -0.90486450\r\n    #> 134 S134  low.choice  1.27846756  2.52269095\r\n    #> 135 S135  low.choice  0.67587133  4.28634317\r\n    #> 136 S136  low.choice  2.44611051  3.67852318\r\n    #> 137 S137  low.choice  3.09455087  4.06692075\r\n    #> 138 S138  low.choice  3.25020059  0.28245530\r\n    #> 139 S139  low.choice -0.70365566  2.57403071\r\n    #> 140 S140  low.choice  0.62776880  0.55499463\r\n    #> 141 S141  low.choice  0.11987826 -1.10767342\r\n    #> 142 S142  low.choice  2.02315247  2.96988006\r\n    #> 143 S143  low.choice  3.16045849  2.82881381\r\n    #> 144 S144  low.choice  1.48217451  1.73966612\r\n    #> 145 S145  low.choice  1.18425897  3.92427638\r\n    #> 146 S146  low.choice  3.14521999  5.90996093\r\n    #> 147 S147  low.choice  3.29962427  3.91016142\r\n    #> 148 S148  low.choice  0.21125773  1.78525674\r\n    #> 149 S149  low.choice  2.81315236  4.49830426\r\n    #> 150 S150  low.choice  1.66810681  3.68918976\r\n    #> 151 S151  low.choice  2.25693942  1.41348661\r\n    #> 152 S152  low.choice  5.63579554  4.67101340\r\n    #> 153 S153  low.choice  4.16544395  3.42567390\r\n    #> 154 S154  low.choice  4.27539530  6.04895923\r\n    #> 155 S155  low.choice  2.46939370  2.93633740\r\n    #> 156 S156  low.choice  0.31755314  2.22837649\r\n    #> 157 S157  low.choice  3.14014171  3.49995166\r\n    #> 158 S158  low.choice  2.34876238  2.73787715\r\n    #> 159 S159  low.choice -1.66725834  0.12538169\r\n    #> 160 S160  low.choice  6.04132962  3.95049958\r\n    #> 161 S161  low.choice  0.71703974  1.89456251\r\n    #> 162 S162  low.choice  4.99300946  4.07099066\r\n    #> 163 S163  low.choice  2.57720405  5.46823118\r\n    #> 164 S164  low.choice -0.49616478  0.92261260\r\n    #> 165 S165  low.choice  3.43342592  4.55734588\r\n    #> 166 S166  low.choice  4.31670538  3.40998225\r\n    #> 167 S167  low.choice  3.26236079  2.57659434\r\n    #> 168 S168  low.choice  3.64986696  5.98935827\r\n    #> 169 S169  low.choice -0.15760216  2.93500507\r\n    #> 170 S170  low.choice  0.66642701  0.26427958\r\n    #> 171 S171  low.choice -1.47731093  0.03341341\r\n    #> 172 S172  low.choice  4.83443422  3.26624095\r\n    #> 173 S173  low.choice -1.26190377  1.44936248\r\n    #> 174 S174  low.choice  3.52999905  2.59406910\r\n    #> 175 S175  low.choice  2.97893268  1.51578474\r\n    #> 176 S176  low.choice  3.93193506  4.18555265\r\n    #> 177 S177  low.choice  5.22972205  0.46779428\r\n    #> 178 S178  low.choice  1.88708838  3.16435565\r\n    #> 179 S179  low.choice  2.20258648  2.30511246\r\n    #> 180 S180  low.choice  1.54467206  8.92353420\r\n    #> 181 S181  low.choice  1.95570236  3.08303029\r\n    #> 182 S182  low.choice -1.39224319 -1.16312844\r\n    #> 183 S183  low.choice  3.23432941  5.02400407\r\n    #> 184 S184  low.choice -1.82951603  0.99308978\r\n    #> 185 S185  low.choice  0.49556492 -0.80448324\r\n    #> 186 S186  low.choice  5.37499022  4.79549731\r\n    #> 187 S187  low.choice  3.63761919  3.53591229\r\n    #> 188 S188  low.choice  2.63226936  2.96998792\r\n    #> 189 S189  low.choice  1.07607694  2.64774613\r\n    #> 190 S190  low.choice  0.73866070  5.46431498\r\n    #> 191 S191  low.choice  1.54957244  5.04843091\r\n    #> 192 S192  low.choice  1.06620821  4.45866553\r\n    #> 193 S193  low.choice  3.74173094  5.91014834\r\n    #> 194 S194  low.choice -2.26966560  0.27994525\r\n    #> 195 S195  low.choice  1.51631309 -0.05986369\r\n    #> 196 S196  low.choice  2.78434623  3.62871351\r\n    #> 197 S197  low.choice  3.80071707  1.84034875\r\n    #> 198 S198  low.choice  2.18834581  1.01651042\r\n    #> 199 S199  low.choice  3.64156806  5.46672951\r\n    #> 200 S200  low.choice  1.87482677  3.23826233\r\n    #> 201 S201 high.choice  1.17924840  3.85715735\r\n    #> 202 S202 high.choice  3.13213715  2.85517541\r\n    #> 203 S203 high.choice  2.31898289  4.67054757\r\n    #> 204 S204 high.choice  5.37917377  8.74231474\r\n    #> 205 S205 high.choice  1.21087564  4.40500777\r\n    #> 206 S206 high.choice  2.65579162  6.21593930\r\n    #> 207 S207 high.choice  3.88251722  6.83510865\r\n    #> 208 S208 high.choice  1.18521315  3.63473802\r\n    #> 209 S209 high.choice  0.56534905  6.01951884\r\n    #> 210 S210 high.choice -1.55088118  2.83138535\r\n    #> 211 S211 high.choice  2.48745245  4.45691811\r\n    #> 212 S212 high.choice  0.71440396  4.05085837\r\n    #> 213 S213 high.choice  3.35087126  4.93448155\r\n    #> 214 S214 high.choice -0.28788987  6.43936723\r\n    #> 215 S215 high.choice  1.39819350  5.87020388\r\n    #> 216 S216 high.choice  3.25046914  9.29469394\r\n    #> 217 S217 high.choice  1.75761479  6.20231709\r\n    #> 218 S218 high.choice -0.67991632  3.51923800\r\n    #> 219 S219 high.choice  1.41432515  4.30319342\r\n    #> 220 S220 high.choice  5.66607221  5.37309627\r\n    #> 221 S221 high.choice  2.17369588  7.29675050\r\n    #> 222 S222 high.choice -2.20675381  5.22792539\r\n    #> 223 S223 high.choice  2.73949312  4.47263580\r\n    #> 224 S224 high.choice -1.39096605  0.84237704\r\n    #> 225 S225 high.choice  1.31720851  5.47252554\r\n    #> 226 S226 high.choice  0.44180303  5.94918432\r\n    #> 227 S227 high.choice  3.57048238  3.82713765\r\n    #> 228 S228 high.choice  5.12821022  4.06682563\r\n    #> 229 S229 high.choice  1.36835910  0.58581918\r\n    #> 230 S230 high.choice  2.85020795  3.28055406\r\n    #> 231 S231 high.choice  3.41437153  4.48747722\r\n    #> 232 S232 high.choice  1.68918727  5.36755297\r\n    #> 233 S233 high.choice  0.40561459  3.88794496\r\n    #> 234 S234 high.choice  4.59105321  7.28519857\r\n    #> 235 S235 high.choice  1.76832913  4.81090233\r\n    #> 236 S236 high.choice -0.61227238  6.66158341\r\n    #> 237 S237 high.choice  0.88191479  3.24046353\r\n    #> 238 S238 high.choice  1.00033768  2.51706649\r\n    #> 239 S239 high.choice -0.32993622  1.23947415\r\n    #> 240 S240 high.choice  0.92479190  3.89038805\r\n    #> 241 S241 high.choice  4.24830631  6.73102971\r\n    #> 242 S242 high.choice -0.72188724  2.42850110\r\n    #> 243 S243 high.choice  2.76723786  5.50071436\r\n    #> 244 S244 high.choice -0.11197605  5.48710686\r\n    #> 245 S245 high.choice  0.24287837  4.27556461\r\n    #> 246 S246 high.choice  2.79972914  5.62102111\r\n    #> 247 S247 high.choice  2.41039972  4.90448090\r\n    #> 248 S248 high.choice  4.38232325  8.90039323\r\n    #> 249 S249 high.choice  0.55669147  2.46833437\r\n    #> 250 S250 high.choice  1.80609801  6.67357566\r\n    #> 251 S251 high.choice  2.55081501  5.77831770\r\n    #> 252 S252 high.choice  5.11019804  5.55058234\r\n    #> 253 S253 high.choice  3.38027888  7.68064923\r\n    #> 254 S254 high.choice  3.35993423  4.03000716\r\n    #> 255 S255 high.choice  3.59074807  2.80309607\r\n    #> 256 S256 high.choice  4.95291924  4.29939986\r\n    #> 257 S257 high.choice  1.28913576  2.97565926\r\n    #> 258 S258 high.choice  0.90984888  5.08337159\r\n    #> 259 S259 high.choice  2.26334924  2.58914959\r\n    #> 260 S260 high.choice  2.96119006  5.86634737\r\n    #> 261 S261 high.choice  4.80758471  9.59926102\r\n    #> 262 S262 high.choice  5.02545870  7.07499692\r\n    #> 263 S263 high.choice  1.16326473  4.52998763\r\n    #> 264 S264 high.choice  0.54736824  4.52112141\r\n    #> 265 S265 high.choice  0.60865314  4.60088161\r\n    #> 266 S266 high.choice  2.25459679  4.00740632\r\n    #> 267 S267 high.choice  3.65738604  5.49660618\r\n    #> 268 S268 high.choice  4.88105052  5.05252034\r\n    #> 269 S269 high.choice  3.85434907  8.41770295\r\n    #> 270 S270 high.choice  3.31258827  5.02117861\r\n    #> 271 S271 high.choice  5.29513280  7.13222852\r\n    #> 272 S272 high.choice  3.71944058  8.54126546\r\n    #> 273 S273 high.choice  0.91436354  3.35686791\r\n    #> 274 S274 high.choice  0.10338443  6.69462455\r\n    #> 275 S275 high.choice  5.76976408  4.25828226\r\n    #> 276 S276 high.choice  3.19363046  8.71274563\r\n    #> 277 S277 high.choice  6.02769065  7.05695285\r\n    #> 278 S278 high.choice -0.06478124  4.14539185\r\n    #> 279 S279 high.choice  3.27192620  5.13777425\r\n    #> 280 S280 high.choice -0.84596943  4.26339553\r\n    #> 281 S281 high.choice  5.25559663  4.96812894\r\n    #> 282 S282 high.choice  2.73507365  8.79804710\r\n    #> 283 S283 high.choice  0.51544514  3.44446128\r\n    #> 284 S284 high.choice -0.52617431  6.86298165\r\n    #> 285 S285 high.choice -1.10017728  4.33737846\r\n    #> 286 S286 high.choice  1.92487208  4.83020815\r\n    #> 287 S287 high.choice  2.88971662  7.94791464\r\n    #> 288 S288 high.choice -0.48016493  0.85354226\r\n    #> 289 S289 high.choice  3.23889251  5.67621159\r\n    #> 290 S290 high.choice -1.48397023  0.68443715\r\n    #> 291 S291 high.choice  1.01668403  5.84408365\r\n    #> 292 S292 high.choice  6.14322437  7.30119774\r\n    #> 293 S293 high.choice  1.82547766  4.11652114\r\n    #> 294 S294 high.choice -1.24754816  4.04755780\r\n    #> 295 S295 high.choice -1.23906258  2.25447546\r\n    #> 296 S296 high.choice -0.06182968  0.22766123\r\n    #> 297 S297 high.choice  0.37097372  3.56347292\r\n    #> 298 S298 high.choice  0.59564490  5.92158603\r\n    #> 299 S299 high.choice  2.28138051  7.19355320\r\n    #> 300 S300 high.choice  2.34570896  4.93703805\r\n\r\n      ## Doesn't work:\r\n\r\n      between <- list(condition = c(\r\n        control = \"Control\",\r\n        low_choice = \"Low choice\", high_choice = \"High choice\"\r\n      ))\r\n      within <- list(time = c(\"Pre-essay\", \"Post-essay\"))\r\n\r\n      mu <- data.frame(\r\n        control = c(2, 2),\r\n        low_choice = c(2, 3),\r\n        high_choice = c(2, 5),\r\n        row.names = within$time\r\n      )\r\n\r\n      sim_design(within, between,\r\n        n = 100, mu = mu, sd = 2, r = .5,\r\n        empirical = TRUE, plot = TRUE\r\n      )\r\n    #> Error in convert_param(mu, cells_w, cells_b, \"means\"): The means data table is misspecified.\r\n\r\n<sup>Created on 2021-02-24 by the [reprex package](https://reprex.tidyverse.org) (v1.0.0)</sup>\r\n\r\n<details style=\"margin-bottom:10px;\">\r\n<summary>\r\nSession info\r\n</summary>\r\n\r\n``` r\r\nsessioninfo::session_info()\r\n#> ─ Session info ───────────────────────────────────────────────────────────────\r\n#>  setting  value                       \r\n#>  version  R version 4.0.2 (2020-06-22)\r\n#>  os       macOS Mojave 10.14.6        \r\n#>  system   x86_64, darwin17.0          \r\n#>  ui       X11                         \r\n#>  language (EN)                        \r\n#>  collate  en_AU.UTF-8                 \r\n#>  ctype    en_AU.UTF-8                 \r\n#>  tz       Australia/Sydney            \r\n#>  date     2021-02-24                  \r\n#> \r\n#> ─ Packages ───────────────────────────────────────────────────────────────────\r\n#>  package      * version date       lib source                            \r\n#>  assertthat     0.2.1   2019-03-21 [1] CRAN (R 4.0.0)                    \r\n#>  backports      1.2.1   2020-12-09 [1] CRAN (R 4.0.2)                    \r\n#>  cli            2.3.1   2021-02-23 [1] CRAN (R 4.0.2)                    \r\n#>  colorspace     2.0-0   2020-11-11 [1] CRAN (R 4.0.2)                    \r\n#>  crayon         1.4.1   2021-02-08 [1] CRAN (R 4.0.2)                    \r\n#>  curl           4.3     2019-12-02 [1] CRAN (R 4.0.0)                    \r\n#>  DBI            1.1.1   2021-01-15 [1] CRAN (R 4.0.2)                    \r\n#>  debugme        1.1.0   2017-10-22 [1] CRAN (R 4.0.2)                    \r\n#>  digest         0.6.27  2020-10-24 [1] CRAN (R 4.0.2)                    \r\n#>  dplyr          1.0.4   2021-02-02 [1] CRAN (R 4.0.2)                    \r\n#>  ellipsis       0.3.1   2020-05-15 [1] CRAN (R 4.0.0)                    \r\n#>  evaluate       0.14    2019-05-28 [1] CRAN (R 4.0.0)                    \r\n#>  fansi          0.4.2   2021-01-15 [1] CRAN (R 4.0.2)                    \r\n#>  farver         2.0.3   2020-01-16 [1] CRAN (R 4.0.0)                    \r\n#>  faux         * 0.0.1.7 2021-02-24 [1] Github (debruine/faux@9df7196)    \r\n#>  fs             1.5.0   2020-07-31 [1] CRAN (R 4.0.2)                    \r\n#>  generics       0.1.0   2020-10-31 [1] CRAN (R 4.0.2)                    \r\n#>  ggplot2        3.3.3   2020-12-30 [1] CRAN (R 4.0.2)                    \r\n#>  glue           1.4.2   2020-08-27 [1] CRAN (R 4.0.2)                    \r\n#>  gtable         0.3.0   2019-03-25 [1] CRAN (R 4.0.0)                    \r\n#>  highr          0.8     2019-03-20 [1] CRAN (R 4.0.0)                    \r\n#>  htmltools      0.5.1.1 2021-01-22 [1] CRAN (R 4.0.2)                    \r\n#>  httr           1.4.2   2020-07-20 [1] CRAN (R 4.0.2)                    \r\n#>  knitr          1.31    2021-01-27 [1] CRAN (R 4.0.2)                    \r\n#>  labeling       0.4.2   2020-10-20 [1] CRAN (R 4.0.2)                    \r\n#>  lifecycle      1.0.0   2021-02-15 [1] CRAN (R 4.0.2)                    \r\n#>  magrittr       2.0.1   2020-11-17 [1] CRAN (R 4.0.2)                    \r\n#>  mime           0.10    2021-02-13 [1] CRAN (R 4.0.2)                    \r\n#>  munsell        0.5.0   2018-06-12 [1] CRAN (R 4.0.0)                    \r\n#>  pillar         1.5.0   2021-02-22 [1] CRAN (R 4.0.2)                    \r\n#>  pkgconfig      2.0.3   2019-09-22 [1] CRAN (R 4.0.0)                    \r\n#>  purrr          0.3.4   2020-04-17 [1] CRAN (R 4.0.0)                    \r\n#>  R6             2.5.0   2020-10-28 [1] CRAN (R 4.0.2)                    \r\n#>  RColorBrewer   1.1-2   2014-12-07 [1] CRAN (R 4.0.0)                    \r\n#>  reprex         1.0.0   2021-01-27 [1] CRAN (R 4.0.2)                    \r\n#>  rlang          0.4.10  2020-12-30 [1] CRAN (R 4.0.2)                    \r\n#>  rmarkdown      2.7.1   2021-02-24 [1] Github (rstudio/rmarkdown@e455285)\r\n#>  scales         1.1.1   2020-05-11 [1] CRAN (R 4.0.0)                    \r\n#>  sessioninfo    1.1.1   2018-11-05 [1] CRAN (R 4.0.0)                    \r\n#>  stringi        1.5.3   2020-09-09 [1] CRAN (R 4.0.2)                    \r\n#>  stringr        1.4.0   2019-02-10 [1] CRAN (R 4.0.0)                    \r\n#>  styler         1.3.2   2020-02-23 [1] CRAN (R 4.0.0)                    \r\n#>  tibble         3.0.6   2021-01-29 [1] CRAN (R 4.0.2)                    \r\n#>  tidyselect     1.1.0   2020-05-11 [1] CRAN (R 4.0.0)                    \r\n#>  utf8           1.1.4   2018-05-24 [1] CRAN (R 4.0.0)                    \r\n#>  vctrs          0.3.6   2020-12-17 [1] CRAN (R 4.0.2)                    \r\n#>  withr          2.4.1   2021-01-26 [1] CRAN (R 4.0.2)                    \r\n#>  xfun           0.21    2021-02-10 [1] CRAN (R 4.0.2)                    \r\n#>  xml2           1.3.2   2020-04-23 [1] CRAN (R 4.0.0)                    \r\n#>  yaml           2.2.1   2020-02-01 [1] CRAN (R 4.0.0)                    \r\n#> \r\n#> [1] /Library/Frameworks/R.framework/Versions/4.0/Resources/library\r\n```\r\n\r\n</details>",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2021-02-24T03:47:20Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/faux/issues/30#issuecomment-784738405",
+    "issue": "https://github.com/debruine/faux/issues/30",
+    "user": "https://github.com/shirdekel",
+    "body": "Works when setting `long = TRUE`!\r\n\r\n``` r\r\n  library(faux)\r\n#> \r\n#> ************\r\n#> Welcome to faux. For support and examples visit:\r\n#> http://debruine.github.io/faux/\r\n#> - Get and set global package options with: faux_options()\r\n#> ************\r\n\r\n  between <- list(condition = c(\r\n    control = \"Control\",\r\n    low_choice = \"Low choice\", high_choice = \"High choice\"\r\n  ))\r\n  within <- list(time = c(\"Pre-essay\", \"Post-essay\"))\r\n\r\n  mu <- data.frame(\r\n    control = c(2, 2),\r\n    low_choice = c(2, 3),\r\n    high_choice = c(2, 5),\r\n    row.names = within$time\r\n  )\r\n\r\n  sim_design(within, between,\r\n    n = 100, mu = mu, sd = 2, r = .5,\r\n    empirical = TRUE, plot = TRUE, long = TRUE\r\n  )\r\n```\r\n\r\n![](https://i.imgur.com/zZqlTiN.png)\r\n\r\n    #>       id   condition       time           y\r\n    #> 1   S001     control  Pre-essay -0.18554106\r\n    #> 2   S002     control  Pre-essay -1.87015863\r\n    #> 3   S003     control  Pre-essay  0.19677342\r\n    #> 4   S004     control  Pre-essay  4.07589133\r\n    #> 5   S005     control  Pre-essay  5.74128755\r\n    #> 6   S006     control  Pre-essay  5.79778916\r\n    #> 7   S007     control  Pre-essay  1.58982779\r\n    #> 8   S008     control  Pre-essay  1.43344853\r\n    #> 9   S009     control  Pre-essay  3.38619244\r\n    #> 10  S010     control  Pre-essay -1.28444362\r\n    #> 11  S011     control  Pre-essay  2.56273551\r\n    #> 12  S012     control  Pre-essay  3.38487511\r\n    #> 13  S013     control  Pre-essay  1.87562419\r\n    #> 14  S014     control  Pre-essay  4.19762947\r\n    #> 15  S015     control  Pre-essay  4.05045661\r\n    #> 16  S016     control  Pre-essay  1.45499505\r\n    #> 17  S017     control  Pre-essay  1.29413129\r\n    #> 18  S018     control  Pre-essay  0.09724483\r\n    #> 19  S019     control  Pre-essay  2.85129656\r\n    #> 20  S020     control  Pre-essay  0.32905885\r\n    #> 21  S021     control  Pre-essay  1.00587729\r\n    #> 22  S022     control  Pre-essay  1.75337582\r\n    #> 23  S023     control  Pre-essay -1.59045088\r\n    #> 24  S024     control  Pre-essay  4.00765080\r\n    #> 25  S025     control  Pre-essay  1.48302774\r\n    #> 26  S026     control  Pre-essay -1.67301192\r\n    #> 27  S027     control  Pre-essay  5.33564776\r\n    #> 28  S028     control  Pre-essay  1.60647615\r\n    #> 29  S029     control  Pre-essay  7.33729212\r\n    #> 30  S030     control  Pre-essay  0.89529819\r\n    #> 31  S031     control  Pre-essay  2.15065101\r\n    #> 32  S032     control  Pre-essay  0.19383148\r\n    #> 33  S033     control  Pre-essay  1.75996029\r\n    #> 34  S034     control  Pre-essay  1.72501521\r\n    #> 35  S035     control  Pre-essay  1.36633353\r\n    #> 36  S036     control  Pre-essay  2.66978214\r\n    #> 37  S037     control  Pre-essay  0.16232454\r\n    #> 38  S038     control  Pre-essay  1.77601725\r\n    #> 39  S039     control  Pre-essay  1.66402212\r\n    #> 40  S040     control  Pre-essay  5.52911789\r\n    #> 41  S041     control  Pre-essay  5.10612242\r\n    #> 42  S042     control  Pre-essay  2.15671927\r\n    #> 43  S043     control  Pre-essay -0.63322967\r\n    #> 44  S044     control  Pre-essay  2.70375822\r\n    #> 45  S045     control  Pre-essay  1.89381442\r\n    #> 46  S046     control  Pre-essay  2.48498089\r\n    #> 47  S047     control  Pre-essay  2.36078312\r\n    #> 48  S048     control  Pre-essay  1.00249138\r\n    #> 49  S049     control  Pre-essay  4.19761958\r\n    #> 50  S050     control  Pre-essay  1.15950412\r\n    #> 51  S051     control  Pre-essay  1.74426607\r\n    #> 52  S052     control  Pre-essay -0.43610463\r\n    #> 53  S053     control  Pre-essay  3.34348512\r\n    #> 54  S054     control  Pre-essay  4.37635279\r\n    #> 55  S055     control  Pre-essay -0.36770323\r\n    #> 56  S056     control  Pre-essay -0.32036853\r\n    #> 57  S057     control  Pre-essay  1.73507695\r\n    #> 58  S058     control  Pre-essay  3.88550654\r\n    #> 59  S059     control  Pre-essay  0.23181823\r\n    #> 60  S060     control  Pre-essay  3.20172375\r\n    #> 61  S061     control  Pre-essay  3.71082429\r\n    #> 62  S062     control  Pre-essay  1.16907696\r\n    #> 63  S063     control  Pre-essay  2.29306657\r\n    #> 64  S064     control  Pre-essay -0.35674643\r\n    #> 65  S065     control  Pre-essay  0.47311426\r\n    #> 66  S066     control  Pre-essay  2.24687304\r\n    #> 67  S067     control  Pre-essay -0.61675741\r\n    #> 68  S068     control  Pre-essay  2.46330618\r\n    #> 69  S069     control  Pre-essay  5.36320071\r\n    #> 70  S070     control  Pre-essay  0.43596659\r\n    #> 71  S071     control  Pre-essay  4.33186088\r\n    #> 72  S072     control  Pre-essay  0.54011041\r\n    #> 73  S073     control  Pre-essay  1.65673130\r\n    #> 74  S074     control  Pre-essay  1.00497781\r\n    #> 75  S075     control  Pre-essay  3.49454251\r\n    #> 76  S076     control  Pre-essay  3.97098992\r\n    #> 77  S077     control  Pre-essay  3.20720844\r\n    #> 78  S078     control  Pre-essay  0.55555765\r\n    #> 79  S079     control  Pre-essay  4.06495956\r\n    #> 80  S080     control  Pre-essay  2.51060071\r\n    #> 81  S081     control  Pre-essay  0.40854122\r\n    #> 82  S082     control  Pre-essay  0.81487974\r\n    #> 83  S083     control  Pre-essay  2.24281235\r\n    #> 84  S084     control  Pre-essay -0.22096082\r\n    #> 85  S085     control  Pre-essay  1.77875972\r\n    #> 86  S086     control  Pre-essay  1.12357190\r\n    #> 87  S087     control  Pre-essay -0.96428187\r\n    #> 88  S088     control  Pre-essay  2.52722389\r\n    #> 89  S089     control  Pre-essay  1.73407572\r\n    #> 90  S090     control  Pre-essay  1.95351541\r\n    #> 91  S091     control  Pre-essay  8.44503378\r\n    #> 92  S092     control  Pre-essay  1.48600013\r\n    #> 93  S093     control  Pre-essay  2.01086687\r\n    #> 94  S094     control  Pre-essay  1.99998419\r\n    #> 95  S095     control  Pre-essay -2.12193798\r\n    #> 96  S096     control  Pre-essay  2.64871039\r\n    #> 97  S097     control  Pre-essay  5.54945676\r\n    #> 98  S098     control  Pre-essay -0.17196380\r\n    #> 99  S099     control  Pre-essay  4.70016438\r\n    #> 100 S100     control  Pre-essay  1.57211432\r\n    #> 101 S101  low_choice  Pre-essay -0.55064899\r\n    #> 102 S102  low_choice  Pre-essay -0.70201957\r\n    #> 103 S103  low_choice  Pre-essay -1.10513752\r\n    #> 104 S104  low_choice  Pre-essay  2.02142725\r\n    #> 105 S105  low_choice  Pre-essay  2.88409133\r\n    #> 106 S106  low_choice  Pre-essay  4.31104930\r\n    #> 107 S107  low_choice  Pre-essay  1.93032538\r\n    #> 108 S108  low_choice  Pre-essay  0.92612541\r\n    #> 109 S109  low_choice  Pre-essay  3.27200256\r\n    #> 110 S110  low_choice  Pre-essay  1.90504876\r\n    #> 111 S111  low_choice  Pre-essay  2.50399141\r\n    #> 112 S112  low_choice  Pre-essay  2.68542887\r\n    #> 113 S113  low_choice  Pre-essay  4.46291566\r\n    #> 114 S114  low_choice  Pre-essay -2.45086777\r\n    #> 115 S115  low_choice  Pre-essay  2.58949425\r\n    #> 116 S116  low_choice  Pre-essay  4.82052462\r\n    #> 117 S117  low_choice  Pre-essay  4.31335551\r\n    #> 118 S118  low_choice  Pre-essay  2.84556116\r\n    #> 119 S119  low_choice  Pre-essay  2.01472526\r\n    #> 120 S120  low_choice  Pre-essay  2.15493085\r\n    #> 121 S121  low_choice  Pre-essay  3.20441598\r\n    #> 122 S122  low_choice  Pre-essay -1.71570682\r\n    #> 123 S123  low_choice  Pre-essay -1.60467012\r\n    #> 124 S124  low_choice  Pre-essay  4.86626806\r\n    #> 125 S125  low_choice  Pre-essay  2.55256400\r\n    #> 126 S126  low_choice  Pre-essay  1.99451922\r\n    #> 127 S127  low_choice  Pre-essay  5.41962296\r\n    #> 128 S128  low_choice  Pre-essay  3.34318674\r\n    #> 129 S129  low_choice  Pre-essay  1.74882490\r\n    #> 130 S130  low_choice  Pre-essay -2.04587798\r\n    #> 131 S131  low_choice  Pre-essay  6.80696873\r\n    #> 132 S132  low_choice  Pre-essay  1.73562450\r\n    #> 133 S133  low_choice  Pre-essay -1.08476684\r\n    #> 134 S134  low_choice  Pre-essay  0.99508051\r\n    #> 135 S135  low_choice  Pre-essay  3.91682723\r\n    #> 136 S136  low_choice  Pre-essay  0.56645850\r\n    #> 137 S137  low_choice  Pre-essay  2.38643881\r\n    #> 138 S138  low_choice  Pre-essay  0.32150774\r\n    #> 139 S139  low_choice  Pre-essay  1.95798302\r\n    #> 140 S140  low_choice  Pre-essay  2.06958438\r\n    #> 141 S141  low_choice  Pre-essay  4.42259442\r\n    #> 142 S142  low_choice  Pre-essay  1.45824864\r\n    #> 143 S143  low_choice  Pre-essay  2.67970322\r\n    #> 144 S144  low_choice  Pre-essay  5.01473067\r\n    #> 145 S145  low_choice  Pre-essay  2.62274569\r\n    #> 146 S146  low_choice  Pre-essay  2.45346380\r\n    #> 147 S147  low_choice  Pre-essay  3.34867700\r\n    #> 148 S148  low_choice  Pre-essay  0.71544874\r\n    #> 149 S149  low_choice  Pre-essay -1.40502321\r\n    #> 150 S150  low_choice  Pre-essay  2.35245753\r\n    #> 151 S151  low_choice  Pre-essay  1.26411171\r\n    #> 152 S152  low_choice  Pre-essay  1.66910000\r\n    #> 153 S153  low_choice  Pre-essay  4.91114281\r\n    #> 154 S154  low_choice  Pre-essay  2.95238448\r\n    #> 155 S155  low_choice  Pre-essay  1.99371064\r\n    #> 156 S156  low_choice  Pre-essay -0.46320237\r\n    #> 157 S157  low_choice  Pre-essay -1.07378438\r\n    #> 158 S158  low_choice  Pre-essay  0.22609240\r\n    #> 159 S159  low_choice  Pre-essay  4.89442471\r\n    #> 160 S160  low_choice  Pre-essay  1.22892068\r\n    #> 161 S161  low_choice  Pre-essay  3.00579778\r\n    #> 162 S162  low_choice  Pre-essay  1.07158589\r\n    #> 163 S163  low_choice  Pre-essay  2.03669990\r\n    #> 164 S164  low_choice  Pre-essay  0.71048741\r\n    #> 165 S165  low_choice  Pre-essay  4.55723341\r\n    #> 166 S166  low_choice  Pre-essay  4.74119136\r\n    #> 167 S167  low_choice  Pre-essay  4.63459235\r\n    #> 168 S168  low_choice  Pre-essay  3.32896010\r\n    #> 169 S169  low_choice  Pre-essay  3.11240623\r\n    #> 170 S170  low_choice  Pre-essay -0.81673559\r\n    #> 171 S171  low_choice  Pre-essay -0.79816680\r\n    #> 172 S172  low_choice  Pre-essay  0.63298064\r\n    #> 173 S173  low_choice  Pre-essay  3.29920569\r\n    #> 174 S174  low_choice  Pre-essay  2.13457583\r\n    #> 175 S175  low_choice  Pre-essay  1.33419841\r\n    #> 176 S176  low_choice  Pre-essay  3.45222681\r\n    #> 177 S177  low_choice  Pre-essay  2.25902827\r\n    #> 178 S178  low_choice  Pre-essay  1.03826229\r\n    #> 179 S179  low_choice  Pre-essay  1.94977081\r\n    #> 180 S180  low_choice  Pre-essay  3.97253502\r\n    #> 181 S181  low_choice  Pre-essay  1.51831458\r\n    #> 182 S182  low_choice  Pre-essay  0.82936812\r\n    #> 183 S183  low_choice  Pre-essay -3.41158680\r\n    #> 184 S184  low_choice  Pre-essay -1.39519068\r\n    #> 185 S185  low_choice  Pre-essay  3.55614834\r\n    #> 186 S186  low_choice  Pre-essay  4.09255557\r\n    #> 187 S187  low_choice  Pre-essay  4.18468896\r\n    #> 188 S188  low_choice  Pre-essay  2.35782789\r\n    #> 189 S189  low_choice  Pre-essay  3.08788784\r\n    #> 190 S190  low_choice  Pre-essay  1.79702828\r\n    #> 191 S191  low_choice  Pre-essay  1.66271421\r\n    #> 192 S192  low_choice  Pre-essay -0.41728894\r\n    #> 193 S193  low_choice  Pre-essay  1.77949711\r\n    #> 194 S194  low_choice  Pre-essay  0.95272923\r\n    #> 195 S195  low_choice  Pre-essay  2.37160604\r\n    #> 196 S196  low_choice  Pre-essay  3.98744327\r\n    #> 197 S197  low_choice  Pre-essay  5.28436703\r\n    #> 198 S198  low_choice  Pre-essay  2.83778088\r\n    #> 199 S199  low_choice  Pre-essay  1.08160407\r\n    #> 200 S200  low_choice  Pre-essay -1.34745524\r\n    #> 201 S201 high_choice  Pre-essay  1.84133407\r\n    #> 202 S202 high_choice  Pre-essay -0.77736976\r\n    #> 203 S203 high_choice  Pre-essay -0.21868842\r\n    #> 204 S204 high_choice  Pre-essay  3.46948395\r\n    #> 205 S205 high_choice  Pre-essay -0.41052046\r\n    #> 206 S206 high_choice  Pre-essay  0.90709745\r\n    #> 207 S207 high_choice  Pre-essay  2.86834310\r\n    #> 208 S208 high_choice  Pre-essay -1.49115423\r\n    #> 209 S209 high_choice  Pre-essay -2.39821561\r\n    #> 210 S210 high_choice  Pre-essay -0.01045565\r\n    #> 211 S211 high_choice  Pre-essay  3.62688988\r\n    #> 212 S212 high_choice  Pre-essay  2.59441767\r\n    #> 213 S213 high_choice  Pre-essay  2.07826316\r\n    #> 214 S214 high_choice  Pre-essay  4.22487411\r\n    #> 215 S215 high_choice  Pre-essay  3.61845510\r\n    #> 216 S216 high_choice  Pre-essay  0.30902301\r\n    #> 217 S217 high_choice  Pre-essay -1.38438220\r\n    #> 218 S218 high_choice  Pre-essay  2.25445581\r\n    #> 219 S219 high_choice  Pre-essay  3.66552493\r\n    #> 220 S220 high_choice  Pre-essay  1.96818729\r\n    #> 221 S221 high_choice  Pre-essay  3.07402782\r\n    #> 222 S222 high_choice  Pre-essay -1.13017554\r\n    #> 223 S223 high_choice  Pre-essay  2.88622430\r\n    #> 224 S224 high_choice  Pre-essay  2.83006256\r\n    #> 225 S225 high_choice  Pre-essay  1.42083790\r\n    #> 226 S226 high_choice  Pre-essay  1.27348497\r\n    #> 227 S227 high_choice  Pre-essay  1.71393381\r\n    #> 228 S228 high_choice  Pre-essay  0.78809659\r\n    #> 229 S229 high_choice  Pre-essay  2.14900727\r\n    #> 230 S230 high_choice  Pre-essay  4.39270908\r\n    #> 231 S231 high_choice  Pre-essay  2.60029600\r\n    #> 232 S232 high_choice  Pre-essay -0.41348314\r\n    #> 233 S233 high_choice  Pre-essay -0.48206206\r\n    #> 234 S234 high_choice  Pre-essay  1.41589926\r\n    #> 235 S235 high_choice  Pre-essay  4.01100931\r\n    #> 236 S236 high_choice  Pre-essay  0.67093381\r\n    #> 237 S237 high_choice  Pre-essay -0.29201793\r\n    #> 238 S238 high_choice  Pre-essay  1.27346381\r\n    #> 239 S239 high_choice  Pre-essay  2.59620471\r\n    #> 240 S240 high_choice  Pre-essay  4.43605920\r\n    #> 241 S241 high_choice  Pre-essay  4.11563404\r\n    #> 242 S242 high_choice  Pre-essay -0.81884442\r\n    #> 243 S243 high_choice  Pre-essay  2.06917280\r\n    #> 244 S244 high_choice  Pre-essay  2.78555426\r\n    #> 245 S245 high_choice  Pre-essay  0.84768657\r\n    #> 246 S246 high_choice  Pre-essay  3.27417077\r\n    #> 247 S247 high_choice  Pre-essay  1.25610872\r\n    #> 248 S248 high_choice  Pre-essay  0.50767633\r\n    #> 249 S249 high_choice  Pre-essay  1.69168706\r\n    #> 250 S250 high_choice  Pre-essay  3.97247761\r\n    #> 251 S251 high_choice  Pre-essay  2.17424646\r\n    #> 252 S252 high_choice  Pre-essay  3.57922187\r\n    #> 253 S253 high_choice  Pre-essay  4.63341174\r\n    #> 254 S254 high_choice  Pre-essay  2.64564607\r\n    #> 255 S255 high_choice  Pre-essay  3.63050825\r\n    #> 256 S256 high_choice  Pre-essay  4.37778264\r\n    #> 257 S257 high_choice  Pre-essay  1.07647729\r\n    #> 258 S258 high_choice  Pre-essay  4.87108055\r\n    #> 259 S259 high_choice  Pre-essay  4.71514742\r\n    #> 260 S260 high_choice  Pre-essay  0.13863160\r\n    #> 261 S261 high_choice  Pre-essay  2.93326993\r\n    #> 262 S262 high_choice  Pre-essay  2.80893728\r\n    #> 263 S263 high_choice  Pre-essay  5.70880927\r\n    #> 264 S264 high_choice  Pre-essay  3.97309377\r\n    #> 265 S265 high_choice  Pre-essay  2.45326891\r\n    #> 266 S266 high_choice  Pre-essay  2.90752179\r\n    #> 267 S267 high_choice  Pre-essay  1.11708146\r\n    #> 268 S268 high_choice  Pre-essay  4.54649863\r\n    #> 269 S269 high_choice  Pre-essay  2.43043150\r\n    #> 270 S270 high_choice  Pre-essay  3.07030790\r\n    #> 271 S271 high_choice  Pre-essay -1.99473595\r\n    #> 272 S272 high_choice  Pre-essay  5.29514107\r\n    #> 273 S273 high_choice  Pre-essay  1.84000882\r\n    #> 274 S274 high_choice  Pre-essay -2.98100647\r\n    #> 275 S275 high_choice  Pre-essay  0.82062264\r\n    #> 276 S276 high_choice  Pre-essay  2.17180412\r\n    #> 277 S277 high_choice  Pre-essay -0.83849905\r\n    #> 278 S278 high_choice  Pre-essay  2.15446572\r\n    #> 279 S279 high_choice  Pre-essay  2.18767752\r\n    #> 280 S280 high_choice  Pre-essay -1.76493510\r\n    #> 281 S281 high_choice  Pre-essay  1.35904339\r\n    #> 282 S282 high_choice  Pre-essay  2.91305535\r\n    #> 283 S283 high_choice  Pre-essay  1.50571200\r\n    #> 284 S284 high_choice  Pre-essay  2.07564245\r\n    #> 285 S285 high_choice  Pre-essay  4.35914429\r\n    #> 286 S286 high_choice  Pre-essay -1.93599168\r\n    #> 287 S287 high_choice  Pre-essay  2.32098323\r\n    #> 288 S288 high_choice  Pre-essay  7.15632695\r\n    #> 289 S289 high_choice  Pre-essay  3.29365379\r\n    #> 290 S290 high_choice  Pre-essay  1.58655546\r\n    #> 291 S291 high_choice  Pre-essay  5.57801262\r\n    #> 292 S292 high_choice  Pre-essay  2.89422104\r\n    #> 293 S293 high_choice  Pre-essay  3.77323325\r\n    #> 294 S294 high_choice  Pre-essay  3.45930649\r\n    #> 295 S295 high_choice  Pre-essay  3.21552417\r\n    #> 296 S296 high_choice  Pre-essay -1.37579563\r\n    #> 297 S297 high_choice  Pre-essay  0.77519350\r\n    #> 298 S298 high_choice  Pre-essay  0.22817949\r\n    #> 299 S299 high_choice  Pre-essay  4.02057368\r\n    #> 300 S300 high_choice  Pre-essay  0.46410984\r\n    #> 301 S001     control Post-essay  1.91632259\r\n    #> 302 S002     control Post-essay  0.22774085\r\n    #> 303 S003     control Post-essay -0.37890533\r\n    #> 304 S004     control Post-essay -0.41389585\r\n    #> 305 S005     control Post-essay  0.78081265\r\n    #> 306 S006     control Post-essay  5.61115614\r\n    #> 307 S007     control Post-essay  5.49429262\r\n    #> 308 S008     control Post-essay  1.65298080\r\n    #> 309 S009     control Post-essay  1.93432512\r\n    #> 310 S010     control Post-essay  0.39359751\r\n    #> 311 S011     control Post-essay  3.08104802\r\n    #> 312 S012     control Post-essay  0.72143983\r\n    #> 313 S013     control Post-essay  2.77130660\r\n    #> 314 S014     control Post-essay  0.83204090\r\n    #> 315 S015     control Post-essay  2.65412615\r\n    #> 316 S016     control Post-essay  1.31130208\r\n    #> 317 S017     control Post-essay  0.12472405\r\n    #> 318 S018     control Post-essay -1.56269011\r\n    #> 319 S019     control Post-essay  2.15225663\r\n    #> 320 S020     control Post-essay  2.95270828\r\n    #> 321 S021     control Post-essay  0.78682421\r\n    #> 322 S022     control Post-essay -1.07013490\r\n    #> 323 S023     control Post-essay  1.97596478\r\n    #> 324 S024     control Post-essay  3.77030437\r\n    #> 325 S025     control Post-essay  0.14984734\r\n    #> 326 S026     control Post-essay  0.94753854\r\n    #> 327 S027     control Post-essay  3.22414211\r\n    #> 328 S028     control Post-essay  4.31338129\r\n    #> 329 S029     control Post-essay  8.64005447\r\n    #> 330 S030     control Post-essay -0.78565992\r\n    #> 331 S031     control Post-essay  1.55703298\r\n    #> 332 S032     control Post-essay  0.45428231\r\n    #> 333 S033     control Post-essay -0.59551274\r\n    #> 334 S034     control Post-essay  3.84567719\r\n    #> 335 S035     control Post-essay  1.83122648\r\n    #> 336 S036     control Post-essay  2.26801066\r\n    #> 337 S037     control Post-essay  0.44108294\r\n    #> 338 S038     control Post-essay  4.28607252\r\n    #> 339 S039     control Post-essay  1.18838792\r\n    #> 340 S040     control Post-essay  2.67785901\r\n    #> 341 S041     control Post-essay  3.86246306\r\n    #> 342 S042     control Post-essay  2.73275902\r\n    #> 343 S043     control Post-essay  0.21701984\r\n    #> 344 S044     control Post-essay  3.53000781\r\n    #> 345 S045     control Post-essay  4.49315785\r\n    #> 346 S046     control Post-essay -1.85160842\r\n    #> 347 S047     control Post-essay  1.62590529\r\n    #> 348 S048     control Post-essay  3.31877570\r\n    #> 349 S049     control Post-essay  3.56452622\r\n    #> 350 S050     control Post-essay  2.48189890\r\n    #> 351 S051     control Post-essay -0.74919658\r\n    #> 352 S052     control Post-essay  1.82096263\r\n    #> 353 S053     control Post-essay  3.54216167\r\n    #> 354 S054     control Post-essay  4.21904957\r\n    #> 355 S055     control Post-essay  0.81403285\r\n    #> 356 S056     control Post-essay -1.91347407\r\n    #> 357 S057     control Post-essay  3.06823028\r\n    #> 358 S058     control Post-essay  3.68317024\r\n    #> 359 S059     control Post-essay  0.77340408\r\n    #> 360 S060     control Post-essay  2.06902378\r\n    #> 361 S061     control Post-essay  5.21071766\r\n    #> 362 S062     control Post-essay  2.65155269\r\n    #> 363 S063     control Post-essay  0.76888894\r\n    #> 364 S064     control Post-essay  1.42714671\r\n    #> 365 S065     control Post-essay  1.44081971\r\n    #> 366 S066     control Post-essay  1.98549231\r\n    #> 367 S067     control Post-essay -4.47982829\r\n    #> 368 S068     control Post-essay  1.25925480\r\n    #> 369 S069     control Post-essay  5.86617310\r\n    #> 370 S070     control Post-essay  3.42429207\r\n    #> 371 S071     control Post-essay  2.88159515\r\n    #> 372 S072     control Post-essay  2.18655178\r\n    #> 373 S073     control Post-essay  0.71015416\r\n    #> 374 S074     control Post-essay  1.79069099\r\n    #> 375 S075     control Post-essay  2.80431407\r\n    #> 376 S076     control Post-essay  4.63685758\r\n    #> 377 S077     control Post-essay  4.43533840\r\n    #> 378 S078     control Post-essay  0.62388841\r\n    #> 379 S079     control Post-essay  3.72130248\r\n    #> 380 S080     control Post-essay  1.58612923\r\n    #> 381 S081     control Post-essay  1.01257719\r\n    #> 382 S082     control Post-essay  3.03796476\r\n    #> 383 S083     control Post-essay  4.94619277\r\n    #> 384 S084     control Post-essay  1.31796534\r\n    #> 385 S085     control Post-essay  1.62432203\r\n    #> 386 S086     control Post-essay  3.33662071\r\n    #> 387 S087     control Post-essay  4.17866222\r\n    #> 388 S088     control Post-essay -1.04238015\r\n    #> 389 S089     control Post-essay  2.27060551\r\n    #> 390 S090     control Post-essay  1.06836817\r\n    #> 391 S091     control Post-essay  6.87925200\r\n    #> 392 S092     control Post-essay -0.59544784\r\n    #> 393 S093     control Post-essay  0.86943369\r\n    #> 394 S094     control Post-essay  0.60499337\r\n    #> 395 S095     control Post-essay  1.32166692\r\n    #> 396 S096     control Post-essay  2.02614188\r\n    #> 397 S097     control Post-essay  1.78970864\r\n    #> 398 S098     control Post-essay  3.36879322\r\n    #> 399 S099     control Post-essay  2.13859015\r\n    #> 400 S100     control Post-essay  1.44929662\r\n    #> 401 S101  low_choice Post-essay  3.36606799\r\n    #> 402 S102  low_choice Post-essay  0.87873732\r\n    #> 403 S103  low_choice Post-essay -0.35658123\r\n    #> 404 S104  low_choice Post-essay  2.35196233\r\n    #> 405 S105  low_choice Post-essay  3.11284884\r\n    #> 406 S106  low_choice Post-essay  2.07329031\r\n    #> 407 S107  low_choice Post-essay  4.39222828\r\n    #> 408 S108  low_choice Post-essay  3.65540987\r\n    #> 409 S109  low_choice Post-essay  0.81704931\r\n    #> 410 S110  low_choice Post-essay  3.69185238\r\n    #> 411 S111  low_choice Post-essay  1.78577243\r\n    #> 412 S112  low_choice Post-essay  2.59134228\r\n    #> 413 S113  low_choice Post-essay  1.87575660\r\n    #> 414 S114  low_choice Post-essay  0.76446126\r\n    #> 415 S115  low_choice Post-essay  5.03124692\r\n    #> 416 S116  low_choice Post-essay  5.16593943\r\n    #> 417 S117  low_choice Post-essay  1.82559897\r\n    #> 418 S118  low_choice Post-essay  5.70144857\r\n    #> 419 S119  low_choice Post-essay -0.55876217\r\n    #> 420 S120  low_choice Post-essay  2.77761986\r\n    #> 421 S121  low_choice Post-essay  2.35873375\r\n    #> 422 S122  low_choice Post-essay  3.06446681\r\n    #> 423 S123  low_choice Post-essay  0.57275103\r\n    #> 424 S124  low_choice Post-essay  2.20727201\r\n    #> 425 S125  low_choice Post-essay  0.48490705\r\n    #> 426 S126  low_choice Post-essay  1.57671341\r\n    #> 427 S127  low_choice Post-essay  8.23527730\r\n    #> 428 S128  low_choice Post-essay  3.28878630\r\n    #> 429 S129  low_choice Post-essay  1.54598454\r\n    #> 430 S130  low_choice Post-essay -3.42746997\r\n    #> 431 S131  low_choice Post-essay  5.36109425\r\n    #> 432 S132  low_choice Post-essay  3.90329937\r\n    #> 433 S133  low_choice Post-essay  1.93588609\r\n    #> 434 S134  low_choice Post-essay  6.40758449\r\n    #> 435 S135  low_choice Post-essay  3.84083113\r\n    #> 436 S136  low_choice Post-essay  3.66803525\r\n    #> 437 S137  low_choice Post-essay  2.32852570\r\n    #> 438 S138  low_choice Post-essay  0.93681164\r\n    #> 439 S139  low_choice Post-essay  3.57550859\r\n    #> 440 S140  low_choice Post-essay  2.39840180\r\n    #> 441 S141  low_choice Post-essay  3.32397554\r\n    #> 442 S142  low_choice Post-essay  2.70052771\r\n    #> 443 S143  low_choice Post-essay  6.14089786\r\n    #> 444 S144  low_choice Post-essay  5.86830746\r\n    #> 445 S145  low_choice Post-essay  2.72544839\r\n    #> 446 S146  low_choice Post-essay  4.65010817\r\n    #> 447 S147  low_choice Post-essay  1.30140793\r\n    #> 448 S148  low_choice Post-essay  2.86399312\r\n    #> 449 S149  low_choice Post-essay  3.79005250\r\n    #> 450 S150  low_choice Post-essay  3.65913134\r\n    #> 451 S151  low_choice Post-essay  4.81161364\r\n    #> 452 S152  low_choice Post-essay  3.30469145\r\n    #> 453 S153  low_choice Post-essay  2.99993223\r\n    #> 454 S154  low_choice Post-essay  4.29050524\r\n    #> 455 S155  low_choice Post-essay  4.17608648\r\n    #> 456 S156  low_choice Post-essay  1.03088582\r\n    #> 457 S157  low_choice Post-essay  0.02638581\r\n    #> 458 S158  low_choice Post-essay  3.88999886\r\n    #> 459 S159  low_choice Post-essay  5.28019895\r\n    #> 460 S160  low_choice Post-essay  2.70090263\r\n    #> 461 S161  low_choice Post-essay  4.30062963\r\n    #> 462 S162  low_choice Post-essay  3.69030187\r\n    #> 463 S163  low_choice Post-essay  3.11115446\r\n    #> 464 S164  low_choice Post-essay -0.59163050\r\n    #> 465 S165  low_choice Post-essay  2.53524999\r\n    #> 466 S166  low_choice Post-essay  6.53213116\r\n    #> 467 S167  low_choice Post-essay  3.37427714\r\n    #> 468 S168  low_choice Post-essay  4.60390449\r\n    #> 469 S169  low_choice Post-essay  3.36880636\r\n    #> 470 S170  low_choice Post-essay  1.05631077\r\n    #> 471 S171  low_choice Post-essay  2.14899183\r\n    #> 472 S172  low_choice Post-essay -0.82852005\r\n    #> 473 S173  low_choice Post-essay  2.46803243\r\n    #> 474 S174  low_choice Post-essay  4.85169786\r\n    #> 475 S175  low_choice Post-essay  3.71758218\r\n    #> 476 S176  low_choice Post-essay  5.54910900\r\n    #> 477 S177  low_choice Post-essay  2.01469341\r\n    #> 478 S178  low_choice Post-essay  0.83274818\r\n    #> 479 S179  low_choice Post-essay  3.61765539\r\n    #> 480 S180  low_choice Post-essay  5.63121940\r\n    #> 481 S181  low_choice Post-essay  6.57866861\r\n    #> 482 S182  low_choice Post-essay  0.32317686\r\n    #> 483 S183  low_choice Post-essay  1.69253662\r\n    #> 484 S184  low_choice Post-essay  0.04348191\r\n    #> 485 S185  low_choice Post-essay  1.90883625\r\n    #> 486 S186  low_choice Post-essay  8.50410539\r\n    #> 487 S187  low_choice Post-essay  3.64453469\r\n    #> 488 S188  low_choice Post-essay  3.51683814\r\n    #> 489 S189  low_choice Post-essay  5.71678414\r\n    #> 490 S190  low_choice Post-essay  2.64025647\r\n    #> 491 S191  low_choice Post-essay  4.11427970\r\n    #> 492 S192  low_choice Post-essay  5.69729033\r\n    #> 493 S193  low_choice Post-essay  1.48461454\r\n    #> 494 S194  low_choice Post-essay  2.22149345\r\n    #> 495 S195  low_choice Post-essay  2.29515166\r\n    #> 496 S196  low_choice Post-essay  3.11571493\r\n    #> 497 S197  low_choice Post-essay  4.98537266\r\n    #> 498 S198  low_choice Post-essay  2.59765237\r\n    #> 499 S199  low_choice Post-essay  2.52151958\r\n    #> 500 S200  low_choice Post-essay -0.32839452\r\n    #> 501 S201 high_choice Post-essay  7.55725556\r\n    #> 502 S202 high_choice Post-essay -1.21609335\r\n    #> 503 S203 high_choice Post-essay  4.21960735\r\n    #> 504 S204 high_choice Post-essay  5.87069971\r\n    #> 505 S205 high_choice Post-essay  5.73071689\r\n    #> 506 S206 high_choice Post-essay  2.93026115\r\n    #> 507 S207 high_choice Post-essay  4.39449214\r\n    #> 508 S208 high_choice Post-essay  4.47898980\r\n    #> 509 S209 high_choice Post-essay  1.98150703\r\n    #> 510 S210 high_choice Post-essay  4.10150522\r\n    #> 511 S211 high_choice Post-essay  6.98962957\r\n    #> 512 S212 high_choice Post-essay  5.58012711\r\n    #> 513 S213 high_choice Post-essay  6.21027289\r\n    #> 514 S214 high_choice Post-essay  6.29347477\r\n    #> 515 S215 high_choice Post-essay  7.09503753\r\n    #> 516 S216 high_choice Post-essay  4.59980243\r\n    #> 517 S217 high_choice Post-essay  4.69187973\r\n    #> 518 S218 high_choice Post-essay  5.79202943\r\n    #> 519 S219 high_choice Post-essay  5.43289789\r\n    #> 520 S220 high_choice Post-essay  6.33430368\r\n    #> 521 S221 high_choice Post-essay  5.91900817\r\n    #> 522 S222 high_choice Post-essay  6.25898016\r\n    #> 523 S223 high_choice Post-essay  9.06904610\r\n    #> 524 S224 high_choice Post-essay  8.19341125\r\n    #> 525 S225 high_choice Post-essay  5.03940386\r\n    #> 526 S226 high_choice Post-essay  4.87082660\r\n    #> 527 S227 high_choice Post-essay  5.47143344\r\n    #> 528 S228 high_choice Post-essay  3.80712599\r\n    #> 529 S229 high_choice Post-essay  6.46214056\r\n    #> 530 S230 high_choice Post-essay  8.11808692\r\n    #> 531 S231 high_choice Post-essay  2.32987590\r\n    #> 532 S232 high_choice Post-essay  2.01655784\r\n    #> 533 S233 high_choice Post-essay  5.56220621\r\n    #> 534 S234 high_choice Post-essay  6.75226739\r\n    #> 535 S235 high_choice Post-essay  3.63854170\r\n    #> 536 S236 high_choice Post-essay  9.16412348\r\n    #> 537 S237 high_choice Post-essay  2.05604892\r\n    #> 538 S238 high_choice Post-essay  5.31205507\r\n    #> 539 S239 high_choice Post-essay  5.48217571\r\n    #> 540 S240 high_choice Post-essay  8.32751501\r\n    #> 541 S241 high_choice Post-essay  6.79823986\r\n    #> 542 S242 high_choice Post-essay  3.83264456\r\n    #> 543 S243 high_choice Post-essay  5.80142665\r\n    #> 544 S244 high_choice Post-essay  5.13287656\r\n    #> 545 S245 high_choice Post-essay  5.40544115\r\n    #> 546 S246 high_choice Post-essay  4.38460910\r\n    #> 547 S247 high_choice Post-essay  5.12984807\r\n    #> 548 S248 high_choice Post-essay  2.55903726\r\n    #> 549 S249 high_choice Post-essay  2.83144547\r\n    #> 550 S250 high_choice Post-essay  4.84936033\r\n    #> 551 S251 high_choice Post-essay  8.26630727\r\n    #> 552 S252 high_choice Post-essay  5.71609891\r\n    #> 553 S253 high_choice Post-essay  3.90876618\r\n    #> 554 S254 high_choice Post-essay  4.41805420\r\n    #> 555 S255 high_choice Post-essay  7.21668815\r\n    #> 556 S256 high_choice Post-essay  8.46273620\r\n    #> 557 S257 high_choice Post-essay  1.99511092\r\n    #> 558 S258 high_choice Post-essay  6.75551781\r\n    #> 559 S259 high_choice Post-essay  6.52142530\r\n    #> 560 S260 high_choice Post-essay  2.64491548\r\n    #> 561 S261 high_choice Post-essay  3.04768552\r\n    #> 562 S262 high_choice Post-essay  6.81619604\r\n    #> 563 S263 high_choice Post-essay  8.38772994\r\n    #> 564 S264 high_choice Post-essay  8.23957659\r\n    #> 565 S265 high_choice Post-essay  3.47205690\r\n    #> 566 S266 high_choice Post-essay  4.67971615\r\n    #> 567 S267 high_choice Post-essay  4.95224147\r\n    #> 568 S268 high_choice Post-essay  6.97637474\r\n    #> 569 S269 high_choice Post-essay  3.15758035\r\n    #> 570 S270 high_choice Post-essay  5.05631194\r\n    #> 571 S271 high_choice Post-essay  6.85942970\r\n    #> 572 S272 high_choice Post-essay  5.28554805\r\n    #> 573 S273 high_choice Post-essay  5.31673685\r\n    #> 574 S274 high_choice Post-essay  2.58594108\r\n    #> 575 S275 high_choice Post-essay  1.53059626\r\n    #> 576 S276 high_choice Post-essay  3.99717177\r\n    #> 577 S277 high_choice Post-essay  6.04878487\r\n    #> 578 S278 high_choice Post-essay  2.79173608\r\n    #> 579 S279 high_choice Post-essay  6.46304440\r\n    #> 580 S280 high_choice Post-essay  1.07111954\r\n    #> 581 S281 high_choice Post-essay  5.23240926\r\n    #> 582 S282 high_choice Post-essay  3.40901683\r\n    #> 583 S283 high_choice Post-essay  4.57186515\r\n    #> 584 S284 high_choice Post-essay  6.31797606\r\n    #> 585 S285 high_choice Post-essay  6.59030221\r\n    #> 586 S286 high_choice Post-essay  1.69023451\r\n    #> 587 S287 high_choice Post-essay  4.11434244\r\n    #> 588 S288 high_choice Post-essay  5.32814750\r\n    #> 589 S289 high_choice Post-essay  3.69916500\r\n    #> 590 S290 high_choice Post-essay  5.13551882\r\n    #> 591 S291 high_choice Post-essay  8.03757598\r\n    #> 592 S292 high_choice Post-essay  4.64677341\r\n    #> 593 S293 high_choice Post-essay  6.97764615\r\n    #> 594 S294 high_choice Post-essay  3.53544719\r\n    #> 595 S295 high_choice Post-essay  4.94889300\r\n    #> 596 S296 high_choice Post-essay  2.61450171\r\n    #> 597 S297 high_choice Post-essay  1.82167714\r\n    #> 598 S298 high_choice Post-essay  2.57125229\r\n    #> 599 S299 high_choice Post-essay  4.48633915\r\n    #> 600 S300 high_choice Post-essay  1.98556171\r\n\r\n<sup>Created on 2021-02-24 by the [reprex package](https://reprex.tidyverse.org) (v1.0.0)</sup>\r\n\r\n<details style=\"margin-bottom:10px;\">\r\n<summary>\r\nSession info\r\n</summary>\r\n\r\n``` r\r\nsessioninfo::session_info()\r\n#> ─ Session info ───────────────────────────────────────────────────────────────\r\n#>  setting  value                       \r\n#>  version  R version 4.0.2 (2020-06-22)\r\n#>  os       macOS Mojave 10.14.6        \r\n#>  system   x86_64, darwin17.0          \r\n#>  ui       X11                         \r\n#>  language (EN)                        \r\n#>  collate  en_AU.UTF-8                 \r\n#>  ctype    en_AU.UTF-8                 \r\n#>  tz       Australia/Sydney            \r\n#>  date     2021-02-24                  \r\n#> \r\n#> ─ Packages ───────────────────────────────────────────────────────────────────\r\n#>  package      * version date       lib source                            \r\n#>  assertthat     0.2.1   2019-03-21 [1] CRAN (R 4.0.0)                    \r\n#>  backports      1.2.1   2020-12-09 [1] CRAN (R 4.0.2)                    \r\n#>  cli            2.3.1   2021-02-23 [1] CRAN (R 4.0.2)                    \r\n#>  colorspace     2.0-0   2020-11-11 [1] CRAN (R 4.0.2)                    \r\n#>  crayon         1.4.1   2021-02-08 [1] CRAN (R 4.0.2)                    \r\n#>  curl           4.3     2019-12-02 [1] CRAN (R 4.0.0)                    \r\n#>  DBI            1.1.1   2021-01-15 [1] CRAN (R 4.0.2)                    \r\n#>  debugme        1.1.0   2017-10-22 [1] CRAN (R 4.0.2)                    \r\n#>  digest         0.6.27  2020-10-24 [1] CRAN (R 4.0.2)                    \r\n#>  dplyr          1.0.4   2021-02-02 [1] CRAN (R 4.0.2)                    \r\n#>  ellipsis       0.3.1   2020-05-15 [1] CRAN (R 4.0.0)                    \r\n#>  evaluate       0.14    2019-05-28 [1] CRAN (R 4.0.0)                    \r\n#>  fansi          0.4.2   2021-01-15 [1] CRAN (R 4.0.2)                    \r\n#>  farver         2.0.3   2020-01-16 [1] CRAN (R 4.0.0)                    \r\n#>  faux         * 0.0.1.7 2021-02-24 [1] Github (debruine/faux@9df7196)    \r\n#>  fs             1.5.0   2020-07-31 [1] CRAN (R 4.0.2)                    \r\n#>  generics       0.1.0   2020-10-31 [1] CRAN (R 4.0.2)                    \r\n#>  ggplot2        3.3.3   2020-12-30 [1] CRAN (R 4.0.2)                    \r\n#>  glue           1.4.2   2020-08-27 [1] CRAN (R 4.0.2)                    \r\n#>  gtable         0.3.0   2019-03-25 [1] CRAN (R 4.0.0)                    \r\n#>  highr          0.8     2019-03-20 [1] CRAN (R 4.0.0)                    \r\n#>  htmltools      0.5.1.1 2021-01-22 [1] CRAN (R 4.0.2)                    \r\n#>  httr           1.4.2   2020-07-20 [1] CRAN (R 4.0.2)                    \r\n#>  knitr          1.31    2021-01-27 [1] CRAN (R 4.0.2)                    \r\n#>  labeling       0.4.2   2020-10-20 [1] CRAN (R 4.0.2)                    \r\n#>  lifecycle      1.0.0   2021-02-15 [1] CRAN (R 4.0.2)                    \r\n#>  magrittr       2.0.1   2020-11-17 [1] CRAN (R 4.0.2)                    \r\n#>  mime           0.10    2021-02-13 [1] CRAN (R 4.0.2)                    \r\n#>  munsell        0.5.0   2018-06-12 [1] CRAN (R 4.0.0)                    \r\n#>  pillar         1.5.0   2021-02-22 [1] CRAN (R 4.0.2)                    \r\n#>  pkgconfig      2.0.3   2019-09-22 [1] CRAN (R 4.0.0)                    \r\n#>  purrr          0.3.4   2020-04-17 [1] CRAN (R 4.0.0)                    \r\n#>  R6             2.5.0   2020-10-28 [1] CRAN (R 4.0.2)                    \r\n#>  RColorBrewer   1.1-2   2014-12-07 [1] CRAN (R 4.0.0)                    \r\n#>  reprex         1.0.0   2021-01-27 [1] CRAN (R 4.0.2)                    \r\n#>  rlang          0.4.10  2020-12-30 [1] CRAN (R 4.0.2)                    \r\n#>  rmarkdown      2.7.1   2021-02-24 [1] Github (rstudio/rmarkdown@e455285)\r\n#>  scales         1.1.1   2020-05-11 [1] CRAN (R 4.0.0)                    \r\n#>  sessioninfo    1.1.1   2018-11-05 [1] CRAN (R 4.0.0)                    \r\n#>  stringi        1.5.3   2020-09-09 [1] CRAN (R 4.0.2)                    \r\n#>  stringr        1.4.0   2019-02-10 [1] CRAN (R 4.0.0)                    \r\n#>  styler         1.3.2   2020-02-23 [1] CRAN (R 4.0.0)                    \r\n#>  tibble         3.0.6   2021-01-29 [1] CRAN (R 4.0.2)                    \r\n#>  tidyselect     1.1.0   2020-05-11 [1] CRAN (R 4.0.0)                    \r\n#>  utf8           1.1.4   2018-05-24 [1] CRAN (R 4.0.0)                    \r\n#>  vctrs          0.3.6   2020-12-17 [1] CRAN (R 4.0.2)                    \r\n#>  withr          2.4.1   2021-01-26 [1] CRAN (R 4.0.2)                    \r\n#>  xfun           0.21    2021-02-10 [1] CRAN (R 4.0.2)                    \r\n#>  xml2           1.3.2   2020-04-23 [1] CRAN (R 4.0.0)                    \r\n#>  yaml           2.2.1   2020-02-01 [1] CRAN (R 4.0.0)                    \r\n#> \r\n#> [1] /Library/Frameworks/R.framework/Versions/4.0/Resources/library\r\n```\r\n\r\n</details>",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2021-02-24T04:05:11Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/faux/issues/30#issuecomment-784913770",
+    "issue": "https://github.com/debruine/faux/issues/30",
+    "user": "https://github.com/debruine",
+    "body": "For wide format, you need to set sep to a character that doesn’t appear in the factor labels.\n\n```\nfaux_options(sep = \"~”) # this should work\n```\n\nSince you don’t have more than one between or within factor, this isn’t actually relevant, so I’ll add code to warn you if it is relevant and ignore it if it isn’t, so this should work without changing sep in the future.",
+    "formatter": "email",
+    "reactions": [
+
+    ],
+    "created_at": "2021-02-24T08:50:23Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/pdsbuilder/pull/1#issuecomment-824823754",
+    "pull_request": "https://github.com/debruine/pdsbuilder/pull/1",
+    "user": "https://github.com/jcolomb",
+    "body": "thanks for this, it saved me hours of trying things and inefficient loops...",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2021-04-22T13:05:07Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/pdsbuilder/pull/1#issuecomment-824836771",
+    "pull_request": "https://github.com/debruine/pdsbuilder/pull/1",
+    "user": "https://github.com/jcolomb",
+    "body": "now markdown generated text tested with html and pdf outputs",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2021-04-22T13:21:53Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/pdsbuilder/pull/1#issuecomment-824857563",
+    "pull_request": "https://github.com/debruine/pdsbuilder/pull/1",
+    "user": "https://github.com/jcolomb",
+    "body": "Oh, I just saw this function is also in scienceverse, should I open the PR there ?",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2021-04-22T13:48:06Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/pdsbuilder/issues/2#issuecomment-824858243",
+    "issue": "https://github.com/debruine/pdsbuilder/issues/2",
+    "user": "https://github.com/jcolomb",
+    "body": "just found https://scienceverse.github.io/scienceverse/reference/nested_list.html with a licence :), not completely the same function, tough...",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2021-04-22T13:48:54Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/pdsbuilder/pull/1#issuecomment-824860162",
+    "pull_request": "https://github.com/debruine/pdsbuilder/pull/1",
+    "user": "https://github.com/debruine",
+    "body": "Actually, the main version of this function is at https://github.com/debruine/faux/blob/master/R/nested_list.R now (since faux is on CRAN). Sorry for being messy. I might kill this project soon and scienceverse will use the faux one in the future.",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2021-04-22T13:51:20Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/pdsbuilder/pull/1#issuecomment-824863069",
+    "pull_request": "https://github.com/debruine/pdsbuilder/pull/1",
+    "user": "https://github.com/jcolomb",
+    "body": "The new version is a bit more cryptic to me, not sure I could change it to add the mentioned functionality ...",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2021-04-22T13:54:52Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/faux/issues/75#issuecomment-825558549",
+    "issue": "https://github.com/debruine/faux/issues/75",
+    "user": "https://github.com/debruine",
+    "body": "Hi Julien,\n\nI’m so excited you’ve taken an interest in working on this! I’m busy marking dissertations, but I’ll have a look at your pull request next week and will definitely incorporate that into fun and add you to the contributors list :)\n\nIn the DESCRIPTION file, you’ll see that broom.mixed and ggextra are listed under Suggests, not Imports. I only use them in vignettes or examples, so they’re not required for the package functions to run and aren’t automatically imported. But Check runs the vignettes and examples, so will need them.\n\nCheers,\nLisa\n\n\n> On 23 Apr 2021, at 11:15, Julien Colomb ***@***.***> wrote:\n> \n> \n> hi, I am not a package maker, please accept my apologies if the question is stupid.\n> \n> I clone my fork of the package in Rstudio, install it via Rstudio button and push the check button, it failed asking for broom.mixed and ggExtra packages (that was the master branch, not the one with my changes). Once I installed the package, it runs smoothly and gives no error.\n> \n> I thought the dependencies would be installed with devtools::load_all(\".\"), did I do something strange or are the dependencies of check different from the dependencies of the package, or ??\n> \n> —\n> You are receiving this because you are subscribed to this thread.\n> Reply to this email directly, view it on GitHub <https://github.com/debruine/faux/issues/75>, or unsubscribe <https://github.com/notifications/unsubscribe-auth/ADRMXP7YGBV7IC5ZWYPCXU3TKFCCVANCNFSM43OLFVRQ>.\n> \n\n",
+    "formatter": "email",
+    "reactions": [
+
+    ],
+    "created_at": "2021-04-23T10:19:13Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/faux/pull/74#issuecomment-827347098",
+    "pull_request": "https://github.com/debruine/faux/pull/74",
+    "user": "https://github.com/jcolomb",
+    "body": "It works now, but has no test for the new output type.",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2021-04-27T06:25:26Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/faux/pull/74#issuecomment-895143319",
+    "pull_request": "https://github.com/debruine/faux/pull/74",
+    "user": "https://github.com/debruine",
+    "body": "Thanks! I'm going to re-write a little bit of the code to use match.arg. Sorry this took so long for me to deal with!",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2021-08-09T11:19:59Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/faux/pull/74#issuecomment-895168839",
+    "pull_request": "https://github.com/debruine/faux/pull/74",
+    "user": "https://github.com/debruine",
+    "body": "Sorry, I tried writing tests for it, everything ended up mangled, and I had to revert it to the original. Can you just describe what you want it to do? I was getting lists that looked like:\r\n\r\n```\r\n# 1_no_title\r\n\r\nA\r\n\r\n# 2_no_title\r\n\r\nB\r\n```\r\n\r\nor \r\n\r\n```\r\n# countries\r\n\r\n## Netherlands\r\n\r\n## Germany\r\n\r\n# cities\r\n\r\n## Glasgow\r\n\r\n## Berlin\r\n```\r\n\r\nI can't imagine that being useful to anyone. So I assume you have a use case that makes sense?",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2021-08-09T12:07:19Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/faux/pull/74#issuecomment-895211007",
+    "pull_request": "https://github.com/debruine/faux/pull/74",
+    "user": "https://github.com/jcolomb",
+    "body": "long time ago, but I think the idea was:\r\n\r\n```\r\n# level 1\r\n\r\n## level 1.1\r\nThis is a long text related to the level 2, this could be pages long.\r\n\r\n## level 1.2\r\nthis one is short.\r\n\r\n```\r\n\r\nmy use case was to collect data in yaml but render it in a nice pdf using headers (because there are a lot of level 1):\r\n\r\n- yaml: https://gin.g-node.org/jcolomb/SFB1315INFproject_open/src/master/04_data_analysis/survey_data_analysis/datatype_2.yml\r\n- md: https://gin.g-node.org/jcolomb/SFB1315INFproject_open/src/master/04_data_analysis/survey_data_analysis/datatype_2.md",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2021-08-09T13:12:18Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/webmorph/issues/6#issuecomment-904170288",
+    "issue": "https://github.com/debruine/webmorph/issues/6",
+    "user": "https://github.com/LorenAmelang",
+    "body": "Saw this on Twitter:\r\nhttps://twitter.com/webmorph_org/status/1428087041686970373\r\nWebMorph\r\n@webmorph_org\r\nOnline webmorph may be down for the foreseeable future. Please let me know if you have files that you need to recover in an *emergency*.\r\n\r\nPsychomorph has most of the functions of webmorph and you can try installing it (I can’t help with install problems). https://users.aber.ac.uk/bpt/jpsychomorph/\r\n1:10 PM · Aug 18, 2021·Twitter for iPhone\r\n\r\nhttps://users.aber.ac.uk/bpt/jpsychomorph/ links to a .jnlp file, that gets an error: \r\n\r\nError: \"Wrapped Exception\"\r\nUnable to load resource:\r\nhttp://users.aber.ac.uk/bpt/jpsychomorph/version5/lib/jogl.jnlp\"\r\n    ^ no 's' ...   Maybe a problem now? \r\n\r\nMy browser can download that http linked .jnlp file...  Came here looking for clues...  \r\n",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2021-08-23T22:12:57Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/faux/issues/88#issuecomment-908320525",
+    "issue": "https://github.com/debruine/faux/issues/88",
+    "user": "https://github.com/debruine",
+    "body": "fixed in 1.0.9006",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2021-08-30T12:59:28Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/faux/issues/92#issuecomment-921878605",
+    "issue": "https://github.com/debruine/faux/issues/92",
+    "user": "https://github.com/debruine",
+    "body": "🎉",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2021-09-17T15:16:11Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/faux/issues/93#issuecomment-1058610327",
+    "issue": "https://github.com/debruine/faux/issues/93",
+    "user": "https://github.com/debruine",
+    "body": "When I ran your code, cmat is a tibble that looks like a correlation matrix. If you want to use the full matrix specification, you need to convert this to a matrix with `as.matrix()`.\r\n\r\nHowever, it also isn't symmetric (e.g. the correlation between q_sxs_corr_1 and q_sxs_corr_2 in the upper right triangle isn't the same at the correlation between q_sxs_corr_2 and q_sxs_corr_1 in the lower left triangle). \r\n\r\nAdditionally, you're simulating correlations among the 21 items sampled from a uniform distribution between .25 and .8. That almost certainly means that the pattern of correlations you're creating will be literally impossible (i.e., not positive definite). For example, `rnorm_multi(n=100, vars=3, r=c(.25, .8, -.5))` returns an error that the correlation matrix is not positive definite because if A and B correlate .25, and A and C correlate .8, then B and C can only have correlations between -0.38 and +0.78 (see `faux::pos_def_limits(.25, .8, NA)`).\r\n\r\nWith such a large number of intercorrelations, you need to either set all of the values to a smaller random range or use real data (which should have an achievable pattern of correlations).\r\n\r\nI can get the following to work (also fixes the asymmetric tibble problem and reduces the questionnaire item correlation range):\r\n\r\n```\r\nGenRow <- function(iter) {\r\n  row_without_diag <- c(\r\n    # Questionnaire items\r\n    runif(21, .25, .5), # reduced 0.8 to 0.5\r\n    # Other variable\r\n    runif(1, -.43, -.17)\r\n  )\r\n\r\n  row_without_diag[(iter+1):22]. # just return upper right triangle part\r\n}\r\n\r\nurtri <- lapply(1:21, function(x) GenRow(x)) %>% unlist()\r\n\r\n# convert upper right triangle to full matrix\r\n# not necessary, as the r argument will also take the URT vector, \r\n# but useful for checking what a symmetric matrix looks like\r\ncmat <- faux:::cormat_from_triangle(urtri)\r\n\r\ndat <- rnorm_multi(n=100, vars=22, r=cmat, varnames = LETTERS[1:22])\r\n```\r\n\r\n",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2022-03-03T22:59:49Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/faux/issues/93#issuecomment-1058611535",
+    "issue": "https://github.com/debruine/faux/issues/93",
+    "user": "https://github.com/debruine",
+    "body": "Ack, you edited while I was replying!!",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2022-03-03T23:00:32Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/faux/issues/93#issuecomment-1059120110",
+    "issue": "https://github.com/debruine/faux/issues/93",
+    "user": "https://github.com/peter-hitchcock",
+    "body": "Hi Lisa, Sorry about that, but that still was very useful, so thank you! I had realized the non-symmetry and generally that I'd need to put some thought into creating positive definite matrices, but that helps to see how to use `pos_def_limits` and `cormat_from_triangle` (given that it's not always desirable to use an empirical correlation matrix as I ended up doing in this case). Thank you!",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2022-03-04T12:27:51Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/faux/issues/94#issuecomment-1067214496",
+    "issue": "https://github.com/debruine/faux/issues/94",
+    "user": "https://github.com/debruine",
+    "body": "Could you send your source data parameters like this? Where the x1:y_diff columns are the correlation matrix, and the means and SDs in the last two columns? Put NA for anything you don't know. I think the x_diff and y_diff correlations might be an emergent property of the x1, x2, y1, and y2 correlations, but need to check with some real data.\r\n\r\n```\r\n     n    var    x1   x2    y1   y2 x_diff y_diff mean   sd\r\n1 1000     x1  1.00 0.60  0.40 0.20  -0.45  -0.22    0 1.00\r\n2 1000     x2  0.60 1.00  0.20 0.40   0.45   0.22    0 1.00\r\n3 1000     y1  0.40 0.20  1.00 0.60  -0.22  -0.45    0 1.00\r\n4 1000     y2  0.20 0.40  0.60 1.00   0.22   0.45    0 1.00\r\n5 1000 x_diff -0.45 0.45 -0.22 0.22   1.00   0.50    0 0.89\r\n6 1000 y_diff -0.22 0.22 -0.45 0.45   0.50   1.00    0 0.89\r\n```",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2022-03-14T19:40:41Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/faux/issues/94#issuecomment-1067219250",
+    "issue": "https://github.com/debruine/faux/issues/94",
+    "user": "https://github.com/debruine",
+    "body": "For example, the following code always results in the exact same correlation between x_diff and y_diff for any given correlation matrix for x1:y2 (set empirical = TRUE to make sure each sample has the exact mean, sd, and r parameters). So there must be a systematic relationship between the parameters of x1:y2 and the parameters of the difference scores.\r\n\r\n```\r\nlibrary(faux)\r\n\r\nr <- c(.6, .4, .2,\r\n           .2, .4,\r\n               .6)\r\n\r\ndat <- rnorm_multi(\r\n  n = 1000,\r\n  varnames = c(\"x1\", \"x2\", \"y1\", \"y2\"),\r\n  r = r,\r\n  empirical = TRUE\r\n)\r\n\r\ndat$x_diff <- dat$x2 - dat$x1\r\ndat$y_diff <- dat$y2 - dat$y1\r\n\r\ncheck_sim_stats(dat)\r\n```",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2022-03-14T19:46:56Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/faux/issues/94#issuecomment-1067331737",
+    "issue": "https://github.com/debruine/faux/issues/94",
+    "user": "https://github.com/maciejkos",
+    "body": "Thank you for responding so quickly, Lisa! \r\n\r\nI'll start by giving some additional information and answer your question next.\r\n\r\n**Context**\r\n\r\nThe tests:\r\n\r\n- Test x is our gold standard. Test y is a novel test, which hasn't been used yet, and we know nothing about it.\r\n- Both tests are administered at times 1 and 2, six months apart, to the same sample of 40 participants.\r\n\r\nDifference scores:  \r\n\r\n- I expect that test x will yield higher scores at time 2 because participants will undergo medical treatment. I don't know how large the improvement will be. Qualitatively, clinicians say that it will be \"very large.\"\r\n- If test y works correctly, it will also yield higher scores at time 2.\r\n\r\nThe study objective is to check whether improvements measured by test x correlate with improvements measured by test y.\r\n\r\nThe study hasn't started yet. I want to analyze how much power I will have given the sample size, different potential effect sizes, and different properties of test y, which we know nothing about. For this reason, I want to simulate the data with the difference scores correlated.\r\n\r\n> Could you send your source data parameters like this?\r\n```\r\n\r\n# Test x is our gold standard. \r\n# Results of test x could have these parameters. \r\n\r\nmu_x1 = 5\r\nsd_x1 = 2.5\r\ndelta_x1_x2 = 3 # we expect to see a higher score at time 2\r\nmu_x2 = mu_x1 + delta_x1_x2 # we expect to see a higher score at time 2\r\nsd_x2 = sd_x1\r\ncorr_x1_x2 = 0.8 # test x is our gold standard so we expect high correlation between measurements at 1 and 2\r\n\r\n# Test y is a novel test. We don't know anything about it.\r\n# For simulation, let's assume that:\r\n\r\nmu_y1 = mu_x1\r\nsd_y1 = sd_x1 # = 2.5\r\ncorr_x1_y1 = 0.8\r\n\r\n# I want to find y2 such that r(x2-x1,y2-y1) = corr_deltas\r\n\r\nset.seed(321)\r\ndf <- rnorm_multi(\r\n  varnames = \"x1\", n = 100,vars = 1, mu = mu_x1, sd = sd_x1,) %>% \r\n  mutate(x2 = rnorm_pre(x1, mu = mu_x2, sd = sd_x2, r = corr_x1_x2), # x2 correlates with x1\r\n         y1 = rnorm_pre(x1, mu = mu_y1, sd = sd_x1, r = corr_x1_y1), # y1 correlates with x1\r\n         y2 = NA,  # y2 correlates with y1, r(x2-x1,y2-y1) = corr_delta\r\n         x_diff = x2 - x1,\r\n         y_diff = y2 - y1)\r\n\r\ncheck_sim_stats(df)\r\n\r\n    n    var    x1   x2    y1 x_diff y_diff mean   sd\r\n1 100     x1  1.00 0.75  0.81  -0.20     NA 5.02 2.39\r\n2 100     x2  0.75 1.00  0.58   0.50     NA 7.77 2.70\r\n3 100     y1  0.81 0.58  1.00  -0.19     NA 6.83 2.57\r\n4 100 x_diff -0.20 0.50 -0.19   1.00     NA 2.75 1.81\r\n5 100 y_diff    NA   NA    NA     NA      1   NA   NA\r\n\r\nwrite.csv(file = \"source_data_parameters.csv\", x = as.data.frame(check_sim_stats(df))) # file attached\r\n```\r\n[source_data_parameters.csv](https://github.com/debruine/faux/files/8248585/source_data_parameters.csv)\r\n\r\n\r\nI could provide additional parameters of y2 --- see below ---, but I am not sure if it would possible to find values of y2 such that `r(x_diff, y_diff) = corr_deltas`, as you hinted at in your reply.\r\n\r\n```\r\ndelta_y1_y2 = 3\r\nmu_y2 = mu_y1 + delta_y1_y2\r\nsd_y2 = sd_x1 # =2.5\r\ncorr_y1_y2 = 0.9\r\n```\r\nI was hoping I could do something like the following, but I couldn't get it to work. \r\n\r\n```\r\ncorr_deltas = 0.9\r\n\r\nrnorm_multi(\r\n  varnames = \"x1\", n = 100,vars = 1, mu = mu_x1, sd = sd_x1,) %>% \r\n  mutate(x2 = rnorm_pre(x1, mu = mu_x2, sd = sd_x2, r = corr_x1_x2), # x2 correlates with x1\r\n         y1 = rnorm_pre(x1, mu = mu_y1, sd = sd_x1, r = corr_x1_y1), # y1 correlates with x1\r\n         y2 = rnorm_pre(x = c(x2-x1,y2-y1), r = corr_deltas) # find y2 such that r(x2-x1,y2-y1) = corr_deltas\r\n         )\r\n```\r\n\r\nThank you again for your help!\r\n— Maciej\r\n\r\n",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2022-03-14T21:48:56Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/faux/issues/94#issuecomment-1067570625",
+    "issue": "https://github.com/debruine/faux/issues/94",
+    "user": "https://github.com/maciejkos",
+    "body": "After some fiddling, I think I have done it. It does feel a bit like a hack, so I will need to think about it more. I might also need to add some more parameters.\r\n\r\nI would appreciate your feedback, Lisa.\r\n\r\nThank you for your time,\r\n— Maciej\r\n\r\n```\r\n\r\n# Test x is our gold standard. \r\n# Results of test x could have these parameters. \r\n\r\nmu_x1 = 5\r\nsd_x1 = 2.5\r\ndelta_x1_x2 = 3 # we expect to see a higher score at time 2\r\nmu_x2 = mu_x1 + delta_x1_x2 # we expect to see a higher score at time 2\r\nsd_x2 = sd_x1\r\ncorr_x1_x2 = 0.8 # test x is our gold standard so we expect high correlation between measurements at 1 and 2\r\n\r\n# Test y is a novel test. We don't know anything about it.\r\n# For simulation, let's assume that:\r\n\r\nmu_y1 = mu_x1\r\nsd_y1 = sd_x1 + 1 # = 3.5\r\n\r\ncorr_x1_y1 = 0.8\r\n\r\ncorr_deltas = 0.9876\r\ndf <- \r\n  rnorm_multi(\r\n    varnames = c(\"x1\", \"y1\"), n = 40, vars = 2, mu = c(mu_x1, mu_y1), sd = c(sd_x1,sd_y1), r = (corr_x1_y1), empirical = TRUE) %>%\r\n  mutate(\r\n    x2 = rnorm_pre(x1, mu = mu_x1 + 3, sd = sd_x2, r = corr_x1_x2, empirical = TRUE),\r\n    delta_x = x2 - x1,\r\n    delta_y_correlated_with_delta_x = rnorm_pre(delta_x, \r\n                                                r = corr_deltas, empirical = TRUE),\r\n    y2 = y1 + delta_y_correlated_with_delta_x,\r\n    delta_y = y2 - y1,\r\n  )\r\n```\r\n```\r\ncor.test(df$delta_x, df$delta_y, method=\"person\")\r\n\r\n\tPearson's product-moment correlation\r\n\r\ndata:  df$delta_x and df$delta_y\r\nt = 38.779, df = 38, p-value < 0.00000000000000022\r\nalternative hypothesis: true correlation is not equal to 0\r\n95 percent confidence interval:\r\n 0.9765110 0.9934713\r\nsample estimates:\r\n   cor \r\n0.9876 \r\n```\r\n```\r\ncheck_sim_stats(df)\r\n\r\n   n                             var    x1    y1   x2 delta_x delta_y_correlated_with_delta_x   y2 delta_y mean   sd\r\n1 40                              x1  1.00  0.80 0.80   -0.32                           -0.34 0.73   -0.34    5 2.50\r\n2 40                              y1  0.80  1.00 0.66   -0.22                           -0.26 0.96   -0.26    5 3.50\r\n3 40                              x2  0.80  0.66 1.00    0.32                            0.28 0.77    0.28    8 2.50\r\n4 40                         delta_x -0.32 -0.22 0.32    1.00                            0.99 0.06    0.99    3 1.58\r\n5 40 delta_y_correlated_with_delta_x -0.34 -0.26 0.28    0.99                            1.00 0.02    1.00    0 1.00\r\n6 40                              y2  0.73  0.96 0.77    0.06                            0.02 1.00    0.02    5 3.38\r\n7 40                         delta_y -0.34 -0.26 0.28    0.99                            1.00 0.02    1.00    0 1.00\r\n```\r\n\r\n\r\n",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2022-03-15T05:11:17Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/faux/issues/94#issuecomment-1067849766",
+    "issue": "https://github.com/debruine/faux/issues/94",
+    "user": "https://github.com/debruine",
+    "body": "Here's one attempt (your parameters are at the top). I set `empirical = TRUE` to make it easier to check that you set the simulation parameters right (they should be exactly the same in check_sim_stats), but you can change it to FALSE (the default) to make those the population parameters for simulations.\r\n\r\nThe pattern is to simulate x1 and x2, calculate x_diff, simulate y1 in relation to x1, simulate y_diff in relation to x_diff, and calculate y2 from y1 + y_diff.\r\n\r\n```\r\nlibrary(faux)\r\nlibrary(tidyverse)\r\n\r\n# Test x is our gold standard. \r\n# Results of test x could have these parameters. \r\n\r\nmu_x1 = 5\r\nsd_x1 = 2.5\r\ndelta_x1_x2 = 3 # we expect to see a higher score at time 2\r\nmu_x2 = mu_x1 + delta_x1_x2 # we expect to see a higher score at time 2\r\nsd_x2 = sd_x1\r\ncorr_x1_x2 = 0.8 # test x is our gold standard so we expect high correlation between measurements at 1 and 2\r\n\r\n# Test y is a novel test. We don't know anything about it.\r\n# For simulation, let's assume that:\r\n\r\nmu_y1 = mu_x1\r\nsd_y1 = sd_x1 # = 2.5\r\ncorr_x1_y1 = 0.8\r\n\r\n# I want to find y2 such that r(x2-x1,y2-y1) = corr_deltas\r\n\r\n# additional needed parameters\r\ncorr_deltas = .5\r\ny_diff = 3 \r\ny_diff_sd = 1.5\r\n# setting empirical = TRUE treats mu, sd, and r as sample, not population, parameters\r\nempirical = TRUE\r\n\r\ndf <- rnorm_multi(\r\n  n = 100,\r\n  varnames = c(\"x1\", \"x2\"),  \r\n  mu = c(mu_x1, mu_x2), \r\n  sd = c(sd_x1, sd_x2), \r\n  r = corr_x1_x2,\r\n  empirical = empirical) %>% \r\n  mutate(\r\n    x_diff = x2 - x1,\r\n    y1 = rnorm_pre(x1, mu = mu_y1, sd = sd_y1, \r\n                   r = corr_x1_y1, empirical = empirical), \r\n    y_diff = rnorm_pre(x_diff, mu = y_diff, sd = y_diff_sd,\r\n                       r = corr_deltas, empirical = empirical),\r\n    y2 = y1 + y_diff\r\n  ) %>%\r\n  select(x1, x2, y1, y2, x_diff, y_diff)\r\n\r\ncheck_sim_stats(df)\r\n\r\n```\r\n",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2022-03-15T11:02:18Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/faux/issues/94#issuecomment-1067853996",
+    "issue": "https://github.com/debruine/faux/issues/94",
+    "user": "https://github.com/debruine",
+    "body": "Oops, I didn't see your reply when I posted my response. I think we solved it basically the same way. ",
+    "formatter": "markdown",
+    "reactions": [
+      {
+        "user": "https://github.com/maciejkos",
+        "content": "heart",
+        "subject_type": "IssueComment",
+        "created_at": "2022-03-16T02:11:16.000+00:00"
+      }
+    ],
+    "created_at": "2022-03-15T11:05:50Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/faux/issues/94#issuecomment-1068658986",
+    "issue": "https://github.com/debruine/faux/issues/94",
+    "user": "https://github.com/maciejkos",
+    "body": "Brilliant - thank you!\r\n— M.",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2022-03-16T02:11:12Z"
+  },
+  {
+    "type": "issue_comment",
+    "url": "https://github.com/debruine/shinyintro/issues/1#issuecomment-1080647305",
+    "issue": "https://github.com/debruine/shinyintro/issues/1",
+    "user": "https://github.com/debruine",
+    "body": "finally fixed! Sorry that took so long :)",
+    "formatter": "markdown",
+    "reactions": [
+
+    ],
+    "created_at": "2022-03-28T13:24:30Z"
+  }
+]

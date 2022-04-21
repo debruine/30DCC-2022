@@ -1,37 +1,89 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-  <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.9.80">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <meta name="description" content="Code and charts for the 2022 30-Day Chart Challenge">
-  <title>30DCC (2022) - 21&nbsp; Down/Upwards</title>
-  <style>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.80">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="description" content="Code and charts for the 2022 30-Day Chart Challenge">
+<title>30DCC (2022) - 21&nbsp; Down/Upwards</title>
+<style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     span.underline{text-decoration: underline;}
     div.column{display: inline-block; vertical-align: top; width: 50%;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
-
-  <script src="site_libs/quarto-nav/quarto-nav.js"></script>
-  <script src="site_libs/quarto-nav/headroom.min.js"></script>
-  <script src="site_libs/clipboard/clipboard.min.js"></script>
-  <meta name="quarto:offset" content="./">
-  <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-  <script src="site_libs/quarto-search/fuse.min.js"></script>
-  <script src="site_libs/quarto-search/quarto-search.js"></script>
-  <link href="./22-animation.html" rel="next">
-  <link href="./20-new-tool.html" rel="prev">
-  <script src="site_libs/quarto-html/quarto.js"></script>
-  <script src="site_libs/quarto-html/popper.min.js"></script>
-  <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-  <script src="site_libs/quarto-html/anchor.min.js"></script>
-  <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-  <script src="site_libs/bootstrap/bootstrap.min.js"></script>
-  <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-  <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
-  <script id="quarto-search-options" type="application/json">{
+<script src="site_libs/quarto-nav/quarto-nav.js"></script><script src="site_libs/quarto-nav/headroom.min.js"></script><script src="site_libs/clipboard/clipboard.min.js"></script><meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script><script src="site_libs/quarto-search/fuse.min.js"></script><script src="site_libs/quarto-search/quarto-search.js"></script><link href="./22-animation.html" rel="next">
+<link href="./20-new-tool.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script><script src="site_libs/quarto-html/popper.min.js"></script><script src="site_libs/quarto-html/tippy.umd.min.js"></script><script src="site_libs/quarto-html/anchor.min.js"></script><link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script><link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
     "location": "sidebar",
     "copy-button": false,
     "collapse-after": 2,
@@ -49,65 +101,52 @@
       "search-detached-cancel-button-title": "Cancel",
       "search-submit-button-title": "Submit"
     }
-  }</script>
-  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script>
-
-  <script type="text/javascript">
+  }</script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script><script type="text/javascript">
 
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
-  </script>
-  <script type="application/json" class="js-hypothesis-config">
+  </script><script type="application/json" class="js-hypothesis-config">
   {
     "theme": "clean",
     "openSidebar": false
   }
-  </script>
-  <script async="" src="https://hypothes.is/embed.js"></script>
-  <!--[if lt IE 9]>
+  </script><script async="" src="https://hypothes.is/embed.js"></script><!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
-  <link rel="stylesheet" href="include/style.css">
+  <![endif]--><link rel="stylesheet" href="include/style.css">
 </head>
-<body class="floating fullcontent">
+<body class="floating">
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
       <h1 class="quarto-secondary-nav-title"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Down/Upwards</span></h1>
       <button type="button" class="quarto-btn-toggle btn">
         <i class="bi bi-chevron-right"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">30DCC (2022)</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/debruine/30DCC-2022/" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
     <a href="" title="Share" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-share"></i></a>
     <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
-        <li>
-          <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
+<li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=%7Curl%7C">
             <i class="bi bi-bi-twitter pe-1"></i>
           Twitter
           </a>
         </li>
         <li>
-          <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=|url|">
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=%7Curl%7C">
             <i class="bi bi-bi-facebook pe-1"></i>
           Facebook
           </a>
         </li>
         <li>
-          <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=|url|">
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=%7Curl%7C">
             <i class="bi bi-bi-linkedin pe-1"></i>
           LinkedIn
           </a>
@@ -123,7 +162,7 @@
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">Overview</a>
   </div>
@@ -135,8 +174,8 @@
         <i class="bi bi-chevron-right ms-2"></i>
       </a>
     </div>
-    <ul id="quarto-sidebar-section-comparisons" class="collapse list-unstyled sidebar-section depth1 show">  
-        <li class="sidebar-item">
+    <ul id="quarto-sidebar-section-comparisons" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./01-part-to-whole.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Part-to-whole</span></a>
   </div>
@@ -167,7 +206,7 @@
   </div>
 </li>
     </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
     <div class="sidebar-item-container"> 
         <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-distributions" aria-expanded="true">Distributions</a>
@@ -175,8 +214,8 @@
         <i class="bi bi-chevron-right ms-2"></i>
       </a>
     </div>
-    <ul id="quarto-sidebar-section-distributions" class="collapse list-unstyled sidebar-section depth1 show">  
-        <li class="sidebar-item">
+    <ul id="quarto-sidebar-section-distributions" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07-physical.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Physical</span></a>
   </div>
@@ -207,7 +246,7 @@
   </div>
 </li>
     </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
     <div class="sidebar-item-container"> 
         <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-relationships" aria-expanded="true">Relationships</a>
@@ -215,8 +254,8 @@
         <i class="bi bi-chevron-right ms-2"></i>
       </a>
     </div>
-    <ul id="quarto-sidebar-section-relationships" class="collapse list-unstyled sidebar-section depth1 show">  
-        <li class="sidebar-item">
+    <ul id="quarto-sidebar-section-relationships" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./13-correlation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Correlation</span></a>
   </div>
@@ -247,7 +286,7 @@
   </div>
 </li>
     </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
     <div class="sidebar-item-container"> 
         <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-timeseries" aria-expanded="true">Timeseries</a>
@@ -255,8 +294,8 @@
         <i class="bi bi-chevron-right ms-2"></i>
       </a>
     </div>
-    <ul id="quarto-sidebar-section-timeseries" class="collapse list-unstyled sidebar-section depth1 show">  
-        <li class="sidebar-item">
+    <ul id="quarto-sidebar-section-timeseries" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./19-global-change.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Global Change</span></a>
   </div>
@@ -287,7 +326,7 @@
   </div>
 </li>
     </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
     <div class="sidebar-item-container"> 
         <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-uncertainties" aria-expanded="true">Uncertainties</a>
@@ -295,8 +334,8 @@
         <i class="bi bi-chevron-right ms-2"></i>
       </a>
     </div>
-    <ul id="quarto-sidebar-section-uncertainties" class="collapse list-unstyled sidebar-section depth1 show">  
-        <li class="sidebar-item">
+    <ul id="quarto-sidebar-section-uncertainties" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./25-trend.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Trend</span></a>
   </div>
@@ -327,7 +366,7 @@
   </div>
 </li>
     </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
     <div class="sidebar-item-container"> 
         <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-appendices" aria-expanded="true">Appendices</a>
@@ -335,8 +374,8 @@
         <i class="bi bi-chevron-right ms-2"></i>
       </a>
     </div>
-    <ul id="quarto-sidebar-section-appendices" class="collapse list-unstyled sidebar-section depth1 show">  
-        <li class="sidebar-item">
+    <ul id="quarto-sidebar-section-appendices" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./app-a-colours.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Colours</span></a>
   </div>
@@ -352,21 +391,267 @@
   </div>
 </li>
     </ul>
-  </li>
+</li>
     </ul>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc"><h2 id="toc-title">Table of contents</h2>
+<ul>
+<li><a href="#github-data" class="nav-link active" data-scroll-target="#github-data"> <span class="header-section-number">21.1</span> GitHub Data</a></li>
+<li><a href="#initial-plot" class="nav-link" data-scroll-target="#initial-plot"> <span class="header-section-number">21.2</span> Initial Plot</a></li>
+<li><a href="#convert-to-date" class="nav-link" data-scroll-target="#convert-to-date"> <span class="header-section-number">21.3</span> Convert to date</a></li>
+<li><a href="#alternate-labels" class="nav-link" data-scroll-target="#alternate-labels"> <span class="header-section-number">21.4</span> Alternate labels</a></li>
+<li><a href="#facet-by-year" class="nav-link" data-scroll-target="#facet-by-year"> <span class="header-section-number">21.5</span> Facet by year</a></li>
+<li><a href="#manually-adjust-labels" class="nav-link" data-scroll-target="#manually-adjust-labels"> <span class="header-section-number">21.6</span> Manually adjust labels</a></li>
+</ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/debruine/30DCC-2022/edit/main/21-down-upwards.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/debruine/30DCC-2022/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/debruine/30DCC-2022/blob/main/21-down-upwards.qmd" class="toc-action">View source</a></p></div></div></nav>
     </div>
-</nav>
-<!-- margin-sidebar -->
-    
 <!-- main -->
-<main class="content" id="quarto-document-content">
-<header id="title-block-header">
-<h1 class="title d-none d-lg-block display-7"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Down/Upwards</span></h1>
-</header>
+<main class="content" id="quarto-document-content"><header id="title-block-header"><h1 class="title display-7"><span id="sec-downup" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Down/Upwards</span></span></h1>
+</header><div class="cell" data-layout-align="center">
+<details><summary>Setup</summary><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># for data wrangling</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(lubridate) <span class="co"># for dates</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(jsonlite)  <span class="co"># for reading JSON files</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(showtext)  <span class="co"># for custom fonts</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">library</span>(ggtext)    <span class="co"># for adding the twitter logo</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="fu">theme_set</span>(<span class="fu">theme_minimal</span>())</span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="fu">font_add</span>(<span class="st">"fa-brands"</span>, <span class="st">"fonts/fa-brands-400.ttf"</span>)</span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="fu">showtext_auto</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="github-data" class="level2" data-number="21.1"><h2 data-number="21.1" class="anchored" data-anchor-id="github-data">
+<span class="header-section-number">21.1</span> GitHub Data</h2>
+<p>You can export all of your github account data on the <a href="https://github.com/settings/admin">settings administration page</a>. I got an email that it was ready 15 minutes after I requested it. It was 2.5 GB, so I won’t be sharing it all in this repo, but I will include the .json files.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">list.files</span>(<span class="st">"data/github"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-stdout">
+<pre><code> [1] "attachments_000001.json"          "issue_comments_000001.json"      
+ [3] "issue_events_000001.json"         "issue_events_000002.json"        
+ [5] "issue_events_000003.json"         "issue_events_000004.json"        
+ [7] "issues_000001.json"               "pull_request_reviews_000001.json"
+ [9] "pull_requests_000001.json"        "releases_000001.json"            
+[11] "repositories_000001.json"         "repository_files_000001.json"    
+[13] "schema.json"                      "users_000001.json"               </code></pre>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>repos <span class="ot">&lt;-</span> <span class="fu">read_json</span>(<span class="st">"data/github/repositories_000001.json"</span>, </span>
+<span id="cb4-2"><a href="#cb4-2"></a>                   <span class="at">simplifyVector =</span> T)</span>
+<span id="cb4-3"><a href="#cb4-3"></a></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="fu">names</span>(repos)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-stdout">
+<pre><code> [1] "type"                     "url"                     
+ [3] "owner"                    "name"                    
+ [5] "description"              "website"                 
+ [7] "private"                  "has_issues"              
+ [9] "has_wiki"                 "has_downloads"           
+[11] "labels"                   "collaborators"           
+[13] "created_at"               "git_url"                 
+[15] "default_branch"           "webhooks"                
+[17] "page"                     "public_keys"             
+[19] "repository_topics"        "security_and_analysis"   
+[21] "autolinks"                "general_settings"        
+[23] "actions_general_settings"</code></pre>
+</div>
+</div>
+</section><section id="initial-plot" class="level2" data-number="21.2"><h2 data-number="21.2" class="anchored" data-anchor-id="initial-plot">
+<span class="header-section-number">21.2</span> Initial Plot</h2>
+<p>I’m going to try to make a timeline of when I created each repository.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">ggplot</span>(repos, <span class="fu">aes</span>(<span class="at">x =</span> created_at, <span class="at">label =</span> name)) <span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">geom_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">y =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="21-down-upwards_files/figure-html/du-plot1-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="convert-to-date" class="level2" data-number="21.3"><h2 data-number="21.3" class="anchored" data-anchor-id="convert-to-date">
+<span class="header-section-number">21.3</span> Convert to date</h2>
+<p>Nope. I checked the data types and <code>created_at</code> is a character string, so I need to convert it to a date.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>repos<span class="sc">$</span>date <span class="ot">&lt;-</span> lubridate<span class="sc">::</span><span class="fu">as_date</span>(repos<span class="sc">$</span>created_at)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>I also set <code>hjust = 0</code> so the labels are left-justified rather than centered. Better, but there’s still too much overlap.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">ggplot</span>(repos, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">label =</span> name)) <span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">geom_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">hjust =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="21-down-upwards_files/figure-html/du-date-fix-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="alternate-labels" class="level2" data-number="21.4"><h2 data-number="21.4" class="anchored" data-anchor-id="alternate-labels">
+<span class="header-section-number">21.4</span> Alternate labels</h2>
+<p>Let’s try alternating the y and hjust values.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>repos<span class="sc">$</span>y <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(.<span class="dv">1</span>, <span class="sc">-</span>.<span class="dv">1</span>), <span class="at">length.out =</span> <span class="fu">nrow</span>(repos))</span>
+<span id="cb9-2"><a href="#cb9-2"></a>repos<span class="sc">$</span>hjust <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>, <span class="at">length.out =</span> <span class="fu">nrow</span>(repos))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">ggplot</span>(repos, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">label =</span> name, <span class="at">y =</span> y, <span class="at">hjust =</span> hjust)) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">geom_text</span>(<span class="at">angle =</span> <span class="dv">45</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="21-down-upwards_files/figure-html/du-y-hjust-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>OK, I need to control the y-axis limits. I’ll also add a horizontal line for the timeline and a line from each label to the timeline.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">ggplot</span>(repos, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">label =</span> name, <span class="at">y =</span> y, <span class="at">hjust =</span> hjust)) <span class="sc">+</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">geom_text</span>(<span class="at">angle =</span> <span class="dv">45</span>) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">xend =</span> date), <span class="at">yend =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"grey"</span>) <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"dodgerblue"</span>) <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a>  <span class="fu">scale_x_date</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(.<span class="dv">1</span>, .<span class="dv">2</span>))) <span class="sc">+</span></span>
+<span id="cb11-6"><a href="#cb11-6"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">6</span>, .<span class="dv">6</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="21-down-upwards_files/figure-html/du-alternating-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="facet-by-year" class="level2" data-number="21.5"><h2 data-number="21.5" class="anchored" data-anchor-id="facet-by-year">
+<span class="header-section-number">21.5</span> Facet by year</h2>
+<p>Better, but still crowded. What If I facet by year?</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>repos<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">year</span>(repos<span class="sc">$</span>date)</span>
+<span id="cb12-2"><a href="#cb12-2"></a></span>
+<span id="cb12-3"><a href="#cb12-3"></a><span class="fu">ggplot</span>(repos, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">label =</span> name, <span class="at">y =</span> y, <span class="at">hjust =</span> hjust)) <span class="sc">+</span></span>
+<span id="cb12-4"><a href="#cb12-4"></a>  <span class="fu">geom_text</span>(<span class="at">angle =</span> <span class="dv">45</span>) <span class="sc">+</span></span>
+<span id="cb12-5"><a href="#cb12-5"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">xend =</span> date), <span class="at">yend =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"grey"</span>) <span class="sc">+</span></span>
+<span id="cb12-6"><a href="#cb12-6"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"dodgerblue"</span>) <span class="sc">+</span></span>
+<span id="cb12-7"><a href="#cb12-7"></a>  <span class="fu">scale_x_date</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(.<span class="dv">2</span>, .<span class="dv">2</span>))) <span class="sc">+</span></span>
+<span id="cb12-8"><a href="#cb12-8"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">6</span>, .<span class="dv">6</span>)) <span class="sc">+</span></span>
+<span id="cb12-9"><a href="#cb12-9"></a>  <span class="fu">facet_grid</span>(year<span class="sc">~</span>.)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="21-down-upwards_files/figure-html/du-facet-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The y-axis scale needs to be set to “free”. This doesn’t work with <code>facet_grid()</code>, so I’ll change it to <code>facet_wrap()</code>. I also changed the figure dimensions to 15x20 and set <code>clip = "off"</code> in <code>coord_cartesian()</code> to avoid some of the longer labels from getting clipped.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">ggplot</span>(repos, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">label =</span> name, <span class="at">y =</span> y, <span class="at">hjust =</span> hjust)) <span class="sc">+</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>  <span class="fu">geom_text</span>(<span class="at">angle =</span> <span class="dv">45</span>) <span class="sc">+</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">xend =</span> date), <span class="at">yend =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"grey"</span>) <span class="sc">+</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"dodgerblue"</span>) <span class="sc">+</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a>  <span class="fu">scale_x_date</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(.<span class="dv">2</span>, .<span class="dv">2</span>))) <span class="sc">+</span></span>
+<span id="cb13-6"><a href="#cb13-6"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">6</span>, .<span class="dv">6</span>), <span class="at">clip =</span> <span class="st">"off"</span>) <span class="sc">+</span></span>
+<span id="cb13-7"><a href="#cb13-7"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>year, <span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">scales =</span> <span class="st">"free"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="21-down-upwards_files/figure-html/du-free-x-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The scales aren’t all the same. I’m going to use a hacky solution and add labels for January 1 and December 31 every year, but give them no label.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>new_dates <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">paste0</span>(<span class="dv">2015</span><span class="sc">:</span><span class="dv">2022</span>, <span class="st">"-01-01"</span>),</span>
+<span id="cb14-2"><a href="#cb14-2"></a>               <span class="fu">paste0</span>(<span class="dv">2015</span><span class="sc">:</span><span class="dv">2022</span>, <span class="st">"-12-31"</span>))</span>
+<span id="cb14-3"><a href="#cb14-3"></a></span>
+<span id="cb14-4"><a href="#cb14-4"></a>new_entries <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb14-5"><a href="#cb14-5"></a>  <span class="at">name =</span> <span class="st">""</span>,</span>
+<span id="cb14-6"><a href="#cb14-6"></a>  <span class="at">y =</span> <span class="dv">0</span>, <span class="at">hjust =</span> <span class="dv">0</span>, </span>
+<span id="cb14-7"><a href="#cb14-7"></a>  <span class="at">date =</span> <span class="fu">as_date</span>(new_dates),</span>
+<span id="cb14-8"><a href="#cb14-8"></a>  <span class="at">year =</span> <span class="fu">year</span>(<span class="fu">as_date</span>(new_dates))</span>
+<span id="cb14-9"><a href="#cb14-9"></a>)</span>
+<span id="cb14-10"><a href="#cb14-10"></a></span>
+<span id="cb14-11"><a href="#cb14-11"></a>repos2 <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(repos, new_entries)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">ggplot</span>(repos2, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">label =</span> name, <span class="at">y =</span> y, <span class="at">hjust =</span> hjust)) <span class="sc">+</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a>  <span class="fu">geom_text</span>(<span class="at">angle =</span> <span class="dv">45</span>) <span class="sc">+</span></span>
+<span id="cb15-3"><a href="#cb15-3"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">xend =</span> date), <span class="at">yend =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"grey"</span>) <span class="sc">+</span></span>
+<span id="cb15-4"><a href="#cb15-4"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"dodgerblue"</span>) <span class="sc">+</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a>  <span class="fu">scale_x_date</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(.<span class="dv">2</span>, .<span class="dv">2</span>))) <span class="sc">+</span></span>
+<span id="cb15-6"><a href="#cb15-6"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">6</span>, .<span class="dv">6</span>), <span class="at">clip =</span> <span class="st">"off"</span>) <span class="sc">+</span></span>
+<span id="cb15-7"><a href="#cb15-7"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>year, <span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">scales =</span> <span class="st">"free"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="21-down-upwards_files/figure-html/du-year-limits-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="manually-adjust-labels" class="level2" data-number="21.6"><h2 data-number="21.6" class="anchored" data-anchor-id="manually-adjust-labels">
+<span class="header-section-number">21.6</span> Manually adjust labels</h2>
+<p>That’s good until the last few months. I’ve been making too many repos! I’ll manually adjust those.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>repos3 <span class="ot">&lt;-</span> repos2 <span class="sc">%&gt;%</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a>  <span class="fu">mutate</span>(<span class="at">y =</span> <span class="fu">case_when</span>(</span>
+<span id="cb16-3"><a href="#cb16-3"></a>    name <span class="sc">==</span> <span class="st">"msc-data-skills"</span> <span class="sc">~</span> <span class="sc">-</span>.<span class="dv">2</span>,</span>
+<span id="cb16-4"><a href="#cb16-4"></a>    name <span class="sc">==</span> <span class="st">"NCOD2021"</span> <span class="sc">~</span> <span class="sc">-</span>.<span class="dv">2</span>, </span>
+<span id="cb16-5"><a href="#cb16-5"></a>    name <span class="sc">==</span> <span class="st">"30DCC-2022"</span> <span class="sc">~</span> <span class="sc">-</span>.<span class="dv">2</span>,</span>
+<span id="cb16-6"><a href="#cb16-6"></a>    name <span class="sc">==</span> <span class="st">"APA_TOP"</span> <span class="sc">~</span> <span class="sc">-</span>.<span class="dv">3</span>,</span>
+<span id="cb16-7"><a href="#cb16-7"></a>    name <span class="sc">==</span> <span class="st">"knitr"</span> <span class="sc">~</span> .<span class="dv">2</span>,</span>
+<span id="cb16-8"><a href="#cb16-8"></a>    name <span class="sc">==</span> <span class="st">"statistical_inferences"</span> <span class="sc">~</span> .<span class="dv">3</span>,</span>
+<span id="cb16-9"><a href="#cb16-9"></a>    name <span class="sc">==</span> <span class="st">"waffle"</span> <span class="sc">~</span> .<span class="dv">37</span>,</span>
+<span id="cb16-10"><a href="#cb16-10"></a>    name <span class="sc">==</span> <span class="st">"shiny2022"</span> <span class="sc">~</span> .<span class="dv">41</span>,</span>
+<span id="cb16-11"><a href="#cb16-11"></a>    name <span class="sc">==</span> <span class="st">"composite-sim"</span> <span class="sc">~</span> <span class="sc">-</span>.<span class="dv">2</span>,</span>
+<span id="cb16-12"><a href="#cb16-12"></a>    name <span class="sc">==</span> <span class="st">"ug1-practical"</span> <span class="sc">~</span> .<span class="dv">2</span>,</span>
+<span id="cb16-13"><a href="#cb16-13"></a>    name <span class="sc">==</span> <span class="st">"lmem_sim_private"</span> <span class="sc">~</span> .<span class="dv">2</span>,</span>
+<span id="cb16-14"><a href="#cb16-14"></a>    name <span class="sc">==</span> <span class="st">"webexercises"</span> <span class="sc">~</span> .<span class="dv">2</span>,</span>
+<span id="cb16-15"><a href="#cb16-15"></a>    name <span class="sc">==</span> <span class="st">"reprores_2021"</span> <span class="sc">~</span> .<span class="dv">22</span>,</span>
+<span id="cb16-16"><a href="#cb16-16"></a>    name <span class="sc">==</span> <span class="st">"debruine.github.io"</span> <span class="sc">~</span> .<span class="dv">2</span>,</span>
+<span id="cb16-17"><a href="#cb16-17"></a>    name <span class="sc">==</span> <span class="st">"statswithr"</span> <span class="sc">~</span> .<span class="dv">15</span>,</span>
+<span id="cb16-18"><a href="#cb16-18"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> y</span>
+<span id="cb16-19"><a href="#cb16-19"></a>  ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>I couldn’t set the colour of <code>geom_hline()</code> using <code>aes()</code> unless I was also setting <code>yintercept</code> in the mapping. I used the code from <a href="02-pictogram.html#sec-pictogram-colour">Day&nbsp;<span>2.4</span></a> to change the ugly green to yellow.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb17"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>ggplotColours <span class="ot">&lt;-</span> <span class="cf">function</span>(n, <span class="at">h =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">360</span>) <span class="sc">+</span> <span class="dv">15</span>){</span>
+<span id="cb17-2"><a href="#cb17-2"></a>  h[<span class="dv">2</span>] <span class="ot">&lt;-</span> h[<span class="dv">2</span>] <span class="sc">-</span> <span class="dv">360</span><span class="sc">/</span>n</span>
+<span id="cb17-3"><a href="#cb17-3"></a>  <span class="fu">hcl</span>(<span class="at">h =</span> (<span class="fu">seq</span>(h[<span class="dv">1</span>], h[<span class="dv">2</span>], <span class="at">length =</span> n)), <span class="at">c =</span> <span class="dv">100</span>, <span class="at">l =</span> <span class="dv">65</span>)</span>
+<span id="cb17-4"><a href="#cb17-4"></a>}</span>
+<span id="cb17-5"><a href="#cb17-5"></a>linecol <span class="ot">&lt;-</span> <span class="fu">ggplotColours</span>(<span class="dv">8</span>)</span>
+<span id="cb17-6"><a href="#cb17-6"></a>linecol[<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="st">"#F5C748"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb18"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">ggplot</span>(repos3, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">label =</span> name, <span class="at">y =</span> y, </span>
+<span id="cb18-2"><a href="#cb18-2"></a>             <span class="at">hjust =</span> hjust, <span class="at">vjust =</span> hjust)) <span class="sc">+</span></span>
+<span id="cb18-3"><a href="#cb18-3"></a>  <span class="fu">geom_text</span>(<span class="at">angle =</span> <span class="dv">20</span>) <span class="sc">+</span></span>
+<span id="cb18-4"><a href="#cb18-4"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">xend =</span> date), <span class="at">yend =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"grey20"</span>) <span class="sc">+</span></span>
+<span id="cb18-5"><a href="#cb18-5"></a>  <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="fu">as.factor</span>(year)), </span>
+<span id="cb18-6"><a href="#cb18-6"></a>             <span class="at">size =</span> <span class="dv">3</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb18-7"><a href="#cb18-7"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> linecol) <span class="sc">+</span></span>
+<span id="cb18-8"><a href="#cb18-8"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"1 month"</span>,</span>
+<span id="cb18-9"><a href="#cb18-9"></a>               <span class="at">date_labels =</span> <span class="st">"%b"</span>,</span>
+<span id="cb18-10"><a href="#cb18-10"></a>               <span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))) <span class="sc">+</span></span>
+<span id="cb18-11"><a href="#cb18-11"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">6</span>, .<span class="dv">6</span>), <span class="at">clip =</span> <span class="st">"off"</span>) <span class="sc">+</span></span>
+<span id="cb18-12"><a href="#cb18-12"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>year, <span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">scales =</span> <span class="st">"free"</span>, <span class="at">strip.position =</span> <span class="st">"left"</span>) <span class="sc">+</span></span>
+<span id="cb18-13"><a href="#cb18-13"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>, </span>
+<span id="cb18-14"><a href="#cb18-14"></a>       <span class="at">title =</span> <span class="st">"&lt;span style='font-family:fa-brands'&gt;&amp;#xf09b;&lt;/span&gt; GitHub Repository Creation"</span>) <span class="sc">+</span></span>
+<span id="cb18-15"><a href="#cb18-15"></a>  <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb18-16"><a href="#cb18-16"></a>        <span class="at">axis.ticks.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb18-17"><a href="#cb18-17"></a>        <span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb18-18"><a href="#cb18-18"></a>        <span class="at">panel.grid.minor.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb18-19"><a href="#cb18-19"></a>        <span class="at">plot.title =</span> <span class="fu">element_markdown</span>(<span class="at">size =</span> <span class="dv">30</span>, <span class="at">vjust =</span> <span class="dv">1</span>),</span>
+<span id="cb18-20"><a href="#cb18-20"></a>        <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>),</span>
+<span id="cb18-21"><a href="#cb18-21"></a>        <span class="at">plot.margin =</span> <span class="fu">unit</span>(<span class="fu">c</span>(<span class="fl">0.1</span>, <span class="dv">1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>), <span class="st">"inches"</span>)</span>
+<span id="cb18-22"><a href="#cb18-22"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="21-down-upwards_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" alt="A timeline of github repository creation from 2015 to 2022. The first few years only have a few repos, which the most recent months have tens of repos." style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
-</main> <!-- /main -->
-<script>
+</section></main><!-- /main --><script>
 // open rdrr links externally ----
 
 var exlinks = document.querySelectorAll("a[href^='https://rdrr.io']");
@@ -393,8 +678,7 @@ function move_sidebar() {
 }
 move_sidebar();
 window.onresize = move_sidebar;
-</script>
-<script type="application/javascript">
+</script><script type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const icon = "";
   const anchorJS = new window.AnchorJS();
@@ -469,9 +753,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     });
   }
 });
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./20-new-tool.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">New Tool</span></span>
       </a>          
@@ -483,12 +765,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">CC-BY 2022, Lisa DeBruine</div>   
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
-    <li class="nav-item compact">
+<li class="nav-item compact">
     <a class="nav-link" href="https://github.com/debruine/30DCC-2022">
       <i class="bi bi-github" role="img">
 </i> 
@@ -501,7 +782,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </a>
   </li>  
 </ul>
-    </div>
+</div>
   </div>
 </footer>
 

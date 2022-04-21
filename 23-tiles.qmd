@@ -1,2 +1,18 @@
 # Tiles
 
+```{r, include = FALSE}
+source("R/setup.R")
+```
+
+I really love the github activity tile graphs. For today's plot, I'm going to use the data from  [Day -@sec-downup] to make a similar plot, but showing all of my contributions from when I Joined github on September 27, 2015
+
+```{r github-activity}
+knitr::include_graphics("images/github_activity.png")
+```
+
+
+```{r}
+#| code-summary: Setup
+
+library(tidyverse)
+```

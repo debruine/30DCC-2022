@@ -1,0 +1,2097 @@
+[
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/frlgmm/issues/1",
+    "repository": "https://github.com/debruine/frlgmm",
+    "user": "https://github.com/TobiasKor",
+    "title": "Error while running R/readTems.R ",
+    "body": "Hi, \r\nWhilst running the readTems function I received this error message: \r\n\r\nError in dimnames(specimens)[[3]] <- dnames[[1]] : \r\n  length of 'dimnames' [3] not equal to array extent\r\n\r\nThe code I ran was the following:\r\nreadTems(\"[...]\", semi.landmarks = 0, analyse = TRUE, method = \"broken-stick\")\r\nIt says it has found 145 Tem files - but next above error message is shown. \r\n\r\nDoes anyone know what is wrong with the code I am running or the data I put in?\r\n\r\nThanks in advance!\r\nTobias\r\n",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2017-08-11T13:12:10Z",
+    "created_at": "2017-06-29T16:30:30Z",
+    "updated_at": "2017-08-23T11:33:55Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/ddcreator/issues/1",
+    "repository": "https://github.com/debruine/ddcreator",
+    "user": "https://github.com/doomlab",
+    "title": "output in different formats",
+    "body": ".Rdata for the \"fixed up\" file\r\n.csv of the data dictionary\r\nReadme human form\r\nJSON format",
+    "assignee": "https://github.com/doomlab",
+    "assignees": [
+      "https://github.com/doomlab"
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": null,
+    "created_at": "2018-06-25T16:18:38Z",
+    "updated_at": "2018-06-26T19:31:34Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/ddcreator/issues/2",
+    "repository": "https://github.com/debruine/ddcreator",
+    "user": "https://github.com/ajhmohr",
+    "title": "Add value label edits to attribute",
+    "body": "- Add code to write out edited label table to variable label attributes (that match haven attributes)\r\n- Add code have the table grab any existing attributes and pre-populate the label table with them",
+    "assignee": "https://github.com/ajhmohr",
+    "assignees": [
+      "https://github.com/ajhmohr"
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2018-06-26T17:33:41Z",
+    "created_at": "2018-06-25T16:21:55Z",
+    "updated_at": "2018-06-26T17:33:41Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/ddcreator/issues/3",
+    "repository": "https://github.com/debruine/ddcreator",
+    "user": "https://github.com/doomlab",
+    "title": "Scoping of the dataset",
+    "body": "Figure out how to scope the data for saving attributes back to the file.",
+    "assignee": "https://github.com/doomlab",
+    "assignees": [
+      "https://github.com/doomlab"
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2018-06-25T18:59:59Z",
+    "created_at": "2018-06-25T16:21:56Z",
+    "updated_at": "2018-06-25T18:59:59Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/ddcreator/issues/4",
+    "repository": "https://github.com/debruine/ddcreator",
+    "user": "https://github.com/debruine",
+    "title": "Sort order",
+    "body": "Fix sort order for variable labels when numbers are read as characters",
+    "assignee": "https://github.com/debruine",
+    "assignees": [
+      "https://github.com/debruine"
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": null,
+    "created_at": "2018-06-25T19:10:20Z",
+    "updated_at": "2018-06-25T19:10:20Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/ddcreator/issues/5",
+    "repository": "https://github.com/debruine/ddcreator",
+    "user": "https://github.com/doomlab",
+    "title": "How to deal with the attributes",
+    "body": "#2 related to this issue. @ajhmohr \r\n\r\n```unique_vals <- sort(unique(rawdata[,theCol]))\r\nunique_desc <- unique_vals\r\n# TODO: get unique_desc from attributes if they exist\r\n```\r\n\r\nCurrently we pulling from the raw data and then saving in attribute_storage. This resets to raw data if you change columns and come back (re-editing). Instead we should populate attribute_storage on the raw data load, and pull the levels tables from attribute storage to edit. \r\n\r\nSo function that takes attribute storage and turns it in to the attributes for the original data to create .Rdata output (which can be used for json, etc.). ",
+    "assignee": "https://github.com/debruine",
+    "assignees": [
+      "https://github.com/debruine"
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2018-06-25T20:26:50Z",
+    "created_at": "2018-06-25T19:42:43Z",
+    "updated_at": "2018-06-25T20:26:50Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/ddcreator/issues/6",
+    "repository": "https://github.com/debruine/ddcreator",
+    "user": "https://github.com/ajhmohr",
+    "title": "Add specifics to variable table by type",
+    "body": "Change the levels to print in the variable table only for factors. \r\n\r\nChange the min and max to display for integer/numeric variables. ",
+    "assignee": "https://github.com/ajhmohr",
+    "assignees": [
+      "https://github.com/ajhmohr"
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": null,
+    "created_at": "2018-06-26T19:22:23Z",
+    "updated_at": "2018-06-26T19:35:45Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/ddcreator/issues/7",
+    "repository": "https://github.com/debruine/ddcreator",
+    "user": "https://github.com/debruine",
+    "title": "Ability to add missing levels to factors",
+    "body": "In Category Labels tab, let user add or delete factor levels",
+    "assignee": "https://github.com/debruine",
+    "assignees": [
+      "https://github.com/debruine"
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": null,
+    "created_at": "2018-06-26T19:34:29Z",
+    "updated_at": "2018-06-26T19:34:29Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/ddcreator/issues/8",
+    "repository": "https://github.com/debruine/ddcreator",
+    "user": "https://github.com/debruine",
+    "title": "Category Labels drop-down only lists factors",
+    "body": "Set drop-down menu in category labels tab to only show factors. Update when variable types are changed.",
+    "assignee": "https://github.com/debruine",
+    "assignees": [
+      "https://github.com/debruine"
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": null,
+    "created_at": "2018-06-26T19:35:40Z",
+    "updated_at": "2018-06-26T19:44:33Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/ddcreator/issues/9",
+    "repository": "https://github.com/debruine/ddcreator",
+    "user": "https://github.com/ajhmohr",
+    "title": "Allow SPSS upload",
+    "body": "Add button and read in for SPSS\r\n",
+    "assignee": "https://github.com/ajhmohr",
+    "assignees": [
+      "https://github.com/ajhmohr"
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2018-07-26T13:47:37Z",
+    "created_at": "2018-06-26T19:37:49Z",
+    "updated_at": "2018-07-26T13:47:37Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/ddcreator/issues/10",
+    "repository": "https://github.com/debruine/ddcreator",
+    "user": "https://github.com/ajhmohr",
+    "title": "Add SPSS metadata to variables and category tables",
+    "body": "Scrape metadata from SPSS data and add to the default displays for description in the variables table and value labels in the category labels table. ",
+    "assignee": "https://github.com/ajhmohr",
+    "assignees": [
+      "https://github.com/ajhmohr"
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": null,
+    "created_at": "2018-06-26T19:38:38Z",
+    "updated_at": "2018-06-26T19:42:34Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/ddcreator/issues/11",
+    "repository": "https://github.com/debruine/ddcreator",
+    "user": "https://github.com/debruine",
+    "title": "Refactor app file structure",
+    "body": "put sections into separate files",
+    "assignee": "https://github.com/debruine",
+    "assignees": [
+      "https://github.com/debruine"
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": null,
+    "created_at": "2018-06-26T19:43:45Z",
+    "updated_at": "2018-07-26T13:48:14Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/ddcreator/issues/12",
+    "repository": "https://github.com/debruine/ddcreator",
+    "user": "https://github.com/debruine",
+    "title": "Fix table editing",
+    "body": "Tables disappear after editing. This is a bug.",
+    "assignee": "https://github.com/debruine",
+    "assignees": [
+      "https://github.com/debruine"
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": null,
+    "created_at": "2018-06-26T19:44:18Z",
+    "updated_at": "2018-07-30T19:51:14Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/proveit/issues/1",
+    "repository": "https://github.com/debruine/proveit",
+    "user": "https://github.com/debruine",
+    "title": "VVVar: don't re-sim data on visualisation change",
+    "body": "Data simulation shouldn't happen when visualisation options are changes, just when data options (n, m, sd) are changed and on the re-simulate action button.",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2018-07-30T15:03:34Z",
+    "created_at": "2018-07-25T11:52:28Z",
+    "updated_at": "2018-07-30T15:03:34Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/experimentum/issues/1",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/KieranJOShea",
+    "title": "Radiopage Test Feedback",
+    "body": "On the radiopage test (accessed via the two random questionnaires option on the main menu) at the very end of the questionnaire it says \"Add some personal feedback here\" - not sure if there is supposed to be a text box for the participant to type feedback into or if this is just a prompt for the experimenter to add more info about the results if they want to?",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2018-10-15T10:44:51Z",
+    "created_at": "2018-10-15T10:35:05Z",
+    "updated_at": "2018-10-15T10:44:51Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/experimentum/issues/2",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/KieranJOShea",
+    "title": "Symmetric face experiment layout",
+    "body": "\r\nI found the layout to this experiment a little confusing. Made a mistake on trial 1 as I didn't realize the buttons along the top advanced the experiment onto the next trial. Maybe a different layout of options or more explicit instructions on how to select the face? \r\n\r\n![symmetric](https://user-images.githubusercontent.com/33661216/46946258-1362f600-d06f-11e8-92d8-b02b0bf63c98.png)\r\n",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": null,
+    "created_at": "2018-10-15T10:42:52Z",
+    "updated_at": "2018-10-15T10:42:52Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/experimentum/issues/3",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/KieranJOShea",
+    "title": "Rating test",
+    "body": "This display is fairly small onscreen. Also maybe more explicit instructions - \"hit enter once you have typed your rating score\"\r\n\r\n\r\n\r\n![screen shot 2018-10-15 at 11 49 11](https://user-images.githubusercontent.com/33661216/46946662-67baa580-d070-11e8-9d65-1c94aff35ec6.png)\r\n\r\n\r\n\r\n\r\n![screen shot 2018-10-15 at 11 46 17](https://user-images.githubusercontent.com/33661216/46946596-22967380-d070-11e8-93a8-3a7b3712ba06.png)\r\n",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2018-11-06T09:59:07Z",
+    "created_at": "2018-10-15T10:50:03Z",
+    "updated_at": "2018-11-06T09:59:07Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/experimentum/issues/4",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/KieranJOShea",
+    "title": "Sorting Test",
+    "body": "1) I'm guessing the text in the screenshot is just supposed to be filler blurb?\r\n2) Perhaps some instructions on how to sort the faces from oldest to youngest? I figured it was top through to bottom and left to right (so oldest on top left and youngest on bottom right) \r\n\r\n\r\n![screen shot 2018-10-15 at 11 51 15](https://user-images.githubusercontent.com/33661216/46946860-fe876200-d070-11e8-9df3-17cbefbfcf08.png)\r\n",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2018-10-15T11:01:32Z",
+    "created_at": "2018-10-15T10:56:24Z",
+    "updated_at": "2018-10-15T11:01:32Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/experimentum/issues/5",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/KieranJOShea",
+    "title": "Thanksgiving Dinner",
+    "body": "Similarly to \"sorting test\" - maybe some instructions on how to sort the options? It's fairly intuitive but for avoidance of doubt \"drag and drop items into your preferred order\" or something similar?",
+    "assignee": "https://github.com/debruine",
+    "assignees": [
+      "https://github.com/debruine"
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": null,
+    "created_at": "2018-10-15T10:58:17Z",
+    "updated_at": "2018-10-15T11:15:32Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/experimentum/issues/6",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/JaimieST",
+    "title": "Can't open experiments/click reloads page",
+    "body": "Not sure how to best describe the issue, from the test homepage it can take multiple attempts to open any experiment. sometimes opens on the first click, but can take up to 7/8 attempts before actually opening.\r\n\r\nWhen it does open, anything i try to click on seems to reload the page, so actually doing any of the experiments is impossible.\r\n\r\nusing Chrome Version 67.0.3396.99 on Mac",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2018-11-10T11:32:55Z",
+    "created_at": "2018-10-15T16:13:32Z",
+    "updated_at": "2018-11-10T11:32:55Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/experimentum/issues/7",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/debruine",
+    "title": "1-file folders",
+    "body": "Move files from 1-file folders to folder name (e.g., /exp/index.php -> /exp.php)",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2018-10-15T18:06:38Z",
+    "created_at": "2018-10-15T17:54:36Z",
+    "updated_at": "2018-10-15T18:06:38Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/experimentum/issues/8",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/debruine",
+    "title": "Lisa can't spell resaercher",
+    "body": "Change all possible occurrences of \"reseacher\" to \"res\" because I can't spell it",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2018-10-27T17:48:20Z",
+    "created_at": "2018-10-15T18:03:25Z",
+    "updated_at": "2018-10-27T17:48:20Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/experimentum/issues/9",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/RebeccaJLai",
+    "title": "Questionnaire names",
+    "body": "![image](https://user-images.githubusercontent.com/33028772/47042223-a771b200-d182-11e8-8c25-dd96e52c62ab.png)\r\n![image](https://user-images.githubusercontent.com/33028772/47042244-b5273780-d182-11e8-9ec4-27b077c2bc62.png)\r\n![image](https://user-images.githubusercontent.com/33028772/47042332-ed2e7a80-d182-11e8-9a05-03739cc9b25c.png)\r\n\r\nquestionnaire name mislabelled at researcher name?",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2018-10-28T10:44:07Z",
+    "created_at": "2018-10-16T19:35:01Z",
+    "updated_at": "2018-10-28T10:44:07Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/experimentum/issues/10",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/RebeccaJLai",
+    "title": "Button test buttons",
+    "body": "![image](https://user-images.githubusercontent.com/33028772/47043466-9b3b2400-d185-11e8-8eb8-e79534f0c11c.png)\r\n\r\nAre the buttons on the scale supposed to stay highlighted with your previous trials choice?",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": null,
+    "created_at": "2018-10-16T19:54:58Z",
+    "updated_at": "2018-10-16T19:54:58Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/experimentum/issues/11",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/debruine",
+    "title": "Status changer",
+    "body": "let users request reseracher status, fill in their own details, and admin users can see a list to auth or deauth",
+    "assignee": "https://github.com/debruine",
+    "assignees": [
+      "https://github.com/debruine"
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2018-10-27T16:16:27Z",
+    "created_at": "2018-10-17T21:20:41Z",
+    "updated_at": "2018-10-27T16:16:27Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/experimentum/issues/12",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/debruine",
+    "title": "merge trial and xafc",
+    "body": "Add trial_n and stim_n to trial table and merge functionality with xafc table (change img to stim)",
+    "assignee": "https://github.com/debruine",
+    "assignees": [
+      "https://github.com/debruine"
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": null,
+    "created_at": "2018-10-27T14:42:40Z",
+    "updated_at": "2018-10-27T15:10:42Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/experimentum/issues/13",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/debruine",
+    "title": "Stim choose on exp trial builder",
+    "body": "Add a finder-style stimulus chooser on the trials builder for experiments",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": null,
+    "created_at": "2018-10-27T14:44:35Z",
+    "updated_at": "2018-10-27T14:44:35Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/experimentum/issues/14",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/debruine",
+    "title": "Automatically name trials",
+    "body": "Automatically name trials from stimuli",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": null,
+    "created_at": "2018-10-27T16:13:50Z",
+    "updated_at": "2018-10-27T16:13:50Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/experimentum/issues/15",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/debruine",
+    "title": "Upload files alphabetically",
+    "body": "Admin stimulus upload and user stimulus upload add files in system order, not alphabettically",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2018-11-10T11:33:10Z",
+    "created_at": "2018-10-27T16:18:14Z",
+    "updated_at": "2018-11-10T11:33:10Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/experimentum/issues/16",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/debruine",
+    "title": "Delete user stimuli",
+    "body": "Check user stimuli for use in active studies, warn if used in archived studies with user data, keep in stimulus table if ever used",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2018-11-20T09:21:07Z",
+    "created_at": "2018-10-27T17:04:24Z",
+    "updated_at": "2018-11-20T09:21:07Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/experimentum/issues/17",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/debruine",
+    "title": "Recording for speeded tests",
+    "body": "update scripts/record_exp2 to record to long format exp_data table for speeded tests",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": null,
+    "created_at": "2018-10-27T18:05:39Z",
+    "updated_at": "2018-10-27T18:05:39Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/experimentum/issues/18",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/debruine",
+    "title": "Slideshow type",
+    "body": "Make slideshow experiment type and remove adaptation subtypes",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2018-11-10T21:49:49Z",
+    "created_at": "2018-10-27T18:24:24Z",
+    "updated_at": "2018-11-10T21:49:49Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/experimentum/issues/19",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/debruine",
+    "title": "Move trials builder to exp builder tab",
+    "body": "Move all code for the trials builder to the experiment builder in a tab and get rid of the trials builder as a separate page.",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": null,
+    "created_at": "2018-10-27T22:53:45Z",
+    "updated_at": "2018-10-27T22:53:45Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/experimentum/issues/20",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/debruine",
+    "title": "Questionnaire from spreadsheet",
+    "body": "Ignore blank rows, extra columns, and header columns when loading from a spreadsheet.\r\n\r\nRearrange header columns if they don't match",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": null,
+    "created_at": "2018-10-28T00:07:31Z",
+    "updated_at": "2018-10-28T00:07:31Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/experimentum/issues/21",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/debruine",
+    "title": "Item status from Set info",
+    "body": "Allow res and admin users to change item status from the set info page",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": null,
+    "created_at": "2018-10-28T00:10:28Z",
+    "updated_at": "2018-10-28T00:10:28Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/experimentum/issues/22",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/debruine",
+    "title": "Move data to info page",
+    "body": "Move data download to the info page for each questionnaire and experiment",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2018-11-06T09:58:25Z",
+    "created_at": "2018-10-28T10:40:08Z",
+    "updated_at": "2018-11-06T09:58:25Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/experimentum/issues/23",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/debruine",
+    "title": "Project zip data",
+    "body": "Download all data as a zip file from a set or project info page",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2018-11-10T11:22:00Z",
+    "created_at": "2018-10-28T10:40:42Z",
+    "updated_at": "2018-11-10T11:22:01Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/experimentum/issues/24",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/debruine",
+    "title": "Allow exp or quest type changing",
+    "body": "Let researchers change experiment or questionnaire types from the builder interface.",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": null,
+    "created_at": "2018-10-30T16:23:44Z",
+    "updated_at": "2018-10-30T16:23:44Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/experimentum/issues/25",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/debruine",
+    "title": "Download Study in JSON format",
+    "body": "Download all study details in JSON format for individual experiments, questionnaires, sets, and projects.",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2018-11-10T10:16:23Z",
+    "created_at": "2018-10-30T16:25:07Z",
+    "updated_at": "2018-11-10T10:16:23Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/experimentum/issues/26",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/debruine",
+    "title": "back button on exp",
+    "body": "Warn user to avoid the back button on experiments",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2018-11-10T16:18:08Z",
+    "created_at": "2018-11-10T16:17:58Z",
+    "updated_at": "2018-11-10T16:18:08Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/experimentum/issues/27",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/debruine",
+    "title": "Dynamic folders for scan all stimuli",
+    "body": "Read folders in stimuli dir and add them to the dropdown menu for quicker scanning of new stimuli",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": null,
+    "created_at": "2018-11-10T22:15:39Z",
+    "updated_at": "2018-11-10T22:15:39Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/experimentum/issues/28",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/debruine",
+    "title": "Warn on saving changes to an active component",
+    "body": "Saving changes to an active component rests it to test. Warn researchers.",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2018-12-19T16:20:10Z",
+    "created_at": "2018-11-12T16:43:16Z",
+    "updated_at": "2018-12-19T16:20:10Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/experimentum/issues/29",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/debruine",
+    "title": "Add extensions to stim database",
+    "body": "Image and audio files need extensions",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": null,
+    "created_at": "2018-11-13T10:18:23Z",
+    "updated_at": "2018-11-13T10:18:23Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/experimentum/issues/30",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/debruine",
+    "title": "Test users",
+    "body": "Let researchers mark users as test status",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2018-11-20T10:41:55Z",
+    "created_at": "2018-11-13T10:45:11Z",
+    "updated_at": "2018-11-20T10:41:55Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/experimentum/issues/31",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/debruine",
+    "title": "No infinte sets",
+    "body": "Prevent people from including a set inside itself. It infinitely nests and breaks the set and set info page.",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2018-12-17T14:35:19Z",
+    "created_at": "2018-12-05T11:38:59Z",
+    "updated_at": "2018-12-17T14:35:19Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/experimentum/issues/32",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/debruine",
+    "title": "Textarea for questionnaires",
+    "body": "Add textarea option for questionniares.",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2018-12-05T15:51:07Z",
+    "created_at": "2018-12-05T15:51:02Z",
+    "updated_at": "2018-12-05T15:51:07Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/experimentum/issues/33",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/EliMih",
+    "title": "Mixed questionnaire; pulldown menu. Edit option names/number",
+    "body": "When “pulldown menu” chosen as an answer type, impossible to change the names of “option 1\" and “option 2” or add/delete options.",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": null,
+    "created_at": "2018-12-07T12:46:01Z",
+    "updated_at": "2018-12-07T12:46:01Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/experimentum/issues/34",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/debruine",
+    "title": "Add component restrictions to project page",
+    "body": "Add summary of component restrictions to project info\r\n\r\nAdd exact component restrictions to set tables",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": null,
+    "created_at": "2019-01-29T10:53:57Z",
+    "updated_at": "2019-01-29T10:53:57Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/experimentum/issues/35",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/debruine",
+    "title": "Project debrief",
+    "body": "Add project debriefing box to projects (supplements feedback, but doesn't override it).",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": null,
+    "created_at": "2019-01-29T10:54:51Z",
+    "updated_at": "2019-01-29T10:54:51Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/experimentum/issues/36",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/debruine",
+    "title": "Versioning",
+    "body": "Add component versioning and/or change logs to all components after changed from test to active status\r\n\r\nComponents cannot be rolled back to test, then, only to inactive.",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": null,
+    "created_at": "2019-01-29T10:55:50Z",
+    "updated_at": "2019-01-29T10:55:50Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/experimentum/issues/37",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/debruine",
+    "title": "Researcher log data",
+    "body": "Add researcher log to the participnat page\r\n",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": null,
+    "created_at": "2019-01-29T10:57:43Z",
+    "updated_at": "2019-01-29T10:57:43Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/faux/issues/15",
+    "repository": "https://github.com/debruine/faux",
+    "user": "https://github.com/debruine",
+    "title": "tidyr::crossing",
+    "body": "Change expand.grid to use tidyr::crossing for more intuitive order of cells",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2019-05-27T18:07:59Z",
+    "created_at": "2019-05-23T12:15:04Z",
+    "updated_at": "2019-05-27T18:07:59Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/faux/issues/19",
+    "repository": "https://github.com/debruine/faux",
+    "user": "https://github.com/debruine",
+    "title": "sim_design n vector spec",
+    "body": "Remove N warning for short vector",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2021-02-14T12:25:21Z",
+    "created_at": "2019-05-25T15:26:44Z",
+    "updated_at": "2021-02-14T12:25:21Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/experimentum/issues/38",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/RebeccaJLai",
+    "title": "Slider display ",
+    "body": "Slider scales don't display the slider element (the purple circle on the second image below) on the scale until clicked on. Minor for sure, but potentially confusing for some.\r\n\r\n![image](https://user-images.githubusercontent.com/33028772/58562134-8c8b1400-8220-11e9-94fd-81cdf734805f.png)\r\n\r\n![image](https://user-images.githubusercontent.com/33028772/58562160-9c0a5d00-8220-11e9-8c9e-b71df973d6cc.png)\r\n",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2019-06-24T11:01:14Z",
+    "created_at": "2019-05-29T13:52:31Z",
+    "updated_at": "2019-06-24T11:01:15Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/webmorph/issues/2",
+    "repository": "https://github.com/debruine/webmorph",
+    "user": "https://github.com/d-bohn",
+    "title": "setup on localhost",
+    "body": "Thanks for supplying the code for this, and the work you put into it! I've used JPsychoMorph in our lab for years, so naturally I was/am excited to try this version.\r\n\r\nI am trying to setup an instance of webmorph on my local machine (macOS Mojave) and ran into a bit of an issue. I followed the instructions on your README and everything appeared to work, but when I go to `webmorph.test` or `localhost` my browser takes me to a webpage that simply states \"It works!\". When I add `:8080` it takes me to the tomcat webpage stating it was successfully installed. I'm not a web developer, so this is fairly new to me. I'm just curious if I overlooked a step, or missed something that might be an easy fix since you went though this before.\r\n\r\nI did notice that I am running an newer version of `php` than what you mention in your docs (7.x vs 5.x), though I'm not sure that should matter?",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2019-06-30T18:27:37Z",
+    "created_at": "2019-05-30T23:09:35Z",
+    "updated_at": "2019-06-30T18:31:38Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/experimentum/issues/39",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/amandahahn",
+    "title": "Researcher request emails",
+    "body": "All researcher request emails (for new registrants) are set to go to lisa.debruine@glasgow.ac.uk (this is in the register.php file) - change README.md file so folk downloading & using experimentum set this to their own email info not yours.",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2019-06-17T14:26:47Z",
+    "created_at": "2019-06-17T14:22:25Z",
+    "updated_at": "2019-06-17T14:26:47Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/experimentum/issues/40",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/amandahahn",
+    "title": "Add motivation paradigm",
+    "body": "I know you're already planning to do this, but just so it's on the official list - here's my formal request to add the motivation paradigm as an experiment type :)",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": null,
+    "created_at": "2019-06-19T12:04:56Z",
+    "updated_at": "2019-06-19T12:04:56Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/experimentum/issues/41",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/debruine",
+    "title": "Missing questionnaire items",
+    "body": "Record a blank line for user-missing questionnaire items, rather than skipping",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": null,
+    "created_at": "2019-06-24T09:21:12Z",
+    "updated_at": "2019-06-24T09:21:12Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/experimentum/issues/42",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/debruine",
+    "title": "No input \"question\" type",
+    "body": "Add question type with no input for extra text in the middle of questionnaires",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": null,
+    "created_at": "2019-06-24T09:22:08Z",
+    "updated_at": "2019-06-24T09:22:08Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/experimentum/issues/43",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/debruine",
+    "title": "Branching structure",
+    "body": "Option to branch to different sets depending on previous data",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": null,
+    "created_at": "2019-06-24T09:22:54Z",
+    "updated_at": "2019-06-24T09:22:54Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/experimentum/issues/44",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/debruine",
+    "title": "button highlighting",
+    "body": "Buttons stay highlighted between responses on some browsers",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2019-06-24T10:57:21Z",
+    "created_at": "2019-06-24T09:23:48Z",
+    "updated_at": "2019-06-24T10:57:22Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/experimentum/issues/45",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/debruine",
+    "title": "NaN footer in experiment",
+    "body": "",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2019-07-24T10:57:45Z",
+    "created_at": "2019-06-24T09:31:56Z",
+    "updated_at": "2019-07-24T10:57:45Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/experimentum/issues/46",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/debruine",
+    "title": "Button highlighting",
+    "body": "Buttons in experiments stay highlighted on chrome",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2019-06-24T09:44:10Z",
+    "created_at": "2019-06-24T09:43:50Z",
+    "updated_at": "2019-06-24T09:44:10Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/experimentum/issues/47",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/RebeccaJLai",
+    "title": "& in the project URL",
+    "body": "Some users are getting confused about the use of &guest and including it in the project url in the project page.\r\n\r\n",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2019-07-24T09:38:06Z",
+    "created_at": "2019-06-24T10:45:02Z",
+    "updated_at": "2019-07-24T09:38:07Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/experimentum/issues/48",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/debruine",
+    "title": "Age and gender restrictions for guest users",
+    "body": "Guest users are now asked their age and gender at login",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2019-06-24T10:58:51Z",
+    "created_at": "2019-06-24T10:58:46Z",
+    "updated_at": "2019-06-24T10:58:51Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/faux/issues/29",
+    "repository": "https://github.com/debruine/faux",
+    "user": "https://github.com/jgeller112",
+    "title": "Power Simulations with Pilot Data",
+    "body": "Hi Lisa, \r\n\r\nTo start, great package! I have pilot data that I am trying to run power simulations on. Because I am not simulating data I tweaked your `my_lmer_power` function incorporating some simR functions: \r\n```\r\nmy_lmer_power<-function(...) {\r\n# ... is a shortcut that forwards any arguments to my_sim_data()\r\nmode3<-simr::extend(fit, along=\"subject\", n=30) # increase sample size from 5 to 30 \r\nmod_sim <- lmer(aggbaseline ~ cueing + (1|subject), data = getData(mode3), REML=FALSE)\r\nfixef(mod_sim)[\"cueing\"]<-.01 # SESOI I want to run power simulations on with data. \r\nbroom.mixed::tidy(mod_sim)\r\n}\r\n```\r\n\r\nWhen I go to simulate the data sets, it simulates the same dataset 100 times. \r\n```\r\nreps <- 100\r\nsims <- purrr::map_df(1:reps, ~my_lmer_power())\r\nwrite_csv(sims, \"sims.csv\")\r\n```\r\nAny clue what I am doing wrong? Any help would be appreciated. \r\n\r\nJason \r\n\r\n\r\n```\r\n\r\n\r\n",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2019-08-06T14:52:52Z",
+    "created_at": "2019-07-29T22:14:09Z",
+    "updated_at": "2019-08-06T14:52:52Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/experimentum/issues/49",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/RebeccaJLai",
+    "title": "Sorting questionnaire question",
+    "body": "You can enter a question, but if you make a typo you can't edit existing text, only type the whole question out again.\r\n\r\n![image](https://user-images.githubusercontent.com/33028772/63585521-3a475e00-c597-11e9-8383-563effe341d9.png)\r\n\r\nIssue seems to happen only on Firefox and Safari, can edit question in Chrome no problem.",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": null,
+    "created_at": "2019-08-23T10:19:49Z",
+    "updated_at": "2019-08-23T10:19:49Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/faux/issues/30",
+    "repository": "https://github.com/debruine/faux",
+    "user": "https://github.com/WillemSleegers",
+    "title": "Underscores in mu column names doesn't seem to work",
+    "body": "When I try to set up a design like so:\r\n\r\n```\r\nbetween <- list(condition = c(control = \"Control\", \r\n  low_choice = \"Low choice\", high_choice = \"High choice\"))\r\nwithin <- list(time = c(\"Pre-essay\", \"Post-essay\"))\r\n\r\nmu <- data.frame(\r\n  control     = c(2, 2),\r\n  low_choice  = c(2, 3),\r\n  high_choice = c(2, 5),\r\n  row.names = within$time\r\n)\r\n\r\ndf <- sim_design(within, between, \r\n  n = 100, mu = mu, sd = 2, r = .5,\r\n  empirical = TRUE, plot = TRUE)\r\n```\r\n\r\nI get the error that the means data table is misspecified. I think it's because of the underscores in the data frame names of mu.",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+      {
+        "user": "https://github.com/shirdekel",
+        "content": "+1",
+        "subject_type": "Issue",
+        "created_at": "2020-12-05T05:42:15.000+00:00"
+      }
+    ],
+    "closed_at": "2021-02-19T14:22:19Z",
+    "created_at": "2019-09-05T08:43:10Z",
+    "updated_at": "2021-02-24T08:50:23Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/faux/issues/31",
+    "repository": "https://github.com/debruine/faux",
+    "user": "https://github.com/debruine",
+    "title": "transposed mu data.frame",
+    "body": "Bug found by @doomlab\r\n\r\n```\r\nlibrary(faux)\r\n\r\nbetween <- list(where_bought = c(online = \"online\", store = \"Store\"),\r\n                who_bought = c(different = \"Different\", same = \"Same\"))\r\nwithin <- list(rm_var = c(\"money\", \"time\"))\r\nhow_many <- 100\r\n\r\n# doesn't work\r\nmu <- data.frame(\r\n  online = c(25, 2),\r\n  store = c(35, 10),\r\n  different = c(25, 1.5),\r\n  same = c(35, 12),\r\n  row.names = within$rm_var\r\n)\r\n\r\n# does work!?\r\nmu2 <- t(mu)\r\n               \r\nlab4_update <- sim_design(within, between, n = how_many, mu = mu2,\r\n                          sd = 3, r = .10,\r\n                          empirical = FALSE, plot = TRUE)\r\n```",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2020-02-26T21:43:58Z",
+    "created_at": "2019-09-27T16:04:51Z",
+    "updated_at": "2020-02-26T21:43:58Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/faux/issues/36",
+    "repository": "https://github.com/debruine/faux",
+    "user": "https://github.com/elctrc",
+    "title": "trunc2norm requires both min and max values",
+    "body": "If you attempt to run `trunc2norm` with the default values for min and max you receive the following error:\r\n\r\n```\r\nError in truncnorm::ptruncnorm(x, a = min, b = max, mean = mu, sd = sd) : \r\n  promise already under evaluation: recursive default argument reference or earlier problems?\r\n```\r\nUsing the example from the vignette (without the parameters) will generate the error:\r\n```\r\nx <- truncnorm::rtruncnorm(10000, 1, 7, 3.5, 2)\r\ny <- trunc2norm(x)\r\n```\r\nIf you attempt to declare just min or just max parameters (and not both) you will receive the error.\r\n\r\nIn addition, when I attempted to run with both min/max included with a min of 0, I still received values at -Inf in return.\r\n\r\nSample usage that generated the -Inf values below, where df is a data.frame of numeric values:\r\n`df_trunc <- as.data.frame(sapply(df, trunc2norm, min = 0, max = 4))`\r\n\r\nhttps://github.com/debruine/faux/blob/a5e914b178b6b66d40c30460d41d43b7b8ee2f8b/R/distribution_convertors.R#L147\r\n\r\np.s. This is a wonderful R package!! Thank you for making it.",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2020-07-29T14:29:02Z",
+    "created_at": "2020-02-04T23:04:51Z",
+    "updated_at": "2020-07-29T14:29:02Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/faux/issues/41",
+    "repository": "https://github.com/debruine/faux",
+    "user": "https://github.com/Michaeladebolt",
+    "title": "Issue with sim_design",
+    "body": "Hello! I'm getting errors when trying to use the sim_design function. \r\n\r\nThese are the errors:\r\nWarning messages:\r\n1: `fun.y` is deprecated. Use `fun` instead. \r\n2: `fun.ymin` is deprecated. Use `fun.min` instead. \r\n3: `fun.ymax` is deprecated. Use `fun.max` instead. \r\n\r\nI've attached a screenshot of the package versions that I'm currently using. \r\n\r\nAny idea what might be causing this?\r\nThanks!\r\n\r\n![Screen Shot 2020-04-06 at 5 52 27 PM](https://user-images.githubusercontent.com/32584911/78618430-687c6400-782f-11ea-9466-88c125d5cf68.png)\r\n",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2020-04-07T10:10:32Z",
+    "created_at": "2020-04-07T00:53:13Z",
+    "updated_at": "2020-04-07T18:41:01Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/faux/issues/45",
+    "repository": "https://github.com/debruine/faux",
+    "user": "https://github.com/pmeiners",
+    "title": "Empirical = FALSE doesn't work",
+    "body": "Thank you for the very useful package. Unfortunately, I think the statement Empirical = FALSE in sim_design doesn't seem to do anything different than Empirical = TRUE.\r\n\r\nUsing faux_0.0.1.1",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2020-08-11T15:08:26Z",
+    "created_at": "2020-07-01T19:20:06Z",
+    "updated_at": "2020-08-11T15:08:26Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/shiny_apps/issues/1",
+    "repository": "https://github.com/debruine/shiny_apps",
+    "user": "https://github.com/Lakens",
+    "title": "within_cor app - minor bug fix",
+    "body": "coord_cartesian(xlim=c(-80:80)) should now be coord_cartesian(xlim=c(-80,80)) ",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": null,
+    "created_at": "2020-07-13T20:27:31Z",
+    "updated_at": "2020-07-13T20:27:31Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/faux/issues/59",
+    "repository": "https://github.com/debruine/faux",
+    "user": "https://github.com/graemeleehickey",
+    "title": "Package removed from CRAN",
+    "body": "Is it possible to re-add this package to CRAN?",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2021-02-13T16:44:54Z",
+    "created_at": "2020-09-11T21:37:02Z",
+    "updated_at": "2021-02-13T16:44:54Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/tutorials/issues/1",
+    "repository": "https://github.com/debruine/tutorials",
+    "user": "https://github.com/debruine",
+    "title": "Iris Comments",
+    "body": "Remember to save DESCRIPTION before license\r\n\r\n1.4.3: \"The Useage is automatically generated\"\r\n\r\n1.4.3 (replace @export with..... ???\r\n\r\n1.4.4 explain purpose of imports; set version minimum requirements\r\n\r\n1.5.1 Explain how to fix common check problems\r\n\r\n1.9.1 \"Appendix @ref(#git)\"\r\n\r\n1.9.3 GitHub access token - you only need to do this once\r\n\r\n1.9.5 If you get an error message from github about no docs folder, double-check it isn't in .gitignore\r\n\r\n1.10.1 Workflow - explain the purpose of this better and add more comments\r\n\r\n",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": null,
+    "created_at": "2020-09-30T09:31:23Z",
+    "updated_at": "2020-09-30T09:31:23Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/tutorials/issues/2",
+    "repository": "https://github.com/debruine/tutorials",
+    "user": "https://github.com/debruine",
+    "title": "example data",
+    "body": "Explain how to include data",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": null,
+    "created_at": "2020-09-30T09:34:31Z",
+    "updated_at": "2020-09-30T09:34:31Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/lmem_sim/issues/1",
+    "repository": "https://github.com/debruine/lmem_sim",
+    "user": "https://github.com/awhug",
+    "title": "Data Generating Code in Extended Binomial Vignette?",
+    "body": "Hi Lisa!\r\n\r\nFantastic manuscript and really useful resource. Just a quick question - I could be entirely wrong here, but is there an error in the extended binomial simulation vignette?\r\n\r\nhttps://github.com/debruine/lmem_sim/blob/eb25e36b7bf80a05cabc72e68ea06981b8791f8d/vignettes/appendix3b_extended_binomial.Rmd#L149-L153\r\n\r\nI would have assumed that `B_e = beta_e + S_e + I_e`, and `B_c = beta_c + S_c`. But perhaps there's some simple algebraic reason (relating to the interaction?) that this simulation code works?",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2020-12-28T16:04:50Z",
+    "created_at": "2020-12-03T05:27:08Z",
+    "updated_at": "2020-12-28T16:04:50Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/lmem_sim/issues/2",
+    "repository": "https://github.com/debruine/lmem_sim",
+    "user": "https://github.com/oscci",
+    "title": "minor typo, example 3b",
+    "body": "line 36: should be 'fixed factor 2'?\r\nthanks",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2021-01-04T11:36:07Z",
+    "created_at": "2021-01-01T10:11:20Z",
+    "updated_at": "2021-01-04T11:36:07Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/faux/issues/62",
+    "repository": "https://github.com/debruine/faux",
+    "user": "https://github.com/doomlab",
+    "title": "Using sim_df with missing data goes bork",
+    "body": "So, if I use `sim_df` with missing data, it does not like that. You can find my example data `midterm` in my learnSTATS package here: https://github.com/doomlab/learnSTATS/tree/master/data\r\n\r\nThen I was trying to do this:\r\n\r\n```\r\n    midterm <- sim_df(data = midterm, #data frame\r\n                      n = sample(50:100, 1),#how many of each group\r\n                      between = c(\"JOL_group\", \"type_cue\"))\r\n```\r\n\r\nI think the solution may be to include `na.rm` in this section ... if that makes sense for simulating. I ended up using `na.omit` on my data for what I was doing, then your `messy` function to add the missingness back in. \r\n\r\n```\r\nz <- rnorm_multi(\r\n      n = n,\r\n      vars = ncol(y),\r\n      mu = sapply(y, mean, na.rm = T),\r\n      sd = sapply(y, sd, na.rm = T),\r\n      r = cor(y),\r\n      varnames = names(y),\r\n      empirical = empirical\r\n    )\r\n```",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2021-02-13T23:35:29Z",
+    "created_at": "2021-02-12T21:31:35Z",
+    "updated_at": "2021-02-13T23:35:29Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/webmorph/issues/3",
+    "repository": "https://github.com/debruine/webmorph",
+    "user": "https://github.com/debruine",
+    "title": "Webcam reverse on even opens",
+    "body": "",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": null,
+    "created_at": "2021-03-01T16:25:27Z",
+    "updated_at": "2021-03-01T16:25:27Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/lmem_sim/issues/4",
+    "repository": "https://github.com/debruine/lmem_sim",
+    "user": "https://github.com/debruine",
+    "title": "typo",
+    "body": " \"Currently, our model assumes that each and every subject is exactly 80 ms faster to categorize emotions on in-group faces than on out-group faces\" 80 ms should be 50 ms\r\n\r\nCaught by https://twitter.com/sciandlife",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": null,
+    "created_at": "2021-03-23T13:51:20Z",
+    "updated_at": "2021-03-23T13:51:20Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/faux/issues/69",
+    "repository": "https://github.com/debruine/faux",
+    "user": "https://github.com/debruine",
+    "title": "Release faux 1.0.0",
+    "body": "Prepare for release:\n\n* [x] Check [current CRAN check results](https://cran.rstudio.org/web/checks/check_results_faux.html)\n* [x] [Polish NEWS](https://style.tidyverse.org/news.html#news-release)\n* [x] `devtools::build_readme()`\n* [x] [`urlchecker::url_check()`](https://github.com/r-lib/urlchecker)\n* [x] `devtools::check(remote = TRUE, manual = TRUE)`\n* [x] `devtools::check_win_devel()`\n* [x] `rhub::check_for_cran()`\n* [x] `revdepcheck::revdep_check(num_workers = 4)`\n* [x] Update `cran-comments.md`\n* [x] Review pkgdown reference index for, e.g., missing topics\n* [ ] Draft blog post\n\nSubmit to CRAN:\n\n* [x] `usethis::use_version('major')`\n* [x] `devtools::submit_cran()`\n* [x] Approve email\n\nWait for CRAN...\n\n* [x] Accepted :tada:\n* [x] `usethis::use_github_release()`\n* [x] `usethis::use_dev_version()`\n* [ ] Finish blog post\n* [x] Tweet\n* [ ] Add link to blog post in pkgdown news menu\n",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2021-03-27T13:11:41Z",
+    "created_at": "2021-03-24T09:26:03Z",
+    "updated_at": "2021-03-27T13:11:41Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/lmem_sim/issues/5",
+    "repository": "https://github.com/debruine/lmem_sim",
+    "user": "https://github.com/andrew0302",
+    "title": "Installation Error",
+    "body": "Forgive me if this is the wrong channel for this, I've not used github very much. I'm getting an error when trying to install. I first installed devtools, and then ran the command: \r\n\r\n\"devtools::install_github(\"debruine/lmem_sim\")\"\r\n\r\nI was asked to update packages, which I did, and then got this error. I can't seem to find a way around it:\r\n\r\n\"Error: Failed to install 'lmem.sim' from GitHub: System command 'R' failed, exit status: 1, stdout + stderr: E> * checking for file ‘/private/var/folders/bs/q0lxt28s393bjs4ttm2fqb5c0000gn/T/RtmpgDIZuW/remotes12310627baefa/debruine-lmem_sim-2b8a55a/DESCRIPTION’ ... OK E> * preparing ‘lmem.sim’: E> * checking DESCRIPTION meta-information ... OK E> Warning in grepl(e, files, perl = TRUE, ignore.case = TRUE) : E> PCRE pattern compilation error E> 'quantifier does not follow a repeatable item' E> at '*~' E> Error in grepl(e, files, perl = TRUE, ignore.case = TRUE) : E> invalid regular expression '*~' E> Execution halted\"\r\n\r\nI'm using R version 4.0.3 on a macbook. ",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": null,
+    "created_at": "2021-04-01T10:40:53Z",
+    "updated_at": "2021-04-01T10:56:05Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/webmorph/issues/4",
+    "repository": "https://github.com/debruine/webmorph",
+    "user": "https://github.com/spressi",
+    "title": "filenames containing plus sign +",
+    "body": "Hi Lisa,\r\nI found an interesting bug today. If a file contains a plus sign in its filename during upload, the file content is depicted as empty in Webmorph (the preview also does not work). Also, after downloading it from Webmorph and opening it locally, the problem persists. \r\nIt probably has to do with plus signs in the browser being used as special characters. Therefore, when parsing file names during upload, plus signs should probably be replaced with underscores (as is already performed for whitespaces).\r\nBest regards,\r\nMario",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": null,
+    "created_at": "2021-04-06T13:04:06Z",
+    "updated_at": "2021-04-06T13:04:06Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/webmorph/issues/5",
+    "repository": "https://github.com/debruine/webmorph",
+    "user": "https://github.com/ronijya",
+    "title": "Shortcuts on Windows",
+    "body": "Dear Dr. DeBruine\r\nI've been using webmorph for my placement and am using it now for my dissertation. An issue I've encountered repeatedly is that I'm unable to use the shortcuts with my computer (windows, and non-English keyboard). Right now I'm stuck with trying to add a new point to my template. I found out that I need to press Ctrl+Shift for the \"click to add a point\" to appear, but when I click, no new point is created. Some options can be accessed from the drop-down menu, but not all options are available that way.\r\nThanks a lot,\r\nRonja",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": null,
+    "created_at": "2021-04-21T13:00:48Z",
+    "updated_at": "2021-04-21T13:08:03Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/pdsbuilder/issues/2",
+    "repository": "https://github.com/debruine/pdsbuilder",
+    "user": "https://github.com/jcolomb",
+    "title": "licence",
+    "body": "Hello, I have just sent a pull request, and then realised I need to check for the licence for reuse. \r\nSince there is no licence attached, I would like to kindly ask permission to use your code for my little project.",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": null,
+    "created_at": "2021-04-22T13:29:27Z",
+    "updated_at": "2021-04-22T13:51:28Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/faux/issues/75",
+    "repository": "https://github.com/debruine/faux",
+    "user": "https://github.com/jcolomb",
+    "title": "broom.mixed ggExtra dependency ?",
+    "body": "hi, I am not a package maker, please accept my apologies if the question is stupid.\r\n\r\nI clone my fork of the package in Rstudio, install it via Rstudio button and push the check button, it failed asking for broom.mixed and ggExtra packages (that was the master branch, not the one with my changes). Once I installed the package, it runs smoothly and gives no error.\r\n\r\nI thought the dependencies would be installed with `devtools::load_all(\".\")`, did I do something strange or are the dependencies of check different from the dependencies of the package, or ??",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2021-08-09T12:08:53Z",
+    "created_at": "2021-04-23T10:14:47Z",
+    "updated_at": "2021-08-09T12:08:53Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/webmorphR/issues/1",
+    "repository": "https://github.com/debruine/webmorphR",
+    "user": "https://github.com/debruine",
+    "title": "alt text",
+    "body": "Add alt text to all documentation on the website",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": null,
+    "created_at": "2021-05-23T22:04:14Z",
+    "updated_at": "2021-05-23T22:04:14Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/webmorph/issues/6",
+    "repository": "https://github.com/debruine/webmorph",
+    "user": "https://github.com/bbstevens15",
+    "title": "Webmorph Link to Website not Working ",
+    "body": "Hi Dr. DeBruine\r\n\r\nI have been using webmorph for several months and as of last night (August 17, 2021) the link to the website stopped working. I no longer can access the website. When I go to the link for the website it takes forever to load and eventually says that it cannot connect to the server. This is not the first time I have had this issue, but it is the longest time that I have had this issue. Please let me know a solution as I am on a deadline for a project and need to access the software.\r\n\r\nThanks for all you do! ",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": null,
+    "created_at": "2021-08-18T09:24:46Z",
+    "updated_at": "2021-08-23T22:12:57Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/faux/issues/88",
+    "repository": "https://github.com/debruine/faux",
+    "user": "https://github.com/debruine",
+    "title": "n as vector",
+    "body": "Fix warning when setting N as a vector (asks for a list or a vector of WxB)",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2021-08-30T12:59:28Z",
+    "created_at": "2021-08-29T21:11:15Z",
+    "updated_at": "2021-08-30T12:59:28Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/faux/issues/92",
+    "repository": "https://github.com/debruine/faux",
+    "user": "https://github.com/debruine",
+    "title": "Release faux 1.1.0",
+    "body": "Prepare for release:\n\n* [x] Check [current CRAN check results](https://cran.rstudio.org/web/checks/check_results_faux.html)\n* [x] [Polish NEWS](https://style.tidyverse.org/news.html#news-release)\n* [x] `devtools::build_readme()`\n* [x] [`urlchecker::url_check()`](https://github.com/r-lib/urlchecker)\n* [x] `devtools::check(remote = TRUE, manual = TRUE)`\n* [ ] `devtools::check_win_devel()`\n* [x] `rhub::check_for_cran()`\n* [ ] `revdepcheck::revdep_check(num_workers = 4)`\n* [x] Update `cran-comments.md`\n* [x] Review pkgdown reference index for, e.g., missing topics\n* [ ] Draft blog post\n\nSubmit to CRAN:\n\n* [x] `usethis::use_version('minor')`\n* [x] `devtools::submit_cran()`\n* [x] Approve email\n\nWait for CRAN...\n\n* [x] Accepted :tada:\n* [x] `usethis::use_github_release()`\n* [x] `usethis::use_dev_version()`\n* [ ] Finish blog post\n* [x] Tweet\n* [ ] Add link to blog post in pkgdown news menu\n",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2021-09-17T15:16:11Z",
+    "created_at": "2021-09-13T15:39:03Z",
+    "updated_at": "2021-09-17T15:16:11Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/lmem_sim/issues/6",
+    "repository": "https://github.com/debruine/lmem_sim",
+    "user": "https://github.com/steveharoz",
+    "title": "Error when running vignette",
+    "body": "https://github.com/debruine/lmem_sim/blob/3179319ec11f752170101d60564b81fa766e4d40/vignettes/appendix3a_binomial.Rmd#L223\r\n\r\n```\r\nError: \r\n  Problem with `mutate()` column `prob`.\r\n  i `prob = c(pr0, paste0(pr1_minus, \":\", pr1_plus), rep(NA, 4))`.\r\n  i `prob` must be size 6 or 1, not 5.\r\n```",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": null,
+    "created_at": "2021-10-15T21:07:32Z",
+    "updated_at": "2021-10-15T21:07:32Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/shinyintro/issues/1",
+    "repository": "https://github.com/debruine/shinyintro",
+    "user": "https://github.com/hathawayj",
+    "title": "Links in ShinyIntro Book",
+    "body": "Your GitHub links for `view source` and `edit this on GitHub` don't work.  I am guessing it is the 'pdebruine' instead of 'debruine'.  Thanks for the easy intro to dashboards.  I am going to use it for teaching.\r\n\r\nThe link out currently returns - https://github.com/pdebruine/shinyintro/blob/master/book/03_inputs.Rmd",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2022-03-28T13:24:30Z",
+    "created_at": "2022-02-05T17:59:41Z",
+    "updated_at": "2022-03-28T13:24:30Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/faux/issues/93",
+    "repository": "https://github.com/debruine/faux",
+    "user": "https://github.com/peter-hitchcock",
+    "title": "Error using rnorm_multi()",
+    "body": "Womp — sorry, this issue came up due to trying to use the function with a supplied matrix that wasn't positive definite; I ended up using an empirical correlation matrix and that solved it.",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2022-03-03T22:59:49Z",
+    "created_at": "2022-03-03T15:09:29Z",
+    "updated_at": "2022-03-04T12:27:51Z"
+  },
+  {
+    "type": "issue",
+    "url": "https://github.com/debruine/faux/issues/94",
+    "repository": "https://github.com/debruine/faux",
+    "user": "https://github.com/maciejkos",
+    "title": "question: How to simulate correlated difference scores?",
+    "body": "Hi,\r\n\r\nFirst off — thank you for creating this package! Would you be able to answer my question about simulating correlated difference scores?\r\n\r\nTo perform power analysis, I want to simulate two sets of scores with their differences correlated. \r\n\r\nThere are two tests, x and y, administered at time points 1 and 2:\r\n- x1 and x2 are scores on test x administered at times 1 and 2, respectively\r\n- y1 and y2 are scores on test y administered at times 1 and 2, respectively\r\n\r\nGiven some arbitrary values of x1 and some correlations between:\r\n- x1 and x2,\r\n- x1 and y1,\r\n\r\nI want to simulate data where (x2 - x1) and (y2 - y1) are correlated, with the correlation equal to some corr_deltas.\r\n\r\nCould you please tell me if this is possible to do using your package and how to go about it?\r\n\r\nThanks!\r\n— Maciej",
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "closed_at": "2022-03-16T02:11:12Z",
+    "created_at": "2022-03-14T18:40:19Z",
+    "updated_at": "2022-03-16T02:11:12Z"
+  }
+]

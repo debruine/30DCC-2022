@@ -51,49 +51,49 @@
   {
     "objectID": "02-pictogram.html#fonts",
     "href": "02-pictogram.html#fonts",
-    "title": "\n2  Pictogram\n",
+    "title": "2  Pictogram",
     "section": "\n2.1 Fonts",
     "text": "2.1 Fonts\nI’m never sure what I’m doing with fonts, but this procedure seems to work to install the FontAwesome fonts that you need for pictograms and also any other specialist fonts you’d like.\n\nCodewaffle::install_fa_fonts()\nfontdir <- \"/Library/Frameworks/R.framework/Versions/4.1/Resources/library/waffle/fonts/\"\nfont_add(family = waffle::fa5_brand,\n         regular = paste0(fontdir, \"fa-brands-400.ttf\"))\nfont_add(family = waffle::fa5_solid,\n         regular = paste0(fontdir, \"fa-solid-900.ttf\"))\n\n# https://www.dafont.com/market-deco.font\nfont_add(family = \"Market Deco\",\n         regular = \"fonts/Market_Deco.ttf\")\nfont_add_google(\"Sen\")\nshowtext_auto()"
   },
   {
     "objectID": "02-pictogram.html#pictogram-data",
     "href": "02-pictogram.html#pictogram-data",
-    "title": "\n2  Pictogram\n",
+    "title": "2  Pictogram",
     "section": "\n2.2 Pictogram data",
     "text": "2.2 Pictogram data\nPictograms are generally used for counts, and pets are my go-to example for unordered categorical data (even though ferrets are obviously the best).\nI found a table of pet ownership in the USA. They had an excel file download option for the data, but the file was corrupted, so I used datapasta to copy it below.\n\nCode# Number of U.S. Households That Own a Pet, by Type of Animal \nus_pets <- tibble::tribble(\n               ~Pet, ~Number,\n              \"Dog\",      69,\n              \"Cat\",    45.3,\n  \"Freshwater fish\",    11.8,\n             \"Bird\",     9.9,\n     \"Small animal\",     6.2,\n          \"Reptile\",     5.7,\n            \"Horse\",     3.5,\n   \"Saltwater fish\",     2.9\n  ) %>%\n  mutate(Pet = factor(Pet, Pet)) # keep this order"
   },
   {
     "objectID": "02-pictogram.html#icons",
     "href": "02-pictogram.html#icons",
-    "title": "\n2  Pictogram\n",
+    "title": "2  Pictogram",
     "section": "\n2.3 Icons",
     "text": "2.3 Icons\nThen I need to find matching free icons at fontawesome.\nMake sure you’re searching the v5 icons; v6 icons won’t work and will result in an impenetrable error-message from scale_label_pictogram().\n\nCodeicons <- c(\"dog\", \"cat\", \"fish-fins\", \"crow\", \"frog\", \"dragon\", \"horse\", \"fish\")\nggplot(us_pets, aes(label = Pet, values = Number)) +\n  geom_pictogram() +\n  scale_label_pictogram(values = icons)\n\n\n## Error in vapply(if (n > length(values)) rep(values[[1]], n) else values, : values must be length 1,\n##  but FUN(X[[8]]) result is length 0\nYes, I know I used fish twice, and not many people owned winged dragons, but they were the only reptile!\n\nCodeicons <- c(\"dog\", \"cat\", \"fish\", \"crow\", \"frog\", \"dragon\", \"horse\", \"fish\")\nggplot(us_pets, aes(label = Pet, values = Number)) +\n  geom_pictogram() +\n  scale_label_pictogram(values = icons)"
   },
   {
-    "objectID": "02-pictogram.html#colour",
-    "href": "02-pictogram.html#colour",
-    "title": "\n2  Pictogram\n",
+    "objectID": "02-pictogram.html#sec-pictogram-colour",
+    "href": "02-pictogram.html#sec-pictogram-colour",
+    "title": "2  Pictogram",
     "section": "\n2.4 Colour",
     "text": "2.4 Colour\nNow, let’s add some colour. I’m also going to make the icon size a little smaller.\n\nCodeggplot(us_pets, aes(label = Pet, values = Number, color = Pet)) +\n  geom_pictogram(size = 6.5) +\n  scale_label_pictogram(values = icons)\n\n\n\n\n\n\n\nI like the ggplot default colours, except for the green fish. I’d rather it be yellow. I found this function to re-create the ggplot default colour scheme.\n\nCodeggplotColours <- function(n, h = c(0, 360) + 15){\n  h[2] <- h[2] - 360/n\n  hcl(h = (seq(h[1], h[2], length = n)), c = 100, l = 65)\n}\npet_colours <- ggplotColours(8)\npet_colours[3] <- \"#F5C748\"\n\n\n\nCodeggplot(us_pets, aes(label = Pet, values = Number, color = Pet)) +\n  geom_pictogram(size = 6.5) +\n  scale_label_pictogram(values = icons) +\n  scale_colour_manual(values = pet_colours)"
   },
   {
     "objectID": "02-pictogram.html#clean-it-up",
     "href": "02-pictogram.html#clean-it-up",
-    "title": "\n2  Pictogram\n",
+    "title": "2  Pictogram",
     "section": "\n2.5 Clean it up",
     "text": "2.5 Clean it up\nAdd coord_equal() to make sure the horizontal and vertical spacing are the same. Add theme_enhance_waffle() to get rid of extraneous background, and add labels to aid interpretation and for the data provenance.\n\nCodeggplot(us_pets, aes(label = Pet, values = Number, color = Pet)) +\n  geom_pictogram(size = 6.5) +\n  scale_label_pictogram(values = icons) +\n  scale_colour_manual(values = pet_colours) +\n  coord_equal() +\n  theme_enhance_waffle() +\n  labs(title = \"Pet Ownership in America\",\n       subtitle = \"Each icon represents 1 million houeholds\",\n       caption = \"Data from the American Pet Products Association (APPA) 2021-2022 National Pet Owners Survey\")"
   },
   {
     "objectID": "02-pictogram.html#customise",
     "href": "02-pictogram.html#customise",
-    "title": "\n2  Pictogram\n",
+    "title": "2  Pictogram",
     "section": "\n2.6 Customise",
     "text": "2.6 Customise\nFinally, use theme() to really customise the look. I adjusted the spacing between the items on the legend with legend.spacing.y, which requires the guides to be set byrow to work.\n\nCodeggplot(us_pets, aes(label = Pet, values = Number, color = Pet)) +\n  geom_pictogram(size = 6.5) +\n  scale_label_pictogram(values = icons) +\n  scale_colour_manual(values = pet_colours) +\n  coord_equal() +\n  theme_enhance_waffle() +\n  labs(title = \"Pet Ownership in America\",\n       subtitle = \"Each icon represents 1 million houeholds\",\n       caption = \"Data from the American Pet Products Association (APPA) 2021-2022 National Pet Owners Survey\") +\n  theme(axis.ticks = element_blank(),\n        plot.background = element_rect(fill = \"black\", color = \"black\"),\n        plot.margin = unit(c(.5, .5, .5, .0), 'cm'),\n        plot.title = element_text(family = \"Market Deco\", hjust = 0.5),\n        plot.subtitle = element_text(hjust = 0.5),\n        plot.caption.position = \"plot\",\n        panel.background = element_rect(fill = \"black\", color = \"transparent\"),\n        legend.background = element_blank(),\n        legend.title = element_blank(),\n        legend.key = element_blank(),\n        legend.text = element_text(vjust = 1),\n        legend.spacing.y = unit(.25, 'cm'),\n        text = element_text(family = \"Sen\", color = \"white\")) +\n  ## required to make legend.spacing.y work\n  guides(color = guide_legend(byrow = TRUE),\n         label = guide_legend(byrow = TRUE))\n\n\n\nNumber of US households (in millions) with each of 8 common pet types."
   },
   {
     "objectID": "02-pictogram.html#save-pictogram",
     "href": "02-pictogram.html#save-pictogram",
-    "title": "\n2  Pictogram\n",
+    "title": "2  Pictogram",
     "section": "\n2.7 Save Pictogram",
     "text": "2.7 Save Pictogram\nHowever, I had trouble saving the plot using ggsave(). The icons ended up all question marks. I eventually fixed that by doing something with the fonts (maybe adding them with showtext?), but the icons were still tiny, and the font was blurry at a dpi that makes the icons look right.\nThis turned out to be because ggsave() uses ragg by default (HT Steve Haroz), which isn’t playing well with fontawesome icons, so I had to set the device back to png. However, this wasn’t a problem when I updated my R and RStudio and started using Quarto (not sure which fixed it).\n\nCodeggsave(\"images/day2.png\", width = 8, height = 4.5, device = png)"
   },
@@ -529,7 +529,7 @@
     "href": "13-correlation.html#temperature",
     "title": "\n13  Correlation\n",
     "section": "\n13.2 Temperature",
-    "text": "13.2 Temperature\nI feel like average temperature might have something to do with the number of yarn shops in a country, so I scraped that from a Wikipedia page using rvest. I had to edit the Wikipedia page first because the table formatting was borked. I also had to fix the html minus symbol because it made the negative numbers read in as character strings.\n\nCodetemp <- read_html(\"https://en.wikipedia.org/wiki/List_of_countries_by_average_yearly_temperature\") %>%\n  html_nodes('table.wikitable') %>%\n  html_table(header = TRUE) %>%\n  bind_rows() %>%\n  as_tibble() %>%\n  rename(country = 1, temp = 2) %>%\n  mutate(temp = gsub(\"−\", \"-\", temp)) %>%\n  type_convert(col_types = \"cd\")\n\nhead(temp)\n\n\n\n\n country \n    temp \n  \n\n\n Libya \n    28.29 \n  \n\n Mali \n    28.25 \n  \n\n Kiribati \n    28.20 \n  \n\n Djibouti \n    28.00 \n  \n\n Maldives \n    28.00 \n  \n\n Senegal \n    27.85 \n  \n\n\n\n\n\nThen I decided maybe the average temperature for the coldest month was better, which I found on a site with the rather upsetting name listfist, but had problems reading it with rvest so gave up.\n\nCodehtml <- read_html(\"https://listfist.com/list-of-countries-by-average-temperature\")"
+    "text": "13.2 Temperature\nI feel like average temperature might have something to do with the number of yarn shops in a country, so I scraped that from a Wikipedia page using rvest. I had to edit the Wikipedia page first because the table formatting was borked. I also had to fix the html minus symbol because it made the negative numbers read in as character strings.\n\nCodetemp <- read_html(\"https://en.wikipedia.org/wiki/List_of_countries_by_average_yearly_temperature\") %>%\n  html_nodes('table.wikitable') %>%\n  html_table(header = TRUE) %>%\n  bind_rows() %>%\n  as_tibble() %>%\n  rename(country = 1, temp = 2) %>%\n  mutate(temp = gsub(\"−\", \"-\", temp)) %>%\n  type_convert(col_types = \"cd\")\n\nhead(temp)\n\n\n\n\n country \n    temp \n  \n\n\n Burkina Faso \n    28.29 \n  \n\n Mali \n    28.25 \n  \n\n Kiribati \n    28.20 \n  \n\n Djibouti \n    28.00 \n  \n\n Maldives \n    28.00 \n  \n\n Senegal \n    27.85 \n  \n\n\n\n\n\nThen I decided maybe the average temperature for the coldest month was better, which I found on a site with the rather upsetting name listfist, but had problems reading it with rvest so gave up.\n\nCodehtml <- read_html(\"https://listfist.com/list-of-countries-by-average-temperature\")"
   },
   {
     "objectID": "13-correlation.html#happiness",
@@ -550,7 +550,7 @@
     "href": "13-correlation.html#correlations",
     "title": "\n13  Correlation\n",
     "section": "\n13.5 Correlations",
-    "text": "13.5 Correlations\nLet’s just have a quick look at the correlations here. The number of yarn shops per million population is positively correlated with happiness and negatively correlated with mean annual temperature. However, temperature is also negatively correlated with happiness.\n\nCodehappy_craft %>%\n  select(shops_per_M, happiness2021, temp) %>%\n  cor(use = \"pairwise.complete.obs\") %>%\n  round(2)\n\n              shops_per_M happiness2021  temp\nshops_per_M          1.00          0.55 -0.50\nhappiness2021        0.55          1.00 -0.43\ntemp                -0.50         -0.43  1.00"
+    "text": "13.5 Correlations\nLet’s just have a quick look at the correlations here. The number of yarn shops per million population is positively correlated with happiness and negatively correlated with mean annual temperature. However, temperature is also negatively correlated with happiness.\n\nCodehappy_craft %>%\n  select(shops_per_M, happiness2021, temp) %>%\n  cor(use = \"pairwise.complete.obs\") %>%\n  round(2)\n\n              shops_per_M happiness2021  temp\nshops_per_M          1.00          0.55 -0.43\nhappiness2021        0.55          1.00 -0.35\ntemp                -0.43         -0.35  1.00"
   },
   {
     "objectID": "13-correlation.html#initial-plot",
@@ -733,6 +733,55 @@
     "title": "\n20  New Tool\n",
     "section": "\n20.4 Gender differences",
     "text": "20.4 Gender differences\nSo what is the difference between the average male and female face shape? The demo_stim() function gives you female and male composite (average) faces from the London set.\n\nCodedemo_stim() %>% plot()\n\n\n\n\n\n\n\nIt’s a little more complicated that I expected to superimpose the templates, but I got there in the end (and this will probably prompt some new functions.)\n\nCodecomposites <- demo_stim() %>%\n  resize(3) %>%\n  subset_tem(features(c(\"face\", \"eyes\", \"nose\", \"mouth\"))) %>%\n  align(procrustes = TRUE) %>%\n  crop_tem() %>%\n  draw_tem(pt.alpha = 0, \n           line.color = c(\"hotpink\", \"dodgerblue\"),\n           line.alpha = 1,\n           bg = \"#FFFFFF\")\n\nplot(composites)\n\n\n\n\n\n\n\nThe continuum() function is like seq() for faces. It uses webmorph.org transforming to make a continuum from one face to another.\n\nCodecontinuum <- continuum(\n  from_img = composites$f_multi,\n  to_img = composites$m_multi,\n  from = 0,\n  to = 1,\n  by = 0.1\n)\n\nplot(continuum, nrow = 1)\n\n\n\n\n\n\n\n\nCodeanimation <- animate(continuum, fps = 10, rev = TRUE)\nwrite_stim(animation, dir = \"images\", name = \"day20\", format = \"gif\")\n\nknitr::include_graphics(\"images/day20.gif\")"
+  },
+  {
+    "objectID": "21-down-upwards.html#github-data",
+    "href": "21-down-upwards.html#github-data",
+    "title": "21  Down/Upwards",
+    "section": "\n21.1 GitHub Data",
+    "text": "21.1 GitHub Data\nYou can export all of your github account data on the settings administration page. I got an email that it was ready 15 minutes after I requested it. It was 2.5 GB, so I won’t be sharing it all in this repo, but I will include the .json files.\n\nCodelist.files(\"data/github\")\n\n [1] \"attachments_000001.json\"          \"issue_comments_000001.json\"      \n [3] \"issue_events_000001.json\"         \"issue_events_000002.json\"        \n [5] \"issue_events_000003.json\"         \"issue_events_000004.json\"        \n [7] \"issues_000001.json\"               \"pull_request_reviews_000001.json\"\n [9] \"pull_requests_000001.json\"        \"releases_000001.json\"            \n[11] \"repositories_000001.json\"         \"repository_files_000001.json\"    \n[13] \"schema.json\"                      \"users_000001.json\"               \n\n\n\nCoderepos <- read_json(\"data/github/repositories_000001.json\", \n                   simplifyVector = T)\n\nnames(repos)\n\n [1] \"type\"                     \"url\"                     \n [3] \"owner\"                    \"name\"                    \n [5] \"description\"              \"website\"                 \n [7] \"private\"                  \"has_issues\"              \n [9] \"has_wiki\"                 \"has_downloads\"           \n[11] \"labels\"                   \"collaborators\"           \n[13] \"created_at\"               \"git_url\"                 \n[15] \"default_branch\"           \"webhooks\"                \n[17] \"page\"                     \"public_keys\"             \n[19] \"repository_topics\"        \"security_and_analysis\"   \n[21] \"autolinks\"                \"general_settings\"        \n[23] \"actions_general_settings\""
+  },
+  {
+    "objectID": "21-down-upwards.html#initial-plot",
+    "href": "21-down-upwards.html#initial-plot",
+    "title": "21  Down/Upwards",
+    "section": "\n21.2 Initial Plot",
+    "text": "21.2 Initial Plot\nI’m going to try to make a timeline of when I created each repository.\n\nCodeggplot(repos, aes(x = created_at, label = name)) +\n  geom_text(angle = 45, y = 0)"
+  },
+  {
+    "objectID": "21-down-upwards.html#convert-to-date",
+    "href": "21-down-upwards.html#convert-to-date",
+    "title": "21  Down/Upwards",
+    "section": "\n21.3 Convert to date",
+    "text": "21.3 Convert to date\nNope. I checked the data types and created_at is a character string, so I need to convert it to a date.\n\nCoderepos$date <- lubridate::as_date(repos$created_at)\n\n\nI also set hjust = 0 so the labels are left-justified rather than centered. Better, but there’s still too much overlap.\n\nCodeggplot(repos, aes(x = date, label = name)) +\n  geom_text(angle = 45, y = 0, hjust = 0)"
+  },
+  {
+    "objectID": "21-down-upwards.html#alternate-labels",
+    "href": "21-down-upwards.html#alternate-labels",
+    "title": "21  Down/Upwards",
+    "section": "\n21.4 Alternate labels",
+    "text": "21.4 Alternate labels\nLet’s try alternating the y and hjust values.\n\nCoderepos$y <- rep(c(.1, -.1), length.out = nrow(repos))\nrepos$hjust <- rep(0:1, length.out = nrow(repos))\n\n\n\nCodeggplot(repos, aes(x = date, label = name, y = y, hjust = hjust)) +\n  geom_text(angle = 45)\n\n\n\n\n\n\n\nOK, I need to control the y-axis limits. I’ll also add a horizontal line for the timeline and a line from each label to the timeline.\n\nCodeggplot(repos, aes(x = date, label = name, y = y, hjust = hjust)) +\n  geom_text(angle = 45) +\n  geom_segment(aes(xend = date), yend = 0, color = \"grey\") +\n  geom_hline(yintercept = 0, size = 3, color = \"dodgerblue\") +\n  scale_x_date(expand = expansion(c(.1, .2))) +\n  coord_cartesian(ylim = c(-.6, .6))"
+  },
+  {
+    "objectID": "21-down-upwards.html#facet-by-year",
+    "href": "21-down-upwards.html#facet-by-year",
+    "title": "21  Down/Upwards",
+    "section": "\n21.5 Facet by year",
+    "text": "21.5 Facet by year\nBetter, but still crowded. What If I facet by year?\n\nCoderepos$year <- year(repos$date)\n\nggplot(repos, aes(x = date, label = name, y = y, hjust = hjust)) +\n  geom_text(angle = 45) +\n  geom_segment(aes(xend = date), yend = 0, color = \"grey\") +\n  geom_hline(yintercept = 0, size = 3, color = \"dodgerblue\") +\n  scale_x_date(expand = expansion(c(.2, .2))) +\n  coord_cartesian(ylim = c(-.6, .6)) +\n  facet_grid(year~.)\n\n\n\n\n\n\n\nThe y-axis scale needs to be set to “free”. This doesn’t work with facet_grid(), so I’ll change it to facet_wrap(). I also changed the figure dimensions to 15x20 and set clip = \"off\" in coord_cartesian() to avoid some of the longer labels from getting clipped.\n\nCodeggplot(repos, aes(x = date, label = name, y = y, hjust = hjust)) +\n  geom_text(angle = 45) +\n  geom_segment(aes(xend = date), yend = 0, color = \"grey\") +\n  geom_hline(yintercept = 0, size = 3, color = \"dodgerblue\") +\n  scale_x_date(expand = expansion(c(.2, .2))) +\n  coord_cartesian(ylim = c(-.6, .6), clip = \"off\") +\n  facet_wrap(~year, ncol = 1, scales = \"free\")\n\n\n\n\n\n\n\nThe scales aren’t all the same. I’m going to use a hacky solution and add labels for January 1 and December 31 every year, but give them no label.\n\nCodenew_dates <- c(paste0(2015:2022, \"-01-01\"),\n               paste0(2015:2022, \"-12-31\"))\n\nnew_entries <- tibble(\n  name = \"\",\n  y = 0, hjust = 0, \n  date = as_date(new_dates),\n  year = year(as_date(new_dates))\n)\n\nrepos2 <- bind_rows(repos, new_entries)\n\n\n\nCodeggplot(repos2, aes(x = date, label = name, y = y, hjust = hjust)) +\n  geom_text(angle = 45) +\n  geom_segment(aes(xend = date), yend = 0, color = \"grey\") +\n  geom_hline(yintercept = 0, size = 3, color = \"dodgerblue\") +\n  scale_x_date(expand = expansion(c(.2, .2))) +\n  coord_cartesian(ylim = c(-.6, .6), clip = \"off\") +\n  facet_wrap(~year, ncol = 1, scales = \"free\")"
+  },
+  {
+    "objectID": "21-down-upwards.html#manually-adjust-labels",
+    "href": "21-down-upwards.html#manually-adjust-labels",
+    "title": "21  Down/Upwards",
+    "section": "\n21.6 Manually adjust labels",
+    "text": "21.6 Manually adjust labels\nThat’s good until the last few months. I’ve been making too many repos! I’ll manually adjust those.\n\nCoderepos3 <- repos2 %>%\n  mutate(y = case_when(\n    name == \"msc-data-skills\" ~ -.2,\n    name == \"NCOD2021\" ~ -.2, \n    name == \"30DCC-2022\" ~ -.2,\n    name == \"APA_TOP\" ~ -.3,\n    name == \"knitr\" ~ .2,\n    name == \"statistical_inferences\" ~ .3,\n    name == \"waffle\" ~ .37,\n    name == \"shiny2022\" ~ .41,\n    name == \"composite-sim\" ~ -.2,\n    name == \"ug1-practical\" ~ .2,\n    name == \"lmem_sim_private\" ~ .2,\n    name == \"webexercises\" ~ .2,\n    name == \"reprores_2021\" ~ .22,\n    name == \"debruine.github.io\" ~ .2,\n    name == \"statswithr\" ~ .15,\n    TRUE ~ y\n  ))\n\n\nI couldn’t set the colour of geom_hline() using aes() unless I was also setting yintercept in the mapping. I used the code from Day 2.4 to change the ugly green to yellow.\n\nCodeggplotColours <- function(n, h = c(0, 360) + 15){\n  h[2] <- h[2] - 360/n\n  hcl(h = (seq(h[1], h[2], length = n)), c = 100, l = 65)\n}\nlinecol <- ggplotColours(8)\nlinecol[3] <- \"#F5C748\"\n\n\n\nCodeggplot(repos3, aes(x = date, label = name, y = y, \n             hjust = hjust, vjust = hjust)) +\n  geom_text(angle = 20) +\n  geom_segment(aes(xend = date), yend = 0, color = \"grey20\") +\n  geom_hline(aes(yintercept = 0, color = as.factor(year)), \n             size = 3, show.legend = FALSE) +\n  scale_color_manual(values = linecol) +\n  scale_x_date(date_breaks = \"1 month\",\n               date_labels = \"%b\",\n               expand = expansion(c(0, 0))) +\n  coord_cartesian(ylim = c(-.6, .6), clip = \"off\") +\n  facet_wrap(~year, ncol = 1, scales = \"free\", strip.position = \"left\") +\n  labs(x = NULL, y = NULL, \n       title = \"<span style='font-family:fa-brands'>&#xf09b;</span> GitHub Repository Creation\") +\n  theme(axis.text.y = element_blank(),\n        axis.ticks.y = element_blank(),\n        panel.grid.major.y = element_blank(),\n        panel.grid.minor.y = element_blank(),\n        plot.title = element_markdown(size = 30, vjust = 1),\n        strip.text = element_text(size = 20),\n        plot.margin = unit(c(0.1, 1, 0.1, 0.1), \"inches\")\n  )"
+  },
+  {
+    "objectID": "23-tiles.html",
+    "href": "23-tiles.html",
+    "title": "\n23  Tiles\n",
+    "section": "",
+    "text": "I really love the github activity tile graphs. For today’s plot, I’m going to use the data from Day 21 to make a similar plot, but showing all of my contributions from when I Joined github on September 27, 2015\n\nCodeknitr::include_graphics(\"images/github_activity.png\")\n\n\n\n\n\n\n\n\nSetuplibrary(tidyverse)"
   },
   {
     "objectID": "app-a-colours.html",

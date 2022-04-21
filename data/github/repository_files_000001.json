@@ -1,0 +1,22 @@
+[
+  {
+    "type": "repository_file",
+    "url": "https://github.com/debruine/frlgmm/files/1119288/2.template.files.zip",
+    "repository": "https://github.com/debruine/frlgmm",
+    "user": "https://github.com/TobiasKor",
+    "file_name": "2.template.files.zip",
+    "file_content_type": "application/x-zip-compressed",
+    "file_url": "tarball://root/repository_files/1119288/2.template.files.zip",
+    "created_at": "2017-07-03T11:09:13Z"
+  },
+  {
+    "type": "repository_file",
+    "url": "https://github.com/debruine/faux/files/8248585/source_data_parameters.csv",
+    "repository": "https://github.com/debruine/faux",
+    "user": "https://github.com/maciejkos",
+    "file_name": "source_data_parameters.csv",
+    "file_content_type": "application/vnd.ms-excel",
+    "file_url": "tarball://root/repository_files/8248585/source_data_parameters.csv",
+    "created_at": "2022-03-14T21:23:56Z"
+  }
+]

@@ -1,2 +1,237 @@
-# Down/Upwards
+# Down/Upwards {#sec-downup}
 
+```{r, include = FALSE}
+source("R/setup.R")
+```
+
+```{r}
+#| code-summary: Setup
+
+library(tidyverse) # for data wrangling
+library(lubridate) # for dates
+library(jsonlite)  # for reading JSON files
+library(showtext)  # for custom fonts
+library(ggtext)    # for adding the twitter logo
+
+theme_set(theme_minimal())
+font_add("fa-brands", "fonts/fa-brands-400.ttf")
+showtext_auto()
+```
+
+## GitHub Data
+
+You can export all of your github account data on the [settings administration page](https://github.com/settings/admin). I got an email that it was ready 15 minutes after I requested it. It was 2.5 GB, so I won't be sharing it all in this repo, but I will include the .json files.
+
+```{r}
+list.files("data/github")
+```
+
+```{r}
+repos <- read_json("data/github/repositories_000001.json", 
+                   simplifyVector = T)
+
+names(repos)
+```
+
+## Initial Plot
+
+I'm going to try to make a timeline of when I created each repository. 
+
+```{r du-plot1}
+ggplot(repos, aes(x = created_at, label = name)) +
+  geom_text(angle = 45, y = 0)
+```
+
+## Convert to date
+
+Nope. I checked the data types and `created_at` is a character string, so I need to convert it to a date.
+
+```{r}
+repos$date <- lubridate::as_date(repos$created_at)
+```
+
+
+I also set `hjust = 0` so the labels are left-justified rather than centered. Better, but there's still too much overlap.
+
+```{r du-date-fix}
+ggplot(repos, aes(x = date, label = name)) +
+  geom_text(angle = 45, y = 0, hjust = 0)
+```
+
+## Alternate labels
+
+Let's try alternating the y and hjust values.
+
+```{r}
+repos$y <- rep(c(.1, -.1), length.out = nrow(repos))
+repos$hjust <- rep(0:1, length.out = nrow(repos))
+```
+
+```{r du-y-hjust}
+ggplot(repos, aes(x = date, label = name, y = y, hjust = hjust)) +
+  geom_text(angle = 45)
+```
+
+OK, I need to control the y-axis limits. I'll also add a horizontal line for the timeline and a line from each label to the timeline.
+
+```{r du-alternating}
+ggplot(repos, aes(x = date, label = name, y = y, hjust = hjust)) +
+  geom_text(angle = 45) +
+  geom_segment(aes(xend = date), yend = 0, color = "grey") +
+  geom_hline(yintercept = 0, size = 3, color = "dodgerblue") +
+  scale_x_date(expand = expansion(c(.1, .2))) +
+  coord_cartesian(ylim = c(-.6, .6))
+```
+
+## Facet by year
+
+Better, but still crowded. What If I facet by year?
+
+```{r du-facet}
+repos$year <- year(repos$date)
+
+ggplot(repos, aes(x = date, label = name, y = y, hjust = hjust)) +
+  geom_text(angle = 45) +
+  geom_segment(aes(xend = date), yend = 0, color = "grey") +
+  geom_hline(yintercept = 0, size = 3, color = "dodgerblue") +
+  scale_x_date(expand = expansion(c(.2, .2))) +
+  coord_cartesian(ylim = c(-.6, .6)) +
+  facet_grid(year~.)
+```
+
+The y-axis scale needs to be set to "free". This doesn't work with `facet_grid()`, so I'll change it to `facet_wrap()`. I also changed the figure dimensions to 15x20 and set `clip = "off"` in `coord_cartesian()` to avoid some of the longer labels from getting clipped.
+
+```{r du-free-x, fig.height = 20, fig.width = 15}
+ggplot(repos, aes(x = date, label = name, y = y, hjust = hjust)) +
+  geom_text(angle = 45) +
+  geom_segment(aes(xend = date), yend = 0, color = "grey") +
+  geom_hline(yintercept = 0, size = 3, color = "dodgerblue") +
+  scale_x_date(expand = expansion(c(.2, .2))) +
+  coord_cartesian(ylim = c(-.6, .6), clip = "off") +
+  facet_wrap(~year, ncol = 1, scales = "free")
+```
+
+
+The scales aren't all the same. I'm going to use a hacky solution and add labels for January 1 and December 31 every year, but give them no label.
+
+
+```{r}
+new_dates <- c(paste0(2015:2022, "-01-01"),
+               paste0(2015:2022, "-12-31"))
+
+new_entries <- tibble(
+  name = "",
+  y = 0, hjust = 0, 
+  date = as_date(new_dates),
+  year = year(as_date(new_dates))
+)
+
+repos2 <- bind_rows(repos, new_entries)
+```
+
+
+```{r du-year-limits, fig.height = 20, fig.width = 15}
+ggplot(repos2, aes(x = date, label = name, y = y, hjust = hjust)) +
+  geom_text(angle = 45) +
+  geom_segment(aes(xend = date), yend = 0, color = "grey") +
+  geom_hline(yintercept = 0, size = 3, color = "dodgerblue") +
+  scale_x_date(expand = expansion(c(.2, .2))) +
+  coord_cartesian(ylim = c(-.6, .6), clip = "off") +
+  facet_wrap(~year, ncol = 1, scales = "free")
+```
+
+## Manually adjust labels
+
+That's good until the last few months. I've been making too many repos! I'll manually adjust those.
+
+```{r}
+repos3 <- repos2 %>%
+  mutate(y = case_when(
+    name == "msc-data-skills" ~ -.2,
+    name == "NCOD2021" ~ -.2, 
+    name == "30DCC-2022" ~ -.2,
+    name == "APA_TOP" ~ -.3,
+    name == "knitr" ~ .2,
+    name == "statistical_inferences" ~ .3,
+    name == "waffle" ~ .37,
+    name == "shiny2022" ~ .41,
+    name == "composite-sim" ~ -.2,
+    name == "ug1-practical" ~ .2,
+    name == "lmem_sim_private" ~ .2,
+    name == "webexercises" ~ .2,
+    name == "reprores_2021" ~ .22,
+    name == "debruine.github.io" ~ .2,
+    name == "statswithr" ~ .15,
+    TRUE ~ y
+  ))
+```
+
+I couldn't set the colour of `geom_hline()` using `aes()` unless I was also setting `yintercept` in the mapping. I used the code from [Day -@sec-pictogram-colour] to change the ugly green to yellow.
+
+```{r}
+ggplotColours <- function(n, h = c(0, 360) + 15){
+  h[2] <- h[2] - 360/n
+  hcl(h = (seq(h[1], h[2], length = n)), c = 100, l = 65)
+}
+linecol <- ggplotColours(8)
+linecol[3] <- "#F5C748"
+```
+
+
+```{r, fig.height = 20, fig.width = 15}
+#| fig.alt: A timeline of github repository creation from 2015 to 2022. The first few years only have a few repos, which the most recent months have tens of repos.
+
+ggplot(repos3, aes(x = date, label = name, y = y, 
+             hjust = hjust, vjust = hjust)) +
+  geom_text(angle = 20) +
+  geom_segment(aes(xend = date), yend = 0, color = "grey20") +
+  geom_hline(aes(yintercept = 0, color = as.factor(year)), 
+             size = 3, show.legend = FALSE) +
+  scale_color_manual(values = linecol) +
+  scale_x_date(date_breaks = "1 month",
+               date_labels = "%b",
+               expand = expansion(c(0, 0))) +
+  coord_cartesian(ylim = c(-.6, .6), clip = "off") +
+  facet_wrap(~year, ncol = 1, scales = "free", strip.position = "left") +
+  labs(x = NULL, y = NULL, 
+       title = "<span style='font-family:fa-brands'>&#xf09b;</span> GitHub Repository Creation") +
+  theme(axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        panel.grid.major.y = element_blank(),
+        panel.grid.minor.y = element_blank(),
+        plot.title = element_markdown(size = 30, vjust = 1),
+        strip.text = element_text(size = 20),
+        plot.margin = unit(c(0.1, 1, 0.1, 0.1), "inches")
+  )
+```
+
+```{r, include = FALSE, eval = FALSE}
+day21 <- repos3 %>%
+  filter(year > 2018) %>%
+  ggplot(aes(x = date, label = name, y = y, 
+             hjust = hjust, vjust = hjust)) +
+  geom_text(angle = 20) +
+  geom_segment(aes(xend = date), yend = 0, color = "grey20") +
+  geom_hline(aes(yintercept = 0, color = as.factor(year)), 
+             size = 3, show.legend = FALSE) +
+  scale_color_manual(values = linecol[5:8]) +
+  scale_x_date(date_breaks = "1 month",
+               date_labels = "%b",
+               expand = expansion(c(0, 0))) +
+  coord_cartesian(ylim = c(-.6, .6), clip = "off") +
+  facet_wrap(~year, ncol = 1, scales = "free", strip.position = "left") +
+  labs(x = NULL, y = NULL, 
+       title = "<span style='font-family:fa-brands'>&#xf09b;</span> GitHub Repository Creation") +
+  theme(axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        panel.grid.major.y = element_blank(),
+        panel.grid.minor.y = element_blank(),
+        plot.title = element_markdown(size = 30, vjust = 1),
+        strip.text = element_text(size = 20),
+        plot.margin = unit(c(0.2, 0.2, 0.2, 0.2), "inches")
+  )
+
+ggsave("images/day21.png", day21, 
+       width = 15, height = 10, device = png, bg = "white")
+knitr::include_graphics("images/day21.png")
+```

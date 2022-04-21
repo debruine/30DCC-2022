@@ -1,4 +1,4 @@
-# Pictogram
+# Pictogram {#sec-pictogram}
 
 ```{r, include = FALSE}
 source("R/setup.R")
@@ -82,7 +82,7 @@ ggplot(us_pets, aes(label = Pet, values = Number)) +
   scale_label_pictogram(values = icons)
 ```
 
-## Colour
+## Colour {#sec-pictogram-colour}
 
 Now, let's add some colour. I'm also going to make the icon size a little smaller.
 

@@ -1,0 +1,3614 @@
+[
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/proveit/pull/2",
+    "user": "https://github.com/GarrettMooney",
+    "repository": "https://github.com/debruine/proveit",
+    "title": "Fix URL, directory paths, and npred app.",
+    "body": "Hello, I like the app!\r\n\r\nI changed the url in `withincor_tab.R` to an absolute path so that it wouldn't try to find the blog post as a relative path to the localhost.\r\n\r\nThe directory paths in the `source()` calls now match the git directories.\r\n\r\nThe `app.R` now has the progress bar parameter and body so that it will match `npred/app.R` and not throw an error due to not having a progress argument called.",
+    "base": {
+      "ref": "master",
+      "sha": "c8dcc6aacf029cb00596c74c04912d4569ea244b",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/proveit"
+    },
+    "head": {
+      "ref": "cleanup",
+      "sha": "7f5fdd39f2fcbc69036bd4ad457e19193759542c",
+      "user": "https://github.com/GarrettMooney",
+      "repo": "https://github.com/GarrettMooney/proveit"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2018-09-20T10:40:14Z",
+    "closed_at": "2018-09-20T10:40:14Z",
+    "created_at": "2018-09-20T02:47:27Z",
+    "merge_commit_sha": "98ef9ab41116f6dd8727ee1ab2246e548ac8391d"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/1",
+    "user": "https://github.com/annakrystalli",
+    "repository": "https://github.com/debruine/faux",
+    "title": "Add some user documentation",
+    "body": "Hello! I just heard about your package on the hertz podcast. It's a problem I hit often when developing research code.\r\n\r\nI had a quick look at the package, nice work! I actually want to use it to create a couple datasets for current projects so I've added some user docs to help me use it! 😜\r\n\r\n- I copied your vignette and adapted it for a README\r\n- built some automated web docs with pkgdown (`pkgdown::build_site()`), You can check them out [here](https://annakrystalli.me/faux/): \r\n\r\nI could also probably justify spending some time helping out with this, so let me know if you'd like some help 😊",
+    "base": {
+      "ref": "master",
+      "sha": "efd946af4cd69f2c27b78680698919bde35f9fbb",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "master",
+      "sha": "7c62963fef8d7d9a17a91ba1650426a49e8e1c61",
+      "user": "https://github.com/annakrystalli",
+      "repo": "https://github.com/annakrystalli/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2019-02-24T17:00:31Z",
+    "closed_at": "2019-02-24T17:00:31Z",
+    "created_at": "2019-02-19T09:09:15Z",
+    "merge_commit_sha": "e8b148681c4c9f8b8b2496055f10772aef365ec1"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/webmorph/pull/1",
+    "user": "https://github.com/katrinleinweber",
+    "repository": "https://github.com/debruine/webmorph",
+    "title": "Hyperlink DOIs to preferred resolver",
+    "body": "Hello :-)\r\n\r\nThe DOI Foundation [started recommending a new resolver](https://www.doi.org/doi_handbook/3_Resolution.html#3.8). While their URL change may be a bit ironic, it's now [encrypted](https://www.ssllabs.com/ssltest/analyze.html?d=doi.org) and the old `dx` subdomain is being redirected. So, there is no urgency here.\r\n\r\nHowever, for consistency, this PRs suggests to update all static DOI links accordingly.\r\n\r\nCheers!",
+    "base": {
+      "ref": "master",
+      "sha": "a0f746f6c380ba30aa65233a35250b273593737c",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/webmorph"
+    },
+    "head": {
+      "ref": "resolve-DOIs-securely",
+      "sha": "c44dbf352e875b65a407ed0a6a4318f3f79de1db",
+      "user": "https://github.com/katrinleinweber",
+      "repo": "https://github.com/katrinleinweber/webmorph"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": null,
+    "closed_at": null,
+    "created_at": "2019-02-19T18:26:50Z",
+    "merge_commit_sha": "6d993c9089ca9f91b54a7dec0cd426e8eb8c3768"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/2",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "Dev",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "3d9d526ff87f462c7ca593726106b0c14ea0a613",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "2b4e39306a780401c110791ce0cc908337869756",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2019-04-29T14:06:16Z",
+    "closed_at": "2019-04-29T14:06:16Z",
+    "created_at": "2019-04-29T14:06:09Z",
+    "merge_commit_sha": "fd356571769d79048110d767a19c9dc7b675d45f"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/3",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "Add pckgdown and vignettes",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "fd356571769d79048110d767a19c9dc7b675d45f",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "4ef042453c0568673fea76b850db9d693b2d39d6",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2019-04-29T15:14:28Z",
+    "closed_at": "2019-04-29T15:14:28Z",
+    "created_at": "2019-04-29T15:14:21Z",
+    "merge_commit_sha": "42bbc5a858f16dd72ef10ba916525bbc65ab9b6b"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/4",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "Cleaned up documentation and arguments",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "42bbc5a858f16dd72ef10ba916525bbc65ab9b6b",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "74d8d425ad7a8d086d15817180af3fe1d44f2f17",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2019-05-03T16:11:54Z",
+    "closed_at": "2019-05-03T16:11:54Z",
+    "created_at": "2019-05-03T16:11:47Z",
+    "merge_commit_sha": "ab4836767b7f5c8d5511cd7a0cb5fb905ac916bc"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/5",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "plots and increased design spec consistency",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "ab4836767b7f5c8d5511cd7a0cb5fb905ac916bc",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "514bb81f6f674d2c0123eac111e029caff8dd54b",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2019-05-06T19:22:02Z",
+    "closed_at": "2019-05-06T19:22:02Z",
+    "created_at": "2019-05-06T19:21:55Z",
+    "merge_commit_sha": "fc18a4f70582a7769ecc89bcdd1a4cffbb404122"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/6",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "Added zotero DOI",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "fc18a4f70582a7769ecc89bcdd1a4cffbb404122",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "ee85e547de890a2c64b4b75adfc9d22baacd784e",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2019-05-06T19:30:28Z",
+    "closed_at": "2019-05-06T19:30:28Z",
+    "created_at": "2019-05-06T19:30:23Z",
+    "merge_commit_sha": "da8566ff78336f57a713c037345879c941d55abc"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/7",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "Citation and github links",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "da8566ff78336f57a713c037345879c941d55abc",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "0544dc0dda6b7511cac083a680382baa45d9b840",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2019-05-07T16:07:49Z",
+    "closed_at": "2019-05-07T16:07:49Z",
+    "created_at": "2019-05-07T16:07:39Z",
+    "merge_commit_sha": "4537315df0295604039de7f9bbc449b8a294ca35"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/8",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "Dev",
+    "body": "Mixed effect simulation functions, more tests, better documentation",
+    "base": {
+      "ref": "master",
+      "sha": "4537315df0295604039de7f9bbc449b8a294ca35",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "2ef2dbce3675f0038615fc213357c38fb0af32a3",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2019-05-14T13:43:54Z",
+    "closed_at": "2019-05-14T13:43:54Z",
+    "created_at": "2019-05-14T13:43:44Z",
+    "merge_commit_sha": "528846c985abc0264eff392cac47a437c77cc6e1"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/9",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "Interactive!!",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "528846c985abc0264eff392cac47a437c77cc6e1",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "375968f71f832b4d3952f4d0b3e3bfe88cf47c29",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2019-05-16T15:54:15Z",
+    "closed_at": "2019-05-16T15:54:15Z",
+    "created_at": "2019-05-16T15:54:09Z",
+    "merge_commit_sha": "ddd77cbec1ff5825b7791d535b8fa0791ef943c2"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/10",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "messy and interactive fixes",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "ddd77cbec1ff5825b7791d535b8fa0791ef943c2",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "c770bdccccb5889536320244aec7fc90184c5232",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2019-05-16T19:45:36Z",
+    "closed_at": "2019-05-16T19:45:36Z",
+    "created_at": "2019-05-16T19:45:29Z",
+    "merge_commit_sha": "5b4dd30cb165d3bf37b97b2e164895ca8516ee4e"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/11",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "Dev",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "5b4dd30cb165d3bf37b97b2e164895ca8516ee4e",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "e78765e2d050accc31a2920e2a144803c6f04381",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2019-05-19T10:49:55Z",
+    "closed_at": "2019-05-19T10:49:55Z",
+    "created_at": "2019-05-19T10:49:47Z",
+    "merge_commit_sha": "1253ef4d135e72f415af0b03c50a36308a1f3346"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/12",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "Updated sim_design tutorial and expanded check_design options.",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "1253ef4d135e72f415af0b03c50a36308a1f3346",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "c7aaed938dcf615e4687e7d8d4d023ad08d0cf4c",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2019-05-19T17:08:54Z",
+    "closed_at": "2019-05-19T17:08:54Z",
+    "created_at": "2019-05-19T17:08:48Z",
+    "merge_commit_sha": "455043f37db40560a0106ac40f7263dcfbd80546"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/13",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "plots and seeds",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "455043f37db40560a0106ac40f7263dcfbd80546",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "ea7d2fbc7b24d4fe290a3bedfe07f7690ead6931",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2019-05-22T16:06:18Z",
+    "closed_at": "2019-05-22T16:06:18Z",
+    "created_at": "2019-05-22T16:06:09Z",
+    "merge_commit_sha": "acd97d6b9d125602deda5d7c94111750582cbafd"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/14",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "update plots vignette",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "acd97d6b9d125602deda5d7c94111750582cbafd",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "1f3001e74b1a5061548abd51906aa9b16ebed9fb",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2019-05-22T16:12:34Z",
+    "closed_at": "2019-05-22T16:12:34Z",
+    "created_at": "2019-05-22T16:12:28Z",
+    "merge_commit_sha": "22f9d1ce7a1e86cf0571954aea7f05b58b3b8141"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/16",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "updates for travis",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "22f9d1ce7a1e86cf0571954aea7f05b58b3b8141",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "657ce6ec7888291fc1d018b0b2e3c5042d55c77b",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2019-05-24T13:54:53Z",
+    "closed_at": "2019-05-24T13:54:53Z",
+    "created_at": "2019-05-24T13:54:43Z",
+    "merge_commit_sha": "5794cfab628dc7c681dd588c2fa0aeec60a88b1b"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/17",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "suggest cowplot and ggExtra",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "6556e5d09a90b33cfba7345a9af337b3534954ec",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "28a8726d190630b7f102c0d67e43cfd96b567526",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2019-05-24T16:34:28Z",
+    "closed_at": "2019-05-24T16:34:28Z",
+    "created_at": "2019-05-24T15:50:52Z",
+    "merge_commit_sha": "b0742b03064999b73351fdfdd0bcec98461cdec6"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/18",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "Passes all unit tests, new badges",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "b0742b03064999b73351fdfdd0bcec98461cdec6",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "57da6da3b5f6ad4c2938bf1224b56a7bba242b45",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2019-05-25T18:58:21Z",
+    "closed_at": "2019-05-25T18:58:21Z",
+    "created_at": "2019-05-25T08:33:59Z",
+    "merge_commit_sha": "7b719d9516d98e4c1dffc2f7703860cb4852a978"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/20",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "more code coverage, more flexible plot options",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "7b719d9516d98e4c1dffc2f7703860cb4852a978",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "595b4a146b350288b487c06b4d07e8ae188cc953",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": null,
+    "closed_at": "2019-05-26T12:06:15Z",
+    "created_at": "2019-05-26T12:05:28Z",
+    "merge_commit_sha": "46f563a0a3c97813e44734614cc631976940ffa1"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/21",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "0.0.0.9013 plot fixes",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "7b719d9516d98e4c1dffc2f7703860cb4852a978",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "be45ef218460a1f137afebd8ff4fd71220a9d2c3",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2019-05-27T09:59:56Z",
+    "closed_at": "2019-05-27T09:59:56Z",
+    "created_at": "2019-05-27T09:41:10Z",
+    "merge_commit_sha": "be45ef218460a1f137afebd8ff4fd71220a9d2c3"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/22",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "long2wide and wide2long bug fixes",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "398d761407fc6153e7d52a5c70d18b934a780296",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "3e0a83c77abd08e9a836ce4b6d53c158b9aa616b",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2019-05-27T11:46:28Z",
+    "closed_at": "2019-05-27T11:46:28Z",
+    "created_at": "2019-05-27T11:27:44Z",
+    "merge_commit_sha": "98831b1bf0687847246d2e3d28b6bdc085792ae6"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/23",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "Dev",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "98831b1bf0687847246d2e3d28b6bdc085792ae6",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "2d7163735238fd4eafc0df375697206a0f58ae03",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2019-05-27T14:58:33Z",
+    "closed_at": "2019-05-27T14:58:33Z",
+    "created_at": "2019-05-27T14:58:02Z",
+    "merge_commit_sha": "2bc38d86cf407b086e732742a5ed39b847975e29"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/24",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "Changed ordering of cell combinations",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "2bc38d86cf407b086e732742a5ed39b847975e29",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "ef8e62914c3a2716ade46e64a65c63a204c3c2e5",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2019-05-27T18:58:57Z",
+    "closed_at": "2019-05-27T18:58:57Z",
+    "created_at": "2019-05-27T18:03:21Z",
+    "merge_commit_sha": "dcac549a6cbb8e3ffaf9970f35feec5d9ff58961"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/25",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "Updated sim_design vignette for new order",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "dcac549a6cbb8e3ffaf9970f35feec5d9ff58961",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "dbd22fb2b4519036f0524b5d849bf52a87386fcc",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2019-05-27T19:14:05Z",
+    "closed_at": "2019-05-27T19:14:05Z",
+    "created_at": "2019-05-27T19:13:59Z",
+    "merge_commit_sha": "02411de3a0ba4a7fd42def3bda1981a60ccb7a9a"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/26",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "interactive updates and ANOVApower stuff",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "02411de3a0ba4a7fd42def3bda1981a60ccb7a9a",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "e210ab75fda32c7ad60c7633943a3dd2f424b3d3",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2019-05-27T23:08:52Z",
+    "closed_at": "2019-05-27T23:08:52Z",
+    "created_at": "2019-05-27T22:57:30Z",
+    "merge_commit_sha": "59bdef477b9f9c5de8f438cde6ae13383bd94113"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/27",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "Dev",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "59bdef477b9f9c5de8f438cde6ae13383bd94113",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "d82d98e39fc2907c2432fd98e9180c01d8cba95e",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2019-07-22T18:35:32Z",
+    "closed_at": "2019-07-22T18:35:32Z",
+    "created_at": "2019-07-22T18:35:21Z",
+    "merge_commit_sha": "c3a42ede1df6b5eaf259fa06a0e806b79d2a67c8"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/28",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "References",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "c3a42ede1df6b5eaf259fa06a0e806b79d2a67c8",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "0d9624480cd06f90f745327060ec44cd51742253",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2019-07-22T18:42:16Z",
+    "closed_at": "2019-07-22T18:42:17Z",
+    "created_at": "2019-07-22T18:42:09Z",
+    "merge_commit_sha": "863d2e19389db9936d78fc4ade78ef9d758e1caa"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/32",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "Dev",
+    "body": "remove ANOVApower entirely",
+    "base": {
+      "ref": "master",
+      "sha": "863d2e19389db9936d78fc4ade78ef9d758e1caa",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "33ada56f5e652d16c86768c7a683281ee636e4ef",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2019-12-10T10:56:33Z",
+    "closed_at": "2019-12-10T10:56:33Z",
+    "created_at": "2019-12-10T08:54:52Z",
+    "merge_commit_sha": "6ad57cc6c805b85435319d24abacf0db7248e9a7"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/33",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "Dev",
+    "body": "fixed nest warnings and added rep to sim_data",
+    "base": {
+      "ref": "master",
+      "sha": "6ad57cc6c805b85435319d24abacf0db7248e9a7",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "fabde2f5afed70526a2fa7fb7f6f65c28b576f57",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2019-12-26T17:00:06Z",
+    "closed_at": "2019-12-26T17:00:06Z",
+    "created_at": "2019-12-26T16:59:30Z",
+    "merge_commit_sha": "eeaca572c3d64c13c922be935a6ef4c46fab4515"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/34",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "version 0.0.0.9018 with clean build",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "eeaca572c3d64c13c922be935a6ef4c46fab4515",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "c69282991fa44fab5482467a3824549a03c82504",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2019-12-29T15:47:17Z",
+    "closed_at": "2019-12-29T15:47:17Z",
+    "created_at": "2019-12-29T15:24:28Z",
+    "merge_commit_sha": "fee54a4624587dc83b19d051b94dc35368970339"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/35",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "fixed more stupid nest warnings",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "fee54a4624587dc83b19d051b94dc35368970339",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "eb9b0bbec3cfaec40948770f8a0ccefdb6d6b015",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2019-12-29T16:17:09Z",
+    "closed_at": "2019-12-29T16:17:09Z",
+    "created_at": "2019-12-29T16:17:01Z",
+    "merge_commit_sha": "a5e914b178b6b66d40c30460d41d43b7b8ee2f8b"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/37",
+    "user": "https://github.com/andrewheiss",
+    "repository": "https://github.com/debruine/faux",
+    "title": "Add norm2beta function",
+    "body": "I added a function to convert a normal distribution to a beta distribution, along with tests (using [this math here](https://stats.stackexchange.com/a/12239/3025) to extract the shape parameters)\r\n\r\n``` r\r\nlibrary(faux)\r\n\r\nx <- rnorm(10000)\r\ny <- norm2beta(x, 1, 3)\r\ng <- ggplot2::ggplot() + ggplot2::geom_point(ggplot2::aes(x, y))\r\nggExtra::ggMarginal(g, type = \"histogram\")\r\n```\r\n\r\n![](https://i.imgur.com/CggQSxo.png)\r\n\r\n<sup>Created on 2020-02-26 by the [reprex package](https://reprex.tidyverse.org) (v0.3.0)</sup>",
+    "base": {
+      "ref": "master",
+      "sha": "a5e914b178b6b66d40c30460d41d43b7b8ee2f8b",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "master",
+      "sha": "4ee6b200d7a9456e3bb3e051e2d222c229208052",
+      "user": "https://github.com/andrewheiss",
+      "repo": "https://github.com/andrewheiss/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2020-02-26T16:44:48Z",
+    "closed_at": "2020-02-26T16:44:48Z",
+    "created_at": "2020-02-26T15:44:24Z",
+    "merge_commit_sha": "26c9023b3e435bdb5f1b7c33d8eca79850c7a9cc"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/38",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "Dev",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "26c9023b3e435bdb5f1b7c33d8eca79850c7a9cc",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "ceb84b116263e160da7f8c69fdd86e3efa2f8a53",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2020-02-26T21:50:30Z",
+    "closed_at": "2020-02-26T21:50:30Z",
+    "created_at": "2020-02-26T21:46:25Z",
+    "merge_commit_sha": "1fa238d0c2a2b552c4355d77737ce69558c83242"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/39",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "Update citation info",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "1fa238d0c2a2b552c4355d77737ce69558c83242",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "2f733a3a768aff91a6e8515b6e18666fbc5749c3",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2020-02-26T21:55:56Z",
+    "closed_at": "2020-02-26T21:55:56Z",
+    "created_at": "2020-02-26T21:55:46Z",
+    "merge_commit_sha": "fc55f56005730e7907b74b909f971aa880a2b729"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/40",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "Dev",
+    "body": "updates for ggplot2 3.3.0",
+    "base": {
+      "ref": "master",
+      "sha": "fc55f56005730e7907b74b909f971aa880a2b729",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "475fa6cf8a1904e2ad013e07dae792c7e8213c84",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2020-04-07T10:09:25Z",
+    "closed_at": "2020-04-07T10:09:25Z",
+    "created_at": "2020-03-17T12:09:39Z",
+    "merge_commit_sha": "6f46dbb65370971afdff8e42f3cce5466c6db6c0"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/42",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "Dev",
+    "body": "Updated codebook stuff",
+    "base": {
+      "ref": "master",
+      "sha": "6f46dbb65370971afdff8e42f3cce5466c6db6c0",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "9ebade25dbe00f1afddf9b6bf017a370c7f65838",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2020-06-23T15:04:35Z",
+    "closed_at": "2020-06-23T15:04:35Z",
+    "created_at": "2020-06-23T15:04:22Z",
+    "merge_commit_sha": "3a4ec4f4a8b473c5bf51b1e88f6dd1ef1558d5c7"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/43",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "codebook stuff",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "3a4ec4f4a8b473c5bf51b1e88f6dd1ef1558d5c7",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "e26615fdb8460cc747f05ccd767fca7d9a6c4fbc",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2020-06-24T21:51:17Z",
+    "closed_at": "2020-06-24T21:51:17Z",
+    "created_at": "2020-06-24T21:50:55Z",
+    "merge_commit_sha": "8acdf7d63e738387160776244d6afe68850b1806"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/44",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "Bug fixes for codebook",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "8acdf7d63e738387160776244d6afe68850b1806",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "65eff35015a212f6a63b6deb2592574e70d5240b",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2020-06-25T09:57:33Z",
+    "closed_at": "2020-06-25T09:57:33Z",
+    "created_at": "2020-06-25T09:57:20Z",
+    "merge_commit_sha": "f22778d392fa88310fba92fe002c0dc8a7cfb5d7"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/46",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "Aligned codebook with pdsbuilder",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "f22778d392fa88310fba92fe002c0dc8a7cfb5d7",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "03be9b6ab657862bfb4885776c9e34693a5ca029",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2020-07-21T00:19:09Z",
+    "closed_at": "2020-07-21T00:19:09Z",
+    "created_at": "2020-07-21T00:18:58Z",
+    "merge_commit_sha": "d0c437a4d0defa6ee982aace388833ec331a438c"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/47",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "Updated codebook to dataType instead of type",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "d0c437a4d0defa6ee982aace388833ec331a438c",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "19eb1045fb67711ae4535769cf7a808b2cdf86ec",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2020-07-21T00:43:08Z",
+    "closed_at": "2020-07-21T00:43:08Z",
+    "created_at": "2020-07-21T00:43:01Z",
+    "merge_commit_sha": "f20db62ea78dfc0ec14ad44fc6a318e37ad08cff"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/48",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "Added quotes to nested_list",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "f20db62ea78dfc0ec14ad44fc6a318e37ad08cff",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "4b36371702245a69b8e8792c4f5838e2cd51ec24",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2020-07-24T14:19:46Z",
+    "closed_at": "2020-07-24T14:19:46Z",
+    "created_at": "2020-07-24T14:19:39Z",
+    "merge_commit_sha": "6dbf4c75ff880962bc6ca879a56ff5bc4daeefdb"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/49",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "Continuous predictor vignette",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "6dbf4c75ff880962bc6ca879a56ff5bc4daeefdb",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "44921fd1fa82760b17326f7025efd02867a30281",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2020-07-29T14:34:58Z",
+    "closed_at": "2020-07-29T14:34:58Z",
+    "created_at": "2020-07-29T14:34:44Z",
+    "merge_commit_sha": "879ee21c739688bb1bd1ed710dd7d7cc0a03c724"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/50",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "Dev",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "879ee21c739688bb1bd1ed710dd7d7cc0a03c724",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "b6313d3ac6c9bc7ef2837bdea68294a879aa45d4",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2020-07-29T22:33:01Z",
+    "closed_at": "2020-07-29T22:33:01Z",
+    "created_at": "2020-07-29T22:32:46Z",
+    "merge_commit_sha": "5074df5b9c8a02d7cd49d3fd078762afd529ae1e"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/51",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "Dev",
+    "body": "fixed codebook interactive bug",
+    "base": {
+      "ref": "master",
+      "sha": "5074df5b9c8a02d7cd49d3fd078762afd529ae1e",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "33fa4ca64de736f68ca9c7a55abe725930fb8438",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2020-07-30T15:26:18Z",
+    "closed_at": "2020-07-30T15:26:18Z",
+    "created_at": "2020-07-30T15:26:10Z",
+    "merge_commit_sha": "0a559e050c83f56db2515c91dde2c0f0d83bbd03"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/52",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "interactive tests",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "0a559e050c83f56db2515c91dde2c0f0d83bbd03",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "6c214e89d0d8cf4471649e06c3c6b9077adfaef9",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2020-08-01T14:25:18Z",
+    "closed_at": "2020-08-01T14:25:18Z",
+    "created_at": "2020-08-01T14:25:11Z",
+    "merge_commit_sha": "5ca96f63b463f8caf3216834f41269f24a0e8f7c"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/53",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "more codecov",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "5ca96f63b463f8caf3216834f41269f24a0e8f7c",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "ecada9699bf72839d4036af234af563d8994dd84",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2020-08-01T17:50:25Z",
+    "closed_at": "2020-08-01T17:50:25Z",
+    "created_at": "2020-08-01T17:50:19Z",
+    "merge_commit_sha": "5f75c33b2a083794b835b8f5a2adbf693ee223c6"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/54",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "removing detatch test",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "5f75c33b2a083794b835b8f5a2adbf693ee223c6",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "ac1f0b8142658fa7e3c35028ea08523387f05531",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2020-08-01T20:13:32Z",
+    "closed_at": "2020-08-01T20:13:32Z",
+    "created_at": "2020-08-01T20:13:25Z",
+    "merge_commit_sha": "a37ff4cc7199c8082f4290dd50cf84efabcc6dd2"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/55",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "Dev",
+    "body": "removing dependencies",
+    "base": {
+      "ref": "master",
+      "sha": "a37ff4cc7199c8082f4290dd50cf84efabcc6dd2",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "c2983786a700e19baa8bdf671831a3870b48c38d",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2020-08-03T15:01:02Z",
+    "closed_at": "2020-08-03T15:01:02Z",
+    "created_at": "2020-08-03T15:00:55Z",
+    "merge_commit_sha": "4db46da777ed9e97a63c29c461d3b35245ab30cc"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/56",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "Removed ANOVApower functions",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "4db46da777ed9e97a63c29c461d3b35245ab30cc",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "d4bcc86ad43db812e93c047d88d7300587bc5916",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2020-08-03T16:43:14Z",
+    "closed_at": "2020-08-03T16:43:14Z",
+    "created_at": "2020-08-03T16:43:09Z",
+    "merge_commit_sha": "05bb9e44875b4dd59de797593d79d22e179e3e10"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/msc-data-skills/pull/1",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/msc-data-skills",
+    "title": "Update dev repo to match master",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "704bf1c19e4bb1b46440e3b971b58e27a8af610d",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/msc-data-skills"
+    },
+    "head": {
+      "ref": "master",
+      "sha": "f5dc9d35df3435ff190654e645bc9344516bb276",
+      "user": "https://github.com/PsyTeachR",
+      "repo": "https://github.com/PsyTeachR/msc-data-skills"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2020-08-04T09:21:02Z",
+    "closed_at": "2020-08-04T09:21:02Z",
+    "created_at": "2020-08-04T09:20:48Z",
+    "merge_commit_sha": "aec40a4cacde76eee2e478417ae4db1a6e138b35"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/57",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "Dev",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "05bb9e44875b4dd59de797593d79d22e179e3e10",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "94282f02a690c828b3d62412c0ca4133b070efaf",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2020-08-12T11:05:33Z",
+    "closed_at": "2020-08-12T11:05:33Z",
+    "created_at": "2020-08-12T11:05:25Z",
+    "merge_commit_sha": "3e69c35966c229100520738f1284a235eaa7577e"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/58",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "On CRAN!",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "3e69c35966c229100520738f1284a235eaa7577e",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "90fa2432a035407ccc64ef32ceebbe010e5740cf",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2020-08-19T20:23:02Z",
+    "closed_at": "2020-08-19T20:23:02Z",
+    "created_at": "2020-08-19T20:22:56Z",
+    "merge_commit_sha": "5a6b1a848c911b17441c03850b35c56189c1e6c7"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/60",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "Update Docs for CRAN version",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "5a6b1a848c911b17441c03850b35c56189c1e6c7",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "cf8b119666cd92c8ca0014a91c5fb87850730734",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2020-09-28T14:56:03Z",
+    "closed_at": "2020-09-28T14:56:03Z",
+    "created_at": "2020-09-28T14:55:56Z",
+    "merge_commit_sha": "df0d2ba40d092aff4122eb422fc59403f82b7db5"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/lmem_sim/pull/3",
+    "user": "https://github.com/oscci",
+    "repository": "https://github.com/debruine/lmem_sim",
+    "title": "Modifications made by Dorothy Bishop to clarify points that she found…",
+    "body": "… initially confusing.",
+    "base": {
+      "ref": "master",
+      "sha": "7d2dc9860f98b3f8845541e5b61e722373cd216d",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/lmem_sim"
+    },
+    "head": {
+      "ref": "master",
+      "sha": "4f49159334e01017c71cd0378ef889a146237bc3",
+      "user": "https://github.com/oscci",
+      "repo": "https://github.com/oscci/lmem_sim"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2021-01-04T11:35:54Z",
+    "closed_at": "2021-01-04T11:35:54Z",
+    "created_at": "2021-01-02T08:49:44Z",
+    "merge_commit_sha": "d1980b81a8872de059704a5b6997a797f4fa1639"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/61",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "Dev",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "df0d2ba40d092aff4122eb422fc59403f82b7db5",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "afca6d98e2b079463cc6a3b95ededb5c2c1b14f5",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2021-02-06T18:04:16Z",
+    "closed_at": "2021-02-06T18:04:16Z",
+    "created_at": "2021-02-06T18:04:04Z",
+    "merge_commit_sha": "992f7dafc4a83eea62b8180650fd9cfdf084f462"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/63",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "updates to messy and sim_df",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "992f7dafc4a83eea62b8180650fd9cfdf084f462",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "f150c3c135baf586b1671ad4d2577a4456707ece",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2021-02-13T16:44:35Z",
+    "closed_at": "2021-02-13T16:44:35Z",
+    "created_at": "2021-02-13T16:44:29Z",
+    "merge_commit_sha": "811066f96ae6311eb06345150d0cda5f8c32a292"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/64",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "Dev",
+    "body": "pkgdown",
+    "base": {
+      "ref": "master",
+      "sha": "811066f96ae6311eb06345150d0cda5f8c32a292",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "1e36821002a0663f2d6a0cc4e24048aba0e57747",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2021-02-13T17:12:03Z",
+    "closed_at": "2021-02-13T17:12:03Z",
+    "created_at": "2021-02-13T17:11:56Z",
+    "merge_commit_sha": "94dd4340ae7b4a5e383d0f7a624a7d1e01bebcc7"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/65",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "rnorm_pre",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "94dd4340ae7b4a5e383d0f7a624a7d1e01bebcc7",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "aecdc2de30fe6a8d7318822f0c57e03e05428f4b",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2021-02-13T18:45:00Z",
+    "closed_at": "2021-02-13T18:45:00Z",
+    "created_at": "2021-02-13T18:44:18Z",
+    "merge_commit_sha": "fb3c6c1239f2ba29a4149fb60bd19eebb76d9895"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/66",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "fixed CMD-check stuff",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "fb3c6c1239f2ba29a4149fb60bd19eebb76d9895",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "01beaa7b49cf6089e4a74c92f05fb14bd12dfd5b",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2021-02-13T19:22:59Z",
+    "closed_at": "2021-02-13T19:22:59Z",
+    "created_at": "2021-02-13T19:22:54Z",
+    "merge_commit_sha": "96cb75afb78200220854bcbf4da4296e98fcadef"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/67",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "fixed bug with out-of-order named vector params to sim_design",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "96cb75afb78200220854bcbf4da4296e98fcadef",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "f73b6f19e2be0fe4e7500f90478af99cb5297606",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2021-02-14T13:47:41Z",
+    "closed_at": "2021-02-14T13:47:42Z",
+    "created_at": "2021-02-14T13:47:37Z",
+    "merge_commit_sha": "1e33400bac73994c87df2132019f7c9535641db5"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/68",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "trying github actions",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "1e33400bac73994c87df2132019f7c9535641db5",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "f4f17d82f9a30a4ed02edb7950b420d0e2f9580e",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2021-02-19T14:12:58Z",
+    "closed_at": "2021-02-19T14:12:59Z",
+    "created_at": "2021-02-19T08:53:35Z",
+    "merge_commit_sha": "9df7196dc8ec9b5c4656b334b936fdad900575a6"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/70",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "Dev",
+    "body": "commit cc59990 Cran accepted version 1.0.0",
+    "base": {
+      "ref": "master",
+      "sha": "9df7196dc8ec9b5c4656b334b936fdad900575a6",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "4c5fdd03415f248a5c6a799b3a2c1f98b84f3253",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2021-03-27T13:03:47Z",
+    "closed_at": "2021-03-27T13:03:47Z",
+    "created_at": "2021-03-27T13:02:49Z",
+    "merge_commit_sha": "837e101f8a25b0849518608c004319acce1e32f5"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/71",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "Dev",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "837e101f8a25b0849518608c004319acce1e32f5",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "c17b0d00da470f791b739f4f74ff92107b2828a5",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2021-03-27T13:20:51Z",
+    "closed_at": "2021-03-27T13:20:51Z",
+    "created_at": "2021-03-27T13:20:44Z",
+    "merge_commit_sha": "c0f1c46a9498294f0be7a2b73e3d445a66cf2d47"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/72",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "Dev",
+    "body": "pkgdown :(",
+    "base": {
+      "ref": "master",
+      "sha": "c0f1c46a9498294f0be7a2b73e3d445a66cf2d47",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "600b80fcdbec378eac6e1d92c42423ce6a91586a",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2021-03-27T13:34:16Z",
+    "closed_at": "2021-03-27T13:34:16Z",
+    "created_at": "2021-03-27T13:34:09Z",
+    "merge_commit_sha": "0fec3f06fa517ed8cb38b7f13dcc796426327f05"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/73",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "twitter card URL update",
+    "body": "Still wrestling with pkgdown",
+    "base": {
+      "ref": "master",
+      "sha": "0fec3f06fa517ed8cb38b7f13dcc796426327f05",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "b966a9b9dafec853de464bd6dc76e62c5a92f7e5",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2021-03-27T13:48:44Z",
+    "closed_at": "2021-03-27T13:48:44Z",
+    "created_at": "2021-03-27T13:48:38Z",
+    "merge_commit_sha": "04ffa126b58f3cd5789de809961f49c0ee729108"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/pdsbuilder/pull/1",
+    "user": "https://github.com/jcolomb",
+    "repository": "https://github.com/debruine/pdsbuilder",
+    "title": "Update nested_list.R",
+    "body": "add possibility to use headings instead of list element, it also add the possiblity to use ordered list",
+    "base": {
+      "ref": "master",
+      "sha": "a7d67c465ff31a50dfdbab70da76b4be97f12bbf",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/pdsbuilder"
+    },
+    "head": {
+      "ref": "patch-1",
+      "sha": "d9d09ddbb55cf8832675aa9fd9f9873954f3f396",
+      "user": "https://github.com/jcolomb",
+      "repo": "https://github.com/jcolomb/pdsbuilder"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": null,
+    "closed_at": "2021-04-22T13:51:20Z",
+    "created_at": "2021-04-22T13:04:29Z",
+    "merge_commit_sha": "d896894319654968437b32128ef38bf8a00edbe8"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/74",
+    "user": "https://github.com/jcolomb",
+    "repository": "https://github.com/debruine/faux",
+    "title": "adding type using (sub-)headers instead of bullet lists",
+    "body": "I gave it a try, and succeeded :) not sure it is the best way to code this though ??\r\n\r\nadd a way to export as headings, default behavior not changed.\r\nNB: may need a message if type given wrongly.\r\n\r\nNB2: the default does order sublist elements but not first level elements, I did not change that, but may not be what people want (?). Also the ordered list way gets stange sublisting due to that.",
+    "base": {
+      "ref": "master",
+      "sha": "3d2cb16fb0ed205a5e3f01dca761762ed535708d",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "patch-1",
+      "sha": "c372b3ac7cd10fe974a93ff35b1d6fcd051264f1",
+      "user": "https://github.com/jcolomb",
+      "repo": "https://github.com/jcolomb/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2021-08-09T11:20:12Z",
+    "closed_at": "2021-08-09T11:20:12Z",
+    "created_at": "2021-04-22T14:38:02Z",
+    "merge_commit_sha": "2877572767ac347054eca26e11dfd50a2a5770df"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/msc-data-skills/pull/2",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/msc-data-skills",
+    "title": "Update from psyTeachR",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "122a5f4807ce81f271d72d958c14975828b1d25b",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/msc-data-skills"
+    },
+    "head": {
+      "ref": "master",
+      "sha": "39948c52984b1f7bc7f62dd30c07e6e0b6d76e22",
+      "user": "https://github.com/PsyTeachR",
+      "repo": "https://github.com/PsyTeachR/msc-data-skills"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2021-05-24T08:55:47Z",
+    "closed_at": "2021-05-24T08:55:48Z",
+    "created_at": "2021-05-24T08:54:14Z",
+    "merge_commit_sha": "a58515cd08d713cce643a6591be0e061b1a02c24"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/76",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "Dev",
+    "body": "new mixed design functions",
+    "base": {
+      "ref": "master",
+      "sha": "3d2cb16fb0ed205a5e3f01dca761762ed535708d",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "dbf5e745c1c95b8c11e7224d5db543b00e12f11c",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2021-06-19T21:33:01Z",
+    "closed_at": "2021-06-19T21:33:01Z",
+    "created_at": "2021-06-19T21:32:56Z",
+    "merge_commit_sha": "3cd8f4152a4f1d5e6ca343a0cd2b3b4147ed8526"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/77",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "updated vignette",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "3cd8f4152a4f1d5e6ca343a0cd2b3b4147ed8526",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "123cc31af19b00702d3da1d0cdbe6bd3a974e15e",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2021-06-19T22:27:49Z",
+    "closed_at": "2021-06-19T22:27:49Z",
+    "created_at": "2021-06-19T22:27:43Z",
+    "merge_commit_sha": "c7d23ea741669a9cc8e8c83f76e5e5131a58ba4e"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/78",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "clarify multilevel funcs",
+    "body": "",
+    "base": {
+      "ref": "master",
+      "sha": "c7d23ea741669a9cc8e8c83f76e5e5131a58ba4e",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "872419dbcb495180c52d232d18739530c5bbb4c0",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2021-06-19T22:52:40Z",
+    "closed_at": "2021-06-19T22:52:40Z",
+    "created_at": "2021-06-19T22:52:35Z",
+    "merge_commit_sha": "58404dab53d8b3cd23c41935fe39f56ba9221bf6"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/79",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "Dev",
+    "body": "v1.0.0.9002",
+    "base": {
+      "ref": "master",
+      "sha": "58404dab53d8b3cd23c41935fe39f56ba9221bf6",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "1abcfcf6e4e610584e9562fbdcbc54fb88b55982",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2021-08-08T23:28:48Z",
+    "closed_at": "2021-08-08T23:28:48Z",
+    "created_at": "2021-08-08T23:28:42Z",
+    "merge_commit_sha": "bcc153318787a28ba24238d2d98f2efa2fd8d5e4"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/80",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "pkgdown fixes",
+    "body": null,
+    "base": {
+      "ref": "master",
+      "sha": "bcc153318787a28ba24238d2d98f2efa2fd8d5e4",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "0b93b815721a8a8623d7678c0b6c90382e1bf6ec",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2021-08-09T00:00:38Z",
+    "closed_at": "2021-08-09T00:00:38Z",
+    "created_at": "2021-08-09T00:00:32Z",
+    "merge_commit_sha": "b554f8505611c2b35c8e859120c6fb81d2a45fff"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/81",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "bad link",
+    "body": null,
+    "base": {
+      "ref": "master",
+      "sha": "b554f8505611c2b35c8e859120c6fb81d2a45fff",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "038cbcd520a69aa48a7a2af17d76f174573873ea",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2021-08-09T00:02:53Z",
+    "closed_at": "2021-08-09T00:02:53Z",
+    "created_at": "2021-08-09T00:02:48Z",
+    "merge_commit_sha": "c1767c84973b1ea3f0b75f235d737e7c723e7f74"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/82",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "new contrast functions",
+    "body": null,
+    "base": {
+      "ref": "master",
+      "sha": "c1767c84973b1ea3f0b75f235d737e7c723e7f74",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "d72e9f2c8083a496552a8c3783700d8a39d9c265",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2021-08-09T11:13:43Z",
+    "closed_at": "2021-08-09T11:13:43Z",
+    "created_at": "2021-08-09T11:13:39Z",
+    "merge_commit_sha": "3b6ef75cc4677a63df192bee877dba6f3ca66290"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/83",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "Dev",
+    "body": null,
+    "base": {
+      "ref": "master",
+      "sha": "c4e6091092997a9c6c5864fa2e7cdacc6af08c42",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "6311cafafec80478f5c7b2614919aa70fa47c0e8",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2021-08-09T12:13:35Z",
+    "closed_at": "2021-08-09T12:13:35Z",
+    "created_at": "2021-08-09T12:13:30Z",
+    "merge_commit_sha": "77a1257072b4fa176cf05cb814d49027223dce30"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/84",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "skip tests for std_alpha2average_r",
+    "body": null,
+    "base": {
+      "ref": "master",
+      "sha": "77a1257072b4fa176cf05cb814d49027223dce30",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "559eaa454242c73be6ff1271385cdec47738ca0b",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2021-08-09T14:55:22Z",
+    "closed_at": "2021-08-09T14:55:22Z",
+    "created_at": "2021-08-09T13:03:03Z",
+    "merge_commit_sha": "867ef732d6d492b1677194f4a21479e6283b5f6a"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/85",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "contrast names",
+    "body": null,
+    "base": {
+      "ref": "master",
+      "sha": "867ef732d6d492b1677194f4a21479e6283b5f6a",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "1bff4ce52f639f93845d253ac301b93bcb20cc4d",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2021-08-09T15:47:46Z",
+    "closed_at": "2021-08-09T15:47:46Z",
+    "created_at": "2021-08-09T15:44:20Z",
+    "merge_commit_sha": "bf8e82659fc02ede1ce4ad620f459f391c712abd"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/86",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "Dev",
+    "body": null,
+    "base": {
+      "ref": "master",
+      "sha": "bf8e82659fc02ede1ce4ad620f459f391c712abd",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "c1a44855ac3944b40f3dc278715d095fd87418e6",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2021-08-10T12:24:44Z",
+    "closed_at": "2021-08-10T12:24:44Z",
+    "created_at": "2021-08-10T12:24:39Z",
+    "merge_commit_sha": "4a4c5936a7ed98d4b2ed5b68727dca48d9a4ccc4"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/87",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "Contrast stuff again",
+    "body": null,
+    "base": {
+      "ref": "master",
+      "sha": "4a4c5936a7ed98d4b2ed5b68727dca48d9a4ccc4",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "ed1284474e08af0652a67e8006888d3a2e1db788",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2021-08-11T13:06:50Z",
+    "closed_at": "2021-08-11T13:06:50Z",
+    "created_at": "2021-08-11T13:06:44Z",
+    "merge_commit_sha": "a02a1618df310561bb6020300d05eac9329303e4"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/89",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "Dev 1.0.9006",
+    "body": null,
+    "base": {
+      "ref": "master",
+      "sha": "a02a1618df310561bb6020300d05eac9329303e4",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "bd499e5a9539f9ae1c6df56452f61d86c3ea50ba",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2021-08-30T12:58:53Z",
+    "closed_at": "2021-08-30T12:58:53Z",
+    "created_at": "2021-08-30T12:58:47Z",
+    "merge_commit_sha": "2a4777a6ed35e95d21938cb97adffbc13dfed811"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/90",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "Dev",
+    "body": "New vignette",
+    "base": {
+      "ref": "master",
+      "sha": "2a4777a6ed35e95d21938cb97adffbc13dfed811",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "4fadcf55c2ffb58742fc6138b5b291722a0f5661",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2021-09-13T11:29:47Z",
+    "closed_at": "2021-09-13T11:29:48Z",
+    "created_at": "2021-09-13T11:29:40Z",
+    "merge_commit_sha": "5154336c145584f11697cfaefb950f7d37aac2c1"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/faux/pull/91",
+    "user": "https://github.com/debruine",
+    "repository": "https://github.com/debruine/faux",
+    "title": "update vignette",
+    "body": null,
+    "base": {
+      "ref": "master",
+      "sha": "5154336c145584f11697cfaefb950f7d37aac2c1",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "head": {
+      "ref": "dev",
+      "sha": "3eef92abbd7ae38bfc9f523d9a7b80ca642b4fa8",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/faux"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2021-09-13T14:03:32Z",
+    "closed_at": "2021-09-13T14:03:32Z",
+    "created_at": "2021-09-13T14:03:23Z",
+    "merge_commit_sha": "0172aab3406c182e2c2ed9f6dad655c441115a1f"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/lmem_sim/pull/7",
+    "user": "https://github.com/seblammers",
+    "repository": "https://github.com/debruine/lmem_sim",
+    "title": "Fixed some typos in Appendix 2",
+    "body": null,
+    "base": {
+      "ref": "master",
+      "sha": "3179319ec11f752170101d60564b81fa766e4d40",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/lmem_sim"
+    },
+    "head": {
+      "ref": "patch-1",
+      "sha": "748e0fc606607f8e3391b5fec26b979cd4b9c266",
+      "user": "https://github.com/seblammers",
+      "repo": "https://github.com/seblammers/lmem_sim"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2021-12-13T11:02:27Z",
+    "closed_at": "2021-12-13T11:02:27Z",
+    "created_at": "2021-12-13T10:59:38Z",
+    "merge_commit_sha": "8081288bce3abd79b41ed067c0cc1c558c341be4"
+  },
+  {
+    "type": "pull_request",
+    "url": "https://github.com/debruine/statistical_inferences/pull/1",
+    "user": "https://github.com/Lakens",
+    "repository": "https://github.com/debruine/statistical_inferences",
+    "title": "all changes",
+    "body": "Here are my fixes to your fixes.",
+    "base": {
+      "ref": "master",
+      "sha": "0d74d0aa69913ede6cc9bb925564e612f7d1a07f",
+      "user": "https://github.com/debruine",
+      "repo": "https://github.com/debruine/statistical_inferences"
+    },
+    "head": {
+      "ref": "figcaps",
+      "sha": "390504de232f1b75e3cec7d214492fd466fd4342",
+      "user": "https://github.com/scienceverse",
+      "repo": "https://github.com/scienceverse/statistical_inferences"
+    },
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "labels": [
+
+    ],
+    "reactions": [
+
+    ],
+    "review_requests": [
+
+    ],
+    "close_issue_references": [
+
+    ],
+    "work_in_progress": false,
+    "merged_at": "2022-04-15T18:06:17Z",
+    "closed_at": "2022-04-15T18:06:17Z",
+    "created_at": "2022-04-15T16:11:21Z",
+    "merge_commit_sha": "2687cdd5c25f742fbfb01dd89b8fee2e2d3dbaa6"
+  }
+]

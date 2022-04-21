@@ -1,0 +1,233 @@
+[
+  {
+    "type": "release",
+    "url": "https://github.com/debruine/webmorph/releases/tag/v0.0.0.9000",
+    "repository": "https://github.com/debruine/webmorph",
+    "user": "https://github.com/debruine",
+    "name": "Beta release",
+    "tag_name": "v0.0.0.9000",
+    "body": "This is the first official beta release of webmorph.org.",
+    "state": "published",
+    "pending_tag": "v0.0.0.9000",
+    "prerelease": true,
+    "target_commitish": "master",
+    "release_assets": [
+
+    ],
+    "reactions": [
+
+    ],
+    "published_at": "2017-12-04T10:19:49Z",
+    "created_at": "2017-12-04T10:13:08Z"
+  },
+  {
+    "type": "release",
+    "url": "https://github.com/debruine/webmorph/releases/tag/v0.0.0.9001",
+    "repository": "https://github.com/debruine/webmorph",
+    "user": "https://github.com/debruine",
+    "name": "Beta release 2",
+    "tag_name": "v0.0.0.9001",
+    "body": "This is the second official beta release of webmorph.org.\r\n\r\nWebMorph is a web-based version of Psychomorph, with several additional functions. While WebMorph is optimized for averaging and transforming faces, you can delineate and average any type of image. WebMorph also has several batch functions for processing large numbers of images automatically and can even create moving gifs of your transforms.\r\n\r\nWebMorph uses the open-source java library FaceMorphLib (http://users.aber.ac.uk/bpt/jpsychomorph/version6/javadoc/) by Bernard Tiddeman.\r\n\r\nUpdates and bug fixes.",
+    "state": "published",
+    "pending_tag": "v0.0.0.9001",
+    "prerelease": true,
+    "target_commitish": "master",
+    "release_assets": [
+
+    ],
+    "reactions": [
+
+    ],
+    "published_at": "2018-01-30T11:26:49Z",
+    "created_at": "2018-01-30T10:55:27Z"
+  },
+  {
+    "type": "release",
+    "url": "https://github.com/debruine/experimentum/releases/tag/v.0.1",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/debruine",
+    "name": "Beta release 1",
+    "tag_name": "v.0.1",
+    "body": "Beta version for 2018/2019 Glasgow and PSA",
+    "state": "published",
+    "pending_tag": "v.0.1",
+    "prerelease": false,
+    "target_commitish": "master",
+    "release_assets": [
+
+    ],
+    "reactions": [
+
+    ],
+    "published_at": "2019-04-09T17:15:23Z",
+    "created_at": "2018-11-10T23:57:53Z"
+  },
+  {
+    "type": "release",
+    "url": "https://github.com/debruine/faux/releases/tag/v0.0.0.9007-beta",
+    "repository": "https://github.com/debruine/faux",
+    "user": "https://github.com/debruine",
+    "name": "Faux (beta)",
+    "tag_name": "v0.0.0.9007-beta",
+    "body": "The faux package provides functions to simulate data with a specified structure. ",
+    "state": "published",
+    "pending_tag": "v0.0.0.9007-beta",
+    "prerelease": false,
+    "target_commitish": "master",
+    "release_assets": [
+
+    ],
+    "reactions": [
+
+    ],
+    "published_at": "2019-05-06T19:26:39Z",
+    "created_at": "2019-05-06T19:22:01Z"
+  },
+  {
+    "type": "release",
+    "url": "https://github.com/debruine/faux/releases/tag/0.0.0.9016",
+    "repository": "https://github.com/debruine/faux",
+    "user": "https://github.com/debruine",
+    "name": "Faux (beta)",
+    "tag_name": "0.0.0.9016",
+    "body": "The faux package provides functions to simulate data with a specified structure.",
+    "state": "published",
+    "pending_tag": "0.0.0.9016",
+    "prerelease": false,
+    "target_commitish": "master",
+    "release_assets": [
+
+    ],
+    "reactions": [
+
+    ],
+    "published_at": "2019-12-10T10:57:30Z",
+    "created_at": "2019-12-10T10:56:32Z"
+  },
+  {
+    "type": "release",
+    "url": "https://github.com/debruine/faux/releases/tag/0.0.0.9018",
+    "repository": "https://github.com/debruine/faux",
+    "user": "https://github.com/debruine",
+    "name": "Faux (beta)",
+    "tag_name": "0.0.0.9018",
+    "body": "The faux package provides functions to simulate data with a specified structure.",
+    "state": "published",
+    "pending_tag": "0.0.0.9018",
+    "prerelease": false,
+    "target_commitish": "master",
+    "release_assets": [
+
+    ],
+    "reactions": [
+
+    ],
+    "published_at": "2019-12-29T16:18:00Z",
+    "created_at": "2019-12-29T16:17:09Z"
+  },
+  {
+    "type": "release",
+    "url": "https://github.com/debruine/faux/releases/tag/0.0.0.9019",
+    "repository": "https://github.com/debruine/faux",
+    "user": "https://github.com/debruine",
+    "name": "Faux (beta)",
+    "tag_name": "0.0.0.9019",
+    "body": "The faux package provides functions to simulate data with a specified structure.",
+    "state": "published",
+    "pending_tag": "0.0.0.9019",
+    "prerelease": false,
+    "target_commitish": "master",
+    "release_assets": [
+
+    ],
+    "reactions": [
+
+    ],
+    "published_at": "2020-02-26T21:52:24Z",
+    "created_at": "2020-02-26T21:50:29Z"
+  },
+  {
+    "type": "release",
+    "url": "https://github.com/debruine/experimentum/releases/tag/v0.2",
+    "repository": "https://github.com/debruine/experimentum",
+    "user": "https://github.com/debruine",
+    "name": "Beta release 2",
+    "tag_name": "v0.2",
+    "body": "Added manual and various additional features and bug fixes",
+    "state": "published",
+    "pending_tag": "v0.2",
+    "prerelease": false,
+    "target_commitish": "master",
+    "release_assets": [
+
+    ],
+    "reactions": [
+
+    ],
+    "published_at": "2020-09-01T12:29:54Z",
+    "created_at": "2020-09-01T12:28:28Z"
+  },
+  {
+    "type": "release",
+    "url": "https://github.com/debruine/faux/releases/tag/0.0.1.5",
+    "repository": "https://github.com/debruine/faux",
+    "user": "https://github.com/debruine",
+    "name": "Faux",
+    "tag_name": "0.0.1.5",
+    "body": "The faux package provides functions to simulate data with a factorial structure.",
+    "state": "published",
+    "pending_tag": "0.0.1.5",
+    "prerelease": false,
+    "target_commitish": "master",
+    "release_assets": [
+
+    ],
+    "reactions": [
+
+    ],
+    "published_at": "2020-09-28T14:58:03Z",
+    "created_at": "2020-09-28T14:56:02Z"
+  },
+  {
+    "type": "release",
+    "url": "https://github.com/debruine/faux/releases/tag/v1.0.0",
+    "repository": "https://github.com/debruine/faux",
+    "user": "https://github.com/debruine",
+    "name": "faux 1.0.0",
+    "tag_name": "v1.0.0",
+    "body": "* Some breaking changes with requiring the separator character to not exist in factor labels\r\n* Expanded distribution conversion functions\r\n* Several bug fixes that prevented types of parameter specifications from working\r\n* New vignettes",
+    "state": "published",
+    "pending_tag": "v1.0.0",
+    "prerelease": false,
+    "target_commitish": "837e101f8a25b0849518608c004319acce1e32f5",
+    "release_assets": [
+
+    ],
+    "reactions": [
+
+    ],
+    "published_at": "2021-03-27T13:08:51Z",
+    "created_at": "2021-03-27T13:03:46Z"
+  },
+  {
+    "type": "release",
+    "url": "https://github.com/debruine/faux/releases/tag/v1.1.0",
+    "repository": "https://github.com/debruine/faux",
+    "user": "https://github.com/debruine",
+    "name": "faux 1.1.0",
+    "tag_name": "v1.1.0",
+    "body": "## Breaking changes\r\n\r\n* `sim_design()` now names anonymous within and between factors like W and B or W1, W2, W3, ..., and B1, B2, ... instead of A, B, C, ... \r\n\r\n## New features\r\n\r\n* `add_contrast()` and associated contr_code_*** functions\r\n* `add_random()` and associated mixed design building functions\r\n\r\n## Minor improvements and fixes\r\n\r\n* `get_params()` doesn't need between, within, id, and dv set for date created by `sim_design()`\r\n* `plot_design()` can display a subset of factors\r\n* `sim_design()` fixed a bug in when setting n with an unnamed vector and within-subjects factors\r\n",
+    "state": "published",
+    "pending_tag": "v1.1.0",
+    "prerelease": false,
+    "target_commitish": "3c69797af20887527a47fecde905109a4a0e9c79",
+    "release_assets": [
+
+    ],
+    "reactions": [
+
+    ],
+    "published_at": "2021-09-17T15:16:48Z",
+    "created_at": "2021-09-13T21:55:50Z"
+  }
+]
