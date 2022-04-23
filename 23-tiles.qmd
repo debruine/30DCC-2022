@@ -14,11 +14,12 @@ knitr::include_graphics("images/github_activity.png")
 ```{r}
 #| code-summary: Setup
 
-library(tidyverse)
-library(jsonlite)
-library(glue)
-library(lubridate)
-library(scales)
+library(tidyverse) # for data wrangling
+library(jsonlite)  # for reading JSON from GitHub API
+library(glue)      # for text manipulation
+library(lubridate) # for dates
+library(scales)    # for axis scales
+library(ggplotify) # for custom plot changes
 ```
 
 ## Data
@@ -68,6 +69,17 @@ psyteachr_forks <- forks %>%
 ### Get commits
 
 Get the commits for one repo first to see how they're structured. I'll choose the first ever psyTeachR group repo, called "R.House.2019", which we made on a trip to Islay for a long weekend to learn git (and drink whisky) and actually did stay in an airBnB that was an [R.House](https://www.ruralhouse.co.uk/).
+
+```{r, echo = FALSE}
+#| fig.cap: The PsyTeachR team on the beach at Islay during our 2019 retreat to learn about GitHub.
+
+# webmorphR::read_stim("images", "psyteachr_islay_") %>%
+#   webmorphR::resize(height = min(webmorphR::height(.))) %>%
+#   webmorphR::plot_stim(nrow = 1) %>%
+#   webmorphR::write_stim(dir = "images", names = "psyteachr_islay", "png")
+
+knitr::include_graphics("images/psyteachr_islay.png")
+```
 
 ```{r}
 # get commits for one repo
@@ -171,7 +183,7 @@ commits_by_day %>%
 
 ### Add months
 
-The weeks of the year line up nicely, but don't exactly correspond to months, so I'm going to hack this a little. I'll add a secondary axis that rescales the weeks of the year to a 0.5 to 12.5 scale. The extra 0.5 is so the breaks can be set to 1:12 and the names of the month can go approximately in the middle of the month. I set position to "top" so the month axis would be on the bottom and I can hide the top axis 9and some other parts we don't need) using `theme()`. 
+The weeks of the year line up nicely, but don't exactly correspond to months, so I'm going to hack this a little. I'll add a secondary axis that rescales the weeks of the year to a 0.5 to 12.5 scale. The extra 0.5 is so the breaks can be set to 1:12 and the names of the month can go approximately in the middle of the month. I set position to "top" so the month axis would be on the bottom and I can hide the top axis (and some other parts we don't need) using `theme()`. 
 
 I also refactored year in the data so that 2022 displays at the top.
 
@@ -208,6 +220,11 @@ commits_by_day %>%
 ### PsyTeachR Theme
 
 The psyTeachR books and website have a distinctive rainbow theme.
+
+```{r, echo = FALSE}
+knitr::include_graphics("https://psyteachr.github.io/images/twitter/psyteachr.png")
+```
+
 
 ```{r}
 # psyTeachR colours
@@ -256,7 +273,7 @@ commits_by_day %>%
 
 I wanted to make the facet strip colour match the year's tile colour, but it's trickier than it sounds. I found this [StackOverflow answer by utubun](https://stackoverflow.com/questions/53455092/r-ggplot2-change-colour-of-font-and-background-in-facet-strip).
 
-```{r tiles-facet, fig.width = 8, fig.height = 6}
+```{r}
 p <- last_plot()
 g <- ggplot_gtable(ggplot_build(p))
 strips <- which(grepl('strip-', g$layout$name))
@@ -267,15 +284,18 @@ for (i in seq_along(strips)) {
   g$grobs[[strips[i]]]$grobs[[1]]$children[[k]]$gp$fill <- ptrc[i]
   g$grobs[[strips[i]]]$grobs[[1]]$children[[l]]$children[[1]]$gp$col <- "black"
 }
+```
 
-plot(g)
+Now you can view the plot with `plot(g)` or convert it back to a ggplot object.
+
+```{r tiles-facet, fig.width = 8, fig.height = 6}
+# plot(g)
+ggplotify::as.ggplot(g)
 ```
 
 
-
-
 ```{r, include = FALSE, eval = FALSE}
-p <- ggplotify::as.ggplot(g)
-ggsave("images/day23.png", p, width = 8, height = 6, device = png)
+
+ggsave("images/day23.png", width = 8, height = 6, device = png)
 knitr::include_graphics("images/day23.png")
 ```

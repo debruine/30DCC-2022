@@ -1,2 +1,259 @@
 # Financial Times
 
+```{r, include = FALSE}
+source("R/setup.R")
+```
+
+
+```{r}
+#| code-summary: Setup
+
+library(tidyverse) # for data wrangling
+library(readxl)    # for reading data from WHO
+library(patchwork) # for combining plots
+library(ggtext)    # for styled text in plots
+```
+
+
+## Examples
+
+I browsed the [Financial Times Data Visualisation](https://www.ft.com/data-visualisation) webpage to find a plot I want to re-create. I don't have a subscription, so I could only see the thumbnails, but it looks like this is a section for snarky commentary on plots.
+
+I did find that you can hack the image URLs to increase the width and see bigger versions.
+
+```{r}
+#| fig.cap: I don't think I'll be trying to re-create this plot
+#| fig.alt: A plot that looks like a tornado, with an unclear x-axis and Average number of deaths per day on the y-axis, with different coloured spirals for each of 8 countries. The inference to be made from this graph is not clear, whcih is the point.
+
+# download.file("https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2Fdfac7f09-aaca-4e94-b4eb-b96180e69a8a.png?source=next&fit=scale-down&dpr=2&width=1200", "images/ft_whirlwind.png")
+knitr::include_graphics("images/ft_whirlwind.png")
+```
+
+The [Visual and data journalism](https://www.ft.com/visual-and-data-journalism) section looks more fruitful, if I had a subscription. Then I searched twitter (congrats on getting a 2-letter handle, \@FT!) and found a link to an article on [Ten charts that tell the story of 2019](https://www.ft.com/content/62fbf660-2651-11ea-9a4f-963f0ec7e134) that I could access. It's interesting to read some pre-pandemic news; the first two charts are on Brexit and anti-vax movements. 
+
+I always like these lollipop charts and haven't had much practice making them, so I'm going to recreate this plot.
+
+```{r, echo = FALSE}
+#download.file("https://www.ft.com/__origami/service/image/v2/images/raw/http%3A%2F%2Fcom.ft.imagepublish.upp-prod-eu.s3.amazonaws.com%2F6cc2d2d0-28a5-11ea-9a4f-963f0ec7e134?dpr=1&fit=scale-down&quality=highest&source=next&width=1200", "images/ft-vax.png")
+
+knitr::include_graphics("images/ft-vax.png")
+```
+
+
+## Data
+
+* [WHO Data on MCV1](https://immunizationdata.who.int/pages/coverage/mcv.html)
+
+```{r}
+measles <- read_xlsx("data/Measles vaccination coverage.xlsx")
+
+mcv1 <- measles %>%
+  select(CODE, NAME, YEAR, COVERAGE_CATEGORY, COVERAGE) %>%
+  filter(YEAR %in% c(2008, 2018))
+
+head(mcv1)
+```
+
+I'm not sure what the different coverage categories are, but a quick plot shows that the WUENIC values are at least all under 100%.
+
+```{r}
+ggplot(mcv1, aes(x = YEAR, y = COVERAGE, group = NAME)) +
+  geom_line(alpha = 0.2) +
+  facet_wrap(~COVERAGE_CATEGORY)
+```
+
+I need to use the 2011 value for South Sudan instead of 2008, since South Sudan didn't exist until 2011.
+
+```{r}
+ssd_2011 <- measles %>%
+  filter(CODE == "SSD", COVERAGE_CATEGORY == "WUENIC", YEAR == 2011) %>%
+  pull(COVERAGE)
+
+mcv1 <- mcv1 %>%
+  add_row(CODE = "SSD",
+          NAME = "South Sudan",
+          COVERAGE_CATEGORY = "WUENIC", 
+          YEAR = 2008,
+          COVERAGE = ssd_2011)
+```
+
+
+
+```{r}
+ccode <- function(txt) { 
+  filter(mcv1, grepl(txt, NAME)) %>% 
+    select(NAME, CODE) %>% 
+    distinct() 
+}
+
+ccode("Guinea")
+```
+
+
+```{r}
+countries <- c("Global", "KAZ", "GBR", "USA", "SDN", "UGA", "COD", "HTI", "NGA", "ETH", "AGO", "SOM", "TCD", "THA", "UKR", "IDN", "VEN", "CMR", "PHL", "YEM", "SYR", "MDG", "SSD", "CAF", "GIN")
+
+mcv1_status <- mcv1 %>%
+  filter(COVERAGE_CATEGORY == "WUENIC") %>%
+  select(-COVERAGE_CATEGORY) %>%
+  pivot_wider(names_from = YEAR,
+              names_prefix = "Y",
+              values_from = COVERAGE) %>%
+  drop_na() %>%
+  mutate(change = ifelse((Y2018 - Y2008) < 0, "2fallen", "1risen")) %>%
+  filter(CODE %in% countries) %>%
+  mutate(CODE = factor(CODE, rev(countries))) %>%
+  arrange(CODE) %>%
+  mutate(country = case_when(
+    CODE == "GBR" ~ "UK",
+    CODE == "USA" ~ "USA",
+    CODE == "COD" ~ "Dem Rep Congo",
+    CODE == "VEN" ~ "Venezuela",
+    CODE == "SYR" ~ "Syria",
+    CODE == "CAF" ~ "Ctl African Rep",
+    TRUE ~ NAME
+  ))
+```
+
+
+```{r ft-plot1}
+ggplot(mcv1_status, aes(y = CODE)) +
+  geom_point(aes(x = Y2008), color = "dodgerblue") +
+  geom_point(aes(x = Y2018), color = "hotpink") +
+  facet_wrap(~change, nrow = 2, scales = "free_y")
+```
+
+
+```{r}
+country_names <- select(mcv1_status, CODE, country)
+
+dot_08 <- "#24559A"
+dot_18 <- "#DD6A8D"
+bg_light <- "#FFFFFF" # "#FFF1E5"
+bg_tan <- "#F6D0AE"
+text_color <- "#65615E"
+
+figdat <- mcv1_status %>%
+  mutate(
+    icode = as.numeric(CODE),
+    icode08 = icode + ifelse(CODE == "KAZ", .1, 0),
+    icode18 = icode - ifelse(CODE == "KAZ", .1, 0),
+    stripe = c(0.9, 
+               rep(c(0, 0.3), length.out = 12), 
+               rep(c(0.3, 0), length.out = 12)
+               ) %>% rev()
+  )
+```
+
+
+```{r risen, fig.width = 6/2, fig.height = 4/2}
+risen <- figdat %>%
+  slice(13:25) %>%
+  ggplot(aes(y = icode)) +
+  geom_hline(aes(yintercept = icode,
+                 alpha = I(stripe)),
+             color = bg_tan,
+             size = 9) +
+  geom_vline(xintercept = 95, linetype = 2, size = 0.35) +
+  geom_segment(aes(x = Y2008, xend = Y2018, yend = icode), 
+               color = "black", size = 0.25) +
+  geom_point(aes(x = Y2008, y = icode08), 
+             color = dot_08, size = 3) +
+  geom_point(aes(x = Y2018, y = icode18), 
+             color = dot_18, size = 3) +
+  annotate("text", size = 3,
+           label = "The measles 'first dose' immunisation\noffers an individual 90% protections from\nthe disease. Twenty-three countries have\nyet to introduce the second dose, which\nwould increase this cover to 99%.", 
+           x = 3, y = 24, hjust = 0, vjust = 1) +
+  scale_x_continuous(breaks = (0:10)*10, 
+                     limits = c(0, 100),
+                     expand = expansion(0)) +
+  scale_y_continuous(breaks = 1:25, 
+                     labels = mcv1_status$country,
+                     expand = expansion(add = .6)) +
+  scale_color_manual(values = c("dodgerblue3", "hotpink")) +
+  coord_cartesian(clip = "off") +
+  labs(x = NULL, y = NULL,
+       title="Countries where the MCV1 coverage has been maintained or risen") +
+  theme_minimal(base_family = "Helvetica Neue") +
+  theme(
+    text = element_text(color = text_color),
+    plot.background = element_rect(fill = bg_light, color = "transparent"),
+    axis.line.y.left = element_line(color = "grey60",
+                                    size = 0.2),
+    axis.line.y.right = element_line(color = "grey60",
+                                    size = 0.2),
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor.x = element_blank(),
+    panel.grid.minor.y = element_blank(),
+    panel.grid.major.x = element_line(size = 0.4, 
+                                      color = "grey90"),
+    plot.title.position = "plot",
+    plot.title = element_text(size = 10, face = "bold"),
+    plot.margin = unit(c(.1, .3, .1, .1), "inches")
+  )
+  
+```
+
+
+```{r fallen, fig.width = 6/2, fig.height = 4/2}
+fallen <- figdat %>%
+  slice(1:12) %>%
+  ggplot(aes(y = icode)) +
+  geom_hline(aes(yintercept = icode,
+                 alpha = I(stripe)),
+             color = bg_tan,
+             size = 9) +
+  geom_vline(xintercept = 95, linetype = 2, size = 0.35) +
+  geom_segment(aes(x = Y2008, xend = Y2018, yend = icode), 
+               color = "black", size = 0.25) +
+  geom_point(aes(x = Y2008, y = icode08), 
+             color = dot_08, size = 3) +
+  geom_point(aes(x = Y2018, y = icode18), 
+             color = dot_18, size = 3) +
+  scale_x_continuous(breaks = (0:10)*10, 
+                     limits = c(0, 100),
+                     expand = expansion(0)) +
+  scale_y_continuous(breaks = 1:25, 
+                     labels = mcv1_status$country,
+                     expand = expansion(add = .6)) +
+  scale_color_manual(values = c("dodgerblue3", "hotpink")) +
+  coord_cartesian(clip = "off") +
+  labs(x = NULL, y = NULL,
+       title="Countries where the MCV1 coverage has fallen") +
+  theme_minimal(base_family = "Helvetica Neue") +
+  theme(
+    text = element_text(color = text_color),
+    plot.background = element_rect(fill = bg_light, color = "transparent"),
+    axis.line.y.left = element_line(color = "grey60",
+                                    size = 0.2),
+    axis.line.y.right = element_line(color = "grey60",
+                                    size = 0.2),
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor.x = element_blank(),
+    panel.grid.minor.y = element_blank(),
+    panel.grid.major.x = element_line(size = 0.4, 
+                                      color = "grey90"),
+    plot.title.position = "plot",
+    plot.title = element_text(size = 10, face = "bold"),
+    plot.margin = unit(c(.1, .3, .1, .1), "inches")
+  )
+
+```
+
+
+```{r ft-combo, fig.width = 6, fig.height = 8.66}
+risen + fallen +
+  plot_annotation(title = "**Global health:** mixed fortunes countering the 'anti-vax' movement",
+                  subtitle = "Measles immunisation coverage (%) for the first dose (MCV1) among 1 year olds  \nEstimates, as of Apr 23 2022\n\n<span style='color: #24559A; font-size: 22px;'>●</span> 2008 <span style='color: #DD6A8D; font-size: 22px;'>●</span> 2018", 
+                  theme = theme(plot.background = element_rect(fill = bg_light, color = "transparent"),
+                                plot.title = element_markdown(size = 12, face = "plain"),
+                                plot.subtitle = element_markdown(size = 10, face = "plain")
+                                )) +
+  plot_layout(nrow = 2) 
+```
+
+
+## Theme
+
+I downloaded the `r pkg("ftplottools")` package from Financial Times. There isn't much documentation beside the [man pages](https://rdrr.io/github/Financial-Times/ftplottools/man/), so let's play with it.
+

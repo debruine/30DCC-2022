@@ -399,12 +399,9 @@
 </nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc"><h2 id="toc-title">Table of contents</h2>
 <ul>
-<li>
-<a href="#data" class="nav-link active" data-scroll-target="#data"> <span class="header-section-number">22.1</span> Data</a>
-<ul class="collapse">
-<li><a href="#plot" class="nav-link" data-scroll-target="#plot"> <span class="header-section-number">22.1.1</span> Plot</a></li>
-</ul>
-</li>
+<li><a href="#data" class="nav-link active" data-scroll-target="#data"> <span class="header-section-number">22.1</span> Data</a></li>
+<li><a href="#plot" class="nav-link" data-scroll-target="#plot"> <span class="header-section-number">22.2</span> Plot</a></li>
+<li><a href="#animate" class="nav-link" data-scroll-target="#animate"> <span class="header-section-number">22.3</span> Animate</a></li>
 </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/debruine/30DCC-2022/edit/main/22-animation.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/debruine/30DCC-2022/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/debruine/30DCC-2022/blob/main/22-animation.qmd" class="toc-action">View source</a></p></div></div></nav>
     </div>
 <!-- main -->
@@ -413,9 +410,9 @@
 </h1>
 </header><p>I’ve already done an animated time series for <a href="06-owid.html">Day&nbsp;<span>6</span></a>, so I thought I’d try to get more familiar with <code class="package"><a href="https://gganimate.com/" target="_blank">gganimate</a></code>.</p>
 <div class="cell" data-layout-align="center">
-<details><summary>Setup</summary><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(countrycode)</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(gganimate)</span>
+<details><summary>Setup</summary><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)   <span class="co"># for data wrangling and viz</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(countrycode) <span class="co"># to get continents for countries</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(gganimate)   <span class="co"># for animation</span></span>
 <span id="cb1-4"><a href="#cb1-4"></a></span>
 <span id="cb1-5"><a href="#cb1-5"></a><span class="fu">theme_set</span>(<span class="fu">theme_minimal</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -434,7 +431,7 @@
 </li>
 </ul>
 <div class="cell" data-layout-align="center">
-<details><summary>Code</summary><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># https://ourworldindata.org/happiness-and-life-satisfaction</span></span>
+<details><summary>Load original data</summary><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># https://ourworldindata.org/happiness-and-life-satisfaction</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a>happy <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/happiness-cantril-ladder.csv"</span>,</span>
 <span id="cb2-3"><a href="#cb2-3"></a>                  <span class="at">show_col_types =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb2-4"><a href="#cb2-4"></a>  <span class="fu">rename</span>(<span class="at">happy =</span> <span class="dv">4</span>)</span>
@@ -458,17 +455,18 @@
 </details>
 </div>
 <div class="cell" data-layout-align="center">
-<details><summary>Code</summary><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>data <span class="ot">&lt;-</span> happy <span class="sc">%&gt;%</span></span>
+<details><summary>Combine data</summary><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>data <span class="ot">&lt;-</span> happy <span class="sc">%&gt;%</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">inner_join</span>(work, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Entity"</span>, <span class="st">"Code"</span>, <span class="st">"Year"</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb3-3"><a href="#cb3-3"></a>  <span class="fu">inner_join</span>(pop, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Entity"</span>, <span class="st">"Code"</span>, <span class="st">"Year"</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb3-4"><a href="#cb3-4"></a>  <span class="fu">left_join</span>(continent, <span class="at">by =</span> <span class="st">"Code"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<section id="plot" class="level3" data-number="22.1.1"><h3 data-number="22.1.1" class="anchored" data-anchor-id="plot">
-<span class="header-section-number">22.1.1</span> Plot</h3>
+</section><section id="plot" class="level2" data-number="22.2"><h2 data-number="22.2" class="anchored" data-anchor-id="plot">
+<span class="header-section-number">22.2</span> Plot</h2>
+<p>y first step in making an animated plot is always to filter down to one frame of data and get the plot looking like I want.</p>
 <div class="cell" data-layout-align="center">
 <details><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>data <span class="sc">%&gt;%</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">filter</span>(Year <span class="sc">==</span> <span class="fu">max</span>(Year)) <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">filter</span>(Year <span class="sc">==</span> <span class="dv">2017</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb4-3"><a href="#cb4-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> work, <span class="at">y =</span> happy, <span class="at">size =</span> pop, <span class="at">color =</span> continent)) <span class="sc">+</span></span>
 <span id="cb4-4"><a href="#cb4-4"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
 <span id="cb4-5"><a href="#cb4-5"></a>  <span class="fu">scale_size</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">12</span>), <span class="at">guide =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
@@ -477,8 +475,10 @@
 <span id="cb4-8"><a href="#cb4-8"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">1250</span>, <span class="dv">2500</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">8</span>)) <span class="sc">+</span></span>
 <span id="cb4-9"><a href="#cb4-9"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Average Annual Working Hours per Worker"</span>,</span>
 <span id="cb4-10"><a href="#cb4-10"></a>       <span class="at">y =</span> <span class="st">"Average Happiness Score"</span>,</span>
-<span id="cb4-11"><a href="#cb4-11"></a>       <span class="at">color =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb4-12"><a href="#cb4-12"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(.<span class="dv">11</span>, .<span class="dv">17</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-11"><a href="#cb4-11"></a>       <span class="at">color =</span> <span class="cn">NULL</span>,</span>
+<span id="cb4-12"><a href="#cb4-12"></a>       <span class="at">title =</span> <span class="st">"Year: 2017"</span>) <span class="sc">+</span></span>
+<span id="cb4-13"><a href="#cb4-13"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(.<span class="dv">11</span>, .<span class="dv">17</span>),</span>
+<span id="cb4-14"><a href="#cb4-14"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="22-animation_files/figure-html/anim-test-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -486,6 +486,9 @@
 </div>
 </div>
 </div>
+</section><section id="animate" class="level2" data-number="22.3"><h2 data-number="22.3" class="anchored" data-anchor-id="animate">
+<span class="header-section-number">22.3</span> Animate</h2>
+<p>The next step is to remove the filter and add the animation functions. I animated by year with <code>transition_time(Year)</code> and changed the title in <code>labs()</code> to “Year: {floor(frame_time)}” because the animation introduced fractional years.</p>
 <p>I used this <a href="https://www.datanovia.com/en/blog/gganimate-how-to-create-plots-with-beautiful-animation-in-r/">tutorial for datanovia</a> to figure out the <code>shadow_wake()</code>.</p>
 <div class="cell" data-layout-align="center">
 <details><summary>Code</summary><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>anim <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
@@ -497,11 +500,12 @@
 <span id="cb5-7"><a href="#cb5-7"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">1250</span>, <span class="dv">2500</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">8</span>)) <span class="sc">+</span></span>
 <span id="cb5-8"><a href="#cb5-8"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Average Annual Working Hours per Worker"</span>,</span>
 <span id="cb5-9"><a href="#cb5-9"></a>       <span class="at">y =</span> <span class="st">"Average Happiness Score"</span>,</span>
-<span id="cb5-10"><a href="#cb5-10"></a>       <span class="at">color =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb5-11"><a href="#cb5-11"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(.<span class="dv">11</span>, .<span class="dv">17</span>)) <span class="sc">+</span></span>
-<span id="cb5-12"><a href="#cb5-12"></a>  <span class="fu">transition_time</span>(Year) <span class="sc">+</span></span>
-<span id="cb5-13"><a href="#cb5-13"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Year: {round(frame_time)}"</span>) <span class="sc">+</span></span>
-<span id="cb5-14"><a href="#cb5-14"></a>  <span class="fu">shadow_wake</span>(<span class="at">wake_length =</span> <span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-10"><a href="#cb5-10"></a>       <span class="at">color =</span> <span class="cn">NULL</span>,</span>
+<span id="cb5-11"><a href="#cb5-11"></a>       <span class="at">title =</span> <span class="st">"Year: {floor(frame_time)}"</span>) <span class="sc">+</span></span>
+<span id="cb5-12"><a href="#cb5-12"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(.<span class="dv">11</span>, .<span class="dv">17</span>),</span>
+<span id="cb5-13"><a href="#cb5-13"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>)) <span class="sc">+</span></span>
+<span id="cb5-14"><a href="#cb5-14"></a>  <span class="fu">transition_time</span>(Year) <span class="sc">+</span></span>
+<span id="cb5-15"><a href="#cb5-15"></a>  <span class="fu">shadow_wake</span>(<span class="at">wake_length =</span> <span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>The animating takes awhile, so I always save to a file and set this chunk to not evaluate in the script.</p>
@@ -525,7 +529,7 @@
 </div>
 
 
-</section></section></main><!-- /main --><script>
+</section></main><!-- /main --><script>
 // open rdrr links externally ----
 
 var exlinks = document.querySelectorAll("a[href^='https://rdrr.io']");

@@ -1,37 +1,89 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-  <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.9.80">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <meta name="description" content="Code and charts for the 2022 30-Day Chart Challenge">
-  <title>30DCC (2022) - 24&nbsp; Financial Times</title>
-  <style>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.80">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="description" content="Code and charts for the 2022 30-Day Chart Challenge">
+<title>30DCC (2022) - 24&nbsp; Financial Times</title>
+<style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     span.underline{text-decoration: underline;}
     div.column{display: inline-block; vertical-align: top; width: 50%;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
-
-  <script src="site_libs/quarto-nav/quarto-nav.js"></script>
-  <script src="site_libs/quarto-nav/headroom.min.js"></script>
-  <script src="site_libs/clipboard/clipboard.min.js"></script>
-  <meta name="quarto:offset" content="./">
-  <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-  <script src="site_libs/quarto-search/fuse.min.js"></script>
-  <script src="site_libs/quarto-search/quarto-search.js"></script>
-  <link href="./25-trend.html" rel="next">
-  <link href="./23-tiles.html" rel="prev">
-  <script src="site_libs/quarto-html/quarto.js"></script>
-  <script src="site_libs/quarto-html/popper.min.js"></script>
-  <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-  <script src="site_libs/quarto-html/anchor.min.js"></script>
-  <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-  <script src="site_libs/bootstrap/bootstrap.min.js"></script>
-  <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-  <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
-  <script id="quarto-search-options" type="application/json">{
+<script src="site_libs/quarto-nav/quarto-nav.js"></script><script src="site_libs/quarto-nav/headroom.min.js"></script><script src="site_libs/clipboard/clipboard.min.js"></script><meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script><script src="site_libs/quarto-search/fuse.min.js"></script><script src="site_libs/quarto-search/quarto-search.js"></script><link href="./25-trend.html" rel="next">
+<link href="./23-tiles.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script><script src="site_libs/quarto-html/popper.min.js"></script><script src="site_libs/quarto-html/tippy.umd.min.js"></script><script src="site_libs/quarto-html/anchor.min.js"></script><link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script><link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
     "location": "sidebar",
     "copy-button": false,
     "collapse-after": 2,
@@ -49,65 +101,54 @@
       "search-detached-cancel-button-title": "Cancel",
       "search-submit-button-title": "Submit"
     }
-  }</script>
-  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script>
-
-  <script type="text/javascript">
+  }</script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script><script type="text/javascript">
 
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
-  </script>
-  <script type="application/json" class="js-hypothesis-config">
+  </script><script type="application/json" class="js-hypothesis-config">
   {
     "theme": "clean",
     "openSidebar": false
   }
-  </script>
-  <script async="" src="https://hypothes.is/embed.js"></script>
-  <!--[if lt IE 9]>
+  </script><script async="" src="https://hypothes.is/embed.js"></script><!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
-  <link rel="stylesheet" href="include/style.css">
+  <![endif]--><link rel="stylesheet" href="include/style.css">
 </head>
-<body class="floating fullcontent">
+<body class="floating">
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Financial Times</span></h1>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">
+<span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Financial Times</span>
+</h1>
       <button type="button" class="quarto-btn-toggle btn">
         <i class="bi bi-chevron-right"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">30DCC (2022)</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/debruine/30DCC-2022/" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
     <a href="" title="Share" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-share"></i></a>
     <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
-        <li>
-          <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
+<li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=%7Curl%7C">
             <i class="bi bi-bi-twitter pe-1"></i>
           Twitter
           </a>
         </li>
         <li>
-          <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=|url|">
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=%7Curl%7C">
             <i class="bi bi-bi-facebook pe-1"></i>
           Facebook
           </a>
         </li>
         <li>
-          <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=|url|">
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=%7Curl%7C">
             <i class="bi bi-bi-linkedin pe-1"></i>
           LinkedIn
           </a>
@@ -123,7 +164,7 @@
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">Overview</a>
   </div>
@@ -135,8 +176,8 @@
         <i class="bi bi-chevron-right ms-2"></i>
       </a>
     </div>
-    <ul id="quarto-sidebar-section-comparisons" class="collapse list-unstyled sidebar-section depth1 show">  
-        <li class="sidebar-item">
+    <ul id="quarto-sidebar-section-comparisons" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./01-part-to-whole.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Part-to-whole</span></a>
   </div>
@@ -167,7 +208,7 @@
   </div>
 </li>
     </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
     <div class="sidebar-item-container"> 
         <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-distributions" aria-expanded="true">Distributions</a>
@@ -175,8 +216,8 @@
         <i class="bi bi-chevron-right ms-2"></i>
       </a>
     </div>
-    <ul id="quarto-sidebar-section-distributions" class="collapse list-unstyled sidebar-section depth1 show">  
-        <li class="sidebar-item">
+    <ul id="quarto-sidebar-section-distributions" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07-physical.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Physical</span></a>
   </div>
@@ -207,7 +248,7 @@
   </div>
 </li>
     </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
     <div class="sidebar-item-container"> 
         <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-relationships" aria-expanded="true">Relationships</a>
@@ -215,8 +256,8 @@
         <i class="bi bi-chevron-right ms-2"></i>
       </a>
     </div>
-    <ul id="quarto-sidebar-section-relationships" class="collapse list-unstyled sidebar-section depth1 show">  
-        <li class="sidebar-item">
+    <ul id="quarto-sidebar-section-relationships" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./13-correlation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Correlation</span></a>
   </div>
@@ -247,7 +288,7 @@
   </div>
 </li>
     </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
     <div class="sidebar-item-container"> 
         <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-timeseries" aria-expanded="true">Timeseries</a>
@@ -255,8 +296,8 @@
         <i class="bi bi-chevron-right ms-2"></i>
       </a>
     </div>
-    <ul id="quarto-sidebar-section-timeseries" class="collapse list-unstyled sidebar-section depth1 show">  
-        <li class="sidebar-item">
+    <ul id="quarto-sidebar-section-timeseries" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./19-global-change.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Global Change</span></a>
   </div>
@@ -287,7 +328,7 @@
   </div>
 </li>
     </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
     <div class="sidebar-item-container"> 
         <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-uncertainties" aria-expanded="true">Uncertainties</a>
@@ -295,8 +336,8 @@
         <i class="bi bi-chevron-right ms-2"></i>
       </a>
     </div>
-    <ul id="quarto-sidebar-section-uncertainties" class="collapse list-unstyled sidebar-section depth1 show">  
-        <li class="sidebar-item">
+    <ul id="quarto-sidebar-section-uncertainties" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./25-trend.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Trend</span></a>
   </div>
@@ -327,7 +368,7 @@
   </div>
 </li>
     </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
     <div class="sidebar-item-container"> 
         <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-appendices" aria-expanded="true">Appendices</a>
@@ -335,8 +376,8 @@
         <i class="bi bi-chevron-right ms-2"></i>
       </a>
     </div>
-    <ul id="quarto-sidebar-section-appendices" class="collapse list-unstyled sidebar-section depth1 show">  
-        <li class="sidebar-item">
+    <ul id="quarto-sidebar-section-appendices" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./app-a-colours.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Colours</span></a>
   </div>
@@ -352,21 +393,358 @@
   </div>
 </li>
     </ul>
-  </li>
+</li>
     </ul>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc"><h2 id="toc-title">Table of contents</h2>
+<ul>
+<li><a href="#examples" class="nav-link active" data-scroll-target="#examples"> <span class="header-section-number">24.1</span> Examples</a></li>
+<li><a href="#data" class="nav-link" data-scroll-target="#data"> <span class="header-section-number">24.2</span> Data</a></li>
+<li><a href="#theme" class="nav-link" data-scroll-target="#theme"> <span class="header-section-number">24.3</span> Theme</a></li>
+</ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/debruine/30DCC-2022/edit/main/24-financial-times.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/debruine/30DCC-2022/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/debruine/30DCC-2022/blob/main/24-financial-times.qmd" class="toc-action">View source</a></p></div></div></nav>
     </div>
-</nav>
-<!-- margin-sidebar -->
-    
 <!-- main -->
-<main class="content" id="quarto-document-content">
-<header id="title-block-header">
-<h1 class="title d-none d-lg-block display-7"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Financial Times</span></h1>
-</header>
+<main class="content" id="quarto-document-content"><header id="title-block-header"><h1 class="title d-none d-lg-block display-7">
+<span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Financial Times</span>
+</h1>
+</header><div class="cell" data-layout-align="center">
+<details><summary>Setup</summary><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># for data wrangling</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(readxl)    <span class="co"># for reading data from WHO</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(patchwork) <span class="co"># for combining plots</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(ggtext)    <span class="co"># for styled text in plots</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="examples" class="level2" data-number="24.1"><h2 data-number="24.1" class="anchored" data-anchor-id="examples">
+<span class="header-section-number">24.1</span> Examples</h2>
+<p>I browsed the <a href="https://www.ft.com/data-visualisation">Financial Times Data Visualisation</a> webpage to find a plot I want to re-create. I don’t have a subscription, so I could only see the thumbnails, but it looks like this is a section for snarky commentary on plots.</p>
+<p>I did find that you can hack the image URLs to increase the width and see bigger versions.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># download.file("https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2Fdfac7f09-aaca-4e94-b4eb-b96180e69a8a.png?source=next&amp;fit=scale-down&amp;dpr=2&amp;width=1200", "images/ft_whirlwind.png")</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"images/ft_whirlwind.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/ft_whirlwind.png" class="img-fluid figure-img" alt="A plot that looks like a tornado, with an unclear x-axis and Average number of deaths per day on the y-axis, with different coloured spirals for each of 8 countries. The inference to be made from this graph is not clear, whcih is the point." style="width:100.0%"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">I don’t think I’ll be trying to re-create this plot</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The <a href="https://www.ft.com/visual-and-data-journalism">Visual and data journalism</a> section looks more fruitful, if I had a subscription. Then I searched twitter (congrats on getting a 2-letter handle, @FT!) and found a link to an article on <a href="https://www.ft.com/content/62fbf660-2651-11ea-9a4f-963f0ec7e134">Ten charts that tell the story of 2019</a> that I could access. It’s interesting to read some pre-pandemic news; the first two charts are on Brexit and anti-vax movements.</p>
+<p>I always like these lollipop charts and haven’t had much practice making them, so I’m going to recreate this plot.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/ft-vax.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="data" class="level2" data-number="24.2"><h2 data-number="24.2" class="anchored" data-anchor-id="data">
+<span class="header-section-number">24.2</span> Data</h2>
+<ul>
+<li><a href="https://immunizationdata.who.int/pages/coverage/mcv.html">WHO Data on MCV1</a></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>measles <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"data/Measles vaccination coverage.xlsx"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2"></a></span>
+<span id="cb3-3"><a href="#cb3-3"></a>mcv1 <span class="ot">&lt;-</span> measles <span class="sc">%&gt;%</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a>  <span class="fu">select</span>(CODE, NAME, YEAR, COVERAGE_CATEGORY, COVERAGE) <span class="sc">%&gt;%</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>  <span class="fu">filter</span>(YEAR <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">2008</span>, <span class="dv">2018</span>))</span>
+<span id="cb3-6"><a href="#cb3-6"></a></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="fu">head</span>(mcv1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="kable-table">
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<thead><tr>
+<th style="text-align:left;"> CODE </th>
+   <th style="text-align:left;"> NAME </th>
+   <th style="text-align:right;"> YEAR </th>
+   <th style="text-align:left;"> COVERAGE_CATEGORY </th>
+   <th style="text-align:right;"> COVERAGE </th>
+  </tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;"> AFG </td>
+   <td style="text-align:left;"> Afghanistan </td>
+   <td style="text-align:right;"> 2018 </td>
+   <td style="text-align:left;"> ADMIN </td>
+   <td style="text-align:right;"> 82.45 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> AFG </td>
+   <td style="text-align:left;"> Afghanistan </td>
+   <td style="text-align:right;"> 2008 </td>
+   <td style="text-align:left;"> ADMIN </td>
+   <td style="text-align:right;"> 75.00 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> AFG </td>
+   <td style="text-align:left;"> Afghanistan </td>
+   <td style="text-align:right;"> 2018 </td>
+   <td style="text-align:left;"> OFFICIAL </td>
+   <td style="text-align:right;"> 82.00 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> AFG </td>
+   <td style="text-align:left;"> Afghanistan </td>
+   <td style="text-align:right;"> 2008 </td>
+   <td style="text-align:left;"> OFFICIAL </td>
+   <td style="text-align:right;"> 59.00 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> AFG </td>
+   <td style="text-align:left;"> Afghanistan </td>
+   <td style="text-align:right;"> 2018 </td>
+   <td style="text-align:left;"> WUENIC </td>
+   <td style="text-align:right;"> 71.00 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> AFG </td>
+   <td style="text-align:left;"> Afghanistan </td>
+   <td style="text-align:right;"> 2008 </td>
+   <td style="text-align:left;"> WUENIC </td>
+   <td style="text-align:right;"> 59.00 </td>
+  </tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>I’m not sure what the different coverage categories are, but a quick plot shows that the WUENIC values are at least all under 100%.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">ggplot</span>(mcv1, <span class="fu">aes</span>(<span class="at">x =</span> YEAR, <span class="at">y =</span> COVERAGE, <span class="at">group =</span> NAME)) <span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">geom_line</span>(<span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>COVERAGE_CATEGORY)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="24-financial-times_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>I need to use the 2011 value for South Sudan instead of 2008, since South Sudan didn’t exist until 2011.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>ssd_2011 <span class="ot">&lt;-</span> measles <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">filter</span>(CODE <span class="sc">==</span> <span class="st">"SSD"</span>, COVERAGE_CATEGORY <span class="sc">==</span> <span class="st">"WUENIC"</span>, YEAR <span class="sc">==</span> <span class="dv">2011</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">pull</span>(COVERAGE)</span>
+<span id="cb5-4"><a href="#cb5-4"></a></span>
+<span id="cb5-5"><a href="#cb5-5"></a>mcv1 <span class="ot">&lt;-</span> mcv1 <span class="sc">%&gt;%</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a>  <span class="fu">add_row</span>(<span class="at">CODE =</span> <span class="st">"SSD"</span>,</span>
+<span id="cb5-7"><a href="#cb5-7"></a>          <span class="at">NAME =</span> <span class="st">"South Sudan"</span>,</span>
+<span id="cb5-8"><a href="#cb5-8"></a>          <span class="at">COVERAGE_CATEGORY =</span> <span class="st">"WUENIC"</span>, </span>
+<span id="cb5-9"><a href="#cb5-9"></a>          <span class="at">YEAR =</span> <span class="dv">2008</span>,</span>
+<span id="cb5-10"><a href="#cb5-10"></a>          <span class="at">COVERAGE =</span> ssd_2011)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>ccode <span class="ot">&lt;-</span> <span class="cf">function</span>(txt) { </span>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">filter</span>(mcv1, <span class="fu">grepl</span>(txt, NAME)) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-3"><a href="#cb6-3"></a>    <span class="fu">select</span>(NAME, CODE) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-4"><a href="#cb6-4"></a>    <span class="fu">distinct</span>() </span>
+<span id="cb6-5"><a href="#cb6-5"></a>}</span>
+<span id="cb6-6"><a href="#cb6-6"></a></span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="fu">ccode</span>(<span class="st">"Guinea"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="kable-table">
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<thead><tr>
+<th style="text-align:left;"> NAME </th>
+   <th style="text-align:left;"> CODE </th>
+  </tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;"> Equatorial Guinea </td>
+   <td style="text-align:left;"> GNQ </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Guinea </td>
+   <td style="text-align:left;"> GIN </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Guinea-Bissau </td>
+   <td style="text-align:left;"> GNB </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Papua New Guinea </td>
+   <td style="text-align:left;"> PNG </td>
+  </tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>countries <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Global"</span>, <span class="st">"KAZ"</span>, <span class="st">"GBR"</span>, <span class="st">"USA"</span>, <span class="st">"SDN"</span>, <span class="st">"UGA"</span>, <span class="st">"COD"</span>, <span class="st">"HTI"</span>, <span class="st">"NGA"</span>, <span class="st">"ETH"</span>, <span class="st">"AGO"</span>, <span class="st">"SOM"</span>, <span class="st">"TCD"</span>, <span class="st">"THA"</span>, <span class="st">"UKR"</span>, <span class="st">"IDN"</span>, <span class="st">"VEN"</span>, <span class="st">"CMR"</span>, <span class="st">"PHL"</span>, <span class="st">"YEM"</span>, <span class="st">"SYR"</span>, <span class="st">"MDG"</span>, <span class="st">"SSD"</span>, <span class="st">"CAF"</span>, <span class="st">"GIN"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2"></a></span>
+<span id="cb7-3"><a href="#cb7-3"></a>mcv1_status <span class="ot">&lt;-</span> mcv1 <span class="sc">%&gt;%</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>  <span class="fu">filter</span>(COVERAGE_CATEGORY <span class="sc">==</span> <span class="st">"WUENIC"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a>  <span class="fu">select</span>(<span class="sc">-</span>COVERAGE_CATEGORY) <span class="sc">%&gt;%</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> YEAR,</span>
+<span id="cb7-7"><a href="#cb7-7"></a>              <span class="at">names_prefix =</span> <span class="st">"Y"</span>,</span>
+<span id="cb7-8"><a href="#cb7-8"></a>              <span class="at">values_from =</span> COVERAGE) <span class="sc">%&gt;%</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a>  <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a>  <span class="fu">mutate</span>(<span class="at">change =</span> <span class="fu">ifelse</span>((Y2018 <span class="sc">-</span> Y2008) <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="st">"2fallen"</span>, <span class="st">"1risen"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-11"><a href="#cb7-11"></a>  <span class="fu">filter</span>(CODE <span class="sc">%in%</span> countries) <span class="sc">%&gt;%</span></span>
+<span id="cb7-12"><a href="#cb7-12"></a>  <span class="fu">mutate</span>(<span class="at">CODE =</span> <span class="fu">factor</span>(CODE, <span class="fu">rev</span>(countries))) <span class="sc">%&gt;%</span></span>
+<span id="cb7-13"><a href="#cb7-13"></a>  <span class="fu">arrange</span>(CODE) <span class="sc">%&gt;%</span></span>
+<span id="cb7-14"><a href="#cb7-14"></a>  <span class="fu">mutate</span>(<span class="at">country =</span> <span class="fu">case_when</span>(</span>
+<span id="cb7-15"><a href="#cb7-15"></a>    CODE <span class="sc">==</span> <span class="st">"GBR"</span> <span class="sc">~</span> <span class="st">"UK"</span>,</span>
+<span id="cb7-16"><a href="#cb7-16"></a>    CODE <span class="sc">==</span> <span class="st">"USA"</span> <span class="sc">~</span> <span class="st">"USA"</span>,</span>
+<span id="cb7-17"><a href="#cb7-17"></a>    CODE <span class="sc">==</span> <span class="st">"COD"</span> <span class="sc">~</span> <span class="st">"Dem Rep Congo"</span>,</span>
+<span id="cb7-18"><a href="#cb7-18"></a>    CODE <span class="sc">==</span> <span class="st">"VEN"</span> <span class="sc">~</span> <span class="st">"Venezuela"</span>,</span>
+<span id="cb7-19"><a href="#cb7-19"></a>    CODE <span class="sc">==</span> <span class="st">"SYR"</span> <span class="sc">~</span> <span class="st">"Syria"</span>,</span>
+<span id="cb7-20"><a href="#cb7-20"></a>    CODE <span class="sc">==</span> <span class="st">"CAF"</span> <span class="sc">~</span> <span class="st">"Ctl African Rep"</span>,</span>
+<span id="cb7-21"><a href="#cb7-21"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> NAME</span>
+<span id="cb7-22"><a href="#cb7-22"></a>  ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">ggplot</span>(mcv1_status, <span class="fu">aes</span>(<span class="at">y =</span> CODE)) <span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Y2008), <span class="at">color =</span> <span class="st">"dodgerblue"</span>) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Y2018), <span class="at">color =</span> <span class="st">"hotpink"</span>) <span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>change, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">scales =</span> <span class="st">"free_y"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="24-financial-times_files/figure-html/ft-plot1-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>country_names <span class="ot">&lt;-</span> <span class="fu">select</span>(mcv1_status, CODE, country)</span>
+<span id="cb9-2"><a href="#cb9-2"></a></span>
+<span id="cb9-3"><a href="#cb9-3"></a>dot_08 <span class="ot">&lt;-</span> <span class="st">"#24559A"</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a>dot_18 <span class="ot">&lt;-</span> <span class="st">"#DD6A8D"</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a>bg_light <span class="ot">&lt;-</span> <span class="st">"#FFFFFF"</span> <span class="co"># "#FFF1E5"</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a>bg_tan <span class="ot">&lt;-</span> <span class="st">"#F6D0AE"</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a>text_color <span class="ot">&lt;-</span> <span class="st">"#65615E"</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a></span>
+<span id="cb9-9"><a href="#cb9-9"></a>figdat <span class="ot">&lt;-</span> mcv1_status <span class="sc">%&gt;%</span></span>
+<span id="cb9-10"><a href="#cb9-10"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb9-11"><a href="#cb9-11"></a>    <span class="at">icode =</span> <span class="fu">as.numeric</span>(CODE),</span>
+<span id="cb9-12"><a href="#cb9-12"></a>    <span class="at">icode08 =</span> icode <span class="sc">+</span> <span class="fu">ifelse</span>(CODE <span class="sc">==</span> <span class="st">"KAZ"</span>, .<span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb9-13"><a href="#cb9-13"></a>    <span class="at">icode18 =</span> icode <span class="sc">-</span> <span class="fu">ifelse</span>(CODE <span class="sc">==</span> <span class="st">"KAZ"</span>, .<span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb9-14"><a href="#cb9-14"></a>    <span class="at">stripe =</span> <span class="fu">c</span>(<span class="fl">0.9</span>, </span>
+<span id="cb9-15"><a href="#cb9-15"></a>               <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.3</span>), <span class="at">length.out =</span> <span class="dv">12</span>), </span>
+<span id="cb9-16"><a href="#cb9-16"></a>               <span class="fu">rep</span>(<span class="fu">c</span>(<span class="fl">0.3</span>, <span class="dv">0</span>), <span class="at">length.out =</span> <span class="dv">12</span>)</span>
+<span id="cb9-17"><a href="#cb9-17"></a>               ) <span class="sc">%&gt;%</span> <span class="fu">rev</span>()</span>
+<span id="cb9-18"><a href="#cb9-18"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>risen <span class="ot">&lt;-</span> figdat <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">slice</span>(<span class="dv">13</span><span class="sc">:</span><span class="dv">25</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> icode)) <span class="sc">+</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a>  <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">yintercept =</span> icode,</span>
+<span id="cb10-5"><a href="#cb10-5"></a>                 <span class="at">alpha =</span> <span class="fu">I</span>(stripe)),</span>
+<span id="cb10-6"><a href="#cb10-6"></a>             <span class="at">color =</span> bg_tan,</span>
+<span id="cb10-7"><a href="#cb10-7"></a>             <span class="at">size =</span> <span class="dv">9</span>) <span class="sc">+</span></span>
+<span id="cb10-8"><a href="#cb10-8"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">95</span>, <span class="at">linetype =</span> <span class="dv">2</span>, <span class="at">size =</span> <span class="fl">0.35</span>) <span class="sc">+</span></span>
+<span id="cb10-9"><a href="#cb10-9"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> Y2008, <span class="at">xend =</span> Y2018, <span class="at">yend =</span> icode), </span>
+<span id="cb10-10"><a href="#cb10-10"></a>               <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">size =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
+<span id="cb10-11"><a href="#cb10-11"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Y2008, <span class="at">y =</span> icode08), </span>
+<span id="cb10-12"><a href="#cb10-12"></a>             <span class="at">color =</span> dot_08, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb10-13"><a href="#cb10-13"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Y2018, <span class="at">y =</span> icode18), </span>
+<span id="cb10-14"><a href="#cb10-14"></a>             <span class="at">color =</span> dot_18, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb10-15"><a href="#cb10-15"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">size =</span> <span class="dv">3</span>,</span>
+<span id="cb10-16"><a href="#cb10-16"></a>           <span class="at">label =</span> <span class="st">"The measles 'first dose' immunisation</span><span class="sc">\n</span><span class="st">offers an individual 90% protections from</span><span class="sc">\n</span><span class="st">the disease. Twenty-three countries have</span><span class="sc">\n</span><span class="st">yet to introduce the second dose, which</span><span class="sc">\n</span><span class="st">would increase this cover to 99%."</span>, </span>
+<span id="cb10-17"><a href="#cb10-17"></a>           <span class="at">x =</span> <span class="dv">3</span>, <span class="at">y =</span> <span class="dv">24</span>, <span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">vjust =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb10-18"><a href="#cb10-18"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> (<span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>)<span class="sc">*</span><span class="dv">10</span>, </span>
+<span id="cb10-19"><a href="#cb10-19"></a>                     <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>),</span>
+<span id="cb10-20"><a href="#cb10-20"></a>                     <span class="at">expand =</span> <span class="fu">expansion</span>(<span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb10-21"><a href="#cb10-21"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">25</span>, </span>
+<span id="cb10-22"><a href="#cb10-22"></a>                     <span class="at">labels =</span> mcv1_status<span class="sc">$</span>country,</span>
+<span id="cb10-23"><a href="#cb10-23"></a>                     <span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">add =</span> .<span class="dv">6</span>)) <span class="sc">+</span></span>
+<span id="cb10-24"><a href="#cb10-24"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"dodgerblue3"</span>, <span class="st">"hotpink"</span>)) <span class="sc">+</span></span>
+<span id="cb10-25"><a href="#cb10-25"></a>  <span class="fu">coord_cartesian</span>(<span class="at">clip =</span> <span class="st">"off"</span>) <span class="sc">+</span></span>
+<span id="cb10-26"><a href="#cb10-26"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>,</span>
+<span id="cb10-27"><a href="#cb10-27"></a>       <span class="at">title=</span><span class="st">"Countries where the MCV1 coverage has been maintained or risen"</span>) <span class="sc">+</span></span>
+<span id="cb10-28"><a href="#cb10-28"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_family =</span> <span class="st">"Helvetica Neue"</span>) <span class="sc">+</span></span>
+<span id="cb10-29"><a href="#cb10-29"></a>  <span class="fu">theme</span>(</span>
+<span id="cb10-30"><a href="#cb10-30"></a>    <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">color =</span> text_color),</span>
+<span id="cb10-31"><a href="#cb10-31"></a>    <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> bg_light, <span class="at">color =</span> <span class="st">"transparent"</span>),</span>
+<span id="cb10-32"><a href="#cb10-32"></a>    <span class="at">axis.line.y.left =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"grey60"</span>,</span>
+<span id="cb10-33"><a href="#cb10-33"></a>                                    <span class="at">size =</span> <span class="fl">0.2</span>),</span>
+<span id="cb10-34"><a href="#cb10-34"></a>    <span class="at">axis.line.y.right =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"grey60"</span>,</span>
+<span id="cb10-35"><a href="#cb10-35"></a>                                    <span class="at">size =</span> <span class="fl">0.2</span>),</span>
+<span id="cb10-36"><a href="#cb10-36"></a>    <span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb10-37"><a href="#cb10-37"></a>    <span class="at">panel.grid.minor.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb10-38"><a href="#cb10-38"></a>    <span class="at">panel.grid.minor.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb10-39"><a href="#cb10-39"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_line</span>(<span class="at">size =</span> <span class="fl">0.4</span>, </span>
+<span id="cb10-40"><a href="#cb10-40"></a>                                      <span class="at">color =</span> <span class="st">"grey90"</span>),</span>
+<span id="cb10-41"><a href="#cb10-41"></a>    <span class="at">plot.title.position =</span> <span class="st">"plot"</span>,</span>
+<span id="cb10-42"><a href="#cb10-42"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb10-43"><a href="#cb10-43"></a>    <span class="at">plot.margin =</span> <span class="fu">unit</span>(<span class="fu">c</span>(.<span class="dv">1</span>, .<span class="dv">3</span>, .<span class="dv">1</span>, .<span class="dv">1</span>), <span class="st">"inches"</span>)</span>
+<span id="cb10-44"><a href="#cb10-44"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>fallen <span class="ot">&lt;-</span> figdat <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> icode)) <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a>  <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">yintercept =</span> icode,</span>
+<span id="cb11-5"><a href="#cb11-5"></a>                 <span class="at">alpha =</span> <span class="fu">I</span>(stripe)),</span>
+<span id="cb11-6"><a href="#cb11-6"></a>             <span class="at">color =</span> bg_tan,</span>
+<span id="cb11-7"><a href="#cb11-7"></a>             <span class="at">size =</span> <span class="dv">9</span>) <span class="sc">+</span></span>
+<span id="cb11-8"><a href="#cb11-8"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">95</span>, <span class="at">linetype =</span> <span class="dv">2</span>, <span class="at">size =</span> <span class="fl">0.35</span>) <span class="sc">+</span></span>
+<span id="cb11-9"><a href="#cb11-9"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> Y2008, <span class="at">xend =</span> Y2018, <span class="at">yend =</span> icode), </span>
+<span id="cb11-10"><a href="#cb11-10"></a>               <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">size =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
+<span id="cb11-11"><a href="#cb11-11"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Y2008, <span class="at">y =</span> icode08), </span>
+<span id="cb11-12"><a href="#cb11-12"></a>             <span class="at">color =</span> dot_08, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb11-13"><a href="#cb11-13"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Y2018, <span class="at">y =</span> icode18), </span>
+<span id="cb11-14"><a href="#cb11-14"></a>             <span class="at">color =</span> dot_18, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb11-15"><a href="#cb11-15"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> (<span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>)<span class="sc">*</span><span class="dv">10</span>, </span>
+<span id="cb11-16"><a href="#cb11-16"></a>                     <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>),</span>
+<span id="cb11-17"><a href="#cb11-17"></a>                     <span class="at">expand =</span> <span class="fu">expansion</span>(<span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb11-18"><a href="#cb11-18"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">25</span>, </span>
+<span id="cb11-19"><a href="#cb11-19"></a>                     <span class="at">labels =</span> mcv1_status<span class="sc">$</span>country,</span>
+<span id="cb11-20"><a href="#cb11-20"></a>                     <span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">add =</span> .<span class="dv">6</span>)) <span class="sc">+</span></span>
+<span id="cb11-21"><a href="#cb11-21"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"dodgerblue3"</span>, <span class="st">"hotpink"</span>)) <span class="sc">+</span></span>
+<span id="cb11-22"><a href="#cb11-22"></a>  <span class="fu">coord_cartesian</span>(<span class="at">clip =</span> <span class="st">"off"</span>) <span class="sc">+</span></span>
+<span id="cb11-23"><a href="#cb11-23"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>,</span>
+<span id="cb11-24"><a href="#cb11-24"></a>       <span class="at">title=</span><span class="st">"Countries where the MCV1 coverage has fallen"</span>) <span class="sc">+</span></span>
+<span id="cb11-25"><a href="#cb11-25"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_family =</span> <span class="st">"Helvetica Neue"</span>) <span class="sc">+</span></span>
+<span id="cb11-26"><a href="#cb11-26"></a>  <span class="fu">theme</span>(</span>
+<span id="cb11-27"><a href="#cb11-27"></a>    <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">color =</span> text_color),</span>
+<span id="cb11-28"><a href="#cb11-28"></a>    <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> bg_light, <span class="at">color =</span> <span class="st">"transparent"</span>),</span>
+<span id="cb11-29"><a href="#cb11-29"></a>    <span class="at">axis.line.y.left =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"grey60"</span>,</span>
+<span id="cb11-30"><a href="#cb11-30"></a>                                    <span class="at">size =</span> <span class="fl">0.2</span>),</span>
+<span id="cb11-31"><a href="#cb11-31"></a>    <span class="at">axis.line.y.right =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"grey60"</span>,</span>
+<span id="cb11-32"><a href="#cb11-32"></a>                                    <span class="at">size =</span> <span class="fl">0.2</span>),</span>
+<span id="cb11-33"><a href="#cb11-33"></a>    <span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb11-34"><a href="#cb11-34"></a>    <span class="at">panel.grid.minor.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb11-35"><a href="#cb11-35"></a>    <span class="at">panel.grid.minor.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb11-36"><a href="#cb11-36"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_line</span>(<span class="at">size =</span> <span class="fl">0.4</span>, </span>
+<span id="cb11-37"><a href="#cb11-37"></a>                                      <span class="at">color =</span> <span class="st">"grey90"</span>),</span>
+<span id="cb11-38"><a href="#cb11-38"></a>    <span class="at">plot.title.position =</span> <span class="st">"plot"</span>,</span>
+<span id="cb11-39"><a href="#cb11-39"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb11-40"><a href="#cb11-40"></a>    <span class="at">plot.margin =</span> <span class="fu">unit</span>(<span class="fu">c</span>(.<span class="dv">1</span>, .<span class="dv">3</span>, .<span class="dv">1</span>, .<span class="dv">1</span>), <span class="st">"inches"</span>)</span>
+<span id="cb11-41"><a href="#cb11-41"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>risen <span class="sc">+</span> fallen <span class="sc">+</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a>  <span class="fu">plot_annotation</span>(<span class="at">title =</span> <span class="st">"**Global health:** mixed fortunes countering the 'anti-vax' movement"</span>,</span>
+<span id="cb12-3"><a href="#cb12-3"></a>                  <span class="at">subtitle =</span> <span class="st">"Measles immunisation coverage (%) for the first dose (MCV1) among 1 year olds  </span><span class="sc">\n</span><span class="st">Estimates, as of Apr 23 2022</span><span class="sc">\n\n</span><span class="st">&lt;span style='color: #24559A; font-size: 22px;'&gt;●&lt;/span&gt; 2008 &lt;span style='color: #DD6A8D; font-size: 22px;'&gt;●&lt;/span&gt; 2018"</span>, </span>
+<span id="cb12-4"><a href="#cb12-4"></a>                  <span class="at">theme =</span> <span class="fu">theme</span>(<span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> bg_light, <span class="at">color =</span> <span class="st">"transparent"</span>),</span>
+<span id="cb12-5"><a href="#cb12-5"></a>                                <span class="at">plot.title =</span> <span class="fu">element_markdown</span>(<span class="at">size =</span> <span class="dv">12</span>, <span class="at">face =</span> <span class="st">"plain"</span>),</span>
+<span id="cb12-6"><a href="#cb12-6"></a>                                <span class="at">plot.subtitle =</span> <span class="fu">element_markdown</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">face =</span> <span class="st">"plain"</span>)</span>
+<span id="cb12-7"><a href="#cb12-7"></a>                                )) <span class="sc">+</span></span>
+<span id="cb12-8"><a href="#cb12-8"></a>  <span class="fu">plot_layout</span>(<span class="at">nrow =</span> <span class="dv">2</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="24-financial-times_files/figure-html/ft-combo-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="theme" class="level2" data-number="24.3"><h2 data-number="24.3" class="anchored" data-anchor-id="theme">
+<span class="header-section-number">24.3</span> Theme</h2>
+<p>I downloaded the <code class="package">ftplottools</code> package from Financial Times. There isn’t much documentation beside the <a href="https://rdrr.io/github/Financial-Times/ftplottools/man/">man pages</a>, so let’s play with it.</p>
 
 
-</main> <!-- /main -->
-<script>
+</section></main><!-- /main --><script>
 // open rdrr links externally ----
 
 var exlinks = document.querySelectorAll("a[href^='https://rdrr.io']");
@@ -393,8 +771,7 @@ function move_sidebar() {
 }
 move_sidebar();
 window.onresize = move_sidebar;
-</script>
-<script type="application/javascript">
+</script><script type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const icon = "";
   const anchorJS = new window.AnchorJS();
@@ -469,9 +846,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     });
   }
 });
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./23-tiles.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Tiles</span></span>
       </a>          
@@ -483,12 +858,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">CC-BY 2022, Lisa DeBruine</div>   
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
-    <li class="nav-item compact">
+<li class="nav-item compact">
     <a class="nav-link" href="https://github.com/debruine/30DCC-2022">
       <i class="bi bi-github" role="img">
 </i> 
@@ -501,7 +875,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </a>
   </li>  
 </ul>
-    </div>
+</div>
   </div>
 </footer>
 

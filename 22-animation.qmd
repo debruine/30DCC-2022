@@ -9,9 +9,9 @@ I've already done an animated time series for [Day -@sec-owid], so I thought I'd
 ```{r}
 #| code-summary: Setup
 
-library(tidyverse)
-library(countrycode)
-library(gganimate)
+library(tidyverse)   # for data wrangling and viz
+library(countrycode) # to get continents for countries
+library(gganimate)   # for animation
 
 theme_set(theme_minimal())
 ```
@@ -25,6 +25,8 @@ I got all the original data just browsing [Our World in Data](https://ourworldin
 * [Population](https://ourworldindata.org/world-population-growth): original data from [United Nations](https://population.un.org/wpp2019/Download/Standard/Interpolated/)
 
 ```{r}
+#| code-summary: Load original data
+
 # https://ourworldindata.org/happiness-and-life-satisfaction
 happy <- read_csv("data/happiness-cantril-ladder.csv",
                   show_col_types = FALSE) %>%
@@ -50,17 +52,20 @@ continent <- countrycode::codelist %>%
 
 
 ```{r}
+#| code-summary: Combine data
 data <- happy %>%
   inner_join(work, by = c("Entity", "Code", "Year")) %>%
   inner_join(pop, by = c("Entity", "Code", "Year")) %>%
   left_join(continent, by = "Code")
 ```
 
-### Plot
+## Plot
+
+y first step in making an animated plot is always to filter down to one frame of data and get the plot looking like I want.
 
 ```{r anim-test, fig.width = 5, fig.height = 5}
 data %>%
-  filter(Year == max(Year)) %>%
+  filter(Year == 2017) %>%
   ggplot(aes(x = work, y = happy, size = pop, color = continent)) +
   geom_point(alpha = 0.9) +
   scale_size(range = c(3, 12), guide = "none") +
@@ -69,9 +74,15 @@ data %>%
   coord_cartesian(xlim = c(1250, 2500), ylim = c(4, 8)) +
   labs(x = "Average Annual Working Hours per Worker",
        y = "Average Happiness Score",
-       color = NULL) +
-  theme(legend.position = c(.11, .17))
+       color = NULL,
+       title = "Year: 2017") +
+  theme(legend.position = c(.11, .17),
+        plot.title = element_text(size = 18))
 ```
+
+## Animate
+
+The next step is to remove the filter and add the animation functions. I animated by year with `transition_time(Year)` and changed the title in `labs()` to "Year: \{floor(frame_time)\}" because the animation introduced fractional years.
 
 I used this [tutorial for datanovia](https://www.datanovia.com/en/blog/gganimate-how-to-create-plots-with-beautiful-animation-in-r/) to figure out the `shadow_wake()`.
 
@@ -85,10 +96,11 @@ anim <- data %>%
   coord_cartesian(xlim = c(1250, 2500), ylim = c(4, 8)) +
   labs(x = "Average Annual Working Hours per Worker",
        y = "Average Happiness Score",
-       color = NULL) +
-  theme(legend.position = c(.11, .17)) +
+       color = NULL,
+       title = "Year: {floor(frame_time)}") +
+  theme(legend.position = c(.11, .17),
+        plot.title = element_text(size = 18)) +
   transition_time(Year) +
-  labs(title = "Year: {round(frame_time)}") +
   shadow_wake(wake_length = 0.1)
 ```
 
