@@ -295,7 +295,6 @@ ggplotify::as.ggplot(g)
 
 
 ```{r, include = FALSE, eval = FALSE}
-
 ggsave("images/day23.png", width = 8, height = 6, device = png)
 knitr::include_graphics("images/day23.png")
 ```

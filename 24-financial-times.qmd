@@ -12,6 +12,10 @@ library(tidyverse) # for data wrangling
 library(readxl)    # for reading data from WHO
 library(patchwork) # for combining plots
 library(ggtext)    # for styled text in plots
+library(showtext)  # for fonts
+
+font_add_google("Roboto", regular.wt = 300, bold.wt = 500)
+showtext_auto()
 ```
 
 
@@ -42,7 +46,7 @@ knitr::include_graphics("images/ft-vax.png")
 
 ## Data
 
-* [WHO Data on MCV1](https://immunizationdata.who.int/pages/coverage/mcv.html)
+First, I needed to find the data. The original chart said the data came from WHO and Unicef; I downloaded the [WHO Data on MCV1](https://immunizationdata.who.int/pages/coverage/mcv.html).
 
 ```{r}
 measles <- read_xlsx("data/Measles vaccination coverage.xlsx")
@@ -54,6 +58,8 @@ mcv1 <- measles %>%
 head(mcv1)
 ```
 
+### Pick a coverage category
+
 I'm not sure what the different coverage categories are, but a quick plot shows that the WUENIC values are at least all under 100%.
 
 ```{r}
@@ -62,11 +68,16 @@ ggplot(mcv1, aes(x = YEAR, y = COVERAGE, group = NAME)) +
   facet_wrap(~COVERAGE_CATEGORY)
 ```
 
+
+### South Sudan 
+
 I need to use the 2011 value for South Sudan instead of 2008, since South Sudan didn't exist until 2011.
 
 ```{r}
 ssd_2011 <- measles %>%
-  filter(CODE == "SSD", COVERAGE_CATEGORY == "WUENIC", YEAR == 2011) %>%
+  filter(CODE == "SSD", 
+         COVERAGE_CATEGORY == "WUENIC", 
+         YEAR == 2011) %>%
   pull(COVERAGE)
 
 mcv1 <- mcv1 %>%
@@ -77,7 +88,9 @@ mcv1 <- mcv1 %>%
           COVERAGE = ssd_2011)
 ```
 
+### Choose focus countries
 
+I tried to get the list of countries shown on the original chart programatically, but they're not just the biggest increases and decreases, so I had to extract them manually. I wrote a quick function to search for the code for any name or part of a name.
 
 ```{r}
 ccode <- function(txt) { 
@@ -86,174 +99,221 @@ ccode <- function(txt) {
     distinct() 
 }
 
-ccode("Guinea")
+ccode("Congo")
 ```
 
+Some of the countries on the chart use different names or abbreviations, so I made a named vector with the country codes and names for the chart.
 
 ```{r}
-countries <- c("Global", "KAZ", "GBR", "USA", "SDN", "UGA", "COD", "HTI", "NGA", "ETH", "AGO", "SOM", "TCD", "THA", "UKR", "IDN", "VEN", "CMR", "PHL", "YEM", "SYR", "MDG", "SSD", "CAF", "GIN")
+countries <- c(
+  Global = "Global", 
+  KAZ = "Kazakhstan", 
+  GBR = "UK", 
+  USA = "USA", 
+  SDN = "Sudan", 
+  UGA = "Uganda", 
+  COD = "Dem Rep of Congo", 
+  HTI = "Haiti", 
+  NGA = "Nigeria", 
+  ETH = "Ethiopia", 
+  AGO = "Angola", 
+  SOM = "Solmalia", 
+  TCD = "Chad", 
+  THA = "Thailand", 
+  UKR = "Ukraine", 
+  IDN = "Indonesia", 
+  VEN = "Venezuela", 
+  CMR = "Cameroon", 
+  PHL = "Philippines", 
+  YEM = "Yemen", 
+  SYR = "Syria", 
+  MDG = "Madagascar", 
+  SSD = "South Sudan", 
+  CAF = "Ctl African Rep", 
+  GIN = "Guinea"
+)
+```
 
-mcv1_status <- mcv1 %>%
+I used that vector to filter the mcv1 table, make a new column called `country` and make it a factor so the countries will display in the right order. I also filtered the table to just the "WUENIC" coverage and made the table wide so there was a column for each year.
+
+```{r}
+mcv1_status <- mcv1  %>%
+  filter(CODE %in% names(countries)) %>%
+  mutate(country = recode(CODE, !!!countries),
+         country = factor(country, countries)
+  ) %>%
+  arrange(country) %>%
   filter(COVERAGE_CATEGORY == "WUENIC") %>%
-  select(-COVERAGE_CATEGORY) %>%
+  select(-COVERAGE_CATEGORY, -NAME) %>%
   pivot_wider(names_from = YEAR,
               names_prefix = "Y",
               values_from = COVERAGE) %>%
   drop_na() %>%
-  mutate(change = ifelse((Y2018 - Y2008) < 0, "2fallen", "1risen")) %>%
-  filter(CODE %in% countries) %>%
-  mutate(CODE = factor(CODE, rev(countries))) %>%
-  arrange(CODE) %>%
-  mutate(country = case_when(
-    CODE == "GBR" ~ "UK",
-    CODE == "USA" ~ "USA",
-    CODE == "COD" ~ "Dem Rep Congo",
-    CODE == "VEN" ~ "Venezuela",
-    CODE == "SYR" ~ "Syria",
-    CODE == "CAF" ~ "Ctl African Rep",
-    TRUE ~ NAME
-  ))
+  mutate(change = ifelse((Y2018 - Y2008) < 0, "decrease", "increase"))
 ```
 
 
+```{r, echo = FALSE}
+DT::datatable(mcv1_status)
+```
+
+## Plot
+
+Time for the first plot! The data aren't exactly the same as on the original chart. While the original chart showed an increase in vaccination in the Democratic Republic of the Congo, the data I'm using show a decrease. Similarly, Indonesia has a change in the opposite direction as the original chart. I'll plot the data I have, but in the order of the original plot, so I'll need to make two separate plots and combine them with `r pkg("patchwork")`.
+
 ```{r ft-plot1}
-ggplot(mcv1_status, aes(y = CODE)) +
+ggplot(mcv1_status, aes(y = country)) +
+  geom_segment(aes(x = Y2008, xend = Y2018, yend = country), 
+               color = "black", size = 0.25) +
   geom_point(aes(x = Y2008), color = "dodgerblue") +
   geom_point(aes(x = Y2018), color = "hotpink") +
   facet_wrap(~change, nrow = 2, scales = "free_y")
 ```
 
+### Theme
+
+First, I need to set up a few things for the plot theme. I extracted the colour for the dots for 2008 and 2018, plus the background and stripe colours, and the grey text colour, and set those to variables I can use later.
 
 ```{r}
-country_names <- select(mcv1_status, CODE, country)
-
 dot_08 <- "#24559A"
 dot_18 <- "#DD6A8D"
-bg_light <- "#FFFFFF" # "#FFF1E5"
+bg_light <- "#FFFFFF" # "#FFF1E5" # FT website bg colour
 bg_tan <- "#F6D0AE"
 text_color <- "#65615E"
+```
 
+### Overlap and stripes
+
+In the original chart, Kazakhstan doesn't have much change at all, so the dots are nudged up and down vertically so they don't completely overlap. I'll make a new variable called `y`, which is the numeric value for the `country` factor, but reversed, and `y08` and `y18` which are the y-axis values for each year. They're all the same as `y`, except for Kazakhstan.
+
+I'll also add a new column called `stripe` to set the alpha for the stripe for each country, following the pattern from the original chart, with Global being a dark stripe, and alternating semi-transparent and no stripe after that.
+
+```{r}
 figdat <- mcv1_status %>%
   mutate(
-    icode = as.numeric(CODE),
-    icode08 = icode + ifelse(CODE == "KAZ", .1, 0),
-    icode18 = icode - ifelse(CODE == "KAZ", .1, 0),
+    y = rev(as.numeric(country)),
+    y08 = y + ifelse(CODE == "KAZ", .1, 0),
+    y18 = y - ifelse(CODE == "KAZ", .1, 0),
     stripe = c(0.9, 
-               rep(c(0, 0.3), length.out = 12), 
-               rep(c(0.3, 0), length.out = 12)
-               ) %>% rev()
+               rep(c(0, 0.5), length.out = 12), 
+               rep(c(0.5, 0), length.out = 12)
+               )
   )
 ```
 
+### Risen plot
 
-```{r risen, fig.width = 6/2, fig.height = 4/2}
-risen <- figdat %>%
-  slice(13:25) %>%
-  ggplot(aes(y = icode)) +
-  geom_hline(aes(yintercept = icode,
-                 alpha = I(stripe)),
-             color = bg_tan,
-             size = 9) +
+This plot took a lot of trial and error with the annotations. The trick is to set `coord_cartesian(clip = "off")` so you can plot outside the axis limits, and add some plot margin with the `theme()`.
+
+```{r risen2, fig.width = 6, fig.height = 4}
+# define top panel
+risen <- slice(figdat, 1:13) %>%
+  ggplot(aes(y = y)) +
+  geom_hline(aes(yintercept = y, alpha = I(stripe)),
+             color = bg_tan, size = 9) +
   geom_vline(xintercept = 95, linetype = 2, size = 0.35) +
-  geom_segment(aes(x = Y2008, xend = Y2018, yend = icode), 
+  geom_segment(aes(x = Y2008, xend = Y2018, yend = y), 
                color = "black", size = 0.25) +
-  geom_point(aes(x = Y2008, y = icode08), 
+  geom_point(aes(x = Y2008, y = y08), 
              color = dot_08, size = 3) +
-  geom_point(aes(x = Y2018, y = icode18), 
+  geom_point(aes(x = Y2018, y = y18), 
              color = dot_18, size = 3) +
   annotate("text", size = 3,
            label = "The measles 'first dose' immunisation\noffers an individual 90% protections from\nthe disease. Twenty-three countries have\nyet to introduce the second dose, which\nwould increase this cover to 99%.", 
-           x = 3, y = 24, hjust = 0, vjust = 1) +
+           x = 3, y = 24.15, hjust = 0, vjust = 1) +
+  annotate("text", size = 3, 
+           label = "(95% threshold\nneeded to control\nspread in a community)", 
+           x = 100, y = 26, hjust = 1, vjust = 0, 
+           lineheight = 1, color = text_color) +
+  annotate("richtext", size = 3,
+           label = "<span style='color: #24559A; font-size: 22px;'>●</span> 2008 <span style='color: #DD6A8D; font-size: 22px;'>●</span> 2018",
+           x = -23, y = 26.5, hjust = 0, vjust = 0, 
+           color = text_color,
+           label.colour = "transparent") +
   scale_x_continuous(breaks = (0:10)*10, 
-                     limits = c(0, 100),
                      expand = expansion(0)) +
   scale_y_continuous(breaks = 1:25, 
-                     labels = mcv1_status$country,
+                     labels = rev(figdat$country),
                      expand = expansion(add = .6)) +
-  scale_color_manual(values = c("dodgerblue3", "hotpink")) +
-  coord_cartesian(clip = "off") +
+  coord_cartesian(xlim = c(0, 100), ylim = c(13, 25), clip = "off") +
   labs(x = NULL, y = NULL,
-       title="Countries where the MCV1 coverage has been maintained or risen") +
-  theme_minimal(base_family = "Helvetica Neue") +
+       title="Countries where the MCV1 coverage has been maintained or risen")
+
+# define theme
+ft_theme <- theme_minimal(base_family = "Roboto", base_size = 10) +
   theme(
     text = element_text(color = text_color),
     plot.background = element_rect(fill = bg_light, color = "transparent"),
-    axis.line.y.left = element_line(color = "grey60",
-                                    size = 0.2),
-    axis.line.y.right = element_line(color = "grey60",
-                                    size = 0.2),
+    axis.line.y.left = element_line(color = "grey60", size = 0.2),
+    axis.line.y.right = element_line(color = "grey60", size = 0.2),
     panel.grid.major.y = element_blank(),
     panel.grid.minor.x = element_blank(),
     panel.grid.minor.y = element_blank(),
-    panel.grid.major.x = element_line(size = 0.4, 
-                                      color = "grey90"),
+    panel.grid.major.x = element_line(size = 0.4, color = "grey90"),
     plot.title.position = "plot",
-    plot.title = element_text(size = 10, face = "bold"),
-    plot.margin = unit(c(.1, .3, .1, .1), "inches")
+    plot.title = element_text(size = 9, face = "bold")
   )
-  
+
+# display top panel with theme
+top_panel <- risen + ft_theme + 
+  theme(plot.margin = unit(c(.5, .3, .1, .1), "inches"))
+
+top_panel
 ```
 
+### Fallen plot
 
-```{r fallen, fig.width = 6/2, fig.height = 4/2}
-fallen <- figdat %>%
-  slice(1:12) %>%
-  ggplot(aes(y = icode)) +
-  geom_hline(aes(yintercept = icode,
-                 alpha = I(stripe)),
-             color = bg_tan,
-             size = 9) +
+The lower plot is a bit simpler, with fewer annotations.
+
+```{r fallen, fig.width = 6, fig.height = 4}
+# define bottom panel
+fallen <- slice(figdat, 14:25) %>%
+  ggplot(aes(y = y)) +
+  geom_hline(aes(yintercept = y, alpha = I(stripe)),
+             color = bg_tan, size = 9) +
   geom_vline(xintercept = 95, linetype = 2, size = 0.35) +
-  geom_segment(aes(x = Y2008, xend = Y2018, yend = icode), 
+  geom_segment(aes(x = Y2008, xend = Y2018, yend = y), 
                color = "black", size = 0.25) +
-  geom_point(aes(x = Y2008, y = icode08), 
+  geom_point(aes(x = Y2008, y = y08), 
              color = dot_08, size = 3) +
-  geom_point(aes(x = Y2018, y = icode18), 
+  geom_point(aes(x = Y2018, y = y18), 
              color = dot_18, size = 3) +
   scale_x_continuous(breaks = (0:10)*10, 
-                     limits = c(0, 100),
                      expand = expansion(0)) +
   scale_y_continuous(breaks = 1:25, 
-                     labels = mcv1_status$country,
+                     labels = rev(figdat$country),
                      expand = expansion(add = .6)) +
-  scale_color_manual(values = c("dodgerblue3", "hotpink")) +
-  coord_cartesian(clip = "off") +
+  coord_cartesian(xlim = c(0, 100), ylim = c(1, 12), clip = "off") +
   labs(x = NULL, y = NULL,
-       title="Countries where the MCV1 coverage has fallen") +
-  theme_minimal(base_family = "Helvetica Neue") +
-  theme(
-    text = element_text(color = text_color),
-    plot.background = element_rect(fill = bg_light, color = "transparent"),
-    axis.line.y.left = element_line(color = "grey60",
-                                    size = 0.2),
-    axis.line.y.right = element_line(color = "grey60",
-                                    size = 0.2),
-    panel.grid.major.y = element_blank(),
-    panel.grid.minor.x = element_blank(),
-    panel.grid.minor.y = element_blank(),
-    panel.grid.major.x = element_line(size = 0.4, 
-                                      color = "grey90"),
-    plot.title.position = "plot",
-    plot.title = element_text(size = 10, face = "bold"),
-    plot.margin = unit(c(.1, .3, .1, .1), "inches")
-  )
+       title="Countries where the MCV1 coverage has fallen")
 
+# display bottom panel with theme
+bottom_panel <- fallen + ft_theme + 
+  theme(plot.margin = unit(c(.1, .3, .1, .1), "inches"))
+
+bottom_panel
 ```
 
+### Combine Plots
 
 ```{r ft-combo, fig.width = 6, fig.height = 8.66}
-risen + fallen +
-  plot_annotation(title = "**Global health:** mixed fortunes countering the 'anti-vax' movement",
-                  subtitle = "Measles immunisation coverage (%) for the first dose (MCV1) among 1 year olds  \nEstimates, as of Apr 23 2022\n\n<span style='color: #24559A; font-size: 22px;'>●</span> 2008 <span style='color: #DD6A8D; font-size: 22px;'>●</span> 2018", 
-                  theme = theme(plot.background = element_rect(fill = bg_light, color = "transparent"),
-                                plot.title = element_markdown(size = 12, face = "plain"),
-                                plot.subtitle = element_markdown(size = 10, face = "plain")
-                                )) +
+  top_panel + bottom_panel +
+  plot_annotation(
+    title = "**Global health:** mixed fortunes countering the 'anti-vax' movement",
+    subtitle = "Measles immunisation coverage (%) for the first dose (MCV1) among 1 year olds  \nEstimates, as of Apr 23 2022", 
+    theme = theme(
+      plot.background = element_rect(fill = bg_light, color = "transparent"),
+      plot.title = element_markdown(size = 12, family = "Roboto", 
+                                    face = "plain", color = text_color),
+      plot.subtitle = element_markdown(size = 10, family = "Roboto", 
+                                       face = "plain", color = text_color)
+    )
+  ) +
   plot_layout(nrow = 2) 
 ```
 
 
-## Theme
-
-I downloaded the `r pkg("ftplottools")` package from Financial Times. There isn't much documentation beside the [man pages](https://rdrr.io/github/Financial-Times/ftplottools/man/), so let's play with it.
-
+```{r, include = FALSE, eval = FALSE}
+ggsave("images/day24.png", width = 6, height = 8.66, device = png)
+knitr::include_graphics("images/day24.png")
+```
