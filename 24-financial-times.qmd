@@ -15,6 +15,7 @@ library(ggtext)    # for styled text in plots
 library(showtext)  # for fonts
 
 font_add_google("Roboto", regular.wt = 300, bold.wt = 500)
+font_add_google("Roboto", family = "RobotoB", regular.wt = 400, bold.wt = 700)
 showtext_auto()
 ```
 
@@ -184,7 +185,7 @@ text_color <- "#65615E"
 
 ### Overlap and stripes
 
-In the original chart, Kazakhstan doesn't have much change at all, so the dots are nudged up and down vertically so they don't completely overlap. I'll make a new variable called `y`, which is the numeric value for the `country` factor, but reversed, and `y08` and `y18` which are the y-axis values for each year. They're all the same as `y`, except for Kazakhstan.
+In the original chart, Kazakhstan doesn't have much change at all, so the dots are nudged up and down vertically so they don't completely overlap. The USA also doesn't have discernible change and isn't nudged in the original plot, but I'll nudge it here. I'll make a new variable called `y`, which is the numeric value for the `country` factor, but reversed, and `y08` and `y18` which are the y-axis values for each year. They're all the same as `y`, except for Kazakhstan and the USA.
 
 I'll also add a new column called `stripe` to set the alpha for the stripe for each country, following the pattern from the original chart, with Global being a dark stripe, and alternating semi-transparent and no stripe after that.
 
@@ -192,11 +193,11 @@ I'll also add a new column called `stripe` to set the alpha for the stripe for e
 figdat <- mcv1_status %>%
   mutate(
     y = rev(as.numeric(country)),
-    y08 = y + ifelse(CODE == "KAZ", .1, 0),
-    y18 = y - ifelse(CODE == "KAZ", .1, 0),
+    y08 = y + ifelse(CODE %in% c("USA", "KAZ"), .1, 0),
+    y18 = y - ifelse(CODE %in% c("USA", "KAZ"), .1, 0),
     stripe = c(0.9, 
-               rep(c(0, 0.5), length.out = 12), 
-               rep(c(0.5, 0), length.out = 12)
+               rep(c(0, 0.6), length.out = 12), 
+               rep(c(0.6, 0), length.out = 12)
                )
   )
 ```
@@ -256,7 +257,7 @@ ft_theme <- theme_minimal(base_family = "Roboto", base_size = 10) +
 
 # display top panel with theme
 top_panel <- risen + ft_theme + 
-  theme(plot.margin = unit(c(.5, .3, .1, .1), "inches"))
+  theme(plot.margin = unit(c(.4, .3, .1, .1), "inches"))
 
 top_panel
 ```
@@ -297,15 +298,18 @@ bottom_panel
 ### Combine Plots
 
 ```{r ft-combo, fig.width = 6, fig.height = 8.66}
-  top_panel + bottom_panel +
+#| fig.alt: 12 Countries where the MCV1 coverage has been maintained or risen and 12 Countries where the MCV1 coverage has fallen, with their 2008 and 2018 measles vaccination coverage plotted. Global coverage has risen from 81% n 2008 to 86% in 2018.
+
+top_panel + bottom_panel +
   plot_annotation(
     title = "**Global health:** mixed fortunes countering the 'anti-vax' movement",
     subtitle = "Measles immunisation coverage (%) for the first dose (MCV1) among 1 year olds  \nEstimates, as of Apr 23 2022", 
     theme = theme(
       plot.background = element_rect(fill = bg_light, color = "transparent"),
-      plot.title = element_markdown(size = 12, family = "Roboto", 
-                                    face = "plain", color = text_color),
+      plot.title = element_markdown(size = 12, family = "RobotoB", 
+                                    face = "plain", color = "black"),
       plot.subtitle = element_markdown(size = 10, family = "Roboto", 
+                                       lineheight = 1.5,
                                        face = "plain", color = text_color)
     )
   ) +
