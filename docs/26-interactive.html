@@ -1,37 +1,89 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-  <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.9.80">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <meta name="description" content="Code and charts for the 2022 30-Day Chart Challenge">
-  <title>30DCC (2022) - 26&nbsp; Interactive</title>
-  <style>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.80">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="description" content="Code and charts for the 2022 30-Day Chart Challenge">
+<title>30DCC (2022) - 26&nbsp; Interactive</title>
+<style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     span.underline{text-decoration: underline;}
     div.column{display: inline-block; vertical-align: top; width: 50%;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
-
-  <script src="site_libs/quarto-nav/quarto-nav.js"></script>
-  <script src="site_libs/quarto-nav/headroom.min.js"></script>
-  <script src="site_libs/clipboard/clipboard.min.js"></script>
-  <meta name="quarto:offset" content="./">
-  <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-  <script src="site_libs/quarto-search/fuse.min.js"></script>
-  <script src="site_libs/quarto-search/quarto-search.js"></script>
-  <link href="./27-future.html" rel="next">
-  <link href="./25-trend.html" rel="prev">
-  <script src="site_libs/quarto-html/quarto.js"></script>
-  <script src="site_libs/quarto-html/popper.min.js"></script>
-  <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-  <script src="site_libs/quarto-html/anchor.min.js"></script>
-  <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-  <script src="site_libs/bootstrap/bootstrap.min.js"></script>
-  <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-  <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
-  <script id="quarto-search-options" type="application/json">{
+<script src="site_libs/quarto-nav/quarto-nav.js"></script><script src="site_libs/quarto-nav/headroom.min.js"></script><script src="site_libs/clipboard/clipboard.min.js"></script><meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script><script src="site_libs/quarto-search/fuse.min.js"></script><script src="site_libs/quarto-search/quarto-search.js"></script><link href="./27-future.html" rel="next">
+<link href="./25-trend.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script><script src="site_libs/quarto-html/popper.min.js"></script><script src="site_libs/quarto-html/tippy.umd.min.js"></script><script src="site_libs/quarto-html/anchor.min.js"></script><link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script><link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
     "location": "sidebar",
     "copy-button": false,
     "collapse-after": 2,
@@ -49,65 +101,54 @@
       "search-detached-cancel-button-title": "Cancel",
       "search-submit-button-title": "Submit"
     }
-  }</script>
-  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script>
-
-  <script type="text/javascript">
+  }</script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script><script type="text/javascript">
 
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
-  </script>
-  <script type="application/json" class="js-hypothesis-config">
+  </script><script type="application/json" class="js-hypothesis-config">
   {
     "theme": "clean",
     "openSidebar": false
   }
-  </script>
-  <script async="" src="https://hypothes.is/embed.js"></script>
-  <!--[if lt IE 9]>
+  </script><script async="" src="https://hypothes.is/embed.js"></script><!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
-  <link rel="stylesheet" href="include/style.css">
+  <![endif]--><link rel="stylesheet" href="include/style.css">
 </head>
-<body class="floating fullcontent">
+<body class="floating">
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Interactive</span></h1>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">
+<span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Interactive</span>
+</h1>
       <button type="button" class="quarto-btn-toggle btn">
         <i class="bi bi-chevron-right"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">30DCC (2022)</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/debruine/30DCC-2022/" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
     <a href="" title="Share" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-share"></i></a>
     <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
-        <li>
-          <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
+<li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=%7Curl%7C">
             <i class="bi bi-bi-twitter pe-1"></i>
           Twitter
           </a>
         </li>
         <li>
-          <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=|url|">
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=%7Curl%7C">
             <i class="bi bi-bi-facebook pe-1"></i>
           Facebook
           </a>
         </li>
         <li>
-          <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=|url|">
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=%7Curl%7C">
             <i class="bi bi-bi-linkedin pe-1"></i>
           LinkedIn
           </a>
@@ -123,7 +164,7 @@
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">Overview</a>
   </div>
@@ -135,8 +176,8 @@
         <i class="bi bi-chevron-right ms-2"></i>
       </a>
     </div>
-    <ul id="quarto-sidebar-section-comparisons" class="collapse list-unstyled sidebar-section depth1 show">  
-        <li class="sidebar-item">
+    <ul id="quarto-sidebar-section-comparisons" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./01-part-to-whole.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Part-to-whole</span></a>
   </div>
@@ -167,7 +208,7 @@
   </div>
 </li>
     </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
     <div class="sidebar-item-container"> 
         <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-distributions" aria-expanded="true">Distributions</a>
@@ -175,8 +216,8 @@
         <i class="bi bi-chevron-right ms-2"></i>
       </a>
     </div>
-    <ul id="quarto-sidebar-section-distributions" class="collapse list-unstyled sidebar-section depth1 show">  
-        <li class="sidebar-item">
+    <ul id="quarto-sidebar-section-distributions" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07-physical.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Physical</span></a>
   </div>
@@ -207,7 +248,7 @@
   </div>
 </li>
     </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
     <div class="sidebar-item-container"> 
         <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-relationships" aria-expanded="true">Relationships</a>
@@ -215,8 +256,8 @@
         <i class="bi bi-chevron-right ms-2"></i>
       </a>
     </div>
-    <ul id="quarto-sidebar-section-relationships" class="collapse list-unstyled sidebar-section depth1 show">  
-        <li class="sidebar-item">
+    <ul id="quarto-sidebar-section-relationships" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./13-correlation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Correlation</span></a>
   </div>
@@ -247,7 +288,7 @@
   </div>
 </li>
     </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
     <div class="sidebar-item-container"> 
         <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-timeseries" aria-expanded="true">Timeseries</a>
@@ -255,8 +296,8 @@
         <i class="bi bi-chevron-right ms-2"></i>
       </a>
     </div>
-    <ul id="quarto-sidebar-section-timeseries" class="collapse list-unstyled sidebar-section depth1 show">  
-        <li class="sidebar-item">
+    <ul id="quarto-sidebar-section-timeseries" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./19-global-change.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Global Change</span></a>
   </div>
@@ -287,7 +328,7 @@
   </div>
 </li>
     </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
     <div class="sidebar-item-container"> 
         <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-uncertainties" aria-expanded="true">Uncertainties</a>
@@ -295,8 +336,8 @@
         <i class="bi bi-chevron-right ms-2"></i>
       </a>
     </div>
-    <ul id="quarto-sidebar-section-uncertainties" class="collapse list-unstyled sidebar-section depth1 show">  
-        <li class="sidebar-item">
+    <ul id="quarto-sidebar-section-uncertainties" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./25-trend.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Trend</span></a>
   </div>
@@ -327,7 +368,7 @@
   </div>
 </li>
     </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
     <div class="sidebar-item-container"> 
         <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-appendices" aria-expanded="true">Appendices</a>
@@ -335,8 +376,8 @@
         <i class="bi bi-chevron-right ms-2"></i>
       </a>
     </div>
-    <ul id="quarto-sidebar-section-appendices" class="collapse list-unstyled sidebar-section depth1 show">  
-        <li class="sidebar-item">
+    <ul id="quarto-sidebar-section-appendices" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./app-a-colours.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Colours</span></a>
   </div>
@@ -352,21 +393,598 @@
   </div>
 </li>
     </ul>
-  </li>
+</li>
     </ul>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc"><h2 id="toc-title">Table of contents</h2>
+<ul>
+<li><a href="#set-up-shiny-app" class="nav-link active" data-scroll-target="#set-up-shiny-app"> <span class="header-section-number">26.1</span> Set up shiny app</a></li>
+<li><a href="#app-structure" class="nav-link" data-scroll-target="#app-structure"> <span class="header-section-number">26.2</span> App structure</a></li>
+<li>
+<a href="#day-6" class="nav-link" data-scroll-target="#day-6"> <span class="header-section-number">26.3</span> Day 6</a>
+<ul class="collapse">
+<li><a href="#map-functions" class="nav-link" data-scroll-target="#map-functions"> <span class="header-section-number">26.3.1</span> Map functions</a></li>
+<li><a href="#ui" class="nav-link" data-scroll-target="#ui"> <span class="header-section-number">26.3.2</span> UI</a></li>
+<li><a href="#server-function" class="nav-link" data-scroll-target="#server-function"> <span class="header-section-number">26.3.3</span> Server function</a></li>
+</ul>
+</li>
+<li>
+<a href="#day-18" class="nav-link" data-scroll-target="#day-18"> <span class="header-section-number">26.4</span> Day 18</a>
+<ul class="collapse">
+<li><a href="#data-functions" class="nav-link" data-scroll-target="#data-functions"> <span class="header-section-number">26.4.1</span> Data Functions</a></li>
+<li><a href="#plot-function" class="nav-link" data-scroll-target="#plot-function"> <span class="header-section-number">26.4.2</span> Plot Function</a></li>
+<li><a href="#setup" class="nav-link" data-scroll-target="#setup"> <span class="header-section-number">26.4.3</span> Setup</a></li>
+<li><a href="#ui-1" class="nav-link" data-scroll-target="#ui-1"> <span class="header-section-number">26.4.4</span> UI</a></li>
+<li><a href="#server-function-1" class="nav-link" data-scroll-target="#server-function-1"> <span class="header-section-number">26.4.5</span> Server function</a></li>
+<li><a href="#test-and-update" class="nav-link" data-scroll-target="#test-and-update"> <span class="header-section-number">26.4.6</span> Test and Update</a></li>
+</ul>
+</li>
+<li><a href="#deploy-app" class="nav-link" data-scroll-target="#deploy-app"> <span class="header-section-number">26.5</span> Deploy App</a></li>
+</ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/debruine/30DCC-2022/edit/main/26-interactive.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/debruine/30DCC-2022/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/debruine/30DCC-2022/blob/main/26-interactive.qmd" class="toc-action">View source</a></p></div></div></nav>
     </div>
-</nav>
-<!-- margin-sidebar -->
-    
 <!-- main -->
-<main class="content" id="quarto-document-content">
-<header id="title-block-header">
-<h1 class="title d-none d-lg-block display-7"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Interactive</span></h1>
-</header>
+<main class="content" id="quarto-document-content"><header id="title-block-header"><h1 class="title d-none d-lg-block display-7">
+<span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Interactive</span>
+</h1>
+</header><p>I’m going to make a shiny app of a few of my previous charts in this challenge for interactive day. I’ll be using a lot of resources from my book, <a href="https://debruine.github.io/shinyintro"></a></p>
+<div class="cell" data-layout-align="center">
+<details><summary>Setup</summary><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">#remotes::install_github("debruine/shinyintro")</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(tidyverse)     <span class="co"># for data wrangling and viz</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(sf)            <span class="co"># for maps</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(rnaturalearth) <span class="co"># for map coordinates</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">library</span>(ggthemes)      <span class="co"># for map theme</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="fu">library</span>(lwgeom)        <span class="co"># for map projection</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="fu">library</span>(shinyintro)    <span class="co"># for shiny app template</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="fu">library</span>(tictoc)        <span class="co"># for timing things</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="fu">library</span>(tidytext)      <span class="co"># for text analysis</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="fu">library</span>(topicmodels)   <span class="co"># for topic modelling</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="fu">library</span>(MetBrewer)     <span class="co"># for beautiful colourblind-friendly colour schemes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="set-up-shiny-app" class="level2" data-number="26.1"><h2 data-number="26.1" class="anchored" data-anchor-id="set-up-shiny-app">
+<span class="header-section-number">26.1</span> Set up shiny app</h2>
+<p>You can do all this manually, but my <code class="package">shinyintro</code> companion package to the book has a function to set up the skeleton of an app exactly how I like it.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>shinyintro<span class="sc">::</span><span class="fu">clone</span>(<span class="at">app =</span> <span class="st">"basic_template"</span>, <span class="at">dir =</span> <span class="st">"app"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Here are the files it installs:</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">list.files</span>(<span class="st">"app"</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>, <span class="at">recursive =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-stdout">
+<pre><code> [1] "app/app.R"                                           
+ [2] "app/data/oecd_covid_insights.rds"                    
+ [3] "app/data/share-of-individuals-using-the-internet.csv"
+ [4] "app/data/world.rds"                                  
+ [5] "app/DESCRIPTION"                                     
+ [6] "app/README.md"                                       
+ [7] "app/rsconnect/shinyapps.io/debruine/30DCC.dcf"       
+ [8] "app/scripts/func.R"                                  
+ [9] "app/www/basic_template.css"                          
+[10] "app/www/custom.css"                                  
+[11] "app/www/custom.js"                                   
+[12] "app/www/img/30DCC.png"                               
+[13] "app/www/img/psyteachr.png"                           
+[14] "app/www/img/shinyintro.png"                          </code></pre>
+</div>
+</div>
+</section><section id="app-structure" class="level2" data-number="26.2"><h2 data-number="26.2" class="anchored" data-anchor-id="app-structure">
+<span class="header-section-number">26.2</span> App structure</h2>
+<p>Next, I’ll edit the <code>README.md</code> and <code>DESCRIPTION</code> files to describe my app and update the <code>app.R</code> file for my new app structure. The skeleton app code is for a tabbed interface using <code class="package">shinydashboard</code>. I’ll set the skin to purple, change the demo_tab to an intro_tab and add a tab for day6, the first chart I’m going to make interactive.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Tabs Code</summary><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="do">## tabs ----</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>intro_tab <span class="ot">&lt;-</span> <span class="fu">tabItem</span>(</span>
+<span id="cb5-3"><a href="#cb5-3"></a>  <span class="at">tabName =</span> <span class="st">"intro_tab"</span>,</span>
+<span id="cb5-4"><a href="#cb5-4"></a>  <span class="fu">p</span>(<span class="st">"For Day 26: Interactive, I'm going to make interactive versions of a few of the charts I made for previous days of the 30DCC."</span>),</span>
+<span id="cb5-5"><a href="#cb5-5"></a>  <span class="fu">img</span>(<span class="at">src =</span> <span class="st">"img/30DCC.png"</span>, <span class="at">width =</span> <span class="dv">500</span>, <span class="at">height =</span> <span class="dv">500</span>)</span>
+<span id="cb5-6"><a href="#cb5-6"></a>)</span>
+<span id="cb5-7"><a href="#cb5-7"></a></span>
+<span id="cb5-8"><a href="#cb5-8"></a>day6 <span class="ot">&lt;-</span> <span class="fu">tabItem</span>(</span>
+<span id="cb5-9"><a href="#cb5-9"></a>    <span class="at">tabName =</span> <span class="st">"day6"</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>I like to define my tabs as objects so I can easily move them to a separate file and source them in when the amount of code gets overwhelming. I also have to add menuItems for these tabs to the <code>dashboardPage()</code> sidebar, find icons at <a href="https://fontawesome.com/icons?d=gallery&amp;m=free">fontawesome</a>, and add the tab objects into <code>tabItems()</code> in the <code>dashboardBody()</code>.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>UI Code</summary><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="do">## UI ----</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>ui <span class="ot">&lt;-</span> <span class="fu">dashboardPage</span>(</span>
+<span id="cb6-3"><a href="#cb6-3"></a>    <span class="at">skin =</span> <span class="st">"purple"</span>,</span>
+<span id="cb6-4"><a href="#cb6-4"></a>    <span class="fu">dashboardHeader</span>(<span class="at">title =</span> <span class="st">"30-Day Chart Challenge 2022"</span>, </span>
+<span id="cb6-5"><a href="#cb6-5"></a>        <span class="at">titleWidth =</span> <span class="st">"calc(100% - 44px)"</span> <span class="co"># puts sidebar toggle on right</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a>    ),</span>
+<span id="cb6-7"><a href="#cb6-7"></a>    <span class="fu">dashboardSidebar</span>(</span>
+<span id="cb6-8"><a href="#cb6-8"></a>        <span class="co"># https://fontawesome.com/icons?d=gallery&amp;m=free</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a>        <span class="fu">sidebarMenu</span>(</span>
+<span id="cb6-10"><a href="#cb6-10"></a>            <span class="at">id =</span> <span class="st">"tabs"</span>,</span>
+<span id="cb6-11"><a href="#cb6-11"></a>            <span class="fu">menuItem</span>(<span class="st">"Intro"</span>, <span class="at">tabName =</span> <span class="st">"intro_tab"</span>, <span class="at">icon =</span> <span class="fu">icon</span>(<span class="st">"calendar"</span>)),</span>
+<span id="cb6-12"><a href="#cb6-12"></a>            <span class="fu">menuItem</span>(<span class="st">"Day 6: OWiD"</span>, <span class="at">tabName =</span> <span class="st">"day6"</span>, <span class="at">icon =</span> <span class="fu">icon</span>(<span class="st">"globe"</span>))</span>
+<span id="cb6-13"><a href="#cb6-13"></a>        )</span>
+<span id="cb6-14"><a href="#cb6-14"></a>    ),</span>
+<span id="cb6-15"><a href="#cb6-15"></a>    <span class="fu">dashboardBody</span>(</span>
+<span id="cb6-16"><a href="#cb6-16"></a>        shinyjs<span class="sc">::</span><span class="fu">useShinyjs</span>(),</span>
+<span id="cb6-17"><a href="#cb6-17"></a>        tags<span class="sc">$</span><span class="fu">head</span>(</span>
+<span id="cb6-18"><a href="#cb6-18"></a>            <span class="co"># links to files in www/</span></span>
+<span id="cb6-19"><a href="#cb6-19"></a>            tags<span class="sc">$</span><span class="fu">link</span>(<span class="at">rel =</span> <span class="st">"stylesheet"</span>, <span class="at">type =</span> <span class="st">"text/css"</span>, <span class="at">href =</span> <span class="st">"basic_template.css"</span>), </span>
+<span id="cb6-20"><a href="#cb6-20"></a>            tags<span class="sc">$</span><span class="fu">link</span>(<span class="at">rel =</span> <span class="st">"stylesheet"</span>, <span class="at">type =</span> <span class="st">"text/css"</span>, <span class="at">href =</span> <span class="st">"custom.css"</span>), </span>
+<span id="cb6-21"><a href="#cb6-21"></a>            tags<span class="sc">$</span><span class="fu">script</span>(<span class="at">src =</span> <span class="st">"custom.js"</span>)</span>
+<span id="cb6-22"><a href="#cb6-22"></a>        ),</span>
+<span id="cb6-23"><a href="#cb6-23"></a>        <span class="fu">tabItems</span>(</span>
+<span id="cb6-24"><a href="#cb6-24"></a>          intro_tab, day6</span>
+<span id="cb6-25"><a href="#cb6-25"></a>        )</span>
+<span id="cb6-26"><a href="#cb6-26"></a>    )</span>
+<span id="cb6-27"><a href="#cb6-27"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>This is what the app looks like at this point when you run it:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/app-start.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="day-6" class="level2" data-number="26.3"><h2 data-number="26.3" class="anchored" data-anchor-id="day-6">
+<span class="header-section-number">26.3</span> Day 6</h2>
+<p>This was originally an animated map showing the share of the population using the internet in every country from 1990 to 2019. My plan is to make this interactive by adding a slider so you can pick the year.</p>
+<section id="map-functions" class="level3" data-number="26.3.1"><h3 data-number="26.3.1" class="anchored" data-anchor-id="map-functions">
+<span class="header-section-number">26.3.1</span> Map functions</h3>
+<p>I like to keep as much code as possible out of the app.R file, so I’m going to add some functions to the <code>scripts/func.R</code> file to create the main plot. First, I need to create the dataset to be filtered.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>day6_data()</summary><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>day6_data <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">crs =</span> <span class="st">"+proj=wintri"</span>) {</span>
+<span id="cb7-2"><a href="#cb7-2"></a>  data_na <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/share-of-individuals-using-the-internet.csv"</span>,</span>
+<span id="cb7-3"><a href="#cb7-3"></a>                        <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"country"</span>, <span class="st">"code"</span>, <span class="st">"year"</span>, <span class="st">"it_net_users"</span>),</span>
+<span id="cb7-4"><a href="#cb7-4"></a>                        <span class="at">skip =</span> <span class="dv">1</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a>    <span class="fu">mutate</span>(<span class="at">code =</span> <span class="fu">recode</span>(code, <span class="at">SSD =</span> <span class="st">"SDS"</span>, <span class="at">.default =</span> code)) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-6"><a href="#cb7-6"></a>    <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> year, </span>
+<span id="cb7-7"><a href="#cb7-7"></a>                <span class="at">values_from =</span> it_net_users) <span class="sc">%&gt;%</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a>    <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span><span class="fu">c</span>(country, code),</span>
+<span id="cb7-9"><a href="#cb7-9"></a>                 <span class="at">names_to =</span> <span class="st">"year"</span>,</span>
+<span id="cb7-10"><a href="#cb7-10"></a>                 <span class="at">values_to =</span> <span class="st">"it_net_users"</span>, </span>
+<span id="cb7-11"><a href="#cb7-11"></a>                 <span class="at">names_transform =</span> <span class="fu">list</span>(<span class="at">year =</span> as.integer))</span>
+<span id="cb7-12"><a href="#cb7-12"></a>  </span>
+<span id="cb7-13"><a href="#cb7-13"></a>  world <span class="ot">&lt;-</span> <span class="fu">ne_countries</span>(<span class="at">returnclass =</span> <span class="st">"sf"</span>, <span class="at">scale =</span> <span class="st">"medium"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-14"><a href="#cb7-14"></a>    lwgeom<span class="sc">::</span><span class="fu">st_transform_proj</span>(<span class="at">crs =</span> crs)</span>
+<span id="cb7-15"><a href="#cb7-15"></a>  </span>
+<span id="cb7-16"><a href="#cb7-16"></a>  data_map_int_no_missing <span class="ot">&lt;-</span> <span class="fu">left_join</span>(world, data_na, </span>
+<span id="cb7-17"><a href="#cb7-17"></a>                            <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"gu_a3"</span> <span class="ot">=</span> <span class="st">"code"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-18"><a href="#cb7-18"></a>    <span class="fu">select</span>(country, year, <span class="at">code =</span> gu_a3, it_net_users, geometry) <span class="sc">%&gt;%</span></span>
+<span id="cb7-19"><a href="#cb7-19"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(year)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-20"><a href="#cb7-20"></a>    <span class="fu">mutate</span>(<span class="at">it_net_users_no_na =</span> it_net_users,</span>
+<span id="cb7-21"><a href="#cb7-21"></a>           <span class="at">missing =</span> <span class="fu">is.na</span>(it_net_users)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-22"><a href="#cb7-22"></a>    <span class="fu">arrange</span>(code, year) <span class="sc">%&gt;%</span></span>
+<span id="cb7-23"><a href="#cb7-23"></a>    <span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span></span>
+<span id="cb7-24"><a href="#cb7-24"></a>    <span class="fu">fill</span>(it_net_users_no_na, <span class="at">.direction =</span> <span class="st">"down"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-25"><a href="#cb7-25"></a>    <span class="fu">ungroup</span>()</span>
+<span id="cb7-26"><a href="#cb7-26"></a>  </span>
+<span id="cb7-27"><a href="#cb7-27"></a>  <span class="co"># fix south sudan</span></span>
+<span id="cb7-28"><a href="#cb7-28"></a>  sudan <span class="ot">&lt;-</span> data_map_int_no_missing <span class="sc">%&gt;%</span></span>
+<span id="cb7-29"><a href="#cb7-29"></a>    <span class="fu">filter</span>(country <span class="sc">==</span> <span class="st">"Sudan"</span>,</span>
+<span id="cb7-30"><a href="#cb7-30"></a>           year <span class="sc">&lt;=</span> <span class="dv">2012</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-31"><a href="#cb7-31"></a>    <span class="fu">pull</span>(it_net_users_no_na)</span>
+<span id="cb7-32"><a href="#cb7-32"></a></span>
+<span id="cb7-33"><a href="#cb7-33"></a>  ss_rows <span class="ot">&lt;-</span> <span class="fu">which</span>(data_map_int_no_missing<span class="sc">$</span>country <span class="sc">==</span> <span class="st">"South Sudan"</span> <span class="sc">&amp;</span> </span>
+<span id="cb7-34"><a href="#cb7-34"></a>                   data_map_int_no_missing<span class="sc">$</span>year <span class="sc">&lt;=</span> <span class="dv">2012</span>)</span>
+<span id="cb7-35"><a href="#cb7-35"></a>  </span>
+<span id="cb7-36"><a href="#cb7-36"></a>  nona <span class="ot">&lt;-</span> data_map_int_no_missing<span class="sc">$</span>it_net_users_no_na</span>
+<span id="cb7-37"><a href="#cb7-37"></a>  nona[ss_rows] <span class="ot">&lt;-</span> sudan</span>
+<span id="cb7-38"><a href="#cb7-38"></a>  </span>
+<span id="cb7-39"><a href="#cb7-39"></a>  data_map_int_final <span class="ot">&lt;-</span> data_map_int_no_missing <span class="sc">%&gt;%</span></span>
+<span id="cb7-40"><a href="#cb7-40"></a>    <span class="fu">mutate</span>(<span class="at">it_net_users_no_na =</span> nona)</span>
+<span id="cb7-41"><a href="#cb7-41"></a>  </span>
+<span id="cb7-42"><a href="#cb7-42"></a>  data_map_int_final</span>
+<span id="cb7-43"><a href="#cb7-43"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>I also need to make a function to get the crop coordinates for the projection I’m using.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>crop_coords()</summary><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>crop_coords <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">crs =</span> <span class="st">"+proj=wintri"</span>) {</span>
+<span id="cb8-2"><a href="#cb8-2"></a>  <span class="co"># translate and crop coordinates</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>  trans_coords <span class="ot">&lt;-</span> <span class="fu">st_sfc</span>(</span>
+<span id="cb8-4"><a href="#cb8-4"></a>    <span class="fu">st_point</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.4e7</span>, <span class="sc">-</span><span class="fl">6.5e6</span>)), <span class="co"># lower left lat and lon</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a>    <span class="fu">st_point</span>(<span class="fu">c</span>(<span class="fl">2e7</span>, <span class="fl">1e7</span>)),       <span class="co"># upper right lat and lon</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a>    <span class="at">crs =</span> crs) <span class="sc">%&gt;%</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a>    <span class="fu">st_transform</span>(<span class="at">crs =</span> crs) <span class="sc">%&gt;%</span></span>
+<span id="cb8-8"><a href="#cb8-8"></a>    <span class="fu">st_coordinates</span>()</span>
+<span id="cb8-9"><a href="#cb8-9"></a>  </span>
+<span id="cb8-10"><a href="#cb8-10"></a>  <span class="fu">coord_sf</span>(</span>
+<span id="cb8-11"><a href="#cb8-11"></a>    <span class="at">datum =</span> <span class="cn">NULL</span>, </span>
+<span id="cb8-12"><a href="#cb8-12"></a>    <span class="at">xlim =</span> trans_coords[,<span class="st">'X'</span>], </span>
+<span id="cb8-13"><a href="#cb8-13"></a>    <span class="at">ylim =</span> trans_coords[,<span class="st">'Y'</span>], </span>
+<span id="cb8-14"><a href="#cb8-14"></a>    <span class="at">expand =</span> <span class="cn">FALSE</span></span>
+<span id="cb8-15"><a href="#cb8-15"></a>  )</span>
+<span id="cb8-16"><a href="#cb8-16"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Test the functions in a simple plot.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Plot Test</summary><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">day6_data</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2019</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb9-4"><a href="#cb9-4"></a>  <span class="fu">geom_sf</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">fill =</span> it_net_users_no_na)) <span class="sc">+</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a>  <span class="fu">crop_coords</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="26-interactive_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Write a plotting function that takes the year as an argument.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Demo Plot Function</summary><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>day6_plot <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">filter_year =</span> <span class="dv">2019</span>) {</span>
+<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">day6_data</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> filter_year) <span class="sc">%&gt;%</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb10-5"><a href="#cb10-5"></a>  <span class="fu">geom_sf</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">fill =</span> it_net_users_no_na)) <span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6"></a>  <span class="fu">crop_coords</span>()</span>
+<span id="cb10-7"><a href="#cb10-7"></a>}</span>
+<span id="cb10-8"><a href="#cb10-8"></a></span>
+<span id="cb10-9"><a href="#cb10-9"></a>tictoc<span class="sc">::</span><span class="fu">tic</span>()</span>
+<span id="cb10-10"><a href="#cb10-10"></a><span class="fu">day6_plot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="26-interactive_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+<details><summary>Demo Plot Function</summary><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>tictoc<span class="sc">::</span><span class="fu">toc</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-stdout">
+<pre><code>2.264 sec elapsed</code></pre>
+</div>
+</div>
+<p>This is pretty slow. What can we do to speed it up? Maybe make the day6 data first?</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Time Data Loading</summary><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>tictoc<span class="sc">::</span><span class="fu">tic</span>(<span class="st">"process data"</span>)</span>
+<span id="cb13-2"><a href="#cb13-2"></a>day6_data <span class="ot">&lt;-</span> <span class="fu">day6_data</span>()</span>
+<span id="cb13-3"><a href="#cb13-3"></a>tictoc<span class="sc">::</span><span class="fu">toc</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-stdout">
+<pre><code>process data: 0.551 sec elapsed</code></pre>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<details><summary>Time Plot Function</summary><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>day6_plot <span class="ot">&lt;-</span> <span class="cf">function</span>(data, <span class="at">filter_year =</span> <span class="dv">2019</span>) {</span>
+<span id="cb15-2"><a href="#cb15-2"></a>  data <span class="sc">%&gt;%</span></span>
+<span id="cb15-3"><a href="#cb15-3"></a>    <span class="fu">filter</span>(year <span class="sc">==</span> filter_year) <span class="sc">%&gt;%</span></span>
+<span id="cb15-4"><a href="#cb15-4"></a>    <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb15-5"><a href="#cb15-5"></a>    <span class="fu">geom_sf</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">fill =</span> it_net_users_no_na)) <span class="sc">+</span></span>
+<span id="cb15-6"><a href="#cb15-6"></a>    <span class="fu">crop_coords</span>()</span>
+<span id="cb15-7"><a href="#cb15-7"></a>}</span>
+<span id="cb15-8"><a href="#cb15-8"></a></span>
+<span id="cb15-9"><a href="#cb15-9"></a>tictoc<span class="sc">::</span><span class="fu">tic</span>(<span class="st">"build demo plot"</span>)</span>
+<span id="cb15-10"><a href="#cb15-10"></a><span class="fu">day6_plot</span>(day6_data, <span class="dv">2010</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="26-interactive_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+<details><summary>Time Plot Function</summary><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>tictoc<span class="sc">::</span><span class="fu">toc</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-stdout">
+<pre><code>build demo plot: 1.451 sec elapsed</code></pre>
+</div>
+</div>
+<p>Nope, reading the data isn’t adding much to the plotting time, but half a send faster is still better. Maybe we’ll come back to this. Add the rest of the plot functions.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>day6_plot()</summary><div class="sourceCode" id="cb18"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>day6_plot <span class="ot">&lt;-</span> <span class="cf">function</span>(data, <span class="at">filter_year =</span> <span class="dv">2019</span>) {</span>
+<span id="cb18-2"><a href="#cb18-2"></a>  data <span class="sc">%&gt;%</span></span>
+<span id="cb18-3"><a href="#cb18-3"></a>    <span class="fu">filter</span>(year <span class="sc">==</span> filter_year) <span class="sc">%&gt;%</span></span>
+<span id="cb18-4"><a href="#cb18-4"></a>    <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb18-5"><a href="#cb18-5"></a>    <span class="fu">geom_sf</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">fill =</span> it_net_users_no_na<span class="sc">/</span><span class="dv">100</span>),</span>
+<span id="cb18-6"><a href="#cb18-6"></a>            <span class="at">size =</span> .<span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb18-7"><a href="#cb18-7"></a>    <span class="fu">crop_coords</span>() <span class="sc">+</span></span>
+<span id="cb18-8"><a href="#cb18-8"></a>    <span class="fu">scale_fill_viridis_c</span>(</span>
+<span id="cb18-9"><a href="#cb18-9"></a>      <span class="at">name =</span> <span class="cn">NULL</span>,</span>
+<span id="cb18-10"><a href="#cb18-10"></a>      <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb18-11"><a href="#cb18-11"></a>      <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, .<span class="dv">1</span>),</span>
+<span id="cb18-12"><a href="#cb18-12"></a>      <span class="at">labels =</span> <span class="cf">function</span>(x) scales<span class="sc">::</span><span class="fu">percent</span>(x, <span class="at">accuracy =</span> <span class="dv">1</span>),</span>
+<span id="cb18-13"><a href="#cb18-13"></a>      <span class="at">guide =</span> <span class="fu">guide_colorbar</span>(</span>
+<span id="cb18-14"><a href="#cb18-14"></a>        <span class="at">label.position =</span> <span class="st">"top"</span>, </span>
+<span id="cb18-15"><a href="#cb18-15"></a>        <span class="at">barheight =</span> <span class="fu">unit</span>(.<span class="dv">1</span>, <span class="st">"in"</span>),</span>
+<span id="cb18-16"><a href="#cb18-16"></a>        <span class="at">frame.colour =</span> <span class="st">"black"</span>,</span>
+<span id="cb18-17"><a href="#cb18-17"></a>        <span class="at">ticks.colour =</span> <span class="st">"black"</span></span>
+<span id="cb18-18"><a href="#cb18-18"></a>      )</span>
+<span id="cb18-19"><a href="#cb18-19"></a>    ) <span class="sc">+</span></span>
+<span id="cb18-20"><a href="#cb18-20"></a>    ggthemes<span class="sc">::</span><span class="fu">theme_map</span>() <span class="sc">+</span></span>
+<span id="cb18-21"><a href="#cb18-21"></a>    <span class="fu">theme</span>(</span>
+<span id="cb18-22"><a href="#cb18-22"></a>      <span class="at">legend.background =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb18-23"><a href="#cb18-23"></a>      <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb18-24"><a href="#cb18-24"></a>      <span class="at">legend.key.width =</span> <span class="fu">unit</span>(.<span class="dv">33</span>, <span class="st">"snpc"</span>)</span>
+<span id="cb18-25"><a href="#cb18-25"></a>    )</span>
+<span id="cb18-26"><a href="#cb18-26"></a>}</span>
+<span id="cb18-27"><a href="#cb18-27"></a></span>
+<span id="cb18-28"><a href="#cb18-28"></a>tictoc<span class="sc">::</span><span class="fu">tic</span>(<span class="st">"build full plot"</span>)</span>
+<span id="cb18-29"><a href="#cb18-29"></a><span class="fu">day6_plot</span>(day6_data, <span class="dv">2010</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="26-interactive_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+<details><summary>day6_plot()</summary><div class="sourceCode" id="cb19"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>tictoc<span class="sc">::</span><span class="fu">toc</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-stdout">
+<pre><code>build full plot: 0.559 sec elapsed</code></pre>
+</div>
+</div>
+</section><section id="ui" class="level3" data-number="26.3.2"><h3 data-number="26.3.2" class="anchored" data-anchor-id="ui">
+<span class="header-section-number">26.3.2</span> UI</h3>
+<p>I need to add an input and an output to the day 6 tab. Set <code>sep = ""</code> to remove the comma for the thousands separator, which makes no sense for years.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Day 6 UI</summary><div class="sourceCode" id="cb21"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>day6 <span class="ot">&lt;-</span> <span class="fu">tabItem</span>(</span>
+<span id="cb21-2"><a href="#cb21-2"></a>    <span class="at">tabName =</span> <span class="st">"day6"</span>,</span>
+<span id="cb21-3"><a href="#cb21-3"></a>    <span class="fu">sliderInput</span>(<span class="st">"day6_year"</span>, </span>
+<span id="cb21-4"><a href="#cb21-4"></a>                <span class="at">label =</span> <span class="st">"Year"</span>, </span>
+<span id="cb21-5"><a href="#cb21-5"></a>                <span class="at">min =</span> <span class="dv">2009</span>, </span>
+<span id="cb21-6"><a href="#cb21-6"></a>                <span class="at">max =</span> <span class="dv">2019</span>, </span>
+<span id="cb21-7"><a href="#cb21-7"></a>                <span class="at">value =</span> <span class="dv">2019</span>,</span>
+<span id="cb21-8"><a href="#cb21-8"></a>                <span class="at">step =</span> <span class="dv">1</span>, </span>
+<span id="cb21-9"><a href="#cb21-9"></a>                <span class="at">sep =</span> <span class="st">""</span>),</span>
+<span id="cb21-10"><a href="#cb21-10"></a>    <span class="fu">plotOutput</span>(<span class="st">"day6_plot"</span>)</span>
+<span id="cb21-11"><a href="#cb21-11"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section><section id="server-function" class="level3" data-number="26.3.3"><h3 data-number="26.3.3" class="anchored" data-anchor-id="server-function">
+<span class="header-section-number">26.3.3</span> Server function</h3>
+<p>I also need to add the code to produce the output plot to the server function. I defined the data table <code>day6_data</code> outside the server function because this only needs to run once, when the app in initialised. There’s no reason to run it for every instantiation of the app or every time the plot is rendered.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Day 6 server function</summary><div class="sourceCode" id="cb22"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>day6_data <span class="ot">&lt;-</span> <span class="fu">day6_data</span>()</span>
+<span id="cb22-2"><a href="#cb22-2"></a></span>
+<span id="cb22-3"><a href="#cb22-3"></a><span class="co"># server ----</span></span>
+<span id="cb22-4"><a href="#cb22-4"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb22-5"><a href="#cb22-5"></a>    output<span class="sc">$</span>day6_plot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<span id="cb22-6"><a href="#cb22-6"></a>      <span class="fu">day6_plot</span>(day6_data, input<span class="sc">$</span>day6_year)</span>
+<span id="cb22-7"><a href="#cb22-7"></a>    })</span>
+<span id="cb22-8"><a href="#cb22-8"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Now I just need to add some title and caption text. It’s still a bit slow, but properly interactive. If this is all I needed it to do, I’d probably pre-render the chart for each of the 11 years at app startup and flip between the images rather than rerender the plot each time, but this is fine for today’s challenge.</p>
+</section></section><section id="day-18" class="level2" data-number="26.4"><h2 data-number="26.4" class="anchored" data-anchor-id="day-18">
+<span class="header-section-number">26.4</span> Day 18</h2>
+<p>Day 18 was one where I had to look at a few different versions of the code and plot before deciding on some parameters, so let’s make those topic modelling parameters interactive.</p>
+<section id="data-functions" class="level3" data-number="26.4.1"><h3 data-number="26.4.1" class="anchored" data-anchor-id="data-functions">
+<span class="header-section-number">26.4.1</span> Data Functions</h3>
+<p>We can greatly condense the code from <a href="18-oecd.html">Day&nbsp;<span>18</span></a>.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Day 18 Data Functions</summary><div class="sourceCode" id="cb23"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>get_dtm <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb23-2"><a href="#cb23-2"></a>  sw <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">word =</span> <span class="fu">c</span>(stop_words<span class="sc">$</span>word, <span class="dv">0</span><span class="sc">:</span><span class="dv">2030</span>, <span class="st">"oecd"</span>, <span class="st">"countries"</span>))</span>
+<span id="cb23-3"><a href="#cb23-3"></a>  </span>
+<span id="cb23-4"><a href="#cb23-4"></a>  <span class="fu">readRDS</span>(<span class="st">"data/oecd_covid_insights.rds"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb23-5"><a href="#cb23-5"></a>    <span class="fu">filter</span>(p <span class="sc">!=</span> <span class="st">"Follow us (Social Media):"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb23-6"><a href="#cb23-6"></a>    <span class="fu">unnest_tokens</span>(word, p) <span class="sc">%&gt;%</span></span>
+<span id="cb23-7"><a href="#cb23-7"></a>    <span class="fu">anti_join</span>(sw, <span class="at">by =</span> <span class="st">"word"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb23-8"><a href="#cb23-8"></a>    <span class="fu">count</span>(url, word, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb23-9"><a href="#cb23-9"></a>    <span class="fu">cast_dtm</span>(<span class="at">document =</span> url, <span class="at">term =</span> word, <span class="at">value =</span> n)</span>
+<span id="cb23-10"><a href="#cb23-10"></a>}</span>
+<span id="cb23-11"><a href="#cb23-11"></a></span>
+<span id="cb23-12"><a href="#cb23-12"></a>get_lda <span class="ot">&lt;-</span> <span class="cf">function</span>(dtm, <span class="at">k =</span> <span class="dv">6</span>) {</span>
+<span id="cb23-13"><a href="#cb23-13"></a>  dtm <span class="sc">%&gt;%</span></span>
+<span id="cb23-14"><a href="#cb23-14"></a>    <span class="fu">LDA</span>(<span class="at">k =</span> k, <span class="at">control =</span> <span class="fu">list</span>(<span class="at">seed =</span> <span class="dv">8675309</span>))</span>
+<span id="cb23-15"><a href="#cb23-15"></a>}</span>
+<span id="cb23-16"><a href="#cb23-16"></a></span>
+<span id="cb23-17"><a href="#cb23-17"></a>get_top_terms <span class="ot">&lt;-</span> <span class="cf">function</span>(lda, <span class="at">n_terms =</span> <span class="dv">7</span>) {</span>
+<span id="cb23-18"><a href="#cb23-18"></a>  <span class="fu">tidy</span>(lda, <span class="at">matrix =</span> <span class="st">"beta"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb23-19"><a href="#cb23-19"></a>  <span class="fu">group_by</span>(topic) <span class="sc">%&gt;%</span></span>
+<span id="cb23-20"><a href="#cb23-20"></a>  <span class="fu">slice_max</span>(beta, <span class="at">n =</span> n_terms) <span class="sc">%&gt;%</span> </span>
+<span id="cb23-21"><a href="#cb23-21"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb23-22"><a href="#cb23-22"></a>  <span class="fu">arrange</span>(topic, <span class="sc">-</span>beta)</span>
+<span id="cb23-23"><a href="#cb23-23"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Test the functions.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb24"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>lda3 <span class="ot">&lt;-</span> <span class="fu">get_lda</span>(<span class="fu">get_dtm</span>(), <span class="at">k =</span> <span class="dv">3</span>)</span>
+<span id="cb24-2"><a href="#cb24-2"></a></span>
+<span id="cb24-3"><a href="#cb24-3"></a>tt3 <span class="ot">&lt;-</span> <span class="fu">get_top_terms</span>(lda3, <span class="dv">3</span>)</span>
+<span id="cb24-4"><a href="#cb24-4"></a></span>
+<span id="cb24-5"><a href="#cb24-5"></a>tt3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="kable-table">
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<thead><tr>
+<th style="text-align:right;"> topic </th>
+   <th style="text-align:left;"> term </th>
+   <th style="text-align:right;"> beta </th>
+  </tr></thead>
+<tbody>
+<tr>
+<td style="text-align:right;"> 1 </td>
+   <td style="text-align:left;"> economic </td>
+   <td style="text-align:right;"> 0.017 </td>
+  </tr>
+<tr>
+<td style="text-align:right;"> 1 </td>
+   <td style="text-align:left;"> growth </td>
+   <td style="text-align:right;"> 0.013 </td>
+  </tr>
+<tr>
+<td style="text-align:right;"> 1 </td>
+   <td style="text-align:left;"> pandemic </td>
+   <td style="text-align:right;"> 0.010 </td>
+  </tr>
+<tr>
+<td style="text-align:right;"> 2 </td>
+   <td style="text-align:left;"> covid </td>
+   <td style="text-align:right;"> 0.016 </td>
+  </tr>
+<tr>
+<td style="text-align:right;"> 2 </td>
+   <td style="text-align:left;"> measures </td>
+   <td style="text-align:right;"> 0.010 </td>
+  </tr>
+<tr>
+<td style="text-align:right;"> 2 </td>
+   <td style="text-align:left;"> tax </td>
+   <td style="text-align:right;"> 0.010 </td>
+  </tr>
+<tr>
+<td style="text-align:right;"> 3 </td>
+   <td style="text-align:left;"> covid </td>
+   <td style="text-align:right;"> 0.015 </td>
+  </tr>
+<tr>
+<td style="text-align:right;"> 3 </td>
+   <td style="text-align:left;"> people </td>
+   <td style="text-align:right;"> 0.013 </td>
+  </tr>
+<tr>
+<td style="text-align:right;"> 3 </td>
+   <td style="text-align:left;"> pandemic </td>
+   <td style="text-align:right;"> 0.012 </td>
+  </tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section><section id="plot-function" class="level3" data-number="26.4.2"><h3 data-number="26.4.2" class="anchored" data-anchor-id="plot-function">
+<span class="header-section-number">26.4.2</span> Plot Function</h3>
+<div class="cell" data-layout-align="center">
+<details><summary>Day 18 Plot Function</summary><div class="sourceCode" id="cb25"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>day18_plot <span class="ot">&lt;-</span> <span class="cf">function</span>(top_terms, <span class="at">topics =</span> <span class="fu">list</span>()) {</span>
+<span id="cb25-2"><a href="#cb25-2"></a>  <span class="fu">names</span>(topics) <span class="ot">&lt;-</span> <span class="fu">seq_along</span>(topics)</span>
+<span id="cb25-3"><a href="#cb25-3"></a>  </span>
+<span id="cb25-4"><a href="#cb25-4"></a>  top_terms <span class="sc">%&gt;%</span></span>
+<span id="cb25-5"><a href="#cb25-5"></a>    <span class="fu">mutate</span>(<span class="at">term =</span> <span class="fu">reorder_within</span>(term, beta, topic)) <span class="sc">%&gt;%</span></span>
+<span id="cb25-6"><a href="#cb25-6"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(beta, term, <span class="at">fill =</span> <span class="fu">factor</span>(topic))) <span class="sc">+</span></span>
+<span id="cb25-7"><a href="#cb25-7"></a>    <span class="fu">geom_col</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb25-8"><a href="#cb25-8"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span> topic, <span class="at">scales =</span> <span class="st">"free_y"</span>, <span class="at">nrow =</span> <span class="dv">2</span>,</span>
+<span id="cb25-9"><a href="#cb25-9"></a>               <span class="at">labeller =</span> <span class="fu">as_labeller</span>(topics)) <span class="sc">+</span></span>
+<span id="cb25-10"><a href="#cb25-10"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, .<span class="dv">01</span>)) <span class="sc">+</span></span>
+<span id="cb25-11"><a href="#cb25-11"></a>    <span class="fu">scale_y_reordered</span>() <span class="sc">+</span></span>
+<span id="cb25-12"><a href="#cb25-12"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb25-13"><a href="#cb25-13"></a>    <span class="fu">scale_fill_hue</span>() <span class="sc">+</span></span>
+<span id="cb25-14"><a href="#cb25-14"></a>    <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">14</span>)</span>
+<span id="cb25-15"><a href="#cb25-15"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb26"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="fu">day18_plot</span>(tt3, <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="26-interactive_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="setup" class="level3" data-number="26.4.3"><h3 data-number="26.4.3" class="anchored" data-anchor-id="setup">
+<span class="header-section-number">26.4.3</span> Setup</h3>
+<p>Now add the function to <code>scripts/func.R</code> and make sure to add the appropriate packages to the top of the <code>app.R</code> file. Add <code>dtm &lt;- dtm()</code> to the top of the <code>app.R</code> script (after sourcing in func.R) because this only needs to be called once. Make sure to move <code>oecd_covid_insights.rds</code> to the app data folder.</p>
+</section><section id="ui-1" class="level3" data-number="26.4.4"><h3 data-number="26.4.4" class="anchored" data-anchor-id="ui-1">
+<span class="header-section-number">26.4.4</span> UI</h3>
+<p>Same as above, make a new tab for day 18, with inputs and an output plot.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Day 18 UI</summary><div class="sourceCode" id="cb27"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>day18 <span class="ot">&lt;-</span> <span class="fu">tabItem</span>(</span>
+<span id="cb27-2"><a href="#cb27-2"></a>  <span class="at">tabName =</span> <span class="st">"day18"</span>,</span>
+<span id="cb27-3"><a href="#cb27-3"></a>  <span class="fu">h2</span>(<span class="st">"LDA Topic Analysis of OECD Data Insights"</span>),</span>
+<span id="cb27-4"><a href="#cb27-4"></a>  <span class="fu">numericInput</span>(<span class="st">"day18_k"</span>, </span>
+<span id="cb27-5"><a href="#cb27-5"></a>               <span class="at">label =</span> <span class="st">"Number of Topics"</span>,</span>
+<span id="cb27-6"><a href="#cb27-6"></a>               <span class="at">min =</span> <span class="dv">2</span>, <span class="at">max =</span> <span class="dv">16</span>, <span class="at">value =</span> <span class="dv">6</span>, <span class="at">step =</span> <span class="dv">1</span>),</span>
+<span id="cb27-7"><a href="#cb27-7"></a>  <span class="fu">numericInput</span>(<span class="st">"day18_topterms"</span>, </span>
+<span id="cb27-8"><a href="#cb27-8"></a>               <span class="at">label =</span> <span class="st">"Number of Terms per Topic"</span>,</span>
+<span id="cb27-9"><a href="#cb27-9"></a>               <span class="at">min =</span> <span class="dv">1</span>, <span class="at">max =</span> <span class="dv">20</span>, <span class="at">value =</span> <span class="dv">7</span>, <span class="at">step =</span> <span class="dv">1</span>),</span>
+<span id="cb27-10"><a href="#cb27-10"></a>  <span class="fu">textAreaInput</span>(<span class="st">"day18_topics"</span>, </span>
+<span id="cb27-11"><a href="#cb27-11"></a>                <span class="at">label =</span> <span class="st">"Topic Labels (one per line)"</span>,</span>
+<span id="cb27-12"><a href="#cb27-12"></a>                <span class="at">rows =</span> <span class="dv">6</span>),</span>
+<span id="cb27-13"><a href="#cb27-13"></a>  <span class="fu">plotOutput</span>(<span class="st">"day18_plot"</span>),</span>
+<span id="cb27-14"><a href="#cb27-14"></a>  <span class="fu">HTML</span>(<span class="st">"&lt;caption&gt;Data from &lt;a href='https://www.oecd.org/coronavirus/en/data-insights/'&gt;OECD&lt;/a&gt; | Plot by &lt;a href='https://twitter.com/lisadebruine'&gt;@lisadebruine&lt;/a&gt;&lt;/caption&gt;"</span>)</span>
+<span id="cb27-15"><a href="#cb27-15"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section><section id="server-function-1" class="level3" data-number="26.4.5"><h3 data-number="26.4.5" class="anchored" data-anchor-id="server-function-1">
+<span class="header-section-number">26.4.5</span> Server function</h3>
+<p>Set up the render function for the plot.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Day 18 server function</summary><div class="sourceCode" id="cb28"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>output<span class="sc">$</span>day18_plot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<span id="cb28-2"><a href="#cb28-2"></a>  lda <span class="ot">&lt;-</span> <span class="fu">get_lda</span>(dtm, <span class="at">k =</span> input<span class="sc">$</span>day18_k)</span>
+<span id="cb28-3"><a href="#cb28-3"></a>  tt <span class="ot">&lt;-</span> <span class="fu">get_top_terms</span>(lda, input<span class="sc">$</span>day18_topterms)</span>
+<span id="cb28-4"><a href="#cb28-4"></a>  topics <span class="ot">&lt;-</span> <span class="fu">strsplit</span>(input<span class="sc">$</span>day18_topics, <span class="at">split =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)[[<span class="dv">1</span>]] <span class="sc">%&gt;%</span> </span>
+<span id="cb28-5"><a href="#cb28-5"></a>    <span class="fu">trimws</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb28-6"><a href="#cb28-6"></a>    <span class="fu">rep</span>(<span class="at">length.out =</span> input<span class="sc">$</span>day18_k)</span>
+<span id="cb28-7"><a href="#cb28-7"></a>  <span class="fu">day18_plot</span>(tt, topics)</span>
+<span id="cb28-8"><a href="#cb28-8"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section><section id="test-and-update" class="level3" data-number="26.4.6"><h3 data-number="26.4.6" class="anchored" data-anchor-id="test-and-update">
+<span class="header-section-number">26.4.6</span> Test and Update</h3>
+<p>After a few tests, I realised that I needed to remove the constraint of <code>nrow = 2</code> in the <code>facet_wrap()</code> and also restructure how I was splitting the string in the topic labels to deal with blank lines or too few/many labels.</p>
+<p>I also decided it was too annoying waiting for the whole plot to update every time I wanted to change the topic labels, so restructured the server code to only rerun code when absolutely necessary, and to add an update button for the topic labels, so they only update when you’re done editing the labels.</p>
+<p>The <code>reactive()</code> functions only run when the inputs or reactive functions they contain update, while the <code>observeEvent()</code> function only runs when the input value for the first argument changes.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Day 18 server function updates</summary><div class="sourceCode" id="cb29"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>    <span class="co"># topic_labels ----</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a>    topic_labels <span class="ot">&lt;-</span> <span class="fu">reactiveVal</span>(<span class="fu">c</span>(<span class="st">"global covid effects"</span>,</span>
+<span id="cb29-3"><a href="#cb29-3"></a>                                     <span class="st">"household economics"</span>,</span>
+<span id="cb29-4"><a href="#cb29-4"></a>                                     <span class="st">"economic recovery"</span>,</span>
+<span id="cb29-5"><a href="#cb29-5"></a>                                     <span class="st">"pandemic recovery"</span>,</span>
+<span id="cb29-6"><a href="#cb29-6"></a>                                     <span class="st">"economic growth"</span>,</span>
+<span id="cb29-7"><a href="#cb29-7"></a>                                     <span class="st">"personal covid effects"</span>))</span>
+<span id="cb29-8"><a href="#cb29-8"></a>    </span>
+<span id="cb29-9"><a href="#cb29-9"></a>    <span class="co"># day18_update_topics ----</span></span>
+<span id="cb29-10"><a href="#cb29-10"></a>    <span class="fu">observeEvent</span>(input<span class="sc">$</span>day18_update_topics, {</span>
+<span id="cb29-11"><a href="#cb29-11"></a>      <span class="fu">paste0</span>(input<span class="sc">$</span>day18_topics, <span class="st">" "</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb29-12"><a href="#cb29-12"></a>        <span class="fu">strsplit</span>(<span class="at">split =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb29-13"><a href="#cb29-13"></a>        <span class="st">`</span><span class="at">[[</span><span class="st">`</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-14"><a href="#cb29-14"></a>        <span class="fu">trimws</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb29-15"><a href="#cb29-15"></a>        <span class="fu">rep</span>(<span class="at">length.out =</span> input<span class="sc">$</span>day18_k) <span class="sc">%&gt;%</span></span>
+<span id="cb29-16"><a href="#cb29-16"></a>        <span class="fu">topic_labels</span>()</span>
+<span id="cb29-17"><a href="#cb29-17"></a>    })</span>
+<span id="cb29-18"><a href="#cb29-18"></a>    </span>
+<span id="cb29-19"><a href="#cb29-19"></a>    <span class="co"># lda ----</span></span>
+<span id="cb29-20"><a href="#cb29-20"></a>    lda <span class="ot">&lt;-</span> <span class="fu">reactive</span>({ <span class="fu">get_lda</span>(dtm, <span class="at">k =</span> input<span class="sc">$</span>day18_k) })</span>
+<span id="cb29-21"><a href="#cb29-21"></a>    </span>
+<span id="cb29-22"><a href="#cb29-22"></a>    <span class="co"># tt ----</span></span>
+<span id="cb29-23"><a href="#cb29-23"></a>    tt <span class="ot">&lt;-</span> <span class="fu">reactive</span>({ <span class="fu">get_top_terms</span>(<span class="fu">lda</span>(), input<span class="sc">$</span>day18_topterms) })</span>
+<span id="cb29-24"><a href="#cb29-24"></a>    </span>
+<span id="cb29-25"><a href="#cb29-25"></a>    <span class="co"># plot18 ----</span></span>
+<span id="cb29-26"><a href="#cb29-26"></a>    plot18 <span class="ot">&lt;-</span> <span class="fu">reactive</span>({ <span class="fu">day18_plot</span>(<span class="fu">tt</span>(), <span class="fu">topic_labels</span>()) })</span>
+<span id="cb29-27"><a href="#cb29-27"></a>    </span>
+<span id="cb29-28"><a href="#cb29-28"></a>    <span class="co"># day18_plot ---- </span></span>
+<span id="cb29-29"><a href="#cb29-29"></a>    output<span class="sc">$</span>day18_plot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({ <span class="fu">plot18</span>() })</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>I also added a download button to the UI and a download handler to the server function.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Day 18 Download</summary><div class="sourceCode" id="cb30"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>    <span class="co"># day18_dl ----</span></span>
+<span id="cb30-2"><a href="#cb30-2"></a>    output<span class="sc">$</span>day18_dl <span class="ot">&lt;-</span> <span class="fu">downloadHandler</span>(</span>
+<span id="cb30-3"><a href="#cb30-3"></a>      <span class="at">filename =</span> <span class="cf">function</span>() {</span>
+<span id="cb30-4"><a href="#cb30-4"></a>        <span class="st">"OECD_topic_model.png"</span></span>
+<span id="cb30-5"><a href="#cb30-5"></a>      },</span>
+<span id="cb30-6"><a href="#cb30-6"></a>      <span class="at">content =</span> <span class="cf">function</span>(file) {</span>
+<span id="cb30-7"><a href="#cb30-7"></a>        <span class="fu">ggsave</span>(file, <span class="fu">plot18</span>())</span>
+<span id="cb30-8"><a href="#cb30-8"></a>      }</span>
+<span id="cb30-9"><a href="#cb30-9"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section></section><section id="deploy-app" class="level2" data-number="26.5"><h2 data-number="26.5" class="anchored" data-anchor-id="deploy-app">
+<span class="header-section-number">26.5</span> Deploy App</h2>
+<p>I currently don’t have access to our work shiny server because of some server changes, so I deployed the app at <a href="https://debruine.shinyapps.io/30DCC">debruine.shinyapps.io/30DCC</a>.</p>
+<p>It didn’t work the first time, and I realised that I only use one function each from <code class="package">rnaturalearth</code> and <code class="package">lwgeom</code>, so I saved <code>world</code> as an RDS object and loaded it from the saved file instead of using those packages.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb31"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="co"># world &lt;- rnaturalearth::ne_countries(returnclass = "sf", scale = "medium") %&gt;%</span></span>
+<span id="cb31-2"><a href="#cb31-2"></a><span class="co">#   lwgeom::st_transform_proj(crs = crs)</span></span>
+<span id="cb31-3"><a href="#cb31-3"></a><span class="co"># saveRDS(world, "data/world.rds")</span></span>
+<span id="cb31-4"><a href="#cb31-4"></a>world <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"data/world.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>That stopped the total app failure, but the day18 chart still wouldn’t build, so I added debug messages to the day18 functions so I could see what was and wasn’t running.</p>
+<p>The <code>debug_msg()</code> function is a custom function that prints the debug message in the console during development, and in the javascript console when deployed (in case you don’t have access to the logs). The code below prints “day18_topterms” whenever the <code>tt()</code> reactive function runs, and if there is an error in the code, <code><a href="https://rdrr.io/r/base/conditions.html">tryCatch()</a></code> catches it and prints the error message with <code>debug_msg()</code>. This way, I discovered that I was getting an error “there is no package called ‘reshape2’”, so I added that to the <code><a href="https://rdrr.io/r/base/library.html">library()</a></code> calls at the start of the script.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb32"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="co"># tt ----</span></span>
+<span id="cb32-2"><a href="#cb32-2"></a>tt <span class="ot">&lt;-</span> <span class="fu">reactive</span>({ <span class="fu">debug_msg</span>(<span class="st">"day18_topterms"</span>)</span>
+<span id="cb32-3"><a href="#cb32-3"></a>  <span class="fu">tryCatch</span>( </span>
+<span id="cb32-4"><a href="#cb32-4"></a>    <span class="fu">get_top_terms</span>(<span class="fu">lda</span>(), input<span class="sc">$</span>day18_topterms),</span>
+<span id="cb32-5"><a href="#cb32-5"></a>    <span class="at">error =</span> <span class="cf">function</span>(e) <span class="fu">debug_msg</span>(e<span class="sc">$</span>message) </span>
+<span id="cb32-6"><a href="#cb32-6"></a>  )</span>
+<span id="cb32-7"><a href="#cb32-7"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Now it works!</p>
+<div class="cell" data-layout-align="center">
+<iframe src="https://debruine.shinyapps.io/30DCC?showcase=0" width="100%" height="800" data-external="1">
+</iframe>
+</div>
 
 
-</main> <!-- /main -->
-<script>
+</section></main><!-- /main --><script>
 // open rdrr links externally ----
 
 var exlinks = document.querySelectorAll("a[href^='https://rdrr.io']");
@@ -393,8 +1011,7 @@ function move_sidebar() {
 }
 move_sidebar();
 window.onresize = move_sidebar;
-</script>
-<script type="application/javascript">
+</script><script type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const icon = "";
   const anchorJS = new window.AnchorJS();
@@ -469,9 +1086,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     });
   }
 });
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./25-trend.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Trend</span></span>
       </a>          
@@ -483,12 +1098,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">CC-BY 2022, Lisa DeBruine</div>   
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
-    <li class="nav-item compact">
+<li class="nav-item compact">
     <a class="nav-link" href="https://github.com/debruine/30DCC-2022">
       <i class="bi bi-github" role="img">
 </i> 
@@ -501,7 +1115,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </a>
   </li>  
 </ul>
-    </div>
+</div>
   </div>
 </footer>
 
