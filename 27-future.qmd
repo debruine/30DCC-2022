@@ -1,4 +1,4 @@
-# Future
+# Future {#sec-future}
 
 ```{r, include = FALSE}
 source("R/setup.R")

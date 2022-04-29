@@ -1,2 +1,131 @@
 # Deviations
 
+```{r, include = FALSE}
+source("R/setup.R")
+```
+
+The theme of deviation made me think of waterfall plots, which I often find a little confusing, so I thought I'd explore how to make them clearer. 
+
+```{r}
+#| code-summary: Setup
+
+library(tidyverse) # for data wrangling
+library(lubridate) # for handling dates
+
+theme_set(theme_minimal())
+```
+
+## Data
+
+I'm going to use the same data from [Day -@sec-future]. I just need the date published for each preprint. I'll use lubridate's `rollback()` function to find the first day of the month that each preprint was published, to make it easier to plot by month.
+
+```{r}
+preprint_data <- readRDS("data/preprint_data.RDS")
+
+info <- map_df(preprint_data, function(p) {
+  list(id = p$id,
+       date_published = p$attributes$date_published
+       )
+}) 
+
+info <- info %>%
+  mutate(published = as_date(date_published),
+         pub_month = rollback(published, roll_to_first = TRUE))
+```
+
+## Plot
+First, I'll make a histogram to get an idea of what's going on with the data.
+
+```{r dev-histogram}
+ggplot(info, aes(x = pub_month)) +
+  geom_histogram(breaks = unique(info$pub_month),
+                 fill = "white", color = "black")
+```
+
+
+## Waterfall chart
+
+To make a waterfall chart, I need to have a column for the current and previous months' numbers of publications, and whether the change is an increase or decrease. I'll use `count()` to count he number of publications per month and `lag()` to get the previous month's n. I'll alo make columns for the min and max values from n and prev; note the use of `pmin()` and `pmax()` to calculate the min and max rowwise instead of columnwise.
+
+```{r}
+wf_data <- info %>%
+  count(pub_month) %>%
+  arrange(pub_month) %>%
+  mutate(prev = lag(n, default = 0),
+         change = n - prev,
+         min = pmin(n, prev),
+         max = pmax(n, prev),
+         dir = ifelse(change > 0, "increase", "decrease"))
+
+head(wf_data)
+```
+
+I'll use `geom_rect()` to make bars that span from pub_month (day 1 of the month) to 25 days later, and from the min to the max values. This looks like a classic waterfall chart, but I think we can do better.
+
+```{r dev-waterfall}
+ggplot(wf_data, aes(xmin = pub_month, xmax = pub_month+25,
+                    ymin = min, ymax = max, fill = dir)) +
+  geom_rect(show.legend = FALSE)
+```
+
+## Arrows
+
+I find it a little confusing to read these charts because I'm not sure if the value for each value on the x-axis is meant to correspond to the top or bottom of the bar. We can fix this by changing the visualisation to `geom_segment()` and adding an arrow to the line, which will clarify the direction of change and the endpoint for each column.
+
+```{r dev-arrows, fig.width = 8, fig.height = 8}
+ggplot(wf_data, aes(x = pub_month, xend = pub_month, 
+                    y = prev, yend = n, 
+                    color = dir)) +
+  geom_segment(show.legend = FALSE, size = 1.5, 
+               arrow = arrow(length = unit(0.1,"cm")))
+```
+
+## No change
+
+There's only one month with no change, and the arrow points sideways, so let's split the data into `nochange` and `haschange`, and use `geom_point()` to plot `nochange`. Also, set the `lineend` and `linejoin` arguments to `geom_segment()` to a combo that makes the arrows look good.
+
+```{r dev-no-change, fig.width = 8, fig.height = 8}
+nochange <- filter(wf_data, change == 0)
+haschange <- filter(wf_data, change != 0)
+
+ggplot(haschange, aes(x = pub_month, xend = pub_month, 
+                    y = prev, yend = n, 
+                    color = dir)) +
+  geom_segment(show.legend = FALSE, size = 1.5, 
+               arrow = arrow(length = unit(0.1,"cm")),
+               lineend = "round", linejoin = "mitre") +
+  geom_point(data = nochange, aes(y = n), size = 2,
+             show.legend = FALSE)
+```
+
+## Final plot
+
+The last step, like always, is to tidy up and style the plot, and add alt text for screen readers.
+
+```{r dev-day28, fig.width = 8, fig.height = 8}
+#| fig.alt: The number of preprints published on PsyArXiv each month. Data are visualised with a waterfall plot, where The incrase or decrease from one month to the next is represented by a red up arrow or a blue down arrow.
+
+ggplot(haschange, aes(x = pub_month, xend = pub_month, 
+                    y = prev, yend = n, 
+                    color = dir)) +
+  geom_segment(show.legend = FALSE, size = 1.5, 
+               arrow = arrow(length = unit(0.1,"cm")),
+               lineend = "round", linejoin = "mitre") +
+  geom_point(data = nochange, aes(y = n), color = "#CA1A31", size = 2) +
+  scale_x_date("Publication Date",
+               date_breaks = "1 year",
+               date_labels = "%Y") +
+  scale_y_continuous("Number of preprints published per month",
+                     breaks = seq(0, 1000, 100)) +
+  scale_color_manual(values = c("dodgerblue3", "#CA1A31")) +
+  labs(title = "PsyArXiv preprint publication by month") +
+  theme_minimal(base_size = 16) +
+  theme(panel.grid.minor = element_blank(),
+        plot.title = element_text(hjust = 0.5))
+```
+
+
+```{r, include = FALSE, eval = FALSE}
+ggsave("images/day28.png", width = 8, height = 8, device = png, bg = "white")
+knitr::include_graphics("images/day28.png")
+```

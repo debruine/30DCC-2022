@@ -1,2 +1,147 @@
 # Storytelling
 
+```{r, include = FALSE}
+source("R/setup.R")
+```
+
+Storytelling makes me think of words, so this is another good opportunity to practice my text mining with Julia Silge and David Robinson's [Text Mining with R](https://www.tidytextmining.com).
+
+```{r}
+#| code-summary: Setup
+
+library(tidyverse) # for data wrangling
+library(lubridate) # for handling dates
+library(tidytext)  # for text analysis
+library(textdata)  # for sentiment analysis
+
+theme_set(theme_minimal(base_size = 16))
+```
+
+## Data
+
+I'm on a roll with this PsyArXiv data from [Day -@sec-future], and it has a lot of text for the titles and descriptions (abstracts), so I'll extract that.
+
+```{r}
+preprint_data <- readRDS("data/preprint_data.RDS")
+
+info <- map_df(preprint_data, function(p) {
+  list(id = p$id,
+       pub_dt = p$attributes$date_published,
+       title = p$attributes$title,
+       desc = p$attributes$description
+       )
+}) %>%
+  mutate(pub_dt = as_datetime(pub_dt))
+```
+
+## Sentiment Analysis
+
+I'll use the sentiment analysis data from @mohammad13, but convert it to wide format.
+
+```{r}
+wide_nrc <- get_sentiments("nrc") %>%
+  mutate(x = TRUE) %>%
+  pivot_wider(names_from = sentiment, 
+              values_from = x,
+              values_fill = FALSE)
+
+head(wide_nrc)
+```
+
+I'll work out the code I need on a small sample of the papers first, and them comment out `slice_sample()` after it looks like I expect. This takes a few second to run.
+
+```{r}
+sentiment <- info %>%
+  #slice_sample(n = 1000) %>%
+  unnest_tokens(word, desc) %>%
+  inner_join(wide_nrc, by = "word") %>%
+  group_by(id, title, pub_dt) %>%
+  summarise(across(trust:anticipation, mean),
+            .groups = "drop") %>%
+  pivot_longer(cols = trust:anticipation,
+               names_to = "sentiment",
+               values_to = "value")
+```
+
+## Plot
+
+First let's try a simple plot looking at how sentiments have changed over time.
+
+```{r}
+ggplot(sentiment, aes(x = pub_dt, y = value, color = sentiment)) +
+  geom_smooth()
+```
+
+
+### Fix sentiment order
+
+The sentiments default to alphabetic order, but the plot would be easier to read if they were in order by prevalence. I'll filter out the preprints from the most recent year and month, calculate the mean value for each sentiment, and arrange them in descending order. Then I can set the `sentiment` column as a factor with levels in this order.
+
+```{r}
+s_order <- sentiment %>%
+  filter(year(pub_dt) == max(year(pub_dt))) %>% 
+  filter(month(pub_dt) == max(month(pub_dt))) %>%
+  group_by(sentiment) %>%
+  summarise(v = mean(value), .groups = "drop") %>%
+  arrange(desc(v))
+
+sentiment$sentiment <- factor(sentiment$sentiment, 
+                              levels = s_order$sentiment)
+```
+
+This gets them in the right order, but I still think we can do better. 
+
+```{r}
+ggplot(sentiment, aes(x = pub_dt, y = value, color = sentiment)) +
+  geom_smooth()
+```
+
+### Text labels
+
+Hide the legend and add text annotation to the end of the pot with `geom_text()`. Make sure to use a dataset with only one row per sentiment, or it will try to print the labels thousands of times. You have to set the x value as a datetime, so use `now()` and add or subtract time. 
+
+```{r, fig.width = 8, fig.height = 8}
+ggplot(sentiment, aes(x = pub_dt, y = value, color = sentiment)) +
+  geom_smooth() +
+  geom_text(data = s_order, 
+            aes(y = v, label = sentiment), 
+            x = now() + months(1), 
+            hjust = 0, size = 5) +
+  scale_x_datetime(date_breaks = "1 year",
+                   date_labels = "%Y",
+                   expand = expansion(mult = c(0, .2))) +
+  scale_y_continuous(breaks = seq(0, 1, .1)) +
+  coord_cartesian(ylim = c(0, 0.6)) +
+  labs(x = "Date of preprint publication",
+       y = "Mean proportion of words with this sentiment",
+       title = "Sentiment in PsyArXiv preprints abstracts over time",
+       cation = "Data from OSF.io API") +
+  theme(legend.position = "none",
+        panel.grid.minor = element_blank())
+```
+
+```{r, include = FALSE, eval = FALSE}
+ggsave("images/day29.png", width = 8, height = 8, device = png, bg = "white")
+knitr::include_graphics("images/day29.png")
+```
+
+
+
+
+
+
+
+```{r, eval = FALSE, echo = FALSE}
+my_stop_words <- c(stop_words$word)
+
+ngrams <- info %>%
+  #slice_sample(n = 1000) %>%
+  unnest_tokens(ngram, title, token = "ngrams", n = 3) %>% 
+  separate(ngram, c("word1", "word2", "word3"), sep = " ") %>%
+  filter(!is.na(word1), !is.na(word2), !is.na(word3)) %>%
+  filter(!word1 %in% my_stop_words,
+         !word2 %in% my_stop_words,
+         !word3 %in% my_stop_words) %>%
+  count(word1, word2, word3, sort = TRUE)
+```
+
