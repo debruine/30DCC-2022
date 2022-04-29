@@ -4,7 +4,7 @@
 source("R/setup.R")
 ```
 
-The final general category is "uncertainties" and today's theme is "trend", so i thought I'd use `r pkg("faux")` to simulate some trends (correlated data) and visualise how the uncertainty in the sample correlation changes with the population correlation and the sample size. This tutorial builds in complexity from simulating a single sample to simulating 1000s of samples for each combination of a range of population correlations and sample sizes. 
+The final general category is "uncertainties" and today's theme is "trend", so I thought I'd use `r pkg("faux")` to simulate some trends (correlated data) and visualise how the uncertainty in the sample correlation changes with the population correlation and the sample size. This tutorial builds in complexity from simulating a single sample to simulating 1000s of samples for each combination of a range of population correlations and sample sizes. 
 
 ```{r}
 #| code-summary: Setup

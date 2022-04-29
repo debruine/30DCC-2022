@@ -1,2 +1,219 @@
 # Future
 
+```{r, include = FALSE}
+source("R/setup.R")
+```
+
+```{r}
+#| code-summary: Setup
+
+library(tidyverse) # for data wrangling
+library(jsonlite)  # for reading from the OSF API
+library(lubridate) # for handling dates
+
+theme_set(theme_minimal())
+```
+
+## OSF Data
+
+Use the [OSF API](https://developer.osf.io/) to search the OSF for preprints from PsyArXiv. Use `read_json()` to store the JSON returned data as an R list. Each "page" has 10 entries. `j$links$last` contains the URL of the last page of entries, so extract the page number from that to find out how many pages you'll need to read.  
+
+```{r}
+# get the total number of pages
+baseurl <- "https://api.osf.io/v2/preprints/?filter%5Bprovider%5D=psyarxiv&format=jsonapi"
+j <- read_json(baseurl)
+lastpage <- str_extract(j$links$last, "(?<=page=)\\d*") %>% as.integer()
+```
+
+Set up a location to save the data and write a function to read the data for a page, add it to a list, and save the list to file. I also included a line to output the page number each iteration to keep track.
+
+```{r}
+# location to read/save data
+preprint_file <- "data/preprint_data.RDS"
+
+# define function to get/save data
+get_data <- function(i) {
+  pageurl <- paste0(baseurl, "&page=", i)
+  j <- read_json(pageurl)
+  preprint_data <<- c(preprint_data, j$data)
+  saveRDS(preprint_data, preprint_file)
+  cat("page", i, "\n")
+}
+```
+
+
+
+```{r, eval = FALSE}
+# iterate over pages (1-2 seconds per page)
+if (file.exists(preprint_file)) {
+  preprint_data <- readRDS(preprint_file) 
+} else {
+  preprint_data <- list()
+}
+
+# get startpage (avoids rerunning finished queries)
+startpage <- floor(length(preprint_data)/10 + 1)
+sink <- map(startpage:lastpage, get_data)
+```
+
+This can take a few hours to finish, so after you're done, check the number of pages and read the first one or two pages again (annoyingly, the most recent preprints are on the first page).
+
+```{r, eval = FALSE}
+# get first page again (in case preprints were created since you started)
+sink <- map(1:10, get_data)
+```
+
+Since people will upload new preprints while your script is running, there might be duplicates, so filter them out and resave.
+
+```{r, eval = FALSE}
+# remove duplicates
+ids <- map_chr(preprint_data, `[[`, "id")
+names(preprint_data) <- ids
+preprint_data <- preprint_data[unique(ids)]
+saveRDS(preprint_data, preprint_file)
+```
+
+### Process data
+
+Comments out the code above so it doesn't run unless you want it to.
+
+```{r}
+# read from saved object
+preprint_data <- readRDS(preprint_file)
+```
+
+Look at the first list item to find the info you want to extract. Most of the interesting info is in `attributes`, but some of the items are lists, so you'll have to handle those. 
+
+```{r}
+p1 <- preprint_data[[1]]
+
+attr <- p1$attributes
+is_list <- map_lgl(attr, is.list)
+attr[is_list] %>% str()
+```
+
+I'm going to use `paste()` to flatten them, although I'm sure there's a clever way to use nesting. Iterate over the list items and extract the info you want.
+
+```{r}
+info <- map_df(preprint_data, function(p) {
+  attr <- map(p$attributes, ~ if (is.list(.x)) {
+    unlist(.x) %>% paste(collapse = "; ")
+  } else {
+    .x
+  })
+  
+  attr$id <- p$id
+  
+  attr
+}) 
+
+info <- info %>%
+  mutate(created = as_date(date_created),
+         modified = as_date(date_modified),
+         published = as_date(date_published),
+         has_doi = !is.na(doi) & !trimws(doi) == "")
+```
+
+### Subjects
+
+```{r}
+subjects <- map_df(preprint_data, function(p) {
+  data.frame(
+    id = p$id,
+    subject = map_chr(p$attributes$subjects[[1]], ~.x$text)
+  )
+})
+
+# set factor order to popularity order
+subcount <- count(subjects, subject, sort = TRUE)
+subjects$subject <- factor(subjects$subject, subcount$subject)
+
+DT::datatable(subcount)
+```
+
+
+## Plots
+
+## Preprints per month
+
+It's hard than I expected to make a histogram by month.
+
+```{r future-present}
+by_month <- function(x, n=1){
+  mindate <- min(x, na.rm=T) %>% rollbackward(roll_to_first = TRUE)
+  maxdate <- max(x, na.rm=T) %>% rollforward(roll_to_first = TRUE)
+  seq(mindate, maxdate, by=paste0(n," months"))
+}
+
+ggplot(info, aes(x = published, fill = has_doi)) +
+  geom_histogram(breaks = by_month(info$published),
+                 color = "black") +
+  scale_x_date(date_breaks = "1 year",
+               date_labels = "%Y") +
+  scale_fill_manual(values = c("red2", "springgreen3")) +
+  labs(x = NULL, y = NULL,
+       fill = "Has Pubished DOI",
+       title = "Number of preprints published per month on PsyArXiv") +
+  theme(legend.position = c(.2, .74))
+```
+
+## Predict
+
+This is just a silly linear model with a quadratic term, I don't really think submissions to PsyArXiv are going to continue to grow forever, but I just need to predict the future for the theme :)
+
+I omitted the data from the past year to account for the slow publication process. I'm not sure if this too conservative or not conservative enough, as many people postprint, rather than preprint, but journal acceptance can take a long time.
+
+```{r}
+data_by_month <- info %>%
+  mutate(
+    pub_month = rollback(published, roll_to_first = TRUE),
+    pub = interval("2016-01-01", pub_month) / months(1),
+    pub2 = pub^2
+  ) %>%
+  count(pub_month, pub, pub2, has_doi)
+
+# model from data at least 1 year old
+model <- data_by_month %>%
+  filter(pub_month < (today() - years(1))) %>%
+  lm(n ~ pub * has_doi + pub2 * has_doi, .)
+
+# predict from start of psyarxiv to 2025
+newdat <- crossing(
+    pub_month = seq(as_date("2016-08-01"), 
+                    as_date("2025-01-01"), 
+                    by = "1 month"),
+    has_doi = c(T, F)
+  ) %>%
+  mutate(
+    pub = interval("2016-01-01", pub_month) / months(1),
+    pub2 = pub^2
+  )
+
+newdat$n <- predict(model, newdat)
+```
+
+
+
+```{r day27}
+#| fig.alt: A scatter plot of PsyArXiv preprints per month with publication DOIs and without, from 2016 to present, with predictions up to 2025. The papers without DOIs increase from 0 to about 500 per month in 2021 and level off, while the paper with DOIs increase to about 100 per month to 2021 and decrease. The prediction line show an increase in papers without DOIs to 1500/month by 2025 and to about 200 per month for papers without DOIs.
+
+ggplot(mapping = aes(x = pub_month, y = n, color = has_doi)) +
+  geom_point(data = data_by_month, alpha = 0.5) +
+  geom_line(data = newdat, linetype = "dashed") +
+  annotate("text", label = "Probably not a very\naccurate prediction,     \nbut it would be nice             ", hjust = 1, x = as_date("2023-07-01"), y = 1200) +
+  scale_x_date(date_breaks = "1 year",
+               date_labels = "%Y") +
+  scale_color_manual(values = c("#CA1A31", "#3477B5")) +
+  labs(x = NULL, y = NULL, color = NULL,
+       title = "PsyArXiv preprints per month <span style='color: #3477B5;'>with publication DOIs</span> and <span style='color: #CA1A31;'>without</span>",
+       caption = "Data from OSF using the API") +
+  theme(panel.grid.minor = element_blank(),
+        legend.position = "none",
+        plot.title = ggtext::element_markdown())
+```
+
+
+```{r, include = FALSE, eval = FALSE}
+ggsave("images/day27.png", width = 8, height = 5, device = png, bg = "white")
+knitr::include_graphics("images/day27.png")
+```
