@@ -1,4 +1,4 @@
-# Connections
+# Connections {#sec-connections}
 
 I've been meaning to learn more about visualising text, and where better to start than Julia Silge and David Robinson's [Text Mining with R](https://www.tidytextmining.com)!
 

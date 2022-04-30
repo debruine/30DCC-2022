@@ -67,7 +67,7 @@ sentiment <- info %>%
 
 First let's try a simple plot looking at how sentiments have changed over time.
 
-```{r}
+```{r st-plot1}
 ggplot(sentiment, aes(x = pub_dt, y = value, color = sentiment)) +
   geom_smooth()
 ```
@@ -91,7 +91,7 @@ sentiment$sentiment <- factor(sentiment$sentiment,
 
 This gets them in the right order, but I still think we can do better. 
 
-```{r}
+```{r st-order}
 ggplot(sentiment, aes(x = pub_dt, y = value, color = sentiment)) +
   geom_smooth()
 ```
@@ -100,7 +100,9 @@ ggplot(sentiment, aes(x = pub_dt, y = value, color = sentiment)) +
 
 Hide the legend and add text annotation to the end of the pot with `geom_text()`. Make sure to use a dataset with only one row per sentiment, or it will try to print the labels thousands of times. You have to set the x value as a datetime, so use `now()` and add or subtract time. 
 
-```{r, fig.width = 8, fig.height = 8}
+```{r st-day29, fig.width = 8, fig.height = 8}
+#| fig.alt: Plot of the proportion of words in PsyArXiv preprint abstracts with different sentiments over time. Most are fairly flat, but in early 2020, positive sentiment decreased and negative sentiment increased, along with fear and sadness. Overall, about 60% of abstract words are positive, 35% trust, 25% negative, 10-15% fear, sadness and joy, and< 10% anger, surprise and disgust.
+#| 
 ggplot(sentiment, aes(x = pub_dt, y = value, color = sentiment)) +
   geom_smooth() +
   geom_text(data = s_order, 
@@ -114,7 +116,7 @@ ggplot(sentiment, aes(x = pub_dt, y = value, color = sentiment)) +
   coord_cartesian(ylim = c(0, 0.6)) +
   labs(x = "Date of preprint publication",
        y = "Mean proportion of words with this sentiment",
-       title = "Sentiment in PsyArXiv preprints abstracts over time",
+       title = "Sentiment in PsyArXiv preprint abstracts over time",
        cation = "Data from OSF.io API") +
   theme(legend.position = "none",
         panel.grid.minor = element_blank())
@@ -131,17 +133,4 @@ knitr::include_graphics("images/day29.png")
 
 
 
-```{r, eval = FALSE, echo = FALSE}
-my_stop_words <- c(stop_words$word)
-
-ngrams <- info %>%
-  #slice_sample(n = 1000) %>%
-  unnest_tokens(ngram, title, token = "ngrams", n = 3) %>% 
-  separate(ngram, c("word1", "word2", "word3"), sep = " ") %>%
-  filter(!is.na(word1), !is.na(word2), !is.na(word3)) %>%
-  filter(!word1 %in% my_stop_words,
-         !word2 %in% my_stop_words,
-         !word3 %in% my_stop_words) %>%
-  count(word1, word2, word3, sort = TRUE)
-```
 

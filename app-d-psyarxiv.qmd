@@ -1,0 +1,126 @@
+# PsyArXiv
+
+```{r, include = FALSE}
+source("R/setup.R")
+```
+
+```{r}
+#| code-summary: Setup
+
+library(tidyverse) # for data wrangling
+library(lubridate) # for handling dates
+library(tidytext)  # for text analysis
+library(ggraph)    # for plotting ngrams
+library(magick)    # for cropping an image
+library(grid)      # for raster
+```
+
+## Data
+
+PsyArXiv data from [Day -@sec-future].
+
+```{r}
+preprint_data <- readRDS("data/preprint_data.RDS")
+
+info <- map_df(preprint_data, function(p) {
+  list(id = p$id,
+       pub_dt = p$attributes$date_published,
+       title = p$attributes$title,
+       desc = p$attributes$description
+       )
+}) %>%
+  mutate(pub_dt = as_datetime(pub_dt))
+```
+
+## Ngrams
+
+Here is a function that will extract any number of ngram.
+
+```{r}
+ngrams <- function(data, col, n = 2, sw = stop_words$word) {
+  word_cols <- paste0("word_", 1:n)
+  data %>%
+    unnest_tokens(ngram, {{col}}, token = "ngrams", n = n) %>% 
+    mutate(ngram_id = row_number()) %>%
+    separate_rows(ngram, sep = " ") %>%
+    filter(!ngram %in% sw) %>%
+    group_by(ngram_id) %>%
+    filter(n() == n) %>%
+    mutate(word = word_cols) %>%
+    ungroup() %>%
+    pivot_wider(names_from = word, values_from = ngram) %>%
+    count(across(all_of(word_cols)), sort = TRUE)
+}
+```
+
+Look at the top 10 trigrams from a random 1000 entries.
+
+```{r}
+trigrams <- info %>%
+  slice_sample(n = 1000) %>%
+  ngrams(title, 3)
+
+head(trigrams, 10)
+```
+
+Calculate the bigrams for all titles.
+
+```{r, cache = TRUE}
+bigrams <- ngrams(info, title, 2)
+head(bigrams, 10)
+```
+
+## Plot
+
+Use the code from [Day -@sec-connections] to make a bigram plot.
+
+```{r psyarxiv-ggraph, fig.width = 8, fig.height = 8}
+bigrams %>%
+  slice_max(order_by = n, n = 20) %>%
+  ggraph(layout = "kk") +
+  geom_edge_link(aes(width = n), color = "white", show.legend = FALSE) +
+  geom_node_label(aes(label = name), vjust = 0.5, hjust = 0.5,
+                  fill = "#CA1A31", color = "white", 
+                  label.padding = unit(.5, "lines"),
+                  label.r = unit(.75, "lines")) +
+  coord_cartesian(clip = "off") +
+  theme_void() +
+  theme(plot.margin = unit(rep(.5, 4), "inches"),
+        plot.background = element_rect(fill = "#012C4C"))
+```
+
+## Add Image
+
+Add the PsyArXiv logo using `r pkg("magick")` to crop the wikipedia logo and `r pkg("grid")` to rasterize it so it can be added as an annotation.
+
+```{r}
+#| code-summary: Process Image
+
+#download.file("https://upload.wikimedia.org/wikipedia/commons/9/9c/PsyArXiv_logo.png", "images/psyarxiv.png")
+
+# read and crop image
+img <- magick::image_read("images/psyarxiv.png")
+img_sq <- magick::image_crop(img, "174x174+4+4")
+img_grob <- grid::rasterGrob(img_sq, interpolate=TRUE)
+```
+
+
+```{r psyarxiv-img, fig.width = 8, fig.height = 8}
+#| code-summary: Plot Code
+#| fig.alt: The top 20 bigrams from PsyArXiv titles, with lines connecting them that show their popularity by width.
+
+bigram_plot <- last_plot()
+
+bigram_plot +
+  annotation_custom(img_grob, 
+                    xmin = -5, 
+                    xmax =  -3, 
+                    ymin = 1.2, 
+                    ymax =  3.2)
+```
+
+```{r, include = FALSE, eval = FALSE}
+ggsave("images/psyarxiv_bigrams.png", width = 8, height = 8, device = png)
+```
+
+

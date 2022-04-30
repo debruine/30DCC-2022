@@ -1,37 +1,89 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-  <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.9.80">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <meta name="description" content="Code and charts for the 2022 30-Day Chart Challenge">
-  <title>30DCC (2022) - 30&nbsp; UN Population</title>
-  <style>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.80">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="description" content="Code and charts for the 2022 30-Day Chart Challenge">
+<title>30DCC (2022) - 30&nbsp; UN Population</title>
+<style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     span.underline{text-decoration: underline;}
     div.column{display: inline-block; vertical-align: top; width: 50%;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
-
-  <script src="site_libs/quarto-nav/quarto-nav.js"></script>
-  <script src="site_libs/quarto-nav/headroom.min.js"></script>
-  <script src="site_libs/clipboard/clipboard.min.js"></script>
-  <meta name="quarto:offset" content="./">
-  <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-  <script src="site_libs/quarto-search/fuse.min.js"></script>
-  <script src="site_libs/quarto-search/quarto-search.js"></script>
-  <link href="./app-a-colours.html" rel="next">
-  <link href="./29-storytelling.html" rel="prev">
-  <script src="site_libs/quarto-html/quarto.js"></script>
-  <script src="site_libs/quarto-html/popper.min.js"></script>
-  <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-  <script src="site_libs/quarto-html/anchor.min.js"></script>
-  <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-  <script src="site_libs/bootstrap/bootstrap.min.js"></script>
-  <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-  <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
-  <script id="quarto-search-options" type="application/json">{
+<script src="site_libs/quarto-nav/quarto-nav.js"></script><script src="site_libs/quarto-nav/headroom.min.js"></script><script src="site_libs/clipboard/clipboard.min.js"></script><meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script><script src="site_libs/quarto-search/fuse.min.js"></script><script src="site_libs/quarto-search/quarto-search.js"></script><link href="./app-a-colours.html" rel="next">
+<link href="./29-storytelling.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script><script src="site_libs/quarto-html/popper.min.js"></script><script src="site_libs/quarto-html/tippy.umd.min.js"></script><script src="site_libs/quarto-html/anchor.min.js"></script><link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script><link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
     "location": "sidebar",
     "copy-button": false,
     "collapse-after": 2,
@@ -49,65 +101,54 @@
       "search-detached-cancel-button-title": "Cancel",
       "search-submit-button-title": "Submit"
     }
-  }</script>
-  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script>
-
-  <script type="text/javascript">
+  }</script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script><script type="text/javascript">
 
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
-  </script>
-  <script type="application/json" class="js-hypothesis-config">
+  </script><script type="application/json" class="js-hypothesis-config">
   {
     "theme": "clean",
     "openSidebar": false
   }
-  </script>
-  <script async="" src="https://hypothes.is/embed.js"></script>
-  <!--[if lt IE 9]>
+  </script><script async="" src="https://hypothes.is/embed.js"></script><!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
-  <link rel="stylesheet" href="include/style.css">
+  <![endif]--><link rel="stylesheet" href="include/style.css">
 </head>
-<body class="floating fullcontent">
+<body class="floating">
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">UN Population</span></h1>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">
+<span class="chapter-number">30</span>&nbsp; <span class="chapter-title">UN Population</span>
+</h1>
       <button type="button" class="quarto-btn-toggle btn">
         <i class="bi bi-chevron-right"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">30DCC (2022)</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/debruine/30DCC-2022/" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
     <a href="" title="Share" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-share"></i></a>
     <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
-        <li>
-          <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
+<li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=%7Curl%7C">
             <i class="bi bi-bi-twitter pe-1"></i>
           Twitter
           </a>
         </li>
         <li>
-          <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=|url|">
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=%7Curl%7C">
             <i class="bi bi-bi-facebook pe-1"></i>
           Facebook
           </a>
         </li>
         <li>
-          <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=|url|">
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=%7Curl%7C">
             <i class="bi bi-bi-linkedin pe-1"></i>
           LinkedIn
           </a>
@@ -123,7 +164,7 @@
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">Overview</a>
   </div>
@@ -135,8 +176,8 @@
         <i class="bi bi-chevron-right ms-2"></i>
       </a>
     </div>
-    <ul id="quarto-sidebar-section-comparisons" class="collapse list-unstyled sidebar-section depth1 show">  
-        <li class="sidebar-item">
+    <ul id="quarto-sidebar-section-comparisons" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./01-part-to-whole.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Part-to-whole</span></a>
   </div>
@@ -167,7 +208,7 @@
   </div>
 </li>
     </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
     <div class="sidebar-item-container"> 
         <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-distributions" aria-expanded="true">Distributions</a>
@@ -175,8 +216,8 @@
         <i class="bi bi-chevron-right ms-2"></i>
       </a>
     </div>
-    <ul id="quarto-sidebar-section-distributions" class="collapse list-unstyled sidebar-section depth1 show">  
-        <li class="sidebar-item">
+    <ul id="quarto-sidebar-section-distributions" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07-physical.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Physical</span></a>
   </div>
@@ -207,7 +248,7 @@
   </div>
 </li>
     </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
     <div class="sidebar-item-container"> 
         <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-relationships" aria-expanded="true">Relationships</a>
@@ -215,8 +256,8 @@
         <i class="bi bi-chevron-right ms-2"></i>
       </a>
     </div>
-    <ul id="quarto-sidebar-section-relationships" class="collapse list-unstyled sidebar-section depth1 show">  
-        <li class="sidebar-item">
+    <ul id="quarto-sidebar-section-relationships" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./13-correlation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Correlation</span></a>
   </div>
@@ -247,7 +288,7 @@
   </div>
 </li>
     </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
     <div class="sidebar-item-container"> 
         <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-timeseries" aria-expanded="true">Timeseries</a>
@@ -255,8 +296,8 @@
         <i class="bi bi-chevron-right ms-2"></i>
       </a>
     </div>
-    <ul id="quarto-sidebar-section-timeseries" class="collapse list-unstyled sidebar-section depth1 show">  
-        <li class="sidebar-item">
+    <ul id="quarto-sidebar-section-timeseries" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./19-global-change.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Global Change</span></a>
   </div>
@@ -287,7 +328,7 @@
   </div>
 </li>
     </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
     <div class="sidebar-item-container"> 
         <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-uncertainties" aria-expanded="true">Uncertainties</a>
@@ -295,8 +336,8 @@
         <i class="bi bi-chevron-right ms-2"></i>
       </a>
     </div>
-    <ul id="quarto-sidebar-section-uncertainties" class="collapse list-unstyled sidebar-section depth1 show">  
-        <li class="sidebar-item">
+    <ul id="quarto-sidebar-section-uncertainties" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./25-trend.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Trend</span></a>
   </div>
@@ -327,7 +368,7 @@
   </div>
 </li>
     </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
     <div class="sidebar-item-container"> 
         <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-appendices" aria-expanded="true">Appendices</a>
@@ -335,8 +376,8 @@
         <i class="bi bi-chevron-right ms-2"></i>
       </a>
     </div>
-    <ul id="quarto-sidebar-section-appendices" class="collapse list-unstyled sidebar-section depth1 show">  
-        <li class="sidebar-item">
+    <ul id="quarto-sidebar-section-appendices" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./app-a-colours.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Colours</span></a>
   </div>
@@ -351,22 +392,487 @@
   <a href="./app-c-magic-eye.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Magic Eye</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./app-d-psyarxiv.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">PsyArXiv</span></a>
+  </div>
+</li>
     </ul>
-  </li>
+</li>
     </ul>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc"><h2 id="toc-title">Table of contents</h2>
+<ul>
+<li><a href="#data" class="nav-link active" data-scroll-target="#data"> <span class="header-section-number">30.1</span> Data</a></li>
+<li><a href="#plot" class="nav-link" data-scroll-target="#plot"> <span class="header-section-number">30.2</span> Plot</a></li>
+<li><a href="#clean-up" class="nav-link" data-scroll-target="#clean-up"> <span class="header-section-number">30.3</span> Clean Up</a></li>
+<li><a href="#animate" class="nav-link" data-scroll-target="#animate"> <span class="header-section-number">30.4</span> Animate</a></li>
+</ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/debruine/30DCC-2022/edit/main/30-un-population.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/debruine/30DCC-2022/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/debruine/30DCC-2022/blob/main/30-un-population.qmd" class="toc-action">View source</a></p></div></div></nav>
     </div>
-</nav>
-<!-- margin-sidebar -->
-    
 <!-- main -->
-<main class="content" id="quarto-document-content">
-<header id="title-block-header">
-<h1 class="title d-none d-lg-block display-7"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">UN Population</span></h1>
-</header>
+<main class="content" id="quarto-document-content"><header id="title-block-header"><h1 class="title d-none d-lg-block display-7">
+<span class="chapter-number">30</span>&nbsp; <span class="chapter-title">UN Population</span>
+</h1>
+</header><p>I really like the <a href="https://population.un.org/wpp/Graphs/DemographicProfiles/Pyramid/900">population pyramids</a> at the UN Population website, so I’m going to pull together all of the skills I’ve learned this month and make an animated version.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Setup</summary><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(readxl)    <span class="co"># to read excel data from UN</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(tidyverse) <span class="co"># for data wrangling and visualisation</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(gganimate) <span class="co"># for animation</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">theme_set</span>(<span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">16</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="data" class="level2" data-number="30.1"><h2 data-number="30.1" class="anchored" data-anchor-id="data">
+<span class="header-section-number">30.1</span> Data</h2>
+<p>The <a href="https://population.un.org/wpp/DataQuery/">interactive data query</a> is outstanding. I chose population by age for more and less developed regions from the UN development groups from 1950 to 2100 in 5-year intervals.</p>
+<p>First, I’ll import the data, select the data for both sexes and the two locations I want to compare, and make the Age column a factor to keep the data in the right order in plots.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"data/PopulationAgeSex-20220430074449.xlsx"</span>,</span>
+<span id="cb2-2"><a href="#cb2-2"></a>                 <span class="at">sheet =</span> <span class="st">"Data"</span>, <span class="at">skip =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a>  <span class="fu">filter</span>(Sex <span class="sc">==</span> <span class="st">"Both sexes combined"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>  <span class="fu">mutate</span>(<span class="at">Location =</span> <span class="fu">recode</span>(Location, </span>
+<span id="cb2-5"><a href="#cb2-5"></a>                           <span class="st">"Less developed regions"</span> <span class="ot">=</span> <span class="st">"LDR"</span>,</span>
+<span id="cb2-6"><a href="#cb2-6"></a>                           <span class="st">"More developed regions"</span> <span class="ot">=</span> <span class="st">"MDR"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>  <span class="fu">filter</span>(Location <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"MDR"</span>, <span class="st">"LDR"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a>  <span class="fu">mutate</span>(<span class="at">Age =</span> <span class="fu">factor</span>(Age, <span class="fu">unique</span>(Age))) <span class="sc">%&gt;%</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="sc">-</span>Sex, <span class="sc">-</span>Note)</span>
+<span id="cb2-10"><a href="#cb2-10"></a></span>
+<span id="cb2-11"><a href="#cb2-11"></a><span class="fu">head</span>(dat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="kable-table">
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<thead><tr>
+<th style="text-align:left;"> Location </th>
+   <th style="text-align:left;"> Age </th>
+   <th style="text-align:right;"> 1950 </th>
+   <th style="text-align:right;"> 1955 </th>
+   <th style="text-align:right;"> 1960 </th>
+   <th style="text-align:right;"> 1965 </th>
+   <th style="text-align:right;"> 1970 </th>
+   <th style="text-align:right;"> 1975 </th>
+   <th style="text-align:right;"> 1980 </th>
+   <th style="text-align:right;"> 1985 </th>
+   <th style="text-align:right;"> 1990 </th>
+   <th style="text-align:right;"> 1995 </th>
+   <th style="text-align:right;"> 2000 </th>
+   <th style="text-align:right;"> 2005 </th>
+   <th style="text-align:right;"> 2010 </th>
+   <th style="text-align:right;"> 2015 </th>
+   <th style="text-align:right;"> 2020 </th>
+   <th style="text-align:right;"> 2025 </th>
+   <th style="text-align:right;"> 2030 </th>
+   <th style="text-align:right;"> 2035 </th>
+   <th style="text-align:right;"> 2040 </th>
+   <th style="text-align:right;"> 2045 </th>
+   <th style="text-align:right;"> 2050 </th>
+   <th style="text-align:right;"> 2055 </th>
+   <th style="text-align:right;"> 2060 </th>
+   <th style="text-align:right;"> 2065 </th>
+   <th style="text-align:right;"> 2070 </th>
+   <th style="text-align:right;"> 2075 </th>
+   <th style="text-align:right;"> 2080 </th>
+   <th style="text-align:right;"> 2085 </th>
+   <th style="text-align:right;"> 2090 </th>
+   <th style="text-align:right;"> 2095 </th>
+   <th style="text-align:right;"> 2100 </th>
+  </tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;"> MDR </td>
+   <td style="text-align:left;"> 0-4 </td>
+   <td style="text-align:right;"> 82893 </td>
+   <td style="text-align:right;"> 87593 </td>
+   <td style="text-align:right;"> 89475 </td>
+   <td style="text-align:right;"> 87953 </td>
+   <td style="text-align:right;"> 82992 </td>
+   <td style="text-align:right;"> 81473 </td>
+   <td style="text-align:right;"> 78083 </td>
+   <td style="text-align:right;"> 78191 </td>
+   <td style="text-align:right;"> 77564 </td>
+   <td style="text-align:right;"> 71194 </td>
+   <td style="text-align:right;"> 65679 </td>
+   <td style="text-align:right;"> 65933 </td>
+   <td style="text-align:right;"> 69648 </td>
+   <td style="text-align:right;"> 69387 </td>
+   <td style="text-align:right;"> 67495 </td>
+   <td style="text-align:right;"> 65329 </td>
+   <td style="text-align:right;"> 63693 </td>
+   <td style="text-align:right;"> 62957 </td>
+   <td style="text-align:right;"> 63263 </td>
+   <td style="text-align:right;"> 63749 </td>
+   <td style="text-align:right;"> 63609 </td>
+   <td style="text-align:right;"> 62818 </td>
+   <td style="text-align:right;"> 61897 </td>
+   <td style="text-align:right;"> 61280 </td>
+   <td style="text-align:right;"> 61143 </td>
+   <td style="text-align:right;"> 61301 </td>
+   <td style="text-align:right;"> 61426 </td>
+   <td style="text-align:right;"> 61290 </td>
+   <td style="text-align:right;"> 60905 </td>
+   <td style="text-align:right;"> 60494 </td>
+   <td style="text-align:right;"> 60264 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> MDR </td>
+   <td style="text-align:left;"> 5-9 </td>
+   <td style="text-align:right;"> 67415 </td>
+   <td style="text-align:right;"> 81751 </td>
+   <td style="text-align:right;"> 87171 </td>
+   <td style="text-align:right;"> 89501 </td>
+   <td style="text-align:right;"> 88538 </td>
+   <td style="text-align:right;"> 83146 </td>
+   <td style="text-align:right;"> 81538 </td>
+   <td style="text-align:right;"> 78424 </td>
+   <td style="text-align:right;"> 78628 </td>
+   <td style="text-align:right;"> 78506 </td>
+   <td style="text-align:right;"> 72330 </td>
+   <td style="text-align:right;"> 66369 </td>
+   <td style="text-align:right;"> 66636 </td>
+   <td style="text-align:right;"> 70231 </td>
+   <td style="text-align:right;"> 70136 </td>
+   <td style="text-align:right;"> 67832 </td>
+   <td style="text-align:right;"> 65686 </td>
+   <td style="text-align:right;"> 64077 </td>
+   <td style="text-align:right;"> 63348 </td>
+   <td style="text-align:right;"> 63655 </td>
+   <td style="text-align:right;"> 64141 </td>
+   <td style="text-align:right;"> 64003 </td>
+   <td style="text-align:right;"> 63215 </td>
+   <td style="text-align:right;"> 62297 </td>
+   <td style="text-align:right;"> 61682 </td>
+   <td style="text-align:right;"> 61546 </td>
+   <td style="text-align:right;"> 61705 </td>
+   <td style="text-align:right;"> 61831 </td>
+   <td style="text-align:right;"> 61697 </td>
+   <td style="text-align:right;"> 61312 </td>
+   <td style="text-align:right;"> 60903 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> MDR </td>
+   <td style="text-align:left;"> 10-14 </td>
+   <td style="text-align:right;"> 73044 </td>
+   <td style="text-align:right;"> 67374 </td>
+   <td style="text-align:right;"> 82191 </td>
+   <td style="text-align:right;"> 87134 </td>
+   <td style="text-align:right;"> 89862 </td>
+   <td style="text-align:right;"> 88771 </td>
+   <td style="text-align:right;"> 84137 </td>
+   <td style="text-align:right;"> 82215 </td>
+   <td style="text-align:right;"> 79287 </td>
+   <td style="text-align:right;"> 80200 </td>
+   <td style="text-align:right;"> 80225 </td>
+   <td style="text-align:right;"> 73738 </td>
+   <td style="text-align:right;"> 68123 </td>
+   <td style="text-align:right;"> 67347 </td>
+   <td style="text-align:right;"> 70826 </td>
+   <td style="text-align:right;"> 70458 </td>
+   <td style="text-align:right;"> 68173 </td>
+   <td style="text-align:right;"> 66049 </td>
+   <td style="text-align:right;"> 64446 </td>
+   <td style="text-align:right;"> 63719 </td>
+   <td style="text-align:right;"> 64026 </td>
+   <td style="text-align:right;"> 64514 </td>
+   <td style="text-align:right;"> 64378 </td>
+   <td style="text-align:right;"> 63591 </td>
+   <td style="text-align:right;"> 62675 </td>
+   <td style="text-align:right;"> 62061 </td>
+   <td style="text-align:right;"> 61926 </td>
+   <td style="text-align:right;"> 62086 </td>
+   <td style="text-align:right;"> 62213 </td>
+   <td style="text-align:right;"> 62080 </td>
+   <td style="text-align:right;"> 61695 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> MDR </td>
+   <td style="text-align:left;"> 15-19 </td>
+   <td style="text-align:right;"> 68131 </td>
+   <td style="text-align:right;"> 72511 </td>
+   <td style="text-align:right;"> 67003 </td>
+   <td style="text-align:right;"> 81977 </td>
+   <td style="text-align:right;"> 86825 </td>
+   <td style="text-align:right;"> 89778 </td>
+   <td style="text-align:right;"> 89810 </td>
+   <td style="text-align:right;"> 84802 </td>
+   <td style="text-align:right;"> 83229 </td>
+   <td style="text-align:right;"> 80632 </td>
+   <td style="text-align:right;"> 81671 </td>
+   <td style="text-align:right;"> 81788 </td>
+   <td style="text-align:right;"> 75693 </td>
+   <td style="text-align:right;"> 69617 </td>
+   <td style="text-align:right;"> 68660 </td>
+   <td style="text-align:right;"> 71823 </td>
+   <td style="text-align:right;"> 71504 </td>
+   <td style="text-align:right;"> 69285 </td>
+   <td style="text-align:right;"> 67179 </td>
+   <td style="text-align:right;"> 65581 </td>
+   <td style="text-align:right;"> 64858 </td>
+   <td style="text-align:right;"> 65169 </td>
+   <td style="text-align:right;"> 65659 </td>
+   <td style="text-align:right;"> 65525 </td>
+   <td style="text-align:right;"> 64741 </td>
+   <td style="text-align:right;"> 63828 </td>
+   <td style="text-align:right;"> 63216 </td>
+   <td style="text-align:right;"> 63083 </td>
+   <td style="text-align:right;"> 63244 </td>
+   <td style="text-align:right;"> 63373 </td>
+   <td style="text-align:right;"> 63241 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> MDR </td>
+   <td style="text-align:left;"> 20-24 </td>
+   <td style="text-align:right;"> 71208 </td>
+   <td style="text-align:right;"> 67163 </td>
+   <td style="text-align:right;"> 71809 </td>
+   <td style="text-align:right;"> 66870 </td>
+   <td style="text-align:right;"> 81112 </td>
+   <td style="text-align:right;"> 86924 </td>
+   <td style="text-align:right;"> 90179 </td>
+   <td style="text-align:right;"> 90054 </td>
+   <td style="text-align:right;"> 85137 </td>
+   <td style="text-align:right;"> 83709 </td>
+   <td style="text-align:right;"> 81362 </td>
+   <td style="text-align:right;"> 83534 </td>
+   <td style="text-align:right;"> 83688 </td>
+   <td style="text-align:right;"> 77891 </td>
+   <td style="text-align:right;"> 71524 </td>
+   <td style="text-align:right;"> 70296 </td>
+   <td style="text-align:right;"> 73571 </td>
+   <td style="text-align:right;"> 73366 </td>
+   <td style="text-align:right;"> 71177 </td>
+   <td style="text-align:right;"> 69081 </td>
+   <td style="text-align:right;"> 67489 </td>
+   <td style="text-align:right;"> 66774 </td>
+   <td style="text-align:right;"> 67091 </td>
+   <td style="text-align:right;"> 67586 </td>
+   <td style="text-align:right;"> 67458 </td>
+   <td style="text-align:right;"> 66680 </td>
+   <td style="text-align:right;"> 65772 </td>
+   <td style="text-align:right;"> 65165 </td>
+   <td style="text-align:right;"> 65036 </td>
+   <td style="text-align:right;"> 65201 </td>
+   <td style="text-align:right;"> 65333 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> MDR </td>
+   <td style="text-align:left;"> 25-29 </td>
+   <td style="text-align:right;"> 64083 </td>
+   <td style="text-align:right;"> 70301 </td>
+   <td style="text-align:right;"> 66851 </td>
+   <td style="text-align:right;"> 71699 </td>
+   <td style="text-align:right;"> 66735 </td>
+   <td style="text-align:right;"> 81757 </td>
+   <td style="text-align:right;"> 86871 </td>
+   <td style="text-align:right;"> 90332 </td>
+   <td style="text-align:right;"> 89923 </td>
+   <td style="text-align:right;"> 85664 </td>
+   <td style="text-align:right;"> 84759 </td>
+   <td style="text-align:right;"> 82951 </td>
+   <td style="text-align:right;"> 84841 </td>
+   <td style="text-align:right;"> 85510 </td>
+   <td style="text-align:right;"> 79894 </td>
+   <td style="text-align:right;"> 73085 </td>
+   <td style="text-align:right;"> 71977 </td>
+   <td style="text-align:right;"> 75356 </td>
+   <td style="text-align:right;"> 75178 </td>
+   <td style="text-align:right;"> 73000 </td>
+   <td style="text-align:right;"> 70912 </td>
+   <td style="text-align:right;"> 69334 </td>
+   <td style="text-align:right;"> 68631 </td>
+   <td style="text-align:right;"> 68956 </td>
+   <td style="text-align:right;"> 69459 </td>
+   <td style="text-align:right;"> 69341 </td>
+   <td style="text-align:right;"> 68572 </td>
+   <td style="text-align:right;"> 67673 </td>
+   <td style="text-align:right;"> 67074 </td>
+   <td style="text-align:right;"> 66952 </td>
+   <td style="text-align:right;"> 67124 </td>
+  </tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Now I need to convert the data from wide to long and calculate the percent of people in each age group for each year and location. The populations between the more and less developed regions are very different and that difference isn’t meaningful for this graph, so it is better to visualise the precent.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>dat <span class="ot">&lt;-</span> dat <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="st">`</span><span class="at">1950</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2100</span><span class="st">`</span>,</span>
+<span id="cb3-3"><a href="#cb3-3"></a>               <span class="at">names_to =</span> <span class="st">"year"</span>,</span>
+<span id="cb3-4"><a href="#cb3-4"></a>               <span class="at">values_to =</span> <span class="st">"pop"</span>,</span>
+<span id="cb3-5"><a href="#cb3-5"></a>               <span class="at">names_transform =</span> <span class="fu">list</span>(<span class="at">year =</span> as.integer)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a>  <span class="fu">group_by</span>(Location, year) <span class="sc">%&gt;%</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a>  <span class="fu">mutate</span>(<span class="at">pcnt =</span> pop <span class="sc">/</span> <span class="fu">sum</span>(pop)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a>  <span class="fu">select</span>(<span class="sc">-</span>pop) <span class="sc">%&gt;%</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> Location, </span>
+<span id="cb3-11"><a href="#cb3-11"></a>              <span class="at">values_from =</span> pcnt)</span>
+<span id="cb3-12"><a href="#cb3-12"></a></span>
+<span id="cb3-13"><a href="#cb3-13"></a><span class="fu">head</span>(dat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="kable-table">
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<thead><tr>
+<th style="text-align:left;"> Age </th>
+   <th style="text-align:right;"> year </th>
+   <th style="text-align:right;"> MDR </th>
+   <th style="text-align:right;"> LDR </th>
+  </tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;"> 0-4 </td>
+   <td style="text-align:right;"> 1950 </td>
+   <td style="text-align:right;"> 0.102 </td>
+   <td style="text-align:right;"> 0.148 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> 0-4 </td>
+   <td style="text-align:right;"> 1955 </td>
+   <td style="text-align:right;"> 0.101 </td>
+   <td style="text-align:right;"> 0.167 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> 0-4 </td>
+   <td style="text-align:right;"> 1960 </td>
+   <td style="text-align:right;"> 0.098 </td>
+   <td style="text-align:right;"> 0.163 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> 0-4 </td>
+   <td style="text-align:right;"> 1965 </td>
+   <td style="text-align:right;"> 0.091 </td>
+   <td style="text-align:right;"> 0.165 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> 0-4 </td>
+   <td style="text-align:right;"> 1970 </td>
+   <td style="text-align:right;"> 0.082 </td>
+   <td style="text-align:right;"> 0.164 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> 0-4 </td>
+   <td style="text-align:right;"> 1975 </td>
+   <td style="text-align:right;"> 0.078 </td>
+   <td style="text-align:right;"> 0.153 </td>
+  </tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section><section id="plot" class="level2" data-number="30.2"><h2 data-number="30.2" class="anchored" data-anchor-id="plot">
+<span class="header-section-number">30.2</span> Plot</h2>
+<p>First, set up the basic plot for one year. Use <code>geom_col()</code> to plot one group with negative values and one group with positive values, then flip the coordinates.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>dat <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2020</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Age)) <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="sc">-</span>LDR), <span class="at">fill =</span> <span class="st">"darkorange2"</span>) <span class="sc">+</span> </span>
+<span id="cb4-5"><a href="#cb4-5"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">y =</span> MDR), <span class="at">fill =</span> <span class="st">"darkgreen"</span>) <span class="sc">+</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a>  <span class="fu">coord_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="30-un-population_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="clean-up" class="level2" data-number="30.3"><h2 data-number="30.3" class="anchored" data-anchor-id="clean-up">
+<span class="header-section-number">30.3</span> Clean Up</h2>
+<p>Let’s make sure that the percent axis is wide enough for all years. Set the limits to the nearest 5% above the value.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>maxval <span class="ot">&lt;-</span> <span class="fu">max</span>(<span class="fu">c</span>(dat<span class="sc">$</span>LDR, dat<span class="sc">$</span>MDR))</span>
+<span id="cb5-2"><a href="#cb5-2"></a>nearest <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a>ylim <span class="ot">&lt;-</span> <span class="fu">ceiling</span>(maxval<span class="sc">*</span>(<span class="dv">1</span><span class="sc">/</span>nearest))<span class="sc">/</span>(<span class="dv">1</span><span class="sc">/</span>nearest)</span>
+<span id="cb5-4"><a href="#cb5-4"></a>ybreaks <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span>ylim, ylim, nearest)</span>
+<span id="cb5-5"><a href="#cb5-5"></a>ylabels <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">abs</span>(ybreaks) <span class="sc">*</span> <span class="dv">100</span>, <span class="st">"%"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>I’ll also make the plot square and add annotations for the regions.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>dat <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2020</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Age)) <span class="sc">+</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="sc">-</span>LDR), <span class="at">fill =</span> <span class="st">"darkorange2"</span>) <span class="sc">+</span> </span>
+<span id="cb6-5"><a href="#cb6-5"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">y =</span> MDR), <span class="at">fill =</span> <span class="st">"darkgreen"</span>) <span class="sc">+</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">label =</span> <span class="st">"Less Developed</span><span class="sc">\n</span><span class="st">Regions"</span>,</span>
+<span id="cb6-7"><a href="#cb6-7"></a>           <span class="at">x =</span> <span class="dv">20</span>, <span class="at">y =</span> <span class="sc">-</span>.<span class="dv">2</span>, <span class="at">size =</span> <span class="dv">8</span>,</span>
+<span id="cb6-8"><a href="#cb6-8"></a>           <span class="at">color =</span> <span class="st">"darkorange2"</span>, <span class="at">hjust =</span> <span class="dv">0</span>, </span>
+<span id="cb6-9"><a href="#cb6-9"></a>           <span class="at">fontface =</span> <span class="st">"bold"</span>, <span class="at">lineheight =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">label =</span> <span class="st">"More Developed</span><span class="sc">\n</span><span class="st">Regions"</span>,</span>
+<span id="cb6-11"><a href="#cb6-11"></a>           <span class="at">x =</span> <span class="dv">20</span>, <span class="at">y =</span> .<span class="dv">2</span>, <span class="at">size =</span> <span class="dv">8</span>,</span>
+<span id="cb6-12"><a href="#cb6-12"></a>           <span class="at">color =</span> <span class="st">"darkgreen"</span>, <span class="at">hjust =</span> <span class="dv">1</span>, </span>
+<span id="cb6-13"><a href="#cb6-13"></a>           <span class="at">fontface =</span> <span class="st">"bold"</span>, <span class="at">lineheight =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
+<span id="cb6-14"><a href="#cb6-14"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">name =</span> <span class="cn">NULL</span>,</span>
+<span id="cb6-15"><a href="#cb6-15"></a>                     <span class="at">breaks =</span> ybreaks,</span>
+<span id="cb6-16"><a href="#cb6-16"></a>                     <span class="at">labels =</span> ylabels) <span class="sc">+</span></span>
+<span id="cb6-17"><a href="#cb6-17"></a>  <span class="fu">coord_flip</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span>ylim, ylim)) <span class="sc">+</span></span>
+<span id="cb6-18"><a href="#cb6-18"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, </span>
+<span id="cb6-19"><a href="#cb6-19"></a>       <span class="at">title =</span> <span class="st">"Population by Age: 2020"</span>,</span>
+<span id="cb6-20"><a href="#cb6-20"></a>       <span class="at">caption =</span> <span class="st">"Data from https://population.un.org | Plot by @lisadebruine"</span>) <span class="sc">+</span></span>
+<span id="cb6-21"><a href="#cb6-21"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb6-22"><a href="#cb6-22"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb6-23"><a href="#cb6-23"></a>        <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"grey60"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="30-un-population_files/figure-html/un-pop-clean-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="animate" class="level2" data-number="30.4"><h2 data-number="30.4" class="anchored" data-anchor-id="animate">
+<span class="header-section-number">30.4</span> Animate</h2>
+<p>Comment out the year filter and add in <code>transition_time(year)</code> to set up the transition. Update the title to replace the year with <code>floor(frame_time/5)*5</code> so the year advances in 5-year increments.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>anim <span class="ot">&lt;-</span> dat <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="co">#filter(year == 2020) %&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Age)) <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="sc">-</span>LDR), <span class="at">fill =</span> <span class="st">"darkorange2"</span>) <span class="sc">+</span> </span>
+<span id="cb7-5"><a href="#cb7-5"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">y =</span> MDR), <span class="at">fill =</span> <span class="st">"darkgreen"</span>) <span class="sc">+</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">label =</span> <span class="st">"Less Developed</span><span class="sc">\n</span><span class="st">Regions"</span>,</span>
+<span id="cb7-7"><a href="#cb7-7"></a>           <span class="at">x =</span> <span class="dv">20</span>, <span class="at">y =</span> <span class="sc">-</span>.<span class="dv">2</span>, <span class="at">size =</span> <span class="dv">8</span>,</span>
+<span id="cb7-8"><a href="#cb7-8"></a>           <span class="at">color =</span> <span class="st">"darkorange2"</span>, <span class="at">hjust =</span> <span class="dv">0</span>, </span>
+<span id="cb7-9"><a href="#cb7-9"></a>           <span class="at">fontface =</span> <span class="st">"bold"</span>, <span class="at">lineheight =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">label =</span> <span class="st">"More Developed</span><span class="sc">\n</span><span class="st">Regions"</span>,</span>
+<span id="cb7-11"><a href="#cb7-11"></a>           <span class="at">x =</span> <span class="dv">20</span>, <span class="at">y =</span> .<span class="dv">2</span>, <span class="at">size =</span> <span class="dv">8</span>,</span>
+<span id="cb7-12"><a href="#cb7-12"></a>           <span class="at">color =</span> <span class="st">"darkgreen"</span>, <span class="at">hjust =</span> <span class="dv">1</span>, </span>
+<span id="cb7-13"><a href="#cb7-13"></a>           <span class="at">fontface =</span> <span class="st">"bold"</span>, <span class="at">lineheight =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
+<span id="cb7-14"><a href="#cb7-14"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">name =</span> <span class="cn">NULL</span>,</span>
+<span id="cb7-15"><a href="#cb7-15"></a>                     <span class="at">breaks =</span> ybreaks,</span>
+<span id="cb7-16"><a href="#cb7-16"></a>                     <span class="at">labels =</span> ylabels) <span class="sc">+</span></span>
+<span id="cb7-17"><a href="#cb7-17"></a>  <span class="fu">coord_flip</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span>ylim, ylim)) <span class="sc">+</span></span>
+<span id="cb7-18"><a href="#cb7-18"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, </span>
+<span id="cb7-19"><a href="#cb7-19"></a>       <span class="at">title =</span> <span class="st">"Population by Age: {floor(frame_time/5)*5}"</span>,</span>
+<span id="cb7-20"><a href="#cb7-20"></a>       <span class="at">caption =</span> <span class="st">"Data from https://population.un.org | Plot by @lisadebruine"</span>) <span class="sc">+</span></span>
+<span id="cb7-21"><a href="#cb7-21"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb7-22"><a href="#cb7-22"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb7-23"><a href="#cb7-23"></a>        <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"grey60"</span>)) <span class="sc">+</span></span>
+<span id="cb7-24"><a href="#cb7-24"></a>  gganimate<span class="sc">::</span><span class="fu">transition_time</span>(year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>I like to think about the number of frames in terms of the number of transitions and frame rate. At the default framerate of 10 fps, each 5-year transition will take about half a second if there are 5 times as many frames as transitions. As always, I save the gif and set the code chunk to <code>eval = FALSE</code> to avoid running this every time I knit the book.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>frames <span class="ot">&lt;-</span> <span class="fu">unique</span>(dat<span class="sc">$</span>year) <span class="sc">%&gt;%</span> <span class="fu">length</span>()</span>
+<span id="cb8-2"><a href="#cb8-2"></a></span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="fu">anim_save</span>(<span class="st">"images/day30.gif"</span>, </span>
+<span id="cb8-4"><a href="#cb8-4"></a>          <span class="at">animation =</span> anim, </span>
+<span id="cb8-5"><a href="#cb8-5"></a>          <span class="at">nframes =</span> frames<span class="sc">*</span><span class="dv">5</span>, <span class="at">fps =</span> <span class="dv">10</span>, </span>
+<span id="cb8-6"><a href="#cb8-6"></a>          <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">8</span>, </span>
+<span id="cb8-7"><a href="#cb8-7"></a>          <span class="at">units =</span> <span class="st">"in"</span>, <span class="at">res =</span> <span class="dv">150</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Display with <code>include_graphics()</code> and set the alt-text for screen-readers.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"images/day30.gif"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/day30.gif" class="img-fluid figure-img" alt="Population by age group (from 0 to 100+ in 5-year intervals) for less-developed and more-developed UN regions. Animated across years from 1950 to 2100 (projections). In the 1900s, the plot was triangluar, which most of the population at younger ages, although this wwas more prominent in less-developed regions. As time goes on, the structure gets more rectangular, with about equal numbers at all age groups until the very elderly." style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
-</main> <!-- /main -->
-<script>
+</section></main><!-- /main --><script>
 // open rdrr links externally ----
 
 var exlinks = document.querySelectorAll("a[href^='https://rdrr.io']");
@@ -393,8 +899,7 @@ function move_sidebar() {
 }
 move_sidebar();
 window.onresize = move_sidebar;
-</script>
-<script type="application/javascript">
+</script><script type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const icon = "";
   const anchorJS = new window.AnchorJS();
@@ -469,9 +974,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     });
   }
 });
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./29-storytelling.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Storytelling</span></span>
       </a>          
@@ -483,12 +986,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">CC-BY 2022, Lisa DeBruine</div>   
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
-    <li class="nav-item compact">
+<li class="nav-item compact">
     <a class="nav-link" href="https://github.com/debruine/30DCC-2022">
       <i class="bi bi-github" role="img">
 </i> 
@@ -501,7 +1003,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </a>
   </li>  
 </ul>
-    </div>
+</div>
   </div>
 </footer>
 

@@ -1,2 +1,164 @@
 # UN Population
 
+```{r, include = FALSE}
+source("R/setup.R")
+```
+
+
+I really like the [population pyramids](https://population.un.org/wpp/Graphs/DemographicProfiles/Pyramid/900) at the UN Population website, so I'm going to pull together all of the skills I've learned this month and make an animated version. 
+
+```{r}
+#| code-summary: Setup
+
+library(readxl)    # to read excel data from UN
+library(tidyverse) # for data wrangling and visualisation
+library(gganimate) # for animation
+
+theme_set(theme_minimal(base_size = 16))
+```
+
+
+## Data
+
+The [interactive data query](https://population.un.org/wpp/DataQuery/) is outstanding. I chose population by age for more and less developed regions from the UN development groups from 1950 to 2100 in 5-year intervals.
+
+First, I'll import the data, select the data for both sexes and the two locations I want to compare, and make the Age column a factor to keep the data in the right order in plots.
+
+```{r}
+dat <- read_xlsx("data/PopulationAgeSex-20220430074449.xlsx",
+                 sheet = "Data", skip = 1) %>%
+  filter(Sex == "Both sexes combined") %>%
+  mutate(Location = recode(Location, 
+                           "Less developed regions" = "LDR",
+                           "More developed regions" = "MDR")) %>%
+  filter(Location %in% c("MDR", "LDR")) %>%
+  mutate(Age = factor(Age, unique(Age))) %>%
+  select(-1, -Sex, -Note)
+
+head(dat)
+```
+
+Now I need to convert the data from wide to long and calculate the percent of people in each age group for each year and location. The populations between the more and less developed regions are very different and that difference isn't meaningful for this graph, so it is better to visualise the precent.
+
+```{r}
+dat <- dat %>%
+  pivot_longer(cols = `1950`:`2100`,
+               names_to = "year",
+               values_to = "pop",
+               names_transform = list(year = as.integer)) %>%
+  group_by(Location, year) %>%
+  mutate(pcnt = pop / sum(pop)) %>%
+  ungroup() %>%
+  select(-pop) %>%
+  pivot_wider(names_from = Location, 
+              values_from = pcnt)
+
+head(dat)
+```
+
+
+## Plot 
+
+First, set up the basic plot for one year. Use `geom_col()` to plot one group with negative values and one group with positive values, then flip the coordinates.
+
+```{r}
+dat %>%
+  filter(year == 2020) %>%
+  ggplot(aes(x = Age)) +
+  geom_col(aes(y = -LDR), fill = "darkorange2") + 
+  geom_col(aes(y = MDR), fill = "darkgreen") +
+  coord_flip()
+```
+
+## Clean Up
+
+Let's make sure that the percent axis is wide enough for all years. Set the limits to the nearest 5% above the value.
+
+```{r}
+maxval <- max(c(dat$LDR, dat$MDR))
+nearest <- 0.05
+ylim <- ceiling(maxval*(1/nearest))/(1/nearest)
+ybreaks <- seq(-ylim, ylim, nearest)
+ylabels <- paste0(abs(ybreaks) * 100, "%")
+```
+
+I'll also make the plot square and add annotations for the regions.
+
+```{r un-pop-clean, fig.width = 8/2, fig.height = 8/2}
+dat %>%
+  filter(year == 2020) %>%
+  ggplot(aes(x = Age)) +
+  geom_col(aes(y = -LDR), fill = "darkorange2") + 
+  geom_col(aes(y = MDR), fill = "darkgreen") +
+  annotate("text", label = "Less Developed\nRegions",
+           x = 20, y = -.2, size = 8,
+           color = "darkorange2", hjust = 0, 
+           fontface = "bold", lineheight = 0.9) +
+  annotate("text", label = "More Developed\nRegions",
+           x = 20, y = .2, size = 8,
+           color = "darkgreen", hjust = 1, 
+           fontface = "bold", lineheight = 0.9) +
+  scale_y_continuous(name = NULL,
+                     breaks = ybreaks,
+                     labels = ylabels) +
+  coord_flip(ylim = c(-ylim, ylim)) +
+  labs(x = NULL, 
+       title = "Population by Age: 2020",
+       caption = "Data from https://population.un.org | Plot by @lisadebruine") +
+  theme(panel.grid.minor = element_blank(),
+        plot.title = element_text(face = "bold"),
+        plot.caption = element_text(color = "grey60"))
+```
+
+
+## Animate
+
+Comment out the year filter and add in `transition_time(year)` to set up the transition. Update the title to replace the year with `floor(frame_time/5)*5` so the year advances in 5-year increments.
+
+```{r}
+anim <- dat %>%
+  #filter(year == 2020) %>%
+  ggplot(aes(x = Age)) +
+  geom_col(aes(y = -LDR), fill = "darkorange2") + 
+  geom_col(aes(y = MDR), fill = "darkgreen") +
+  annotate("text", label = "Less Developed\nRegions",
+           x = 20, y = -.2, size = 8,
+           color = "darkorange2", hjust = 0, 
+           fontface = "bold", lineheight = 0.9) +
+  annotate("text", label = "More Developed\nRegions",
+           x = 20, y = .2, size = 8,
+           color = "darkgreen", hjust = 1, 
+           fontface = "bold", lineheight = 0.9) +
+  scale_y_continuous(name = NULL,
+                     breaks = ybreaks,
+                     labels = ylabels) +
+  coord_flip(ylim = c(-ylim, ylim)) +
+  labs(x = NULL, 
+       title = "Population by Age: {floor(frame_time/5)*5}",
+       caption = "Data from https://population.un.org | Plot by @lisadebruine") +
+  theme(panel.grid.minor = element_blank(),
+        plot.title = element_text(face = "bold"),
+        plot.caption = element_text(color = "grey60")) +
+  gganimate::transition_time(year)
+```
+
+I like to think about the number of frames in terms of the number of transitions and frame rate. At the default framerate of 10 fps, each 5-year transition will take about half a second if there are 5 times as many frames as transitions. As always, I save the gif and set the code chunk to `eval = FALSE` to avoid running this every time I knit the book. 
+
+```{r, eval = FALSE}
+frames <- unique(dat$year) %>% length()
+
+anim_save("images/day30.gif", 
+          animation = anim, 
+          nframes = frames*5, fps = 10, 
+          width = 8, height = 8, 
+          units = "in", res = 150)
+```
+
+Display with `include_graphics()` and set the alt-text for screen-readers.
+
+```{r un-pop-day30, fig.width = 8, fig.height = 5}
+#| fig.alt: Population by age group (from 0 to 100+ in 5-year intervals) for less-developed and more-developed UN regions. Animated across years from 1950 to 2100 (projections). In the 1900s, the plot was triangluar, which most of the population at younger ages, although this wwas more prominent in less-developed regions. As time goes on, the structure gets more rectangular, with about equal numbers at all age groups until the very elderly.
+
+knitr::include_graphics("images/day30.gif")
+```
+

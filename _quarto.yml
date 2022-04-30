@@ -81,6 +81,7 @@ book:
     - app-a-colours.qmd
     - app-b-stained-glass.qmd
     - app-c-magic-eye.qmd
+    - app-d-psyarxiv.qmd
 
 bibliography: include/book.bib
 csl: include/apa.csl
