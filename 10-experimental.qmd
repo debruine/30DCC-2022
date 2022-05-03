@@ -2,6 +2,10 @@
 
 ```{r setup, include = FALSE}
 source("R/setup.R")
+knitr::opts_chunk$set(
+  fig.width  = 8,
+  fig.height = 5
+)
 ```
 
 Today I'm going to use faux to generate some simulated data for a factorial experimental design and make some plots.

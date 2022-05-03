@@ -24,9 +24,12 @@ knitr::include_graphics("images/flower_infographics.png")
 
 I have some experience making SVGs (scalable vector graphics), but I always have to look things up. [W3Schools](https://www.w3schools.com/graphics/svg_intro.asp) is my favourite source for quick tutorials on web stuff. I used it a ton to make this chart.
 
+
 While I was developing this code, I needed to have a quick look at the images a lot, and couldn't figure out an efficient way to view SVGs, so I wrote a function that converts the svg text to a PNG tempfile and displays it in my Rmd, but only when I'm running the code interactively. 
 
 ```{r}
+#| code-summary: SVG viewer function
+
 viewsvg <- function(svg, width = 5, height = 5, dpi = 150) {
   if (interactive() &&
       !isTRUE(getOption("knitr.in.progress"))) {
@@ -51,9 +54,11 @@ viewsvg(svg)
 
 ## Flower Petals
 
-First, I need a function to figure out the coordinates of regular polygons. 
+First, I need a function to figure out the coordinates of regular polygons. Finally, high school trigonometry comes in handy!
 
 ```{r}
+#| code-summary: Polygon coordinate function
+
 poly_coords <- function(n = 6, r = 1, cx = 0, cy = 0, rot = 0, digits = 2) {
   x = map_dbl(0:(n-1), ~{ cx + r * cos(2 * pi * .x / n + rot) })
   y = map_dbl(0:(n-1), ~{ cy + r * sin(2 * pi * .x / n + rot) })

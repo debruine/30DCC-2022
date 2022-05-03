@@ -93,8 +93,8 @@ Now I'll really customise the appearance. I found the `theme()` function intimid
 rbcol <- c("red3", 
            "darkgoldenrod1", 
            "springgreen3", 
-           "dodgerblue2", 
-           "darkorchid")
+           "dodgerblue", 
+           "mediumorchid")
 
 ggplot(ukso, aes(x = `Sexual orientation`, 
                  y = `2019`, 

@@ -9,7 +9,7 @@ Every time I thought about today's prompt, by brain started playing Let's Get Ph
 ![](images/physical.png)
 
 
-So I decided to adapt some code from a tutorial I wrote on [spotifyr](https://psyteachr.github.io/ads-v1/spotify-data.html), which is based on a [tutorial by Michael Mullarkey](https://mcmullarkey.github.io/mcm-blog/posts/2022-01-07-spotify-api-r/). You can check those tutorials for the setup details if you haven't used `r pkg("spotifyr")` before.
+I adapted some code from a tutorial I wrote on [spotifyr](https://psyteachr.github.io/ads-v1/spotify-data.html), which is based on a [tutorial by Michael Mullarkey](https://mcmullarkey.github.io/mcm-blog/posts/2022-01-07-spotify-api-r/). You can check those tutorials for the setup details if you haven't used `r pkg("spotifyr")` before.
 
 ```{r}
 #| code-summary: Setup
@@ -167,8 +167,8 @@ Let's remind ourselves of this monstrosity.
 ![](images/physical.png)
 
 ```{r physical-theme}
-#| fig.cap: OK, that's awful and I'm sorry.
-#| fig.alt: Chart of Let's Get Physical by Olivia Newton John, showing the main pitch for each beat (in pink) and key for each segment (in blue). The 80s visual theme is reminiscent of the gym from the music video for the song.
+#| fig-cap: OK, that's awful and I'm sorry.
+#| fig-alt: Chart of Let's Get Physical by Olivia Newton John, showing the main pitch for each beat (in pink) and key for each segment (in blue). The 80s visual theme is reminiscent of the gym from the music video for the song.
 
 # translate spotify's 0-11 to notes
 pitch_key_vals <- c('C', 'C#/Db', 'D', 'D#/Eb', 'E', 'F', 

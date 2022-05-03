@@ -39,7 +39,7 @@
   text-indent: -2em ;
 }
 
-.package { font-weight: 600; }
+.package { font-weight: 600; color: inherit; }
 .package::before { content: "{"; }
 .package::after { content: "}"; }
 

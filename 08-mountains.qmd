@@ -168,6 +168,8 @@ ggplot() +
 
 There's no munros on the Northern Isles, so I've cropped them out of the map. I also made the colours better. I added a label to `geom_point()`, which will produce a warning that it isn't used, but you'll see why in the next step.
 
+The version of Hill House I have doesn't have lowercase letters, so I'm using all uppercase for the title.
+
 ```{r mountains-pretty, fig.width = 4.5, fig.height = 6}
 #| fig.cap: The location and height of Scotland's Munros.
 #| fig.alt: A map of Scotland with the location of all the munros (hills over 3000 feet) mapped with their height shown by colour.
@@ -185,7 +187,7 @@ munro_plot <- ggplot() +
   scale_color_viridis_c(name = "Height (ft)",
                         limits = c(3000, 4500)) +
   labs(x = NULL, y = NULL,
-       title = "The Munros of Scotland",
+       title = "THE MUNROS OF SCOTLAND",
        caption = "Data from The Database of British and Irish Hills | Plot by @lisadebruine") +
   theme_map() +
   theme(legend.position = c(0, 0),
@@ -207,7 +209,7 @@ ggsave("images/day8.png", plot = munro_plot,
 
 The `r pkg("plotly")` package makes it pretty easy to make a ggplot interactive. Select an are to get a closer look, or hover over an individual munro to see why we added the unused `label` argument to `geom_point()` above.
 
-I had to add some css to get the hover bar to stop acting wierd, but it's still not quite right.
+I had to add some css to get the hover bar to stop acting weird, but it's still not quite right.
 
 ```{verbatim}
 .js-plotly-plot .plotly .modebar { position: relative; top: -2em; }

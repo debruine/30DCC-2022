@@ -89,7 +89,9 @@ csl: include/apa.csl
 
 format:
   html:
-    theme: default
+    theme: 
+      light: yeti
+      dark: darkly
     code-link: true
     code-fold: true
     code-line-numbers: true

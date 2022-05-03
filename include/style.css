@@ -52,4 +52,14 @@ svg { width: 100%; }
   }
 }
 
+/* references with hanging indent */
+.csl-entry {
+  padding-left: 2em ;
+  text-indent: -2em ;
+}
+
+.package { font-weight: 600; color: inherit; background-color: inherit !important; }
+.package::before { content: "{"; }
+.package::after { content: "}"; }
+
 
