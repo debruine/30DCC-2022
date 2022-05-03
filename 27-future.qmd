@@ -1,6 +1,6 @@
 # Future {#sec-future}
 
-```{r, include = FALSE}
+```{r setup, include = FALSE}
 source("R/setup.R")
 ```
 
@@ -11,14 +11,14 @@ library(tidyverse) # for data wrangling
 library(jsonlite)  # for reading from the OSF API
 library(lubridate) # for handling dates
 
-theme_set(theme_minimal())
+theme_set(theme_minimal(base_size = 16))
 ```
 
 ## OSF Data
 
 Use the [OSF API](https://developer.osf.io/) to search the OSF for preprints from PsyArXiv. Use `read_json()` to store the JSON returned data as an R list. Each "page" has 10 entries. `j$links$last` contains the URL of the last page of entries, so extract the page number from that to find out how many pages you'll need to read.  
 
-```{r}
+```{r, eval = FALSE}
 # get the total number of pages
 baseurl <- "https://api.osf.io/v2/preprints/?filter%5Bprovider%5D=psyarxiv&format=jsonapi"
 j <- read_json(baseurl)
@@ -75,7 +75,7 @@ saveRDS(preprint_data, preprint_file)
 
 ### Process data
 
-Comments out the code above so it doesn't run unless you want it to.
+Comment out the code above so it doesn't run unless you want it to.
 
 ```{r}
 # read from saved object
@@ -194,26 +194,30 @@ newdat$n <- predict(model, newdat)
 
 
 
-```{r day27}
+```{r day27, fig.width = 4, fig.height = 4}
 #| fig.alt: A scatter plot of PsyArXiv preprints per month with publication DOIs and without, from 2016 to present, with predictions up to 2025. The papers without DOIs increase from 0 to about 500 per month in 2021 and level off, while the paper with DOIs increase to about 100 per month to 2021 and decrease. The prediction line show an increase in papers without DOIs to 1500/month by 2025 and to about 200 per month for papers without DOIs.
 
 ggplot(mapping = aes(x = pub_month, y = n, color = has_doi)) +
   geom_point(data = data_by_month, alpha = 0.5) +
   geom_line(data = newdat, linetype = "dashed") +
-  annotate("text", label = "Probably not a very\naccurate prediction,     \nbut it would be nice             ", hjust = 1, x = as_date("2023-07-01"), y = 1200) +
+  annotate("text", label = "Probably not a very\naccurate prediction    ", 
+           hjust = 1, size = 6,
+           x = as_date("2023-07-01"), y = 1200) +
   scale_x_date(date_breaks = "1 year",
                date_labels = "%Y") +
+  scale_y_continuous(breaks = seq(0, 1500, 250)) +
   scale_color_manual(values = c("#CA1A31", "#3477B5")) +
   labs(x = NULL, y = NULL, color = NULL,
-       title = "PsyArXiv preprints per month <span style='color: #3477B5;'>with publication DOIs</span> and <span style='color: #CA1A31;'>without</span>",
-       caption = "Data from OSF using the API") +
+       title = "PsyArXiv preprints per month <span style='color: #3477B5;'>with</span> and <span style='color: #CA1A31;'>without</span> publication DOIs",
+       caption = "Data from OSF using the API | Plot by @lisadebruine") +
   theme(panel.grid.minor = element_blank(),
         legend.position = "none",
-        plot.title = ggtext::element_markdown())
+        plot.title = ggtext::element_markdown(size = 18),
+        plot.caption = element_text(color = "grey50"))
 ```
 
 
 ```{r, include = FALSE, eval = FALSE}
-ggsave("images/day27.png", width = 8, height = 5, device = png, bg = "white")
+ggsave("images/day27.png", width = 8, height = 8, bg = "white")
 knitr::include_graphics("images/day27.png")
 ```

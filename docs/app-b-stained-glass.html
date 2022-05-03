@@ -413,7 +413,7 @@
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header"><h1 class="title d-none d-lg-block display-7">Appendix B — Stained Glass Heart</h1>
 </header><p>I’ve been inspired by a lot of the charts I see on the #30DayChartChallenge hashtag, but Icaro Bernardes` <a href="https://twitter.com/IcaroBSC/status/1515169762778697732">stained glass</a> was the first I wanted to make my own. His <a href="https://github.com/IcaroBernardes/30DayChartChallenge/blob/master/2022/day10/day10.R">original code</a> shows how to create a gorgeous stained-glass window with text. I’ve simplified the code a bit and am just making a heart (using maths) in stained glass.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <details><summary>Setup</summary><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(ggplot2) <span class="co"># for plotting</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(dplyr)   <span class="co"># for data wrangling</span></span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(sf)      <span class="co"># for shapes</span></span>
@@ -423,7 +423,7 @@
 <section id="variables" class="level2" data-number="B.1"><h2 data-number="B.1" class="anchored" data-anchor-id="variables">
 <span class="header-section-number">B.1</span> Variables</h2>
 <p>First, set up some variables, like a seed to use for the random elements, the number of points (more will make the glass pieces smaller), and your base palette (I’m using the psyTeachR rainbow colours).</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <details><summary>Variables</summary><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>seed <span class="ot">&lt;-</span> <span class="dv">8675309</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a>n_pts <span class="ot">&lt;-</span> <span class="dv">150</span> <span class="do">### Number of points to try to put inside the window</span></span>
 <span id="cb2-3"><a href="#cb2-3"></a>palette <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
@@ -439,7 +439,7 @@
 </section><section id="frame" class="level2" data-number="B.2"><h2 data-number="B.2" class="anchored" data-anchor-id="frame">
 <span class="header-section-number">B.2</span> Frame</h2>
 <p>Make a matrix of the x and y coordinates of the frame. The code below is the maths for a heart.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <details><summary>heart frame</summary><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>t <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">2</span><span class="sc">*</span>pi, <span class="at">by=</span><span class="fl">0.05</span>)</span>
 <span id="cb3-2"><a href="#cb3-2"></a>t <span class="ot">&lt;-</span> <span class="fu">c</span>(t, t[[<span class="dv">1</span>]]) <span class="co"># append starting value</span></span>
 <span id="cb3-3"><a href="#cb3-3"></a>frame <span class="ot">&lt;-</span> <span class="fu">cbind</span>(</span>
@@ -449,20 +449,23 @@
 </details>
 </div>
 <p>Then convert the matrix to a polygon. Plot to check it looks right.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <details><summary>convert to a polygon</summary><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>frame_sf <span class="ot">&lt;-</span> frame <span class="sc">%&gt;%</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">list</span>() <span class="sc">%&gt;%</span> </span>
 <span id="cb4-3"><a href="#cb4-3"></a>  sf<span class="sc">::</span><span class="fu">st_polygon</span>()</span>
 <span id="cb4-4"><a href="#cb4-4"></a></span>
 <span id="cb4-5"><a href="#cb4-5"></a><span class="fu">ggplot</span>(frame_sf) <span class="sc">+</span> <span class="fu">geom_sf</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
-<p><img src="app-b-stained-glass_files/figure-html/heart-check-1.png" class="img-fluid" width="672"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="app-b-stained-glass_files/figure-html/heart-check-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
 </div>
 </div>
 </section><section id="random-points" class="level2" data-number="B.3"><h2 data-number="B.3" class="anchored" data-anchor-id="random-points">
 <span class="header-section-number">B.3</span> Random points</h2>
 <p>Make some random points within the range of x and y values of the frame.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <details><summary>random data points in frame bounds</summary><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">set.seed</span>(seed)</span>
 <span id="cb5-2"><a href="#cb5-2"></a>points <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
 <span id="cb5-3"><a href="#cb5-3"></a>  <span class="at">x =</span> <span class="fu">runif</span>(n_pts, <span class="at">min =</span> <span class="fu">min</span>(frame[,<span class="dv">1</span>]), <span class="at">max =</span> <span class="fu">max</span>(frame[,<span class="dv">1</span>])),</span>
@@ -474,13 +477,16 @@
 <span id="cb5-9"><a href="#cb5-9"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> frame_sf) <span class="sc">+</span></span>
 <span id="cb5-10"><a href="#cb5-10"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(x, y), points)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
-<p><img src="app-b-stained-glass_files/figure-html/all-points-1.png" class="img-fluid" width="672"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="app-b-stained-glass_files/figure-html/all-points-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
 </div>
 </div>
 </section><section id="constrain-points" class="level2" data-number="B.4"><h2 data-number="B.4" class="anchored" data-anchor-id="constrain-points">
 <span class="header-section-number">B.4</span> Constrain points</h2>
 <p>Constrain the points to just those inside the frame. Do this by creating an sf version of the points, then using <code><a href="https://r-spatial.github.io/sf/reference/geos_binary_pred.html">sf::st_contains()</a></code> to check which are contained in the frame sf object. Then, select just the contained points from the points table.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <details><summary>constrain points</summary><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="do">## Creates a new sf object to hold the created points</span></span>
 <span id="cb6-2"><a href="#cb6-2"></a>points_sf <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_as_sf</span>(points, <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"x"</span>,<span class="st">"y"</span>))</span>
 <span id="cb6-3"><a href="#cb6-3"></a></span>
@@ -493,13 +499,16 @@
 <span id="cb6-10"><a href="#cb6-10"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> frame_sf) <span class="sc">+</span></span>
 <span id="cb6-11"><a href="#cb6-11"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(x, y), points)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
-<p><img src="app-b-stained-glass_files/figure-html/constrained-points-1.png" class="img-fluid" width="672"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="app-b-stained-glass_files/figure-html/constrained-points-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
 </div>
 </div>
 </section><section id="pane-colours" class="level2" data-number="B.5"><h2 data-number="B.5" class="anchored" data-anchor-id="pane-colours">
 <span class="header-section-number">B.5</span> Pane colours</h2>
 <p>Add to the points table a column called <code>fill</code> with randomly sampled colours from the palette<code>and a column called</code>alpha` with randomly sampled values between 0.2 and 0.9. You can change these to make your window more or less transparent.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <details><summary>pane colours</summary><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">set.seed</span>(seed)</span>
 <span id="cb7-2"><a href="#cb7-2"></a>points <span class="ot">&lt;-</span> points <span class="sc">%&gt;%</span> </span>
 <span id="cb7-3"><a href="#cb7-3"></a>  <span class="fu">mutate</span>(</span>
@@ -511,7 +520,7 @@
 </section><section id="plot" class="level2" data-number="B.6"><h2 data-number="B.6" class="anchored" data-anchor-id="plot">
 <span class="header-section-number">B.6</span> Plot</h2>
 <p>Now plot! Note the <code><a href="https://rdrr.io/r/base/AsIs.html">I()</a></code> function for fill and alpha, which uses the actual value in these columns, instead of mapping new values to each unique value.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <details><summary>Plot</summary><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">ggplot</span>(points) <span class="sc">+</span></span>
 <span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">geom_voronoi_tile</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, </span>
 <span id="cb8-3"><a href="#cb8-3"></a>                        <span class="at">group =</span> <span class="sc">-</span>1L, </span>
@@ -526,15 +535,21 @@
 <span id="cb8-12"><a href="#cb8-12"></a>          <span class="at">fill =</span> <span class="st">"transparent"</span>) <span class="sc">+</span></span>
 <span id="cb8-13"><a href="#cb8-13"></a>  <span class="fu">theme_void</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
-<p><img src="app-b-stained-glass_files/figure-html/stained-glass-heart-1.png" class="img-fluid" width="672"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="app-b-stained-glass_files/figure-html/stained-glass-heart-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>I like it even better with a black background.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <details><summary>Black heart</summary><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>ggplot2<span class="sc">::</span><span class="fu">last_plot</span>() <span class="sc">+</span></span>
 <span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">theme</span>(<span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"black"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
-<p><img src="app-b-stained-glass_files/figure-html/black-heart-1.png" class="img-fluid" width="672"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="app-b-stained-glass_files/figure-html/black-heart-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
 </div>
 </div>
 

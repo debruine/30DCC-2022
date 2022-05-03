@@ -84,7 +84,7 @@ ylabels <- paste0(abs(ybreaks) * 100, "%")
 
 I'll also make the plot square and add annotations for the regions.
 
-```{r un-pop-clean, fig.width = 8/2, fig.height = 8/2}
+```{r un-pop-clean, fig.width = 8, fig.height = 8}
 dat %>%
   filter(year == 2020) %>%
   ggplot(aes(x = Age)) +

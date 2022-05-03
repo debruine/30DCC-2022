@@ -10,7 +10,7 @@ Bees are an important environmental issue. They pollinate crops, trees and other
 #| code-summary: Setup
 
 library(tidyverse) # for data wrangling and viz
-theme_set(theme_minimal())
+theme_set(theme_minimal(base_size = 16))
 ```
 
 
@@ -141,7 +141,7 @@ names(facet_labels) <- as.character(seq_along(facet_labels))
 
 Styling the colour-coded states on the right was tricky. I had to add some padding to the right, using `expand = expansion(add = c(1, 11)` in `scale_x_continuous()`. It still had the grid lines, so I first tried to cover it with a white square using `geom_rect()`, but realised I needed to use `stat_summary()` to calculate the maximum value on the y-axis for each facet. Then I used `geom_text()` to place all of the state labels at 2018 on the x-axis and the y-value calculated in `state_labels`.
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 8/2, fig.height = 8/2}
 #|fig.cap: Bee colonies are decreasing, especially in states with a maximum inventory under 46K colonies. 
 #| fig.alt: Bee colony inventories for each US state, plotted from 1985 to 2017. Data are plotted in 4 panels based on maximum inventory: under 20K, under 46K, under 94K and under 640K. States under 20K have mostly decreased, but some increased. States under 46K decreased dramatically in the late 1990s and never recovered. States under 94K are mixed, some have decreased and some increased. States under 106K have most held steady, with a big decrease in California but a comparable increase in North Dakota. 
 
@@ -150,15 +150,15 @@ bee_quants %>%
   geom_line(show.legend = FALSE) +
   stat_summary(aes(ymax = Inventory, group = quantile),
                geom = "rect", fun.max = max,
-               xmin = 2017.5, xmax = 2028, ymin = 0, 
+               xmin = 2017.5, xmax = 2038, ymin = 0, 
                fill = "white", color = "white") +
   geom_text(aes(label = State, y = y), 
-            state_labels, 
+            state_labels, size = 3.5,
             hjust = 0, vjust = 0.5, x = 2018,
             show.legend = FALSE) +
   scale_x_continuous(NULL, 
                      breaks = seq(1990, 2015, 10),
-                     expand = expansion(add = c(1, 11))) +
+                     expand = expansion(add = c(1, 15))) +
   scale_y_continuous(
     name = "Bee Inventory",
     labels = scales::label_number(scale = 1/1000, suffix = "K")) +
@@ -171,14 +171,15 @@ bee_quants %>%
        caption = "Data from data.world | Plot by @lisadebruine") +
   theme(
     plot.title = element_text(size = 20, hjust = 0.5),
-    strip.text = element_text(size = 15)
+    strip.text = element_text(size = 15),
+    plot.caption = element_text(size = 11, color ="grey40")
   )
 ```
 
 
 
 ```{r, include = FALSE, eval = FALSE}
-ggsave("images/day16.png", width = 10, height = 6, device = png, bg = "white")
+ggsave("images/day16.png", width = 8, height = 8, device = png, bg = "white")
 knitr::include_graphics("images/day16.png")
 ```
 

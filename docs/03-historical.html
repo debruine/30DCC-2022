@@ -588,7 +588,7 @@
 <span id="cb13-3"><a href="#cb13-3"></a>      year <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">~</span> <span class="st">"A"</span>,</span>
 <span id="cb13-4"><a href="#cb13-4"></a>      year <span class="sc">&lt;</span> <span class="dv">1700</span> <span class="sc">~</span> <span class="st">"B"</span>,</span>
 <span id="cb13-5"><a href="#cb13-5"></a>      year <span class="sc">&lt;</span> <span class="dv">1800</span> <span class="sc">~</span> <span class="st">"C"</span>,</span>
-<span id="cb13-6"><a href="#cb13-6"></a>      year <span class="sc">&lt;</span> <span class="dv">2022</span> <span class="sc">~</span> <span class="st">"D"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-6"><a href="#cb13-6"></a>      year <span class="sc">&lt;</span> <span class="dv">2101</span> <span class="sc">~</span> <span class="st">"D"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell" data-layout-align="center">
@@ -653,19 +653,19 @@
 <span id="cb17-3"><a href="#cb17-3"></a>  <span class="at">A =</span> <span class="st">"10000BC to 0"</span>,</span>
 <span id="cb17-4"><a href="#cb17-4"></a>  <span class="at">B =</span> <span class="st">"0 to 1700"</span>,</span>
 <span id="cb17-5"><a href="#cb17-5"></a>  <span class="at">C =</span> <span class="st">"1700 to 1800"</span>,</span>
-<span id="cb17-6"><a href="#cb17-6"></a>  <span class="at">D =</span> <span class="st">"1800 to 2021"</span></span>
+<span id="cb17-6"><a href="#cb17-6"></a>  <span class="at">D =</span> <span class="st">"1800 to 2100"</span></span>
 <span id="cb17-7"><a href="#cb17-7"></a>)</span>
 <span id="cb17-8"><a href="#cb17-8"></a></span>
 <span id="cb17-9"><a href="#cb17-9"></a><span class="co"># custom x-axis breaks and labels</span></span>
 <span id="cb17-10"><a href="#cb17-10"></a>x_breaks <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="dv">10000</span>, <span class="sc">-</span><span class="dv">2000</span>, <span class="dv">2000</span>),</span>
 <span id="cb17-11"><a href="#cb17-11"></a>              <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1600</span>, <span class="dv">200</span>),</span>
 <span id="cb17-12"><a href="#cb17-12"></a>              <span class="fu">seq</span>(<span class="dv">1700</span>, <span class="dv">1790</span>, <span class="dv">10</span>),</span>
-<span id="cb17-13"><a href="#cb17-13"></a>              <span class="fu">seq</span>(<span class="dv">1800</span>, <span class="dv">2021</span>, <span class="dv">20</span>))</span>
+<span id="cb17-13"><a href="#cb17-13"></a>              <span class="fu">seq</span>(<span class="dv">1800</span>, <span class="dv">2100</span>, <span class="dv">20</span>))</span>
 <span id="cb17-14"><a href="#cb17-14"></a></span>
 <span id="cb17-15"><a href="#cb17-15"></a>x_labels <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">paste</span>(<span class="fu">seq</span>(<span class="dv">10000</span>, <span class="dv">2000</span>, <span class="sc">-</span><span class="dv">2000</span>), <span class="st">"BCE"</span>),</span>
 <span id="cb17-16"><a href="#cb17-16"></a>              <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1700</span>, <span class="dv">200</span>),</span>
 <span id="cb17-17"><a href="#cb17-17"></a>              <span class="fu">seq</span>(<span class="dv">1700</span>, <span class="dv">1790</span>, <span class="dv">10</span>),</span>
-<span id="cb17-18"><a href="#cb17-18"></a>              <span class="fu">seq</span>(<span class="dv">1800</span>, <span class="dv">2021</span>, <span class="dv">20</span>))</span>
+<span id="cb17-18"><a href="#cb17-18"></a>              <span class="fu">seq</span>(<span class="dv">1800</span>, <span class="dv">2100</span>, <span class="dv">20</span>))</span>
 <span id="cb17-19"><a href="#cb17-19"></a></span>
 <span id="cb17-20"><a href="#cb17-20"></a><span class="fu">ggplot</span>(world_regions2, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> population, <span class="at">color =</span> region)) <span class="sc">+</span></span>
 <span id="cb17-21"><a href="#cb17-21"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
@@ -707,17 +707,17 @@
 <span id="cb18-6"><a href="#cb18-6"></a>tp_labels <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
 <span id="cb18-7"><a href="#cb18-7"></a>  <span class="at">A =</span> <span class="st">"10000 BCE to 0"</span>,</span>
 <span id="cb18-8"><a href="#cb18-8"></a>  <span class="at">B =</span> <span class="st">"0 to 1700 CE"</span>,</span>
-<span id="cb18-9"><a href="#cb18-9"></a>  <span class="at">C =</span> <span class="st">"1700 CE to 2021 CE"</span></span>
+<span id="cb18-9"><a href="#cb18-9"></a>  <span class="at">C =</span> <span class="st">"1700 CE to 2100 CE"</span></span>
 <span id="cb18-10"><a href="#cb18-10"></a>)</span>
 <span id="cb18-11"><a href="#cb18-11"></a></span>
 <span id="cb18-12"><a href="#cb18-12"></a><span class="co"># remake x-axis breaks and labels</span></span>
 <span id="cb18-13"><a href="#cb18-13"></a>x_breaks <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="dv">10000</span>, <span class="sc">-</span><span class="dv">2000</span>, <span class="dv">2000</span>),</span>
 <span id="cb18-14"><a href="#cb18-14"></a>              <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1500</span>, <span class="dv">300</span>),</span>
-<span id="cb18-15"><a href="#cb18-15"></a>              <span class="fu">seq</span>(<span class="dv">1700</span>, <span class="dv">2021</span>, <span class="dv">50</span>))</span>
+<span id="cb18-15"><a href="#cb18-15"></a>              <span class="fu">seq</span>(<span class="dv">1700</span>, <span class="dv">2100</span>, <span class="dv">50</span>))</span>
 <span id="cb18-16"><a href="#cb18-16"></a></span>
 <span id="cb18-17"><a href="#cb18-17"></a>x_labels <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">paste</span>(<span class="fu">seq</span>(<span class="dv">10000</span>, <span class="dv">2000</span>, <span class="sc">-</span><span class="dv">2000</span>), <span class="st">"BCE"</span>),</span>
 <span id="cb18-18"><a href="#cb18-18"></a>              <span class="fu">paste</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1500</span>, <span class="dv">300</span>), <span class="st">"CE"</span>),</span>
-<span id="cb18-19"><a href="#cb18-19"></a>              <span class="fu">paste</span>(<span class="fu">seq</span>(<span class="dv">1700</span>, <span class="dv">2021</span>, <span class="dv">50</span>), <span class="st">"CE"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-19"><a href="#cb18-19"></a>              <span class="fu">paste</span>(<span class="fu">seq</span>(<span class="dv">1700</span>, <span class="dv">2100</span>, <span class="dv">50</span>), <span class="st">"CE"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell" data-layout-align="center">
@@ -739,12 +739,12 @@
 <span id="cb19-16"><a href="#cb19-16"></a>                     <span class="at">values =</span> rainbow) <span class="sc">+</span></span>
 <span id="cb19-17"><a href="#cb19-17"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"World Population (Historical Estimates)"</span>,</span>
 <span id="cb19-18"><a href="#cb19-18"></a>       <span class="at">caption =</span> <span class="st">"Data from Our World in Data | Plot by @lisadebruine"</span>) <span class="sc">+</span></span>
-<span id="cb19-19"><a href="#cb19-19"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb19-19"><a href="#cb19-19"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">16</span>) <span class="sc">+</span></span>
 <span id="cb19-20"><a href="#cb19-20"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Sen"</span>),</span>
 <span id="cb19-21"><a href="#cb19-21"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">30</span>, <span class="at">hjust =</span> <span class="dv">1</span>),</span>
 <span id="cb19-22"><a href="#cb19-22"></a>        <span class="at">panel.spacing.x =</span> <span class="fu">unit</span>(<span class="dv">0</span>, <span class="st">"cm"</span>),</span>
 <span id="cb19-23"><a href="#cb19-23"></a>        <span class="at">legend.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"transparent"</span>),</span>
-<span id="cb19-24"><a href="#cb19-24"></a>        <span class="at">legend.position =</span> <span class="fu">c</span>(.<span class="dv">1</span>, .<span class="dv">75</span>),</span>
+<span id="cb19-24"><a href="#cb19-24"></a>        <span class="at">legend.position =</span> <span class="fu">c</span>(.<span class="dv">15</span>, .<span class="dv">8</span>),</span>
 <span id="cb19-25"><a href="#cb19-25"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
 <span id="cb19-26"><a href="#cb19-26"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Market Deco"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">

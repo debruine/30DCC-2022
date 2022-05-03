@@ -1,7 +1,12 @@
 # Statistics
 
-```{r, include = FALSE}
+```{r setup, include = FALSE}
 source("R/setup.R")
+
+knitr::opts_chunk$set(
+  fig.width  = 6,
+  fig.height = 6
+)
 ```
 
 ```{r}

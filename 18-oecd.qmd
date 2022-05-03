@@ -1,6 +1,6 @@
 # OECD {#sec-oecd}
 
-```{r, include = FALSE}
+```{r setup, include = FALSE}
 source("R/setup.R")
 ```
 
@@ -15,7 +15,7 @@ library(tidytext)    # for text analysis
 library(topicmodels) # for topic modelling
 library(MetBrewer)   # for beautiful colourblind-friendly colour schemes
 
-theme_set(theme_minimal())
+theme_set(theme_minimal(base_size = 16))
 ```
 
 
@@ -174,19 +174,22 @@ top_terms %>%
   mutate(term = reorder_within(term, beta, topic)) %>%
   ggplot(aes(beta, term, fill = factor(topic))) +
   geom_col(show.legend = FALSE) +
-  facet_wrap(~ topic, scales = "free_y", nrow = 2,
+  facet_wrap(~ topic, scales = "free_y", nrow = 3,
              labeller = as_labeller(topics)) +
   scale_x_continuous(breaks = seq(0, 1, .01)) +
   scale_y_reordered() +
   labs(x = NULL, y = NULL,
        title = "LDA Topic Analysis of OECD Data Insights",
        caption = "Data from www.oecd.org/coronavirus/en/data-insights/ | Plot by @lisadebruine") +
-  MetBrewer::scale_fill_met_d("Archambault")
+  MetBrewer::scale_fill_met_d("Archambault") +
+  theme(plot.title = element_text(size = 20),
+        plot.caption = element_text(color = "grey40"),
+        strip.text = element_text(size = 14))
 ```
 
 
 ```{r, include = FALSE, eval = FALSE}
-ggsave("images/day18.png", width = 8, height = 5, device = png, bg = "white")
+ggsave("images/day18.png", width = 8, height = 8, device = png, bg = "white")
 knitr::include_graphics("images/day18.png")
 ```
 

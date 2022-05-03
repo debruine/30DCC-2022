@@ -745,7 +745,7 @@
 <span id="cb12-3"><a href="#cb12-3"></a>                               <span class="at">ymax =</span> start <span class="sc">+</span> duration,</span>
 <span id="cb12-4"><a href="#cb12-4"></a>                               <span class="at">x =</span> key),</span>
 <span id="cb12-5"><a href="#cb12-5"></a>                 <span class="at">data =</span> song_analysis<span class="sc">$</span>sections,</span>
-<span id="cb12-6"><a href="#cb12-6"></a>                 <span class="at">size =</span> <span class="dv">6</span>) <span class="sc">+</span></span>
+<span id="cb12-6"><a href="#cb12-6"></a>                 <span class="at">size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
 <span id="cb12-7"><a href="#cb12-7"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
 <span id="cb12-8"><a href="#cb12-8"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> start, <span class="at">x =</span> pitch, <span class="at">color =</span> loudness_start),</span>
 <span id="cb12-9"><a href="#cb12-9"></a>             <span class="at">data =</span> pitch_by_beat, <span class="at">show.legend =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -770,14 +770,14 @@
 <span id="cb13-7"><a href="#cb13-7"></a>                               <span class="at">ymax =</span> start <span class="sc">+</span> duration,</span>
 <span id="cb13-8"><a href="#cb13-8"></a>                               <span class="at">x =</span> key),</span>
 <span id="cb13-9"><a href="#cb13-9"></a>                 <span class="at">data =</span> song_analysis<span class="sc">$</span>sections,</span>
-<span id="cb13-10"><a href="#cb13-10"></a>                 <span class="at">size =</span> <span class="dv">10</span>,</span>
+<span id="cb13-10"><a href="#cb13-10"></a>                 <span class="at">size =</span> <span class="dv">12</span>,</span>
 <span id="cb13-11"><a href="#cb13-11"></a>                 <span class="at">color =</span> <span class="st">"#60E1FE"</span>) <span class="sc">+</span></span>
 <span id="cb13-12"><a href="#cb13-12"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
 <span id="cb13-13"><a href="#cb13-13"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> start, <span class="at">x =</span> pitch, <span class="at">alpha =</span> loudness_start),</span>
 <span id="cb13-14"><a href="#cb13-14"></a>             <span class="at">data =</span> pitch_by_beat, </span>
 <span id="cb13-15"><a href="#cb13-15"></a>             <span class="at">color =</span> <span class="st">"#BB1DA8"</span>, <span class="at">size =</span> <span class="dv">3</span>,</span>
 <span id="cb13-16"><a href="#cb13-16"></a>             <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb13-17"><a href="#cb13-17"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">250</span>, <span class="dv">10</span>)) <span class="sc">+</span></span>
+<span id="cb13-17"><a href="#cb13-17"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">250</span>, <span class="dv">20</span>)) <span class="sc">+</span></span>
 <span id="cb13-18"><a href="#cb13-18"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">11</span>,</span>
 <span id="cb13-19"><a href="#cb13-19"></a>                     <span class="at">labels =</span> pitch_key_vals) <span class="sc">+</span></span>
 <span id="cb13-20"><a href="#cb13-20"></a>  <span class="fu">scale_alpha</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">0</span>, .<span class="dv">6</span>)) <span class="sc">+</span></span>
@@ -786,7 +786,7 @@
 <span id="cb13-23"><a href="#cb13-23"></a>       <span class="at">title =</span> <span class="st">"Let's Get Physical — Olivia Newton John"</span>,</span>
 <span id="cb13-24"><a href="#cb13-24"></a>       <span class="at">subtitle =</span> <span class="st">"Main pitch for each beat (in pink) and key for each segment (in blue)"</span>,</span>
 <span id="cb13-25"><a href="#cb13-25"></a>       <span class="at">caption =</span> <span class="st">"Data from Spotify via spotifyr | plot by @lisadebruine"</span>)  <span class="sc">+</span></span>
-<span id="cb13-26"><a href="#cb13-26"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb13-26"><a href="#cb13-26"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">16</span>) <span class="sc">+</span></span>
 <span id="cb13-27"><a href="#cb13-27"></a>  <span class="fu">theme</span>(<span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"red"</span>),</span>
 <span id="cb13-28"><a href="#cb13-28"></a>        <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"#091131"</span>),</span>
 <span id="cb13-29"><a href="#cb13-29"></a>        <span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>(),</span>

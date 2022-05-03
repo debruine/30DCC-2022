@@ -1,6 +1,6 @@
 # Pictogram {#sec-pictogram}
 
-```{r, include = FALSE}
+```{r setup, include = FALSE}
 source("R/setup.R")
 ```
 
@@ -88,7 +88,7 @@ Now, let's add some colour. I'm also going to make the icon size a little smalle
 
 ```{r pictogram-colour}
 ggplot(us_pets, aes(label = Pet, values = Number, color = Pet)) +
-  geom_pictogram(size = 6.5) +
+  geom_pictogram(size = 8) +
   scale_label_pictogram(values = icons)
 ```
 
@@ -106,7 +106,7 @@ pet_colours[3] <- "#F5C748"
 
 ```{r pictogram-custom-colour}
 ggplot(us_pets, aes(label = Pet, values = Number, color = Pet)) +
-  geom_pictogram(size = 6.5) +
+  geom_pictogram(size = 8) +
   scale_label_pictogram(values = icons) +
   scale_colour_manual(values = pet_colours)
 ```
@@ -114,14 +114,13 @@ ggplot(us_pets, aes(label = Pet, values = Number, color = Pet)) +
 
 ## Clean it up
 
-Add `coord_equal()` to make sure the horizontal and vertical spacing are the same. Add `theme_enhance_waffle()` to get rid of extraneous background, and add labels to aid interpretation and for the data provenance.
+Add `theme_enhance_waffle()` to get rid of extraneous background, and add labels to aid interpretation and for the data provenance.
 
 ```{r pictogram-clean}
 ggplot(us_pets, aes(label = Pet, values = Number, color = Pet)) +
-  geom_pictogram(size = 6.5) +
+  geom_pictogram(size = 8) +
   scale_label_pictogram(values = icons) +
   scale_colour_manual(values = pet_colours) +
-  coord_equal() +
   theme_enhance_waffle() +
   labs(title = "Pet Ownership in America",
        subtitle = "Each icon represents 1 million houeholds",
@@ -130,17 +129,16 @@ ggplot(us_pets, aes(label = Pet, values = Number, color = Pet)) +
 
 ## Customise
 
-Finally, use `theme()` to really customise the look. I adjusted the spacing between the items on the legend with `legend.spacing.y`, which requires the guides to be set `byrow` to work. 
+Finally, use `theme()` to really customise the look. 
 
 ```{r pictogram-final}
 #| fig.cap: Number of US households (in millions) with each of 8 common pet types.
 #| fig.alt: Number of US households (in millions) with each of 8 common pet types.  Data from the American Pet Products Association (APPA) 2021-2022 National Pet Owners Survey. Dog=69, Cat=45.3, Freshwater fish=11.8, Bird=9.9, Small animal=6.2, Reptile=5.7, Horse=3.5, Saltwater fish=2.9
 
 ggplot(us_pets, aes(label = Pet, values = Number, color = Pet)) +
-  geom_pictogram(size = 6.5) +
+  geom_pictogram(size = 10) +
   scale_label_pictogram(values = icons) +
   scale_colour_manual(values = pet_colours) +
-  coord_equal() +
   theme_enhance_waffle() +
   labs(title = "Pet Ownership in America",
        subtitle = "Each icon represents 1 million houeholds",
@@ -148,19 +146,18 @@ ggplot(us_pets, aes(label = Pet, values = Number, color = Pet)) +
   theme(axis.ticks = element_blank(),
         plot.background = element_rect(fill = "black", color = "black"),
         plot.margin = unit(c(.5, .5, .5, .0), 'cm'),
-        plot.title = element_text(family = "Market Deco", hjust = 0.5),
-        plot.subtitle = element_text(hjust = 0.5),
+        plot.title = element_text(family = "Market Deco", hjust = 0.5, size = 40),
+        plot.subtitle = element_text(size = 25, hjust = 0.5),
         plot.caption.position = "plot",
         panel.background = element_rect(fill = "black", color = "transparent"),
+        legend.position = "bottom",
         legend.background = element_blank(),
         legend.title = element_blank(),
         legend.key = element_blank(),
-        legend.text = element_text(vjust = 1),
-        legend.spacing.y = unit(.25, 'cm'),
-        text = element_text(family = "Sen", color = "white")) +
-  ## required to make legend.spacing.y work
-  guides(color = guide_legend(byrow = TRUE),
-         label = guide_legend(byrow = TRUE))
+        legend.text = element_text(size = 15, vjust = 1),
+        legend.key.width = unit(0.55, "in"),
+        legend.box.margin = margin(-.3,0,0,0, "inches"),
+        text = element_text(family = "Sen", color = "white"))
 ```
 
 ## Save Pictogram
@@ -170,7 +167,9 @@ However, I had trouble saving the plot using `ggsave()`. The icons ended up all 
 This turned out to be because `ggsave()` uses ragg by default (HT [Steve Haroz](https://twitter.com/sharoz/status/1510342578268516355)), which isn't playing well with fontawesome icons, so I had to set the device back to `png`. However, this wasn't a problem when I updated my R and RStudio and started using Quarto (not sure which fixed it). 
 
 ```{r pictogram-png}
-ggsave("images/day2.png", width = 8, height = 4.5, device = png)
+ggsave("images/day2.png", width = 8, height = 8, device = png)
+
+knitr::include_graphics("images/day2.png")
 ```
 
 

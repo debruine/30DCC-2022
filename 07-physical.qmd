@@ -1,6 +1,6 @@
 # Physical
 
-```{r, include = FALSE}
+```{r setup, include = FALSE}
 source("R/setup.R")
 ```
 
@@ -153,7 +153,7 @@ ggplot() +
                                ymax = start + duration,
                                x = key),
                  data = song_analysis$sections,
-                 size = 6) +
+                 size = 12) +
   coord_flip() +
   geom_point(mapping = aes(y = start, x = pitch, color = loudness_start),
              data = pitch_by_beat, show.legend = FALSE)
@@ -179,14 +179,14 @@ ggplot() +
                                ymax = start + duration,
                                x = key),
                  data = song_analysis$sections,
-                 size = 10,
+                 size = 12,
                  color = "#60E1FE") +
   coord_flip() +
   geom_point(mapping = aes(y = start, x = pitch, alpha = loudness_start),
              data = pitch_by_beat, 
              color = "#BB1DA8", size = 3,
              show.legend = FALSE) +
-  scale_y_continuous(breaks = seq(0, 250, 10)) +
+  scale_y_continuous(breaks = seq(0, 250, 20)) +
   scale_x_continuous(breaks = 0:11,
                      labels = pitch_key_vals) +
   scale_alpha(range = c(0, .6)) +
@@ -195,7 +195,7 @@ ggplot() +
        title = "Let's Get Physical — Olivia Newton John",
        subtitle = "Main pitch for each beat (in pink) and key for each segment (in blue)",
        caption = "Data from Spotify via spotifyr | plot by @lisadebruine")  +
-  theme_bw() +
+  theme_bw(base_size = 16) +
   theme(plot.subtitle = element_text(color = "red"),
         panel.background = element_rect(fill = "#091131"),
         panel.grid.major.y = element_blank(),
@@ -205,6 +205,8 @@ ggplot() +
 
 
 ```{r, include = FALSE, eval = FALSE}
-ggsave("images/day7.png", width = 8, height = 4.5, device = png)
+ggsave("images/day7.png", width = 8, height = 8, device = png)
+
+knitr::include_graphics("images/day7.png")
 ```
 

@@ -1,6 +1,6 @@
 # Down/Upwards {#sec-downup}
 
-```{r, include = FALSE}
+```{r setup, include = FALSE}
 source("R/setup.R")
 ```
 
@@ -13,7 +13,7 @@ library(jsonlite)  # for reading JSON files
 library(showtext)  # for custom fonts
 library(ggtext)    # for adding the twitter logo
 
-theme_set(theme_minimal())
+theme_set(theme_minimal(base_size = 16))
 font_add("fa-brands", "fonts/fa-brands-400.ttf")
 showtext_auto()
 ```
@@ -22,10 +22,17 @@ showtext_auto()
 
 I used the [GitHub API](https://docs.github.com/en/rest/guides/getting-started-with-the-rest-api) to get info on all my repositories.
 
-```{r}
-repos <- read_json("https://api.github.com/users/debruine/repos",
-                   simplifyVector = TRUE)
+```{r, eval = FALSE}
+urls <- paste0("https://api.github.com/users/debruine/repos?page=", 1:3)
+repos <- map_df(urls, read_json, simplifyVector = TRUE)
+
+saveRDS(repos, "data/debruine_github_repos.rds")
 ```
+
+```{r}
+repos <- readRDS("data/debruine_github_repos.rds")
+```
+
 
 
 ## Initial Plot
@@ -58,6 +65,7 @@ ggplot(repos, aes(x = date, label = name)) +
 Let's try alternating the y and hjust values.
 
 ```{r}
+repos <-  arrange(repos, date)
 repos$y <- rep(c(.1, -.1), length.out = nrow(repos))
 repos$hjust <- rep(0:1, length.out = nrow(repos))
 ```
@@ -94,9 +102,9 @@ ggplot(repos, aes(x = date, label = name, y = y, hjust = hjust)) +
   facet_grid(year~.)
 ```
 
-The y-axis scale needs to be set to "free". This doesn't work with `facet_grid()`, so I'll change it to `facet_wrap()`. I also changed the figure dimensions to 15x20 and set `clip = "off"` in `coord_cartesian()` to avoid some of the longer labels from getting clipped.
+The y-axis scale needs to be set to "free". This doesn't work with `facet_grid()`, so I'll change it to `facet_wrap()`. I also changed the figure dimensions to 16x16 and set `clip = "off"` in `coord_cartesian()` to avoid some of the longer labels from getting clipped.
 
-```{r du-free-x, fig.height = 20, fig.width = 15}
+```{r du-free-x, fig.height = 16, fig.width = 16}
 ggplot(repos, aes(x = date, label = name, y = y, hjust = hjust)) +
   geom_text(angle = 45) +
   geom_segment(aes(xend = date), yend = 0, color = "grey") +
@@ -124,11 +132,11 @@ new_entries <- tibble(
 repos2 <- bind_rows(repos, new_entries)
 ```
 
-I'm also going to reduce the label angle to 20 degrees and make the timeline a different colour each year. I couldn't set the colour of `geom_hline()` using `aes()` unless I was also setting `yintercept` in the mapping.
+I'm also going to reduce the label angle to 30 degrees and make the timeline a different colour each year. I couldn't set the colour of `geom_hline()` using `aes()` unless I was also setting `yintercept` in the mapping.
 
-```{r du-year-limits, fig.height = 20, fig.width = 15}
+```{r du-year-limits, fig.height = 16, fig.width = 16}
 ggplot(repos2, aes(x = date, label = name, y = y, hjust = hjust)) +
-  geom_text(angle = 20) +
+  geom_text(angle = 30) +
   geom_segment(aes(xend = date), yend = 0, color = "grey") +
   geom_hline(aes(yintercept = 0, color = as.factor(year)), 
              size = 3, show.legend = FALSE) +
@@ -152,13 +160,13 @@ repos3 <- repos2 %>%
     name == "statistical_inferences" ~ .3,
     name == "waffle" ~ .37,
     name == "shiny2022" ~ .41,
-    name == "composite-sim" ~ -.2,
     name == "ug1-practical" ~ .2,
     name == "lmem_sim_private" ~ .2,
     name == "webexercises" ~ .2,
     name == "reprores_2021" ~ .22,
     name == "debruine.github.io" ~ .2,
     name == "statswithr" ~ .15,
+    name == "quarto_demo" ~ -.35,
     TRUE ~ y
   ))
 ```
@@ -176,12 +184,12 @@ linecol[3] <- "#F5C748"
 
 I'm also going to remove the x-axis expansions, since it doesn't make sense to have dates before January or after December each year, and add a plot margin using `theme()` to make room for labels that go off the edge a bit.
 
-```{r, fig.height = 20, fig.width = 15}
+```{r, fig.height = 16, fig.width = 16}
 #| fig.alt: A timeline of github repository creation from 2015 to 2022. The first few years only have a few repos, which the most recent months have tens of repos.
 
 ggplot(repos3, aes(x = date, label = name, y = y, 
              hjust = hjust, vjust = hjust)) +
-  geom_text(angle = 20) +
+  geom_text(angle = 30) +
   geom_segment(aes(xend = date), yend = 0, color = "grey20") +
   geom_hline(aes(yintercept = 0, color = as.factor(year)), 
              size = 3, show.legend = FALSE) +
@@ -208,7 +216,7 @@ day21 <- repos3 %>%
   filter(year > 2018) %>%
   ggplot(aes(x = date, label = name, y = y, 
              hjust = hjust, vjust = hjust)) +
-  geom_text(angle = 20) +
+  geom_text(angle = 30) +
   geom_segment(aes(xend = date), yend = 0, color = "grey20") +
   geom_hline(aes(yintercept = 0, color = as.factor(year)), 
              size = 3, show.legend = FALSE) +
@@ -230,6 +238,6 @@ day21 <- repos3 %>%
   )
 
 ggsave("images/day21.png", day21, 
-       width = 15, height = 10, device = png, bg = "white")
+       width = 12, height = 12, device = png, bg = "white")
 knitr::include_graphics("images/day21.png")
 ```

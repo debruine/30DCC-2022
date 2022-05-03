@@ -402,65 +402,52 @@
 </nav><!-- margin-sidebar -->
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header"><h1 class="title d-none d-lg-block display-7">Appendix C — Magic Eye</h1>
-</header><div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># for data wrangling</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-stderr">
-<pre><code>── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>✓ ggplot2 3.3.5     ✓ purrr   0.3.4
-✓ tibble  3.1.6     ✓ dplyr   1.0.8
-✓ tidyr   1.2.0     ✓ stringr 1.4.0
-✓ readr   2.1.2     ✓ forcats 0.5.1</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-x dplyr::filter() masks stats::filter()
-x dplyr::lag()    masks stats::lag()</code></pre>
-</div>
-<details><summary>Code</summary><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">library</span>(MetBrewer) <span class="co"># for colour themes</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="fu">library</span>(ggforce)   <span class="co"># for the stereogram</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="fu">library</span>(sf)        <span class="co"># for finding the points in a frame</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-stderr">
-<pre><code>Linking to GEOS 3.8.1, GDAL 3.2.1, PROJ 7.2.1; sf_use_s2() is TRUE</code></pre>
-</div>
+</header><div class="cell" data-layout-align="center">
+<details><summary>Setup</summary><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># for data wrangling</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(MetBrewer) <span class="co"># for colour themes</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(ggforce)   <span class="co"># for the stereogram</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(sf)        <span class="co"># for finding the points in a frame</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>I used to be obsessed with those MagicEye pictures and would waste so much time in the mall staring at them. This one is a bit chaotic, but I like it :)</p>
-<div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">set.seed</span>(<span class="dv">8675309</span>)</span>
-<span id="cb7-2"><a href="#cb7-2"></a>t <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">2</span><span class="sc">*</span>pi, <span class="at">by=</span><span class="fl">0.1</span>)</span>
-<span id="cb7-3"><a href="#cb7-3"></a>t <span class="ot">&lt;-</span> <span class="fu">c</span>(t, t[[<span class="dv">1</span>]]) <span class="co"># append starting value</span></span>
-<span id="cb7-4"><a href="#cb7-4"></a>x <span class="ot">=</span> <span class="dv">16</span><span class="sc">*</span><span class="fu">sin</span>(t)<span class="sc">^</span><span class="dv">3</span></span>
-<span id="cb7-5"><a href="#cb7-5"></a>y <span class="ot">=</span> <span class="dv">13</span><span class="sc">*</span><span class="fu">cos</span>(t)<span class="sc">-</span><span class="dv">5</span><span class="sc">*</span><span class="fu">cos</span>(<span class="dv">2</span><span class="sc">*</span>t)<span class="sc">-</span><span class="dv">2</span><span class="sc">*</span><span class="fu">cos</span>(<span class="dv">3</span><span class="sc">*</span>t)<span class="sc">-</span><span class="fu">cos</span>(<span class="dv">4</span><span class="sc">*</span>t)</span>
-<span id="cb7-6"><a href="#cb7-6"></a>frame <span class="ot">&lt;-</span> <span class="fu">cbind</span>(x, y)</span>
-<span id="cb7-7"><a href="#cb7-7"></a></span>
-<span id="cb7-8"><a href="#cb7-8"></a>frame_sf <span class="ot">&lt;-</span> frame <span class="sc">%&gt;%</span></span>
-<span id="cb7-9"><a href="#cb7-9"></a>  <span class="fu">list</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb7-10"><a href="#cb7-10"></a>  sf<span class="sc">::</span><span class="fu">st_polygon</span>()</span>
-<span id="cb7-11"><a href="#cb7-11"></a></span>
-<span id="cb7-12"><a href="#cb7-12"></a>cols <span class="ot">&lt;-</span> <span class="fu">met.brewer</span>(<span class="st">"Klimt"</span>, <span class="dv">6</span>)</span>
-<span id="cb7-13"><a href="#cb7-13"></a></span>
-<span id="cb7-14"><a href="#cb7-14"></a>n <span class="ot">=</span> <span class="dv">4000</span></span>
-<span id="cb7-15"><a href="#cb7-15"></a>points <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb7-16"><a href="#cb7-16"></a>  <span class="at">x =</span> <span class="fu">runif</span>(n, <span class="at">min =</span> <span class="fu">min</span>(x)<span class="sc">-</span><span class="dv">5</span>, <span class="at">max =</span> <span class="fu">max</span>(x)<span class="sc">+</span><span class="dv">5</span>),</span>
-<span id="cb7-17"><a href="#cb7-17"></a>  <span class="at">y =</span> <span class="fu">runif</span>(n, <span class="at">min =</span> <span class="fu">min</span>(y)<span class="sc">-</span><span class="dv">5</span>, <span class="at">max =</span> <span class="fu">max</span>(y)<span class="sc">+</span><span class="dv">5</span>),</span>
-<span id="cb7-18"><a href="#cb7-18"></a>  <span class="at">depth =</span> <span class="dv">0</span>,</span>
-<span id="cb7-19"><a href="#cb7-19"></a>  <span class="at">col =</span> <span class="fu">sample</span>(cols, n, T)</span>
-<span id="cb7-20"><a href="#cb7-20"></a>)</span>
-<span id="cb7-21"><a href="#cb7-21"></a></span>
-<span id="cb7-22"><a href="#cb7-22"></a>points_sf <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_as_sf</span>(points, <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"x"</span>,<span class="st">"y"</span>))</span>
-<span id="cb7-23"><a href="#cb7-23"></a></span>
-<span id="cb7-24"><a href="#cb7-24"></a><span class="do">## Keeps only the random points that are within the frame</span></span>
-<span id="cb7-25"><a href="#cb7-25"></a>contained <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_contains</span>(frame_sf, points_sf)</span>
-<span id="cb7-26"><a href="#cb7-26"></a>points<span class="sc">$</span>depth[contained[[<span class="dv">1</span>]]] <span class="ot">&lt;-</span> <span class="dv">4</span></span>
-<span id="cb7-27"><a href="#cb7-27"></a></span>
-<span id="cb7-28"><a href="#cb7-28"></a><span class="fu">ggplot</span>(points, <span class="fu">aes</span>(x, y, <span class="at">depth =</span> depth, <span class="at">color =</span> <span class="fu">I</span>(col))) <span class="sc">+</span> </span>
-<span id="cb7-29"><a href="#cb7-29"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb7-30"><a href="#cb7-30"></a>  <span class="fu">facet_stereo</span>(<span class="at">panel.size =</span> <span class="dv">200</span>) <span class="sc">+</span></span>
-<span id="cb7-31"><a href="#cb7-31"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
-<span id="cb7-32"><a href="#cb7-32"></a>  <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">size =</span> <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">set.seed</span>(<span class="dv">8675309</span>)</span>
+<span id="cb2-2"><a href="#cb2-2"></a>t <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">2</span><span class="sc">*</span>pi, <span class="at">by=</span><span class="fl">0.1</span>)</span>
+<span id="cb2-3"><a href="#cb2-3"></a>t <span class="ot">&lt;-</span> <span class="fu">c</span>(t, t[[<span class="dv">1</span>]]) <span class="co"># append starting value</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>x <span class="ot">=</span> <span class="dv">16</span><span class="sc">*</span><span class="fu">sin</span>(t)<span class="sc">^</span><span class="dv">3</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>y <span class="ot">=</span> <span class="dv">13</span><span class="sc">*</span><span class="fu">cos</span>(t)<span class="sc">-</span><span class="dv">5</span><span class="sc">*</span><span class="fu">cos</span>(<span class="dv">2</span><span class="sc">*</span>t)<span class="sc">-</span><span class="dv">2</span><span class="sc">*</span><span class="fu">cos</span>(<span class="dv">3</span><span class="sc">*</span>t)<span class="sc">-</span><span class="fu">cos</span>(<span class="dv">4</span><span class="sc">*</span>t)</span>
+<span id="cb2-6"><a href="#cb2-6"></a>frame <span class="ot">&lt;-</span> <span class="fu">cbind</span>(x, y)</span>
+<span id="cb2-7"><a href="#cb2-7"></a></span>
+<span id="cb2-8"><a href="#cb2-8"></a>frame_sf <span class="ot">&lt;-</span> frame <span class="sc">%&gt;%</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a>  <span class="fu">list</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb2-10"><a href="#cb2-10"></a>  sf<span class="sc">::</span><span class="fu">st_polygon</span>()</span>
+<span id="cb2-11"><a href="#cb2-11"></a></span>
+<span id="cb2-12"><a href="#cb2-12"></a>cols <span class="ot">&lt;-</span> <span class="fu">met.brewer</span>(<span class="st">"Klimt"</span>, <span class="dv">6</span>)</span>
+<span id="cb2-13"><a href="#cb2-13"></a></span>
+<span id="cb2-14"><a href="#cb2-14"></a>n <span class="ot">=</span> <span class="dv">4000</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a>points <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb2-16"><a href="#cb2-16"></a>  <span class="at">x =</span> <span class="fu">runif</span>(n, <span class="at">min =</span> <span class="fu">min</span>(x)<span class="sc">-</span><span class="dv">5</span>, <span class="at">max =</span> <span class="fu">max</span>(x)<span class="sc">+</span><span class="dv">5</span>),</span>
+<span id="cb2-17"><a href="#cb2-17"></a>  <span class="at">y =</span> <span class="fu">runif</span>(n, <span class="at">min =</span> <span class="fu">min</span>(y)<span class="sc">-</span><span class="dv">5</span>, <span class="at">max =</span> <span class="fu">max</span>(y)<span class="sc">+</span><span class="dv">5</span>),</span>
+<span id="cb2-18"><a href="#cb2-18"></a>  <span class="at">depth =</span> <span class="dv">0</span>,</span>
+<span id="cb2-19"><a href="#cb2-19"></a>  <span class="at">col =</span> <span class="fu">sample</span>(cols, n, T)</span>
+<span id="cb2-20"><a href="#cb2-20"></a>)</span>
+<span id="cb2-21"><a href="#cb2-21"></a></span>
+<span id="cb2-22"><a href="#cb2-22"></a>points_sf <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_as_sf</span>(points, <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"x"</span>,<span class="st">"y"</span>))</span>
+<span id="cb2-23"><a href="#cb2-23"></a></span>
+<span id="cb2-24"><a href="#cb2-24"></a><span class="do">## Keeps only the random points that are within the frame</span></span>
+<span id="cb2-25"><a href="#cb2-25"></a>contained <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_contains</span>(frame_sf, points_sf)</span>
+<span id="cb2-26"><a href="#cb2-26"></a>points<span class="sc">$</span>depth[contained[[<span class="dv">1</span>]]] <span class="ot">&lt;-</span> <span class="dv">4</span></span>
+<span id="cb2-27"><a href="#cb2-27"></a></span>
+<span id="cb2-28"><a href="#cb2-28"></a><span class="fu">ggplot</span>(points, <span class="fu">aes</span>(x, y, <span class="at">depth =</span> depth, <span class="at">color =</span> <span class="fu">I</span>(col))) <span class="sc">+</span> </span>
+<span id="cb2-29"><a href="#cb2-29"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb2-30"><a href="#cb2-30"></a>  <span class="fu">facet_stereo</span>(<span class="at">panel.size =</span> <span class="dv">200</span>) <span class="sc">+</span></span>
+<span id="cb2-31"><a href="#cb2-31"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb2-32"><a href="#cb2-32"></a>  <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">size =</span> <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
-<p><img src="app-c-magic-eye_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="app-c-magic-eye_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
 </div>
 </div>
 

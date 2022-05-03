@@ -1,6 +1,6 @@
 # Experimental
 
-```{r, include = FALSE}
+```{r setup, include = FALSE}
 source("R/setup.R")
 ```
 
@@ -12,7 +12,7 @@ Today I'm going to use faux to generate some simulated data for a factorial expe
 library(faux)      # for data simulation
 library(ggplot2)   # for plotting
 library(patchwork) # for multi-panel plots
-theme_set(theme_bw())
+theme_set(theme_bw(base_size = 16))
 set.seed(8675309)  # for reproducibility
 ```
 

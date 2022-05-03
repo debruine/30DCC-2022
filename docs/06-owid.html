@@ -549,16 +549,18 @@
 <span id="cb8-5"><a href="#cb8-5"></a>  <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>Now let’s retry the map, and switch the fill to a nicer viridis gradient. Set the na.value to red to more easily see where the missing data is.</p>
+<p>Now let’s retry the map, and switch the fill to a nicer viridis gradient. Set the na.value to red to more easily see where the missing data is. Just plot 2018 to check.</p>
 <div class="cell" data-layout-align="center">
-<details><summary>Code</summary><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">ggplot</span>(data_map_int_valid) <span class="sc">+</span> </span>
-<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">geom_sf</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">fill =</span> it_net_users),</span>
-<span id="cb9-3"><a href="#cb9-3"></a>          <span class="at">size =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
-<span id="cb9-4"><a href="#cb9-4"></a>  crop_coords <span class="sc">+</span></span>
-<span id="cb9-5"><a href="#cb9-5"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">na.value =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb9-6"><a href="#cb9-6"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>year) <span class="sc">+</span></span>
-<span id="cb9-7"><a href="#cb9-7"></a>  <span class="fu">theme_map</span>() <span class="sc">+</span></span>
-<span id="cb9-8"><a href="#cb9-8"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"right"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>data_map_int_valid <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2018</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb9-4"><a href="#cb9-4"></a>  <span class="fu">geom_sf</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">fill =</span> it_net_users),</span>
+<span id="cb9-5"><a href="#cb9-5"></a>          <span class="at">size =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a>  crop_coords <span class="sc">+</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">na.value =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>year) <span class="sc">+</span></span>
+<span id="cb9-9"><a href="#cb9-9"></a>  <span class="fu">theme_map</span>() <span class="sc">+</span></span>
+<span id="cb9-10"><a href="#cb9-10"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"right"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="06-owid_files/figure-html/owid-map-na-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -581,14 +583,16 @@
 </div>
 <p>There’s still one big persistently missing country in the middle of Africa.</p>
 <div class="cell" data-layout-align="center">
-<details><summary>Code</summary><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">ggplot</span>(data_map_int_no_missing) <span class="sc">+</span> </span>
-<span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">geom_sf</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">fill =</span> it_net_users_no_na),</span>
-<span id="cb11-3"><a href="#cb11-3"></a>          <span class="at">size =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
-<span id="cb11-4"><a href="#cb11-4"></a>  crop_coords <span class="sc">+</span></span>
-<span id="cb11-5"><a href="#cb11-5"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">na.value =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb11-6"><a href="#cb11-6"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>year) <span class="sc">+</span></span>
-<span id="cb11-7"><a href="#cb11-7"></a>  <span class="fu">theme_map</span>() <span class="sc">+</span></span>
-<span id="cb11-8"><a href="#cb11-8"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"right"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>data_map_int_no_missing <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">filter</span>(year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1990</span>, <span class="dv">2000</span>, <span class="dv">2010</span>, <span class="dv">2019</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb11-4"><a href="#cb11-4"></a>  <span class="fu">geom_sf</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">fill =</span> it_net_users_no_na),</span>
+<span id="cb11-5"><a href="#cb11-5"></a>          <span class="at">size =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb11-6"><a href="#cb11-6"></a>  crop_coords <span class="sc">+</span></span>
+<span id="cb11-7"><a href="#cb11-7"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">na.value =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb11-8"><a href="#cb11-8"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>year) <span class="sc">+</span></span>
+<span id="cb11-9"><a href="#cb11-9"></a>  <span class="fu">theme_map</span>() <span class="sc">+</span></span>
+<span id="cb11-10"><a href="#cb11-10"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"right"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="06-owid_files/figure-html/owid-map-missing-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -641,7 +645,7 @@
 <span id="cb13-20"><a href="#cb13-20"></a>  <span class="fu">theme</span>(</span>
 <span id="cb13-21"><a href="#cb13-21"></a>    <span class="at">legend.background =</span> <span class="fu">element_blank</span>(),</span>
 <span id="cb13-22"><a href="#cb13-22"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
-<span id="cb13-23"><a href="#cb13-23"></a>    <span class="at">legend.key.width =</span> <span class="fu">unit</span>(.<span class="dv">187</span>, <span class="st">"npc"</span>),</span>
+<span id="cb13-23"><a href="#cb13-23"></a>    <span class="at">legend.key.width =</span> <span class="fu">unit</span>(<span class="fl">1.5</span>, <span class="st">"inches"</span>),</span>
 <span id="cb13-24"><a href="#cb13-24"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Playfair Display"</span>, <span class="at">size =</span> <span class="dv">20</span>, <span class="at">colour =</span> <span class="st">"#555555"</span>),</span>
 <span id="cb13-25"><a href="#cb13-25"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">color =</span> <span class="st">"#555555"</span>)</span>
 <span id="cb13-26"><a href="#cb13-26"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -677,7 +681,7 @@
 <span id="cb14-20"><a href="#cb14-20"></a>  <span class="fu">theme</span>(</span>
 <span id="cb14-21"><a href="#cb14-21"></a>    <span class="at">legend.background =</span> <span class="fu">element_blank</span>(),</span>
 <span id="cb14-22"><a href="#cb14-22"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
-<span id="cb14-23"><a href="#cb14-23"></a>    <span class="at">legend.key.width =</span> <span class="fu">unit</span>(.<span class="dv">187</span>, <span class="st">"npc"</span>),</span>
+<span id="cb14-23"><a href="#cb14-23"></a>    <span class="at">legend.key.width =</span> <span class="fu">unit</span>(<span class="fl">1.25</span>, <span class="st">"inches"</span>),</span>
 <span id="cb14-24"><a href="#cb14-24"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Playfair Display"</span>, <span class="at">size =</span> <span class="dv">20</span>, <span class="at">colour =</span> <span class="st">"#555555"</span>),</span>
 <span id="cb14-25"><a href="#cb14-25"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">color =</span> <span class="st">"#555555"</span>)</span>
 <span id="cb14-26"><a href="#cb14-26"></a>  ) <span class="sc">+</span></span>
@@ -690,7 +694,7 @@
 <span id="cb15-2"><a href="#cb15-2"></a>          <span class="at">animation =</span> anim, </span>
 <span id="cb15-3"><a href="#cb15-3"></a>          <span class="at">nframes =</span> <span class="dv">30</span>, <span class="at">fps =</span> <span class="dv">4</span>, </span>
 <span id="cb15-4"><a href="#cb15-4"></a>          <span class="at">start_pause =</span> <span class="dv">6</span>, <span class="at">end_pause =</span> <span class="dv">6</span>, </span>
-<span id="cb15-5"><a href="#cb15-5"></a>          <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">5</span>, </span>
+<span id="cb15-5"><a href="#cb15-5"></a>          <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="fl">4.5</span>, </span>
 <span id="cb15-6"><a href="#cb15-6"></a>          <span class="at">units =</span> <span class="st">"in"</span>, <span class="at">res =</span> <span class="dv">150</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>

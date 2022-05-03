@@ -1,0 +1,93 @@
+# Putting it all together
+
+```{r, include = FALSE}
+source("R/setup.R")
+```
+
+```{r, message=FALSE}
+#| code-summary: Setup
+
+library(webmorphR) # for image manipulation
+library(gifski) # for animation
+
+wm_opts(plot.maxwidth = 850*2)
+```
+
+## Read in images
+
+Read in the images. I named them stupidly, without leading 0s, so am importing them in two batches: the ones with one digit after "day", then the ones with two digits after "day".
+
+```{r}
+imgs <- c(
+  read_stim("images", "day\\d{1}\\.(png|gif)"),
+  read_stim("images", "day\\d{2}\\.(png|gif)")
+)
+```
+
+There are two of "day15", so I'll get rid of the first.
+
+```{r}
+imgs <- imgs[c(1:15, 17:31)]
+```
+
+## Flatten gifs
+
+Some of the images are animated gifs, so I have to flatten them.
+
+```{r}
+multi_img <- sapply(width(imgs), length) > 1
+
+imgs[multi_img] <- imgs[multi_img] %>% image_func("flatten")
+
+# fix width and height
+for (i in seq_along(imgs)) {
+  imgs[[i]]$width <- imgs[[i]]$width[[1]]
+  imgs[[i]]$height <- imgs[[i]]$height[[1]]
+}
+```
+
+## Resize images
+
+Next, I need to resize the images all to the same size. The `to_size()` function is a combination of `crop()`, `pad()` and `resize()` that gets all images as large as possible, centered in the image.
+
+```{r}
+resized <- to_size(imgs, width = 600, height = 600)
+```
+
+## Add labels 
+
+```{r}
+chapters <- list.files(".", pattern = "^\\d{2}-.+\\.qmd")
+names <- gsub("(^\\d+-|\\.qmd$)", "", chapters)
+names <- gsub("-", " ", names) |> stringr::str_to_title()
+names[names=="Owid"] <- "OWID"
+names[names=="Oecd"] <- "OECD"
+names[names=="Un Population"] <- "UN Population"
+
+labelled <- resized %>%
+  pad(top = 100, 0, 0, 0) %>%
+  label(names, gravity = "north", location = "+0+0")
+```
+
+
+```{r}
+plot_stim(labelled, nrow = 5)
+```
+
+## Make animation
+
+```{r}
+anim <- labelled %>%
+  pad(0, 10, 10, 10) %>%
+  animate(fps = 1)
+
+write_stim(anim, dir = "images", names = "debruine_30DCC", format = "gif")
+
+knitr::include_graphics("images/debruine_30DCC.gif")
+```
+
+
+
+
+
+

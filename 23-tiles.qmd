@@ -1,6 +1,6 @@
 # Tiles
 
-```{r, include = FALSE}
+```{r setup, include = FALSE}
 source("R/setup.R")
 ```
 
@@ -14,25 +14,59 @@ knitr::include_graphics("images/github_activity.png")
 ```{r}
 #| code-summary: Setup
 
+library(httr)      # github authorisation
 library(tidyverse) # for data wrangling
 library(jsonlite)  # for reading JSON from GitHub API
 library(glue)      # for text manipulation
 library(lubridate) # for dates
 library(scales)    # for axis scales
 library(ggplotify) # for custom plot changes
+library(showtext)  # for fonts
+
+# install a good Scottish font
+# https://www.fontspace.com/hill-house-font-f40002
+font_add(family = "Hill House",
+         regular = "fonts/Hill_House.otf")
+showtext_auto()
 ```
+
+
+
 
 ## Data
 
-I need to use the [GitHub API](https://docs.github.com/en/rest/guides/getting-started-with-the-rest-api) to get all the commit dates for the psyTeachR team.
+I need to use the [GitHub API](https://docs.github.com/en/rest/guides/getting-started-with-the-rest-api) to get all the commit dates for the psyTeachR team. I followed a tutorial by [Michael Galarnyk/](https://towardsdatascience.com/accessing-data-from-github-api-using-r-3633fb62cb08) to set up the authorisation, since I'll be making more than the maximum 60 requests per hour for unauthenticated users.
+
+```{r}
+#| code-summary: Set up OAuth
+
+# Can be github, linkedin etc depending on application
+oauth_endpoints("github")
+
+# Change based on your app
+myapp <- oauth_app(appname = "R_Code",
+                   key = Sys.getenv("GITHUB_CLIENT_ID"),
+                   secret = Sys.getenv("GITHUB_OAUTH_SECRET"))
+
+# Get OAuth credentials
+github_token <- oauth2.0_token(oauth_endpoints("github"), myapp)
+gtoken <- config(token = github_token)
+```
 
 
 ### Get repo names
 
-```{r}
-psyteachr_repos <- read_json("https://api.github.com/orgs/psyTeachR/repos",
-                             simplifyVector = TRUE)
+```{r, eval = FALSE}
+urls <- paste0("https://api.github.com/orgs/psyTeachR/repos?page=", 1:2)
+psyteachr_repos <- map(urls, GET, gtoken) %>%
+  map_df(parse_json, simplifyVector = TRUE)
+saveRDS(psyteachr_repos, "data/psyteachr_repos.rds")
+```
 
+
+```{r, eval = FALSE}
+# read from saved data
+psyteachr_repos <- readRDS("data/psyteachr_repos.rds")
 psyteachr_repos$name
 ```
 
@@ -45,11 +79,13 @@ Most of the team work mainly in a fork on their own account and commit to the ps
 forks_urls <- psyteachr_repos$forks_url[psyteachr_repos$forks > 0]
 
 # get forks data
-forks <- map_df(forks_urls, read_json, simplifyVector = TRUE)
+forks <- map(forks_urls, GET, gtoken) %>%
+  map_df(parse_json, simplifyVector = TRUE)
+
 saveRDS(forks, "data/forks.rds")
 ```
 
-We could get the members of the psyTeachR organisation through the GitHub API, but most haven't made their membership public, so I'm just hard-coding their account names. We'll use the `psyteachr_forks` list later.
+I could get the members of the psyTeachR organisation through the GitHub API, but most haven't made their membership public, thus only logged-in members can get this, so I'm just hard-coding their account names. We'll use the `psyteachr_forks` list later.
 
 ```{r}
 forks <- readRDS("data/forks.rds")
@@ -83,7 +119,10 @@ knitr::include_graphics("images/psyteachr_islay.png")
 
 ```{r}
 # get commits for one repo
-rhouse_commits <- read_json("https://api.github.com/repos/psyTeachR/R.House.2019/commits")
+url <- "https://api.github.com/repos/psyTeachR/R.House.2019/commits"
+
+rhouse_commits <- GET(url, gtoken) %>% 
+  parse_json()
 ```
 
 
@@ -114,7 +153,9 @@ fork_urls <- glue("https://api.github.com/repos/{psyteachr_forks$user}/{psyteach
 urls <- c(ptr_urls, fork_urls)
 
 # get commit info for each repo
-psyteachr_commits <- map(urls, read_json)
+req <- map(urls, GET, gtoken)
+psyteachr_commits <- map(req, parse_json, simplfyVector = TRUE)
+
 # save to RDS object 
 saveRDS(psyteachr_commits, "data/psyteachr_commits.rds")
 ```
@@ -240,7 +281,7 @@ ptrc <- c(
 
 Set the fill to year and remove the green fill from `geom_tile()`. Use `scale_fill_manual()` to set the colours to the first 5 psyTeachR colours. Use `scale_alpha()` to set the minimum and maximum alpha values.
 
-```{r tiles-psyteachr, fig.width = 8, fig.height = 6}
+```{r tiles-psyteachr}
 commits_by_day %>%
   ggplot(aes(x = week, y = wday, alpha = n, fill = year)) +
   geom_tile(color = "black", size = 1, show.legend = FALSE) +
@@ -255,16 +296,21 @@ commits_by_day %>%
   scale_alpha(range = c(0.25, 1)) +
   scale_fill_manual(values = ptrc[1:5]) +
   facet_wrap(~year, ncol = 1, strip.position = "left") +
-  labs(x = NULL, y = NULL) +
+  labs(x = NULL, y = NULL, title = "PSYTEACHR COMMIT HISTORY") +
   coord_fixed() +
   theme_dark() +
   theme(
-    panel.background = element_rect(fill = "black"),
+    plot.background = element_rect(fill = "grey10"),
+    plot.margin = margin(2, 1, 2, 1, "lines"),
+    panel.background = element_rect(fill = "black", color = "grey50"),
+    panel.spacing = unit(1, "lines"),
+    plot.title = element_text(family = "Hill House", size = 40, hjust = 0.5, color = "white"),
     strip.text = element_text(size = 18, face = "bold"),
     panel.grid = element_blank(),
     axis.ticks = element_blank(),
     axis.text.y = element_blank(),
-    axis.text.x.top = element_blank()
+    axis.text.x.top = element_blank(),
+    axis.text.x.bottom = element_text(size = 13, color = "white")
   )
 ```
 
@@ -288,13 +334,13 @@ for (i in seq_along(strips)) {
 
 Now you can view the plot with `plot(g)` or convert it back to a ggplot object.
 
-```{r tiles-facet, fig.width = 8, fig.height = 6}
+```{r tiles-facet}
 # plot(g)
 ggplotify::as.ggplot(g)
 ```
 
 
 ```{r, include = FALSE, eval = FALSE}
-ggsave("images/day23.png", width = 8, height = 6, device = png)
+ggsave("images/day23.png", width = 8, height = 8, device = png)
 knitr::include_graphics("images/day23.png")
 ```

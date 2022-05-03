@@ -490,7 +490,7 @@
 <p>Now, let’s add some colour. I’m also going to make the icon size a little smaller.</p>
 <div class="cell" data-layout-align="center">
 <details><summary>Code</summary><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">ggplot</span>(us_pets, <span class="fu">aes</span>(<span class="at">label =</span> Pet, <span class="at">values =</span> Number, <span class="at">color =</span> Pet)) <span class="sc">+</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">geom_pictogram</span>(<span class="at">size =</span> <span class="fl">6.5</span>) <span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">geom_pictogram</span>(<span class="at">size =</span> <span class="dv">8</span>) <span class="sc">+</span></span>
 <span id="cb6-3"><a href="#cb6-3"></a>  <span class="fu">scale_label_pictogram</span>(<span class="at">values =</span> icons)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -511,7 +511,7 @@
 </div>
 <div class="cell" data-layout-align="center">
 <details><summary>Code</summary><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">ggplot</span>(us_pets, <span class="fu">aes</span>(<span class="at">label =</span> Pet, <span class="at">values =</span> Number, <span class="at">color =</span> Pet)) <span class="sc">+</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">geom_pictogram</span>(<span class="at">size =</span> <span class="fl">6.5</span>) <span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">geom_pictogram</span>(<span class="at">size =</span> <span class="dv">8</span>) <span class="sc">+</span></span>
 <span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">scale_label_pictogram</span>(<span class="at">values =</span> icons) <span class="sc">+</span></span>
 <span id="cb8-4"><a href="#cb8-4"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> pet_colours)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
@@ -523,17 +523,16 @@
 </div>
 </section><section id="clean-it-up" class="level2" data-number="2.5"><h2 data-number="2.5" class="anchored" data-anchor-id="clean-it-up">
 <span class="header-section-number">2.5</span> Clean it up</h2>
-<p>Add <code>coord_equal()</code> to make sure the horizontal and vertical spacing are the same. Add <code>theme_enhance_waffle()</code> to get rid of extraneous background, and add labels to aid interpretation and for the data provenance.</p>
+<p>Add <code>theme_enhance_waffle()</code> to get rid of extraneous background, and add labels to aid interpretation and for the data provenance.</p>
 <div class="cell" data-layout-align="center">
 <details><summary>Code</summary><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">ggplot</span>(us_pets, <span class="fu">aes</span>(<span class="at">label =</span> Pet, <span class="at">values =</span> Number, <span class="at">color =</span> Pet)) <span class="sc">+</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">geom_pictogram</span>(<span class="at">size =</span> <span class="fl">6.5</span>) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">geom_pictogram</span>(<span class="at">size =</span> <span class="dv">8</span>) <span class="sc">+</span></span>
 <span id="cb9-3"><a href="#cb9-3"></a>  <span class="fu">scale_label_pictogram</span>(<span class="at">values =</span> icons) <span class="sc">+</span></span>
 <span id="cb9-4"><a href="#cb9-4"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> pet_colours) <span class="sc">+</span></span>
-<span id="cb9-5"><a href="#cb9-5"></a>  <span class="fu">coord_equal</span>() <span class="sc">+</span></span>
-<span id="cb9-6"><a href="#cb9-6"></a>  <span class="fu">theme_enhance_waffle</span>() <span class="sc">+</span></span>
-<span id="cb9-7"><a href="#cb9-7"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Pet Ownership in America"</span>,</span>
-<span id="cb9-8"><a href="#cb9-8"></a>       <span class="at">subtitle =</span> <span class="st">"Each icon represents 1 million houeholds"</span>,</span>
-<span id="cb9-9"><a href="#cb9-9"></a>       <span class="at">caption =</span> <span class="st">"Data from the American Pet Products Association (APPA) 2021-2022 National Pet Owners Survey"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-5"><a href="#cb9-5"></a>  <span class="fu">theme_enhance_waffle</span>() <span class="sc">+</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Pet Ownership in America"</span>,</span>
+<span id="cb9-7"><a href="#cb9-7"></a>       <span class="at">subtitle =</span> <span class="st">"Each icon represents 1 million houeholds"</span>,</span>
+<span id="cb9-8"><a href="#cb9-8"></a>       <span class="at">caption =</span> <span class="st">"Data from the American Pet Products Association (APPA) 2021-2022 National Pet Owners Survey"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="02-pictogram_files/figure-html/pictogram-clean-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -543,33 +542,31 @@
 </div>
 </section><section id="customise" class="level2" data-number="2.6"><h2 data-number="2.6" class="anchored" data-anchor-id="customise">
 <span class="header-section-number">2.6</span> Customise</h2>
-<p>Finally, use <code>theme()</code> to really customise the look. I adjusted the spacing between the items on the legend with <code>legend.spacing.y</code>, which requires the guides to be set <code>byrow</code> to work.</p>
+<p>Finally, use <code>theme()</code> to really customise the look.</p>
 <div class="cell" data-layout-align="center">
 <details><summary>Code</summary><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">ggplot</span>(us_pets, <span class="fu">aes</span>(<span class="at">label =</span> Pet, <span class="at">values =</span> Number, <span class="at">color =</span> Pet)) <span class="sc">+</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">geom_pictogram</span>(<span class="at">size =</span> <span class="fl">6.5</span>) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">geom_pictogram</span>(<span class="at">size =</span> <span class="dv">10</span>) <span class="sc">+</span></span>
 <span id="cb10-3"><a href="#cb10-3"></a>  <span class="fu">scale_label_pictogram</span>(<span class="at">values =</span> icons) <span class="sc">+</span></span>
 <span id="cb10-4"><a href="#cb10-4"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> pet_colours) <span class="sc">+</span></span>
-<span id="cb10-5"><a href="#cb10-5"></a>  <span class="fu">coord_equal</span>() <span class="sc">+</span></span>
-<span id="cb10-6"><a href="#cb10-6"></a>  <span class="fu">theme_enhance_waffle</span>() <span class="sc">+</span></span>
-<span id="cb10-7"><a href="#cb10-7"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Pet Ownership in America"</span>,</span>
-<span id="cb10-8"><a href="#cb10-8"></a>       <span class="at">subtitle =</span> <span class="st">"Each icon represents 1 million houeholds"</span>,</span>
-<span id="cb10-9"><a href="#cb10-9"></a>       <span class="at">caption =</span> <span class="st">"Data from the American Pet Products Association (APPA) 2021-2022 National Pet Owners Survey"</span>) <span class="sc">+</span></span>
-<span id="cb10-10"><a href="#cb10-10"></a>  <span class="fu">theme</span>(<span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb10-11"><a href="#cb10-11"></a>        <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"black"</span>, <span class="at">color =</span> <span class="st">"black"</span>),</span>
-<span id="cb10-12"><a href="#cb10-12"></a>        <span class="at">plot.margin =</span> <span class="fu">unit</span>(<span class="fu">c</span>(.<span class="dv">5</span>, .<span class="dv">5</span>, .<span class="dv">5</span>, .<span class="dv">0</span>), <span class="st">'cm'</span>),</span>
-<span id="cb10-13"><a href="#cb10-13"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Market Deco"</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
-<span id="cb10-14"><a href="#cb10-14"></a>        <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
-<span id="cb10-15"><a href="#cb10-15"></a>        <span class="at">plot.caption.position =</span> <span class="st">"plot"</span>,</span>
-<span id="cb10-16"><a href="#cb10-16"></a>        <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"black"</span>, <span class="at">color =</span> <span class="st">"transparent"</span>),</span>
+<span id="cb10-5"><a href="#cb10-5"></a>  <span class="fu">theme_enhance_waffle</span>() <span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Pet Ownership in America"</span>,</span>
+<span id="cb10-7"><a href="#cb10-7"></a>       <span class="at">subtitle =</span> <span class="st">"Each icon represents 1 million houeholds"</span>,</span>
+<span id="cb10-8"><a href="#cb10-8"></a>       <span class="at">caption =</span> <span class="st">"Data from the American Pet Products Association (APPA) 2021-2022 National Pet Owners Survey"</span>) <span class="sc">+</span></span>
+<span id="cb10-9"><a href="#cb10-9"></a>  <span class="fu">theme</span>(<span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb10-10"><a href="#cb10-10"></a>        <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"black"</span>, <span class="at">color =</span> <span class="st">"black"</span>),</span>
+<span id="cb10-11"><a href="#cb10-11"></a>        <span class="at">plot.margin =</span> <span class="fu">unit</span>(<span class="fu">c</span>(.<span class="dv">5</span>, .<span class="dv">5</span>, .<span class="dv">5</span>, .<span class="dv">0</span>), <span class="st">'cm'</span>),</span>
+<span id="cb10-12"><a href="#cb10-12"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Market Deco"</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">40</span>),</span>
+<span id="cb10-13"><a href="#cb10-13"></a>        <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">25</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb10-14"><a href="#cb10-14"></a>        <span class="at">plot.caption.position =</span> <span class="st">"plot"</span>,</span>
+<span id="cb10-15"><a href="#cb10-15"></a>        <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"black"</span>, <span class="at">color =</span> <span class="st">"transparent"</span>),</span>
+<span id="cb10-16"><a href="#cb10-16"></a>        <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
 <span id="cb10-17"><a href="#cb10-17"></a>        <span class="at">legend.background =</span> <span class="fu">element_blank</span>(),</span>
 <span id="cb10-18"><a href="#cb10-18"></a>        <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
 <span id="cb10-19"><a href="#cb10-19"></a>        <span class="at">legend.key =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb10-20"><a href="#cb10-20"></a>        <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="dv">1</span>),</span>
-<span id="cb10-21"><a href="#cb10-21"></a>        <span class="at">legend.spacing.y =</span> <span class="fu">unit</span>(.<span class="dv">25</span>, <span class="st">'cm'</span>),</span>
-<span id="cb10-22"><a href="#cb10-22"></a>        <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Sen"</span>, <span class="at">color =</span> <span class="st">"white"</span>)) <span class="sc">+</span></span>
-<span id="cb10-23"><a href="#cb10-23"></a>  <span class="do">## required to make legend.spacing.y work</span></span>
-<span id="cb10-24"><a href="#cb10-24"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="fu">guide_legend</span>(<span class="at">byrow =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb10-25"><a href="#cb10-25"></a>         <span class="at">label =</span> <span class="fu">guide_legend</span>(<span class="at">byrow =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-20"><a href="#cb10-20"></a>        <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>, <span class="at">vjust =</span> <span class="dv">1</span>),</span>
+<span id="cb10-21"><a href="#cb10-21"></a>        <span class="at">legend.key.width =</span> <span class="fu">unit</span>(<span class="fl">0.55</span>, <span class="st">"in"</span>),</span>
+<span id="cb10-22"><a href="#cb10-22"></a>        <span class="at">legend.box.margin =</span> <span class="fu">margin</span>(<span class="sc">-</span>.<span class="dv">3</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>, <span class="st">"inches"</span>),</span>
+<span id="cb10-23"><a href="#cb10-23"></a>        <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Sen"</span>, <span class="at">color =</span> <span class="st">"white"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="02-pictogram_files/figure-html/pictogram-final-1.png" class="img-fluid figure-img" alt="Number of US households (in millions) with each of 8 common pet types.  Data from the American Pet Products Association (APPA) 2021-2022 National Pet Owners Survey. Dog=69, Cat=45.3, Freshwater fish=11.8, Bird=9.9, Small animal=6.2, Reptile=5.7, Horse=3.5, Saltwater fish=2.9" style="width:100.0%"></p>
@@ -583,8 +580,15 @@
 <p>However, I had trouble saving the plot using <code>ggsave()</code>. The icons ended up all question marks. I eventually fixed that by doing something with the fonts (maybe adding them with <code class="package">showtext</code>?), but the icons were still tiny, and the font was blurry at a dpi that makes the icons look right.</p>
 <p>This turned out to be because <code>ggsave()</code> uses ragg by default (HT <a href="https://twitter.com/sharoz/status/1510342578268516355">Steve Haroz</a>), which isn’t playing well with fontawesome icons, so I had to set the device back to <code>png</code>. However, this wasn’t a problem when I updated my R and RStudio and started using Quarto (not sure which fixed it).</p>
 <div class="cell" data-layout-align="center">
-<details><summary>Code</summary><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">ggsave</span>(<span class="st">"images/day2.png"</span>, <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="fl">4.5</span>, <span class="at">device =</span> png)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<details><summary>Code</summary><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">ggsave</span>(<span class="st">"images/day2.png"</span>, <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">8</span>, <span class="at">device =</span> png)</span>
+<span id="cb11-2"><a href="#cb11-2"></a></span>
+<span id="cb11-3"><a href="#cb11-3"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"images/day2.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/day2.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
 </div>
 
 

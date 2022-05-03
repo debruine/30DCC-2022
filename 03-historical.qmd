@@ -1,6 +1,6 @@
 # Historical
 
-```{r, include = FALSE}
+```{r setup, include = FALSE}
 source("R/setup.R")
 ```
 
@@ -115,7 +115,7 @@ world_regions <- world_regions %>%
       year < 0 ~ "A",
       year < 1700 ~ "B",
       year < 1800 ~ "C",
-      year < 2022 ~ "D"))
+      year < 2101 ~ "D"))
 ```
 
 
@@ -176,19 +176,19 @@ tp_labels <- c(
   A = "10000BC to 0",
   B = "0 to 1700",
   C = "1700 to 1800",
-  D = "1800 to 2021"
+  D = "1800 to 2100"
 )
 
 # custom x-axis breaks and labels
 x_breaks <- c(seq(-10000, -2000, 2000),
               seq(0, 1600, 200),
               seq(1700, 1790, 10),
-              seq(1800, 2021, 20))
+              seq(1800, 2100, 20))
 
 x_labels <- c(paste(seq(10000, 2000, -2000), "BCE"),
               seq(0, 1700, 200),
               seq(1700, 1790, 10),
-              seq(1800, 2021, 20))
+              seq(1800, 2100, 20))
 
 ggplot(world_regions2, aes(x = year, y = population, color = region)) +
   geom_line() +
@@ -227,17 +227,17 @@ world_regions3 <- world_regions2 %>%
 tp_labels <- c(
   A = "10000 BCE to 0",
   B = "0 to 1700 CE",
-  C = "1700 CE to 2021 CE"
+  C = "1700 CE to 2100 CE"
 )
 
 # remake x-axis breaks and labels
 x_breaks <- c(seq(-10000, -2000, 2000),
               seq(0, 1500, 300),
-              seq(1700, 2021, 50))
+              seq(1700, 2100, 50))
 
 x_labels <- c(paste(seq(10000, 2000, -2000), "BCE"),
               paste(seq(0, 1500, 300), "CE"),
-              paste(seq(1700, 2021, 50), "CE"))
+              paste(seq(1700, 2100, 50), "CE"))
 ```
 
 
@@ -264,17 +264,19 @@ ggplot(world_regions3, aes(x = year, y = population, color = region)) +
                      values = rainbow) +
   labs(title = "World Population (Historical Estimates)",
        caption = "Data from Our World in Data | Plot by @lisadebruine") +
-  theme_bw() +
+  theme_bw(base_size = 16) +
   theme(text = element_text(family = "Sen"),
         axis.text.x = element_text(angle = 30, hjust = 1),
         panel.spacing.x = unit(0, "cm"),
         legend.background = element_rect(fill = "transparent"),
-        legend.position = c(.1, .75),
+        legend.position = c(.15, .8),
         panel.grid.minor = element_blank(),
         plot.title = element_text(family = "Market Deco"))
 ```
 
 ```{r hist-png, include = FALSE, eval = FALSE}
-ggsave("images/day3.png", width = 8, height = 4.5, device = png)
+ggsave("images/day3.png", width = 8, height = 8, device = png)
+
+knitr::include_graphics("images/day3.png")
 ```
 

@@ -424,7 +424,7 @@
 <div class="cell" data-layout-align="center">
 <details><summary>Setup</summary><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(faux)</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">16</span>))</span>
 <span id="cb1-4"><a href="#cb1-4"></a><span class="fu">set.seed</span>(<span class="dv">8675309</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
@@ -433,8 +433,8 @@
 <p>First, I need to write a function to generate the simulated data. I want to be able to vary the fixed and random effects parameters, but am setting almost everything to 0 as a default. I’m using mixed design simulation functions from the faux package, which you can learn more about in this <a href="https://debruine.github.io/faux/articles/sim_mixed.html">vignette</a>.</p>
 <div class="cell" data-layout-align="center">
 <details><summary>Data simulation function</summary><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>sim <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
-<span id="cb2-2"><a href="#cb2-2"></a>  <span class="at">n_countries =</span> <span class="dv">10</span>, <span class="co"># number of countries samples</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a>  <span class="at">n_people =</span> <span class="dv">10</span>,    <span class="co"># number of people sampled per country</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>  <span class="at">n_countries =</span> <span class="dv">9</span>, <span class="co"># number of countries samples</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a>  <span class="at">n_people =</span> <span class="dv">9</span>,    <span class="co"># number of people sampled per country</span></span>
 <span id="cb2-4"><a href="#cb2-4"></a>  <span class="at">c_int_sd =</span> <span class="dv">0</span>,     <span class="co"># SD of random intercept for countries</span></span>
 <span id="cb2-5"><a href="#cb2-5"></a>  <span class="at">c_time_sd =</span> <span class="dv">0</span>,    <span class="co"># SD of random slope for time (by country)</span></span>
 <span id="cb2-6"><a href="#cb2-6"></a>  <span class="at">c_cors =</span> <span class="dv">0</span>,       <span class="co"># correlation between c_int and c_time</span></span>
@@ -487,7 +487,7 @@
 <details><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>data <span class="ot">&lt;-</span> <span class="fu">sim</span>(<span class="at">err_sd =</span> <span class="dv">1</span>)</span>
 <span id="cb4-2"><a href="#cb4-2"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> dv, <span class="at">color =</span> country, <span class="at">group =</span> person)) <span class="sc">+</span></span>
 <span id="cb4-3"><a href="#cb4-3"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">formula =</span> y <span class="sc">~</span> x, <span class="at">alpha =</span> <span class="fl">0.1</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb4-4"><a href="#cb4-4"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>country, <span class="at">nrow =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-4"><a href="#cb4-4"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>country, <span class="at">nrow =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="05-slope_files/figure-html/slope-err-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -502,7 +502,7 @@
 <span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> dv, <span class="at">color =</span> person)) <span class="sc">+</span></span>
 <span id="cb5-4"><a href="#cb5-4"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">formula =</span> y <span class="sc">~</span> x, <span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
 <span id="cb5-5"><a href="#cb5-5"></a>  <span class="fu">stat_summary</span>(<span class="at">geom =</span> <span class="st">"point"</span>, <span class="at">fun =</span> mean, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb5-6"><a href="#cb5-6"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>person, <span class="at">nrow =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-6"><a href="#cb5-6"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>person, <span class="at">nrow =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="05-slope_files/figure-html/slope-err-person-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -601,7 +601,7 @@
 <div class="cell" data-layout-align="center">
 <details><summary>Code</summary><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> dv, <span class="at">color =</span> country, <span class="at">group =</span> person)) <span class="sc">+</span></span>
 <span id="cb12-2"><a href="#cb12-2"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">size =</span> <span class="fl">0.5</span>, <span class="at">formula =</span> y <span class="sc">~</span> x, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb12-3"><a href="#cb12-3"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>country, <span class="at">nrow =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-3"><a href="#cb12-3"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>country, <span class="at">nrow =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="05-slope_files/figure-html/slope-p-int-country-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -618,7 +618,7 @@
 <span id="cb13-3"><a href="#cb13-3"></a>              <span class="at">method =</span> lm, <span class="at">formula =</span> y <span class="sc">~</span> x, </span>
 <span id="cb13-4"><a href="#cb13-4"></a>              <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
 <span id="cb13-5"><a href="#cb13-5"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">size =</span> <span class="fl">1.5</span>, <span class="at">formula =</span> y <span class="sc">~</span> x, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb13-6"><a href="#cb13-6"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>country, <span class="at">nrow =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-6"><a href="#cb13-6"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>country, <span class="at">nrow =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="05-slope_files/figure-html/slope-p-time-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -649,7 +649,7 @@
 <span id="cb15-5"><a href="#cb15-5"></a>              <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
 <span id="cb15-6"><a href="#cb15-6"></a>  <span class="fu">geom_smooth</span>(<span class="at">size =</span> <span class="fl">1.5</span>, <span class="at">method =</span> lm, <span class="at">formula =</span> y <span class="sc">~</span> x, </span>
 <span id="cb15-7"><a href="#cb15-7"></a>              <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb15-8"><a href="#cb15-8"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>country, <span class="at">nrow =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-8"><a href="#cb15-8"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>country, <span class="at">nrow =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="05-slope_files/figure-html/slope-fixed-rand-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -671,7 +671,7 @@
 <span id="cb16-8"><a href="#cb16-8"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
 <span id="cb16-9"><a href="#cb16-9"></a>  <span class="fu">geom_smooth</span>(<span class="at">size =</span> <span class="fl">1.5</span>, <span class="at">method =</span> lm, <span class="at">formula =</span> y <span class="sc">~</span> x, </span>
 <span id="cb16-10"><a href="#cb16-10"></a>              <span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb16-11"><a href="#cb16-11"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>country, <span class="at">nrow =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb16-11"><a href="#cb16-11"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>country, <span class="at">nrow =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
 <span id="cb16-12"><a href="#cb16-12"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">

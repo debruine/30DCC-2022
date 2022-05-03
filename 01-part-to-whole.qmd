@@ -1,6 +1,6 @@
 # Part-to-whole
 
-```{r, include = FALSE}
+```{r setup, include = FALSE}
 source("R/setup.R")
 ```
 
@@ -158,7 +158,7 @@ I couldn't figure out how to re-plot from the `day1_plot` object, so just had to
 
 # open the png file
 ragg::agg_png("images/day1.png", 
-              width = 8, height = 4.5, 
+              width = 8, height = 8, 
               background = "transparent",
               units = "in", res = 150)
 

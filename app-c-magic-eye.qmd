@@ -1,6 +1,13 @@
 # Magic Eye
 
+
+```{r, include = FALSE}
+source("R/setup.R")
+```
+
 ```{r}
+#| code-summary: Setup
+
 library(tidyverse) # for data wrangling
 library(MetBrewer) # for colour themes
 library(ggforce)   # for the stereogram

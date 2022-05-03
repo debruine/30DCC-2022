@@ -2,6 +2,11 @@
 
 ```{r, include = FALSE}
 source("R/setup.R")
+
+knitr::opts_chunk$set(
+  fig.width  = 8,
+  fig.height = 4.5
+)
 ```
  
 I hadn't realised The Economist do a [daily chart](https://www.economist.com/search?q=daily%20chart). They range from the simple and powerful to really complex visualisations. I won't show any here, as their website/blog licensing of a single chart for 1 month to an academic costs £159, but you can see the map I'm going to recreate here: [Which countries offer gender-neutral passports?](https://www.economist.com/graphic-detail/2022/04/11/which-countries-offer-gender-neutral-passports)

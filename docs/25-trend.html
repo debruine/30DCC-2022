@@ -497,7 +497,7 @@
 </section><section id="population-correlation" class="level2" data-number="25.3"><h2 data-number="25.3" class="anchored" data-anchor-id="population-correlation">
 <span class="header-section-number">25.3</span> Population correlation</h2>
 <p>Simulate 100 pairs from populations with correlations ranging from -0.9 to +0.9. Do this 1000 times for each population r and calculate the sample correlation for each simulation.</p>
-<div class="cell" data-layout-align="center" data-hash="25-trend_cache/html/unnamed-chunk-7_25571958798ab88c92a216f44a93d234">
+<div class="cell" data-layout-align="center" data-hash="25-trend_cache/html/unnamed-chunk-7_1555ec73c9a0d513e4b34b9b39efb6c5">
 <details><summary>Data simulation</summary><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">set.seed</span>(<span class="dv">8675309</span>)</span>
 <span id="cb6-2"><a href="#cb6-2"></a>dat_rep_r <span class="ot">&lt;-</span> <span class="fu">crossing</span>(</span>
 <span id="cb6-3"><a href="#cb6-3"></a>    <span class="at">n =</span> <span class="dv">100</span>, </span>
@@ -539,7 +539,7 @@
 </section><section id="sample-size" class="level2" data-number="25.4"><h2 data-number="25.4" class="anchored" data-anchor-id="sample-size">
 <span class="header-section-number">25.4</span> Sample size</h2>
 <p>How does the sample size affect the sample correlations? Simulate samples from 10 to 100 pairs with a population correlation of 0. Do this 5000 times for each n and calculate the sample correlation.</p>
-<div class="cell" data-layout-align="center" data-hash="25-trend_cache/html/unnamed-chunk-8_eaf5816bf01d4422260463e3a574edd9">
+<div class="cell" data-layout-align="center" data-hash="25-trend_cache/html/unnamed-chunk-8_ebcaaa3afd31338afa3d41aa6931761f">
 <details><summary>Data simulation</summary><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">set.seed</span>(<span class="dv">8675309</span>)</span>
 <span id="cb8-2"><a href="#cb8-2"></a>dat_rep_n <span class="ot">&lt;-</span> <span class="fu">crossing</span>(</span>
 <span id="cb8-3"><a href="#cb8-3"></a>    <span class="at">n =</span> <span class="fu">seq</span>(<span class="dv">10</span>, <span class="dv">100</span>, <span class="dv">10</span>), </span>
@@ -610,7 +610,7 @@
 </section><section id="mean-absolute-difference" class="level2" data-number="25.5"><h2 data-number="25.5" class="anchored" data-anchor-id="mean-absolute-difference">
 <span class="header-section-number">25.5</span> Mean absolute difference</h2>
 <p>How does the average difference between the sample correlation and population correlation change with population r and sample n?</p>
-<div class="cell" data-layout-align="center" data-hash="25-trend_cache/html/unnamed-chunk-9_32bd03b74d84bc22c0f24056a7598897">
+<div class="cell" data-layout-align="center" data-hash="25-trend_cache/html/unnamed-chunk-9_d63fbb9d6b176902518bb3ee3e7746ad">
 <details><summary>Data simulation</summary><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">set.seed</span>(<span class="dv">8675309</span>)</span>
 <span id="cb11-2"><a href="#cb11-2"></a>dat_diff <span class="ot">&lt;-</span> <span class="fu">crossing</span>(</span>
 <span id="cb11-3"><a href="#cb11-3"></a>    <span class="at">n =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">50</span>, <span class="dv">100</span>), </span>
@@ -663,7 +663,7 @@
 </section><section id="simulate-across-values-of-both" class="level2" data-number="25.6"><h2 data-number="25.6" class="anchored" data-anchor-id="simulate-across-values-of-both">
 <span class="header-section-number">25.6</span> Simulate across values of both</h2>
 <p>The spread of sample correlations gets a lot bigger as sample n decreases, so I’ll simulate every 0.3 for n = 255, every 0.2 for n = 50, and every 0.1 for n = 100. I have to round the results of <code><a href="https://rdrr.io/r/base/seq.html">seq()</a></code> because these values don’t exactly match up due to floating point error.</p>
-<div class="cell" data-layout-align="center" data-hash="25-trend_cache/html/unnamed-chunk-10_4997585129527757d726e40ef9bcf53f">
+<div class="cell" data-layout-align="center" data-hash="25-trend_cache/html/unnamed-chunk-10_5e4884a82c96180914f4c7ad696eeb10">
 <details><summary>Code</summary><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">set.seed</span>(<span class="dv">8675309</span>)</span>
 <span id="cb13-2"><a href="#cb13-2"></a></span>
 <span id="cb13-3"><a href="#cb13-3"></a>n25 <span class="ot">&lt;-</span> <span class="fu">crossing</span>(<span class="at">n =</span> <span class="dv">25</span>, <span class="at">pop_r =</span> <span class="fu">seq</span>(<span class="sc">-</span>.<span class="dv">9</span>, .<span class="dv">9</span>, .<span class="dv">3</span>))</span>

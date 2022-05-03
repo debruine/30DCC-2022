@@ -1,6 +1,6 @@
 # Slope
 
-```{r, include = FALSE}
+```{r setup, include = FALSE}
 source("R/setup.R")
 ```
 
@@ -11,7 +11,7 @@ I'm going back to data simulation. Someone asked me recently how to add a contin
 
 library(tidyverse)
 library(faux)
-theme_set(theme_bw())
+theme_set(theme_bw(base_size = 16))
 set.seed(8675309)
 ```
 
@@ -22,9 +22,10 @@ First, I need to write a function to generate the simulated data. I want to be a
 
 ```{r}
 #| code-summary: Data simulation function
+
 sim <- function(
-  n_countries = 10, # number of countries samples
-  n_people = 10,    # number of people sampled per country
+  n_countries = 9, # number of countries samples
+  n_people = 9,    # number of people sampled per country
   c_int_sd = 0,     # SD of random intercept for countries
   c_time_sd = 0,    # SD of random slope for time (by country)
   c_cors = 0,       # correlation between c_int and c_time
@@ -75,7 +76,7 @@ We can make the simulation more realistic by adding random error.
 data <- sim(err_sd = 1)
 ggplot(data, aes(x = time, y = dv, color = country, group = person)) +
   geom_smooth(method = lm, formula = y ~ x, alpha = 0.1, show.legend = FALSE) +
-  facet_wrap(~country, nrow = 2)
+  facet_wrap(~country, nrow = 3)
 ```
 
 Here are the data for each person in country A.
@@ -86,7 +87,7 @@ data %>%
   ggplot(aes(x = time, y = dv, color = person)) +
   geom_smooth(method = lm, formula = y ~ x, alpha = 0.2, show.legend = FALSE) +
   stat_summary(geom = "point", fun = mean, show.legend = FALSE) +
-  facet_wrap(~person, nrow = 2)
+  facet_wrap(~person, nrow = 3)
 ```
 
 We're going to leave the error SD as a totally unrealistic 0 for the next few plots to make it easier to see what happens to the data when you're changing random effects parameters.
@@ -158,7 +159,7 @@ Let's look at the data for each country separately.
 ```{r slope-p-int-country}
 ggplot(data, aes(x = time, y = dv, color = country, group = person)) +
   geom_smooth(method = lm, size = 0.5, formula = y ~ x, show.legend = FALSE) +
-  facet_wrap(~country, nrow = 2)
+  facet_wrap(~country, nrow = 3)
 ```
 
 
@@ -172,7 +173,7 @@ ggplot(data, aes(x = time, y = dv, color = country)) +
               method = lm, formula = y ~ x, 
               show.legend = FALSE) +
   geom_smooth(method = lm, size = 1.5, formula = y ~ x, show.legend = FALSE) +
-  facet_wrap(~country, nrow = 2)
+  facet_wrap(~country, nrow = 3)
 ```
 
 ## Fixed effect of time
@@ -195,7 +196,7 @@ ggplot(data, aes(x = time, y = dv, color = country)) +
               show.legend = FALSE) +
   geom_smooth(size = 1.5, method = lm, formula = y ~ x, 
               show.legend = FALSE) +
-  facet_wrap(~country, nrow = 2)
+  facet_wrap(~country, nrow = 3)
 ```
 
 ## Realistic data
@@ -216,11 +217,13 @@ ggplot(data, aes(x = time, y = dv, color = country)) +
               se = FALSE, show.legend = FALSE) +
   geom_smooth(size = 1.5, method = lm, formula = y ~ x, 
               alpha = 0.3, show.legend = FALSE) +
-  facet_wrap(~country, nrow = 2) +
+  facet_wrap(~country, nrow = 3) +
   scale_x_continuous(breaks = seq(0, 10, 2))
 ```
 
 ```{r, include = FALSE, eval = FALSE}
-ggsave("images/day5.png", width = 8, height = 4.5, device = png)
+ggsave("images/day5.png", width = 8, height = 8, device = png)
+
+knitr::include_graphics("images/day5.png")
 ```
 

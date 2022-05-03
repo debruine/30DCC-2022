@@ -1,7 +1,12 @@
 # OWiD {#sec-owid}
 
-```{r, include = FALSE}
+```{r setup, include = FALSE}
 source("R/setup.R")
+
+knitr::opts_chunk$set(
+  fig.width  = 8,
+  fig.height = 4.5
+)
 ```
 
 ```{r}
@@ -140,11 +145,13 @@ data_map_int_valid <- data_map_int %>%
   ungroup()
 ```
 
-Now let's retry the map, and switch the fill to a nicer viridis gradient. Set the na.value to red to more easily see where the missing data is.
+Now let's retry the map, and switch the fill to a nicer viridis gradient. Set the na.value to red to more easily see where the missing data is. Just plot 2018 to check.
 
 ```{r owid-map-na}
 
-ggplot(data_map_int_valid) + 
+data_map_int_valid %>%
+  filter(year == 2018) %>%
+  ggplot() + 
   geom_sf(mapping = aes(fill = it_net_users),
           size = 0.1) +
   crop_coords +
@@ -172,8 +179,9 @@ data_map_int_no_missing <- data_map_int_valid %>%
 There's still one big persistently missing country in the middle of Africa.
 
 ```{r owid-map-missing}
-
-ggplot(data_map_int_no_missing) + 
+data_map_int_no_missing %>%
+  filter(year %in% c(1990, 2000, 2010, 2019)) %>%
+  ggplot() + 
   geom_sf(mapping = aes(fill = it_net_users_no_na),
           size = 0.1) +
   crop_coords +
@@ -209,7 +217,7 @@ data_map_int_final <- data_map_int_no_missing %>%
 
 Now I want to set up what a single frame will look like in my animation. I'll filter the data down to the year 2019 and work on the plot until I'm happy.
 
-```{r owid-map-frame, fig.width = 8, fig.height = 5}
+```{r owid-map-frame}
 
 ggplot(filter(data_map_int_final, year == 2019)) + 
   geom_sf(mapping = aes(fill = it_net_users_no_na/100),
@@ -233,7 +241,7 @@ ggplot(filter(data_map_int_final, year == 2019)) +
   theme(
     legend.background = element_blank(),
     legend.position = "bottom",
-    legend.key.width = unit(.187, "npc"),
+    legend.key.width = unit(1.5, "inches"),
     plot.title = element_text(family = "Playfair Display", size = 20, colour = "#555555"),
     plot.caption = element_text(size = 10, color = "#555555")
   )
@@ -267,7 +275,7 @@ anim <- ggplot(data_map_int_final) +
   theme(
     legend.background = element_blank(),
     legend.position = "bottom",
-    legend.key.width = unit(.187, "npc"),
+    legend.key.width = unit(1.25, "inches"),
     plot.title = element_text(family = "Playfair Display", size = 20, colour = "#555555"),
     plot.caption = element_text(size = 10, color = "#555555")
   ) +
@@ -281,13 +289,13 @@ anim_save("images/day6.gif",
           animation = anim, 
           nframes = 30, fps = 4, 
           start_pause = 6, end_pause = 6, 
-          width = 8, height = 5, 
+          width = 8, height = 4.5, 
           units = "in", res = 150)
 ```
 
 
 
-```{r owid-day6, fig.width = 8, fig.height = 5}
+```{r owid-day6, fig.width = 8, fig.height = 4.5}
 #| fig.alt: World map showing the share of the population in each country using the internet from 1990 to 2020 using colour. Animated across years.
 
 knitr::include_graphics("images/day6.gif")

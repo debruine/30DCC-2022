@@ -1,5 +1,9 @@
 # Stained Glass Heart
 
+```{r, include = FALSE}
+source("R/setup.R")
+```
+
 I've been inspired by a lot of the charts I see on the #30DayChartChallenge hashtag, but Icaro Bernardes` [stained glass](https://twitter.com/IcaroBSC/status/1515169762778697732) was the first I wanted to make my own. His [original code](https://github.com/IcaroBernardes/30DayChartChallenge/blob/master/2022/day10/day10.R) shows how to create a gorgeous stained-glass window with text. I've simplified the code a bit and am just making a heart (using maths) in stained glass.
 
 ```{r, message=FALSE}
