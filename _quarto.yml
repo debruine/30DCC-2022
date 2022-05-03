@@ -78,6 +78,7 @@ book:
       - 29-storytelling.qmd
       - 30-un-population.qmd
   appendices:
+    - app-0-together.qmd
     - app-a-colours.qmd
     - app-b-stained-glass.qmd
     - app-c-magic-eye.qmd

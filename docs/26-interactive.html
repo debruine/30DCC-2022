@@ -379,22 +379,27 @@
     <ul id="quarto-sidebar-section-appendices" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./app-a-colours.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Colours</span></a>
+  <a href="./app-0-together.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Putting it all together</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./app-b-stained-glass.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Stained Glass Heart</span></a>
+  <a href="./app-a-colours.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Colours</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./app-c-magic-eye.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Magic Eye</span></a>
+  <a href="./app-b-stained-glass.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Stained Glass Heart</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./app-d-psyarxiv.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">PsyArXiv</span></a>
+  <a href="./app-c-magic-eye.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Magic Eye</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./app-d-psyarxiv.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">PsyArXiv</span></a>
   </div>
 </li>
     </ul>
@@ -636,7 +641,7 @@
 </div>
 <details><summary>Demo Plot Function</summary><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>tictoc<span class="sc">::</span><span class="fu">toc</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-stdout">
-<pre><code>1.954 sec elapsed</code></pre>
+<pre><code>1.924 sec elapsed</code></pre>
 </div>
 </div>
 <p>This is pretty slow. What can we do to speed it up? Maybe make the day6 data first?</p>
@@ -645,7 +650,7 @@
 <span id="cb13-2"><a href="#cb13-2"></a>day6_data <span class="ot">&lt;-</span> <span class="fu">day6_data</span>()</span>
 <span id="cb13-3"><a href="#cb13-3"></a>tictoc<span class="sc">::</span><span class="fu">toc</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-stdout">
-<pre><code>process data: 0.473 sec elapsed</code></pre>
+<pre><code>process data: 0.481 sec elapsed</code></pre>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
@@ -667,7 +672,7 @@
 </div>
 <details><summary>Time Plot Function</summary><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>tictoc<span class="sc">::</span><span class="fu">toc</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-stdout">
-<pre><code>build demo plot: 1.264 sec elapsed</code></pre>
+<pre><code>build demo plot: 1.288 sec elapsed</code></pre>
 </div>
 </div>
 <p>Nope, reading the data isn’t adding much to the plotting time, but half a send faster is still better. Maybe we’ll come back to this. Add the rest of the plot functions.</p>
@@ -709,7 +714,7 @@
 </div>
 <details><summary>day6_plot()</summary><div class="sourceCode" id="cb19"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>tictoc<span class="sc">::</span><span class="fu">toc</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-stdout">
-<pre><code>build full plot: 0.481 sec elapsed</code></pre>
+<pre><code>build full plot: 0.484 sec elapsed</code></pre>
 </div>
 </div>
 </section><section id="ui" class="level3" data-number="26.3.2"><h3 data-number="26.3.2" class="anchored" data-anchor-id="ui">

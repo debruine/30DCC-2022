@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-0.9.80">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="description" content="Code and charts for the 2022 30-Day Chart Challenge">
-<title>30DCC (2022) - 22&nbsp; Animation</title>
+<title>30DCC (2022) - Appendix A — Putting it all together</title>
 <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -78,8 +78,8 @@
     code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
 <script src="site_libs/quarto-nav/quarto-nav.js"></script><script src="site_libs/quarto-nav/headroom.min.js"></script><script src="site_libs/clipboard/clipboard.min.js"></script><meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script><script src="site_libs/quarto-search/fuse.min.js"></script><script src="site_libs/quarto-search/quarto-search.js"></script><link href="./23-tiles.html" rel="next">
-<link href="./21-down-upwards.html" rel="prev">
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script><script src="site_libs/quarto-search/fuse.min.js"></script><script src="site_libs/quarto-search/quarto-search.js"></script><link href="./app-a-colours.html" rel="next">
+<link href="./30-un-population.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script><script src="site_libs/quarto-html/popper.min.js"></script><script src="site_libs/quarto-html/tippy.umd.min.js"></script><script src="site_libs/quarto-html/anchor.min.js"></script><link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script><link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
@@ -119,9 +119,7 @@
 <body class="floating">
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">
-<span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Animation</span>
-</h1>
+      <h1 class="quarto-secondary-nav-title">Appendix A — Putting it all together</h1>
       <button type="button" class="quarto-btn-toggle btn">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -314,7 +312,7 @@
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./22-animation.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Animation</span></a>
+  <a href="./22-animation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Animation</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -379,7 +377,7 @@
     <ul id="quarto-sidebar-section-appendices" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./app-0-together.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Putting it all together</span></a>
+  <a href="./app-0-together.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Putting it all together</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -409,130 +407,96 @@
 </nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc"><h2 id="toc-title">Table of contents</h2>
 <ul>
-<li><a href="#data" class="nav-link active" data-scroll-target="#data"> <span class="header-section-number">22.1</span> Data</a></li>
-<li><a href="#plot" class="nav-link" data-scroll-target="#plot"> <span class="header-section-number">22.2</span> Plot</a></li>
-<li><a href="#animate" class="nav-link" data-scroll-target="#animate"> <span class="header-section-number">22.3</span> Animate</a></li>
-</ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/debruine/30DCC-2022/edit/main/22-animation.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/debruine/30DCC-2022/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/debruine/30DCC-2022/blob/main/22-animation.qmd" class="toc-action">View source</a></p></div></div></nav>
+<li><a href="#read-in-images" class="nav-link active" data-scroll-target="#read-in-images"> <span class="header-section-number">A.1</span> Read in images</a></li>
+<li><a href="#flatten-gifs" class="nav-link" data-scroll-target="#flatten-gifs"> <span class="header-section-number">A.2</span> Flatten gifs</a></li>
+<li><a href="#resize-images" class="nav-link" data-scroll-target="#resize-images"> <span class="header-section-number">A.3</span> Resize images</a></li>
+<li><a href="#add-labels" class="nav-link" data-scroll-target="#add-labels"> <span class="header-section-number">A.4</span> Add labels</a></li>
+<li><a href="#make-animation" class="nav-link" data-scroll-target="#make-animation"> <span class="header-section-number">A.5</span> Make animation</a></li>
+</ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/debruine/30DCC-2022/edit/main/app-0-together.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/debruine/30DCC-2022/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/debruine/30DCC-2022/blob/main/app-0-together.qmd" class="toc-action">View source</a></p></div></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header"><h1 class="title d-none d-lg-block display-7">
-<span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Animation</span>
-</h1>
-</header><p>I’ve already done an animated time series for <a href="06-owid.html">Day&nbsp;<span>6</span></a>, so I thought I’d try to get more familiar with <code class="package"><a href="https://gganimate.com/" target="_blank">gganimate</a></code>.</p>
-<div class="cell" data-layout-align="center">
-<details><summary>Setup</summary><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)   <span class="co"># for data wrangling and viz</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(countrycode) <span class="co"># to get continents for countries</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(gganimate)   <span class="co"># for animation</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">theme_set</span>(<span class="fu">theme_minimal</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<main class="content" id="quarto-document-content"><header id="title-block-header"><h1 class="title d-none d-lg-block display-7">Appendix A — Putting it all together</h1>
+</header><div class="cell" data-layout-align="center">
+<details><summary>Setup</summary><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(webmorphR) <span class="co"># for image manipulation</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(gifski) <span class="co"># for animation</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">wm_opts</span>(<span class="at">plot.maxwidth =</span> <span class="dv">850</span><span class="sc">*</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<section id="data" class="level2" data-number="22.1"><h2 data-number="22.1" class="anchored" data-anchor-id="data">
-<span class="header-section-number">22.1</span> Data</h2>
-<p>I got all the original data just browsing <a href="https://ourworldindata.org">Our World in Data</a>.</p>
-<ul>
-<li>
-<a href="https://ourworldindata.org/happiness-and-life-satisfaction">Happiness</a>: World Happiness Report 2021</li>
-<li>
-<a href="https://ourworldindata.org/working-hours">Working Hours</a>: original data from <a href="https://www.sciencedirect.com/science/article/abs/pii/S0014498307000058">Huberman &amp; Minns, 2007</a>, <a href="https://www.rug.nl/ggdc/productivity/pwt/?lang=en">PWT 9.1, 2019</a>
-</li>
-<li>
-<a href="https://ourworldindata.org/world-population-growth">Population</a>: original data from <a href="https://population.un.org/wpp2019/Download/Standard/Interpolated/">United Nations</a>
-</li>
-</ul>
+<section id="read-in-images" class="level2" data-number="A.1"><h2 data-number="A.1" class="anchored" data-anchor-id="read-in-images">
+<span class="header-section-number">A.1</span> Read in images</h2>
+<p>Read in the images. I named them stupidly, without leading 0s, so am importing them in two batches: the ones with one digit after “day”, then the ones with two digits after “day”.</p>
 <div class="cell" data-layout-align="center">
-<details><summary>Load original data</summary><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># https://ourworldindata.org/happiness-and-life-satisfaction</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>happy <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/happiness-cantril-ladder.csv"</span>,</span>
-<span id="cb2-3"><a href="#cb2-3"></a>                  <span class="at">show_col_types =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a>  <span class="fu">rename</span>(<span class="at">happy =</span> <span class="dv">4</span>)</span>
-<span id="cb2-5"><a href="#cb2-5"></a></span>
-<span id="cb2-6"><a href="#cb2-6"></a><span class="co"># https://ourworldindata.org/working-hours</span></span>
-<span id="cb2-7"><a href="#cb2-7"></a>work <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/annual-working-hours-per-worker.csv"</span>,</span>
-<span id="cb2-8"><a href="#cb2-8"></a>                  <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)<span class="sc">%&gt;%</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a>  <span class="fu">rename</span>(<span class="at">work =</span> <span class="dv">4</span>)</span>
-<span id="cb2-10"><a href="#cb2-10"></a></span>
-<span id="cb2-11"><a href="#cb2-11"></a><span class="co"># https://ourworldindata.org/world-population-growth</span></span>
-<span id="cb2-12"><a href="#cb2-12"></a>pop <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/population-by-broad-age-group.csv"</span>,</span>
-<span id="cb2-13"><a href="#cb2-13"></a>                  <span class="at">show_col_types =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb2-14"><a href="#cb2-14"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="dv">4</span><span class="sc">:</span><span class="dv">8</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb2-15"><a href="#cb2-15"></a>  <span class="fu">group_by</span>(Entity, Code, Year) <span class="sc">%&gt;%</span></span>
-<span id="cb2-16"><a href="#cb2-16"></a>  <span class="fu">summarise</span>(<span class="at">pop =</span> <span class="fu">sum</span>(value),</span>
-<span id="cb2-17"><a href="#cb2-17"></a>            <span class="at">.groups =</span> <span class="st">"drop"</span>)</span>
-<span id="cb2-18"><a href="#cb2-18"></a></span>
-<span id="cb2-19"><a href="#cb2-19"></a>continent <span class="ot">&lt;-</span> countrycode<span class="sc">::</span>codelist <span class="sc">%&gt;%</span></span>
-<span id="cb2-20"><a href="#cb2-20"></a>  <span class="fu">select</span>(<span class="at">Code =</span> iso3c, continent) <span class="sc">%&gt;%</span></span>
-<span id="cb2-21"><a href="#cb2-21"></a>  <span class="fu">drop_na</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>imgs <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb2-2"><a href="#cb2-2"></a>  <span class="fu">read_stim</span>(<span class="st">"images"</span>, <span class="st">"day</span><span class="sc">\\</span><span class="st">d{1}</span><span class="sc">\\</span><span class="st">.(png|gif)"</span>),</span>
+<span id="cb2-3"><a href="#cb2-3"></a>  <span class="fu">read_stim</span>(<span class="st">"images"</span>, <span class="st">"day</span><span class="sc">\\</span><span class="st">d{2}</span><span class="sc">\\</span><span class="st">.(png|gif)"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>There are two of “day15”, so I’ll get rid of the first.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>imgs <span class="ot">&lt;-</span> imgs[<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>, <span class="dv">17</span><span class="sc">:</span><span class="dv">31</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section><section id="flatten-gifs" class="level2" data-number="A.2"><h2 data-number="A.2" class="anchored" data-anchor-id="flatten-gifs">
+<span class="header-section-number">A.2</span> Flatten gifs</h2>
+<p>Some of the images are animated gifs, so I have to flatten them.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>multi_img <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="fu">width</span>(imgs), length) <span class="sc">&gt;</span> <span class="dv">1</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a></span>
+<span id="cb4-3"><a href="#cb4-3"></a>imgs[multi_img] <span class="ot">&lt;-</span> imgs[multi_img] <span class="sc">%&gt;%</span> <span class="fu">image_func</span>(<span class="st">"flatten"</span>)</span>
+<span id="cb4-4"><a href="#cb4-4"></a></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="co"># fix width and height</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(imgs)) {</span>
+<span id="cb4-7"><a href="#cb4-7"></a>  imgs[[i]]<span class="sc">$</span>width <span class="ot">&lt;-</span> imgs[[i]]<span class="sc">$</span>width[[<span class="dv">1</span>]]</span>
+<span id="cb4-8"><a href="#cb4-8"></a>  imgs[[i]]<span class="sc">$</span>height <span class="ot">&lt;-</span> imgs[[i]]<span class="sc">$</span>height[[<span class="dv">1</span>]]</span>
+<span id="cb4-9"><a href="#cb4-9"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section><section id="resize-images" class="level2" data-number="A.3"><h2 data-number="A.3" class="anchored" data-anchor-id="resize-images">
+<span class="header-section-number">A.3</span> Resize images</h2>
+<p>Next, I need to resize the images all to the same size. The <code>to_size()</code> function is a combination of <code>crop()</code>, <code>pad()</code> and <code>resize()</code> that gets all images as large as possible, centered in the image.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>resized <span class="ot">&lt;-</span> <span class="fu">to_size</span>(imgs, <span class="at">width =</span> <span class="dv">600</span>, <span class="at">height =</span> <span class="dv">600</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section><section id="add-labels" class="level2" data-number="A.4"><h2 data-number="A.4" class="anchored" data-anchor-id="add-labels">
+<span class="header-section-number">A.4</span> Add labels</h2>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>chapters <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="st">"."</span>, <span class="at">pattern =</span> <span class="st">"^</span><span class="sc">\\</span><span class="st">d{2}-.+</span><span class="sc">\\</span><span class="st">.qmd"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2"></a>names <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">"(^</span><span class="sc">\\</span><span class="st">d+-|</span><span class="sc">\\</span><span class="st">.qmd$)"</span>, <span class="st">""</span>, chapters)</span>
+<span id="cb6-3"><a href="#cb6-3"></a>names <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">"-"</span>, <span class="st">" "</span>, names) <span class="sc">|&gt;</span> stringr<span class="sc">::</span><span class="fu">str_to_title</span>()</span>
+<span id="cb6-4"><a href="#cb6-4"></a>names[names<span class="sc">==</span><span class="st">"Owid"</span>] <span class="ot">&lt;-</span> <span class="st">"OWID"</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a>names[names<span class="sc">==</span><span class="st">"Oecd"</span>] <span class="ot">&lt;-</span> <span class="st">"OECD"</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a>names[names<span class="sc">==</span><span class="st">"Un Population"</span>] <span class="ot">&lt;-</span> <span class="st">"UN Population"</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a></span>
+<span id="cb6-8"><a href="#cb6-8"></a>labelled <span class="ot">&lt;-</span> resized <span class="sc">%&gt;%</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a>  <span class="fu">pad</span>(<span class="at">top =</span> <span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a>  <span class="fu">label</span>(names, <span class="at">gravity =</span> <span class="st">"north"</span>, <span class="at">location =</span> <span class="st">"+0+0"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell" data-layout-align="center">
-<details><summary>Combine data</summary><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>data <span class="ot">&lt;-</span> happy <span class="sc">%&gt;%</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">inner_join</span>(work, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Entity"</span>, <span class="st">"Code"</span>, <span class="st">"Year"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a>  <span class="fu">inner_join</span>(pop, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Entity"</span>, <span class="st">"Code"</span>, <span class="st">"Year"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a>  <span class="fu">left_join</span>(continent, <span class="at">by =</span> <span class="st">"Code"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</section><section id="plot" class="level2" data-number="22.2"><h2 data-number="22.2" class="anchored" data-anchor-id="plot">
-<span class="header-section-number">22.2</span> Plot</h2>
-<p>y first step in making an animated plot is always to filter down to one frame of data and get the plot looking like I want.</p>
-<div class="cell" data-layout-align="center">
-<details><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>data <span class="sc">%&gt;%</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">filter</span>(Year <span class="sc">==</span> <span class="dv">2017</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> work, <span class="at">y =</span> happy, <span class="at">size =</span> pop, <span class="at">color =</span> continent)) <span class="sc">+</span></span>
-<span id="cb4-4"><a href="#cb4-4"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a>  <span class="fu">scale_size</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">12</span>), <span class="at">guide =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
-<span id="cb4-6"><a href="#cb4-6"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#983E82"</span>, <span class="st">"#E2A458"</span>, <span class="st">"#F5DC70"</span>, <span class="st">"#59935B"</span>, <span class="st">"#467AAC"</span></span>
-<span id="cb4-7"><a href="#cb4-7"></a>  )) <span class="sc">+</span></span>
-<span id="cb4-8"><a href="#cb4-8"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">1250</span>, <span class="dv">2500</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">8</span>)) <span class="sc">+</span></span>
-<span id="cb4-9"><a href="#cb4-9"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Average Annual Working Hours per Worker"</span>,</span>
-<span id="cb4-10"><a href="#cb4-10"></a>       <span class="at">y =</span> <span class="st">"Average Happiness Score"</span>,</span>
-<span id="cb4-11"><a href="#cb4-11"></a>       <span class="at">color =</span> <span class="cn">NULL</span>,</span>
-<span id="cb4-12"><a href="#cb4-12"></a>       <span class="at">title =</span> <span class="st">"Year: 2017"</span>) <span class="sc">+</span></span>
-<span id="cb4-13"><a href="#cb4-13"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(.<span class="dv">11</span>, .<span class="dv">17</span>),</span>
-<span id="cb4-14"><a href="#cb4-14"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">plot_stim</span>(labelled, <span class="at">nrow =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="22-animation_files/figure-html/anim-test-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="app-0-together_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
 </div>
-</section><section id="animate" class="level2" data-number="22.3"><h2 data-number="22.3" class="anchored" data-anchor-id="animate">
-<span class="header-section-number">22.3</span> Animate</h2>
-<p>The next step is to remove the filter and add the animation functions. I animated by year with <code>transition_time(Year)</code> and changed the title in <code>labs()</code> to “Year: {floor(frame_time)}” because the animation introduced fractional years.</p>
-<p>I used this <a href="https://www.datanovia.com/en/blog/gganimate-how-to-create-plots-with-beautiful-animation-in-r/">tutorial for datanovia</a> to figure out the <code>shadow_wake()</code>.</p>
+</section><section id="make-animation" class="level2" data-number="A.5"><h2 data-number="A.5" class="anchored" data-anchor-id="make-animation">
+<span class="header-section-number">A.5</span> Make animation</h2>
 <div class="cell" data-layout-align="center">
-<details><summary>Code</summary><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>anim <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> work, <span class="at">y =</span> happy, <span class="at">size =</span> pop, <span class="at">color =</span> continent)) <span class="sc">+</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
-<span id="cb5-4"><a href="#cb5-4"></a>  <span class="fu">scale_size</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">12</span>), <span class="at">guide =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
-<span id="cb5-5"><a href="#cb5-5"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#983E82"</span>, <span class="st">"#E2A458"</span>, <span class="st">"#F5DC70"</span>, <span class="st">"#59935B"</span>, <span class="st">"#467AAC"</span></span>
-<span id="cb5-6"><a href="#cb5-6"></a>  )) <span class="sc">+</span></span>
-<span id="cb5-7"><a href="#cb5-7"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">1250</span>, <span class="dv">2500</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">8</span>)) <span class="sc">+</span></span>
-<span id="cb5-8"><a href="#cb5-8"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Average Annual Working Hours per Worker"</span>,</span>
-<span id="cb5-9"><a href="#cb5-9"></a>       <span class="at">y =</span> <span class="st">"Average Happiness Score"</span>,</span>
-<span id="cb5-10"><a href="#cb5-10"></a>       <span class="at">color =</span> <span class="cn">NULL</span>,</span>
-<span id="cb5-11"><a href="#cb5-11"></a>       <span class="at">title =</span> <span class="st">"Year: {floor(frame_time)}"</span>) <span class="sc">+</span></span>
-<span id="cb5-12"><a href="#cb5-12"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(.<span class="dv">11</span>, .<span class="dv">17</span>),</span>
-<span id="cb5-13"><a href="#cb5-13"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>)) <span class="sc">+</span></span>
-<span id="cb5-14"><a href="#cb5-14"></a>  <span class="fu">transition_time</span>(Year) <span class="sc">+</span></span>
-<span id="cb5-15"><a href="#cb5-15"></a>  <span class="fu">shadow_wake</span>(<span class="at">wake_length =</span> <span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<p>The animating takes awhile, so I always save to a file and set this chunk to not evaluate in the script.</p>
-<div class="cell" data-layout-align="center">
-<details><summary>Code</summary><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">anim_save</span>(<span class="st">"images/day22.gif"</span>, </span>
-<span id="cb6-2"><a href="#cb6-2"></a>          <span class="at">animation =</span> anim, </span>
-<span id="cb6-3"><a href="#cb6-3"></a>          <span class="at">nframes =</span> <span class="dv">150</span>, <span class="at">fps =</span> <span class="dv">12</span>, </span>
-<span id="cb6-4"><a href="#cb6-4"></a>          <span class="at">start_pause =</span> <span class="dv">5</span>, <span class="at">end_pause =</span> <span class="dv">5</span>, </span>
-<span id="cb6-5"><a href="#cb6-5"></a>          <span class="at">width =</span> <span class="dv">5</span>, <span class="at">height =</span> <span class="dv">5</span>, </span>
-<span id="cb6-6"><a href="#cb6-6"></a>          <span class="at">units =</span> <span class="st">"in"</span>, <span class="at">res =</span> <span class="dv">150</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<p>I’m still not entirely convinced of the utility of animated plots, but they do look cool!</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
+<details><summary>Code</summary><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>anim <span class="ot">&lt;-</span> labelled <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">pad</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">animate</span>(<span class="at">fps =</span> <span class="dv">1</span>)</span>
+<span id="cb8-4"><a href="#cb8-4"></a></span>
+<span id="cb8-5"><a href="#cb8-5"></a><span class="fu">write_stim</span>(anim, <span class="at">dir =</span> <span class="st">"images"</span>, <span class="at">names =</span> <span class="st">"debruine_30DCC"</span>, <span class="at">format =</span> <span class="st">"gif"</span>)</span>
+<span id="cb8-6"><a href="#cb8-6"></a></span>
+<span id="cb8-7"><a href="#cb8-7"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"images/debruine_30DCC.gif"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/day22.gif" class="img-fluid figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="images/debruine_30DCC.gif" class="img-fluid figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -642,13 +606,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./21-down-upwards.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Down/Upwards</span></span>
+      <a href="./30-un-population.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">UN Population</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./23-tiles.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Tiles</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./app-a-colours.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Colours</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
