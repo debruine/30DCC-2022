@@ -22,6 +22,7 @@ book:
       theme: clean
       openSidebar: false
   repo-url: https://github.com/debruine/30DCC-2022/
+  repo-branch: master
   repo-actions: [edit, issue, source]
 #  downloads: [pdf, epub]
   sharing: [twitter, facebook, linkedin]
